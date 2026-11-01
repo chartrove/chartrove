@@ -24,7 +24,7 @@ jobs:
         run: |
           make test-frontend-coverage
       - name: Upload coverage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: frontend-coverage
           path: ${{ github.workspace }}/frontend/coverage/fastenhealth/lcov.info
@@ -47,7 +47,7 @@ jobs:
           make test-backend-coverage
           CGO_ENABLED=0 go build -buildvcs=false ./backend/cmd/fasten/
       - name: Upload coverage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: backend-coverage
           path: ${{ github.workspace }}/backend-coverage.txt
