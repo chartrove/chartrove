@@ -40,7 +40,7 @@ jobs:
         with:
           node-version: 26.13.0
       - run: make dep-frontend
-      - uses: chromaui/action@v1
+      - uses: chromaui/action@v18
         with:
           workingDir: frontend
           buildScriptName: "build-storybook"
