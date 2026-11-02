@@ -97,3 +97,26 @@ at `dist/validation/2026-11-01-consolidation/history.bundle`, SHA-256
 `9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1`.
 All 30 prerequisites are ancestors of retained main. Historical branch retirement
 still requires individual source/PR dispositions and current expected-tip leases.
+
+## Second batch: reviewed dispositions
+
+#332 merged as `bc1ccfac4`. Main is clean and protected. Actions now allows only
+GitHub-owned actions; Validation is the sole active workflow. Initial run:
+https://github.com/karamhouse/chartrove/actions/runs/41377558244 (pending).
+The first integration branch was deleted locally and remotely after ancestry and
+exact-tip verification. Sparse-checkout hash remains unchanged.
+
+[Individual dispositions](maintenance/2026-11-01-dispositions.json) authorize
+closing only the enumerated upstream administrative/release records and proven
+superseded or ineffective PR proposals after this batch merges. Every original
+record remains on GitHub. This is not a blanket retirement of unresolved bugs,
+provider interoperability, access control, or feature requests. In particular,
+#318 still updates an active Node devcontainer feature and remains open.
+
+Renovate ignores only the two original Go module requirements already overridden
+by deliberate local/provenance replacements. Their underlying source decisions
+remain reviewable; no provider feature or dependency upgrade is claimed.
+
+Historical summary/text migration disposition has been escalated to the user:
+archival-only retirement versus a separately tested opt-in repair. No real data
+has been inspected and neither branch is deleted pending that decision.
