@@ -1,0 +1,34 @@
+{
+  "integration_pr": 359,
+  "integration_main": "e24fd9bae3e3a82b37a8846abafda48bd1a2d4cc",
+  "bundle": "dist/validation/2026-11-01-consolidation/react18-head-20261102.bundle",
+  "bundle_sha256": "07bf8a5dbc169cf7b2af750b688780e3eeead4f709312acc3cd0f421f69b2a79",
+  "review_state_observations": [
+    {
+      "number": 282,
+      "state_before_disposition": "OPEN"
+    }
+  ],
+  "manually_retired": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 12,
+          "deletions": 12,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/react-monorepo",
+      "headRefOid": "3378f27209003ac0d00beb85d94e339646335305",
+      "number": 282,
+      "state": "OPEN",
+      "title": "chore(deps): update react monorepo to v18.3.1"
+    }
+  ],
+  "already_absent_after_closure_actor_not_established": [],
+  "open_pr_dependencies_checked": 48,
+  "remote_absence_verified": true,
+  "verified_utc": "2026-11-02T14:41:06.651360+00:00"
+}

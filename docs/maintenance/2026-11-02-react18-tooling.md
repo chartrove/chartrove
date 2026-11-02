@@ -32,3 +32,8 @@ output; the latest validated package remains the #357 runtime.
 [Exact historical tip and isolated unique-object proof](react18-head-recovery.json).
 The source proposal stays open until this replacement passes all three protected
 checks and integrates; no later React 19 feature is inferred from this patch.
+
+Integration: #359 merged at `e24fd9bae3e3a82b37a8846abafda48bd1a2d4cc` after all
+three protected checks passed. #282 is individually reconciled; the exact archived
+head was manually retired after dependency review and an expected-tip lease.
+[Retirement receipt](react18-retirement-1.json).

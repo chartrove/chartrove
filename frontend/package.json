@@ -71,7 +71,7 @@
     "@angular/compiler-cli": "^22.2.4",
     "@angular/language-service": "^22.2.4",
     "@babel/core": "^7.29.7",
-    "@compodoc/compodoc": "^1.1.19",
+    "@compodoc/compodoc": "2.0.0",
     "@storybook/addon-docs": "^10.6.5",
     "@storybook/addon-links": "^10.6.5",
     "@storybook/angular": "^10.6.5",

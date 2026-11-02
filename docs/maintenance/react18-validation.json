@@ -45,6 +45,7 @@
   "stable_evidence_manifest_sha256": "7c673409a1f460a8ebada2bbd5b3d726954b2bc2e3377b32894fb0dead7ed6dd",
   "frontend_validation": "dist/validation/2026-11-01-consolidation/react18-validation",
   "frontend_receipt_sha256": "34af2db8b87d0d2a10c51a1d4fbb8676c1d1d38402600c2d4aef83cec1a17810",
-  "protected_ci": "required before integration",
-  "react_19_not_adopted": true
+  "protected_ci": "Backend, Frontend and Desktop passed in merged #359",
+  "react_19_not_adopted": true,
+  "integration_main": "e24fd9bae3e3a82b37a8846abafda48bd1a2d4cc"
 }

@@ -1,0 +1,11 @@
+{
+  "original_compodoc": "1.1.19",
+  "original_manifest_sha256": "411531f57f953e413378f47d02810f625a7cccef5924da8ada1b8ba4b3cbd82a",
+  "original_lock_sha256": "eb2ea9b1afe6a89d05add71cf6c5b456ed4c948fa6e9c6cfa34c19a58a202106",
+  "documentation_original_exists": false,
+  "archive": "dist/validation/2026-11-01-consolidation/frontend-dependencies-before-compodoc2-20261102.tar.zst",
+  "archive_sha256": "eed0af0cc6280ce7bda2836c6644c7c6aef1fcfa5a6b0201608f249a458ed30d",
+  "archive_bytes": 222943255,
+  "complete_native_acl_xattrs_flags_archive_and_full_traversal": "passed",
+  "original_documentation_unchanged": true
+}
