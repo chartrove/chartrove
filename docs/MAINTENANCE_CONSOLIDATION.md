@@ -36,6 +36,11 @@ workflow patches. The other dependency PRs also require individual review.
 
 ## Latest integrated safeguards and tooling
 
+The next minimal dependency batch adopts Karma 6.4.4 through three lock lines.
+Its executable distribution is identical to 6.4.3; all 74 other direct versions
+stay unchanged. The ordinary full browser command exits 0 (415 passes, one skip).
+#228 remains open until protected integration. [Scope and recovery](maintenance/2026-11-02-minimal-karma-patch.md).
+
 The unused upstream Chromatic publishing CLI is removed by the next integration
 batch. Runtime selections and all 75 retained direct versions stay unchanged;
 frozen install, production/Storybook and bridge checks pass. #239/#299 may be
