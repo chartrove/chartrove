@@ -27,9 +27,12 @@ The exact current #259 tip d98466fa34975c6ea1bc633e20cad54d9f58fd6d is in a
 checksum-recorded incremental bundle. Strict validation and original-pack
 offsets prove all four unique objects are included, with main-reachable
 prerequisites. The original intake tip remains in history.bundle as well.
-[Recovery](graph-alignment-head-recovery.json). The proposal and its branch
-remain live pending protected-main checks and integration, individual closure,
-and fresh PR dependency/expected-tip checks before retirement.
+[Recovery](graph-alignment-head-recovery.json). Protected PR #367 merged at
+`53f6685ba2360818c832865de030362b1ae13aa8` after all three required checks
+passed in run 41515286080. #259 is individually closed as implemented; its exact
+bundled head and the merged task branch were manually retired with fresh PR
+dependency checks, dry run and atomic exact-tip leases.
+[Retirement](graph-retirement-1.json).
 
 Raw release/comparison metadata, module package, before/after outputs and
 receipts are retained in dist/validation/2026-11-01-consolidation/graph-alignment-review/.
@@ -50,3 +53,10 @@ unwired native timeline note input. That is insufficient to establish the
 reporter's exact Save failure; it stays open. Historical #217's reserved-name
 policy is also unimplemented and remains open. No broad feature retirement is
 inferred from the continuation instruction.
+
+#137 is now consolidated only as a duplicate into still-open #69. Five synthetic
+Goja probes confirm scalar extraction and lost range/multiplicity information;
+no fix, reindex or migration is claimed. The first Node VM probe did not match
+the application runtime and is retained as a failed diagnostic, not application
+behavior. The corrected probe follows backend Goja initialization and JSON-map
+conversion. [Canonical scope and evidence](date-period-duplicate-137.json).

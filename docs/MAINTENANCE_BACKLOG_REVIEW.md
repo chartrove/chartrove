@@ -85,7 +85,7 @@ These categories identify the evidence needed for the next decision. Same-major 
 - #277 still targets x/net v0.61.0. Both local graphs now select v0.62.0 to cover the two HTML advisories published October 27. No companion dependency changes were necessary. Upstream HTML tests and application checks pass in both graphs, and fresh module scans report no x/net findings. This also exceeds historical #202's target; both records remain open.
 - #263's Gin v1.12.0 target is implemented locally with its required serialization family, protobuf v1.36.12, and quic-go v0.59.1. The latter patches a finding introduced by Gin's minimum quic-go version. Full backend, desktop host, encrypted-backend, and synthetic import checks pass. Module scans no longer report Gin, protobuf, or quic-go findings. This also exceeds historical #200's target; both records remain open.
 - #205's historical CIRCL v1.3.7 target is superseded locally by v1.6.5 in both graphs. The selected release adds key/point validation beyond the desktop's former v1.6.3. Nine upstream crypto packages pass under each graph's ProtonMail version, as do application authentication/web, desktop host, and encrypted-backend checks. Fresh module scans report no CIRCL findings; no application exploit path was demonstrated. The historical PR remains open.
-- The current #160 paid-contribution inquiry was read without responding. No hiring or payment decision is inferred.
+- Correction verified November 2: current #160 is Search Enhancements/Disambiguate providers. The earlier paid-contribution classification was mistaken; no hiring/payment decision or issue disposition should be inferred from that note. #160 remains open.
 
 ## Verified local implementation and migration sequence
 

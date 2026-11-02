@@ -1,0 +1,102 @@
+{
+  "time": "2026-11-02T20:16:47.370710+00:00",
+  "base_main": "53f6685ba2360818c832865de030362b1ae13aa8",
+  "install": {
+    "command": [
+      "make",
+      "dep-frontend"
+    ],
+    "exit": 0,
+    "time": "2026-11-02T20:12:02.763104+00:00"
+  },
+  "comparison": {
+    "direct_count": 73,
+    "other_direct_versions_unchanged": 72,
+    "changed_direct_versions": {
+      "zone.js": [
+        "0.15.1",
+        "0.16.3"
+      ]
+    },
+    "published_files_matching_installation": 138,
+    "all_other_lock_bytes_retained": true,
+    "frozen_install_preserved_patched_lock_and_manifest": true
+  },
+  "checks": {
+    "node": {
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:12:41.952217+00:00",
+      "end": "2026-11-02T20:12:42.362399+00:00",
+      "exit": 0
+    },
+    "browser": {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-02T20:12:42.362918+00:00",
+      "end": "2026-11-02T20:13:23.350962+00:00",
+      "exit": 0
+    },
+    "storybook": {
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/zone-validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-02T20:13:23.355617+00:00",
+      "end": "2026-11-02T20:15:55.479758+00:00",
+      "exit": 0
+    }
+  },
+  "source_inputs_sha256": {
+    "frontend/package.json": "caf42885786f3bd6c9c3c8155874f7e072d9b257de3dbadc253883e8ade06841",
+    "frontend/yarn.lock": "9d802806e46bff9f0da704fbf2381f911d92839de59d96608a6160025af582e7"
+  },
+  "package_sha512_matches_registry": true,
+  "package_sha1_matches_registry": true,
+  "package_exports_types_and_runtime_dependencies_unchanged": true,
+  "angular_core_version": "22.2.4",
+  "angular_core_zone_peer_requirement": "~0.15.0 || ~0.16.0",
+  "existing_ng01354_warning_count_before_after": [
+    138,
+    138
+  ],
+  "coverage_original_absence_restored": true,
+  "storybook_metadata_preservation": {
+    "original_state": "absent",
+    "status": "generated metadata retained and original absence restored",
+    "generated": {
+      "sha256": "f471d192b0e2ef78abac4ff5a2240e18347dc8f77eaf256f0c1069c36bdafc8f",
+      "bytes": 5839202
+    },
+    "original_absence_restored": true
+  },
+  "fresh_production_and_native_validation": "pending output-preserving native build",
+  "historical_pr234_and_branch": "remain live pending protected integration"
+}

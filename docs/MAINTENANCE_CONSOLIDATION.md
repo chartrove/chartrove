@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #366 and individual #274/#331/#182 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after366.json).
-The graph-alignment branch is additional and unpublished at
+Snapshot: November 2, 2026, after #367 and individual #259/#137 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after367.json).
+The Zone.js branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `cf400c0efe57375964bf4a463efb6c2ccf96f6e6` (#366) |
-| Open issues | 170, including retained Renovate dashboard #222 |
-| Open PRs | 40: 34 paused Renovate proposals and six historical drafts |
-| Origin heads | 49 |
-| Default branch | main tracks origin/main with equal OIDs; graph branch is additional |
+| Published application main | `53f6685ba2360818c832865de030362b1ae13aa8` (#367) |
+| Open issues | 169, including retained Renovate dashboard #222 |
+| Open PRs | 39: 33 paused Renovate proposals and six historical drafts |
+| Origin heads | 48 |
+| Default branch | main tracks origin/main with equal OIDs; Zone.js branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -274,12 +274,20 @@ All three protected checks pass. Both historical heads are individually
 reconciled and manually retired with fresh dependency checks and exact-tip leases.
 [Scope and validation](maintenance/2026-11-02-cli-v2-maintenance.md).
 
-The pending #259 graph-alignment batch has one selected module change, passing
+Merged #367 for #259 has one selected module change, passing
 before/after repository graph assertions, upstream tests, vet and builds. Desktop
-production imports are byte-identical. #182 is closed as a duplicate of still-open
+production imports are byte-identical; all three protected checks pass and its
+archived head is manually retired. #182 is closed as a duplicate of still-open
 #53, whose synthetic M/m rejection is reproduced in both Go graphs, not fixed.
 #194 and #217 remain unresolved after read-only scope review.
 [Scope and receipts](maintenance/2026-11-02-graph-alignment.md).
+
+The pending Zone.js #234 batch changes only its supported manifest range and
+lock entry. All 72 other direct versions stay fixed; frozen install, package
+integrity, 429 browser tests (one existing skip), ten Node checks and static
+Storybook pass. Original metadata/coverage states are preserved. Fresh native
+production validation and protected integration remain pending.
+[Scope and preservation](maintenance/2026-11-02-zone-maintenance.md).
 
 ## Preservation and branch retirement
 
@@ -317,7 +325,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Fifty-seven historical origin refs were retired by this agent after individual review,
+Fifty-eight historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Ten more (#313, four utility heads, two UUID heads, two declaration heads and
 the parser head) were already absent after closure;
@@ -342,7 +350,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [three duration/layout refs](maintenance/duration-layout-retirement-3.json),
 [one parser head observed absent](maintenance/name-parser-retirement-1.json),
 [one Fishery head](maintenance/fishery-retirement-1.json),
-[two CLI heads](maintenance/cli-retirement-2.json).
+[two CLI heads](maintenance/cli-retirement-2.json),
+[one graph head](maintenance/graph-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Recovered coverage and remaining decisions
@@ -369,8 +378,9 @@ A continuation message is not an answer to those pending decisions.
 
 Native #101/#168 acceptance now has observed chooser and synthetic persistence
 evidence above; earlier bridge failures remain retained as historical evidence.
-#69/#137 range indexing still needs a compatible representation/migration
-decision. #186 lab-date review found that the edit endpoint replaces raw
+#137 is now a duplicate of still-open #69; the canonical task retains date/Period
+bounds and multiplicity, and still needs a compatible representation/migration
+decision. [Consolidation evidence](maintenance/date-period-duplicate-137.json). #186 lab-date review found that the edit endpoint replaces raw
 Observation payloads, so preservation must be addressed before adding date
 editing. No lab correction or migration has been implemented. Optional patient
 birth dates display NaN Years Old in Explore; that newly observed synthetic case
@@ -380,7 +390,7 @@ also remains unresolved. [Retained boundaries](maintenance/2026-11-02-unresolved
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 34 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 33 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

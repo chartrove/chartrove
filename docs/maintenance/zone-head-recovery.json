@@ -1,0 +1,29 @@
+{
+  "branch": "renovate/angular-monorepo",
+  "tip": "57fc11c6ea8be48c4c8a738a027cebc650a297f4",
+  "bundle": "dist/validation/2026-11-01-consolidation/zone-head-20261102.bundle",
+  "sha256": "32ac4c7369bfa62bf38ce9eda9945498eebe875bf7b29242ab575eb96616745a",
+  "bytes": 1542,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "cf400c0efe57375964bf4a463efb6c2ccf96f6e6",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "24d68e4da6e0c054d934b04fe56d0eb23739d807",
+    "57fc11c6ea8be48c4c8a738a027cebc650a297f4",
+    "a5e6516a70be24f67f81bd3e822ed7e2cb8dcbcd",
+    "c374fa46c8c651f058f531bd9346319df0a7e837",
+    "fb92f87198018f19b78638c02aee5b148897ee52"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/angular-monorepo",
+      "466cd5b16f6463c0906bf40e9f645970865b8b9c"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

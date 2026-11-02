@@ -1,0 +1,11 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/zone-installed-before-20261102.tar.gz",
+  "sha256": "933df3aae681ad843158c1c963bd789334a2679adfa9bbf3a9214cc92acfa38b",
+  "bytes": 518252,
+  "all_archived_regular_bytes_match": true,
+  "native_xattr_sidecar": "installed-before-xattrs.txt",
+  "native_xattr_sidecar_sha256": "3aecbde9e50fc6e14a6bbc55fbe83b07485396098a1a6c9eefe539094b1c1ffc",
+  "metadata_entry_count": 143,
+  "full_receipt": "dist/validation/2026-11-01-consolidation/zone-review/installed-before-receipt.json",
+  "full_receipt_sha256": "b0544af6c59b5c55f18628ea77be8a478f8631ad986f9a5856e575be0964b3f7"
+}
