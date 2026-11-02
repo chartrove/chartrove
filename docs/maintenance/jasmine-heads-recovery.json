@@ -1,0 +1,118 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/jasmine-3.x",
+      "headRefOid": "9cd51807f414aa9efd933ee95a9b0399f81c5233",
+      "number": 237,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency @types/jasmine to ~3.10.0"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/jasmine-monorepo",
+      "headRefOid": "aa05ea9585997d0fe9cf6c34f2c13895fdfbdc38",
+      "number": 245,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency jasmine-core to ~5.13.0"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 3,
+          "deletions": 3,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/karma-jasmine-html-reporter-2.x-lockfile",
+      "headRefOid": "2013e847f80702e3897b440bbf99d83cebedab05",
+      "number": 247,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency karma-jasmine-html-reporter to v2.3.0"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/jasmine-7.x",
+      "headRefOid": "f6659c2640f5ed5d6f7179015c76d0b4778ee0bd",
+      "number": 297,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency @types/jasmine to v7"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/major-jasmine-monorepo",
+      "headRefOid": "dd7e39a0503f40fdb830d98a3a11ded195ae28b2",
+      "number": 304,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency jasmine-core to v7"
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/jasmine-heads-20261102.bundle",
+  "sha256": "4ea9806c530e55ff3fdfa075aef068eff6d4bf73f9446957e794eb25cd12ce30",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "6ba97e57c4e0cd7b21848b9368b76c5cb0bec92e",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 24,
+  "required_objects_included": true,
+  "intended_disposition": "Align declarations and reporter with proven active Jasmine 4.6 without forced adapter override; retire redundant direct-core/misaligned-major targets explicitly, preserving all tests and application runtime."
+}

@@ -1,0 +1,17 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/jasmine-installed-before-20261102.tar.zst",
+  "sha256": "0043b5bc8a2796da89f716b20699464001b95497ad0193e4b5bc21610a6debde",
+  "bytes": 196365,
+  "all_installed_paths": [
+    "jasmine-core",
+    "@types/jasmine",
+    "karma-jasmine-html-reporter",
+    "karma-jasmine",
+    ".yarn-integrity"
+  ],
+  "metadata": "native tar --acls --xattrs --fflags; original stat manifest retained",
+  "zstd_and_full_tar_traversal": "passed",
+  "active_core_before": "4.6.0",
+  "redundant_direct_core_before": "5.1.2",
+  "active_core_file_hashes_sha256": "9e9bded930e8fad543e986b4fd167c59ccf0403f62059dc85ed296d121566ac9"
+}

@@ -52,7 +52,7 @@ From the repository root:
 make prepare-backend
 go test -p 1 ./backend/... -count=1
 cd frontend
-node --test desktop-tests/bridge.test.mjs
+node --test desktop-tests/*.test.mjs
 node node_modules/@angular/cli/bin/ng.js test --watch=false --browsers=ChromeHeadlessCI
 ```
 

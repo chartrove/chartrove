@@ -44,3 +44,8 @@ checks using a new explicit unencrypted data directory with providers disabled.
 Original outputs match contents, inodes, permissions, ownership, birth times,
 mtimes and all xattrs after restoration. All three protected checks still gate
 integration. The original proposal remains open until that integration.
+
+Integration: #357 merged at `6ba97e57c4e0cd7b21848b9368b76c5cb0bec92e` after all
+three required checks passed. #224 was individually superseded with its unadopted
+1.4.1 delegate explicitly recorded; its exact archived head was manually retired
+after dependency checks and an expected-tip lease. [Receipt](oauth-patch-retirement-1.json).

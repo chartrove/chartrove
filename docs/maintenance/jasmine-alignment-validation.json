@@ -1,0 +1,54 @@
+{
+  "checked_utc": "2026-11-02T13:50:22.434473+00:00",
+  "actual_browser_engine_before_after": "Jasmine 4.6.0",
+  "actual_engine_all_files_byte_identical": true,
+  "declared_core_before": "5.1.2 (separate from actual adapter engine)",
+  "declared_core_after": "4.6.0 (shared with adapter and reporter)",
+  "declarations": "3.5.14 -> 4.6.6",
+  "html_reporter": "2.1.0 -> 2.3.0",
+  "two_coherence_guards": {
+    "before_exit": 1,
+    "before_failed_tests": 2,
+    "after_exit": 0,
+    "after_passed_checks_with_bridge": 7
+  },
+  "ordinary_browser_suite": {
+    "exit": 0,
+    "passed": 423,
+    "existing_skip": 1
+  },
+  "html_reporter_browser_probe": {
+    "exit": 0,
+    "passed": 1,
+    "actual_engine": "4.6.0",
+    "purpose": "diagnostic only; not the full application suite"
+  },
+  "all_71_other_direct_versions_unchanged": true,
+  "production_output_files": 22287,
+  "every_produced_file_matches_latest_native_frontend": true,
+  "native_runtime_receipt": "native-f30970052-validation.json",
+  "production_runtime_unchanged_no_new_native_run_claimed": true,
+  "production_storybook_frozen_install_and_node_checks": "passed",
+  "new_jasmine_peer_warning": "first candidate without explicit direct core warned; final explicit matching core satisfies peer, with exact logs retained",
+  "ci_change": {
+    "only_workflow_change": "Node test glob includes new coherence checks",
+    "all_triggers_permissions_action_pins_check_names_commands_otherwise_unchanged": true,
+    "skip_worktree_preserved": true,
+    "workflow_not_materialized": true,
+    "sparse_patterns_unchanged": true,
+    "actionlint_exit": 0
+  },
+  "source_review": "registry SRI and full reporter JavaScript reviewed; declaration artifact has no JavaScript; adapter official dependency is jasmine-core ^4.1.0",
+  "local_evidence": "dist/validation/2026-11-01-consolidation/jasmine-review",
+  "evidence_hash_manifest_sha256": "5b4b5d90924b258bb8f71edc827723747db4951c54d463b28d99a882d727dc65",
+  "frontend_validation": "dist/validation/2026-11-01-consolidation/jasmine-alignment-validation",
+  "frontend_receipt_sha256": "b30efcde4ed061fd0d1d5db303b329a4b13c135d65de2c20e942f1ebbfc0013e",
+  "protected_ci": "required before integration",
+  "planned_dispositions": {
+    "237": "corrected replacement: declarations 4.6.6 match actual engine; historical 3.10 target superseded",
+    "245": "retire separate core 5.13 update; no 5.13 engine adoption claimed",
+    "247": "implement reporter 2.3.0",
+    "297": "retire mismatched declaration major 7; no major 7 adoption claimed",
+    "304": "retire standalone core 7 proposal; no major 7 engine migration claimed"
+  }
+}
