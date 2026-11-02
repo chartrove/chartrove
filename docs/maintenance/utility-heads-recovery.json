@@ -1,0 +1,56 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/github.com-twin-deepmerge-0.x",
+      "headRefOid": "5b9634fadc3a4dabc0f298761b3f205c32dddbb5",
+      "number": 233,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "go.mod",
+        "go.sum"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/github.com-google-uuid-1.x",
+      "headRefOid": "169a916a0f82b27138a48c60110379ae18576790",
+      "number": 265,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "go.mod",
+        "go.sum"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/github.com-iancoleman-strcase-0.x",
+      "headRefOid": "c9fd91461a8df6b7b8501a4270aa2726e07747ae",
+      "number": 266,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "go.mod",
+        "go.sum"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/github.com-masterminds-sprig-v3-3.x",
+      "headRefOid": "c531d7d5e3f2e4c677e90784050247f6982c338f",
+      "number": 269,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "go.mod",
+        "go.sum"
+      ]
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/utility-heads-20261102.bundle",
+  "sha256": "267ac726392dbd0a35ac985c9b2c2323cbe82ad031e7317573b90b3f5ae78743",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "all_prerequisites_ancestors_of": "79e56e930b5060fd172bf84e98b53b2c0cf9a1a4",
+  "strict_isolated_pack_verification": "passed",
+  "disposition": "retain open PRs until corrected current-graph replacement passes protected CI and merges; archive does not implement any update"
+}

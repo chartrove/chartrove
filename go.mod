@@ -11,8 +11,8 @@ replace github.com/mattn/go-sqlite3 v1.14.17 => github.com/jgiannuzzi/go-sqlite3
 //replace gorm.io/driver/sqlite v1.5.4 => github.com/jgiannuzzi/gorm-sqlite v1.4.4-0.20221215225833-42389ad31305
 
 require (
-	github.com/Masterminds/sprig/v3 v3.2.3
-	github.com/TwiN/deepmerge v0.2.1
+	github.com/Masterminds/sprig/v3 v3.3.0
+	github.com/TwiN/deepmerge v0.2.2
 	github.com/analogj/go-util v0.0.0-20210417161720-39b497cca03b
 	github.com/dave/jennifer v1.6.1
 	github.com/dominikbraun/graph v0.15.0
@@ -24,8 +24,8 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v54 v54.0.0
-	github.com/google/uuid v1.5.0
-	github.com/iancoleman/strcase v0.2.0
+	github.com/google/uuid v1.6.0
+	github.com/iancoleman/strcase v0.3.0
 	github.com/johnfercher/maroto/v2 v2.3.1
 	github.com/lestrrat-go/jwx/v3 v3.4.0
 	github.com/samber/lo v1.35.0
@@ -43,8 +43,9 @@ require (
 )
 
 require (
+	dario.cat/mergo v1.0.1 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
-	github.com/Masterminds/semver/v3 v3.2.0 // indirect
+	github.com/Masterminds/semver/v3 v3.3.0 // indirect
 	github.com/boombuler/barcode v1.0.1 // indirect
 	github.com/bytedance/gopkg v0.1.3 // indirect
 	github.com/bytedance/sonic/loader v0.5.0 // indirect
@@ -54,7 +55,7 @@ require (
 	github.com/goccy/go-yaml v1.19.2 // indirect
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/hhrutter/tiff v1.0.1 // indirect
-	github.com/huandu/xstrings v1.3.3 // indirect
+	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
@@ -68,14 +69,14 @@ require (
 	github.com/lestrrat-go/option/v2 v2.0.0 // indirect
 	github.com/mattn/go-runewidth v0.0.15 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
-	github.com/mitchellh/copystructure v1.0.0 // indirect
-	github.com/mitchellh/reflectwalk v1.0.0 // indirect
+	github.com/mitchellh/copystructure v1.2.0 // indirect
+	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/pdfcpu/pdfcpu v0.6.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/quic-go/qpack v0.6.0 // indirect
 	github.com/quic-go/quic-go v0.59.1 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/shopspring/decimal v1.2.0 // indirect
+	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/valyala/fastjson v1.6.10 // indirect
 	go.mongodb.org/mongo-driver/v2 v2.5.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
@@ -126,7 +127,7 @@ require (
 	github.com/seborama/govcr v4.5.0+incompatible // indirect
 	github.com/segmentio/asm v1.2.1 // indirect
 	github.com/spf13/afero v1.8.2 // indirect
-	github.com/spf13/cast v1.5.0 // indirect
+	github.com/spf13/cast v1.7.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.3.0 // indirect
