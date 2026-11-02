@@ -1,0 +1,55 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/jasminewd2-2.x-lockfile",
+      "headRefOid": "8853970d8785fe6e1f61a484ceeaeb17d5ac9956",
+      "number": 226,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/ts-node-8.x",
+      "headRefOid": "60c4c918e8c1cab9621a0df4eac17f46bc9812ad",
+      "number": 251,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/codelyzer-6.x",
+      "headRefOid": "be83d77895df791afcfe4f7a38f1582e2d0e0ee5",
+      "number": 300,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/ts-node-10.x",
+      "headRefOid": "5f61b6f56b4d604be754c3e806f778362fcdad33",
+      "number": 312,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/legacy-tooling-heads-20261102.bundle",
+  "sha256": "d0580c7810f5fe6c5e1400c637dfae51c777f3410a2eea8d7a185d3f299af30c",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "all_prerequisites_ancestors_of": "3f7cd3131712b99f0cc2c711d19ae35831fcbd3d",
+  "strict_isolated_pack_verification": "passed",
+  "intended_disposition": "retire proposals for unused unsupported Protractor/TSLint scaffolding; not implemented upgrades; close only after safe retirement integrates"
+}

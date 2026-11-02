@@ -1,0 +1,30 @@
+{
+  "unsupported_commands_before": {
+    "ng lint": 127,
+    "ng e2e": 127
+  },
+  "active_checks": {
+    "frozen_install": 0,
+    "bridge_tests": {
+      "exit": 0,
+      "passed": 5
+    },
+    "browser_tests": {
+      "exit": 0,
+      "passed": 404,
+      "existing_skipped": 1
+    },
+    "production_build": 0,
+    "pinned_storybook_build": 0
+  },
+  "retained_direct_versions_identical": 76,
+  "runtime_dependency_manifest_identical": true,
+  "new_lock_artifact_tuples": 0,
+  "removed_lock_artifact_tuples": 112,
+  "preserved_scaffold_files": 5,
+  "dependency_archive_sha256": "983c70481647a788aa5ffce2cd763649a85b7b32a23f2be21b40d8fa37fb2243",
+  "initial_storybook_attempt": "failed before compilation: Yarn unavailable on PATH; pinned manager run succeeded with Compodoc enabled",
+  "documentation_preserved": true,
+  "current_native_and_required_ci": "pending; no integrated acceptance claim",
+  "evidence_directory": "dist/validation/2026-11-01-consolidation"
+}

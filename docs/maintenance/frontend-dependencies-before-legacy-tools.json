@@ -1,0 +1,11 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/frontend-dependencies-before-legacy-tools-20261102.tar.zst",
+  "sha256": "983c70481647a788aa5ffce2cd763649a85b7b32a23f2be21b40d8fa37fb2243",
+  "bytes": 228144162,
+  "archive_validation": "zstd test passed; tar metadata/ACL/xattr flags used",
+  "scope": "entire currently installed frontend/node_modules before retirement; old initial dependency archive remains untouched",
+  "root_go_main": "25771316699d757745df9a271e8a7e87b708e18a",
+  "source_revision": "3f7cd3131712b99f0cc2c711d19ae35831fcbd3d",
+  "tar_members_validated": true,
+  "member_listing_sha256": "e1a7a12aebbcb45f2b22a7af1c5fdd4c2a9d212c6eff0741e56b1bfb68e2d513"
+}

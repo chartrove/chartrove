@@ -1,0 +1,27 @@
+[
+  {
+    "source": "frontend/e2e/protractor.conf.js",
+    "retained": "docs/retired-frontend-tooling/e2e/protractor.conf.js.disabled",
+    "sha256": "6cda1fb5bf6bea9abeb086c864870a34f477c918ab166b151351edabe66fe6ed"
+  },
+  {
+    "source": "frontend/e2e/src/app.e2e-spec.ts",
+    "retained": "docs/retired-frontend-tooling/e2e/src/app.e2e-spec.ts.disabled",
+    "sha256": "912f1038cea8cdad068310f3fa7c3f3cbbd699828a0b0d986b5bd00555d1e904"
+  },
+  {
+    "source": "frontend/e2e/src/app.po.ts",
+    "retained": "docs/retired-frontend-tooling/e2e/src/app.po.ts.disabled",
+    "sha256": "d93ae07a51e7f37fd9b466e463457a67941ba51e0d995872edf080afd4c3b522"
+  },
+  {
+    "source": "frontend/e2e/tsconfig.json",
+    "retained": "docs/retired-frontend-tooling/e2e/tsconfig.json.disabled",
+    "sha256": "07738391a196a9c9b94b215d30e04930b32d36527cf56dc0b57d69d4dc854295"
+  },
+  {
+    "source": "frontend/tslint.json",
+    "retained": "docs/retired-frontend-tooling/tslint.json.disabled",
+    "sha256": "52f1c268c03c00fa0ba160a64bcf8a7d1cd5000801ebf213527dfd2a2f869f35"
+  }
+]

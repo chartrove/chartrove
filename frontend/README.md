@@ -1,27 +1,29 @@
-# fastenhealth
+# Chartrove frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+This is the Angular 22 desktop/server frontend. Use Node 26.13.0 and the pinned
+Yarn 1.22.22 commands in [CONTRIBUTING](../CONTRIBUTING.md), including synthetic
+storage and dependency-install instructions. Fasten attribution and licenses are
+retained in the repository and application.
 
-## Development server
+From this directory, use the installed CLI:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```sh
+node node_modules/@angular/cli/bin/ng.js test --watch=false --browsers=ChromeHeadlessCI
+node node_modules/@angular/cli/bin/ng.js build --configuration desktop_prod --output-path=/path/to/new/build-directory
+```
 
-## Code scaffolding
+Coverage goes to a fresh private temporary directory, printed by Karma. Set
+CHARTROVE_COVERAGE_DIR explicitly only for a chosen new report destination.
+Run Storybook's documentation build through the pinned package manager so its
+Compodoc subprocess can also find Yarn:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+npm exec --yes --package=corepack@0.35.0 -- corepack yarn run build-storybook --output-dir=/path/to/new/storybook-directory
+```
 
-## Build
+Select a new output directory when retaining an existing build.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The obsolete TSLint/Protractor targets and starter test are [preserved and retired](../docs/retired-frontend-tooling/README.md).
+There is currently no configured frontend lint or full browser end-to-end command;
+those retired commands are not advertised as working checks. Active browser unit,
+production compilation and native integration checks remain mandatory.
