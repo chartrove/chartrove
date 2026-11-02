@@ -1,0 +1,42 @@
+{
+  "snapshot": "com.apple.TimeMachine.2026-11-01-183642.local",
+  "snapshot_device": "/dev/disk3s1",
+  "source_relative_to_snapshot": "Users/osama/Code/karamhouse/chartrove/frontend/coverage",
+  "snapshot_readonly_verified": true,
+  "authorized_recovery_scope": "only the pre-existing primary frontend/coverage report tree",
+  "target": "dist/validation/2026-11-01-consolidation/primary-coverage-before-maintenance",
+  "source_files": 349,
+  "source_directories": 129,
+  "source_total_bytes": 4974406,
+  "snapshot_archive": {
+    "path": "dist/validation/2026-11-01-consolidation/primary-coverage-snapshot-20261101-183642.tar.zst",
+    "sha256": "3c1cfa47426c6035db280ae99b0011aa5a8c75f8a34e7b7f0bd9240a2cd8251b",
+    "bytes": 347558,
+    "metadata_options": "native tar --acls --xattrs --fflags",
+    "zstd_and_complete_tar_traversal": "passed"
+  },
+  "all_paths_and_file_contents_match": true,
+  "all_birthtimes_match_nanoseconds": true,
+  "all_permissions_ownership_mtime_flags_acl_match": true,
+  "remaining_metadata_difference": {
+    "attribute": "com.apple.provenance",
+    "entries": 478,
+    "handling": "OS-generated destination provenance retained; original raw values preserved in snapshot archive and metadata manifests. No security attribute rewritten."
+  },
+  "exact_metadata_evidence": {
+    "snapshot-exact-metadata.json": "d6827bd265ee3cf030e7fe1aaa5364bc66c3ef8285b07a66946adcd71057cbde",
+    "restored-final-exact-metadata.json": "d0365b60215f3ae198c314fe0a603895d4537b7cb0802c4391d637eca0b17d57",
+    "final-metadata-differences.json": "8ed44b11fa9b991ae84382e9c4019d98cf204a697553e200d8c53e384aba8694"
+  },
+  "target_index_sha256": "484b9675687c937863118d2d36737f8096246dff35b71b246f08d0ad36874cf4",
+  "mixed_post_maintenance_index_sha256": "62d51781d03e51cd74a4fc1e0e6201223d04aec3d35ecc0ddc76982ff00cb214",
+  "original_frontend_coverage_path_remains_absent": true,
+  "private_readonly_snapshot_mount_unmounted": true,
+  "snapshot_not_deleted": true,
+  "verified_utc": "2026-11-02T12:15:57.939526+00:00",
+  "status": "recovered-verified-with-os-provenance-difference",
+  "full_local_receipt": {
+    "path": "dist/validation/2026-11-01-consolidation/primary-coverage-recovery-evidence/receipt.json",
+    "sha256": "32b238864389cc2d034eccee0ac9d45eadf79cdf174e9931788e74670ffbce22"
+  }
+}

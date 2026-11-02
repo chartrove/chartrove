@@ -1,0 +1,56 @@
+{
+  "integration_pr": 354,
+  "integration_main": "8f21c8394ecc63408ce6729ff279a443a143481b",
+  "bundle": "dist/validation/2026-11-01-consolidation/actions-v7-heads-20261102.bundle",
+  "bundle_sha256": "6b66b111fcc6e8f7b5daefe9ac1e3a18bbee7cfb32e3ec6651e78dad1d580183",
+  "review_state_observations": [
+    {
+      "number": 284,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 285,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 286,
+      "state_before_disposition": "OPEN"
+    }
+  ],
+  "manually_retired": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/actions-checkout-7.x",
+      "headRefOid": "39154665214feda721d478facd1667f499796a39",
+      "number": 284,
+      "state": "OPEN",
+      "reviewed_paths": [
+        ".github/workflows/validation.yaml"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/actions-setup-go-7.x",
+      "headRefOid": "d115c7949c188248675d3f50ac2acfc8aa1c4ce0",
+      "number": 285,
+      "state": "OPEN",
+      "reviewed_paths": [
+        ".github/workflows/validation.yaml"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/actions-setup-node-7.x",
+      "headRefOid": "9c9f622cd8a09d678fe196cfd8fc9bfd75f43f53",
+      "number": 286,
+      "state": "OPEN",
+      "reviewed_paths": [
+        ".github/workflows/validation.yaml"
+      ]
+    }
+  ],
+  "already_absent_after_closure_actor_not_established": [],
+  "open_pr_dependencies_checked": 57,
+  "remote_absence_verified": true,
+  "verified_utc": "2026-11-02T12:17:03.034214+00:00"
+}
