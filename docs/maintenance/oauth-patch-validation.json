@@ -76,7 +76,8 @@
   "local_frontend_validation": "dist/validation/2026-11-01-consolidation/oauth-direct-validation",
   "evidence_hash_manifest_sha256": "65b3bdd12de716db7ad9018b7605a54af0b65f3b0c40b2c2d11c077605bced09",
   "frontend_receipt_sha256": "55289fac1bee166790b9f8751b258b0d53ba8a34c8c3a8e4213f5b5ad54cb595",
-  "native_smoke": "pending fresh package",
+  "native_smoke": "fresh package, strict signature and all ten synthetic native checks passed",
   "protected_ci": "required before merge",
-  "no_provider_registration_real_credentials_or_real_health_records_used": true
+  "no_provider_registration_real_credentials_or_real_health_records_used": true,
+  "native_receipt": "native-f30970052-validation.json"
 }

@@ -38,6 +38,9 @@ source-map contents change only the two import specifiers and two reviewed SDK
 strings. No clinical algorithm, database/Wails contract or data migration changes.
 
 [Validation and artifact evidence](oauth-patch-validation.json). Existing build
-warnings and original artifacts remain retained. A fresh native package and all
-three protected checks still gate integration; no fresh native success is claimed
-at this checkpoint. The original proposal remains open until that integration.
+warnings and original artifacts remain retained. The [fresh native package](native-f30970052-validation.json)
+passes build, ZIP CRC, strict extracted signature and all ten synthetic WebView
+checks using a new explicit unencrypted data directory with providers disabled.
+Original outputs match contents, inodes, permissions, ownership, birth times,
+mtimes and all xattrs after restoration. All three protected checks still gate
+integration. The original proposal remains open until that integration.

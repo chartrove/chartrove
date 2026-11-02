@@ -45,8 +45,8 @@ The unchanged upstream Jennifer example-vet failure remains explicit.
 Next reviewed batch: [direct OAuth 1.2.1](maintenance/2026-11-02-direct-oauth-patch.md)
 replaces the deprecated forwarding wrapper for #224 without adopting its floating
 1.4.1 delegate. All 73 other direct versions are retained; 423 browser tests,
-bridge/production/Storybook and compiled-source comparisons pass. Fresh native
-packaging and protected CI remain pending before integration.
+bridge/production/Storybook, compiled-source comparisons and all ten fresh native
+checks pass. Protected CI remains required before integration.
 
 Merged #354 adopts verified SHA-pinned v7 actions, unchanged project
 toolchains/permissions/commands/check names, and disabled credentials/caches.
@@ -183,12 +183,15 @@ Its missing-image preflight and pinned-image pull are preserved. No test contain
 remained. Callback cancellation fails before repair, passes 200 repetitions after
 repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-The latest packaged app source `4756cf99e` is the application tree merged by
-#353. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
-checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-4756cf99e-validation.json).
-Tests use new explicit synthetic storage; direct SMART is disabled in smoke mode.
-No purchased-app storage, real family records, production-provider registration,
-Medplum cutover or real-data migration was accessed or introduced.
+The latest candidate packaged app source `f30970052` contains the direct OAuth
+patch on merged #356. Build, ZIP CRC, strict extracted signature and all ten real
+WebView smoke checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-f30970052-validation.json).
+Original outputs match contents, stat metadata and all xattrs after restoration.
+The prior #353 runtime package remains retained; protected CI still gates this
+candidate's integration. Tests use new explicit synthetic storage; direct SMART
+is disabled in smoke mode. No purchased-app storage, real family records,
+production-provider registration, Medplum cutover or real-data migration was
+accessed or introduced.
 
 ## Preservation and branch retirement
 
