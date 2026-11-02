@@ -1,0 +1,38 @@
+{
+  "time": "2026-11-02T19:54:04.638710+00:00",
+  "checks": [
+    {
+      "graph": "root",
+      "command": [
+        "go",
+        "run",
+        "-mod=readonly",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/next-defect-review/gender-probe.go"
+      ],
+      "exit": 0
+    },
+    {
+      "graph": "desktop",
+      "command": [
+        "go",
+        "run",
+        "-mod=readonly",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/next-defect-review/gender-probe.go"
+      ],
+      "exit": 0
+    }
+  ],
+  "disposition": "#182 duplicate of still-open #53, not fixed; both report the same Cambridge CHA m variant already present in #53 discussion",
+  "synthetic_only": true,
+  "migration_or_provider_access": false,
+  "issue182_closed": {
+    "closedAt": "2026-11-02T19:54:48Z",
+    "number": 182,
+    "state": "CLOSED",
+    "url": "https://github.com/karamhouse/chartrove/issues/182"
+  },
+  "duplicate_comment": "https://github.com/karamhouse/chartrove/issues/182#issuecomment-6586993947",
+  "canonical_issue53_comment": "https://github.com/karamhouse/chartrove/issues/53#issuecomment-6586995071",
+  "canonical_issue53_remains_unresolved": true,
+  "probe_source_sha256": "49f7bfb442c9c64efab979a63488f36edb9c7378ad88980c75302739f98c354f"
+}

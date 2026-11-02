@@ -1,0 +1,162 @@
+{
+  "time": "2026-11-02T19:59:48.170795+00:00",
+  "base_main": "cf400c0efe57375964bf4a463efb6c2ccf96f6e6",
+  "root_selected_module_changes": {
+    "github.com/dominikbraun/graph": [
+      "v0.15.0",
+      "v0.23.0"
+    ]
+  },
+  "go_sum_added_lines": 2,
+  "all_existing_checksums_retained": true,
+  "package_sum": "h1:TdZB4pPqCLFxYhdyMFb1TBdFxp8XLcJfTTBQucVPgCo=",
+  "package_go_mod_sum": "h1:yOjYyogZLY1LSG9E33JWZJiq5k83Qy2C6POAuiViluc=",
+  "package_archive_sha256": "a278c95ab09544b86f4fe4a70e7d348be82745a17dbf04a7825cab1bf0b8397b",
+  "package_runtime_dependencies": [],
+  "root_graph_test_results": {
+    "before": {
+      "passed_tests": [
+        "TestRepositoryGraphTestSuite/TestGetFlattenedResourceGraph",
+        "TestRepositoryGraphTestSuite/TestGetFlattenedResourceGraph_NDJson",
+        "TestRepositoryGraphTestSuite"
+      ],
+      "package_elapsed": [
+        5.358
+      ]
+    },
+    "after": {
+      "passed_tests": [
+        "TestRepositoryGraphTestSuite/TestGetFlattenedResourceGraph",
+        "TestRepositoryGraphTestSuite/TestGetFlattenedResourceGraph_NDJson",
+        "TestRepositoryGraphTestSuite"
+      ],
+      "package_elapsed": [
+        5.933
+      ]
+    }
+  },
+  "after_checks": [
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T19:58:45.665898+00:00",
+      "end": "2026-11-02T19:58:45.693524+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-deps",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-tags",
+        "production",
+        "-deps",
+        "-f",
+        "{{.ImportPath}} {{if .Module}}{{.Module.Path}} {{.Module.Version}}{{end}}",
+        "./cmd/fasten-desktop"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T19:58:45.693714+00:00",
+      "end": "2026-11-02T19:58:45.889176+00:00",
+      "exit": 0
+    },
+    {
+      "name": "verify-root",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T19:58:45.889394+00:00",
+      "end": "2026-11-02T19:58:50.953971+00:00",
+      "exit": 0
+    },
+    {
+      "name": "verify-desktop",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T19:58:50.954415+00:00",
+      "end": "2026-11-02T19:58:53.801427+00:00",
+      "exit": 0
+    },
+    {
+      "name": "app-graph-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./backend/pkg/database",
+        "-run",
+        "^TestRepositoryGraphTestSuite$",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T19:58:53.801789+00:00",
+      "end": "2026-11-02T19:59:07.539993+00:00",
+      "exit": 0
+    },
+    {
+      "name": "upstream-graph-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "github.com/dominikbraun/graph/...",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T19:59:07.540392+00:00",
+      "end": "2026-11-02T19:59:08.364109+00:00",
+      "exit": 0
+    },
+    {
+      "name": "database-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./backend/pkg/database"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T19:59:08.364330+00:00",
+      "end": "2026-11-02T19:59:09.092602+00:00",
+      "exit": 0
+    },
+    {
+      "name": "server-build",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/graph-alignment-review/after/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T19:59:09.092831+00:00",
+      "end": "2026-11-02T19:59:16.128135+00:00",
+      "exit": 0
+    }
+  ],
+  "desktop_production_imports_byte_identical": true,
+  "desktop_production_imports_sha256": "ccc5f39a2a69d3947a188b534f3cb3b462aaee310a913d95cacb55a7fa55ab4b",
+  "desktop_module_files_unchanged": true,
+  "application_sources_unchanged": true,
+  "native_reused_source": "9add19dd1c16964e01a6648cf307703fc433e250",
+  "integration": "pending protected-main PR",
+  "real_family_or_purchased_application_records_accessed": false
+}
