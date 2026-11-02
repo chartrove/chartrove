@@ -1,0 +1,30 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 3,
+          "deletions": 3,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/humanize-duration-3.x-lockfile",
+      "headRefOid": "9dea7d6efd1e7ed6896a95fe169efd0bfd859caf",
+      "number": 244,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency humanize-duration to v3.35.0"
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/humanize-head-20261102.bundle",
+  "sha256": "637c20d4711af993c879dc8d5dda20655536a9136813a3f5a580144975dd4411",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "e24fd9bae3e3a82b37a8846abafda48bd1a2d4cc",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 4,
+  "required_objects_included": true,
+  "intended_disposition": "Review removal of the unused direct humanize-duration dependency; verify all retained versions, no tracked consumer and production invariance before protected integration."
+}

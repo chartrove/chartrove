@@ -76,6 +76,9 @@
     "original_failed_receipt_retained": true
   },
   "corrected_storybook_receipt_sha256": "de6460895e5935643800322caa8092f53dd8ad834329fca7f4c82f24dbe9755c",
-  "protected_ci": "all three required checks still gate integration",
-  "checked_utc": "2026-11-02T15:11:57.995993+00:00"
+  "protected_ci": "Backend, Frontend and Desktop passed in merged #360",
+  "checked_utc": "2026-11-02T15:11:57.995993+00:00",
+  "integration_main": "8e5d981ba3bbc112e7dae3b0e5a58e16a5272ded",
+  "protected_ci_evidence": "dist/validation/2026-11-01-consolidation/compodoc2-review/protected-ci-before-merge.json",
+  "protected_ci_evidence_sha256": "6606641bf07ca9c9b442c28ec51bcb46f3ad63417b16252371468d85bb56e273"
 }

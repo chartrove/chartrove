@@ -1,0 +1,29 @@
+{
+  "checked_utc": "2026-11-02T15:39:39.980865+00:00",
+  "proposal": 244,
+  "disposition": "retire obsolete unused dependency proposal; 3.35.0 target not adopted",
+  "removed_installed_version": "3.28.0",
+  "manifest_lines_removed": 1,
+  "leaf_lock_blocks_removed": 1,
+  "retained_direct_versions_unchanged": 73,
+  "new_module_versions": 0,
+  "tracked_consumer_search": "only original direct declaration; zero current matches outside evidence/lock",
+  "frozen_install_exit": 0,
+  "checks": {
+    "node_bridge_framework_documentation": 10,
+    "ordinary_browser_passes": 423,
+    "existing_skip": 1,
+    "ordinary_browser_exit": 0,
+    "production_build": "passed",
+    "storybook_build": "passed"
+  },
+  "all_produced_application_files_match_validated_native_frontend": 22287,
+  "no_new_native_run_claimed_for_identical_application_output": true,
+  "documentation_original_absent_state_restored": true,
+  "validation_evidence": "dist/validation/2026-11-01-consolidation/duration-retirement-validation",
+  "validation_receipt_sha256": "26a034e450ab16f91b90d72373740680ab55e390fcf8379652d53e27300c8e7f",
+  "review_evidence": "dist/validation/2026-11-01-consolidation/humanize-review",
+  "review_stable_manifest_sha256": "580bdc73a87a5155ff1f37ae5057034e8ee64022c50d7bbe35c28d92eb25b0fe",
+  "nonfatal_browser_shutdown_warning": "ChromeHeadless was not killed in 2000 ms; launcher sent SIGKILL; ordinary command exited 0",
+  "protected_ci": "required before integration and individual closure"
+}
