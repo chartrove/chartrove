@@ -15,6 +15,8 @@ import {AuthService} from '../../services/auth.service';
 export class AuthSignupComponent implements OnInit {
   loading: boolean = false
 
+  passwordConfirmation: string = ""
+
   submitted: boolean = false
   newUser: User = new User()
   errorMsg: string = ""
@@ -29,8 +31,14 @@ export class AuthSignupComponent implements OnInit {
   }
 
   signupSubmit(){
-    this.loading = true
+    if (this.loading) return;
     this.submitted = true;
+    if (!this.passwordConfirmation || this.passwordConfirmation !== this.newUser.password) {
+      this.errorMsg = "Passwords do not match.";
+      return;
+    }
+    this.errorMsg = "";
+    this.loading = true;
 
     this.authService.Signup(this.newUser).then((tokenResp: any) => {
         this.loading = false

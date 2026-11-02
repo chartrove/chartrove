@@ -7,7 +7,6 @@ import {ToastService} from '../../services/toast.service';
 import {ToastNotification, ToastType} from '../../models/fasten/toast';
 
 class UserWizard extends User {
-  password_confirm: string = ""
   agree_terms: boolean = false
   join_mailing_list: boolean = false
 }
@@ -111,6 +110,8 @@ export class AuthSignupWizardComponent implements OnInit {
 
   loading: boolean = false
 
+  passwordConfirmation: string = ""
+
   submitted: boolean = false
   newUser: UserWizard = new UserWizard()
   errorMsg: string = ""
@@ -125,8 +126,14 @@ export class AuthSignupWizardComponent implements OnInit {
   }
 
   signupSubmit(){
-    this.loading = true
+    if (this.loading) return;
     this.submitted = true;
+    if (!this.passwordConfirmation || this.passwordConfirmation !== this.newUser.password) {
+      this.errorMsg = "Passwords do not match.";
+      return;
+    }
+    this.errorMsg = "";
+    this.loading = true;
 
     this.authService.Signup(this.newUser).then((tokenResp: any) => {
         this.loading = false
