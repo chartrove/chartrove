@@ -36,3 +36,8 @@ unchanged. [Latest native package](native-4f891ef11-validation.json) includes th
 integrated utility graph, passes strict signature/CRC and ten synthetic WebView
 checks, and restores original generated outputs with identical contents, stat
 metadata and all xattrs. All protected-main checks remain mandatory for this PR.
+
+Subsequent recovery: the user granted Full Disk Access and the original primary
+reports were recovered from the exact pre-task snapshot. [Recovery and metadata
+limits](2026-11-02-primary-coverage-recovery.md). The historical isolation test
+above did not itself perform that recovery.

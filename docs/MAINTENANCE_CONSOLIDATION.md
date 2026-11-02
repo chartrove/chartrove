@@ -6,18 +6,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after privacy integration #353 and source/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after353.json).
-The receipt also records the next short-lived local validation-actions branch; that integration PR/branch is additional until
-merged and removed. Requery live counts after every integration.
+Snapshot: November 2, 2026, after integration #354, three proposal/ref
+retirements and recovery of the original primary coverage.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after354.json).
+The receipt was captured on clean main before this documentation-only task branch;
+its integration PR/branch is additional until merged and removed. Requery live
+counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `4283ef5fd57c133c8f4d414c5dcddce4e96d3117` (#353) |
+| Published application main | `8f21c8394ecc63408ce6729ff279a443a143481b` (#354; application unchanged from #353) |
 | Open issues | 174, including retained Renovate dashboard #222 |
-| Open PRs | 60: 53 paused Renovate proposals and seven historical drafts |
-| Origin heads | 70 |
-| Default branch | main tracks origin/main with equal OIDs; next short-lived local task branch is additional |
+| Open PRs | 57: 50 paused Renovate proposals and seven historical drafts |
+| Origin heads | 67 |
+| Default branch | main tracks origin/main with equal OIDs; checkpoint task branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -29,17 +31,18 @@ merged and removed. Requery live counts after every integration.
 The seven remaining drafts are #209 (permissions), #210 (sources-page layout),
 #211 (Typesense/RAG), #212 (OCR), #214 (OIDC), #215 (delegated access), and #217
 (reserved usernames). Their head/base dependencies remain live. These are not
-implemented features or blanket retirement candidates. #284/#285/#286 currently
-modify Validation itself and are valid update proposals, not obsolete retired-
-workflow patches. The other dependency PRs also require individual review.
+implemented features or blanket retirement candidates. #284/#285/#286 are now
+implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
 
-The validation-only action update is reviewed for #284/#285/#286: official
-SHA-pinned v7 actions, unchanged project toolchains/permissions/commands/check
-names, credentials and caching disabled. Actionlint and parsed semantic
-comparison pass; hosted runners support the action runtime. Required fresh
-protected checks still gate integration. [Review and preservation](maintenance/2026-11-02-validation-actions-v7.md).
+Merged #354 adopts verified SHA-pinned v7 actions, unchanged project
+toolchains/permissions/commands/check names, and disabled credentials/caches.
+Actionlint, parsed semantic comparison and all three required hosted checks pass.
+#284/#285/#286 are closed as implemented. Their exact archived heads were retired
+with fresh dependency checks and expected-tip leases.
+[Review](maintenance/2026-11-02-validation-actions-v7.md),
+[retirement receipt](maintenance/actions-v7-retirement-3.json).
 
 Merged #353 removes the token-response payload from an existing
 identity callback console log while preserving exchange/storage behavior. A
@@ -94,7 +97,8 @@ deletion actor is inferred. [Scope](maintenance/2026-11-02-shared-go-utilities.m
 
 #344 integrated safe default Karma output after protected checks. Real red/green
 synthetic-report, full suite and explicit-directory runs pass without changing
-thresholds, tests or application code. [Proof and remaining recovery gap](maintenance/2026-11-02-coverage-isolation.md).
+thresholds, tests or application code. [Isolation proof](maintenance/2026-11-02-coverage-isolation.md). Original reports
+are now separately [recovered and verified](maintenance/2026-11-02-primary-coverage-recovery.md).
 
 #345 retired unsupported TSLint/Protractor starter targets while preserving every
 source byte and the installed dependency tree. #226/#251/#300/#312 are explicitly
@@ -135,6 +139,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #351 | Remove unused direct UUID v9; retire #230/#314 and informational reference #46 |
 | #352 | FHIR/QR declaration alignment and erased bundle annotations for #225/#227 |
 | #353 | Prevent existing frontend identity callback from logging token payloads |
+| #354 | Adopt reviewed v7 actions in validation only; reconcile #284/#285/#286 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -200,7 +205,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Thirty-seven historical origin refs were retired by this agent after individual review,
+Forty historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Nine more (#313, four utility heads, two UUID heads and two declaration heads) were already absent after closure;
 deletion actors not established.
@@ -214,24 +219,22 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [two Chromatic heads](maintenance/chromatic-retirement-2.json),
 [one Karma head](maintenance/karma-retirement-1.json),
 [two UUID heads observed absent](maintenance/uuid-retirement-2.json),
-[two declaration heads observed absent](maintenance/type-package-retirement-2.json).
+[two declaration heads observed absent](maintenance/type-package-retirement-2.json),
+[three validation-action heads](maintenance/actions-v7-retirement-3.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
-## Unresolved preservation gap and decisions
+## Recovered coverage and remaining decisions
 
-**Original primary generated coverage was overwritten by local Karma runs.**
-The separate coffinfish coverage archive is a different snapshot and does not
-prove original-primary preservation. The mixed report tree is retained at
-`dist/validation/2026-11-01-consolidation/coverage-after-maintenance`. Further
-coverage now has a durable safe default through #344, with an explicit override
-for intentionally selected new report destinations. The synthetic regression fixture is retired; frontend/coverage
-remains absent.
-The pre-task snapshot is com.apple.TimeMachine.2026-11-01-183642.local.
-macOS denied backup inventory without Full Disk Access. User restoration of just
-frontend/coverage to
-`dist/validation/2026-11-01-consolidation/primary-coverage-before-maintenance`
-or permission to access that snapshot is still needed. Do not bypass macOS's
-permission boundary. This concerns generated evidence, not health-record storage.
+**Original primary coverage is recovered and independently verified** from the
+pre-task local snapshot after the user granted Full Disk Access. All 349 files
+match byte-for-byte, with original times, permissions, ownership, flags and ACLs.
+Only macOS-managed provenance differs; both original and new values are retained
+without rewriting security metadata. The source archive, manifests, complete
+operation logs and checksum receipt are retained beside the recovered reports.
+The mixed reports and separate coffinfish evidence also remain. frontend/coverage
+stays absent, protected from ordinary Karma writes by #344.
+[Recovery method and limits](maintenance/2026-11-02-primary-coverage-recovery.md),
+[compact receipt](maintenance/primary-coverage-recovery.json).
 
 Two product/data questions remain unanswered: archive-only retirement versus a
 corrected opt-in legacy narrative repair; and retirement versus retention of
@@ -246,7 +249,7 @@ A continuation message is not an answer to those pending decisions.
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 53 existing Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 50 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
@@ -257,5 +260,5 @@ A continuation message is not an answer to those pending decisions.
 - Local permanent evidence is dist/validation/2026-11-01-consolidation/; disposable
   diagnostics are /tmp/chartrove-consolidation.deb9lg. Do not remove original archives.
 - At final acceptance, independently prove exactly issue #222, zero PRs, main only,
-  protections, builds/tests and complete preservation. None of those count targets
-  or the original-primary coverage recovery is claimed complete here.
+  protections, builds/tests and complete preservation. The count targets remain
+  incomplete; the original-primary coverage recovery is verified above.
