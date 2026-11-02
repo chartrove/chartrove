@@ -7,5 +7,18 @@
   "dependencyDashboardApproval": true,
   "prConcurrentLimit": 2,
   "prHourlyLimit": 1,
-  "automerge": false
+  "automerge": false,
+  "packageRules": [
+    {
+      "description": "The desktop backend and provider original-module versions are overridden by intentional local/provenance replacements; review replacements explicitly.",
+      "matchManagers": [
+        "gomod"
+      ],
+      "matchPackageNames": [
+        "github.com/fastenhealth/fasten-onprem",
+        "github.com/fastenhealth/fasten-sources"
+      ],
+      "enabled": false
+    }
+  ]
 }
