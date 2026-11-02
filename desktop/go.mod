@@ -14,7 +14,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
 	github.com/Masterminds/sprig/v3 v3.3.0 // indirect
 	github.com/ProtonMail/go-crypto v1.3.0 // indirect
-	github.com/TwiN/deepmerge v0.2.1 // indirect
+	github.com/TwiN/deepmerge v0.2.2 // indirect
 	github.com/adrg/xdg v0.5.3 // indirect
 	github.com/analogj/go-util v0.0.0-20210417161720-39b497cca03b // indirect
 	github.com/boombuler/barcode v1.0.1 // indirect
@@ -58,7 +58,7 @@ require (
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/hhrutter/tiff v1.0.1 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
-	github.com/iancoleman/strcase v0.2.0 // indirect
+	github.com/iancoleman/strcase v0.3.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.9.2 // indirect

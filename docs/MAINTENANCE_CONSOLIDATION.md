@@ -33,6 +33,16 @@ implemented features or blanket retirement candidates. #284/#285/#286 currently
 modify Validation itself and are valid update proposals, not obsolete retired-
 workflow patches. The other dependency PRs also require individual review.
 
+## Next bounded dependency batch
+
+The shared-go-utilities task reviews #233/#265/#266/#269 against the current two
+module graphs. Root/desktop checks and 57-file isolated generator equivalence pass;
+no generated models, driver versions or active replacements change. This is not
+yet integrated and its originals remain open. [Scope and validation](maintenance/2026-11-02-shared-go-utilities.md),
+[exact current recovery tips](maintenance/utility-heads-recovery.json). The earlier
+native artifact predates this candidate; require fresh protected checks and native
+validation before current-source acceptance.
+
 ## Integrated and resolved work
 
 Every integration below passed the required checks through main protection.
