@@ -21,7 +21,9 @@ provider, real credentials, health database or family/purchased-app storage is u
 This is not production-provider or backend identity-validation acceptance.
 
 The existing generic phase log remains. No authentication exchange, storage/data
-schema, dependency, Wails or registration contract changes. Native package and
-required protected Backend/Frontend/Desktop checks must pass before integration.
+schema, dependency, Wails or registration contract changes. The full macOS package build, ZIP CRC, strict extracted signature and all ten
+native smoke checks pass for source 4756cf99e. Original output contents, stat
+metadata and all xattrs restore exactly. [Native receipt](native-4756cf99e-validation.json).
+Required protected Backend/Frontend/Desktop checks still gate integration.
 Original-primary coverage recovery remains unresolved; these reports use new
 private output directories.
