@@ -305,7 +305,10 @@ checks pass; #329 is individually reconciled and its archived head retired.
 
 The current GitHub Gist client replacement for #330 includes reproduced JSON
 null and cache-ID boundary corrections; local handler, desktop, vet and upstream
-checks pass. Native packaging and protected integration remain pending.
+checks pass. Fresh native packaging at f22b03676 retains all 22,287 qualified
+frontend files; ZIP/signature and ten synthetic native checks pass. Original
+outputs/stat fields and all xattrs restore exactly. Protected integration remains
+pending.
 [Scope and recovery](maintenance/2026-11-02-github-client-migration.md).
 
 ## Preservation and branch retirement

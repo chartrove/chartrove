@@ -40,8 +40,15 @@ upstream test checksum failure/correction also remain in the evidence store.
 Full handler suites in both Go graphs, desktop host and encrypted embedded
 backend tests, both full vet checks and module verifications pass. Upstream SDK
 and querystring suites pass after retaining the exact missing test checksum.
-Both cache race checks and the server build pass. Fresh native packaging and
-protected-main checks remain pending; no timeout or assertion is relaxed.
+Both cache race checks and the server build pass. No timeout or assertion
+is relaxed. Fresh native packaging at f22b03676 reuses the qualified 5ad6c590a
+frontend; all 22,287 files match the reused and native asset trees. ZIP CRC,
+strict signature and ten synthetic WebView checks pass. Binary metadata confirms
+v93.0.0 and no v54. Original output contents/stat fields and all xattrs restore
+exactly, with zero provenance changes. The ZIP SHA-256 is
+1a84852664ad9df8b3048351ef1e9910c7fbfa50a8c482f01023c5caba73bd43.
+[Native receipt](native-f22b03676-validation.json). Protected integration remains
+pending.
 [Detailed validation](github-client-validation.json).
 
 [Exact historical head recovery](github-client-head-recovery.json) records tip
@@ -51,5 +58,4 @@ bytes. Original intake history remains. The historical PR and branch remain
 live until protected integration and fresh individual reconciliation, dependency
 and expected-tip checks. Raw commands, diagnostics, source snapshots, manifests
 and archives are retained under
-dist/validation/2026-11-01-consolidation/github-client-review/ once this review
-is complete. Original temporary execution paths remain verbatim after relocation.
+dist/validation/2026-11-01-consolidation/github-client-review/. Original temporary execution paths remain verbatim after relocation.
