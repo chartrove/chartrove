@@ -1,0 +1,34 @@
+[
+  {
+    "number": 233,
+    "name": "renovate/github.com-twin-deepmerge-0.x",
+    "tip": "5b9634fadc3a4dabc0f298761b3f205c32dddbb5",
+    "archive_sha256": "267ac726392dbd0a35ac985c9b2c2323cbe82ad031e7317573b90b3f5ae78743",
+    "action": "already absent after closure; deletion actor not established",
+    "disposition": "Implemented replacement #343 merged as 25771316699d757745df9a271e8a7e87b708e18a"
+  },
+  {
+    "number": 265,
+    "name": "renovate/github.com-google-uuid-1.x",
+    "tip": "169a916a0f82b27138a48c60110379ae18576790",
+    "archive_sha256": "267ac726392dbd0a35ac985c9b2c2323cbe82ad031e7317573b90b3f5ae78743",
+    "action": "already absent after closure; deletion actor not established",
+    "disposition": "Implemented replacement #343 merged as 25771316699d757745df9a271e8a7e87b708e18a"
+  },
+  {
+    "number": 266,
+    "name": "renovate/github.com-iancoleman-strcase-0.x",
+    "tip": "c9fd91461a8df6b7b8501a4270aa2726e07747ae",
+    "archive_sha256": "267ac726392dbd0a35ac985c9b2c2323cbe82ad031e7317573b90b3f5ae78743",
+    "action": "already absent after closure; deletion actor not established",
+    "disposition": "Implemented replacement #343 merged as 25771316699d757745df9a271e8a7e87b708e18a"
+  },
+  {
+    "number": 269,
+    "name": "renovate/github.com-masterminds-sprig-v3-3.x",
+    "tip": "c531d7d5e3f2e4c677e90784050247f6982c338f",
+    "archive_sha256": "267ac726392dbd0a35ac985c9b2c2323cbe82ad031e7317573b90b3f5ae78743",
+    "action": "already absent after closure; deletion actor not established",
+    "disposition": "Implemented replacement #343 merged as 25771316699d757745df9a271e8a7e87b708e18a"
+  }
+]

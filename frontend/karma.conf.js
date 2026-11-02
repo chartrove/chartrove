@@ -1,5 +1,15 @@
 // karma.conf.js
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+
 module.exports = function(config) {
+  // Keep ordinary test runs from replacing retained reports in the checkout.
+  const coverageDir = process.env.CHARTROVE_COVERAGE_DIR
+    ? path.resolve(process.env.CHARTROVE_COVERAGE_DIR)
+    : fs.mkdtempSync(path.join(os.tmpdir(), 'chartrove-coverage-'));
+  console.info('Coverage output:', coverageDir);
+
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -24,7 +34,7 @@ module.exports = function(config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/fastenhealth'),
+      dir: coverageDir,
       subdir: '.',
       reporters: [
         { type: 'html' },

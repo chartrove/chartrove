@@ -1,0 +1,17 @@
+{
+  "issues": 177,
+  "prs": 71,
+  "origin_heads": 81,
+  "renovate": 64,
+  "application_main": "25771316699d757745df9a271e8a7e87b708e18a",
+  "queried_snapshot": "after #343, before publishing coverage-isolation PR",
+  "ruleset": 26337029,
+  "required_checks": [
+    "Backend",
+    "Frontend",
+    "Desktop"
+  ],
+  "active_workflow": "Validation",
+  "original_primary_recovery_completed": false,
+  "acceptance": "INCOMPLETE"
+}
