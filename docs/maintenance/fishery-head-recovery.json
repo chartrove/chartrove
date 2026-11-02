@@ -1,0 +1,23 @@
+{
+  "branch": "renovate/fishery-2.x-lockfile",
+  "tip": "25300eb7b2d606eca27c878089f82980c77b1ff8",
+  "bundle": "dist/validation/2026-11-01-consolidation/fishery-head-20261102.bundle",
+  "sha256": "f8081fe6d4426a8ab765ae267f848a7a21129de8204d186ab2eee10f942852cf",
+  "bytes": 1453,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "a9f68e864ece45b6a759b0dd8cf2e51f98316e8b",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "0af8fe2e44fb9cfaee992e43a907686e64eebaf1",
+    "25300eb7b2d606eca27c878089f82980c77b1ff8",
+    "4a3c04545cf915992a1c84971796417a42a78014",
+    "a7eb179d1e2c8a126eca23ccca0b6c97dcb09855"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_tip": "f89f9a39406137da724deadb7d2153d59c821924",
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

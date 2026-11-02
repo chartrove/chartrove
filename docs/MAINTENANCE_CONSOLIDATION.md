@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #363 and individual #101/#168 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after363.json).
-The practitioner maintenance branch is additional and was unpublished at
+Snapshot: November 2, 2026, after #364 and individual #229 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after364.json).
+The Fishery/tooling branch is additional and was unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `25b6b1dc1d11ab4626d019c2c9a96561953c058f` (#363) |
+| Published application main | `a9f68e864ece45b6a759b0dd8cf2e51f98316e8b` (#364) |
 | Open issues | 171, including retained Renovate dashboard #222 |
-| Open PRs | 44: 38 paused Renovate proposals and six historical drafts |
-| Origin heads | 53 |
-| Default branch | main tracks origin/main with equal OIDs; practitioner maintenance branch is additional |
+| Open PRs | 43: 37 paused Renovate proposals and six historical drafts |
+| Origin heads | 52 |
+| Default branch | main tracks origin/main with equal OIDs; Fishery/tooling branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -202,6 +202,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #361 | Retire unused duration package and superseded source-filter layout proposal |
 | #362 | Identify invalid wizard sections without weakening Save guards; issue #102 |
 | #363 | Correct native related-resource upload and prove actual #101/#168 chooser/import/save acceptance |
+| #364 | Align name parser and remove practitioner payload logs; reconcile #229 with native name persistence |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -242,7 +243,7 @@ original three synthetic resources. An encounter navigation reload was needed
 for the new report link; automatic in-place graph refresh remains unverified.
 [Acceptance and limits](maintenance/2026-11-02-native-attachment-upload.md).
 Both issues were individually closed after all three required checks passed and
-#363 merged. The current practitioner batch updates the name parser with 72
+#363 merged. Merged #364 updates the name parser with 72
 other direct versions retained, and removes clinical payload/response/error
 console logging with red/green synthetic regressions. Fresh package `9add19dd1`
 passes production build, CRC, strict signature and ten native checks. Actual wizard creation/save and read-only persisted-name checks
@@ -255,6 +256,14 @@ practitioner build also restores all xattrs exactly. No provenance
 attribute was rewritten. Earlier ZIPs and original coverage recovery remain.
 Tests and UI acceptance use explicit synthetic storage with production providers
 unconfigured. No real family records or purchased Fasten storage were accessed.
+
+The current Fishery batch retains all four factory sources and 72 other direct
+versions. All 22,287 produced app files match the validated 9add19dd1 native
+frontend, and Go/Wails sources/modules are unchanged. Storybook now runs under
+the existing pinned Yarn environment so Compodoc works on Node 26. Full browser,
+Node, production and Storybook checks pass; generated metadata is retained and
+the original documentation.json absence restored.
+[Scope and evidence](maintenance/2026-11-02-fishery-tooling.md).
 
 ## Preservation and branch retirement
 
@@ -294,7 +303,8 @@ Recovery references (incremental bundles need retained main prerequisites):
 
 Fifty-four historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
-Nine more (#313, four utility heads, two UUID heads and two declaration heads) were already absent after closure;
+Ten more (#313, four utility heads, two UUID heads, two declaration heads and
+the parser head) were already absent after closure;
 deletion actors not established.
 Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [six more](https://github.com/karamhouse/chartrove/pull/333#issuecomment-6570768946),
@@ -313,7 +323,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [five Jasmine proposal heads](maintenance/jasmine-retirement-5.json),
 [one paired React patch head](maintenance/react18-retirement-1.json),
 [two Compodoc proposal heads](maintenance/compodoc-retirement-2.json),
-[three duration/layout refs](maintenance/duration-layout-retirement-3.json).
+[three duration/layout refs](maintenance/duration-layout-retirement-3.json),
+[one parser head observed absent](maintenance/name-parser-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Recovered coverage and remaining decisions
@@ -351,7 +362,7 @@ also remains unresolved. [Retained boundaries](maintenance/2026-11-02-unresolved
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 38 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 37 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
