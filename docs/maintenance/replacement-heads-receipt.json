@@ -1,0 +1,13 @@
+{
+  "bundle": "dist/validation/2026-11-01-consolidation/replacement-heads-20261102.bundle",
+  "sha256": "fdfb8768a50254af6c01201fa7d73d28f76a0d9ac7737342acbd1f91be4b9141",
+  "prerequisites": [
+    "bc1ccfac40e5965267d9ecb08411ccc12ae8083b"
+  ],
+  "all_prerequisites_ancestors_of_main": true,
+  "heads": [
+    "84bc4f5cb357e01f5c1e09f03b49a0cde41a56a4 refs/maintenance-archive/20261102/pr-260",
+    "3f6900956d36b4a33a9a527710d4dcacc49c234e refs/maintenance-archive/20261102/pr-261",
+    "124b3a8528187d85a0c9be0a8c89c82ae1604722 refs/maintenance-archive/20261102/pr-328"
+  ]
+}

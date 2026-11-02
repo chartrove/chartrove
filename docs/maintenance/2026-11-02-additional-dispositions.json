@@ -1,0 +1,23 @@
+[
+  {
+    "number": 203,
+    "headRefName": "migration/upstream-pr-339",
+    "headRefOid": "c157dd482a4273e7d92b306e520d1c732f072304",
+    "state": "CLOSED",
+    "disposition": "Superseded by merged modernization #323: current frontend/yarn.lock selects @adobe/css-tools 4.5.0, exceeding this PR's 4.3.2 target. The complete original PR changes only that transitive lock entry; no feature scope is omitted."
+  },
+  {
+    "number": 196,
+    "headRefName": "migration/upstream-pr-66",
+    "headRefOid": "b857c07b881c175532290d9edb569e1361094410",
+    "state": "CLOSED",
+    "disposition": "Retired as not applicable to Chartrove: the DigitalOcean template deploys cfu288/fasten-onprem on an external branch, the Docker change enables debug mode, and the README adds an upstream deployment button. Chartrove's ownership/toolchain instructions replace the old contributing paragraph. No Chartrove cloud deployment is being implemented or enabled; the task explicitly excludes restoring upstream publishing infrastructure."
+  },
+  {
+    "number": 213,
+    "headRefName": "migration/upstream-pr-610",
+    "headRefOid": "00c1725dda34c97f686b6b9df05a7397933dc217",
+    "state": "CLOSED",
+    "disposition": "Retired as not applicable to Chartrove: this is a Fasten README reorganization with upstream container/mobile-network setup, external HealthWallet media and sponsorship changes. Chartrove already has independent identity and maintained desktop/contributor instructions while preserving Fasten attribution. No companion-mobile syncing or upstream deployment feature is claimed implemented."
+  }
+]

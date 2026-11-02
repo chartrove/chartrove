@@ -1,0 +1,56 @@
+{
+  "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1",
+  "targets": [
+    {
+      "name": "migration/upstream-pr-311",
+      "tip": "be737c5688a1962c3981465338694690cb80b335"
+    },
+    {
+      "name": "migration/upstream-pr-311-base",
+      "tip": "d23af018e7ada6d1c1f9e839788ed5e69d7f765c"
+    },
+    {
+      "name": "migration/upstream-pr-313",
+      "tip": "ea2dde5bf02197256e0532a0e7a9a3f99a951749"
+    },
+    {
+      "name": "migration/upstream-pr-313-base",
+      "tip": "0a8b4fe21e4206c5ccb491518b06b55965cef9a7"
+    },
+    {
+      "name": "migration/upstream-pr-367",
+      "tip": "9a18d56aa13586fddb76404098d2df97ad455bc3"
+    },
+    {
+      "name": "migration/upstream-pr-367-base",
+      "tip": "07677d0878bf626e88c55d0ea9e9637b0d93d82a"
+    },
+    {
+      "name": "migration/upstream-pr-375",
+      "tip": "c348176be08673d4e058e76efc94b53ed1293ffb"
+    },
+    {
+      "name": "migration/upstream-pr-375-base",
+      "tip": "f1c120cbb21150c52e2c7b9e2648c42b49aec148"
+    },
+    {
+      "name": "migration/upstream-pr-391",
+      "tip": "0077f23d5ac7bf5be2e77c96667218221610927d"
+    },
+    {
+      "name": "migration/upstream-pr-391-base",
+      "tip": "c85e829c465746e8c745f3512e544a5bc3ebc340"
+    },
+    {
+      "name": "migration/upstream-pr-512",
+      "tip": "9ba8313e64cf57598f69551739176787e6fa0acb"
+    },
+    {
+      "name": "migration/upstream-pr-512-base",
+      "tip": "4a82064521db3dbdc5c96669fe8af8549ee21583"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "status": "retired-and-remote-absence-verified",
+  "remaining_origin_heads": 110
+}

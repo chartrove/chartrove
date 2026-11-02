@@ -15,7 +15,7 @@ baseline and backlog review retain historical observations, not current counts.
 - Main ruleset `26337029` is active: PR required, zero approvals, conversations
   resolved, no force push/deletion, no bypass actors. Verified effective rules API.
 - First integration: PR #332 merged as `bc1ccfac4`; task branch deleted.
-- Current published main: `d1bd74f21` (PR #333). Required checks all passed.
+- Current published main: `9cdf01187` (PR #336). Required checks all passed.
 - All six inherited workflow IDs were individually disabled and source retired.
 - Actions is enabled with Validation only and GitHub-owned actions only. Backend,
   Frontend and Desktop are all required from GitHub Actions app 15368, with strict
@@ -159,3 +159,37 @@ The two product questions remain pending: archival-only versus corrected opt-in
 legacy narrative repair, and retirement versus retention of unimplemented upstream
 feature expansions. Continue applicable defect work without treating silence or
 "continue" as approval of either consequential product decision.
+
+## Verified retirement and record-save checkpoint
+
+#336 merged as `9cdf01187` with Backend/Frontend/Desktop all passing. Its local
+and remote short-lived branch were deleted after ancestry and exact-tip checks.
+#334/#335 were updated without history rewriting to include this callback repair;
+their fresh required checks remain pending. Do not bypass a failed or pending gate.
+
+Twelve historical head/base branches for #200/#202/#204/#205/#207/#208 were
+retired with native atomic dry-run/push and exact-tip leases, after verifying no
+open head/base PR dependencies. [Exact retirement receipt](maintenance/historical-retirement-12.json)
+and [GitHub audit comment](https://github.com/karamhouse/chartrove/pull/333#issuecomment-6570072360).
+The original bundle hash is unchanged. Additional strict thin-pack verification
+resolves all 6,357 required unique objects, with every added delta base reachable
+from retained starting main; [object proof](maintenance/history-object-proof.json).
+The three rebased replacement PR heads have their own verified bundle and
+[receipt](maintenance/replacement-heads-receipt.json).
+
+Additional reviewed PR closures: #203's entire css-tools 4.3.2 target is already
+exceeded by locked 4.5.0 in main; #196's external DigitalOcean/debug deployment
+proposal and #213's upstream/mobile/sponsor README reorganization are retired
+for this fork. [Exact reviewed heads and dispositions](maintenance/2026-11-02-additional-dispositions.json).
+No cloud deployment or mobile-sync feature is claimed implemented.
+
+The record-save correction for #35 has four synthetic regressions, three failing
+before repair and all passing afterward. The complete local browser suite passes
+394 tests/one existing skip, and the production build passes under unchanged
+budgets. [Behavior and limits](maintenance/2026-11-02-record-save.md).
+
+Unresolved original npm security PRs #198/#199/#201/#206 remain open: current
+locks still contain old word-wrap, crypto-js, semver 5 and follow-redirects entries.
+Do not declare them superseded. CryptoJS 4.2 changes PBKDF2 defaults according to
+[its upstream advisory](https://github.com/brix/crypto-js/security/advisories/GHSA-xwcq-pm8m-c4vf);
+review its PDF/tooling consumer boundary before adopting the old patch.
