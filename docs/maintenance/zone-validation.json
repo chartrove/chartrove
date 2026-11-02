@@ -1,0 +1,155 @@
+{
+  "time": "2026-11-02T20:16:47.370710+00:00",
+  "base_main": "53f6685ba2360818c832865de030362b1ae13aa8",
+  "install": {
+    "command": [
+      "make",
+      "dep-frontend"
+    ],
+    "exit": 0,
+    "time": "2026-11-02T20:12:02.763104+00:00"
+  },
+  "comparison": {
+    "direct_count": 73,
+    "other_direct_versions_unchanged": 72,
+    "changed_direct_versions": {
+      "zone.js": [
+        "0.15.1",
+        "0.16.3"
+      ]
+    },
+    "published_files_matching_installation": 138,
+    "all_other_lock_bytes_retained": true,
+    "frozen_install_preserved_patched_lock_and_manifest": true
+  },
+  "checks": {
+    "node": {
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:12:41.952217+00:00",
+      "end": "2026-11-02T20:12:42.362399+00:00",
+      "exit": 0
+    },
+    "browser": {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-02T20:12:42.362918+00:00",
+      "end": "2026-11-02T20:13:23.350962+00:00",
+      "exit": 0
+    },
+    "storybook": {
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/zone-validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-02T20:13:23.355617+00:00",
+      "end": "2026-11-02T20:15:55.479758+00:00",
+      "exit": 0
+    }
+  },
+  "source_inputs_sha256": {
+    "frontend/package.json": "caf42885786f3bd6c9c3c8155874f7e072d9b257de3dbadc253883e8ade06841",
+    "frontend/yarn.lock": "9d802806e46bff9f0da704fbf2381f911d92839de59d96608a6160025af582e7"
+  },
+  "package_sha512_matches_registry": true,
+  "package_sha1_matches_registry": true,
+  "package_exports_types_and_runtime_dependencies_unchanged": true,
+  "angular_core_version": "22.2.4",
+  "angular_core_zone_peer_requirement": "~0.15.0 || ~0.16.0",
+  "existing_ng01354_warning_count_before_after": [
+    138,
+    138
+  ],
+  "coverage_original_absence_restored": true,
+  "storybook_metadata_preservation": {
+    "original_state": "absent",
+    "status": "generated metadata retained and original absence restored",
+    "generated": {
+      "sha256": "f471d192b0e2ef78abac4ff5a2240e18347dc8f77eaf256f0c1069c36bdafc8f",
+      "bytes": 5839202
+    },
+    "original_absence_restored": true
+  },
+  "fresh_production_and_native_validation": {
+    "source_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_checks": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/Chartrove-5ad6c590a.zip",
+      "sha256": "cd423b6dd1d11ee13aa377a777ec3802ea670082b24b906f12ca2b20d7f7c1b7",
+      "bytes": 337059448
+    },
+    "original_content_and_recorded_stat_fields_restored": true,
+    "original_xattrs_restored_exactly": true,
+    "production_native_comparison": {
+      "production_files": 22287,
+      "native_embedded_frontend_files": 22287,
+      "production_and_native_asset_tree_byte_identical": true,
+      "baseline_source": "9add19dd1",
+      "baseline_files": 22287,
+      "added": [
+        "polyfills.94167db94855dfbe.js",
+        "polyfills.94167db94855dfbe.js.map"
+      ],
+      "removed": [
+        "polyfills.26ed56c9b2d42612.js",
+        "polyfills.26ed56c9b2d42612.js.map"
+      ],
+      "changed": [
+        "3rdpartylicenses.txt",
+        "index.html"
+      ]
+    },
+    "receipt": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/receipt.json",
+    "receipt_sha256": "0d1bb3f071fd67d38da1a9b046ec7306b715bb0fe330b988630218f79de7a674"
+  },
+  "historical_pr234_and_branch": "remain live pending protected integration",
+  "protected_integration": "pending PR/required checks",
+  "production_non_polyfill_app_files_unchanged": true,
+  "third_party_license_change": "Only Zone/Google copyright year 2025 to 2026; all other license text byte-identical",
+  "license_diff_sha256": "612468491f97a5eec3b11520cd9e6f92c9e08109776cdef99d74dcb254060d13"
+}
