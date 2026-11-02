@@ -1,0 +1,7 @@
+{
+  "strict_thin_pack_fix_and_verify": "passed using isolated object output and read-only retained baseline",
+  "unique_object_closure_count": 6357,
+  "verified_packed_objects_including_main_delta_bases": 6590,
+  "all_added_delta_bases_reachable_from_required_main": true,
+  "missing_required_unique_objects": []
+}

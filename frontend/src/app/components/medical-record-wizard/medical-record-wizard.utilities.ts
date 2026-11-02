@@ -90,7 +90,6 @@ export function GenerateR4ResourceLookup(resourceCreate: MedicalRecordWizardForm
 // this model is based on FHIR401 Resource Encounter - http://hl7.org/fhir/R4/encounter.html
 function resourceCreateEncounterToR4Encounter(resourceStorage: ResourceStorage, resourceEncounter: WizardFhirResourceWrapper<EncounterModel>): ResourceStorage {
   resourceStorage['Encounter'] = resourceStorage['Encounter'] || {}
-  console.warn("resourceEncounter", resourceEncounter)
 
   if (resourceEncounter.action == 'create') {
     let createdResourceEncounter = {

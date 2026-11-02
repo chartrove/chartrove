@@ -103,7 +103,7 @@ export class MedicalRecordWizardComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       encounter: new FormGroup({
-        data: new FormControl({}, Validators.required),
+        data: new FormControl(null, Validators.required),
         action: new FormControl(null),
       }, Validators.required),
 
@@ -510,6 +510,7 @@ export class MedicalRecordWizardComponent implements OnInit {
 
 
   onSubmit() {
+    if (this.submitWizardLoading) return;
     this.form.markAllAsTouched()
     if (this.form.valid) {
       this.submitWizardLoading = true;
