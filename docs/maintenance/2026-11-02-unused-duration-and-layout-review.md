@@ -43,3 +43,9 @@ verification. [Exact tips and archive](source-layout-heads-recovery.json).
 No CSS is edited for this disposition. #210 remains open until this protected
 checkpoint integrates; both source branches require fresh dependency and exact-tip
 checks before retirement. Existing tags and release history remain intact.
+
+Integration: #361 merged at `9b499c88f3f81ba76b0c35b40ed019822c6b31d7` after all
+three protected checks passed. #244 is explicitly retired without adopting 3.35.0;
+#210 is individually superseded without adopting 280px or closing #167/#99.
+All three exact archived refs were manually retired after fresh PR dependencies
+and atomic expected-tip leases. [Receipt](duration-layout-retirement-3.json).

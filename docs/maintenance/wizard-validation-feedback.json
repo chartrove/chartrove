@@ -1,0 +1,40 @@
+{
+  "issue": 102,
+  "source_commit": "6aca492ad3b317a387de37460d3c7a2b64b26200",
+  "production_change": "wizard HTML invalid-section badges, accessible markers and validation guidance only",
+  "save_disabled_condition_and_submission_code": "unchanged",
+  "red_regressions": 3,
+  "red_exit": 1,
+  "targeted_existing_and_new_wizard_tests": 8,
+  "targeted_exit": 0,
+  "full_browser_passes": 426,
+  "existing_browser_skip": 1,
+  "full_ordinary_browser_exit": 0,
+  "node_bridge_framework_documentation_checks": 10,
+  "production_and_storybook_builds": "passed",
+  "fresh_native_validation": "docs/maintenance/native-6aca492ad-validation.json",
+  "all_new_native_frontend_files_match_validated_corrected_frontend": 22287,
+  "native_signature_zip_crc_and_ten_checks": "passed",
+  "original_build_content_stat_flags_and_nonprovenance_metadata": "recorded manifest fields and all xattrs restored exactly; no provenance differences",
+  "real_family_or_purchased_app_data": "not accessed; all native profiles fresh and synthetic",
+  "database_Wails_toolchain_dependency_contracts": "unchanged",
+  "documentation_original_absent_state_restored": true,
+  "review_evidence": "dist/validation/2026-11-01-consolidation/wizard-validation-review",
+  "stable_review_manifest_sha256": "09850cede2571158ccb4d8a05b0c272033453fb238de08fafc6e9deee9ba20aa",
+  "frontend_receipt": "dist/validation/2026-11-01-consolidation/wizard-validation-full/receipt.json",
+  "frontend_receipt_sha256": "f004385c637c32406e13323ff9cd256b4414d9862a81a4930d2cd31f3b48ae3e",
+  "native_full_receipt_sha256": "76397284a174cbf4b9d4c1672ae38926d661227e61d86084b3ff5071589e7b08",
+  "protected_ci": "all three required before integration and issue closure",
+  "checked_utc": "2026-11-02T16:13:02.325566+00:00",
+  "pending_native_picker_observation": {
+    "issues": [
+      101,
+      168
+    ],
+    "status": "awaiting requested human observation; not accepted or closed",
+    "isolated_process_receipt": "dist/validation/2026-11-01-consolidation/native-picker-manual-6aca492ad/process-receipt.json",
+    "process_receipt_sha256": "55c6128f285827e0ac97b9bdb8884b3d3636de55b5dc72b3aa76db3f830db39b",
+    "live_profile_location_unchanged": "/tmp/chartrove-consolidation.deb9lg/native-picker-manual-6aca492ad",
+    "synthetic_fixture_sha256": "d6d7529e47d0c79391de5689e6a008813876978fda1c182398cced6bdc5afcd3"
+  }
+}

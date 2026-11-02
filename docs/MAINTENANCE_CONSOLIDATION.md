@@ -6,19 +6,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #360 and individual #235/#293 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after360.json).
-The receipt was captured on clean main before the unused-duration branch;
+Snapshot: November 2, 2026, after #361 and individual #244/#210 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after361.json).
+The receipt was captured on clean main before the wizard feedback branch;
 its integration PR/branch is additional until merged and removed. Requery live
 counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `8e5d981ba3bbc112e7dae3b0e5a58e16a5272ded` (#360; production runtime from #357) |
+| Published application main | `9b499c88f3f81ba76b0c35b40ed019822c6b31d7` (#361; production runtime from #357) |
 | Open issues | 174, including retained Renovate dashboard #222 |
-| Open PRs | 46: 39 paused Renovate proposals and seven historical drafts |
-| Origin heads | 56 |
-| Default branch | main tracks origin/main with equal OIDs; unused-duration branch is additional |
+| Open PRs | 44: 38 paused Renovate proposals and six historical drafts |
+| Origin heads | 53 |
+| Default branch | main tracks origin/main with equal OIDs; wizard feedback branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -27,7 +27,7 @@ counts after every integration.
 | Force push / deletion | Blocked on main |
 | Active Actions registrations | Validation only; inherited Development explicitly disabled again |
 
-The seven remaining drafts are #209 (permissions), #210 (sources-page layout),
+The six remaining drafts are #209 (permissions),
 #211 (Typesense/RAG), #212 (OCR), #214 (OIDC), #215 (delegated access), and #217
 (reserved usernames). Their head/base dependencies remain live. These are not
 implemented features or blanket retirement candidates. #284/#285/#286 are now
@@ -76,12 +76,19 @@ changes and initial diagnostic failures remain explicit. #235 is superseded,
 heads were manually retired. [Scope](maintenance/2026-11-02-compodoc2.md),
 [retirement](maintenance/compodoc-retirement-2.json).
 
-Next reviewed cleanup: [unused duration dependency and source-filter layout proposal](maintenance/2026-11-02-unused-duration-and-layout-review.md).
-Only one unused manifest line and its leaf lock block are removed, with all 73
-retained direct versions and application output unchanged. #244's version target
-is not adopted. #210's hover-width mechanism was already removed by inherited
-main history; its separate 280px sizing choice is not adopted, and #167/#99 remain
-open. Both proposals stay open until this protected checkpoint integrates.
+Merged #361 removes only the unused humanize-duration declaration/leaf lock
+block, with 73 retained direct versions and application output unchanged. #244
+is explicitly retired without its 3.35.0 upgrade. #210 is superseded by inherited
+hover-width removal, without adopting its 280px policy or closing #167/#99.
+All protected checks pass; all three archived refs were manually retired.
+[Scope](maintenance/2026-11-02-unused-duration-and-layout-review.md),
+[retirement](maintenance/duration-layout-retirement-3.json).
+
+Next defect correction: [wizard invalid-section feedback (#102)](maintenance/2026-11-02-wizard-validation-feedback.md).
+Three DOM regressions fail before repair and pass unchanged afterward. Eight
+targeted wizard tests, 426 full browser tests, ten Node checks, production/Storybook
+and ten fresh native checks pass. Save guards and submission code are unchanged;
+all three protected checks still gate integration and issue closure.
 
 Merged #354 adopts verified SHA-pinned v7 actions, unchanged project
 toolchains/permissions/commands/check names, and disabled credentials/caches.
@@ -193,6 +200,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #358 | Align actual Jasmine tooling and CI guards; individual five-proposal disposition |
 | #359 | Paired React 18 patch with required scheduler; reconcile #282 |
 | #360 | Compodoc 2 with preserved primitive documentation controls; reconcile #235/#293 |
+| #361 | Retire unused duration package and superseded source-filter layout proposal |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -266,7 +274,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Fifty-one historical origin refs were retired by this agent after individual review,
+Fifty-four historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Nine more (#313, four utility heads, two UUID heads and two declaration heads) were already absent after closure;
 deletion actors not established.
@@ -286,7 +294,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one deprecated OAuth wrapper head](maintenance/oauth-patch-retirement-1.json),
 [five Jasmine proposal heads](maintenance/jasmine-retirement-5.json),
 [one paired React patch head](maintenance/react18-retirement-1.json),
-[two Compodoc proposal heads](maintenance/compodoc-retirement-2.json).
+[two Compodoc proposal heads](maintenance/compodoc-retirement-2.json),
+[three duration/layout refs](maintenance/duration-layout-retirement-3.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Recovered coverage and remaining decisions
@@ -320,7 +329,7 @@ a compatible representation/migration decision. [Scope and retained boundaries](
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 39 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 38 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

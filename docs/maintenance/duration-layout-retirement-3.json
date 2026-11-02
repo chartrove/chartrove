@@ -1,0 +1,37 @@
+{
+  "integration_pr": 361,
+  "integration_main": "9b499c88f3f81ba76b0c35b40ed019822c6b31d7",
+  "state_before_disposition": [
+    {
+      "number": 244,
+      "state": "OPEN"
+    },
+    {
+      "number": 210,
+      "state": "OPEN"
+    }
+  ],
+  "manually_retired": [
+    {
+      "proposal": 244,
+      "branch": "renovate/humanize-duration-3.x-lockfile",
+      "tip": "9dea7d6efd1e7ed6896a95fe169efd0bfd859caf"
+    },
+    {
+      "proposal": 210,
+      "side": "head",
+      "branch": "migration/upstream-pr-584",
+      "tip": "fda11e9c1519c058f77fb349fb8557e334d86ce5"
+    },
+    {
+      "proposal": 210,
+      "side": "base",
+      "branch": "migration/upstream-pr-584-base",
+      "tip": "2cbb5bfbd6ab0f97cfb01191af17bc131945a78b"
+    }
+  ],
+  "already_absent_after_closure_actor_unknown": [],
+  "open_pr_dependencies_checked": 44,
+  "all_remote_absences_verified": true,
+  "checked_utc": "2026-11-02T15:48:13.247566+00:00"
+}
