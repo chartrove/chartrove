@@ -11,7 +11,7 @@ import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.comp
 import { DiagnosticReportModel, ObservationModel, ObservationValue } from 'src/lib/public-api';
 import { FastenApiService } from 'src/app/services/fasten-api.service';
 import { RecResourceRelatedDisplayModel } from 'src/lib/utils/resource_related_display_model';
-import { Bundle } from 'fhir/r4';
+import { Bundle, FhirResource } from 'fhir/r4';
 import { QuantityModel } from 'src/lib/models/datatypes/quantity-model';
 import { StringModel } from 'src/lib/models/datatypes/string-model';
 import { BooleanModel } from 'src/lib/models/datatypes/boolean-model';
@@ -88,7 +88,7 @@ export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
         this.format,
         formContainer,
         { bundleType: "transaction" }
-      ) as Bundle
+      ) as Bundle<FhirResource>
 
       let returnData = []
       formData.entry.forEach((entry) => {

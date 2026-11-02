@@ -1,0 +1,12 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/type-declarations-before-20261102.tar.zst",
+  "sha256": "2dcda27246a56d9c21cd946b6a8c2473234d092e77327b3d19f976dd7323afd0",
+  "bytes": 866818,
+  "preservation": "native tar ACL/xattr/file-flag options; zstd integrity and complete tar member traversal pass",
+  "member_listing_sha256": "f024631cb2d89a49c0e5b22ef0bd57801a89cdda6fec9d8bf4237b341ce1f0ce",
+  "versions": {
+    "@types/fhir": "0.0.35",
+    "@types/qrcode": "1.5.5"
+  },
+  "initial_failed_empty_archive_retained": "dist/validation/2026-11-01-consolidation/type-declarations-before-20261102.failed-empty.tar.zst"
+}

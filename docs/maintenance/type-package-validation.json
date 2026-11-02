@@ -1,0 +1,91 @@
+{
+  "checks": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path=/tmp/chartrove-consolidation.deb9lg/type-package-validation-after-annotations/frontend"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "run",
+        "build-storybook",
+        "--output-dir=/tmp/chartrove-consolidation.deb9lg/type-package-validation-after-annotations/storybook"
+      ],
+      "exit": 0
+    }
+  ],
+  "documentation_original_state_restored": true,
+  "production_output_file_count": 22287,
+  "application_assets_exact_match_to_fd5194396": false,
+  "before_only": {
+    "assets/.DS_Store": "bc6722b5ba4699fcbcfa72d8883cad2990bd101bfab6386bd1565f8e132984ab",
+    ".DS_Store": "2be82b873b959dd623be3c58e7b19a0f6da9a4d0d15752f5954111b97f66b77b"
+  },
+  "after_only": {},
+  "changed_files": {
+    "main.13f85e35825a4a88.js.map": {
+      "before": "fecf49a0d75c613432caf2105ca44e60db139d092ce7842fa19a3ed1c64e8460",
+      "after": "b15de91512f7135aca4855e5088707d72ee21d49b3d63948f7549181a909ded8"
+    }
+  },
+  "source_map_delta": {
+    "path": "main.13f85e35825a4a88.js.map",
+    "changed_source_files": [
+      "./src/lib/models/datatypes/reference-range-model.ts",
+      "./src/app/components/medical-record-wizard-edit-lab-results/medical-record-wizard-edit-lab-results.component.ts"
+    ],
+    "changed_json_keys": [
+      "sourcesContent"
+    ],
+    "all_executable_js_css_and_other_application_assets_identical": true,
+    "source_maps_preserved_in_both_build_trees": true
+  },
+  "only_changed_direct_versions": {
+    "@types/fhir": "0.0.35 -> 0.0.44",
+    "@types/qrcode": "1.5.5 -> 1.5.6"
+  },
+  "unchanged_direct_versions": 72,
+  "browser_passed": 422,
+  "browser_skipped": 1,
+  "initial_compile_exit": 1,
+  "initial_compile_findings": [
+    "unused R4 RatioRange import",
+    "base Resource typing prevents Observation-only code/valueString access"
+  ],
+  "normal_karma_configuration": true,
+  "frozen_install_exit": 0,
+  "local_evidence": "dist/validation/2026-11-01-consolidation/type-package-validation"
+}

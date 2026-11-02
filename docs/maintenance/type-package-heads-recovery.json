@@ -1,0 +1,35 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/fhir-0.x",
+      "headRefOid": "76b1e33d7e81a07a21abbdf93a56a270b4fc828e",
+      "number": 225,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/qrcode-1.x-lockfile",
+      "headRefOid": "06d605538b7bca52cf4d89ca73e5487f993d94fe",
+      "number": 227,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/yarn.lock"
+      ]
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/type-package-heads-20261102.bundle",
+  "sha256": "1ab5470df30889cd5f6200738da80249254fda15541e5b3268c9fb42bf55704f",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "949b2f2b5a06266675ff3ab0d8eaca39d32c533e",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 9,
+  "required_objects_included": true,
+  "intended_disposition": "Integrate bounded declaration updates after compilation/runtime invariance and protected checks; supersede incidental Node declaration selector reshuffle without changing versions."
+}
