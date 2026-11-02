@@ -44,7 +44,12 @@ This changes neither application validation scope nor test thresholds.
 Both module verifications, full vet checks, desktop host/encrypted backend tests
 under the unchanged 120-second limit, and the server build pass. Applied module
 files and selected graphs equal the prevalidated candidates exactly. Fresh native
-packaging, protected integration and individual #270 reconciliation are pending.
+packaging at 93aa68702 reuses the unchanged qualified 5ad6c590a frontend; all
+22,287 files match the reused and native asset trees. ZIP CRC, strict signature
+and ten synthetic WebView checks pass. Binary metadata confirms lo 1.53.0.
+Original output contents/stat fields and all xattrs restore exactly, with zero
+provenance changes. [Native receipt](native-93aa68702-validation.json).
+Protected integration and individual #270 reconciliation remain pending.
 [Detailed validation](samber-lo-validation.json).
 
 [Exact current and original intake head recovery](samber-lo-head-recovery.json).

@@ -419,7 +419,51 @@
     }
   ],
   "frontend_inputs_unchanged_since_qualified_native": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
-  "native_validation": "pending",
+  "native_validation": {
+    "source_revision": "93aa68702cf765246fcee3d1f67e735a2d48570d",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-93aa68702-lo-maintenance/Chartrove-93aa68702.zip",
+      "sha256": "5f5bad3b8f7126302a309c6be78e84c607414d36ea5d0b6506d5f879f1bed613",
+      "bytes": 336719449
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "source_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/generated/1",
+      "frontend_git_inputs_unchanged": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-93aa68702-lo-maintenance/receipt.json",
+    "full_local_receipt_sha256": "30e45819c542106d19e1c4beae40108ba6e1cafd43d08dc8fd6a61b3c8e57068",
+    "frontend_comparison": {
+      "files": 22287,
+      "qualified_reused_output_and_native_asset_tree_byte_identical": true
+    },
+    "binary_build_info_uses_lo_v1_53_0": true
+  },
   "protected_integration": "pending required PR checks",
   "real_health_records_accessed": false,
   "test_event_counts": {

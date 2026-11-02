@@ -316,7 +316,9 @@ assertions in both Go graphs and 57 byte-identical isolated generator outputs.
 The published examples fail to compile after upstream release test removal; the
 matching runtime's complete upstream parent suite passes 949 tests without skips.
 Applied module/vet, desktop/encrypted-backend and server build checks pass.
-Native packaging and protected integration remain pending.
+Fresh native packaging at 93aa68702 retains all 22,287 qualified frontend files;
+ZIP/signature and ten synthetic native checks pass. Original outputs/stat fields
+and all xattrs restore exactly. Protected integration remains pending.
 [Scope and preserved diagnostics](maintenance/2026-11-02-lo-maintenance.md).
 
 ## Preservation and branch retirement
@@ -328,7 +330,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (f22b03676) matches contents, inodes, permissions, ownership,
+Latest restoration (93aa68702) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.
