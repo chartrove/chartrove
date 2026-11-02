@@ -6,17 +6,17 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after application integration #343 and utility PR/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after343.json).
-This test-output protection batch's own short-lived PR/branch is additional until
+Snapshot: November 2, 2026, after application/tooling integration #345 and source/ref
+reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after345.json).
+This restart checkpoint's own short-lived PR/branch is additional until
 merged and removed. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `25771316699d757745df9a271e8a7e87b708e18a` (#343) |
+| Published application main | `ce5a554690de6dc71783a5864f93b5992c2ed230` (#345) |
 | Open issues | 177, including retained Renovate dashboard #222 |
-| Open PRs | 71: 64 paused Renovate proposals and seven historical drafts |
-| Origin heads | 81 |
+| Open PRs | 67: 60 paused Renovate proposals and seven historical drafts |
+| Origin heads | 77 |
 | Default-branch checkout | Clean main tracking origin/main, equal OIDs, one local branch |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
@@ -33,7 +33,7 @@ implemented features or blanket retirement candidates. #284/#285/#286 currently
 modify Validation itself and are valid update proposals, not obsolete retired-
 workflow patches. The other dependency PRs also require individual review.
 
-## Current tooling batch
+## Latest integrated safeguards and tooling
 
 #343 integrated the shared Go utilities after both graph checks, generator
 invariance, fresh PostgreSQL, protected CI and ten current native checks passed.
@@ -46,10 +46,15 @@ deletion actor is inferred. [Scope](maintenance/2026-11-02-shared-go-utilities.m
 synthetic-report, full suite and explicit-directory runs pass without changing
 thresholds, tests or application code. [Proof and remaining recovery gap](maintenance/2026-11-02-coverage-isolation.md).
 
-The next retirement removes unsupported TSLint/Protractor starter targets while
-preserving every source byte and the installed dependency tree. Runtime selections
-and retained package versions stay identical; current unit/production/Storybook
-checks pass. This is not yet integrated. [Scope and evidence](maintenance/2026-11-02-frontend-tooling-retirement.md).
+#345 retired unsupported TSLint/Protractor starter targets while preserving every
+source byte and the installed dependency tree. #226/#251/#300/#312 are explicitly
+retired, not upgraded. Runtime selections and 76 retained direct package versions
+stay identical; unit/production/Storybook, all required CI and ten current native
+checks pass. Their four exact archived heads were retired with fresh dependency
+checks and atomic expected-tip leases. [Scope](maintenance/2026-11-02-frontend-tooling-retirement.md),
+[retirement receipt](maintenance/legacy-tooling-retirement-4.json). A maintained
+frontend linter/full browser journey suite remains unconfigured; retired commands
+are not falsely reported as passing or as equivalent to native smoke coverage.
 
 ## Integrated and resolved work
 
@@ -71,6 +76,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #342 | Concise restart checkpoint and current native/ref receipts |
 | #343 | Shared Go utility alignment for #233/#265/#266/#269; unchanged generated models/replacements |
 | #344 | Fresh private coverage output by default; real synthetic-report preservation regression |
+| #345 | Retire unsupported starter tooling; retain exact source/dependencies and supported validation |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -100,9 +106,9 @@ Its missing-image preflight and pinned-image pull are preserved. No test contain
 remained. Callback cancellation fails before repair, passes 200 repetitions after
 repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-The latest packaged app source `4f891ef11` is the application tree merged by
-#343, before the current test-output-only configuration change. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
-checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-4f891ef11-validation.json).
+The latest packaged app source `7c3379d9a` is the application tree merged by
+#345. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
+checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-7c3379d9a-validation.json).
 Tests use new explicit synthetic storage; direct SMART is disabled in smoke mode.
 No purchased-app storage, real family records, production-provider registration,
 Medplum cutover or real-data migration was accessed or introduced.
@@ -136,7 +142,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Thirty historical origin refs were retired by this agent after individual review,
+Thirty-four historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Five more (#313 and four utility heads) were already absent after closure;
 deletion actors not established.
@@ -145,7 +151,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [six security refs](maintenance/security-retirement-6.json),
 [two crypto refs plus one externally absent](maintenance/crypto-toolchain-retirement-3.json),
 [four minimal replacements](maintenance/minimal-retirement-4.json),
-[four utility heads observed absent](maintenance/utility-retirement-4.json).
+[four utility heads observed absent](maintenance/utility-retirement-4.json),
+[four retired tooling heads](maintenance/legacy-tooling-retirement-4.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Unresolved preservation gap and decisions
@@ -154,8 +161,8 @@ Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 The separate coffinfish coverage archive is a different snapshot and does not
 prove original-primary preservation. The mixed report tree is retained at
 `dist/validation/2026-11-01-consolidation/coverage-after-maintenance`. Further
-coverage has been redirected to private task output; this batch makes that safe
-default durable. The synthetic regression fixture is retired; frontend/coverage
+coverage now has a durable safe default through #344, with an explicit override
+for intentionally selected new report destinations. The synthetic regression fixture is retired; frontend/coverage
 remains absent.
 The pre-task snapshot is com.apple.TimeMachine.2026-11-01-183642.local.
 macOS denied backup inventory without Full Disk Access. User restoration of just
@@ -177,7 +184,7 @@ A continuation message is not an answer to those pending decisions.
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 64 existing Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 60 existing Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

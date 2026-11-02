@@ -1,0 +1,31 @@
+{
+  "source_revision": "7c3379d9a54ceaaee90b478399b292e49d58cff4",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-7c3379d9a-attempt2/Chartrove-7c3379d9a.zip",
+    "sha256": "53bd69e46618906c333c65c87abd4483cfad9218dc8daad9e3e8b3b08eb0889d",
+    "bytes": 337065854
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "status": "retired-tooling app build, ZIP CRC, extracted strict signature and ten synthetic native checks passed; originals restored exactly",
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-7c3379d9a-attempt2/receipt.json",
+  "full_local_receipt_sha256": "482d42afdd80fb7e9b1f90a7a297e5176b4bcb20eca740f8ceadf922bdc55c89"
+}
