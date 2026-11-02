@@ -1,0 +1,52 @@
+{
+  "retained_direct_versions_unchanged": 75,
+  "runtime_manifest_unchanged": true,
+  "only_lock_change": "delete unused chromatic 6.19.8 block",
+  "checks": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path=/tmp/chartrove-consolidation.deb9lg/chromatic-validation/frontend"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "run",
+        "build-storybook",
+        "--output-dir=/tmp/chartrove-consolidation.deb9lg/chromatic-validation/storybook"
+      ],
+      "exit": 0
+    }
+  ],
+  "production_application_assets_byte_identical_to_native_d19dca35a": true,
+  "production_output_file_count": 22287,
+  "extra_finder_metadata_in_preserved_native_frontend": {
+    ".DS_Store": "e6cb90cad82941896bb60c3058400bcca00b9f1a583008fe1fcf31f58088f062",
+    "assets/.DS_Store": "899f291ca98393ed56644764e0c5756844c17235dce05b59547048dfdc204f0d"
+  },
+  "finder_metadata_remains_in_preserved_native_tree": true,
+  "documentation_original_state_restored": true,
+  "local_log_directory": "dist/validation/2026-11-01-consolidation/chromatic-validation",
+  "local_receipt_sha256": "ebd302175d4320f015eb1c9223cf54cbf3fc070a01cadabe2c802e3e651ac7bf",
+  "frozen_install_exit": 0
+}

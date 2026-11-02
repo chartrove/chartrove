@@ -1,0 +1,10 @@
+{
+  "dependency_archive": "dist/validation/2026-11-01-consolidation/frontend-dependencies-before-legacy-tools-20261102.tar.zst",
+  "archive_sha256": "983c70481647a788aa5ffce2cd763649a85b7b32a23f2be21b40d8fa37fb2243",
+  "installed_chromatic_version": "6.19.8",
+  "all_chromatic_regular_file_bytes_match_preserved_archive": true,
+  "matched_regular_file_count": 12,
+  "appledouble_metadata_member_count": 13,
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/chromatic-installed-preservation.json",
+  "full_local_receipt_sha256": "79e2e1106152d3cc36256a20a2c55467767943bba7dd469a540397b3781c5121"
+}

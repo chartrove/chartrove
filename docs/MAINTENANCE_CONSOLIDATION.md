@@ -6,18 +6,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after application/tooling integration #345 and source/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after345.json).
-This restart checkpoint's own short-lived PR/branch is additional until
+Snapshot: November 2, 2026, after application integration #347 and source/ref
+reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after347.json).
+The receipt also records the next short-lived local branch with its two pending
+Chromatic-removal source edits; that integration PR/branch is additional until
 merged and removed. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `ce5a554690de6dc71783a5864f93b5992c2ed230` (#345) |
-| Open issues | 177, including retained Renovate dashboard #222 |
+| Published application main | `c9bd973a1e9f59f1387627c062e883d751d17b9f` (#347) |
+| Open issues | 176, including retained Renovate dashboard #222 |
 | Open PRs | 67: 60 paused Renovate proposals and seven historical drafts |
 | Origin heads | 77 |
-| Default-branch checkout | Clean main tracking origin/main, equal OIDs, one local branch |
+| Default branch | main tracks origin/main with equal OIDs; next short-lived local task branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -35,10 +36,15 @@ workflow patches. The other dependency PRs also require individual review.
 
 ## Latest integrated safeguards and tooling
 
-The optional address/contact edit-dialog crash (#105) is reproduced and repaired
-on a short-lived integration branch. Eleven new regressions and the full browser
-suite (415 passes, one existing skip, exit 0) pass; protected CI/native packaging
-are required before integration. [Scope and evidence](maintenance/2026-11-02-optional-contact-dialogs.md).
+The unused upstream Chromatic publishing CLI is removed by the next integration
+batch. Runtime selections and all 75 retained direct versions stay unchanged;
+frozen install, production/Storybook and bridge checks pass. #239/#299 may be
+retired only after protected integration; their proposed upgrades are not
+implemented. [Scope and recovery](maintenance/2026-11-02-chromatic-retirement.md).
+
+The optional address/contact edit-dialog crash (#105) is repaired by merged #347.
+Eleven new regressions and the full browser suite (415 passes, one existing skip,
+exit 0), all three protected checks, and ten current native checks pass. [Scope and evidence](maintenance/2026-11-02-optional-contact-dialogs.md).
 
 #343 integrated the shared Go utilities after both graph checks, generator
 invariance, fresh PostgreSQL, protected CI and ten current native checks passed.
@@ -82,6 +88,8 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #343 | Shared Go utility alignment for #233/#265/#266/#269; unchanged generated models/replacements |
 | #344 | Fresh private coverage output by default; real synthetic-report preservation regression |
 | #345 | Retire unsupported starter tooling; retain exact source/dependencies and supported validation |
+| #346 | Current runtime, retirement and restart evidence checkpoint |
+| #347 | Optional address/contact edit-dialog crash repaired; issue #105 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -100,7 +108,7 @@ do not repeat Angular 14–22 modernization or restore obsolete implementations.
 ## Validation and data boundaries
 
 All merged batches passed Backend/Frontend/Desktop. Frontend full suites currently
-have 404 passing tests and one existing skip; production builds retain the 9.92 MB
+have 415 passing tests and one existing skip; production builds retain the 9.92 MB
 budget/CommonJS warnings. Local Chrome teardown sometimes required forced
 termination after successful assertions; required fresh GitHub checks still passed.
 No timeout, test assertion, encryption contract or branch rule was relaxed.
@@ -111,9 +119,9 @@ Its missing-image preflight and pinned-image pull are preserved. No test contain
 remained. Callback cancellation fails before repair, passes 200 repetitions after
 repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-The latest packaged app source `7c3379d9a` is the application tree merged by
-#345. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
-checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-7c3379d9a-validation.json).
+The latest packaged app source `d19dca35a` is the application tree merged by
+#347. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
+checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-d19dca35a-validation.json).
 Tests use new explicit synthetic storage; direct SMART is disabled in smoke mode.
 No purchased-app storage, real family records, production-provider registration,
 Medplum cutover or real-data migration was accessed or introduced.

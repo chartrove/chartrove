@@ -1,0 +1,35 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/chromatic-6.x-lockfile",
+      "headRefOid": "e4962b8e117a9fffb8a49cef9a6232256b8e7617",
+      "number": 239,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/chromatic-18.x",
+      "headRefOid": "c50edf789d3a947e6387b03765d24d648fbb8265",
+      "number": 299,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/chromatic-heads-20261102.bundle",
+  "sha256": "2587dc0101d1ddeb8d0eaa54a49a03787305b1e86f335aff834f0f9c48e0c74a",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "03dbba999097388088f5cd6223441f7ff19b681f",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 9,
+  "required_objects_included": true,
+  "intended_disposition": "Retire unused upstream Chromatic publishing CLI after removal and local Storybook validation integrate; not upgraded."
+}

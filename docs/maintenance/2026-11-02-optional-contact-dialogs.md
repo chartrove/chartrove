@@ -27,8 +27,9 @@ The full browser suite then exits 0 with 415 passes and one existing skip, using
 the retained debug-logging wrapper and a fresh private coverage directory. No
 assertion, timeout or threshold changed. The launcher still logs teardown warnings;
 existing Angular template diagnostics also remain. Five desktop bridge tests pass.
-[Exact validation receipt](contact-dialog-validation.json). Native packaging and
-protected CI results will be appended to the PR before integration.
+[Exact validation receipt](contact-dialog-validation.json). Protected Backend/Frontend/Desktop checks and packaged native build, ZIP/signature
+verification and ten synthetic native checks passed before #347 merged.
+[Native receipt](native-d19dca35a-validation.json).
 
 This resolves the reproduced optional-address/contact edit crash. It does not
 claim arbitrary malformed FHIR arrays are supported, complete practitioner

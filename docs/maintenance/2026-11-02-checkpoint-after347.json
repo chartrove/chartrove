@@ -1,0 +1,18 @@
+{
+  "snapshot_utc": "2026-11-02T10:36:18.315015+00:00",
+  "published_main": "c9bd973a1e9f59f1387627c062e883d751d17b9f",
+  "origin_main": "c9bd973a1e9f59f1387627c062e883d751d17b9f",
+  "open_issues": 176,
+  "open_prs": 67,
+  "open_renovate_prs": 60,
+  "all_open_renovate_paused": true,
+  "origin_heads": 77,
+  "local_branches": [
+    "refs/heads/main c9bd973a1e9f59f1387627c062e883d751d17b9f refs/remotes/origin/main",
+    "refs/heads/task/retire-unused-chromatic c9bd973a1e9f59f1387627c062e883d751d17b9f"
+  ],
+  "source_branch": "task/retire-unused-chromatic",
+  "tracked_source_changes": "M frontend/package.json\n M frontend/yarn.lock",
+  "sparse_sha256": "d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc",
+  "origin_fetch": "+refs/heads/main:refs/remotes/origin/main"
+}
