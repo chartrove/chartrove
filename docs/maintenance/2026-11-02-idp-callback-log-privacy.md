@@ -24,6 +24,7 @@ The existing generic phase log remains. No authentication exchange, storage/data
 schema, dependency, Wails or registration contract changes. The full macOS package build, ZIP CRC, strict extracted signature and all ten
 native smoke checks pass for source 4756cf99e. Original output contents, stat
 metadata and all xattrs restore exactly. [Native receipt](native-4756cf99e-validation.json).
-Required protected Backend/Frontend/Desktop checks still gate integration.
+Required Backend/Frontend/Desktop checks passed before protected PR #353 merged
+as 4283ef5fd57c133c8f4d414c5dcddce4e96d3117.
 Original-primary coverage recovery remains unresolved; these reports use new
 private output directories.

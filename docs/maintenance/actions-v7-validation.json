@@ -1,0 +1,151 @@
+{
+  "pinned_actions": [
+    {
+      "action": "checkout",
+      "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "version": "7.0.1",
+      "runs_descriptor": "runs:\n  using: node24\n  main: dist/index.js\n  post: dist/index.js\n",
+      "runner_notes": [
+        "- Updated to the node24 runtime",
+        "  - This requires a minimum Actions Runner version of [v2.327.1](https://github.com/actions/runner/releases/tag/v2.327.1) to run."
+      ]
+    },
+    {
+      "action": "setup-go",
+      "sha": "b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+      "version": "7.0.0",
+      "runs_descriptor": "runs:\n  using: 'node24'\n  main: 'dist/setup/index.js'\n  post: 'dist/cache-save/index.js'\n  post-if: success()\n",
+      "runner_notes": [
+        "- **Upgraded Node.js runtime from node20 to node24**"
+      ]
+    },
+    {
+      "action": "setup-node",
+      "sha": "949feb2413d6458794dcd2491c4babbbce0c15c1",
+      "version": "7.1.0",
+      "runs_descriptor": "runs:\n  using: 'node24'\n  main: 'dist/setup/index.js'\n  post: 'dist/cache-save/index.js'\n  post-if: success()\n",
+      "runner_notes": [
+        "  > For workflows with elevated privileges or access to sensitive information, we recommend disabling automatic caching by setting `package-manager-cache: false` when caching is not needed for secure operation.",
+        "- Upgraded action from node20 to node24.",
+        "    # To disable automatic caching for npm, set package-manager-cache to false.",
+        "    package-manager-cache: true",
+        "    package-manager-cache: false # Disable automatic npm caching if not required",
+        "This behavior is controlled by the `package-manager-cache` input, which defaults to `true`. To turn off automatic caching, set `package-manager-cache` to `false`.",
+        "    package-manager-cache: false",
+        "> If your `package.json` file does not include a `packageManager` field set to `npm`, caching will be disabled unless you explicitly enable it. For workflows with elevated privileges or access to sensitive information, we recommend disabling automatic caching for npm by setting `package-manager-cache: false` when caching is not required for secure operation.",
+        "          package-manager-cache: false # Disable automatic npm caching if not required",
+        "  package-manager-cache: false # Disable automatic npm caching if not required"
+      ]
+    }
+  ],
+  "official_v7_tags_match_proposed_shas": true,
+  "official_commit_signatures_verified": true,
+  "existing_hosted_runners": {
+    "ubuntu-24.04": "2.338.2",
+    "macos-14": "2.338.2"
+  },
+  "node24_runner_minimum": "2.327.1",
+  "credential_cache_controls_implementation_reviewed": true,
+  "actionlint_exit": 0,
+  "semantic_comparison": {
+    "changed_action_invocations": 6,
+    "all_other_workflow_semantics_identical": true,
+    "explicit_node_package_manager_cache": false
+  },
+  "sparse_pattern_sha256": "d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc",
+  "workflow_not_materialized": true,
+  "workflow_skip_worktree_preserved": true,
+  "before_workflow_blob": "80e373baba95452c0b912fd18320a4b79841215d",
+  "proposed_workflow_blob": "ef0e9299522b53a2688154413004ced108e10e49",
+  "local_review_directory": "dist/validation/2026-11-01-consolidation/actions-v7-review",
+  "artifacts": [
+    {
+      "path": "summary.json",
+      "sha256": "72c79067bb73d31b4c4745aa9009bca661f529728319ab3585ab950d91422a45"
+    },
+    {
+      "path": "semantic-verification.json",
+      "sha256": "51ea0593c6812c3f4bc238930442b32f98510e390ab2c89b257a758c8407ebe9"
+    },
+    {
+      "path": "validation-before.yaml",
+      "sha256": "eadc42da15247eff53823d0b25144c10764a146bbdebbd3fdc64dc8546d68918"
+    },
+    {
+      "path": "validation-update.patch",
+      "sha256": "1879e2165cb4ba5a40ced3d3fba1cc63401fcd1ca54ff980b80ada14ab9a1943"
+    },
+    {
+      "path": "macos-runner-existing.log",
+      "sha256": "15f7e06e62cfd53af73899d9a86fbc58e3d8993126954c82de473a3cf61e74b1"
+    },
+    {
+      "path": "linux-runner-existing.log",
+      "sha256": "56550fb930d09bf4e86e299a9b799ee11ce809cdc368b26bb820b8e7c40a8143"
+    },
+    {
+      "path": "validation-after.yaml",
+      "sha256": "565c0e4b5e5552a8e10632a3b9bb4e4c1e1eb7e56bd8790e308649a2ce29e4f6"
+    },
+    {
+      "path": "setup-node/README.md",
+      "sha256": "d8a3975d3194be46f878eb9e78bcfa6823b78cd076b0ebf98ea533f381718fc0"
+    },
+    {
+      "path": "setup-node/package.json",
+      "sha256": "28f0f1bba2b6c79b10dff566b2efb8cdb52a77e12501122f724a20ea4c891bb7"
+    },
+    {
+      "path": "setup-node/action.yml",
+      "sha256": "84cd55863dbadfb83ed786c0bb4336553c2f4ceb52e102fccec01848f1977387"
+    },
+    {
+      "path": "checkout/README.md",
+      "sha256": "3df94d90d0df6df603a549cc779bc6cab4b21f8deef82eb6fef1f4d88b788174"
+    },
+    {
+      "path": "checkout/package.json",
+      "sha256": "8b1127cee8fbd48ed687737f631f6e49a767a8e9484a87a7fb8fe913118d52c4"
+    },
+    {
+      "path": "checkout/action.yml",
+      "sha256": "d59219cb79590abdb877deaa14e3b65a00c05318bf5a6f3b989b9162b5d08c35"
+    },
+    {
+      "path": "setup-go/README.md",
+      "sha256": "c24b90da513160a6103c3b4c1c374606d41ee062368e069bbbc2628ed0b8676d"
+    },
+    {
+      "path": "setup-go/package.json",
+      "sha256": "819b61d0a63deb54754dfcd78b78d56cb3c605975475ed9ac0eb1427b6ebe3b7"
+    },
+    {
+      "path": "setup-go/action.yml",
+      "sha256": "cbfae748992b96b9a1bfa3f1679d17c898c78375aad8a0d0184820683c82c482"
+    },
+    {
+      "path": "setup-go/src/main.ts",
+      "sha256": "3fa854e2bb484c7f3d265590c023af119a946d210fcf5c159b500793ec923358"
+    },
+    {
+      "path": "setup-go/src/cache-save.ts",
+      "sha256": "f9487eac0732e4625914f745d7514d23dca170995a2c1631c0b01a0caad978ee"
+    },
+    {
+      "path": "checkout/src/git-source-provider.ts",
+      "sha256": "aaad769029fde263ba2c9fd26287ada2eed4d7d0c89676a04b78c0bfd52dc7a2"
+    },
+    {
+      "path": "checkout/src/input-helper.ts",
+      "sha256": "6ab98efe486f7e1e107e678ee866ea8d698a042f4419e0346954698c8b7203d5"
+    },
+    {
+      "path": "setup-node/src/main.ts",
+      "sha256": "949832c4a31a22332548496dfabbbe9d6c87241b9b3ba231844f7baf57747637"
+    },
+    {
+      "path": "setup-node/src/cache-save.ts",
+      "sha256": "c4dc282d17437999734e20d0d36bfa4da28edb8caf4d23aad6f171deefa3ebd4"
+    }
+  ]
+}

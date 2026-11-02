@@ -6,14 +6,14 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after declaration integration #352 and source/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after352.json).
-The receipt also records the next short-lived local callback-privacy branch; that integration PR/branch is additional until
+Snapshot: November 2, 2026, after privacy integration #353 and source/ref
+reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after353.json).
+The receipt also records the next short-lived local validation-actions branch; that integration PR/branch is additional until
 merged and removed. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `2626e46d5e60c4ec603e653a2abf5f499bdd6f82` (#352) |
+| Published application main | `4283ef5fd57c133c8f4d414c5dcddce4e96d3117` (#353) |
 | Open issues | 174, including retained Renovate dashboard #222 |
 | Open PRs | 60: 53 paused Renovate proposals and seven historical drafts |
 | Origin heads | 70 |
@@ -35,12 +35,17 @@ workflow patches. The other dependency PRs also require individual review.
 
 ## Latest integrated safeguards and tooling
 
-The next privacy batch removes the token-response payload from an existing
+The validation-only action update is reviewed for #284/#285/#286: official
+SHA-pinned v7 actions, unchanged project toolchains/permissions/commands/check
+names, credentials and caching disabled. Actionlint and parsed semantic
+comparison pass; hosted runners support the action runtime. Required fresh
+protected checks still gate integration. [Review and preservation](maintenance/2026-11-02-validation-actions-v7.md).
+
+Merged #353 removes the token-response payload from an existing
 identity callback console log while preserving exchange/storage behavior. A
 real-SDK synthetic transport regression fails on leaked markers before repair
 and passes afterward; full ordinary browser command exits 0 (423 passes, one
-skip), bridge and ten freshly packaged native checks pass. Required CI still
-gates integration. [Scope and evidence](maintenance/2026-11-02-idp-callback-log-privacy.md).
+skip), bridge, ten freshly packaged native checks and all protected CI pass. [Scope and evidence](maintenance/2026-11-02-idp-callback-log-privacy.md).
 
 Merged #352 adopts @types/fhir 0.0.44 and @types/qrcode 1.5.6.
 Five compile errors exposed by the new FHIR declarations are corrected through
@@ -129,6 +134,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #350 | Accessible manual-upload progress, duplicate guard and outcome cleanup; issue #113 |
 | #351 | Remove unused direct UUID v9; retire #230/#314 and informational reference #46 |
 | #352 | FHIR/QR declaration alignment and erased bundle annotations for #225/#227 |
+| #353 | Prevent existing frontend identity callback from logging token payloads |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -147,7 +153,7 @@ do not repeat Angular 14–22 modernization or restore obsolete implementations.
 ## Validation and data boundaries
 
 All merged batches passed Backend/Frontend/Desktop. Frontend full suites currently
-have 422 passing tests and one existing skip; production builds retain the 9.92 MB
+have 423 passing tests and one existing skip; production builds retain the 9.92 MB
 budget/CommonJS warnings. Local Chrome teardown sometimes required forced
 termination after successful assertions; required fresh GitHub checks still passed.
 No timeout, test assertion, encryption contract or branch rule was relaxed.
@@ -158,9 +164,9 @@ Its missing-image preflight and pinned-image pull are preserved. No test contain
 remained. Callback cancellation fails before repair, passes 200 repetitions after
 repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-The latest packaged app source `fd5194396` is the application tree merged by
-#350. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
-checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-fd5194396-validation.json).
+The latest packaged app source `4756cf99e` is the application tree merged by
+#353. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
+checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-4756cf99e-validation.json).
 Tests use new explicit synthetic storage; direct SMART is disabled in smoke mode.
 No purchased-app storage, real family records, production-provider registration,
 Medplum cutover or real-data migration was accessed or introduced.

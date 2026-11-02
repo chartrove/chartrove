@@ -1,0 +1,44 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/actions-checkout-7.x",
+      "headRefOid": "39154665214feda721d478facd1667f499796a39",
+      "number": 284,
+      "state": "OPEN",
+      "reviewed_paths": [
+        ".github/workflows/validation.yaml"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/actions-setup-go-7.x",
+      "headRefOid": "d115c7949c188248675d3f50ac2acfc8aa1c4ce0",
+      "number": 285,
+      "state": "OPEN",
+      "reviewed_paths": [
+        ".github/workflows/validation.yaml"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/actions-setup-node-7.x",
+      "headRefOid": "9c9f622cd8a09d678fe196cfd8fc9bfd75f43f53",
+      "number": 286,
+      "state": "OPEN",
+      "reviewed_paths": [
+        ".github/workflows/validation.yaml"
+      ]
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/actions-v7-heads-20261102.bundle",
+  "sha256": "6b66b111fcc6e8f7b5daefe9ac1e3a18bbee7cfb32e3ec6651e78dad1d580183",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "2626e46d5e60c4ec603e653a2abf5f499bdd6f82",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 15,
+  "required_objects_included": true,
+  "intended_disposition": "Integrate reviewed full-SHA first-party v7 updates in validation only; retain toolchain, permissions, no credentials/caches/publishing, and required checks."
+}
