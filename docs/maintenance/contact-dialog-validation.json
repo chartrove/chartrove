@@ -1,0 +1,59 @@
+{
+  "base_main": "03dbba999097388088f5cd6223441f7ff19b681f",
+  "issue": 105,
+  "red": {
+    "failed": 6,
+    "passed": 7,
+    "exit": -15,
+    "limitation": "Assertions completed; task CLI terminated after Chrome launcher teardown hang."
+  },
+  "focused_green": {
+    "passed": 13,
+    "exit": -15,
+    "limitation": "Assertions completed; task CLI terminated after Chrome launcher teardown hang."
+  },
+  "full_green": {
+    "passed": 415,
+    "skipped": 1,
+    "exit": 0,
+    "diagnostic_changes": "Existing private debug-logging wrapper, dots reporter, fresh explicit coverage directory; no timeouts or assertions changed. Launcher still warned during shutdown."
+  },
+  "bridge": {
+    "passed": 5,
+    "exit": 0
+  },
+  "artifacts": [
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-red/forced-shutdown.json",
+      "sha256": "25cd9547af91bc701587e8439f369d52c8b3733aa737ab7ddabeea914a31357e"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-red/output.log",
+      "sha256": "ca036e442d22f9b8498e2f70f88cd37222c504290f6c40734732a2e511276bc3"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-red/receipt.json",
+      "sha256": "90edd90c438744bc4d5326f7c13e2f7311230201ca2007560fee3b62f21997ad"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-green/forced-shutdown.json",
+      "sha256": "95313b35b1f7f38c44b392f0491f82f9b971d6d449146c3372d52b94f38cb8d6"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-green/output.log",
+      "sha256": "3bf57170f68ebf025d71e287c3698fbe38b1bc39c79aa57f321ed3f437f484df"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-green/receipt.json",
+      "sha256": "90edd90c438744bc4d5326f7c13e2f7311230201ca2007560fee3b62f21997ad"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-full/output.log",
+      "sha256": "b3c6269ad6331b2be35d6a29878232c4e643b62eaae162e5e75fcc7b71adb258"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/contact-dialog-validation/contact-full/receipt.json",
+      "sha256": "a981116877aeab42516b32b0e5d415af9c079a2fd479e86e9262666c9e841c80"
+    }
+  ]
+}

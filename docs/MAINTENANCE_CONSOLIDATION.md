@@ -35,6 +35,11 @@ workflow patches. The other dependency PRs also require individual review.
 
 ## Latest integrated safeguards and tooling
 
+The optional address/contact edit-dialog crash (#105) is reproduced and repaired
+on a short-lived integration branch. Eleven new regressions and the full browser
+suite (415 passes, one existing skip, exit 0) pass; protected CI/native packaging
+are required before integration. [Scope and evidence](maintenance/2026-11-02-optional-contact-dialogs.md).
+
 #343 integrated the shared Go utilities after both graph checks, generator
 invariance, fresh PostgreSQL, protected CI and ten current native checks passed.
 #233/#265/#266/#269 are reconciled as implemented. Their four heads were already

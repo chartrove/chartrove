@@ -120,32 +120,32 @@ export class MedicalRecordWizardEditPractitionerComponent implements OnInit {
   }
 
   private populateForm(practitioner: PractitionerModel): void {
-    this.practitionerTypeaheadForm.get('data').setValue({ text: practitioner.name?.[0].displayName })
+    this.practitionerTypeaheadForm.get('data').setValue({ text: practitioner.name?.[0]?.displayName })
 
-    this.practitionerForm.get('name').setValue(practitioner.name?.[0].displayName)
+    this.practitionerForm.get('name').setValue(practitioner.name?.[0]?.displayName)
     this.practitionerForm.get('identifier').setValue(practitioner.identifier?.[0])
 
-    this.practitionerForm.get('profession').setValue(practitioner.qualification?.[0].display)
+    this.practitionerForm.get('profession').setValue(practitioner.qualification?.[0]?.display)
 
     let addressGroup = this.practitionerForm.get('address')
-    addressGroup.get('line1').setValue(practitioner.address?.[0].line?.[0])
-    addressGroup.get('line2').setValue(practitioner.address?.[0].line?.[1])
-    addressGroup.get('city').setValue(practitioner.address?.[0].city)
-    addressGroup.get('state').setValue(practitioner.address?.[0].state)
-    addressGroup.get('zip').setValue(practitioner.address?.[0].postalCode)
-    addressGroup.get('country').setValue(practitioner.address?.[0].country)
+    addressGroup.get('line1').setValue(practitioner.address?.[0]?.line?.[0])
+    addressGroup.get('line2').setValue(practitioner.address?.[0]?.line?.[1])
+    addressGroup.get('city').setValue(practitioner.address?.[0]?.city)
+    addressGroup.get('state').setValue(practitioner.address?.[0]?.state)
+    addressGroup.get('zip').setValue(practitioner.address?.[0]?.postalCode)
+    addressGroup.get('country').setValue(practitioner.address?.[0]?.country)
 
-    let practitionerPhone = practitioner.telecom.find((telecom) => telecom.system == 'phone')
+    let practitionerPhone = practitioner.telecom?.find((telecom) => telecom.system == 'phone')
     if (practitionerPhone) {
       this.practitionerForm.get('phone').setValue(practitionerPhone.value)
     }
 
-    let practitionerFax = practitioner.telecom.find((telecom) => telecom.system == 'fax')
+    let practitionerFax = practitioner.telecom?.find((telecom) => telecom.system == 'fax')
     if (practitionerFax) {
       this.practitionerForm.get('fax').setValue(practitionerFax.value)
     }
 
-    let practitionerEmail = practitioner.telecom.find((telecom) => telecom.system == 'email')
+    let practitionerEmail = practitioner.telecom?.find((telecom) => telecom.system == 'email')
     if (practitionerEmail) {
       this.practitionerForm.get('email').setValue(practitionerEmail.value)
     }
@@ -157,6 +157,7 @@ export class MedicalRecordWizardEditPractitionerComponent implements OnInit {
 
   submit() {
     let practitioner = this.practitioner
+    practitioner.telecom ??= []
 
     let address = new AddressModel(null)
     address.city = this.practitionerForm.get('address').get('city').value
