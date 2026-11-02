@@ -1,0 +1,32 @@
+{
+  "integration_pr": 348,
+  "integration_main": "47e4d913e963b73c3602039b750fc7c9b76e4202",
+  "bundle": "dist/validation/2026-11-01-consolidation/chromatic-heads-20261102.bundle",
+  "bundle_sha256": "2587dc0101d1ddeb8d0eaa54a49a03787305b1e86f335aff834f0f9c48e0c74a",
+  "manually_retired": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/chromatic-6.x-lockfile",
+      "headRefOid": "e4962b8e117a9fffb8a49cef9a6232256b8e7617",
+      "number": 239,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/chromatic-18.x",
+      "headRefOid": "c50edf789d3a947e6387b03765d24d648fbb8265",
+      "number": 299,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    }
+  ],
+  "already_absent_after_closure_actor_not_established": [],
+  "open_pr_dependencies_checked": 65,
+  "remote_absence_verified": true
+}

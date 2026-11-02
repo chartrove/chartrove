@@ -6,18 +6,17 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after application integration #347 and source/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after347.json).
-The receipt also records the next short-lived local branch with its two pending
-Chromatic-removal source edits; that integration PR/branch is additional until
+Snapshot: November 2, 2026, after tooling integration #348 and source/ref
+reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after348.json).
+The receipt also records the next short-lived local Karma branch; that integration PR/branch is additional until
 merged and removed. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `c9bd973a1e9f59f1387627c062e883d751d17b9f` (#347) |
+| Published application main | `47e4d913e963b73c3602039b750fc7c9b76e4202` (#348) |
 | Open issues | 176, including retained Renovate dashboard #222 |
-| Open PRs | 67: 60 paused Renovate proposals and seven historical drafts |
-| Origin heads | 77 |
+| Open PRs | 65: 58 paused Renovate proposals and seven historical drafts |
+| Origin heads | 75 |
 | Default branch | main tracks origin/main with equal OIDs; next short-lived local task branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
@@ -41,11 +40,10 @@ Its executable distribution is identical to 6.4.3; all 74 other direct versions
 stay unchanged. The ordinary full browser command exits 0 (415 passes, one skip).
 #228 remains open until protected integration. [Scope and recovery](maintenance/2026-11-02-minimal-karma-patch.md).
 
-The unused upstream Chromatic publishing CLI is removed by the next integration
-batch. Runtime selections and all 75 retained direct versions stay unchanged;
-frozen install, production/Storybook and bridge checks pass. #239/#299 may be
-retired only after protected integration; their proposed upgrades are not
-implemented. [Scope and recovery](maintenance/2026-11-02-chromatic-retirement.md).
+Merged #348 removes the unused upstream Chromatic publishing CLI. Runtime selections and all 75 retained direct versions stay unchanged;
+frozen install, production/Storybook, bridge and all protected checks pass.
+#239/#299 are explicitly retired, not upgraded; their two exact archived heads
+were retired after fresh dependency checks and atomic expected-tip leases. [Scope and recovery](maintenance/2026-11-02-chromatic-retirement.md).
 
 The optional address/contact edit-dialog crash (#105) is repaired by merged #347.
 Eleven new regressions and the full browser suite (415 passes, one existing skip,
@@ -95,6 +93,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #345 | Retire unsupported starter tooling; retain exact source/dependencies and supported validation |
 | #346 | Current runtime, retirement and restart evidence checkpoint |
 | #347 | Optional address/contact edit-dialog crash repaired; issue #105 |
+| #348 | Remove unused upstream Chromatic publishing CLI; explicitly retire #239/#299 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -160,7 +159,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Thirty-four historical origin refs were retired by this agent after individual review,
+Thirty-six historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Five more (#313 and four utility heads) were already absent after closure;
 deletion actors not established.
@@ -170,7 +169,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [two crypto refs plus one externally absent](maintenance/crypto-toolchain-retirement-3.json),
 [four minimal replacements](maintenance/minimal-retirement-4.json),
 [four utility heads observed absent](maintenance/utility-retirement-4.json),
-[four retired tooling heads](maintenance/legacy-tooling-retirement-4.json).
+[four retired tooling heads](maintenance/legacy-tooling-retirement-4.json),
+[two Chromatic heads](maintenance/chromatic-retirement-2.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Unresolved preservation gap and decisions
@@ -202,7 +202,7 @@ A continuation message is not an answer to those pending decisions.
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 60 existing Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 58 existing Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
