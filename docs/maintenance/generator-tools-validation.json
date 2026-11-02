@@ -1,0 +1,67 @@
+{
+  "checked_utc": "2026-11-02T12:30:17.048538+00:00",
+  "base_main": "e9f6aae46ed6ecb4c3dc411a3b3303de3262766c",
+  "go": "go1.27.3 darwin/arm64",
+  "graphs": {
+    "root": {
+      "module_version_differences": {
+        "golang.org/x/mod": {
+          "old": "v0.41.0",
+          "new": "v0.42.0"
+        },
+        "github.com/dave/jennifer": {
+          "old": "v1.6.1",
+          "new": "v1.7.1"
+        }
+      },
+      "runtime_package_inputs_identical": true,
+      "runtime_package_count": 662,
+      "target_tools_excluded_from_runtime": true
+    },
+    "desktop": {
+      "module_version_differences": {
+        "golang.org/x/mod": {
+          "old": "v0.41.0",
+          "new": "v0.42.0"
+        },
+        "github.com/dave/jennifer": {
+          "old": "v1.6.1",
+          "new": "v1.7.1"
+        }
+      },
+      "runtime_package_inputs_identical": true,
+      "runtime_package_count": 699,
+      "target_tools_excluded_from_runtime": true
+    }
+  },
+  "model_generated_files": 57,
+  "model_outputs_identical": true,
+  "related_versions_output_identical": true,
+  "related_versions_sha256": "2a9a70fcf9ee823ee45a3b6277e74904c0e426d64294dd4508e4cd4e51dc666d",
+  "all_application_vet_verify_build_and_desktop_tests": "passed",
+  "upstream_xmod_modfile_module_semver_tests": "passed",
+  "upstream_jennifer_ordinary_test": {
+    "old_v1_6_1_exit": 1,
+    "new_v1_7_1_exit": 1,
+    "identical_vet_example_name_diagnostics": 11,
+    "status": "existing upstream example-vet incompatibility; retained as failure, no vet-disabled acceptance rerun"
+  },
+  "application_source_generated_models_frontend_workflows_and_replacements": "unchanged",
+  "local_evidence": "dist/validation/2026-11-01-consolidation/generator-tools-review",
+  "evidence_hash_manifest_sha256": "14fb85ae2b2099576f7b826502c1a73f7cd431b468e4ec5b66483c429fbda376",
+  "selected_log_sha256": {
+    "upstream-jennifer-old-test.log": "6b06c66afb173e3e4e99f468c786c773ccfa9239691c0de226ea7a5d6cc6cad8",
+    "upstream-jennifer-test.log": "0a147c64a52ab3b16e2d568a893f330fff6e4599b78778a1e43ff01e77994242",
+    "upstream-xmod-test.log": "0b5b772ab883f3bcd3b9a5d382aa8ed77bce3a5df82d80869ae882e8407d4d66",
+    "root-applied-verify.log": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd",
+    "root-applied-vet.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "root-applied-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "desktop-applied-verify.log": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd",
+    "desktop-applied-vet.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "desktop-applied-tests.log": "31ae0f000b36c76eec785a6fd58ec98bb6e68cfbf7de2bbc6f214c7e769c8da0",
+    "desktop-applied-encrypted-backend.log": "0fb3ffdaeabe129431d2f756a1bfb291c6c2e19804497ebbb46f2495d0488177",
+    "desktop-applied-build.log": "5056d9b7bd50d509eded2ff4953b43b6ebb1e893f7e4e4a76f4ef4220785ae1e"
+  },
+  "protected_ci": "required before merge",
+  "new_native_smoke": "not rerun for excluded generator-only packages; last packaged application receipt remains native-4756cf99e-validation.json"
+}

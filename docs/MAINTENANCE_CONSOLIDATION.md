@@ -36,6 +36,13 @@ implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
 
+Next reviewed batch: [generator-only Jennifer/x-mod updates](maintenance/2026-11-02-generator-tools.md)
+for #258/#276. All 57 generated model outputs, related-version JSON and both
+executable package inventories match. Local application verification/builds and
+desktop/encrypted-backend tests pass; protected CI is still required before merge.
+An identical upstream Jennifer example-vet failure in old/new versions is retained
+explicitly. No source model or data migration is changed.
+
 Merged #354 adopts verified SHA-pinned v7 actions, unchanged project
 toolchains/permissions/commands/check names, and disabled credentials/caches.
 Actionlint, parsed semantic comparison and all three required hosted checks pass.
@@ -140,6 +147,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #352 | FHIR/QR declaration alignment and erased bundle annotations for #225/#227 |
 | #353 | Prevent existing frontend identity callback from logging token payloads |
 | #354 | Adopt reviewed v7 actions in validation only; reconcile #284/#285/#286 |
+| #355 | Publish verified original-primary coverage recovery and metadata limits |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
