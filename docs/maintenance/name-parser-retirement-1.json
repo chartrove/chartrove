@@ -1,0 +1,20 @@
+{
+  "time": "2026-11-02T19:01:38.865050+00:00",
+  "main": "a9f68e864ece45b6a759b0dd8cf2e51f98316e8b",
+  "historical_branch": {
+    "name": "renovate/parse-full-name-1.x-lockfile",
+    "sha": "6a1e3d7124ff634bf145c068af6e4ffd17b2550a",
+    "kind": "historical verified bundle",
+    "ref": "refs/heads/renovate/parse-full-name-1.x-lockfile",
+    "outcome": "already absent; deletion actor not inferred"
+  },
+  "open_pr_dependencies": [],
+  "recovery_receipt": "name-parser-head-recovery.json",
+  "task_branch_retirement": {
+    "name": "task/name-parser-patch",
+    "sha": "4a422c7f6f8de4a633a751b155952715a1586664",
+    "kind": "merged task",
+    "ref": "refs/heads/task/name-parser-patch",
+    "outcome": "deleted exact reviewed tip"
+  }
+}

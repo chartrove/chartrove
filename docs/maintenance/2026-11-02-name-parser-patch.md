@@ -38,8 +38,10 @@ new checksum-recorded bundle. All four unique objects are proved present in the
 original archive bytes, with strict pack validation and main-reachable
 prerequisites. The earlier intake tip remains in its existing archive. Installed
 1.2.6 and Yarn integrity metadata are also retained in a native archive.
-[Head recovery](name-parser-head-recovery.json). The historical PR/branch stay
-open until protected integration and fresh dependency checks finish.
+[Head recovery](name-parser-head-recovery.json). The historical PR and branch
+were subsequently reconciled after protected #364 integration. The archived
+historical head was already absent when queried; its deletion actor is not
+inferred. [Disposition receipt](name-parser-retirement-1.json).
 
 ## Practitioner creation privacy
 

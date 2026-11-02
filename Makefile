@@ -11,11 +11,11 @@ test: test-backend test-frontend
 
 .PHONY: build-storybook
 build-storybook: dep-frontend
-	cd frontend && $(NG) run fastenhealth:build-storybook
+	cd frontend && $(YARN) exec ng -- run fastenhealth:build-storybook
 
 .PHONY: serve-storybook
 serve-storybook: dep-frontend
-	cd frontend && $(NG) run fastenhealth:storybook
+	cd frontend && $(YARN) exec ng -- run fastenhealth:storybook
 
 .PHONY: serve-frontend
 serve-frontend: dep-frontend

@@ -19,6 +19,10 @@ cd ..
 
 Node 26 does not bundle Corepack. The command above invokes a pinned Corepack through npm and preserves the committed Yarn selection. Use `node node_modules/@angular/cli/bin/ng.js <command>` for the local CLI without a global Yarn or Angular CLI installation. The Angular workspace explicitly selects Yarn.
 
+Use `make build-storybook` and `make serve-storybook` for Storybook. These targets
+run the local Angular CLI under the same pinned Yarn so Compodoc can invoke its
+child command on Node 26.
+
 Angular 22 officially supports Node 26 and TypeScript 6.0. Keep TypeScript within the selected Angular compiler's supported range and report concrete compatibility failures; do not reinstall retired Node runtimes or bypass engine checks. See [the maintenance baseline](docs/MAINTENANCE_BASELINE.md) for validation evidence and the sequential migration history.
 
 ## Repository layout
