@@ -41,7 +41,9 @@ Preservation receipt `dist/validation/coffinfish-c42643e2e-preservation.json` ve
 `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Keep retained ZIPs, evidence, local metadata, tags, exclusions, and settings intact.
 No health-record directories are read or used. Tests use private synthetic fixtures.
-Twenty-four historical origin branches have been retired with verified archives,
+Twenty-six historical origin branches have been retired by this agent; one more
+closed Renovate head was already absent with verified recovery history. All used
+verified archives,
 exact-tip leases, and individual dispositions; see the dated receipts below.
 
 `summary` tip `62a89d799969b1de8ac208543e89a7da85345a91` and
@@ -238,3 +240,34 @@ The CryptoJS/toolchain batch reviews #199 and #313 independently. [Compatibility
 evidence and intended dispositions](maintenance/2026-11-02-crypto-toolchain.md).
 Neither is closed until that batch merges. The primary coverage snapshot recovery
 and the two consequential product/migration questions remain pending.
+
+## CryptoJS, native package and workflow-registration checkpoint
+
+#340 merged as `025a8bcaddc3e00fee59dae0ac4cdfeb454f5321` with all required
+checks passing. #199 is closed as implemented; #313 is explicitly retired as an
+incompatible standalone proposal, with no TypeScript 7 implementation claim.
+Its current tip is retained in the verified incremental bundle. Two exact #199
+head/base refs were retired with atomic dry-run/push and leases. #313's head was
+already absent after closure; its deletion actor was not established.
+[Three-ref receipt](maintenance/crypto-toolchain-retirement-3.json).
+
+A new native package at exact source `c957b1480` passes ZIP CRC, extracted strict
+signature validation, and ten real WebView smoke checks with fresh synthetic
+storage. [Artifact and metadata-preservation receipt](maintenance/native-c957b1480-validation.json).
+Existing ZIP/tree contents, inodes, permissions, ownership, birth times and mtimes
+were restored exactly. Other xattrs match; macOS changed com.apple.provenance on
+exactly three moved root objects. Both old/new values remain in local evidence;
+no OS security-attribute rewrite was attempted. The artifact predates the next
+footer replacement. Original-primary coverage recovery remains unresolved.
+
+The live API unexpectedly listed inherited Development workflow 398282797 active
+although its source is absent from main. It was disabled again. Task-window run
+audit found 374 Validation runs and seven Development runs; their jobs are tests/
+Storybook compilation, with no publishing workflow registration in that snapshot.
+All seven run/job inventories are retained, including the old container/tooling
+boundary. Validation is now the sole active registration; continue checking this
+live after integration rather than inferring it from main's file list.
+
+The next minimal historical batch extracts only the footer flow fix from #197
+and removes Compose's obsolete version declaration from #216. Their complete
+source inventories and validation limits are [recorded here](maintenance/2026-11-02-minimal-historical-fixes.md).

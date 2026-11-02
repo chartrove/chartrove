@@ -1,0 +1,32 @@
+[
+  {
+    "baseRefName": "migration/upstream-pr-166-base",
+    "headRefName": "migration/upstream-pr-166",
+    "headRefOid": "c38a44d7359c7cc628afa07590502ad13b632aa7",
+    "number": 197,
+    "state": "OPEN",
+    "complete_file_count": 3092,
+    "non_generated_paths": [
+      "frontend/src/app/components/footer/footer.component.html",
+      "package-lock.json",
+      "package.json"
+    ],
+    "complete_inventory_sha256": "db6908cdaa2305e98639752ca07b4dd89cd13619dcdc90c3ad63de474b4766c2",
+    "history_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1",
+    "intended_disposition": "minimal current-source replacement, close only after protected merge; unrelated generated content and root docker npm manifests retired"
+  },
+  {
+    "baseRefName": "migration/upstream-pr-625-base",
+    "headRefName": "migration/upstream-pr-625",
+    "headRefOid": "33c95d548023a390dd2a581a2a52d85633793c63",
+    "number": 216,
+    "state": "OPEN",
+    "complete_file_count": 1,
+    "non_generated_paths": [
+      "docker-compose-prod.yml"
+    ],
+    "complete_inventory_sha256": "65004cd3b992b36d8f66a1c39706f280135b435ace462a90ba7fb9134c699941",
+    "history_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1",
+    "intended_disposition": "equivalent Compose model without obsolete version key; no services started"
+  }
+]

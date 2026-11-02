@@ -1,0 +1,34 @@
+{
+  "source_revision": "c957b1480cf3e65d70441cc6985b54f5909ab1dc",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-c957b1480-attempt2/Chartrove-c957b1480.zip",
+    "sha256": "c1ad6bd5a4d82b594447b2b6d33ed42876e8481e7869a129d6e7126180a8625f",
+    "bytes": 337011537
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": [
+    "DESKTOP_SMOKE {\"ok\":true,\"checks\":[\"native binding round trip\",\"direct SMART disabled without registration\",\"direct SMART rejects unconfigured provider\",\"fresh database API\",\"local account creation\",\"local sign in\",\"native URL validation\",\"API errors stay separate from SPA\",\"owned popup callback round trip\",\"callback isolated from unrelated window\"]}"
+  ],
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {
+    "/Users/osama/Code/karamhouse/chartrove/dist/Chartrove.zip: com.apple.provenance:": {
+      "before_sha256": "95a1ed7b615b1cdf8ba306212e667316be4c5033ffc112d63d98839d70c8fc15",
+      "after_sha256": "f0076c6e80ad8c964f53384f82146cb6387820ef0a2d6e57a08e6f25854c7a76"
+    },
+    "/Users/osama/Code/karamhouse/chartrove/dist/frontend: com.apple.provenance:": {
+      "before_sha256": "95a1ed7b615b1cdf8ba306212e667316be4c5033ffc112d63d98839d70c8fc15",
+      "after_sha256": "f0076c6e80ad8c964f53384f82146cb6387820ef0a2d6e57a08e6f25854c7a76"
+    },
+    "/Users/osama/Code/karamhouse/chartrove/desktop/assets/frontend: com.apple.provenance:": {
+      "before_sha256": "95a1ed7b615b1cdf8ba306212e667316be4c5033ffc112d63d98839d70c8fc15",
+      "after_sha256": "f0076c6e80ad8c964f53384f82146cb6387820ef0a2d6e57a08e6f25854c7a76"
+    }
+  },
+  "status": "native package build, ZIP CRC, strict extracted signature and synthetic GUI smoke passed; originals restored except recorded OS provenance updates",
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-c957b1480-attempt2/receipt.json",
+  "full_local_receipt_sha256": "4ffc2e6130dd2ee2b93a2458a740b6867999b26505df413a1d9e44df6e51b54e",
+  "limit": "Source precedes the minimal footer replacement; not a claim that the later footer source was packaged in this artifact."
+}

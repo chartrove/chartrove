@@ -33,3 +33,13 @@ Validation uses ordinary pull_request/push/workflow_dispatch, GitHub-hosted
 runners, fixed Node/Go versions, no privileged triggers, no shell interpolation
 of contributor-controlled content, and no secrets or persistent runner state.
 It does not claim whole-application security or native Angular UI acceptance.
+
+Live registration follow-up, November 2: Development ID 398282797 unexpectedly
+remained/reappeared active while its file was absent from main. It was explicitly
+disabled again. The retained task-window API audit lists seven Development runs
+with backend/frontend tests and Storybook compilation, alongside Validation runs.
+No publishing workflow registration appears in that snapshot. Do not infer API
+registration state from file deletion alone; verify Validation is the sole active
+registration after integrations. Evidence is retained under
+dist/validation/2026-11-01-consolidation/workflow-* and
+inherited-development-run-job-audit.json.
