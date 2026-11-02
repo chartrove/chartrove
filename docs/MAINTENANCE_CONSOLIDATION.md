@@ -41,7 +41,8 @@ Preservation receipt `dist/validation/coffinfish-c42643e2e-preservation.json` ve
 `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Keep retained ZIPs, evidence, local metadata, tags, exclusions, and settings intact.
 No health-record directories are read or used. Tests use private synthetic fixtures.
-No historical branches have been deleted in this consolidation yet.
+Eighteen historical origin branches have been retired with verified archives,
+exact-tip leases, and individual dispositions; see the dated receipts below.
 
 `summary` tip `62a89d799969b1de8ac208543e89a7da85345a91` and
 `text_field_extract` tip `38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e` still exist
@@ -193,3 +194,25 @@ locks still contain old word-wrap, crypto-js, semver 5 and follow-redirects entr
 Do not declare them superseded. CryptoJS 4.2 changes PBKDF2 defaults according to
 [its upstream advisory](https://github.com/brix/crypto-js/security/advisories/GHSA-xwcq-pm8m-c4vf);
 review its PDF/tooling consumer boundary before adopting the old patch.
+
+## Integrated fixes and dependency-security batch
+
+#335 (default signing key rejection), #336 (callback cancellation), #338
+(stale/deleted sessions), #334 (password confirmation), and #337 (record-save
+feedback) are merged. Issues #52/#103/#124/#35 closed via their fixes. All passed
+Backend/Frontend/Desktop under strict main protection; all five short-lived task
+branches were deleted after merge ancestry and exact-tip checks. Main is
+`5bc9bf4aa`; local main tracks origin/main, sparse settings and tags remain intact.
+
+Renovate's automatic rebases flooded CI despite creation limits. All 69 existing
+Renovate PRs now carry the additive supported `stop-updating` label; 66 scoped
+bot Validation runs were canceled (two others already completed). No task checks
+were bypassed. A fresh query showed zero active bot runs. Remove the label only
+from a selected candidate; dashboard approval and creation limits remain in place.
+
+The next bounded lockfile batch corrects #198/#201/#206 against current main,
+without restoring historical lockfiles. [Review, checks and limits](maintenance/2026-11-02-transitive-security.md).
+CryptoJS #199 remains open for separate consumer review. The original-primary
+coverage recovery gap and product/migration decisions remain unresolved. No real
+health records or purchased-application storage were inspected. Current GitHub
+checkpoint: https://github.com/karamhouse/chartrove/issues/222#issuecomment-6571729966.
