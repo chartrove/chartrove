@@ -1,0 +1,40 @@
+{
+  "time": "2026-11-02T19:57:57.235479+00:00",
+  "main": "cf400c0efe57375964bf4a463efb6c2ccf96f6e6",
+  "branches": [
+    {
+      "name": "renovate/github.com-urfave-cli-v2-2.x",
+      "sha": "a5cff25a3ad25f31c33490ac917e14ccfeb33917",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/github.com-urfave-cli-v2-2.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "renovate/github.com-urfave-cli-v2-3.x",
+      "sha": "cf7169db6b9f32acba83133f9325587eb9a1066d",
+      "kind": "historical unused addition retired by policy",
+      "ref": "refs/heads/renovate/github.com-urfave-cli-v2-3.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/cli-v2-maintenance",
+      "sha": "a76add690853a2533c5cb96caa495ea488b09747",
+      "kind": "merged task",
+      "ref": "refs/heads/task/cli-v2-maintenance",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-urfave-cli-v2-2.x\n - [deleted]               renovate/github.com-urfave-cli-v2-3.x\n - [deleted]               task/cli-v2-maintenance\n"
+    },
+    "delete": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-urfave-cli-v2-2.x\n - [deleted]               renovate/github.com-urfave-cli-v2-3.x\n - [deleted]               task/cli-v2-maintenance\n"
+    }
+  }
+}

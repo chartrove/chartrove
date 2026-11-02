@@ -63,5 +63,9 @@ Raw evidence is dist/validation/2026-11-01-consolidation/cli-review/ and the two
 cli-v2-review/cli-v3-review directories; the manifest records retained file
 hashes. Original command paths identify their execution-time temporary location,
 which was subsequently moved atomically to permanent evidence. Protected-main
-checks and integration remain pending. Neither historical PR is closed or its
-live head retired before that integration and a fresh dependency check.
+checks passed in run 41513582104; #366 merged at
+`cf400c0efe57375964bf4a463efb6c2ccf96f6e6`. #274 was individually closed
+as implemented and #331 explicitly retired without claiming v3 adoption. Both
+exact bundled historical tips and the merged task head were manually retired
+after fresh open-PR dependency checks, dry run and atomic exact-tip leases.
+[Retirement receipt](cli-retirement-2.json).

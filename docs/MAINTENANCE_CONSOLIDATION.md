@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #365 and individual #242 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after365.json).
-The CLI maintenance branch is additional and unpublished at
+Snapshot: November 2, 2026, after #366 and individual #274/#331/#182 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after366.json).
+The graph-alignment branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `b32b087b727e428bc7d4e6e6f0738866fcf41058` (#365) |
-| Open issues | 171, including retained Renovate dashboard #222 |
-| Open PRs | 42: 36 paused Renovate proposals and six historical drafts |
-| Origin heads | 51 |
-| Default branch | main tracks origin/main with equal OIDs; CLI branch is additional |
+| Published application main | `cf400c0efe57375964bf4a463efb6c2ccf96f6e6` (#366) |
+| Open issues | 170, including retained Renovate dashboard #222 |
+| Open PRs | 40: 34 paused Renovate proposals and six historical drafts |
+| Origin heads | 49 |
+| Default branch | main tracks origin/main with equal OIDs; graph branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -266,13 +266,20 @@ the original documentation.json absence restored. All protected CI checks pass;
 #242 is individually reconciled and its archived head manually retired.
 [Scope and evidence](maintenance/2026-11-02-fishery-tooling.md).
 
-The pending CLI batch adopts maintained v2.27.7 and its required helpers, with
+Merged #366 adopts maintained v2.27.7 and its required helpers, with
 server commands validated and the native production import list byte-identical.
 #331 adds an unused v3 requirement without migrating imports; that addition is
-explicitly retired by the proposed policy, not described as implemented v3.
-Both exact historical heads are bundled and remain live pending protected
-integration and fresh dependency checks.
+explicitly retired by the integrated policy, not described as implemented v3.
+All three protected checks pass. Both historical heads are individually
+reconciled and manually retired with fresh dependency checks and exact-tip leases.
 [Scope and validation](maintenance/2026-11-02-cli-v2-maintenance.md).
+
+The pending #259 graph-alignment batch has one selected module change, passing
+before/after repository graph assertions, upstream tests, vet and builds. Desktop
+production imports are byte-identical. #182 is closed as a duplicate of still-open
+#53, whose synthetic M/m rejection is reproduced in both Go graphs, not fixed.
+#194 and #217 remain unresolved after read-only scope review.
+[Scope and receipts](maintenance/2026-11-02-graph-alignment.md).
 
 ## Preservation and branch retirement
 
@@ -310,7 +317,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Fifty-five historical origin refs were retired by this agent after individual review,
+Fifty-seven historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Ten more (#313, four utility heads, two UUID heads, two declaration heads and
 the parser head) were already absent after closure;
@@ -334,7 +341,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [two Compodoc proposal heads](maintenance/compodoc-retirement-2.json),
 [three duration/layout refs](maintenance/duration-layout-retirement-3.json),
 [one parser head observed absent](maintenance/name-parser-retirement-1.json),
-[one Fishery head](maintenance/fishery-retirement-1.json).
+[one Fishery head](maintenance/fishery-retirement-1.json),
+[two CLI heads](maintenance/cli-retirement-2.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Recovered coverage and remaining decisions
@@ -372,7 +380,7 @@ also remains unresolved. [Retained boundaries](maintenance/2026-11-02-unresolved
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 36 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 34 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
