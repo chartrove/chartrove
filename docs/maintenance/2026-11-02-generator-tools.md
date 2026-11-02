@@ -46,3 +46,8 @@ bindings are unchanged. Original application build outputs were not touched.
 The current packaged application evidence remains the #353 runtime build; no new
 native smoke run is claimed for these excluded development tools. Required fresh
 Backend, Frontend and Desktop CI still gate this integration.
+
+Integration: #356 merged at `869e3af39d96f1c31e51a34994cb2ace41325283` after all
+three required checks passed. #258/#276 were individually reconciled as implemented;
+their exact archived heads were manually retired with dependency checks and
+expected-tip leases. [Retirement receipt](generator-tool-retirement-2.json).

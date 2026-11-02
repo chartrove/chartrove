@@ -6,20 +6,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after integration #354, three proposal/ref
-retirements and recovery of the original primary coverage.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after354.json).
-The receipt was captured on clean main before this documentation-only task branch;
-its integration PR/branch is additional until merged and removed. Requery live
-counts after every integration.
+Snapshot: November 2, 2026, after integrations #355/#356 and two further
+proposal/ref retirements. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after356.json).
+The receipt was captured on clean main before the next OAuth task branch; its
+integration PR/branch is additional until merged and removed. Requery live counts
+after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `8f21c8394ecc63408ce6729ff279a443a143481b` (#354; application unchanged from #353) |
+| Published application main | `869e3af39d96f1c31e51a34994cb2ace41325283` (#356; runtime code from #353) |
 | Open issues | 174, including retained Renovate dashboard #222 |
-| Open PRs | 57: 50 paused Renovate proposals and seven historical drafts |
-| Origin heads | 67 |
-| Default branch | main tracks origin/main with equal OIDs; checkpoint task branch is additional |
+| Open PRs | 55: 48 paused Renovate proposals and seven historical drafts |
+| Origin heads | 65 |
+| Default branch | main tracks origin/main with equal OIDs; OAuth task branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -36,12 +35,18 @@ implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
 
-Next reviewed batch: [generator-only Jennifer/x-mod updates](maintenance/2026-11-02-generator-tools.md)
-for #258/#276. All 57 generated model outputs, related-version JSON and both
-executable package inventories match. Local application verification/builds and
-desktop/encrypted-backend tests pass; protected CI is still required before merge.
-An identical upstream Jennifer example-vet failure in old/new versions is retained
-explicitly. No source model or data migration is changed.
+Merged #356 aligns the two excluded Go generator tools. All 57 model outputs,
+related-version JSON and executable package inputs match; application verification,
+builds, desktop/encrypted-backend tests and all three protected checks pass.
+#258/#276 are individually reconciled; both archived heads were manually retired.
+The unchanged upstream Jennifer example-vet failure remains explicit.
+[Scope and evidence](maintenance/2026-11-02-generator-tools.md).
+
+Next reviewed batch: [direct OAuth 1.2.1](maintenance/2026-11-02-direct-oauth-patch.md)
+replaces the deprecated forwarding wrapper for #224 without adopting its floating
+1.4.1 delegate. All 73 other direct versions are retained; 423 browser tests,
+bridge/production/Storybook and compiled-source comparisons pass. Fresh native
+packaging and protected CI remain pending before integration.
 
 Merged #354 adopts verified SHA-pinned v7 actions, unchanged project
 toolchains/permissions/commands/check names, and disabled credentials/caches.
@@ -148,6 +153,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #353 | Prevent existing frontend identity callback from logging token payloads |
 | #354 | Adopt reviewed v7 actions in validation only; reconcile #284/#285/#286 |
 | #355 | Publish verified original-primary coverage recovery and metadata limits |
+| #356 | Align excluded model/version generators; reconcile #258/#276 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -213,7 +219,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Forty historical origin refs were retired by this agent after individual review,
+Forty-two historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Nine more (#313, four utility heads, two UUID heads and two declaration heads) were already absent after closure;
 deletion actors not established.
@@ -228,7 +234,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one Karma head](maintenance/karma-retirement-1.json),
 [two UUID heads observed absent](maintenance/uuid-retirement-2.json),
 [two declaration heads observed absent](maintenance/type-package-retirement-2.json),
-[three validation-action heads](maintenance/actions-v7-retirement-3.json).
+[three validation-action heads](maintenance/actions-v7-retirement-3.json),
+[two generator-tool heads](maintenance/generator-tool-retirement-2.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Recovered coverage and remaining decisions
@@ -257,7 +264,7 @@ A continuation message is not an answer to those pending decisions.
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 50 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 48 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

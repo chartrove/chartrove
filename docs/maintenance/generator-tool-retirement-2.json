@@ -1,0 +1,66 @@
+{
+  "integration_pr": 356,
+  "integration_main": "869e3af39d96f1c31e51a34994cb2ace41325283",
+  "bundle": "dist/validation/2026-11-01-consolidation/generator-tool-heads-20261102.bundle",
+  "bundle_sha256": "4979431d049eafeeb3ce7090b203a8ec87717b890317939511df2f6e4310e2a1",
+  "review_state_observations": [
+    {
+      "number": 258,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 276,
+      "state_before_disposition": "OPEN"
+    }
+  ],
+  "manually_retired": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "go.mod",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "go.sum",
+          "additions": 2,
+          "deletions": 0,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/github.com-dave-jennifer-1.x",
+      "headRefOid": "83600a67acaa60421efb91fa3e401c09f5154fff",
+      "number": 258,
+      "state": "OPEN",
+      "title": "fix(deps): update module github.com/dave/jennifer to v1.7.1"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "go.mod",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "go.sum",
+          "additions": 2,
+          "deletions": 0,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/golang.org-x-mod-0.x",
+      "headRefOid": "218f0b24746900cc2268599ae9bacb6d257d0e96",
+      "number": 276,
+      "state": "OPEN",
+      "title": "fix(deps): update module golang.org/x/mod to v0.42.0"
+    }
+  ],
+  "already_absent_after_closure_actor_not_established": [],
+  "open_pr_dependencies_checked": 55,
+  "remote_absence_verified": true,
+  "verified_utc": "2026-11-02T12:38:58.846812+00:00"
+}

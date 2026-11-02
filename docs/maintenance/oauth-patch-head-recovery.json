@@ -1,0 +1,36 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 11,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/panva-oauth4webapi-1.x",
+      "headRefOid": "3afeddd98d612de8d53d7a7886f4c0b14cd213ac",
+      "number": 224,
+      "state": "OPEN",
+      "title": "fix(deps): update dependency @panva/oauth4webapi to v1.2.1"
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/oauth-patch-head-20261102.bundle",
+  "sha256": "2fa62d79fd309bd06517c4c9d338b6fd8d29b7535748f02a3a1b04d2c5124960",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "e9f6aae46ed6ecb4c3dc411a3b3303de3262766c",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 5,
+  "required_objects_included": true,
+  "intended_disposition": "Review official renamed direct OAuth release 1.2.1, preserve exact version without deprecated floating shim, validate synthetic auth forwarding/privacy and application builds before individual reconciliation."
+}

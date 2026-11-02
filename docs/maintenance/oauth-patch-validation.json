@@ -1,0 +1,82 @@
+{
+  "reviewed_utc": "2026-11-02T12:48:01.895404+00:00",
+  "proposal": 224,
+  "replacement": "oauth4webapi exactly 1.2.1 with two import-path updates",
+  "deprecated_wrapper_retired": true,
+  "historical_delegate_1_4_1_not_adopted": true,
+  "publisher_deprecation": "`@panva/oauth4webapi` on npm has moved. It is now called just `oauth4webapi`, no further updates will be made under the `@panva/oauth4webapi` package name.",
+  "artifact_review": {
+    "version": "1.2.1",
+    "registry_integrity_matches": true,
+    "tarball_sha256": "c06f027ee979fb8037a2b2b36d9a814a1d033a977df9b1e2817d35ccd3277740",
+    "javascript_identical_except_version_and_error_strings": true,
+    "dependencies": {},
+    "files": {
+      "package/build/index.js": "966fcee30c16988f56e50d82c4fed1a15f151eafa32ed115b95e034909183430",
+      "package/package.json": "252a39d078c887b22dd99485b311967ee3b12bfdd91d22841876995b3db3acd7",
+      "package/LICENSE.md": "81e7b4b0196e8caa43cf243131512e5e4ab04fc312623335e783abae6ff46d79",
+      "package/README.md": "0cc02d7a5e1935f455183f4c48b60827a1bbc16d16541e3cf5b6b74b21e7e7f0",
+      "package/build/index.d.ts": "91e0bbee62fd9b4c6886933db6c09f79457947685163861f82b2c495006f854e"
+    }
+  },
+  "installation": {
+    "frozen_install_exit": 0,
+    "lock_unchanged_by_install": true,
+    "retained_direct_packages": 73,
+    "all_retained_installed_versions_identical": true,
+    "new_package": "oauth4webapi@1.2.1",
+    "all_new_package_files_match_integrity_verified_registry_tarball": true,
+    "deprecated_scoped_package_absent_after_install": true
+  },
+  "production_artifact_review": {
+    "baseline": "native-4756cf99e generated frontend",
+    "new_files": {
+      "main.1ef43540ee3ca994.js": "fd9330c7bf6baac4abb1be8af0af5edb9270b28837559205a88a0d66f49485a0",
+      "main.1ef43540ee3ca994.js.map": "a9484030a5e107ca807d2335f8c9dc7cf1ef4eea166f6744dee037a30652bed7"
+    },
+    "old_only_files": {
+      "assets/.DS_Store": "8ffe6ddbcf742d4ee8609976f10c0f9ae9389925dcc59bcc04eb4408f23f45c4",
+      ".DS_Store": "1864240f32d4b8c881f3e944ce0f912082af8ac4241ac21c84a0e79a1bab38b7",
+      "main.83bd217e5b92daa2.js.map": "9a5c439757a09b704a7072e8806849400260c7fc7e0cc0b259381ac2b05846bb",
+      "main.83bd217e5b92daa2.js": "5cf94fa8398592de4a20eb5bf500dadb736002289634ef1aa37d86d75462c7ec"
+    },
+    "changed_common_files": {
+      "index.html": {
+        "old": "4ef418d14d6f36d299fab91d533effccfec06135946345774484f5b2db1cdc0d",
+        "new": "012ab3a7429532e170748c9858f7d50f868c8afdee874598883dfdaa7ff6fcfb"
+      },
+      "3rdpartylicenses.txt": {
+        "old": "14ff962736e43c36c824d293c2dc444b2fcd1025612dc5b3e9acb013bae6647a",
+        "new": "2ec7c4bb7bcd8b329050f55de27241af44dc938f820c726eab4aff5ef32bbe95"
+      }
+    },
+    "unchanged_files": 22283,
+    "license_change_only_identical_mit_block_renamed_and_relocated_with_blank_separators": true,
+    "source_map_source_set_identical_after_namespace_normalization": true,
+    "source_map_contents_changed_only": [
+      "./node_modules/oauth4webapi/build/index.js",
+      "./src/app/services/auth.service.ts",
+      "./src/app/services/lighthouse.service.ts"
+    ],
+    "all_other_source_map_contents_identical": true,
+    "changed_source_contents_match_two_imports_and_two_sdk_strings": true
+  },
+  "browser_tests": {
+    "passed": 423,
+    "existing_skip": 1,
+    "ordinary_command_exit": 0
+  },
+  "bridge_tests": {
+    "passed": 5,
+    "exit": 0
+  },
+  "production_and_storybook_builds": "passed",
+  "original_documentation_metadata_restored": true,
+  "local_evidence": "dist/validation/2026-11-01-consolidation/oauth-patch-review",
+  "local_frontend_validation": "dist/validation/2026-11-01-consolidation/oauth-direct-validation",
+  "evidence_hash_manifest_sha256": "65b3bdd12de716db7ad9018b7605a54af0b65f3b0c40b2c2d11c077605bced09",
+  "frontend_receipt_sha256": "55289fac1bee166790b9f8751b258b0d53ba8a34c8c3a8e4213f5b5ad54cb595",
+  "native_smoke": "pending fresh package",
+  "protected_ci": "required before merge",
+  "no_provider_registration_real_credentials_or_real_health_records_used": true
+}
