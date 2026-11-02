@@ -1,0 +1,19 @@
+{
+  "integration_pr": 349,
+  "integration_main": "8e5b6ece77f746d1f7ef9c2508a6f9761c382450",
+  "proposal": {
+    "baseRefName": "main",
+    "headRefName": "renovate/karma-6.x-lockfile",
+    "headRefOid": "daa41f611c34e1a84fb39d69974ff47d28ffb77e",
+    "number": 228,
+    "state": "OPEN",
+    "reviewed_paths": [
+      "frontend/yarn.lock"
+    ]
+  },
+  "bundle_sha256": "a7c1b0efa5750c8b737ac2bc591129f0ba0b29708ec7bb9ec1310d403a625ef6",
+  "manually_retired": true,
+  "already_absent_after_closure_actor_not_established": false,
+  "open_pr_dependencies_checked": 64,
+  "remote_absence_verified": true
+}

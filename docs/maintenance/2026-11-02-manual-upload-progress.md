@@ -27,6 +27,9 @@ manual-import endpoint, multipart format, persistence contracts and Wails bindin
 are unchanged. This does not establish external converter availability or fix the
 separate native file-picker gesture reports #101/#168.
 
-Native packaging and protected Backend/Frontend/Desktop checks must pass before
-integration. Original-primary generated coverage recovery remains unresolved;
+Full production/macOS package build, ZIP CRC, strict extracted signature and
+all ten native smoke checks pass for fd5194396. Original output contents, inodes,
+permissions, ownership, timestamps and all xattrs are restored exactly.
+[Native receipt](native-fd5194396-validation.json). Protected Backend/Frontend/
+Desktop checks must still pass before integration. Original-primary generated coverage recovery remains unresolved;
 these runs use new private output directories.

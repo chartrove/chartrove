@@ -6,17 +6,17 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after tooling integration #348 and source/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after348.json).
-The receipt also records the next short-lived local Karma branch; that integration PR/branch is additional until
+Snapshot: November 2, 2026, after dependency integration #349 and source/ref
+reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after349.json).
+The receipt also records the next short-lived local manual-upload branch; that integration PR/branch is additional until
 merged and removed. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `47e4d913e963b73c3602039b750fc7c9b76e4202` (#348) |
+| Published application main | `8e5b6ece77f746d1f7ef9c2508a6f9761c382450` (#349) |
 | Open issues | 176, including retained Renovate dashboard #222 |
-| Open PRs | 65: 58 paused Renovate proposals and seven historical drafts |
-| Origin heads | 75 |
+| Open PRs | 64: 57 paused Renovate proposals and seven historical drafts |
+| Origin heads | 74 |
 | Default branch | main tracks origin/main with equal OIDs; next short-lived local task branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
@@ -35,10 +35,17 @@ workflow patches. The other dependency PRs also require individual review.
 
 ## Latest integrated safeguards and tooling
 
-The next minimal dependency batch adopts Karma 6.4.4 through three lock lines.
+The next application batch addresses manual-upload progress (#113). Seven new
+regressions fail before repair and pass afterward; the full ordinary browser
+command exits 0 with 422 passes/one existing skip, five bridge tests pass, and
+ten newly packaged native checks pass. Protected CI remains required before
+integration. [Scope, data boundaries and evidence](maintenance/2026-11-02-manual-upload-progress.md).
+
+Merged #349 adopts Karma 6.4.4 through three lock lines.
 Its executable distribution is identical to 6.4.3; all 74 other direct versions
 stay unchanged. The ordinary full browser command exits 0 (415 passes, one skip).
-#228 remains open until protected integration. [Scope and recovery](maintenance/2026-11-02-minimal-karma-patch.md).
+#228 is reconciled as implemented by this replacement; the full wider refresh is
+explicitly superseded, with the exact original head archived and safely retired. [Scope and recovery](maintenance/2026-11-02-minimal-karma-patch.md).
 
 Merged #348 removes the unused upstream Chromatic publishing CLI. Runtime selections and all 75 retained direct versions stay unchanged;
 frozen install, production/Storybook, bridge and all protected checks pass.
@@ -94,6 +101,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #346 | Current runtime, retirement and restart evidence checkpoint |
 | #347 | Optional address/contact edit-dialog crash repaired; issue #105 |
 | #348 | Remove unused upstream Chromatic publishing CLI; explicitly retire #239/#299 |
+| #349 | Minimal Karma 6.4.4 target; wider #228 graph refresh explicitly superseded |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -159,7 +167,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Thirty-six historical origin refs were retired by this agent after individual review,
+Thirty-seven historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Five more (#313 and four utility heads) were already absent after closure;
 deletion actors not established.
@@ -170,7 +178,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [four minimal replacements](maintenance/minimal-retirement-4.json),
 [four utility heads observed absent](maintenance/utility-retirement-4.json),
 [four retired tooling heads](maintenance/legacy-tooling-retirement-4.json),
-[two Chromatic heads](maintenance/chromatic-retirement-2.json).
+[two Chromatic heads](maintenance/chromatic-retirement-2.json),
+[one Karma head](maintenance/karma-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Unresolved preservation gap and decisions
@@ -202,7 +211,7 @@ A continuation message is not an answer to those pending decisions.
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 58 existing Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 57 existing Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
