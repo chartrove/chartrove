@@ -1,273 +1,167 @@
-# Maintenance consolidation
+# Maintenance consolidation checkpoint
 
-Owner: sole active maintenance agent, existing primary checkout. Started 2026-11-01.
-Authoritative delivery is GitHub; this file is the restart checkpoint. The dated
-baseline and backlog review retain historical observations, not current counts.
+Owner: sole active maintenance agent in the existing primary checkout. No new
+worktrees or subagents. GitHub and this tracked checkpoint are authoritative.
+This is an incomplete consolidation, not a claim that target counts are achieved.
 
-## Current checkpoint
+## Verified state
 
-- Start main: `2d4c2c197fea27c46192bcb320a6c5a652da4020`; clean, one worktree.
-- Read merged PRs #323/#324 and both maintenance documents. Do not repeat the
-  completed Angular 14–22 migration or restore obsolete upstream implementations.
-- Live starting inventory: 196 issues, 101 open PRs; remote heads are recorded
-  exactly in [the inventory](maintenance/2026-11-01-inventory.json). Fetch config
-  intentionally retrieves only main; local tracking refs undercount remote branches.
-- Main ruleset `26337029` is active: PR required, zero approvals, conversations
-  resolved, no force push/deletion, no bypass actors. Verified effective rules API.
-- First integration: PR #332 merged as `bc1ccfac4`; task branch deleted.
-- Current published main: `9cdf01187` (PR #336). Required checks all passed.
-- All six inherited workflow IDs were individually disabled and source retired.
-- Actions is enabled with Validation only and GitHub-owned actions only. Backend,
-  Frontend and Desktop are all required from GitHub Actions app 15368, with strict
-  up-to-date checks, zero reviewer approvals and no bypass actors.
+Snapshot: November 2, 2026, 08:23 UTC, after application integration #341 and its
+branch retirement. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after341.json).
+This documentation checkpoint's own short-lived PR/branch is additional until
+merged and removed. Requery live counts after every integration.
 
-## First integration batch
+| Item | Verified result |
+| --- | --- |
+| Published application main | `40040ac30862326ed07bbf71255a8b2d9beb8283` (#341) |
+| Open issues | 177, including retained Renovate dashboard #222 |
+| Open PRs | 75: 68 paused Renovate proposals and seven historical drafts |
+| Origin heads | 85 |
+| Default-branch checkout | Clean main tracking origin/main, equal OIDs, one local branch |
+| Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
+| Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
+| Main protection | Active ruleset 26337029, no bypass actors |
+| Required checks | Backend, Frontend, Desktop from Actions app 15368; strict up-to-date |
+| PR workflow | PR required, zero external approvals, conversations resolved |
+| Force push / deletion | Blocked on main |
+| Active Actions registrations | Validation only; inherited Development explicitly disabled again |
 
-Retire all six inherited workflows from execution. Preserve their exact source in
-`docs/retired-workflows/*.disabled` and main history. Add read-only validation on
-GitHub-hosted Linux/macOS, fixed toolchains, SHA-pinned first-party actions, no
-persisted checkout token, no secrets, no cloud/container/CDN/release publishing.
-Run backend tests/build/vet, Angular tests/build/bridge tests, and macOS host plus
-encrypted embedded-backend tests/build. Native UI acceptance remains separate.
+The seven remaining drafts are #209 (permissions), #210 (sources-page layout),
+#211 (Typesense/RAG), #212 (OCR), #214 (OIDC), #215 (delegated access), and #217
+(reserved usernames). Their head/base dependencies remain live. These are not
+implemented features or blanket retirement candidates. #284/#285/#286 currently
+modify Validation itself and are valid update proposals, not obsolete retired-
+workflow patches. The other dependency PRs also require individual review.
 
-Renovate requires dashboard approval, at most two concurrent PRs and one per hour,
-with automerge disabled. #222 stays open. Approval is a sustainable dependency
-intake policy, not proof that outstanding updates are implemented.
+## Integrated and resolved work
 
-## Preservation
+Every integration below passed the required checks through main protection.
+Task-created branches were removed only after merge ancestry and exact-tip checks.
 
-Sparse-checkout hash: `d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc`.
-Preservation receipt `dist/validation/coffinfish-c42643e2e-preservation.json` verified:
-`f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
-Keep retained ZIPs, evidence, local metadata, tags, exclusions, and settings intact.
-No health-record directories are read or used. Tests use private synthetic fixtures.
-Twenty-six historical origin branches have been retired by this agent; one more
-closed Renovate head was already absent with verified recovery history. All used
-verified archives,
-exact-tip leases, and individual dispositions; see the dated receipts below.
+| PR | Result |
+| --- | --- |
+| #332 | Retire inherited publishing workflows; validation-only CI; bounded Renovate intake |
+| #333 | Individually evidenced upstream administrative and superseded-PR dispositions |
+| #334 | Required matching signup password confirmation; issue #124 |
+| #335 | Reject shared/default server JWT signing keys; remove config/token dumps; issue #52 |
+| #336 | Synchronously release owned callback listener on cancellation; reproduced race fixed |
+| #337 | Guard invalid/duplicate saves and show pending state; remove clinical payload log; issue #35 |
+| #338 | Reject deleted/revoked sessions and wrong auth schemes; remove raw-header logs; issue #103 |
+| #339 | Current-graph word-wrap/semver/follow-redirects replacements for #198/#201/#206 |
+| #340 | CryptoJS tooling compatibility for #199; supported TypeScript bound; retire standalone #313 |
+| #341 | Minimal footer replacement for #197; equivalent Compose cleanup for #216 |
 
-`summary` tip `62a89d799969b1de8ac208543e89a7da85345a91` and
-`text_field_extract` tip `38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e` still exist
-remotely and require source/reachability comparison. The historical draft PRs
-have base-branch dependencies recorded in the inventory. Locate and verify old
-bundles, then archive any additional unique tips with checksums before retirement.
+Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
+are explicitly retired upstream marketing/status-page requests. Earlier ten
+upstream administrative/release closures and other reviewed PR dispositions remain
+in [the first disposition receipt](maintenance/2026-11-01-dispositions.json),
+[additional PR receipt](maintenance/2026-11-02-additional-dispositions.json), and
+[individual issue evidence](maintenance/2026-11-02-verified-issue-dispositions.json).
+No unresolved issue was closed merely to reduce counts.
 
-## Remaining execution
+For detailed source rationale and limits, read the dated per-change documents in
+`docs/maintenance/`. The earlier chronological journal remains recoverable at
+[main #341's ledger](https://github.com/karamhouse/chartrove/blob/40040ac30862326ed07bbf71255a8b2d9beb8283/docs/MAINTENANCE_CONSOLIDATION.md).
+Read merged #323/#324 and both original maintenance documents before resuming;
+do not repeat Angular 14–22 modernization or restore obsolete implementations.
 
-1. Complete and merge safe CI batch through protected main; enable only validation,
-   prove runs, then enforce reliable checks with no bypass.
-2. Reconcile each open PR against current source and original scope; close proven
-   superseded dependency targets with evidence. Preserve feature PRs until reviewed.
-3. Review each issue body against the dated classification. External provider
-   access and product/data decisions are blockers, not implemented features.
-4. Review summary/text extraction, verify recoverable archives, then retire only
-   branches with documented dispositions and exact-tip leases.
-5. Requery all counts, builds/tests, main rules, tracking relationship and branch
-   inventory. Target 1 issue (#222), 0 PRs, main only is not yet achieved.
+## Validation and data boundaries
 
-Potential decision boundaries: historical delegated access/OIDC/user permissions,
-OCR/Typesense feature scope, provider-owned registrations, and unresolved account
-key recovery. Do not merge or falsely close these to meet a count. No Medplum
-cutover or real-data migration belongs to this task.
+All merged batches passed Backend/Frontend/Desktop. Frontend full suites currently
+have 404 passing tests and one existing skip; production builds retain the 9.92 MB
+budget/CommonJS warnings. Local Chrome teardown sometimes required forced
+termination after successful assertions; required fresh GitHub checks still passed.
+No timeout, test assertion, encryption contract or branch rule was relaxed.
 
-## Validation and environment findings
+Fresh disposable PostgreSQL checks pass (8.304 seconds), including date-column
+startup/persistence/reopen, parameters, credential-free logs and startup cleanup.
+Its missing-image preflight and pinned-image pull are preserved. No test container
+remained. Callback cancellation fails before repair, passes 200 repetitions after
+repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-Full backend suite, both module verifications and vet checks, desktop host tests,
-and encrypted embedded-backend integration pass (20.457 seconds; 120-second
-limit unchanged). The first frontend attempt failed before tests because local
-node_modules held Angular 14/TypeScript 4.6 despite Angular 22/TypeScript 6 in the
-committed manifests. The old tree is preserved at
-`dist/maintenance-node_modules-pre-angular22-20261101`; a fresh frozen install
-passes on Node 26.13.0 without manifest/lockfile changes. Existing LForms and
-legacy tooling peer warnings remain. No compatibility requirement was relaxed.
+The latest packaged app source `06d71f22b` is the exact application tree merged by
+#341. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
+checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-06d71f22b-validation.json).
+Tests use new explicit synthetic storage; direct SMART is disabled in smoke mode.
+No purchased-app storage, real family records, production-provider registration,
+Medplum cutover or real-data migration was accessed or introduced.
 
-Existing historical bundle independently verified by native Git and SHA-256:
-`/Users/osama/Library/Application Support/Pylonary/agent-tasks/legacy-worktree-retirement-20261026/recovery/retirement/historical-chartrove-20261031.bundle`
-with checksum `03ffd099a7b71a3fa14ffa16982d423b13d79e5463297709c01392ca84535325`.
-It preserves beta/export_summary/manual-input/summary/text_field_extract. Four
-prerequisites remain required; do not describe it as a self-contained bundle.
+## Preservation and branch retirement
 
-Final local checks for #332: production Angular build, backend executable build,
-and macOS host build exit 0. Angular: 390 pass/one existing skip; bridge: five pass.
-Existing 9.92 MB bundle budget warning, CommonJS/browser warnings, and macOS
-linker deployment-target warnings remain. `actionlint` passes after correcting
-runner-context availability in job environments. No app code changed.
+Sparse settings remain SHA-256
+`d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc`;
+origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
+30 tag OIDs and all legacy cached refs match intake. Original handoff receipt
+remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
+Existing bundles, editor settings, Finder snapshots, archives and untracked work
+are retained. Native builds preserve/restore existing output trees before writing.
+Latest restoration matches contents, inodes, permissions, ownership, birth times,
+mtimes and all xattrs. The earlier c957 build recorded three OS-managed provenance
+attribute changes, with both old/new values preserved; no security-attribute rewrite.
 
-Fetched exact remaining heads into temporary `refs/maintenance-archive/20261101/`
-without changing fetch or sparse settings. Reachability inventory covers 127 heads
-(including the new task branch), 103 unique tips advertised by the incremental
-bundle; integrated tips remain reachable from starting main. Recovery receipt:
-[verified history](maintenance/2026-11-01-history-receipt.json). Archive retained
-at `dist/validation/2026-11-01-consolidation/history.bundle`, SHA-256
-`9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1`.
-All 30 prerequisites are ancestors of retained main. Historical branch retirement
-still requires individual source/PR dispositions and current expected-tip leases.
+Recovery references (incremental bundles need retained main prerequisites):
 
-## Second batch: reviewed dispositions
+- [Original intake bundle and receipt](maintenance/2026-11-01-history-receipt.json),
+  SHA-256 `9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1`.
+  Strict isolated pack verification includes all 6,357 required unique objects;
+  [object proof](maintenance/history-object-proof.json).
+- [Rebased replacement heads](maintenance/replacement-heads-receipt.json),
+  SHA-256 `fdfb8768a50254af6c01201fa7d73d28f76a0d9ac7737342acbd1f91be4b9141`.
+- [Current TypeScript #313 tip](maintenance/typescript-pr313-recovery.json),
+  SHA-256 `3d505089b8728c4e91056169ff2c792b964aac96384877c89dd01c9f321a8c78`.
+- Prior owner archives remain under Library/Application Support/Pylonary/
+  agent-tasks/legacy-worktree-retirement-20261026/recovery/retirement/:
+  historical bundle `03ffd099a7b71a3fa14ffa16982d423b13d79e5463297709c01392ca84535325`,
+  pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
+  Native verification and prerequisite ancestry are retained in local evidence.
 
-#332 merged as `bc1ccfac4`. Main is clean and protected. Actions now allows only
-GitHub-owned actions; Validation is the sole active workflow. Initial run:
-https://github.com/karamhouse/chartrove/actions/runs/41377558244 (pending).
-The first integration branch was deleted locally and remotely after ancestry and
-exact-tip verification. Sparse-checkout hash remains unchanged.
+Thirty historical origin refs were retired by this agent after individual review,
+archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
+One more (#313) was already absent after closure; deletion actor not established.
+Receipts: [12 refs](maintenance/historical-retirement-12.json),
+[six more](https://github.com/karamhouse/chartrove/pull/333#issuecomment-6570768946),
+[six security refs](maintenance/security-retirement-6.json),
+[two crypto refs plus one externally absent](maintenance/crypto-toolchain-retirement-3.json),
+[four minimal replacements](maintenance/minimal-retirement-4.json).
+Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
-[Individual dispositions](maintenance/2026-11-01-dispositions.json) authorize
-closing only the enumerated upstream administrative/release records and proven
-superseded or ineffective PR proposals after this batch merges. Every original
-record remains on GitHub. This is not a blanket retirement of unresolved bugs,
-provider interoperability, access control, or feature requests. In particular,
-#318 still updates an active Node devcontainer feature and remains open.
+## Unresolved preservation gap and decisions
 
-Renovate ignores only the two original Go module requirements already overridden
-by deliberate local/provenance replacements. Their underlying source decisions
-remain reviewable; no provider feature or dependency upgrade is claimed.
+**Original primary generated coverage was overwritten by local Karma runs.**
+The separate coffinfish coverage archive is a different snapshot and does not
+prove original-primary preservation. The mixed report tree is retained at
+`dist/validation/2026-11-01-consolidation/coverage-after-maintenance`. Further
+coverage is redirected to private task output; frontend/coverage remains absent.
+The pre-task snapshot is com.apple.TimeMachine.2026-11-01-183642.local.
+macOS denied backup inventory without Full Disk Access. User restoration of just
+frontend/coverage to
+`dist/validation/2026-11-01-consolidation/primary-coverage-before-maintenance`
+or permission to access that snapshot is still needed. Do not bypass macOS's
+permission boundary. This concerns generated evidence, not health-record storage.
 
-Historical summary/text migration disposition has been escalated to the user:
-archival-only retirement versus a separately tested opt-in repair. No real data
-has been inspected and neither branch is deleted pending that decision.
+Two product/data questions remain unanswered: archive-only retirement versus a
+corrected opt-in legacy narrative repair; and retirement versus retention of
+unimplemented upstream feature expansions. Keep live summary
+`62a89d799969b1de8ac208543e89a7da85345a91` and text_field_extract
+`38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e` until that disposition is established.
+The old repair saves the original temporary model rather than its recalculation;
+do not apply it or infer a safe real-data migration from archive verification.
+A continuation message is not an answer to those pending decisions.
 
-## Published dispositions and active fixes - November 2
+## Resume safely
 
-#333 passed all required checks and merged as `d1bd74f21`; its local/remote task
-branch was removed after ancestry and exact-tip checks. Ten explicitly reviewed
-upstream administrative/release issues were closed as not planned. Six historical
-PRs (#200/#202/#204/#205/#207/#208) were closed with implementation evidence.
-Renovate had already closed the seven obsolete workflow-action PRs. Original
-records, attribution and recovery archives remain intact.
-
-#260/#261/#328 changed heads during review and were held, then independently
-re-reviewed at `84bc4f5cb357e01f5c1e09f03b49a0cde41a56a4`,
-`3f6900956d36b4a33a9a527710d4dcacc49c234e`, and
-`124b3a8528187d85a0c9be0a8c89c82ae1604722`. Each still changes only an overridden
-original-module requirement, so each was closed with the exact reviewed head and
-explicitly without claiming an underlying upgrade. These updated tips need an
-additional archive receipt before branch retirement. No historical branch has
-been deleted by this consolidation yet.
-
-Live snapshot before callback-fix publication: 186 open issues, 87 open PRs,
-121 origin heads. Acceptance counts remain unmet. #222 remains open.
-
-Active independent fixes:
-- #334: password confirmation for both signup forms (#124). Local production
-  build and 400 browser tests pass. Its CI exposed the callback lifecycle race;
-  do not rerun or waive the failing desktop assertion to manufacture a pass.
-- #335: reject shared/default server JWT signing keys before database setup
-  (#52), remove automatic configuration/token dumps. Local checks pass; CI pending.
-- Callback shutdown: [race and validation evidence](maintenance/2026-11-02-callback-shutdown.md).
-  Existing cancellation tests reproduce the failure before repair and pass 200
-  repetitions after repair; full SMART race tests and desktop host tests pass.
-  Merge this correction, then update #334/#335 to main and require fresh checks.
-
-The two product questions remain pending: archival-only versus corrected opt-in
-legacy narrative repair, and retirement versus retention of unimplemented upstream
-feature expansions. Continue applicable defect work without treating silence or
-"continue" as approval of either consequential product decision.
-
-## Verified retirement and record-save checkpoint
-
-#336 merged as `9cdf01187` with Backend/Frontend/Desktop all passing. Its local
-and remote short-lived branch were deleted after ancestry and exact-tip checks.
-#334/#335 were updated without history rewriting to include this callback repair;
-their fresh required checks remain pending. Do not bypass a failed or pending gate.
-
-Twelve historical head/base branches for #200/#202/#204/#205/#207/#208 were
-retired with native atomic dry-run/push and exact-tip leases, after verifying no
-open head/base PR dependencies. [Exact retirement receipt](maintenance/historical-retirement-12.json)
-and [GitHub audit comment](https://github.com/karamhouse/chartrove/pull/333#issuecomment-6570072360).
-The original bundle hash is unchanged. Additional strict thin-pack verification
-resolves all 6,357 required unique objects, with every added delta base reachable
-from retained starting main; [object proof](maintenance/history-object-proof.json).
-The three rebased replacement PR heads have their own verified bundle and
-[receipt](maintenance/replacement-heads-receipt.json).
-
-Additional reviewed PR closures: #203's entire css-tools 4.3.2 target is already
-exceeded by locked 4.5.0 in main; #196's external DigitalOcean/debug deployment
-proposal and #213's upstream/mobile/sponsor README reorganization are retired
-for this fork. [Exact reviewed heads and dispositions](maintenance/2026-11-02-additional-dispositions.json).
-No cloud deployment or mobile-sync feature is claimed implemented.
-
-The record-save correction for #35 has four synthetic regressions, three failing
-before repair and all passing afterward. The complete local browser suite passes
-394 tests/one existing skip, and the production build passes under unchanged
-budgets. [Behavior and limits](maintenance/2026-11-02-record-save.md).
-
-Unresolved original npm security PRs #198/#199/#201/#206 remain open: current
-locks still contain old word-wrap, crypto-js, semver 5 and follow-redirects entries.
-Do not declare them superseded. CryptoJS 4.2 changes PBKDF2 defaults according to
-[its upstream advisory](https://github.com/brix/crypto-js/security/advisories/GHSA-xwcq-pm8m-c4vf);
-review its PDF/tooling consumer boundary before adopting the old patch.
-
-## Integrated fixes and dependency-security batch
-
-#335 (default signing key rejection), #336 (callback cancellation), #338
-(stale/deleted sessions), #334 (password confirmation), and #337 (record-save
-feedback) are merged. Issues #52/#103/#124/#35 closed via their fixes. All passed
-Backend/Frontend/Desktop under strict main protection; all five short-lived task
-branches were deleted after merge ancestry and exact-tip checks. Main is
-`5bc9bf4aa`; local main tracks origin/main, sparse settings and tags remain intact.
-
-Renovate's automatic rebases flooded CI despite creation limits. All 69 existing
-Renovate PRs now carry the additive supported `stop-updating` label; 66 scoped
-bot Validation runs were canceled (two others already completed). No task checks
-were bypassed. A fresh query showed zero active bot runs. Remove the label only
-from a selected candidate; dashboard approval and creation limits remain in place.
-
-The next bounded lockfile batch corrects #198/#201/#206 against current main,
-without restoring historical lockfiles. [Review, checks and limits](maintenance/2026-11-02-transitive-security.md).
-CryptoJS #199 remains open for separate consumer review. The original-primary
-coverage recovery gap and product/migration decisions remain unresolved. No real
-health records or purchased-application storage were inspected. Current GitHub
-checkpoint: https://github.com/karamhouse/chartrove/issues/222#issuecomment-6571729966.
-
-## Implemented security replacements and verified issue dispositions
-
-#339 merged as `caeb7c2f3830e73fae1fd564ce9ea3ce16976e40`, with Backend,
-Frontend and Desktop all passing. #198/#201/#206 closed with this implemented
-replacement evidence. Their six exact historical head/base branches were
-retired after immutable bundle verification, current PR dependency checks, and
-atomic dry-run/push with exact-tip leases; [receipt](maintenance/security-retirement-6.json).
-The short-lived #339 task branch was also removed after merge ancestry proof.
-
-Five separately reviewed issues closed: #162's OAuth classic-script defect and
-#73's extraction-test request are implemented in main; fresh model tests pass.
-#109's reported PostgreSQL datetime startup failure is fixed in #323 and passes
-a fresh pinned disposable PostgreSQL run (8.304 seconds), with no remaining test
-containers. The missing-image attempt and exact image pull are preserved. #90
-(upstream marketing templates) and #115 (upstream Lighthouse statuspage) were
-explicitly retired as outside this fork's scope. [Individual evidence and limits](maintenance/2026-11-02-verified-issue-dispositions.json).
-
-The CryptoJS/toolchain batch reviews #199 and #313 independently. [Compatibility
-evidence and intended dispositions](maintenance/2026-11-02-crypto-toolchain.md).
-Neither is closed until that batch merges. The primary coverage snapshot recovery
-and the two consequential product/migration questions remain pending.
-
-## CryptoJS, native package and workflow-registration checkpoint
-
-#340 merged as `025a8bcaddc3e00fee59dae0ac4cdfeb454f5321` with all required
-checks passing. #199 is closed as implemented; #313 is explicitly retired as an
-incompatible standalone proposal, with no TypeScript 7 implementation claim.
-Its current tip is retained in the verified incremental bundle. Two exact #199
-head/base refs were retired with atomic dry-run/push and leases. #313's head was
-already absent after closure; its deletion actor was not established.
-[Three-ref receipt](maintenance/crypto-toolchain-retirement-3.json).
-
-A new native package at exact source `c957b1480` passes ZIP CRC, extracted strict
-signature validation, and ten real WebView smoke checks with fresh synthetic
-storage. [Artifact and metadata-preservation receipt](maintenance/native-c957b1480-validation.json).
-Existing ZIP/tree contents, inodes, permissions, ownership, birth times and mtimes
-were restored exactly. Other xattrs match; macOS changed com.apple.provenance on
-exactly three moved root objects. Both old/new values remain in local evidence;
-no OS security-attribute rewrite was attempted. The artifact predates the next
-footer replacement. Original-primary coverage recovery remains unresolved.
-
-The live API unexpectedly listed inherited Development workflow 398282797 active
-although its source is absent from main. It was disabled again. Task-window run
-audit found 374 Validation runs and seven Development runs; their jobs are tests/
-Storybook compilation, with no publishing workflow registration in that snapshot.
-All seven run/job inventories are retained, including the old container/tooling
-boundary. Validation is now the sole active registration; continue checking this
-live after integration rather than inferring it from main's file list.
-
-The next minimal historical batch extracts only the footer flow fix from #197
-and removes Compose's obsolete version declaration from #216. Their complete
-source inventories and validation limits are [recorded here](maintenance/2026-11-02-minimal-historical-fixes.md).
+- Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
+  inspect local status/refs/worktrees before writing. Counts above are a snapshot.
+- Keep all 68 existing Renovate PRs paused with stop-updating. Creation approval,
+  two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
+  candidate, review current heads and require fresh checks. Earlier strict-main
+  automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
+- Review remaining bugs and compatible dependency proposals in small batches.
+  Open work is not all blocked: do not use pending product decisions to falsely
+  retire actionable defects or dependency targets. Provider-owned registrations,
+  key recovery, delegated access and data migrations need their specific evidence.
+- Local permanent evidence is dist/validation/2026-11-01-consolidation/; disposable
+  diagnostics are /tmp/chartrove-consolidation.deb9lg. Do not remove original archives.
+- At final acceptance, independently prove exactly issue #222, zero PRs, main only,
+  protections, builds/tests and complete preservation. None of those count targets
+  or the original-primary coverage recovery is claimed complete here.

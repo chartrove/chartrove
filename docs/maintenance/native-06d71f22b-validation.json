@@ -1,0 +1,33 @@
+{
+  "source_revision": "06d71f22b1ba10452d4171d627d9d9096692f19e",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-06d71f22b-attempt2/Chartrove-06d71f22b.zip",
+    "sha256": "974b777aba6f65d51dfe40fa3ac76594a4810fee9fe2785728e8897574c9bb71",
+    "bytes": 337011598
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "status": "build, ZIP CRC, extracted strict signature and ten synthetic WebView smoke checks passed; original content/stat metadata and all xattrs restored exactly",
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-06d71f22b-attempt2/receipt.json",
+  "full_local_receipt_sha256": "176ed40537e2f5c21f554d56ad8fd6aca82a96bfa1db49054c95385b7eccacf1",
+  "application_source_manifest_sha256": "39e29d4528cbee43339d2d25268b385e2cb81865b0cb0cbf2a1ace0b53d2cac0",
+  "application_source_manifest_command": "git ls-tree -r --full-tree HEAD -- frontend desktop backend scripts go.mod go.sum Makefile"
+}
