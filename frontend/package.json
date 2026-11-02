@@ -38,7 +38,7 @@
     "@ng-select/ng-select": "23.11.0",
     "@panva/oauth4webapi": "1.2.0",
     "@popperjs/core": "^2.11.8",
-    "@swimlane/ngx-datatable": "^20.0.0",
+    "@swimlane/ngx-datatable": "^25.0.0",
     "@types/fhir": "^0.0.35",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "asmcrypto.js": "^2.3.2",

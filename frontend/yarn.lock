@@ -4429,10 +4429,10 @@
   resolved "https://registry.npmjs.org/@storybook/react-dom-shim/-/react-dom-shim-10.6.5.tgz#501efa6a06da077e5a9acad13ffce630a1db7437"
   integrity sha512-Qbbkp+5Otg32w8Ddav6rH6MGPiYVfEzrgn0HqbqlqS8kY+DRXo+NYXJwZTVSDSwrYPrfH+Ok2tV4uE8Zo0c3cg==
 
-"@swimlane/ngx-datatable@^20.0.0":
-  version "20.1.0"
-  resolved "https://registry.npmjs.org/@swimlane/ngx-datatable/-/ngx-datatable-20.1.0.tgz#0f69552e6f2d0d68508165fcf9150a5f4a458253"
-  integrity sha512-oHnnx1QRNmv10l5UME13v5JP3M3GesM9K3QH6TRYo2C7UbbhY7vL5EZ4HGqcvtMMW4FOzqNOSltE++IVL99F3g==
+"@swimlane/ngx-datatable@^25.0.0":
+  version "25.1.0"
+  resolved "https://registry.yarnpkg.com/@swimlane/ngx-datatable/-/ngx-datatable-25.1.0.tgz#37af5a881b872ae967349f3faa972e00f67eb1bf"
+  integrity sha512-hx9vCtetdIPBEcXfdK0SyJEAkwX8v2azeU3EUFKLLQq1tsZnV4V+mOMi5k0JhJ4pO8c05s3z/46ix6qa/bNOLA==
   dependencies:
     tslib "^2.0.0"
 
