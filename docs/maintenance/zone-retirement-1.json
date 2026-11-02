@@ -1,0 +1,33 @@
+{
+  "time": "2026-11-02T20:32:15.399440+00:00",
+  "main": "8ed4fda151da2ca5ab70f1378aa470dbc56ca596",
+  "branches": [
+    {
+      "name": "renovate/angular-monorepo",
+      "sha": "57fc11c6ea8be48c4c8a738a027cebc650a297f4",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/angular-monorepo",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/zone-maintenance",
+      "sha": "26885f8863ed55b94a28f965983f54155e992c58",
+      "kind": "merged task",
+      "ref": "refs/heads/task/zone-maintenance",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/angular-monorepo\n - [deleted]               task/zone-maintenance\n"
+    },
+    "delete": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/angular-monorepo\n - [deleted]               task/zone-maintenance\n"
+    }
+  }
+}

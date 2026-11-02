@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #367 and individual #259/#137 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after367.json).
-The Zone.js branch is additional and unpublished at
+Snapshot: November 2, 2026, after #368 and individual #234 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after368.json).
+The JWT v5 branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `53f6685ba2360818c832865de030362b1ae13aa8` (#367) |
+| Published application main | `8ed4fda151da2ca5ab70f1378aa470dbc56ca596` (#368) |
 | Open issues | 169, including retained Renovate dashboard #222 |
-| Open PRs | 39: 33 paused Renovate proposals and six historical drafts |
-| Origin heads | 48 |
-| Default branch | main tracks origin/main with equal OIDs; Zone.js branch is additional |
+| Open PRs | 38: 32 paused Renovate proposals and six historical drafts |
+| Origin heads | 47 |
+| Default branch | main tracks origin/main with equal OIDs; JWT v5 branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -282,14 +282,23 @@ archived head is manually retired. #182 is closed as a duplicate of still-open
 #194 and #217 remain unresolved after read-only scope review.
 [Scope and receipts](maintenance/2026-11-02-graph-alignment.md).
 
-The pending Zone.js #234 batch changes only its supported manifest range and
+Merged #368 for Zone.js #234 changes only its supported manifest range and
 lock entry. All 72 other direct versions stay fixed; frozen install, package
 integrity, 429 browser tests (one existing skip), ten Node checks and static
 Storybook pass. Original metadata/coverage states are preserved. Fresh production
 build, ZIP/signature and ten synthetic native WebView checks pass at 5ad6c590a;
 original output contents/stat fields and all xattrs are restored exactly.
-Protected integration remains pending.
+All protected checks pass; #234 is individually reconciled and its exact
+archived head manually retired.
 [Scope and preservation](maintenance/2026-11-02-zone-maintenance.md).
+
+The pending corrected JWT v5 #329 replacement preserves issued-at rejection
+with explicit validation after a reproduced default-parser regression in both
+graphs. Independent legacy HMAC/wire checks pass both directions, as do auth,
+model, desktop, encrypted-backend, upstream, vet and race checks. Auth scans
+show no JWT or called findings; the unrelated required-module OpenPGP advisory
+remains. Fresh native packaging and protected integration are next.
+[Scope and receipts](maintenance/2026-11-02-jwt-v5-migration.md).
 
 ## Preservation and branch retirement
 
@@ -327,7 +336,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Fifty-eight historical origin refs were retired by this agent after individual review,
+Fifty-nine historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Ten more (#313, four utility heads, two UUID heads, two declaration heads and
 the parser head) were already absent after closure;
@@ -353,8 +362,16 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one parser head observed absent](maintenance/name-parser-retirement-1.json),
 [one Fishery head](maintenance/fishery-retirement-1.json),
 [two CLI heads](maintenance/cli-retirement-2.json),
-[one graph head](maintenance/graph-retirement-1.json).
+[one graph head](maintenance/graph-retirement-1.json),
+[one Zone head](maintenance/zone-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
+
+Local artifact storage now has an ignored Go module boundary at
+dist/validation/go.mod, so full Go checks discover real application packages
+instead of non-buildable archived snapshots. All retained snapshot bytes are
+unchanged; full root package inventory still covers every tracked backend/scripts
+package and desktop is checked separately.
+[Local boundary metadata](maintenance/local-evidence-module-boundary.json).
 
 ## Recovered coverage and remaining decisions
 
@@ -392,7 +409,7 @@ also remains unresolved. [Retained boundaries](maintenance/2026-11-02-unresolved
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 33 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 32 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

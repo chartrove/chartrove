@@ -32,7 +32,11 @@ there are zero provenance changes. The retained ZIP SHA-256 is
 `cd423b6dd1d11ee13aa377a777ec3802ea670082b24b906f12ca2b20d7f7c1b7`.
 [Native receipt](native-5ad6c590a-validation.json). Production differences from
 the preceding package are retained in the comparison receipt; no cross-browser
-or live-provider acceptance is inferred. Protected-main CI/integration is pending.
+or live-provider acceptance is inferred. Protected-main CI passed in run 41519084415; protected PR #368 merged at
+`8ed4fda151da2ca5ab70f1378aa470dbc56ca596`. #234 was individually
+closed as implemented. Its exact bundled head and merged task head were
+manually retired after fresh open-PR dependency checks, dry run and atomic
+exact-tip leases. [Retirement](zone-retirement-1.json).
 
 ## Preservation
 
@@ -54,6 +58,5 @@ source or installing dependencies; the original failed diagnostics remain.
 Raw package, install, validation, Storybook, archive and diagnostic evidence is
 retained under dist/validation/2026-11-01-consolidation/zone-review/ and
 zone-validation/. Execution-time temporary paths remain verbatim after atomic
-moves to permanent evidence. The historical PR and head remain live until safe
-protected integration, individual reconciliation and fresh dependency checks.
+moves to permanent evidence. The historical proposal and head are now reconciled as recorded above.
 No real family or purchased Fasten records are accessed by this batch.

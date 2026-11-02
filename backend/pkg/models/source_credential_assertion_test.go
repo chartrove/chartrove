@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/jwk"
-	jwtVerifier "github.com/golang-jwt/jwt/v4"
+	jwtVerifier "github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )
