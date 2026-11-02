@@ -1,0 +1,48 @@
+{
+  "before_version": "6.4.3",
+  "after_version": "6.4.4",
+  "integrities_verified": true,
+  "dependency_ranges_unchanged": true,
+  "file_delta": {
+    "before_only": [],
+    "after_only": [],
+    "changed": [
+      "package/CHANGELOG.md",
+      "package/local.log",
+      "package/package.json"
+    ]
+  },
+  "unchanged_regular_files": 87,
+  "before_sha256": "67e2405e446283a5c724789a446183204ac667ce80cf1423e5429cf5e6d76ca2",
+  "after_sha256": "d14fbaacad9fe823c149c9dbad1f108caf7e4d6ed93b47d8596ecd3ecc74d188",
+  "artifacts": [
+    {
+      "path": "dist/validation/2026-11-01-consolidation/karma-distributions/karma-6.4.3.tgz",
+      "sha256": "67e2405e446283a5c724789a446183204ac667ce80cf1423e5429cf5e6d76ca2"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/karma-distributions/karma-6.4.4.tgz",
+      "sha256": "d14fbaacad9fe823c149c9dbad1f108caf7e4d6ed93b47d8596ecd3ecc74d188"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/karma-distributions/karma-6.4.3-metadata.json",
+      "sha256": "6273363a778adcdd5262c865ed4d0a68bff9aeddf0048098ccc6fef784324996"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/karma-distributions/karma-6.4.4-metadata.json",
+      "sha256": "c43772923764cd7f2f8f5b21f88ce9fd0bbe957cda6d699467240552098c8acd"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/karma-distributions/karma-distribution-comparison.json",
+      "sha256": "f3ec332516b78cc9639e7134fc592c7cf64fd6347fe7d1325e15df14000ddc5f"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/karma-distributions/karma-6.4.4-source-review.patch",
+      "sha256": "fc4d550d33e7c8f317c14efccd7d933f0ab0cffc9d82810e1483307c63a4a4c0"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/karma-distributions/karma-frozen-install.log",
+      "sha256": "4fdcd9e008afad87e6e23e01a559c3109e41e6753bbb64f477bc42eeaee4f7eb"
+    }
+  ]
+}

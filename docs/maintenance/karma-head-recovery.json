@@ -1,0 +1,22 @@
+{
+  "review": {
+    "baseRefName": "main",
+    "headRefName": "renovate/karma-6.x-lockfile",
+    "headRefOid": "daa41f611c34e1a84fb39d69974ff47d28ffb77e",
+    "number": 228,
+    "state": "OPEN",
+    "reviewed_paths": [
+      "frontend/yarn.lock"
+    ]
+  },
+  "bundle": "dist/validation/2026-11-01-consolidation/karma-head-20261102.bundle",
+  "sha256": "a7c1b0efa5750c8b737ac2bc591129f0ba0b29708ec7bb9ec1310d403a625ef6",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "c9bd973a1e9f59f1387627c062e883d751d17b9f",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 4,
+  "required_objects_included": true,
+  "proposed_disposition": "Implement minimal Karma 6.4.4 replacement; archive and explicitly supersede incidental transitive graph refresh after protected integration."
+}

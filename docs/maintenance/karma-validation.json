@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "node_modules/@angular/cli/bin/ng.js",
+    "test",
+    "--watch=false",
+    "--progress=false",
+    "--browsers=ChromeHeadlessCI",
+    "--reporters=dots"
+  ],
+  "exit": 0,
+  "only_changed_direct_version": "karma 6.4.3 -> 6.4.4",
+  "unchanged_direct_versions": 74,
+  "passed": 415,
+  "skipped": 1,
+  "default_karma_configuration": true,
+  "diagnostic_wrapper": false,
+  "launcher_teardown_warnings_remain": true,
+  "log": "dist/validation/2026-11-01-consolidation/karma-6.4.4-tests/output.log",
+  "log_sha256": "49daa7207779242e8d510409fedb0f766adb684f0871e15073ae40468b4b0c63"
+}

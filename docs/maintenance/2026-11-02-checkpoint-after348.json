@@ -1,0 +1,16 @@
+{
+  "snapshot_utc": "2026-11-02T10:48:48.975717+00:00",
+  "published_main": "47e4d913e963b73c3602039b750fc7c9b76e4202",
+  "origin_main": "47e4d913e963b73c3602039b750fc7c9b76e4202",
+  "open_issues": 176,
+  "open_prs": 65,
+  "open_renovate_prs": 58,
+  "all_open_renovate_paused": true,
+  "origin_heads": 75,
+  "local_branches": [
+    "refs/heads/main 47e4d913e963b73c3602039b750fc7c9b76e4202 refs/remotes/origin/main",
+    "refs/heads/task/minimal-karma-patch 5f632ae74c5c5963253117d24a39009183dfdcb9"
+  ],
+  "additional_local_task_branch": "task/minimal-karma-patch",
+  "next_integration_pr_not_yet_published": true
+}
