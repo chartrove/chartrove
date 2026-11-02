@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #368 and individual #234 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after368.json).
-The JWT v5 branch is additional and unpublished at
+Snapshot: November 2, 2026, after #369 and individual #329 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after369.json).
+The GitHub client branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `8ed4fda151da2ca5ab70f1378aa470dbc56ca596` (#368) |
+| Published application main | `7fe1d418e935caac2a4bb7c3920315989f897e50` (#369) |
 | Open issues | 169, including retained Renovate dashboard #222 |
-| Open PRs | 38: 32 paused Renovate proposals and six historical drafts |
-| Origin heads | 47 |
-| Default branch | main tracks origin/main with equal OIDs; JWT v5 branch is additional |
+| Open PRs | 37: 31 paused Renovate proposals and six historical drafts |
+| Origin heads | 46 |
+| Default branch | main tracks origin/main with equal OIDs; GitHub client branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -292,16 +292,24 @@ All protected checks pass; #234 is individually reconciled and its exact
 archived head manually retired.
 [Scope and preservation](maintenance/2026-11-02-zone-maintenance.md).
 
-The pending corrected JWT v5 #329 replacement preserves issued-at rejection
+Merged #369 implements the corrected JWT v5 #329 replacement, preserving issued-at rejection
 with explicit validation after a reproduced default-parser regression in both
 graphs. Independent legacy HMAC/wire checks pass both directions, as do auth,
 model, desktop, encrypted-backend, upstream, vet and race checks. Auth scans
 show no JWT or called findings; the unrelated required-module OpenPGP advisory
 remains. Fresh native Go packaging at 7cca0f39f reuses the byte-identical qualified
 frontend; ZIP/signature and all ten synthetic WebView checks pass. Original
-output contents/stat fields and all xattrs restore exactly. Protected integration
-is next.
+output contents/stat fields and all xattrs restore exactly. All three protected
+checks pass; #329 is individually reconciled and its archived head retired.
 [Scope and receipts](maintenance/2026-11-02-jwt-v5-migration.md).
+
+The current GitHub Gist client replacement for #330 includes reproduced JSON
+null and cache-ID boundary corrections; local handler, desktop, vet and upstream
+checks pass. Fresh native packaging at f22b03676 retains all 22,287 qualified
+frontend files; ZIP/signature and ten synthetic native checks pass. Original
+outputs/stat fields and all xattrs restore exactly. Protected integration remains
+pending.
+[Scope and recovery](maintenance/2026-11-02-github-client-migration.md).
 
 ## Preservation and branch retirement
 

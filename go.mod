@@ -23,7 +23,7 @@ require (
 	github.com/go-gormigrate/gormigrate/v2 v2.1.1
 	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/golang/mock v1.6.0
-	github.com/google/go-github/v54 v54.0.0
+	github.com/google/go-github/v93 v93.0.0
 	github.com/google/uuid v1.6.0
 	github.com/iancoleman/strcase v0.3.0
 	github.com/johnfercher/maroto/v2 v2.3.1
@@ -102,7 +102,7 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/goccy/go-json v0.11.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/go-querystring v1.2.0 // indirect
 	github.com/google/pprof v0.0.0-20230207041349-798e818bf904 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect

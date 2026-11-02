@@ -53,8 +53,8 @@ build metadata confirms jwt/v5.3.1 and no jwt/v4. Original output contents,
 recorded stat fields and all xattrs restore exactly, without provenance changes.
 The new ZIP SHA-256 is
 `3d3d62dd67dc7aa85c6d59498d3f38c51583dbcdeadbd4503c912ba1a9fad96f`.
-[Native receipt](native-7cca0f39f-validation.json). Protected-main CI/integration
-remains pending. No real family or purchased Fasten data is used.
+[Native receipt](native-7cca0f39f-validation.json). All three required checks pass; protected PR #369 merged at
+7fe1d418e935caac2a4bb7c3920315989f897e50. No real family or purchased Fasten data is used.
 
 ## Evidence-store hygiene and preservation
 
@@ -76,8 +76,9 @@ No original archive or unknown local work was deleted or overwritten.
 The exact current #329 tip f5e2f71b4b2ef8b084b112286c7dcc74eebe339a has a verified
 incremental bundle, main-reachable prerequisites and proof that all four unique
 objects are in original pack bytes. Original intake history also remains.
-The historical PR and head remain live until protected integration and fresh
-individual reconciliation/dependency/expected-tip checks.
+Historical #329 was individually closed as implemented after protected
+integration. Fresh dependency and expected-tip checks preceded retirement of
+its exact archived head. [Retirement receipt](jwt-v5-retirement-1.json).
 Raw outputs, source snapshots, official support/migration documents, independent
 readers, red/green test hashes, scans, package archive and manifests live under
 dist/validation/2026-11-01-consolidation/jwt-v5-review/. Original execution-time

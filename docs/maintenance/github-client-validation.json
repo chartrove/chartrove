@@ -1,0 +1,403 @@
+{
+  "time": "2026-11-02T21:40:37.006072+00:00",
+  "base_main": "7fe1d418e935caac2a4bb7c3920315989f897e50",
+  "target": "github.com/google/go-github/v93 v93.0.0",
+  "module_comparison": {
+    "root": {
+      "github.com/google/go-github/v54": [
+        "v54.0.0",
+        null
+      ],
+      "github.com/google/go-github/v93": [
+        null,
+        "v93.0.0"
+      ],
+      "github.com/google/go-querystring": [
+        "v1.1.0",
+        "v1.2.0"
+      ]
+    },
+    "desktop": {
+      "github.com/google/go-github/v54": [
+        "v54.0.0",
+        null
+      ],
+      "github.com/google/go-github/v93": [
+        null,
+        "v93.0.0"
+      ],
+      "github.com/google/go-querystring": [
+        "v1.1.0",
+        "v1.2.0"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "name": "verify-root",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:31:03.135321+00:00",
+      "end": "2026-11-02T21:31:09.308877+00:00",
+      "exit": 0
+    },
+    {
+      "name": "verify-desktop",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:31:09.309454+00:00",
+      "end": "2026-11-02T21:31:12.642839+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:31:12.643226+00:00",
+      "end": "2026-11-02T21:31:12.687640+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:31:12.688025+00:00",
+      "end": "2026-11-02T21:31:12.727267+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:31:12.727655+00:00",
+      "end": "2026-11-02T21:31:20.661362+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:31:20.661818+00:00",
+      "end": "2026-11-02T21:31:26.191275+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-handler-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./backend/pkg/web/handler",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:31:26.191801+00:00",
+      "end": "2026-11-02T21:32:02.825583+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-handler-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:32:02.826661+00:00",
+      "end": "2026-11-02T21:32:36.826059+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-host-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./...",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:32:36.826541+00:00",
+      "end": "2026-11-02T21:32:46.709493+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-embedded-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbedded",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:32:46.709978+00:00",
+      "end": "2026-11-02T21:33:05.002916+00:00",
+      "exit": 0
+    },
+    {
+      "name": "upstream-github-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "github.com/google/go-github/v93/github",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:37:34.936303+00:00",
+      "end": "2026-11-02T21:38:13.996784+00:00",
+      "exit": 0
+    },
+    {
+      "name": "upstream-querystring-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "github.com/google/go-querystring/query",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:38:13.998191+00:00",
+      "end": "2026-11-02T21:38:15.281683+00:00",
+      "exit": 0
+    },
+    {
+      "name": "cache-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "./backend/pkg/web/handler",
+        "-run",
+        "^TestCustomDashboardGistBoundary$",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:38:15.282515+00:00",
+      "end": "2026-11-02T21:39:51.913750+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-cache-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+        "-run",
+        "^TestCustomDashboardGistBoundary$",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:39:51.914458+00:00",
+      "end": "2026-11-02T21:40:17.778133+00:00",
+      "exit": 0
+    },
+    {
+      "name": "server-build",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/github-client-review/validation-after-explicit-checksum/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:40:17.779464+00:00",
+      "end": "2026-11-02T21:40:30.056765+00:00",
+      "exit": 0
+    }
+  ],
+  "baseline_boundary": {
+    "time": "2026-11-02T21:23:10.952227+00:00",
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-overlay",
+      "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/github-client-review/canonical-overlay.json",
+      "-json",
+      "./backend/pkg/web/handler",
+      "-run",
+      "^TestCustomDashboardGistBoundary$",
+      "-count=1"
+    ],
+    "exit": 1,
+    "entered_tests": [
+      "TestCustomDashboardGistBoundary",
+      "TestCustomDashboardGistBoundary/null",
+      "TestCustomDashboardGistBoundary/object",
+      "TestCustomDashboardGistBoundary/outside-id"
+    ],
+    "failed_tests": [
+      "TestCustomDashboardGistBoundary/null",
+      "TestCustomDashboardGistBoundary/outside-id",
+      "TestCustomDashboardGistBoundary",
+      null
+    ],
+    "overlay_only_no_checkout_changes": true,
+    "synthetic_local_http_and_private_temp_files_only": true
+  },
+  "v54_fixed_boundary": {
+    "time": "2026-11-02T21:26:02.504678+00:00",
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-json",
+      "./backend/pkg/web/handler",
+      "-run",
+      "^TestCustomDashboardGistBoundary$",
+      "-count=1"
+    ],
+    "exit": 0,
+    "test_sha256": "0957c227e0a31395842b3a8b7ceab041361c15b1507a47dc7dc4b471616f0bdd",
+    "same_test_bytes_as_reproduced_overlay": true
+  },
+  "v93_fixed_boundary": {
+    "time": "2026-11-02T21:29:16.374842+00:00",
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-json",
+      "./backend/pkg/web/handler",
+      "-run",
+      "^TestCustomDashboardGistBoundary$",
+      "-count=1"
+    ],
+    "exit": 0,
+    "failed_tests": []
+  },
+  "target_package": {
+    "path": "github.com/google/go-github/v93",
+    "version": "v93.0.0",
+    "sum": "h1:qElXPLv+XbSz1qrLdWyb0t3gSYGsWBTzr9T4/PZTCfk=",
+    "go_mod_sum": "h1:l8I3rt4/mdjANKpg4Y84LEy9HJQCetUkZ8WTl2bPU8M=",
+    "zip": "github-v93.0.0.zip",
+    "zip_sha256": "49581629f4b9b64e48acca37b0b07bdcee223af313111e28658da7508a07a693"
+  },
+  "querystring_package": {
+    "path": "github.com/google/go-querystring",
+    "version": "v1.2.0",
+    "sum": "h1:yhqkPbu2/OH+V9BfpCVPZkNmUXhb2gBxJArfhIxNtP0=",
+    "go_mod_sum": "h1:8IFJqpSRITyJ8QhQ13bmbeMBDfmeEJZD5A0egEOmkqU=",
+    "zip": "querystring-v1.2.0.zip",
+    "zip_sha256": "57b7ce2b82b33c68f59a224c6dd1305753e5ee3eecbefd09d43423a14f541e31"
+  },
+  "all_existing_checksum_bytes_and_order_retained": true,
+  "new_checksum_lines": {
+    "root": 6,
+    "desktop": 5
+  },
+  "only_synthetic_local_http_and_private_files_used": true,
+  "real_health_records_accessed": false,
+  "native_validation": {
+    "source_revision": "f22b03676a547f12133c90b32217e600f6263f15",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-f22b03676-github-client/Chartrove-f22b03676.zip",
+      "sha256": "1a84852664ad9df8b3048351ef1e9910c7fbfa50a8c482f01023c5caba73bd43",
+      "bytes": 336693801
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "source_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/generated/1",
+      "frontend_git_inputs_unchanged": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-f22b03676-github-client/receipt.json",
+    "full_local_receipt_sha256": "a81a789b88b3396d4d5d088b82eed7cdb2f1c0a850b9480854e62517e47abc04",
+    "frontend_comparison": {
+      "files": 22287,
+      "qualified_reused_output_and_native_asset_tree_byte_identical": true
+    },
+    "binary_build_info_uses_v93_and_no_v54": true
+  },
+  "protected_integration": "pending required PR checks",
+  "test_event_counts": {
+    "root-handler-tests": {
+      "pass_events": 71,
+      "skip_events": 0
+    },
+    "desktop-handler-tests": {
+      "pass_events": 71,
+      "skip_events": 0
+    },
+    "desktop-host-tests": {
+      "pass_events": 28,
+      "skip_events": 0
+    },
+    "desktop-embedded-tests": {
+      "pass_events": 9,
+      "skip_events": 0
+    }
+  }
+}

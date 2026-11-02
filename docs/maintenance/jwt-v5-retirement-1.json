@@ -1,0 +1,33 @@
+{
+  "time": "2026-11-02T21:22:51.835986+00:00",
+  "main": "7fe1d418e935caac2a4bb7c3920315989f897e50",
+  "branches": [
+    {
+      "name": "renovate/github.com-golang-jwt-jwt-v4-5.x",
+      "sha": "f5e2f71b4b2ef8b084b112286c7dcc74eebe339a",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/github.com-golang-jwt-jwt-v4-5.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/jwt-v5-migration",
+      "sha": "f98a0219aee74ec8b0bbba0414c57c07a340ef90",
+      "kind": "merged task",
+      "ref": "refs/heads/task/jwt-v5-migration",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-golang-jwt-jwt-v4-5.x\n - [deleted]               task/jwt-v5-migration\n"
+    },
+    "delete": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-golang-jwt-jwt-v4-5.x\n - [deleted]               task/jwt-v5-migration\n"
+    }
+  }
+}

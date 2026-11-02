@@ -9,7 +9,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/gin-gonic/gin"
-	"github.com/google/go-github/v54/github"
+	"github.com/google/go-github/v93/github"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/exp/slices"
 	"io/fs"
@@ -129,7 +129,11 @@ func AddDashboardLocation(c *gin.Context) {
 	}
 
 	// initialize the github client (Anonymous access)
-	githubClient := github.NewClient(nil)
+	githubClient, err := github.NewClient()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
+		return
+	}
 
 	cacheErrors := map[string]error{}
 	cacheDashboards := []string{}
@@ -206,6 +210,10 @@ func cacheCustomDashboard(logger *logrus.Entry, githubClient *github.Client, cac
 	if err != nil {
 		return "", fmt.Errorf("error retrieving remote gist: %v", err)
 	}
+	gistID := gist.GetID()
+	if gist == nil || strings.TrimSpace(gistID) == "" || gistID == "." || gistID == ".." || strings.ContainsAny(gistID, `/\:`) {
+		return "", fmt.Errorf("remote gist has an invalid cache identifier")
+	}
 	logger.Debugf("Got Gist %v, files: %d", gist.GetID(), len(gist.GetFiles()))
 
 	//check if gist has more than 1 file
@@ -239,12 +247,16 @@ func cacheCustomDashboard(logger *logrus.Entry, githubClient *github.Client, cac
 		return "", fmt.Errorf("error unmarshalling dashboard configuration (invalid JSON?): %v", err)
 	}
 
+	if dashboardJson == nil {
+		return "", fmt.Errorf("dashboard configuration must be a JSON object")
+	}
+
 	dashboardJson["source"] = remoteDashboardLocation
-	dashboardJson["id"] = gist.GetID()
+	dashboardJson["id"] = gistID
 
 	//TODO: validate against DashboardConfigSchema
 
-	absCacheFileLocation := filepath.Join(cacheDir, fmt.Sprintf("%s.json", gist.GetID()))
+	absCacheFileLocation := filepath.Join(cacheDir, fmt.Sprintf("%s.json", gistID))
 	//write it to filesystem
 	logger.Infof("Writing new dashboard configuration to filesystem: %v", remoteDashboardLocation)
 
