@@ -88,6 +88,17 @@ of every advanced resource query or an existing production database.
 
 Choose checks appropriate to the change. Do not relax timeouts, encryption, or test assertions to make a failing check pass. Distinguish a source check from a successful build and a real native UI check.
 
+## Server signing key
+
+Server startup rejects an empty key or the historical shared JWT signing key
+before opening a database. Configure `FASTEN_JWT_ISSUER_KEY` or `jwt.issuer.key`
+with a private value unique to the installation. Generate a new value with
+`openssl rand -base64 32` and retain it using your existing secret-management
+process. Preserve an existing private signing key; this change does not rotate
+keys or modify stored records. The desktop retains its per-installation key.
+Startup errors name the setting without printing its value. Configuration dumps
+and signup-token console logging are removed.
+
 ## Branding, data, and provider boundaries
 
 Use Chartrove for product-facing names and link project support to this repository. Preserve Fasten attribution and external service identities. [BRANDING.md](docs/BRANDING.md) records the compatibility names that remain intentionally stable.
