@@ -41,7 +41,7 @@ Preservation receipt `dist/validation/coffinfish-c42643e2e-preservation.json` ve
 `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Keep retained ZIPs, evidence, local metadata, tags, exclusions, and settings intact.
 No health-record directories are read or used. Tests use private synthetic fixtures.
-Eighteen historical origin branches have been retired with verified archives,
+Twenty-four historical origin branches have been retired with verified archives,
 exact-tip leases, and individual dispositions; see the dated receipts below.
 
 `summary` tip `62a89d799969b1de8ac208543e89a7da85345a91` and
@@ -216,3 +216,25 @@ CryptoJS #199 remains open for separate consumer review. The original-primary
 coverage recovery gap and product/migration decisions remain unresolved. No real
 health records or purchased-application storage were inspected. Current GitHub
 checkpoint: https://github.com/karamhouse/chartrove/issues/222#issuecomment-6571729966.
+
+## Implemented security replacements and verified issue dispositions
+
+#339 merged as `caeb7c2f3830e73fae1fd564ce9ea3ce16976e40`, with Backend,
+Frontend and Desktop all passing. #198/#201/#206 closed with this implemented
+replacement evidence. Their six exact historical head/base branches were
+retired after immutable bundle verification, current PR dependency checks, and
+atomic dry-run/push with exact-tip leases; [receipt](maintenance/security-retirement-6.json).
+The short-lived #339 task branch was also removed after merge ancestry proof.
+
+Five separately reviewed issues closed: #162's OAuth classic-script defect and
+#73's extraction-test request are implemented in main; fresh model tests pass.
+#109's reported PostgreSQL datetime startup failure is fixed in #323 and passes
+a fresh pinned disposable PostgreSQL run (8.304 seconds), with no remaining test
+containers. The missing-image attempt and exact image pull are preserved. #90
+(upstream marketing templates) and #115 (upstream Lighthouse statuspage) were
+explicitly retired as outside this fork's scope. [Individual evidence and limits](maintenance/2026-11-02-verified-issue-dispositions.json).
+
+The CryptoJS/toolchain batch reviews #199 and #313 independently. [Compatibility
+evidence and intended dispositions](maintenance/2026-11-02-crypto-toolchain.md).
+Neither is closed until that batch merges. The primary coverage snapshot recovery
+and the two consequential product/migration questions remain pending.

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "migration/upstream-pr-309",
+    "tip": "9bf0b66443a0d629bcf1c170e0e4414566fb4a0d",
+    "related_closed_pr": 198,
+    "disposition": "Implemented replacement #339 merged as caeb7c2f3830e73fae1fd564ce9ea3ce16976e40",
+    "reachable_main": false,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-309-base",
+    "tip": "0a8b4fe21e4206c5ccb491518b06b55965cef9a7",
+    "related_closed_pr": 198,
+    "disposition": "Implemented replacement #339 merged as caeb7c2f3830e73fae1fd564ce9ea3ce16976e40",
+    "reachable_main": true,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-312",
+    "tip": "e1fa9e5551189c4e4f98eec57efbef4cc3abeec2",
+    "related_closed_pr": 201,
+    "disposition": "Implemented replacement #339 merged as caeb7c2f3830e73fae1fd564ce9ea3ce16976e40",
+    "reachable_main": false,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-312-base",
+    "tip": "0a8b4fe21e4206c5ccb491518b06b55965cef9a7",
+    "related_closed_pr": 201,
+    "disposition": "Implemented replacement #339 merged as caeb7c2f3830e73fae1fd564ce9ea3ce16976e40",
+    "reachable_main": true,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-377",
+    "tip": "f980859316d8732186374a68bd2d949b8f184d14",
+    "related_closed_pr": 206,
+    "disposition": "Implemented replacement #339 merged as caeb7c2f3830e73fae1fd564ce9ea3ce16976e40",
+    "reachable_main": false,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-377-base",
+    "tip": "f1c120cbb21150c52e2c7b9e2648c42b49aec148",
+    "related_closed_pr": 206,
+    "disposition": "Implemented replacement #339 merged as caeb7c2f3830e73fae1fd564ce9ea3ce16976e40",
+    "reachable_main": true,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  }
+]
