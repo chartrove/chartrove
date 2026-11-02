@@ -285,8 +285,10 @@ archived head is manually retired. #182 is closed as a duplicate of still-open
 The pending Zone.js #234 batch changes only its supported manifest range and
 lock entry. All 72 other direct versions stay fixed; frozen install, package
 integrity, 429 browser tests (one existing skip), ten Node checks and static
-Storybook pass. Original metadata/coverage states are preserved. Fresh native
-production validation and protected integration remain pending.
+Storybook pass. Original metadata/coverage states are preserved. Fresh production
+build, ZIP/signature and ten synthetic native WebView checks pass at 5ad6c590a;
+original output contents/stat fields and all xattrs are restored exactly.
+Protected integration remains pending.
 [Scope and preservation](maintenance/2026-11-02-zone-maintenance.md).
 
 ## Preservation and branch retirement
@@ -298,7 +300,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (9add19dd1) matches contents, inodes, permissions, ownership,
+Latest restoration (5ad6c590a) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.

@@ -23,10 +23,16 @@ Storybook passes through the pinned Yarn environment. Its generated metadata is
 retained and original documentation.json absence restored; frontend/coverage
 also remains absent. [Validation receipt](zone-validation.json).
 
-Production assets and the macOS package are next built using the established
-output-preserving wrapper, followed by strict signature/ZIP verification and ten
-fresh synthetic native checks. Those results are pending at this source commit;
-no native pass or protected-main integration is claimed yet.
+The output-preserving wrapper built production assets and a fresh macOS package
+at source `5ad6c590af04e481b23f41850e8622bec2ec5d5e`. ZIP CRC, strict
+extracted signature and all ten synthetic native WebView checks pass. All 22,287
+produced frontend files match the native asset tree byte-for-byte. Original
+output contents, recorded stat fields and every xattr are restored exactly;
+there are zero provenance changes. The retained ZIP SHA-256 is
+`cd423b6dd1d11ee13aa377a777ec3802ea670082b24b906f12ca2b20d7f7c1b7`.
+[Native receipt](native-5ad6c590a-validation.json). Production differences from
+the preceding package are retained in the comparison receipt; no cross-browser
+or live-provider acceptance is inferred. Protected-main CI/integration is pending.
 
 ## Preservation
 

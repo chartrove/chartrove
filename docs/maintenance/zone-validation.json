@@ -97,6 +97,59 @@
     },
     "original_absence_restored": true
   },
-  "fresh_production_and_native_validation": "pending output-preserving native build",
-  "historical_pr234_and_branch": "remain live pending protected integration"
+  "fresh_production_and_native_validation": {
+    "source_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_checks": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/Chartrove-5ad6c590a.zip",
+      "sha256": "cd423b6dd1d11ee13aa377a777ec3802ea670082b24b906f12ca2b20d7f7c1b7",
+      "bytes": 337059448
+    },
+    "original_content_and_recorded_stat_fields_restored": true,
+    "original_xattrs_restored_exactly": true,
+    "production_native_comparison": {
+      "production_files": 22287,
+      "native_embedded_frontend_files": 22287,
+      "production_and_native_asset_tree_byte_identical": true,
+      "baseline_source": "9add19dd1",
+      "baseline_files": 22287,
+      "added": [
+        "polyfills.94167db94855dfbe.js",
+        "polyfills.94167db94855dfbe.js.map"
+      ],
+      "removed": [
+        "polyfills.26ed56c9b2d42612.js",
+        "polyfills.26ed56c9b2d42612.js.map"
+      ],
+      "changed": [
+        "3rdpartylicenses.txt",
+        "index.html"
+      ]
+    },
+    "receipt": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/receipt.json",
+    "receipt_sha256": "0d1bb3f071fd67d38da1a9b046ec7306b715bb0fe330b988630218f79de7a674"
+  },
+  "historical_pr234_and_branch": "remain live pending protected integration",
+  "protected_integration": "pending PR/required checks",
+  "production_non_polyfill_app_files_unchanged": true,
+  "third_party_license_change": "Only Zone/Google copyright year 2025 to 2026; all other license text byte-identical",
+  "license_diff_sha256": "612468491f97a5eec3b11520cd9e6f92c9e08109776cdef99d74dcb254060d13"
 }
