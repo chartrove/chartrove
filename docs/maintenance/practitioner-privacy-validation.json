@@ -1,0 +1,54 @@
+{
+  "red": {
+    "exit": 1,
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/pages/practitioner-create/practitioner-create.component.spec.ts"
+    ],
+    "spec_sha256": "9e7f9e290cc302a3faad80034fe9371633e3634ae983eb511b7b0668e50338e7"
+  },
+  "green": {
+    "exit": 0,
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/pages/practitioner-create/practitioner-create.component.spec.ts"
+    ],
+    "spec_sha256": "9e7f9e290cc302a3faad80034fe9371633e3634ae983eb511b7b0668e50338e7"
+  },
+  "full": {
+    "exit": 0,
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots"
+    ],
+    "source_sha256": {
+      "frontend/yarn.lock": "2006a8ffa4164afa77febae747903516a041df2c80c591691f975202ac4881a3",
+      "frontend/src/app/pages/practitioner-create/practitioner-create.component.ts": "75d764f57dc83722250821c67a2b996d965f7a29c3a0f3ce489c88f60fe79f60",
+      "frontend/src/app/pages/practitioner-create/practitioner-create.component.spec.ts": "9e7f9e290cc302a3faad80034fe9371633e3634ae983eb511b7b0668e50338e7"
+    },
+    "source_unchanged_during_test": true
+  },
+  "focused_passes": 3,
+  "new_regressions_fail_before": 2,
+  "full_browser_passes": 429,
+  "full_existing_skips": 1,
+  "raw_evidence_root": "dist/validation/2026-11-01-consolidation",
+  "native_acceptance": "pending source-identified package"
+}

@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #362 and individual #102 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after362.json).
-The native attachment integration branch is additional and was unpublished at
+Snapshot: November 2, 2026, after #363 and individual #101/#168 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after363.json).
+The practitioner maintenance branch is additional and was unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `f1ec2ddc6a72901364b5a1aa9582accdf5db1d8a` (#362) |
-| Open issues | 173, including retained Renovate dashboard #222 |
+| Published application main | `25b6b1dc1d11ab4626d019c2c9a96561953c058f` (#363) |
+| Open issues | 171, including retained Renovate dashboard #222 |
 | Open PRs | 44: 38 paused Renovate proposals and six historical drafts |
 | Origin heads | 53 |
-| Default branch | main tracks origin/main with equal OIDs; native attachment branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; practitioner maintenance branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -201,6 +201,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #360 | Compodoc 2 with preserved primitive documentation controls; reconcile #235/#293 |
 | #361 | Retire unused duration package and superseded source-filter layout proposal |
 | #362 | Identify invalid wizard sections without weakening Save guards; issue #102 |
+| #363 | Correct native related-resource upload and prove actual #101/#168 chooser/import/save acceptance |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -219,7 +220,7 @@ do not repeat Angular 14–22 modernization or restore obsolete implementations.
 ## Validation and data boundaries
 
 All merged batches passed Backend/Frontend/Desktop. Frontend full suites currently
-have 427 passing tests and one existing skip in the attachment correction.
+have 429 passing tests and one existing skip in the practitioner correction.
 Production builds retain the 9.93 MB budget/CommonJS warnings. Local Chrome teardown sometimes required forced
 termination after successful assertions; required fresh GitHub checks still passed.
 No timeout, test assertion, encryption contract or branch rule was relaxed.
@@ -230,7 +231,7 @@ Its missing-image preflight and pinned-image pull are preserved. No test contain
 remained. Callback cancellation fails before repair, passes 200 repetitions after
 repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-The current attachment correction has a fresh packaged app from source
+Merged #363 has a fresh packaged app from source
 `340d02293`. Production build, ZIP CRC, strict extracted signature and all ten
 native smoke checks pass. [Artifact and preservation receipt](maintenance/native-340d02293-validation.json).
 Actual native UI acceptance now proves the manual-upload chooser/import (#168)
@@ -240,7 +241,11 @@ synthetic database confirms the exact 78 attachment bytes and preserves the
 original three synthetic resources. An encounter navigation reload was needed
 for the new report link; automatic in-place graph refresh remains unverified.
 [Acceptance and limits](maintenance/2026-11-02-native-attachment-upload.md).
-Both issues remain open until this protected integration passes and merges.
+Both issues were individually closed after all three required checks passed and
+#363 merged. The current practitioner batch updates the name parser with 72
+other direct versions retained, and removes clinical payload/response/error
+console logging with red/green synthetic regressions. Fresh native acceptance
+for that batch is pending. [Scope](maintenance/2026-11-02-name-parser-patch.md).
 
 Original outputs match all recorded content/stat fields; three OS-managed
 provenance xattrs changed, with exact old/new values retained. No provenance

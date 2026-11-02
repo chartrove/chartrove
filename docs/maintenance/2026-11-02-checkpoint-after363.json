@@ -1,0 +1,28 @@
+{
+  "time": "2026-11-02T18:06:51.234060+00:00",
+  "main": "25b6b1dc1d11ab4626d019c2c9a96561953c058f",
+  "open_issues": 171,
+  "open_prs": 44,
+  "paused_renovate_prs": 38,
+  "origin_heads": 53,
+  "local_heads": [
+    "refs/heads/main 25b6b1dc1d11ab4626d019c2c9a96561953c058f origin/main"
+  ],
+  "tags": 30,
+  "worktrees": "worktree /Users/osama/Code/karamhouse/chartrove\nHEAD 25b6b1dc1d11ab4626d019c2c9a96561953c058f\nbranch refs/heads/main\n\n",
+  "stashes": "",
+  "sparse_sha256": "d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc",
+  "fetch": "+refs/heads/main:refs/remotes/origin/main",
+  "main_ruleset_active_no_bypass": true,
+  "workflow_states": [
+    [
+      "Validation",
+      "active"
+    ],
+    [
+      "Development",
+      "disabled_manually"
+    ]
+  ],
+  "acceptance_complete": false
+}

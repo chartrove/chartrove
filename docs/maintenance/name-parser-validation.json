@@ -1,0 +1,54 @@
+{
+  "changed_direct_versions": {
+    "parse-full-name": [
+      "1.2.6",
+      "1.2.7"
+    ]
+  },
+  "unchanged_other_direct_versions": 72,
+  "all_other_lock_bytes_unchanged": true,
+  "manifest_unchanged": true,
+  "published_members_match_installed": 8,
+  "frozen_install_exit": 0,
+  "browser": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots"
+    ],
+    "cwd": "frontend",
+    "exit": 0,
+    "time": "2026-11-02T18:18:43.155382+00:00"
+  },
+  "node": {
+    "command": [
+      "node",
+      "--test",
+      "frontend/desktop-tests/bridge.test.mjs",
+      "frontend/desktop-tests/compodoc-compat.test.mjs",
+      "frontend/desktop-tests/test-framework.test.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "time": "2026-11-02T18:16:32.875628+00:00"
+  },
+  "browser_passes": 427,
+  "browser_existing_skips": 1,
+  "name_cases": 16,
+  "all_tested_name_outputs_match_before": true,
+  "old_installed_archive": {
+    "archive": "dist/validation/2026-11-01-consolidation/name-parser-installed-before-20261102.tar.gz",
+    "sha256": "3673e67cb2369fdee9350c83bde0f985995fb8435124d95cbbe9b6d6e9f7ac01",
+    "members": [
+      "frontend/node_modules/parse-full-name",
+      "frontend/node_modules/.yarn-integrity"
+    ]
+  },
+  "registry_sri_verified": true,
+  "upstream_compare": "HTTP 404 retained; package tar source reviewed directly",
+  "native_acceptance": "pending source-identified fresh package"
+}
