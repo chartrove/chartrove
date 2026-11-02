@@ -6,19 +6,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after integration #358 and five historical proposal/ref
-retirements. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after358.json).
-The receipt was captured on clean main before the next React tooling branch;
+Snapshot: November 2, 2026, after #359 and the individual #282/ref reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after359.json).
+The receipt was captured on clean main before the Compodoc candidate branch;
 its integration PR/branch is additional until merged and removed. Requery live
 counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `a9103d38cfa2aa8259032ca091c392c93539d3b7` (#358; production runtime from #357) |
+| Published application main | `e24fd9bae3e3a82b37a8846abafda48bd1a2d4cc` (#359; production runtime from #357) |
 | Open issues | 174, including retained Renovate dashboard #222 |
-| Open PRs | 49: 42 paused Renovate proposals and seven historical drafts |
-| Origin heads | 59 |
-| Default branch | main tracks origin/main with equal OIDs; React tooling branch is additional |
+| Open PRs | 48: 41 paused Renovate proposals and seven historical drafts |
+| Origin heads | 58 |
+| Default branch | main tracks origin/main with equal OIDs; Compodoc branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -60,11 +60,19 @@ matches the current native frontend. #237 is replaced by matching declarations,
 [Scope](maintenance/2026-11-02-jasmine-alignment.md),
 [retirement](maintenance/jasmine-retirement-5.json).
 
-Next reviewed batch: [React/DOM 18.3.1 tooling patch](maintenance/2026-11-02-react18-tooling.md)
-with scheduler 0.23.2, matching registry artifacts and 72 unchanged direct versions.
-Seven Node checks, 423 browser tests, synthetic development/production rendering,
-production and Storybook pass. Every produced app file matches the current native
-frontend; all three protected checks still gate integration and #282 reconciliation.
+Merged #359 adopts the bounded React/DOM 18.3.1 tooling patch and required
+scheduler, with 72 other direct versions retained and every produced app file
+identical. All required checks pass; #282 is reconciled and its archived head
+manually retired. [Scope](maintenance/2026-11-02-react18-tooling.md),
+[retirement](maintenance/react18-retirement-1.json).
+
+Next reviewed batch: [Compodoc 2 with preserved primitive Storybook controls](maintenance/2026-11-02-compodoc2.md).
+All entity/public member inventories remain; actual Storybook-reader probes retain
+328 public descriptors and 254 boolean/number controls after a documentation-only
+correction. Ten Node checks, 423 browser tests, production and corrected Storybook
+pass; production output is identical. Initial diagnostic failures and all internal
+type-rendering differences remain explicit. #235/#293 stay open pending protected
+integration; this is not an unreviewed historical lock refresh.
 
 Merged #354 adopts verified SHA-pinned v7 actions, unchanged project
 toolchains/permissions/commands/check names, and disabled credentials/caches.
@@ -174,6 +182,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #356 | Align excluded model/version generators; reconcile #258/#276 |
 | #357 | Direct exact OAuth patch; supersede deprecated wrapper #224 |
 | #358 | Align actual Jasmine tooling and CI guards; individual five-proposal disposition |
+| #359 | Paired React 18 patch with required scheduler; reconcile #282 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -247,7 +256,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Forty-eight historical origin refs were retired by this agent after individual review,
+Forty-nine historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Nine more (#313, four utility heads, two UUID heads and two declaration heads) were already absent after closure;
 deletion actors not established.
@@ -265,7 +274,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [three validation-action heads](maintenance/actions-v7-retirement-3.json),
 [two generator-tool heads](maintenance/generator-tool-retirement-2.json),
 [one deprecated OAuth wrapper head](maintenance/oauth-patch-retirement-1.json),
-[five Jasmine proposal heads](maintenance/jasmine-retirement-5.json).
+[five Jasmine proposal heads](maintenance/jasmine-retirement-5.json),
+[one paired React patch head](maintenance/react18-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Recovered coverage and remaining decisions
@@ -299,7 +309,7 @@ a compatible representation/migration decision. [Scope and retained boundaries](
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 42 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 41 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

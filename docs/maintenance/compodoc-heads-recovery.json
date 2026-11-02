@@ -1,0 +1,52 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 1471,
+          "deletions": 2362,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/compodoc-compodoc-1.x-lockfile",
+      "headRefOid": "429ed29bb5933f2a944d8eea3c437db952c68f22",
+      "number": 235,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency @compodoc/compodoc to v1.2.1"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 455,
+          "deletions": 2529,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/compodoc-compodoc-2.x",
+      "headRefOid": "96248afe7a98fa8887525f3598e2ae5f20d90885",
+      "number": 293,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency @compodoc/compodoc to v2"
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/compodoc-heads-20261102.bundle",
+  "sha256": "8975c1e5d4d184f6d8cde0103e94433a2a7cbf168018082807012fb7734fdf95",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "e24fd9bae3e3a82b37a8846abafda48bd1a2d4cc",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 9,
+  "required_objects_included": true,
+  "intended_disposition": "Review Compodoc 2 for current Angular 22/Node 26, preserve original dependency tree and generated documentation, validate public metadata and Storybook/application output before protected integration."
+}

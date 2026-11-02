@@ -1,9 +1,10 @@
 import type { Preview } from "@storybook/angular";
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import docJson from "../documentation.json";
+import { restorePrimitiveControls } from "./compodoc-compat";
 import {applicationConfig} from "@storybook/angular";
 import {provideRouter, withDisabledInitialNavigation} from '@angular/router';
-setCompodocJson(docJson);
+setCompodocJson(restorePrimitiveControls(docJson));
 
 const decorators = [
   applicationConfig({

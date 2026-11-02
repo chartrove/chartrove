@@ -1,0 +1,81 @@
+{
+  "candidate": "exact @compodoc/compodoc 2.0.0 replacing 1.1.19",
+  "reconciles_proposals": [
+    235,
+    293
+  ],
+  "73_other_direct_versions": "unchanged",
+  "retained_lock_selector_resolutions": "unchanged for every existing selector",
+  "before_lock_selectors": 2022,
+  "after_lock_selectors": 1670,
+  "new_package_versions": 56,
+  "new_install_hooks": 0,
+  "official_compodoc_artifact_integrity_and_all_344_installed_members": "passed",
+  "ordinary_frozen_install_exit": 0,
+  "full_application_checks": {
+    "node_tests_after_correction": 10,
+    "new_primitive_regressions_red_before": 2,
+    "browser_passes": 423,
+    "existing_browser_skip": 1,
+    "ordinary_browser_exit": 0,
+    "production_build": "passed",
+    "storybook_build": "passed before correction and after correction"
+  },
+  "all_22287_application_files_match_current_native_frontend": true,
+  "no_new_native_run_claimed_for_identical_application_output": true,
+  "production_source_database_Wails_contracts": "unchanged",
+  "existing_documentation_state": "absent before and after; generated candidate metadata retained privately",
+  "metadata_comparison": {
+    "all_entity_inventories_and_source_code": "unchanged",
+    "components": 134,
+    "directives": 4,
+    "public_input_output_names_types_defaults": "unchanged",
+    "empty_description_format_changes": 532,
+    "new_default_OnPush_metadata": "Angular 22 compiler default, not an explicit component annotation"
+  },
+  "storybook_actual_browser_consumer": {
+    "browser_exit": 0,
+    "mapped_entities": 252,
+    "all_mapper_member_names_preserved": true,
+    "public_input_output_descriptors_unchanged_excluding_empty_description_format": 328,
+    "primitive_numeric_boolean_controls_types_defaults_requiredness_unchanged": 254,
+    "formerly_blank_boolean_table_labels_now_explicit": 27,
+    "all_member_metadata_equal": false,
+    "internal_property_method_type_rendering_changes_retained_and_reviewed": true,
+    "raw_result_sha256": "066dcdaa44ab80f3579778b0fc365fa02a0fc5fe1db442b6d22592cb879a230e",
+    "primitive_normalizer_sha256": "20eaa34c71b7438253744f9f0501dd13458145c8bc5fabe0cf268bfecc6f4ae3",
+    "strict_label_diagnostic_exit": 1,
+    "strict_label_diagnostic_result": "controls and values preserved; exact descriptor equality still reports blank table labels becoming boolean; original assertion and all data retained",
+    "no_application_tests_changed_or_waived": true
+  },
+  "nonfatal_install_peer_warnings": "five vis-network peer warnings; existing JSON-only consumer uses bundled Compodoc graph resources rather than importing the optional graph package; no peer forcing or extra direct packages added",
+  "new_node_diagnostic_warning": "Node infers ES module syntax for the documentation-only TypeScript helper; package module mode unchanged",
+  "initial_diagnostic_failures_retained": {
+    "first_browser": "rendered all 252 entities, native teardown watchdog then nonzero exit; numeric child status was not captured; script exit 1; logs retained",
+    "whole_metadata_equality": "failed on major-generator internal-property/method type rendering; no equality claim",
+    "corrected_control_strict_label_equality": "browser exit 0; script exit 1 on 27 blank labels becoming boolean; independently checked unchanged control types, defaults and requiredness, with improved labels recorded"
+  },
+  "evidence": "dist/validation/2026-11-01-consolidation/compodoc2-review",
+  "stable_evidence_manifest_sha256": "5f3d86e6b6c733ecd759770c7e55f0cebc0daea1b1af0653ff2f9c902b824ee1",
+  "application_validation_receipt_sha256": "a12c1807fe678a7d28ad0358bcf8fa77eed70360d29c6cd0d275775621d80c2b",
+  "regenerated_metadata_order_comparison": {
+    "raw_metadata_bytes_equal": false,
+    "only_changed_sections": [
+      "miscellaneous.typealiases",
+      "miscellaneous.variables"
+    ],
+    "all_objects_including_duplicate_multiplicity_equal": true,
+    "counts": {
+      "variables": 245,
+      "typealiases": 55
+    },
+    "every_other_metadata_section_exactly_equal": true,
+    "before_sha256": "fecf88b8f0b2de78b9a67f94b6a8f06b3e27622d06e8d17f17c0cb6d4b50cd7b",
+    "after_sha256": "53e98cfd1a4c04238df60d5c276251423df3501d65d763c6d1480fa1c5d8b6f4",
+    "initial_byte_equality_helper_exit": 1,
+    "original_failed_receipt_retained": true
+  },
+  "corrected_storybook_receipt_sha256": "de6460895e5935643800322caa8092f53dd8ad834329fca7f4c82f24dbe9755c",
+  "protected_ci": "all three required checks still gate integration",
+  "checked_utc": "2026-11-02T15:11:57.995993+00:00"
+}
