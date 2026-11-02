@@ -1,0 +1,42 @@
+{
+  "integration_pr": 352,
+  "integration_main": "2626e46d5e60c4ec603e653a2abf5f499bdd6f82",
+  "bundle": "dist/validation/2026-11-01-consolidation/type-package-heads-20261102.bundle",
+  "bundle_sha256": "1ab5470df30889cd5f6200738da80249254fda15541e5b3268c9fb42bf55704f",
+  "review_state_observations": [
+    {
+      "number": 225,
+      "state_before_disposition": "CLOSED"
+    },
+    {
+      "number": 227,
+      "state_before_disposition": "CLOSED"
+    }
+  ],
+  "manually_retired": [],
+  "already_absent_after_closure_actor_not_established": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/fhir-0.x",
+      "headRefOid": "76b1e33d7e81a07a21abbdf93a56a270b4fc828e",
+      "number": 225,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/qrcode-1.x-lockfile",
+      "headRefOid": "06d605538b7bca52cf4d89ca73e5487f993d94fe",
+      "number": 227,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/yarn.lock"
+      ]
+    }
+  ],
+  "open_pr_dependencies_checked": 60,
+  "remote_absence_verified": true
+}

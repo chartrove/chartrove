@@ -1,0 +1,12 @@
+{
+  "snapshot_utc": "2026-11-02T11:49:44.190358+00:00",
+  "published_main": "2626e46d5e60c4ec603e653a2abf5f499bdd6f82",
+  "origin_main": "2626e46d5e60c4ec603e653a2abf5f499bdd6f82",
+  "open_issues": 174,
+  "open_prs": 60,
+  "open_renovate_prs": 53,
+  "all_open_renovate_paused": true,
+  "origin_heads": 70,
+  "additional_local_task_branch": "task/auth-callback-log-privacy",
+  "next_integration_pr_not_yet_published": true
+}
