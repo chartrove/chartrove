@@ -1,0 +1,83 @@
+{
+  "red": {
+    "passed": 1,
+    "failed": 1,
+    "exit": 1,
+    "run": "idp-log-red-valid-response",
+    "failure": "Both synthetic access/identity secrets appear in captured console arguments; forwarding/storage assertions pass."
+  },
+  "focused_green": {
+    "passed": 2,
+    "exit": 0
+  },
+  "full_green": {
+    "passed": 423,
+    "skipped": 1,
+    "exit": 0,
+    "normal_karma_configuration": true,
+    "forced_termination": false
+  },
+  "bridge": {
+    "passed": 5,
+    "exit": 0
+  },
+  "setup_failures_not_product_regressions": [
+    "shared injection token legacy string generic requires narrowing to the explicitly provided test HttpClient",
+    "constructed Response requires URL metadata for actual SDK nonce handling"
+  ],
+  "network": "All provider/local-backend responses are synthetic transport doubles; real OAuth SDK callback handling/JSON parsing runs; no network or health database is contacted.",
+  "artifacts": [
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red/output.log",
+      "sha256": "eee1960464c1a30f7484ba58eb6cd39b9e82a8512aa13df873f7359edec028dc"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red/receipt.json",
+      "sha256": "f0b29fcacb6e695724b4b19aafe676303ede47a07a1b1f228ee07b61d4d6c097"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red-fixed-fixture/output.log",
+      "sha256": "380018799dd3e6a23dd2cb10eb408421c5c86074ae24d7e19bfed3483ff0f453"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red-fixed-fixture/receipt.json",
+      "sha256": "f0b29fcacb6e695724b4b19aafe676303ede47a07a1b1f228ee07b61d4d6c097"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red-executable/output.log",
+      "sha256": "4cdc5f4d7bada9cc7a8af4fe5eaafadbcbe41777acecd1dfc6d4de7dcccaf9b1"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red-executable/receipt.json",
+      "sha256": "f0b29fcacb6e695724b4b19aafe676303ede47a07a1b1f228ee07b61d4d6c097"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red-valid-response/output.log",
+      "sha256": "b509ece59c339a8dc3c5a84e98d4c7848897a1e0f9e5ed532a47c6149aef958f"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-red-valid-response/receipt.json",
+      "sha256": "f0b29fcacb6e695724b4b19aafe676303ede47a07a1b1f228ee07b61d4d6c097"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-green/output.log",
+      "sha256": "965cbf8a1f45b585150dfbd0f29d095f071e5561b2524b803cfb472dd866adba"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-green/receipt.json",
+      "sha256": "adfafbc31436a0cccfba43234347e9eadb337e21498d66b94ed6f08eceb32b2c"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-full/output.log",
+      "sha256": "df1d0c859b0a4dfea8ae5e64b3c4e9b24945058505b7c583f9175b65c8fbb72e"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-full/bridge.log",
+      "sha256": "586c743cb261fbec473c469d47ad43d19a1090d3d2bf6df52d11f26e05ec0a0d"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/idp-log-validation/idp-log-full/receipt.json",
+      "sha256": "226246b1dc04eb60224749b8ba8660d0698fe8ba785b1a181988e3b117bf9463"
+    }
+  ]
+}

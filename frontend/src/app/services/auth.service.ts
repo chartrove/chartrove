@@ -92,7 +92,7 @@ export class AuthService {
       codeVerifier,
     )
     let payload = await response.json()
-    console.log("ENDING--- Oauth.authorizationCodeGrantRequest", payload)
+    console.log("ENDING--- Oauth.authorizationCodeGrantRequest")
 
 
     //trade Hello Idtoken for Fasten DB token.
