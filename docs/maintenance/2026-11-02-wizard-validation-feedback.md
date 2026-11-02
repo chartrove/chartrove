@@ -41,3 +41,12 @@ Fresh body/comment reviews of #82, #88 and #178 confirm actionable requirements.
 and deliberate-relaxation guidance, and #178 includes dashboard-authoring and unit
 questions. None is retired from its title or an earlier partial implementation.
 Their current snapshots are retained privately for the next relevant review.
+
+## Later integration and native acceptance
+
+#362 merged at `f1ec2ddc6a72901364b5a1aa9582accdf5db1d8a` after Backend,
+Frontend and Desktop passed. #102 was individually closed with its evidence.
+The Mac restarted; durable package, coverage and history archives were reverified
+before continuation. The native bridge subsequently worked and #101/#168 were
+actually exercised. [Later observations and attachment correction](2026-11-02-native-attachment-upload.md).
+The earlier unavailable-bridge description above records that earlier checkpoint.

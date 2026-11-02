@@ -28,6 +28,40 @@ describe('FastenApiService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('preserves related attachments in a serialized multipart request for the native transport', async () => {
+    const http = TestBed.inject(HttpTestingController);
+    const resourceList = {
+      resourceType: 'List' as const,
+      status: 'current' as const,
+      mode: 'working' as const,
+      encounter: {reference: 'Encounter/synthetic-encounter'},
+      contained: [{
+        resourceType: 'DocumentReference' as const,
+        status: 'current' as const,
+        description: 'Synthetic López attachment\nSecond line',
+        content: [{attachment: {contentType: 'text/plain', data: 'AAECA/8=', title: 'Synthetic.txt'}}],
+      }],
+    };
+    const result = service.createRelatedResourcesFastenSource(resourceList).toPromise();
+    const request = http.expectOne(req => req.url.endsWith('/secure/resource/related'));
+    const contentType = request.request.headers.get('Content-Type');
+    expect(typeof request.request.body).toBe('string');
+    expect(contentType).toMatch(/^multipart\/form-data; boundary=.+/);
+    if (typeof request.request.body === 'string' && contentType) {
+      const decoded = await new Response(request.request.body, {headers: {'Content-Type': contentType}}).formData();
+      const file = decoded.get('file') as File;
+      expect(file.name).toBe('related.json');
+      expect(file.type).toBe('application/json');
+      expect(JSON.parse(await file.text())).toEqual(resourceList);
+      const fields: string[] = [];
+      decoded.forEach((_value, key) => fields.push(key));
+      expect(fields).toEqual(['file']);
+    }
+    request.flush({success: true, data: {id: 'synthetic-source'}});
+    expect((await result).id).toBe('synthetic-source');
+    http.verify();
+  });
+
   it('imports a Patient through the local bundle API without provider credentials', async () => {
     const http = TestBed.inject(HttpTestingController);
     const result = service.importSandboxPatient({resourceType: 'Patient', id: 'synthetic-patient'}).toPromise();
