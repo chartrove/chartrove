@@ -114,7 +114,6 @@ export class AuthService {
   public async Signup(newUser?: User): Promise<any> {
     let fastenApiEndpointBase = GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)
     let resp = await this._httpClient.post<ResponseWrapper>(`${fastenApiEndpointBase}/auth/signup`, newUser).toPromise()
-    console.log(resp)
 
     this.setAuthToken(resp.data)
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/analogj/go-util/utils"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
@@ -110,9 +109,6 @@ func main() {
 							appLogger.Panic("panic occurred:", err)
 						}
 					}()
-
-					settingsData, err := json.Marshal(appconfig.AllSettings())
-					appLogger.Debug(string(settingsData), err)
 
 					relatedVersions, _ := resources.GetRelatedVersions()
 
