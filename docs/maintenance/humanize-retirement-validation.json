@@ -25,5 +25,7 @@
   "review_evidence": "dist/validation/2026-11-01-consolidation/humanize-review",
   "review_stable_manifest_sha256": "580bdc73a87a5155ff1f37ae5057034e8ee64022c50d7bbe35c28d92eb25b0fe",
   "nonfatal_browser_shutdown_warning": "ChromeHeadless was not killed in 2000 ms; launcher sent SIGKILL; ordinary command exited 0",
-  "protected_ci": "required before integration and individual closure"
+  "protected_ci": "Backend, Frontend and Desktop passed in merged #361",
+  "integration_main": "9b499c88f3f81ba76b0c35b40ed019822c6b31d7",
+  "protected_ci_receipt_sha256": "07da36e72ac09fd0e45cfb3a62e56c676c72b7aa9215992e18f4940a4f81d022"
 }

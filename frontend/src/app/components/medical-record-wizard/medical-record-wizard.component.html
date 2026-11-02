@@ -24,7 +24,13 @@
       <div class="d-flex">
         <div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column col-xl-3 col-lg-3 col-md-4 bg-gray-200 pd-20" orientation="vertical">
           <ng-container ngbNavItem="encounter">
-            <a class="nav-link" ngbNavLink>Encounter</a>
+            <a class="nav-link" ngbNavLink [attr.aria-invalid]="form.get('encounter')?.invalid || null">Encounter
+              @if (form.get('encounter')?.invalid) {
+                <span class="badge text-bg-danger ms-1">
+                  <span aria-hidden="true">!</span><span class="visually-hidden">Needs attention</span>
+                </span>
+              }
+            </a>
             <ng-template ngbNavContent>
               <div>
                 <h6 class="card-title">Encounter</h6>
@@ -49,11 +55,16 @@
             </ng-template>
           </ng-container>
           <ng-container ngbNavItem="medications" [disabled]="!existingEncounter">
-            <a class="nav-link" ngbNavLink>
+            <a class="nav-link" ngbNavLink [attr.aria-invalid]="form.get('medications')?.invalid || null">
               Medications @if (medications.controls.length) {
               <span class="badge rounded-pill text-bg-warning align-middle">{{medications.controls.length}}</span>
             }
-          </a>
+              @if (form.get('medications')?.invalid) {
+                <span class="badge text-bg-danger ms-1">
+                  <span aria-hidden="true">!</span><span class="visually-hidden">Needs attention</span>
+                </span>
+              }
+            </a>
           <ng-template ngbNavContent>
             <div>
               <h6 class="card-title">Medications</h6>
@@ -169,11 +180,16 @@
           </ng-template>
         </ng-container>
         <ng-container ngbNavItem="procedures" [disabled]="!existingEncounter">
-          <a class="nav-link" ngbNavLink>
+          <a class="nav-link" ngbNavLink [attr.aria-invalid]="form.get('procedures')?.invalid || null">
             Procedures @if (procedures.controls.length) {
             <span class="badge rounded-pill text-bg-warning align-middle">{{procedures.controls.length}}</span>
           }
-        </a>
+            @if (form.get('procedures')?.invalid) {
+              <span class="badge text-bg-danger ms-1">
+                <span aria-hidden="true">!</span><span class="visually-hidden">Needs attention</span>
+              </span>
+            }
+          </a>
         <ng-template ngbNavContent>
           <div>
             <h6 class="card-title">Major Surgeries and Implants</h6>
@@ -294,11 +310,16 @@
         </ng-template>
       </ng-container>
       <ng-container ngbNavItem="practitioners" [disabled]="!existingEncounter">
-        <a class="nav-link" ngbNavLink>
+        <a class="nav-link" ngbNavLink [attr.aria-invalid]="form.get('practitioners')?.invalid || null">
           Practitioners @if (practitioners.controls.length) {
           <span class="badge rounded-pill text-bg-warning align-middle">{{practitioners.controls.length}}</span>
         }
-      </a>
+          @if (form.get('practitioners')?.invalid) {
+            <span class="badge text-bg-danger ms-1">
+              <span aria-hidden="true">!</span><span class="visually-hidden">Needs attention</span>
+            </span>
+          }
+        </a>
       <ng-template ngbNavContent>
         <div>
           <h6 class="card-title">Medical Practitioners</h6>
@@ -340,11 +361,16 @@
       </ng-template>
     </ng-container>
     <ng-container ngbNavItem="organizations" [disabled]="!existingEncounter">
-      <a class="nav-link" ngbNavLink>
+      <a class="nav-link" ngbNavLink [attr.aria-invalid]="form.get('organizations')?.invalid || null">
         Organizations @if (organizations.controls.length) {
         <span class="badge rounded-pill text-bg-warning align-middle">{{organizations.controls.length}}</span>
       }
-    </a>
+        @if (form.get('organizations')?.invalid) {
+          <span class="badge text-bg-danger ms-1">
+            <span aria-hidden="true">!</span><span class="visually-hidden">Needs attention</span>
+          </span>
+        }
+      </a>
     <ng-template ngbNavContent>
       <div>
         <h6 class="card-title">Medical Location/Organizations</h6>
@@ -383,8 +409,13 @@
     </ng-template>
   </ng-container>
   <ng-container ngbNavItem="labresults" [disabled]="!existingEncounter">
-    <a class="nav-link" ngbNavLink>
+    <a class="nav-link" ngbNavLink [attr.aria-invalid]="form.get('labresults')?.invalid || null">
       Lab Results
+      @if (form.get('labresults')?.invalid) {
+        <span class="badge text-bg-danger ms-1">
+          <span aria-hidden="true">!</span><span class="visually-hidden">Needs attention</span>
+        </span>
+      }
     </a>
     <ng-template ngbNavContent>
       <div>
@@ -429,11 +460,16 @@
     </ng-template>
   </ng-container>
   <ng-container ngbNavItem="attachments" [disabled]="!existingEncounter">
-    <a class="nav-link" ngbNavLink>
+    <a class="nav-link" ngbNavLink [attr.aria-invalid]="form.get('attachments')?.invalid || null">
       Attachments @if (attachments.controls.length) {
       <span class="badge rounded-pill text-bg-warning align-middle">{{attachments.controls.length}}</span>
     }
-  </a>
+      @if (form.get('attachments')?.invalid) {
+        <span class="badge text-bg-danger ms-1">
+          <span aria-hidden="true">!</span><span class="visually-hidden">Needs attention</span>
+        </span>
+      }
+    </a>
   <ng-template ngbNavContent>
     <div>
       <h6 class="card-title">Notes & Attachments</h6>
@@ -506,6 +542,11 @@
 
 </div>
 <div class="modal-footer">
+  @if (form.invalid) {
+    <p class="text-danger w-100 mb-0" role="alert" data-validation-feedback>
+      Complete the required information in the highlighted sections before saving.
+    </p>
+  }
     <button [ngClass]="{
     'btn-outline-dark': !debugMode,
     'text-dark': !debugMode,
