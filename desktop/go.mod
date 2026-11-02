@@ -96,7 +96,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/quic-go/qpack v0.6.0 // indirect
 	github.com/quic-go/quic-go v0.59.1 // indirect
-	github.com/samber/lo v1.35.0 // indirect
+	github.com/samber/lo v1.53.0 // indirect
 	github.com/seborama/govcr v4.5.0+incompatible // indirect
 	github.com/segmentio/asm v1.2.1 // indirect
 	github.com/shopspring/decimal v1.4.0 // indirect

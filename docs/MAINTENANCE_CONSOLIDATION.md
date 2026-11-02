@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #369 and individual #329 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after369.json).
-The GitHub client branch is additional and unpublished at
+Snapshot: November 2, 2026, after #370 and individual #330 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after370.json).
+The slice-helper branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `7fe1d418e935caac2a4bb7c3920315989f897e50` (#369) |
+| Published application main | `3ec2085ec4e9fac8d34f3e050313c4369a1fbd91` (#370) |
 | Open issues | 169, including retained Renovate dashboard #222 |
-| Open PRs | 37: 31 paused Renovate proposals and six historical drafts |
-| Origin heads | 46 |
-| Default branch | main tracks origin/main with equal OIDs; GitHub client branch is additional |
+| Open PRs | 36: 30 paused Renovate proposals and six historical drafts |
+| Origin heads | 45 |
+| Default branch | main tracks origin/main with equal OIDs; slice-helper branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -303,13 +303,23 @@ output contents/stat fields and all xattrs restore exactly. All three protected
 checks pass; #329 is individually reconciled and its archived head retired.
 [Scope and receipts](maintenance/2026-11-02-jwt-v5-migration.md).
 
-The current GitHub Gist client replacement for #330 includes reproduced JSON
+Merged #370 implements the GitHub Gist client replacement for #330 with reproduced JSON
 null and cache-ID boundary corrections; local handler, desktop, vet and upstream
 checks pass. Fresh native packaging at f22b03676 retains all 22,287 qualified
 frontend files; ZIP/signature and ten synthetic native checks pass. Original
-outputs/stat fields and all xattrs restore exactly. Protected integration remains
-pending.
+outputs/stat fields and all xattrs restore exactly. All three protected checks
+pass; #330 is individually reconciled and its exact archived head retired.
 [Scope and recovery](maintenance/2026-11-02-github-client-migration.md).
+
+The current slice-helper #270 replacement has passing old/new query/summary
+assertions in both Go graphs and 57 byte-identical isolated generator outputs.
+The published examples fail to compile after upstream release test removal; the
+matching runtime's complete upstream parent suite passes 949 tests without skips.
+Applied module/vet, desktop/encrypted-backend and server build checks pass.
+Fresh native packaging at 93aa68702 retains all 22,287 qualified frontend files;
+ZIP/signature and ten synthetic native checks pass. Original outputs/stat fields
+and all xattrs restore exactly. Protected integration remains pending.
+[Scope and preserved diagnostics](maintenance/2026-11-02-lo-maintenance.md).
 
 ## Preservation and branch retirement
 
@@ -320,7 +330,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (7cca0f39f) matches contents, inodes, permissions, ownership,
+Latest restoration (93aa68702) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.

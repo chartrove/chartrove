@@ -47,15 +47,19 @@ strict signature and ten synthetic WebView checks pass. Binary metadata confirms
 v93.0.0 and no v54. Original output contents/stat fields and all xattrs restore
 exactly, with zero provenance changes. The ZIP SHA-256 is
 1a84852664ad9df8b3048351ef1e9910c7fbfa50a8c482f01023c5caba73bd43.
-[Native receipt](native-f22b03676-validation.json). Protected integration remains
-pending.
+[Native receipt](native-f22b03676-validation.json). Protected integration is
+complete: #370 merged at 3ec2085ec4e9fac8d34f3e050313c4369a1fbd91 after
+all three required checks passed.
 [Detailed validation](github-client-validation.json).
 
 [Exact historical head recovery](github-client-head-recovery.json) records tip
 77a8aa3270cc3744c066a7f45da90df004285432, its verified incremental bundle,
 main-reachable prerequisite and all four unique objects proved in original pack
-bytes. Original intake history remains. The historical PR and branch remain
-live until protected integration and fresh individual reconciliation, dependency
-and expected-tip checks. Raw commands, diagnostics, source snapshots, manifests
+bytes. Original intake history remains. Historical #330 was individually closed
+as implemented. Fresh dependency and
+expected-tip checks preceded retirement of its exact archived branch and the
+merged task branch. [Retirement receipt](github-client-retirement-1.json).
+Raw commands, diagnostics, source snapshots, manifests
 and archives are retained under
-dist/validation/2026-11-01-consolidation/github-client-review/. Original temporary execution paths remain verbatim after relocation.
+dist/validation/2026-11-01-consolidation/github-client-review/. Original temporary
+execution paths remain verbatim after relocation.

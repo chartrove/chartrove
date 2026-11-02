@@ -381,7 +381,18 @@
     },
     "binary_build_info_uses_v93_and_no_v54": true
   },
-  "protected_integration": "pending required PR checks",
+  "protected_integration": {
+    "pr": 370,
+    "merge": "3ec2085ec4e9fac8d34f3e050313c4369a1fbd91",
+    "head": "2f4fe408414383e74d2339f0ce97d9a3174b6473",
+    "run": 41531066154,
+    "checks": [
+      "Backend",
+      "Frontend",
+      "Desktop"
+    ],
+    "all_success_app_15368": true
+  },
   "test_event_counts": {
     "root-handler-tests": {
       "pass_events": 71,

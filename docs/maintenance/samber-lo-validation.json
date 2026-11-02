@@ -1,0 +1,479 @@
+{
+  "time": "2026-11-02T21:59:14.192150+00:00",
+  "base_main": "3ec2085ec4e9fac8d34f3e050313c4369a1fbd91",
+  "target": "github.com/samber/lo v1.53.0",
+  "package": {
+    "module": "github.com/samber/lo",
+    "version": "v1.53.0",
+    "sum": "h1:t975lj2py4kJPQ6haz1QMgtId2gtmfktACxIXArw3HM=",
+    "go_mod_sum": "h1:4+MXEGsJzbKGaUEQFKBq2xtfuznW9oz/WrgyzMzRoM0=",
+    "archive": "lo-v1.53.0.zip",
+    "archive_sha256": "4969cf0094a1736a16ca0f89c42dea92369ba0ebacdbd9b22f1299ff7fe1f579",
+    "go_minimum": "1.18",
+    "official_target_metadata": true
+  },
+  "candidate_graphs": {
+    "graphs": {
+      "root": {
+        "github.com/niemeyer/pretty": [
+          "v0.0.0-20200227124842-a10e7caefd8e",
+          null
+        ],
+        "github.com/samber/lo": [
+          "v1.35.0",
+          "v1.53.0"
+        ],
+        "github.com/thoas/go-funk": [
+          "v0.9.1",
+          null
+        ]
+      },
+      "desktop": {
+        "github.com/niemeyer/pretty": [
+          "v0.0.0-20200227124842-a10e7caefd8e",
+          null
+        ],
+        "github.com/samber/lo": [
+          "v1.35.0",
+          "v1.53.0"
+        ],
+        "github.com/thoas/go-funk": [
+          "v0.9.1",
+          null
+        ]
+      }
+    },
+    "removed_old_benchmark_test_modules_absent_from_both_production_import_lists": true,
+    "experimental_simd_not_imported": true
+  },
+  "application_query_summary_baseline": {
+    "source": "2f4fe408414383e74d2339f0ce97d9a3174b6473",
+    "lo": "v1.35.0",
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-json",
+      "./backend/pkg/database",
+      "-run",
+      "^(TestProcessSearchParameter|TestProcessSearchParameterValue|TestSearchCodeToWhereClause|TestSearchCodeToFromClause|TestProcessAggregationParameter|TestRepositorySummaryTestSuiteSuite)$",
+      "-count=1"
+    ],
+    "start": "2026-11-02T21:46:18.733813+00:00",
+    "end": "2026-11-02T21:46:30.341598+00:00",
+    "exit": 0,
+    "entered_tests": [
+      "TestProcessSearchParameter",
+      "TestProcessSearchParameterValue",
+      "TestSearchCodeToWhereClause",
+      "TestSearchCodeToFromClause",
+      "TestProcessAggregationParameter",
+      "TestRepositorySummaryTestSuiteSuite",
+      "TestRepositorySummaryTestSuiteSuite/TestGetInternationalPatientSummaryBundle"
+    ],
+    "pass_events": 7,
+    "skip_events": 0
+  },
+  "candidate_query_summary_checks": [
+    {
+      "name": "root-database",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/samber-lo-review/root-candidate.mod",
+        "-json",
+        "./backend/pkg/database",
+        "-run",
+        "^(TestProcessSearchParameter|TestProcessSearchParameterValue|TestSearchCodeToWhereClause|TestSearchCodeToFromClause|TestProcessAggregationParameter|TestRepositorySummaryTestSuiteSuite)$",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:50:57.388838+00:00",
+      "end": "2026-11-02T21:51:32.817892+00:00",
+      "exit": 0,
+      "entered_tests": [
+        "TestProcessSearchParameter",
+        "TestProcessSearchParameterValue",
+        "TestSearchCodeToWhereClause",
+        "TestSearchCodeToFromClause",
+        "TestProcessAggregationParameter",
+        "TestRepositorySummaryTestSuiteSuite",
+        "TestRepositorySummaryTestSuiteSuite/TestGetInternationalPatientSummaryBundle"
+      ],
+      "pass_events": 7,
+      "skip_events": 0
+    },
+    {
+      "name": "desktop-database",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/samber-lo-review/desktop-candidate.mod",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+        "-run",
+        "^(TestProcessSearchParameter|TestProcessSearchParameterValue|TestSearchCodeToWhereClause|TestSearchCodeToFromClause|TestProcessAggregationParameter|TestRepositorySummaryTestSuiteSuite)$",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:51:32.825862+00:00",
+      "end": "2026-11-02T21:51:56.979158+00:00",
+      "exit": 0,
+      "entered_tests": [
+        "TestProcessSearchParameter",
+        "TestProcessSearchParameterValue",
+        "TestSearchCodeToWhereClause",
+        "TestSearchCodeToFromClause",
+        "TestProcessAggregationParameter",
+        "TestRepositorySummaryTestSuiteSuite",
+        "TestRepositorySummaryTestSuiteSuite/TestGetInternationalPatientSummaryBundle"
+      ],
+      "pass_events": 7,
+      "skip_events": 0
+    }
+  ],
+  "application_module_files_equal_prevalidated_candidates": true,
+  "all_existing_checksum_bytes_and_order_retained": true,
+  "new_checksum_lines_per_graph": 2,
+  "generator_outputs": {
+    "files": 57,
+    "old_new_generated_hashes_identical": true,
+    "hashes": {
+      "fhir_procedure.go": "8346071ff5d7683dce7bda4ad78e58fd7e360b0a04a0507b3fc69f2537ba8290",
+      "fhir_medication_statement.go": "46bc591c3b251033863381ea7b7e3d48ead954a790266edf092f7d9ada6e02ed",
+      "fhir_encounter.go": "382bb51a8df1eeda70daf83656aa87cab4f58bd8048c677b621265d37dda89a1",
+      "fhir_observation.go": "44ab82856e0eb0892197f3f6dadf7ea9812d9349c35761f465b15520f1b055a8",
+      "fhir_medication.go": "d72ddb6feb06e28e6b8c8e560f5b8eed988ce0f1fe1b96c2dec6f34663bccf4c",
+      "fhir_nutrition_order.go": "061ee10e81c616a0bd91bfd3048d34ca844495f9c9c85594542b6b244bc4abc7",
+      "fhir_organization.go": "36dc43c6c5fbd7233de0b568bf93aae9d1394e50cf7724730307eaf5a6e166fb",
+      "fhir_insurance_plan.go": "135e0e59430aa8a93fe0b3dac36b11e4721bd5bd5ccdac9f13458e3c3ed48017",
+      "fhir_adverse_event.go": "2516b15fa58521af4846e1c940a28fc41a47082bf8e721af9ae4a24b06e808e5",
+      "fhir_family_member_history.go": "c8a242ac54326fd7ed161344b22e03dfcc0163aa9dec1925c788e0214445ec81",
+      "fhir_explanation_of_benefit.go": "96a2466455b3ab985643528ef873a39f5026812f9a0d5a4dea14725210b50e39",
+      "fhir_goal.go": "cf613733f23bcd3baac69440735fac56889b65067cedf5fc6604c0c0f59c1f4c",
+      "fhir_allergy_intolerance.go": "89c81211c45313e3266db90864a7e2ac8b8a353e6e77566b016410d1d8be018e",
+      "fhir_coverage.go": "290e05b6f74ea9110bff25c03c42231db691e5b18d1dbc942c2484f502eda404",
+      "fhir_device_request.go": "db5f590a62033706ca8c729b314a75b6de568160a96495bdc4ad81b754725789",
+      "fhir_consent.go": "5c2e862999d9d1b3498b8f1f8062b39bc14bbf1dab17956229ef8416d37a6bae",
+      "fhir_medication_administration.go": "fe27cea0db5d8dca122d2d5490e6e9023384138b640fc6fd0bd924b228daada7",
+      "fhir_enrollment_response.go": "f3dde8311b4522d5a12434bee339d6148aa04cf195ba8884aa56ff8502aa9a78",
+      "fhir_account.go": "d9d9b168be6e6713f870094807d96aa68928b682218866e5f07d269402c4ecff",
+      "fhir_provenance.go": "dae498f0d8e1636a7685d9379be995ad147753515d1dce0acdf7c290d100a252",
+      "fhir_claim.go": "bf1f9616e9b86f1cb6c0a5230bb2139a28385d2ef8bdc2d506711634744d76b5",
+      "fhir_enrollment_request.go": "9e1479062c05ff3ea362af7f14ff49594764684a7cecf084bf84ce1ed40bac33",
+      "fhir_vision_prescription.go": "a809595ae29dd329979e28ee7dceeb0e7cec034172d9bfa88e3c7683e9b35caa",
+      "fhir_specimen.go": "6b118f0f4188c3b2c4e3d073de996ebd7375ea00e3a565b2a997de87d77a81c1",
+      "fhir_coverage_eligibility_request.go": "caf130f71c5579153f27d738cfc8f1d815ae2a6a2f49e49207db773b62866b05",
+      "fhir_service_request.go": "87ef119f40993f9e8d0dc0b7a9f24583d4cdafa965add006d4083af8fbdab1f4",
+      "fhir_clinical_impression.go": "258432c1eb801338bc0a9e396bbfac5c3a2f49abd10c0cb216313732984a4e4e",
+      "fhir_organization_affiliation.go": "464e35ca47f1f7b387d00b76804f1cecc03cc51fa373032b2de3a9dc2a8548c1",
+      "fhir_medication_dispense.go": "23e229b51afe2e8e3cea372bb1535c9b6b27da3571108806711e0c9260af815d",
+      "fhir_diagnostic_report.go": "8017cf196e96c2140139a9f9f986de802a2112ffa6d3237b425b362395f5f4e5",
+      "fhir_imaging_study.go": "76f7c06642a7cf1b8e7dc1aa0c110073e464310bd1b2322d6db7c90093bf8492",
+      "fhir_slot.go": "82f60f89fe1b768b34a55899d6d3fae7a38ee02010e1580d1dca016ecbc361c4",
+      "fhir_schedule.go": "c75e34f3b6c70773fc7ce9cc8e0bbb800f7551ce3c038972dca8c618883f7892",
+      "fhir_related_person.go": "25717c6e9458464d7d2045550866f1bdd88ec55c0ffb49cc479315819b63b7c5",
+      "fhir_practitioner.go": "e7a0903dc9b0cffc0777eb3925c559572de32aeba1e7f599a67a53586e34cdc4",
+      "fhir_practitioner_role.go": "c9584c4508f6c09d22df3a92f23e4f6b9e253924c377dbeaed37f56c90a984ab",
+      "utils.go": "3c820d62cb9702abb8d5b837500cc2cc458383c831924d9562c2f49b5656c1ab",
+      "fhir_document_manifest.go": "f63ecf24d3c9479d7e72f857763bbf9aaf35d7604fa8df50a3ffd7f647af8e84",
+      "fhir_care_plan.go": "7f83c65f51000741c21f411752fa1b45ddeeece3f9e06c71b2bc5afa57060245",
+      "fhir_device.go": "ef3f766d78fade5e0854443b32c4408a9fccf1a0b1e59f7a4bff3dc533fc105a",
+      "fhir_document_reference.go": "109d5a29df975bb2095aaf38b42f8e420a9d66ddb90bad95b0155b65c8bd5db1",
+      "fhir_medication_request.go": "859d9e943cf571a50d3043d26c1ca7499dcce8cd741ce9f21aa2ae7bb1ba5a0d",
+      "fhir_appointment.go": "862674dc14fbb253ddf29ea4ab673ff31fdd66d01cd74749a4cfef493f0e4fa6",
+      "fhir_claim_response.go": "f61cbd53a2c585ccd3bbe00d200d2404213660a357a39429e251d2df1c04f8f4",
+      "fhir_questionnaire.go": "03752ae5ee04fba5cc89b3d20af1414c49fa092d9973de8730ac895ba59c5ad5",
+      "fhir_care_team.go": "310860f2fc71e36cbe7962f3dcd1baa327d47623c2010735fae51040d27840e2",
+      "fhir_endpoint.go": "7c100e17d614f9cabac25de993df7c8e7a9fa93fc06477967b3f840c9869eb2b",
+      "fhir_location.go": "ba5874e05a3f247741837f35ff50699ca9949d6fe4de7488293933789a5b896c",
+      "fhir_immunization.go": "6a60b3e7e05a686dbcef6170b321c753bffb6db19c56995a3d6871618d9049c3",
+      "fhir_media.go": "2739f312266b9f15267862f2044c4604ea4b6f72cb0a776017ee601716bdf912",
+      "fhir_composition.go": "7b6a5a557b0d9d3eb8c50aa316ad877a47b69efb4574b9c48372c834d3b1edc7",
+      "fhir_person.go": "6b257e1abdd53cb0492646a1df9254e1a1af1882163289a0efb1b62965c6e0ec",
+      "fhir_questionnaire_response.go": "81b8816e9f81a728feee875835f0d35413db9bc088d41a23c4b64824fcd209ce",
+      "fhir_condition.go": "98771b6de3c077e900f89858510c2d54e7969811f0f3ef7aa2fc60ff20affdcb",
+      "fhir_binary.go": "eb8b462fd9929ea95602879ca3c44c8a30cd51e7082b01f8c90ac6b31eac96e5",
+      "fhir_patient.go": "b9591b05995d6ef673d2a50104774a41b23fe28b8c32e583af18f73c01819b5d",
+      "fhir_coverage_eligibility_response.go": "a7645338e89639180e45a301ab30e46bf5a4d563684abba766b51450b2dc2913"
+    }
+  },
+  "direct_published_upstream_test_command": {
+    "name": "upstream-lo",
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-modfile",
+      "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/samber-lo-review/root-candidate.mod",
+      "github.com/samber/lo",
+      "-count=1"
+    ],
+    "cwd": ".",
+    "start": "2026-11-02T21:51:56.981459+00:00",
+    "end": "2026-11-02T21:51:58.137138+00:00",
+    "exit": 1
+  },
+  "published_upstream_tests": "FAIL: release removes unit-test helper foo but retains referencing examples; exact diagnostics preserved",
+  "complete_parent_root_suite": {
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-json",
+      ".",
+      "-count=1"
+    ],
+    "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/samber-lo-review/official-parent-source/samber-lo-56ef3be",
+    "start": "2026-11-02T21:55:31.126354+00:00",
+    "end": "2026-11-02T21:55:49.957357+00:00",
+    "exit": 0,
+    "pass_events": 949,
+    "skip_events": 0,
+    "upstream_development_graph_separate_from_application_graph": true,
+    "root_module_production_sources_match_module_archive": true
+  },
+  "parent_root_module_sources": {
+    "parent": "56ef3beaf8adfea1908b094e49b3b639ea604aab",
+    "release_commit": "cf6fb4f9b08c1d3d6e309581316f106dc30b458e",
+    "parent_archive_sha256": "05ad5324c2758717940d7ab0a23be8cb0468f89b02870f6a3076324570c7babc",
+    "production_go_files": 45,
+    "production_go_sources_equal": true,
+    "parent_root_test_files": 18,
+    "release_root_test_files": 2,
+    "root_module_production_sources_count": 37,
+    "matches_authenticated_module_archive_sources": true,
+    "separate_nested_modules": [
+      "exp/simd/go.mod"
+    ],
+    "production_hashes": {
+      "slice.go": "07be5284f75446968c081c8f83737b2562b789703c8321747b2e5372430d64c3",
+      "tuples.go": "89511be366426cb610a547fba7147c9de3597f4ff37572d9ba28534cb2ad0408",
+      "time.go": "ef621c9c7843a1fafcf6c568debecbef408b56997b8459935ea27e6d5339b566",
+      "types.go": "e9a39db18d4dc12adf5d7ac9aaed968325caa5f63c27310832e0ef376bfd1e33",
+      "channel.go": "ef79e18fdd433a15d64481c24f0f0d5996fc65519d063c560c404e01c5db4a80",
+      "concurrency.go": "fe6db6ee8c1caa80b776152515cd8831171e1e09b58bad405c0fc80d825de384",
+      "find.go": "85602ccc04d799f47ab263d6b8149e06a119427a40168ccdfb4eda40c5700c22",
+      "condition.go": "801bc243ab543a8efa4b5566372569966d6e656895dc1a728ec7b58a40202eb6",
+      "intersect.go": "c109610a5326559706c034c9d0eef54e8d6414ad5d1685f95768793bfff69903",
+      "retry.go": "8feee52e8fb71c484bd27dc0b8b7340a7e87b746ccf95f40fac01b6778327d3a",
+      "map.go": "5bc7b5db59a801d075651e97c97d2330b5ddeef5c337472f990544725648557b",
+      "func.go": "a87e2881f0680d8d7af0b3031f9aee69e96eb1ced4c318e6a2bb3f886672c8fa",
+      "type_manipulation.go": "129b84aa981e60dc36142637e3c3a5491d8c75b5fd7873c81b5bafcf84dbdc61",
+      "string.go": "fa9a1c5dfb51905adeba4431e52dec9977bebe337371a893562d22bdd9e2530d",
+      "constraints.go": "ab37f9b2f4dfd7b0098556a7c9610c8dc0dc10aa6b20f60c2d7113b9b9641689",
+      "math.go": "3312075f2e5449e38c15bab9718f12ee5d5b3f5c79c055db6932348f1599f62a",
+      "errors.go": "595b21f9f2a7478f5982381f890b895fbabdc92303accb0666abdf9d849d3c44",
+      "mutable/slice.go": "6dade571a84e65e30a76ad0d4aa6ee0ba28e8fa13af2981c8752d56baee89f1a",
+      "parallel/slice.go": "32b18c187b13b27238ba87310ae99626359d2a41bffccc36046eebaffdee4dd1",
+      "it/tuples.go": "2c9e73a92ae8fc165869a75968feec9631920ed819e69c776d2190cc565f8385",
+      "it/channel.go": "417913d4527b1e3eaf1c23b7fd307c8ac30db9ffa6042a329ec32badb25cf0bb",
+      "it/find.go": "f34cd166f7515fd5e4a5622f8aae7409ca22f0af594925b81596bc1f50068442",
+      "it/intersect.go": "d71799b9b1ccbd77aa54b2820860bc0837fec6b4eaf093c383bf1dc84f7ab6ef",
+      "it/map.go": "5ae18c1e52fb1316d853624c4d48b22e3206cc299cc74492a80a21f6f3ec2f6c",
+      "it/seq.go": "31984bfbed3c3d42fcc1b586399b8982c3dee45ec931639028c8a6ebbe7a7c0f",
+      "it/type_manipulation.go": "ea08fc475771089b87532ddd37bc053e02ff910e9d5011f805d273a99e496c94",
+      "it/string.go": "3ec3ba990c0e5f5433ee2e4c585f4b27b741dbc01a0621e734d18621e73b0ab0",
+      "it/math.go": "1adc94d57f1690d50525262d76dc3f207ab13c629d19a335179c7334de812b6e",
+      "internal/constraints/ordered_go121.go": "ad7ccbfb893420323d231ebbeb0b8e77d1737e32190054c3895a92d17d3f95c2",
+      "internal/constraints/ordered_go118.go": "c19369c25000b2fb2a41c33ae497a7f17ab7b44d197746ebe322dbbb440faa53",
+      "internal/constraints/constraints.go": "6cc914afdd9822415a28efd6c7ac0ef029e17cd1d527e11c43805f2f8e38bbf0",
+      "internal/xrand/ordered_go122.go": "d87883b7a2665ef2ae2f0ec56e4b0e6f234b74c37b3862fa7ce1546e8d47d760",
+      "internal/xrand/ordered_go118.go": "0fdd30db8a56401b720074ffd60daa53aec147651a17cd72551179fd34b96011",
+      "internal/xtime/fake.go": "cc36700ec7d3520483ccf1b443792b6bb83e8b640ab3d9f05eb54b9aa164e9c6",
+      "internal/xtime/time.go": "0a23ea6481ddcd038b18628fd3cd2e68fc72be607fc96b882c06afb071da3c20",
+      "internal/xtime/real.go": "8e17159cbf6dca9b8e52941688abda09b2ed3bdfbef30eb51e9403f993f5f563",
+      "internal/xtime/noCopy.go": "489913c60680468e4e8766696fd08b652ae1cfd389e14d8b70e594df779e2206"
+    }
+  },
+  "applied_validation": [
+    {
+      "name": "verify-root",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:56:50.366977+00:00",
+      "end": "2026-11-02T21:56:58.938599+00:00",
+      "exit": 0
+    },
+    {
+      "name": "verify-desktop",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:56:58.939838+00:00",
+      "end": "2026-11-02T21:57:05.400095+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:57:05.400797+00:00",
+      "end": "2026-11-02T21:57:05.478734+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:57:05.479290+00:00",
+      "end": "2026-11-02T21:57:05.557078+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:57:05.557713+00:00",
+      "end": "2026-11-02T21:57:21.570841+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:57:21.571446+00:00",
+      "end": "2026-11-02T21:57:30.688991+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-host-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./...",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:57:30.689750+00:00",
+      "end": "2026-11-02T21:57:44.633143+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-embedded-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbedded",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T21:57:44.634225+00:00",
+      "end": "2026-11-02T21:58:31.103157+00:00",
+      "exit": 0
+    },
+    {
+      "name": "server-build",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/samber-lo-review/validation/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T21:58:31.106407+00:00",
+      "end": "2026-11-02T21:58:53.670302+00:00",
+      "exit": 0
+    }
+  ],
+  "frontend_inputs_unchanged_since_qualified_native": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+  "native_validation": {
+    "source_revision": "93aa68702cf765246fcee3d1f67e735a2d48570d",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-93aa68702-lo-maintenance/Chartrove-93aa68702.zip",
+      "sha256": "5f5bad3b8f7126302a309c6be78e84c607414d36ea5d0b6506d5f879f1bed613",
+      "bytes": 336719449
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "source_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/generated/1",
+      "frontend_git_inputs_unchanged": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-93aa68702-lo-maintenance/receipt.json",
+    "full_local_receipt_sha256": "30e45819c542106d19e1c4beae40108ba6e1cafd43d08dc8fd6a61b3c8e57068",
+    "frontend_comparison": {
+      "files": 22287,
+      "qualified_reused_output_and_native_asset_tree_byte_identical": true
+    },
+    "binary_build_info_uses_lo_v1_53_0": true
+  },
+  "protected_integration": "pending required PR checks",
+  "real_health_records_accessed": false,
+  "test_event_counts": {
+    "desktop-host-tests": {
+      "pass_events": 28,
+      "skip_events": 2
+    },
+    "desktop-embedded-tests": {
+      "pass_events": 9,
+      "skip_events": 0
+    }
+  }
+}
