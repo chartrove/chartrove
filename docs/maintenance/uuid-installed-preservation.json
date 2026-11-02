@@ -1,0 +1,10 @@
+{
+  "dependency_archive": "dist/validation/2026-11-01-consolidation/frontend-dependencies-before-legacy-tools-20261102.tar.zst",
+  "archive_sha256": "983c70481647a788aa5ffce2cd763649a85b7b32a23f2be21b40d8fa37fb2243",
+  "installed_root_uuid_version": "9.0.0",
+  "all_current_uuid_regular_files_match_preserved_archive": true,
+  "matched_regular_files": 76,
+  "archive_metadata_members": 81,
+  "additional_archived_files": [],
+  "web_crypto_helper_sha256": "e155784f9ada369b0dfa909afffc6e04a7506980081c43c4121c0f646914aaf5"
+}

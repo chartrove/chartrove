@@ -31,5 +31,6 @@ Full production/macOS package build, ZIP CRC, strict extracted signature and
 all ten native smoke checks pass for fd5194396. Original output contents, inodes,
 permissions, ownership, timestamps and all xattrs are restored exactly.
 [Native receipt](native-fd5194396-validation.json). Protected Backend/Frontend/
-Desktop checks must still pass before integration. Original-primary generated coverage recovery remains unresolved;
+Desktop checks passed before protected PR #350 merged as
+949b2f2b5a06266675ff3ab0d8eaca39d32c533e. Original-primary generated coverage recovery remains unresolved;
 these runs use new private output directories.

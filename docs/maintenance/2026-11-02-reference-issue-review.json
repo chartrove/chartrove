@@ -1,0 +1,19 @@
+[
+  {
+    "number": 46,
+    "reviewed_state": "OPEN",
+    "reviewed_comments": 0,
+    "proposed_disposition": "retire informational upstream reference after protected record integration",
+    "state_reason": "not_planned",
+    "evidence": "The complete current issue contains only two styling-reference links and a Bootstrap utility-class example; there is no reported defect or remaining implementation acceptance criterion, and no conversation comments. Retain the attributed issue body and links as searchable historical reference. This retirement does not claim a new UI feature or styling implementation.",
+    "reviewed_body_sha256": "5cd2c7334c247143ab4d80927e9e365e49f4e69be6552326c742cb4fed581675",
+    "reviewed_updated_at": "2026-10-27T13:50:52Z"
+  },
+  {
+    "number": 193,
+    "reviewed_state": "OPEN",
+    "reviewed_comments": 1,
+    "disposition": "keep open; actionable custom TLS/proxy support assessment remains",
+    "evidence": "Although the body shares an upstream Tailscale/Docktail deployment recipe, its migrated discussion also requests custom certificate support without installing the upstream CA in every browser. That unresolved request prevents retiring the entire issue as merely informational. Current Chartrove configuration and disposable TLS/proxy behavior need separate verification; no deployment recipe or external service has been enabled or endorsed."
+  }
+]
