@@ -1,0 +1,30 @@
+{
+  "proposal": 210,
+  "refs": [
+    {
+      "side": "head",
+      "branch": "migration/upstream-pr-584",
+      "tip": "fda11e9c1519c058f77fb349fb8557e334d86ce5"
+    },
+    {
+      "side": "base",
+      "branch": "migration/upstream-pr-584-base",
+      "tip": "2cbb5bfbd6ab0f97cfb01191af17bc131945a78b"
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/source-layout-heads-20261102.bundle",
+  "bundle_sha256": "4de3f2dd4eb1d7a59e34dcdd1e3805ff7b247a0352a1732dc534a751d1182870",
+  "prerequisites": [
+    "2cbb5bfbd6ab0f97cfb01191af17bc131945a78b"
+  ],
+  "prerequisites_reachable_from": "e24fd9bae3e3a82b37a8846abafda48bd1a2d4cc",
+  "strict_isolated_pack_verification": "passed",
+  "required_unique_objects": 5,
+  "all_required_objects_present": true,
+  "current_effect_evidence": {
+    "inherited_commit_removing_hover_width_and_width_transition": "30b1cb05ffb156eb789fc6fe749310acca54f5ad",
+    "source_width_default": "200px from template; no width-changing hover rule in current custom.scss",
+    "historical_additional_280px_policy": "not adopted; this is not evidence of every navigation/UI issue being resolved"
+  },
+  "disposition_pending": "source effect already present; document and reconcile through next protected record, with both head/base dependency checks before retirement"
+}

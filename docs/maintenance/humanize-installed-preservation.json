@@ -1,0 +1,11 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/humanize-installed-before-20261102.tar.zst",
+  "sha256": "fa75f8a7846d328d0dd425a96e3c08302837610c454287a1bd646b1ec4ccb608",
+  "bytes": 79492,
+  "installed_packages": [
+    "humanize-duration 3.28.0"
+  ],
+  "includes_yarn_integrity": true,
+  "native_acl_xattrs_flags_and_full_tar_traversal": "passed",
+  "stat_and_content_manifest_sha256": "8a4cc224b0eb8ab5334e52371262c475ff68395a6612e378ff58e1e140bf506e"
+}
