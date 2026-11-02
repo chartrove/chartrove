@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/github.com-samber-lo-1.x",
+  "tip": "a2752392195b70192961475f81ded01764104fe5",
+  "bundle": "dist/validation/2026-11-01-consolidation/samber-lo-head-20261102.bundle",
+  "sha256": "2229db1e8bd107b667dc8bd31769b4f68d23bb133dde28d750456820ba7f7af2",
+  "bytes": 1426,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "7fe1d418e935caac2a4bb7c3920315989f897e50",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "a2752392195b70192961475f81ded01764104fe5",
+    "cc2caf2a63648d0e29acede97a27adf781829f82",
+    "d9ec6c17411ae950bbb7bb91f18e260391ff09ad",
+    "fca5df48952293ef837e6852bb3974386e4ef868"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/github.com-samber-lo-1.x",
+      "bb09194c09aaa8a334119b13f03626b62948174b"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

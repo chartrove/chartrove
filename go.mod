@@ -28,7 +28,7 @@ require (
 	github.com/iancoleman/strcase v0.3.0
 	github.com/johnfercher/maroto/v2 v2.3.1
 	github.com/lestrrat-go/jwx/v3 v3.4.0
-	github.com/samber/lo v1.35.0
+	github.com/samber/lo v1.53.0
 	github.com/sirupsen/logrus v1.10.2
 	github.com/spf13/viper v1.12.0
 	github.com/stretchr/testify v1.12.1
