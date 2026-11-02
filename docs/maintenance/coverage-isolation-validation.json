@@ -1,0 +1,18 @@
+{
+  "verified_at_utc": "2026-11-02T09:35:59.254055+00:00",
+  "synthetic_prior_report_only": true,
+  "red_reproduced_overwrite": true,
+  "green_default_full_and_override_pass": true,
+  "prior_synthetic_contents_mode_and_mtime_unchanged_after_green": true,
+  "fresh_default_directories_private_0700": true,
+  "frontend_coverage_absent_after_owned_fixture_retirement": true,
+  "original_primary_recovery_completed": false,
+  "full_suite": "404 pass, one existing skip",
+  "proof_files": [
+    "coverage-isolation-red-proof.json",
+    "coverage-isolation-green-proof.json",
+    "coverage-isolation-full-proof.json",
+    "coverage-isolation-override-proof.json"
+  ],
+  "evidence_directory": "dist/validation/2026-11-01-consolidation"
+}
