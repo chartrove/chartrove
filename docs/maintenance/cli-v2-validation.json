@@ -1,0 +1,589 @@
+{
+  "time": "2026-11-02T19:48:39.955266+00:00",
+  "base_main": "b32b087b727e428bc7d4e6e6f0738866fcf41058",
+  "root_dependency_changes": {
+    "root_selected_module_delta": {
+      "github.com/xrash/smetrics": [
+        "v0.0.0-20201216005158-039620a65673",
+        "v0.0.0-20240521201337-686a1a2994c1"
+      ],
+      "github.com/cpuguy83/go-md2man/v2": [
+        "v2.0.2",
+        "v2.0.7"
+      ],
+      "github.com/BurntSushi/toml": [
+        "v1.1.0",
+        "v1.5.0"
+      ],
+      "github.com/urfave/cli/v2": [
+        "v2.11.2",
+        "v2.27.7"
+      ]
+    },
+    "desktop_production_imports_byte_identical": true,
+    "desktop_production_imports_sha256": "ccc5f39a2a69d3947a188b534f3cb3b462aaee310a913d95cacb55a7fa55ab4b",
+    "initial_expected_module_count_error": {
+      "expected": 3,
+      "observed": 4,
+      "reason": "upstream module minimum also selects BurntSushi/toml 1.5.0 for optional altsrc; no go.mod direct entry added"
+    },
+    "toml_excluded_from_server_and_desktop_production_imports": true,
+    "desktop_files_unchanged": true
+  },
+  "go_mod_version_edits": 3,
+  "go_sum_added_lines": 6,
+  "other_go_sum_lines_preserved": true,
+  "packages": [
+    {
+      "path": "github.com/cpuguy83/go-md2man/v2",
+      "version": "v2.0.7",
+      "sum": "h1:zbFlGlXEAKlwXpmvle3d8Oe3YnkKIK4xSRTd3sHPnBo=",
+      "go_mod_sum": "h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=",
+      "archive": "module-github.com_cpuguy83_go-md2man_v2-v2.0.7.zip",
+      "archive_sha256": "9ad5f2cbc644c0bb648a9b182d6b70f92e7ac4dfab5cf0ef746bbeef944fda59"
+    },
+    {
+      "path": "github.com/urfave/cli/v2",
+      "version": "v2.27.7",
+      "sum": "h1:bH59vdhbjLv3LAvIu6gd0usJHgoTTPhCFib8qqOwXYU=",
+      "go_mod_sum": "h1:CyNAG/xg+iAOg0N4MPGZqVmv2rCoP267496AOXUZjA4=",
+      "archive": "module-github.com_urfave_cli_v2-v2.27.7.zip",
+      "archive_sha256": "a9a4175ab5d550f093f716e8971a5c8539aa738675a210f6321cfb5905f0488a"
+    },
+    {
+      "path": "github.com/xrash/smetrics",
+      "version": "v0.0.0-20240521201337-686a1a2994c1",
+      "sum": "h1:gEOO8jv9F4OT7lGCjxCBTO/36wtF6j2nSip77qHd4x4=",
+      "go_mod_sum": "h1:Ohn+xnUBiLI6FVj/9LpzZWtj1/D6lUovWYBkxHVV3aM=",
+      "archive": "module-github.com_xrash_smetrics-v0.0.0-20240521201337-686a1a2994c1.zip",
+      "archive_sha256": "6061d9a61e863c9b8a4ed3e34b00d6784dae4ca7ec64a0e6f0e5c4bb8574328d"
+    }
+  ],
+  "before": [
+    {
+      "name": "desktop-deps",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-tags",
+        "production",
+        "-deps",
+        "-f",
+        "{{.ImportPath}} {{if .Module}}{{.Module.Path}} {{.Module.Version}}{{end}}",
+        "./cmd/fasten-desktop"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove/desktop",
+      "start": "2026-11-02T19:44:34.032748+00:00",
+      "end": "2026-11-02T19:44:34.848704+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:44:34.849307+00:00",
+      "end": "2026-11-02T19:44:34.985799+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove/desktop",
+      "start": "2026-11-02T19:44:34.986108+00:00",
+      "end": "2026-11-02T19:44:35.090806+00:00",
+      "exit": 0
+    },
+    {
+      "name": "build-cli",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:44:35.091121+00:00",
+      "end": "2026-11-02T19:45:50.114413+00:00",
+      "exit": 0
+    },
+    {
+      "name": "help",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "--help"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:50.115022+00:00",
+      "end": "2026-11-02T19:45:51.729055+00:00",
+      "exit": 0
+    },
+    {
+      "name": "start-help",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "start",
+        "--help"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.729405+00:00",
+      "end": "2026-11-02T19:45:51.757791+00:00",
+      "exit": 0
+    },
+    {
+      "name": "migrate-help",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "migrate",
+        "--help"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.758224+00:00",
+      "end": "2026-11-02T19:45:51.777572+00:00",
+      "exit": 0
+    },
+    {
+      "name": "version-flag",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "--version"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.777917+00:00",
+      "end": "2026-11-02T19:45:51.798013+00:00",
+      "exit": 0
+    },
+    {
+      "name": "version-command",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "version"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.798289+00:00",
+      "end": "2026-11-02T19:45:51.830145+00:00",
+      "exit": 0
+    },
+    {
+      "name": "invalid-flag",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "start",
+        "--not-a-real-flag"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.830617+00:00",
+      "end": "2026-11-02T19:45:51.863892+00:00",
+      "exit": 1
+    },
+    {
+      "name": "invalid-debug",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "start",
+        "--debug=invalid-bool"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.864345+00:00",
+      "end": "2026-11-02T19:45:51.890065+00:00",
+      "exit": 1
+    },
+    {
+      "name": "missing-start-config",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "start",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/absent.yaml"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.890534+00:00",
+      "end": "2026-11-02T19:45:51.948907+00:00",
+      "exit": 1
+    },
+    {
+      "name": "missing-migrate-config",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/fasten-cli",
+        "migrate",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/absent.yaml"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before",
+      "start": "2026-11-02T19:45:51.949337+00:00",
+      "end": "2026-11-02T19:45:51.986496+00:00",
+      "exit": 1
+    }
+  ],
+  "after": [
+    {
+      "name": "desktop-deps",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-tags",
+        "production",
+        "-deps",
+        "-f",
+        "{{.ImportPath}} {{if .Module}}{{.Module.Path}} {{.Module.Version}}{{end}}",
+        "./cmd/fasten-desktop"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove/desktop",
+      "start": "2026-11-02T19:46:11.788628+00:00",
+      "end": "2026-11-02T19:46:12.538766+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:46:12.539615+00:00",
+      "end": "2026-11-02T19:46:12.747837+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove/desktop",
+      "start": "2026-11-02T19:46:12.748234+00:00",
+      "end": "2026-11-02T19:46:12.823228+00:00",
+      "exit": 0
+    },
+    {
+      "name": "build-cli",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:46:12.823802+00:00",
+      "end": "2026-11-02T19:46:28.949049+00:00",
+      "exit": 0
+    },
+    {
+      "name": "help",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "--help"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:28.949586+00:00",
+      "end": "2026-11-02T19:46:30.558810+00:00",
+      "exit": 0
+    },
+    {
+      "name": "start-help",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "start",
+        "--help"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.559264+00:00",
+      "end": "2026-11-02T19:46:30.585942+00:00",
+      "exit": 0
+    },
+    {
+      "name": "migrate-help",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "migrate",
+        "--help"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.586506+00:00",
+      "end": "2026-11-02T19:46:30.610465+00:00",
+      "exit": 0
+    },
+    {
+      "name": "version-flag",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "--version"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.610827+00:00",
+      "end": "2026-11-02T19:46:30.634678+00:00",
+      "exit": 0
+    },
+    {
+      "name": "version-command",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "version"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.635083+00:00",
+      "end": "2026-11-02T19:46:30.656663+00:00",
+      "exit": 0
+    },
+    {
+      "name": "invalid-flag",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "start",
+        "--not-a-real-flag"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.657032+00:00",
+      "end": "2026-11-02T19:46:30.677401+00:00",
+      "exit": 1
+    },
+    {
+      "name": "invalid-debug",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "start",
+        "--debug=invalid-bool"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.677709+00:00",
+      "end": "2026-11-02T19:46:30.700588+00:00",
+      "exit": 1
+    },
+    {
+      "name": "missing-start-config",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "start",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/absent.yaml"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.700962+00:00",
+      "end": "2026-11-02T19:46:30.722132+00:00",
+      "exit": 1
+    },
+    {
+      "name": "missing-migrate-config",
+      "command": [
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/fasten-cli",
+        "migrate",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/absent.yaml"
+      ],
+      "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after",
+      "start": "2026-11-02T19:46:30.722427+00:00",
+      "end": "2026-11-02T19:46:30.743665+00:00",
+      "exit": 1
+    },
+    {
+      "name": "verify-root",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:46:30.744614+00:00",
+      "end": "2026-11-02T19:46:35.987767+00:00",
+      "exit": 0
+    },
+    {
+      "name": "verify-desktop",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove/desktop",
+      "start": "2026-11-02T19:46:35.988343+00:00",
+      "end": "2026-11-02T19:46:40.964915+00:00",
+      "exit": 0
+    },
+    {
+      "name": "app-cli-config-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "./backend/cmd/fasten",
+        "./backend/pkg/config",
+        "-count=1"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:46:40.965399+00:00",
+      "end": "2026-11-02T19:46:54.421264+00:00",
+      "exit": 0
+    },
+    {
+      "name": "cli-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:46:54.421802+00:00",
+      "end": "2026-11-02T19:47:06.462863+00:00",
+      "exit": 0
+    },
+    {
+      "name": "upstream-cli-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "github.com/urfave/cli/v2",
+        "-count=1"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "start": "2026-11-02T19:47:06.463272+00:00",
+      "end": "2026-11-02T19:47:09.330257+00:00",
+      "exit": 0
+    }
+  ],
+  "additional_alias_env_checks": [
+    {
+      "phase": "before",
+      "name": "short-help",
+      "args": [
+        "-h"
+      ],
+      "DEBUG": null,
+      "exit": 0,
+      "expected": 0,
+      "required_output": "COMMANDS:",
+      "passed": true
+    },
+    {
+      "phase": "before",
+      "name": "short-version",
+      "args": [
+        "-v"
+      ],
+      "DEBUG": null,
+      "exit": 0,
+      "expected": 0,
+      "required_output": "goweb version 1.1.3",
+      "passed": true
+    },
+    {
+      "phase": "before",
+      "name": "debug-env-valid",
+      "args": [
+        "start",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/absent.yaml"
+      ],
+      "DEBUG": "true",
+      "exit": 1,
+      "expected": 1,
+      "required_output": "ConfigFileMissingError",
+      "passed": true
+    },
+    {
+      "phase": "before",
+      "name": "debug-env-invalid",
+      "args": [
+        "start",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/before/absent.yaml"
+      ],
+      "DEBUG": "invalid-bool",
+      "exit": 1,
+      "expected": 1,
+      "required_output": "invalid-bool",
+      "passed": true
+    },
+    {
+      "phase": "after",
+      "name": "short-help",
+      "args": [
+        "-h"
+      ],
+      "DEBUG": null,
+      "exit": 0,
+      "expected": 0,
+      "required_output": "COMMANDS:",
+      "passed": true
+    },
+    {
+      "phase": "after",
+      "name": "short-version",
+      "args": [
+        "-v"
+      ],
+      "DEBUG": null,
+      "exit": 0,
+      "expected": 0,
+      "required_output": "goweb version 1.1.3",
+      "passed": true
+    },
+    {
+      "phase": "after",
+      "name": "debug-env-valid",
+      "args": [
+        "start",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/absent.yaml"
+      ],
+      "DEBUG": "true",
+      "exit": 1,
+      "expected": 1,
+      "required_output": "ConfigFileMissingError",
+      "passed": true
+    },
+    {
+      "phase": "after",
+      "name": "debug-env-invalid",
+      "args": [
+        "start",
+        "--config",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/cli-review/after/absent.yaml"
+      ],
+      "DEBUG": "invalid-bool",
+      "exit": 1,
+      "expected": 1,
+      "required_output": "invalid-bool",
+      "passed": true
+    }
+  ],
+  "help_text_changes": "root/subcommand argument placeholders, declaration-order flags and explicit help; original raw outputs and normalized diffs retained",
+  "server_sources_unchanged": true,
+  "desktop_files_unchanged": true,
+  "desktop_production_imports_byte_identical": true,
+  "native_reused_source": "9add19dd1c16964e01a6648cf307703fc433e250",
+  "renovate_schema_validation": {
+    "valid": true,
+    "errors": null
+  },
+  "preservation_errors_retained": [
+    "initial desktop go list used module directory rather than executable package",
+    "initial graph comparison expected three selected changes; optional TOML makes four"
+  ],
+  "real_health_records_accessed": false,
+  "integration": "pending protected-main PR"
+}

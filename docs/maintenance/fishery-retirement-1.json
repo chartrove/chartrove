@@ -1,0 +1,33 @@
+{
+  "time": "2026-11-02T19:42:48.982299+00:00",
+  "main": "b32b087b727e428bc7d4e6e6f0738866fcf41058",
+  "branches": [
+    {
+      "name": "renovate/fishery-2.x-lockfile",
+      "sha": "25300eb7b2d606eca27c878089f82980c77b1ff8",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/fishery-2.x-lockfile",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/fishery-tooling",
+      "sha": "25606ebab60b9e8143f7ee8c235c5538f0c35da4",
+      "kind": "merged task",
+      "ref": "refs/heads/task/fishery-tooling",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/fishery-2.x-lockfile\n - [deleted]             task/fishery-tooling\n"
+    },
+    "delete": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/fishery-2.x-lockfile\n - [deleted]             task/fishery-tooling\n"
+    }
+  }
+}
