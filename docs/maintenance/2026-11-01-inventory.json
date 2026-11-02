@@ -1,0 +1,2384 @@
+{
+  "main": "2d4c2c197fea27c46192bcb320a6c5a652da4020",
+  "issues": [
+    {
+      "number": 222,
+      "title": "Dependency Dashboard",
+      "url": "https://github.com/karamhouse/chartrove/issues/222"
+    },
+    {
+      "number": 195,
+      "title": "[Upstream #638] Allscripts\u2192Altera split breaks FMH org connections (stale fmhorgid, token relay invalid_client); /v1/search 404s so Add Source is empty",
+      "url": "https://github.com/karamhouse/chartrove/issues/195"
+    },
+    {
+      "number": 194,
+      "title": "[Upstream #637] [Bug]: The notes located at the very bottom of the case record cannot be saved.",
+      "url": "https://github.com/karamhouse/chartrove/issues/194"
+    },
+    {
+      "number": 193,
+      "title": "[Upstream #635] Simpler HTTPS Setup with tailscale",
+      "url": "https://github.com/karamhouse/chartrove/issues/193"
+    },
+    {
+      "number": 192,
+      "title": "[Upstream #634] [Bug]: Fasten Onprem does not load when using Cosmos Cloud for deployment/reverse proxy",
+      "url": "https://github.com/karamhouse/chartrove/issues/192"
+    },
+    {
+      "number": 191,
+      "title": "[Upstream #633] Invalid link",
+      "url": "https://github.com/karamhouse/chartrove/issues/191"
+    },
+    {
+      "number": 190,
+      "title": "[Upstream #631] Edit and delete individual medical records",
+      "url": "https://github.com/karamhouse/chartrove/issues/190"
+    },
+    {
+      "number": 189,
+      "title": "[Upstream #629] Fasten Onprem Update: Direct EHR Integrations Broken & Will Be Removed",
+      "url": "https://github.com/karamhouse/chartrove/issues/189"
+    },
+    {
+      "number": 188,
+      "title": "[Upstream #624] put fasten health behind reverse proxy",
+      "url": "https://github.com/karamhouse/chartrove/issues/188"
+    },
+    {
+      "number": 187,
+      "title": "[Upstream #623] [Feature Request]: OpenAI\\Ollama API integration with MedGemma 1.5 (and other LLMs)",
+      "url": "https://github.com/karamhouse/chartrove/issues/187"
+    },
+    {
+      "number": 186,
+      "title": "[Upstream #617] [Bug]: Unable to see date in \"Labs\" for manually entered data",
+      "url": "https://github.com/karamhouse/chartrove/issues/186"
+    },
+    {
+      "number": 185,
+      "title": "[Upstream #616] [Bug]: Never set encryption key and now access restricted",
+      "url": "https://github.com/karamhouse/chartrove/issues/185"
+    },
+    {
+      "number": 184,
+      "title": "[Upstream #615] Delete Data",
+      "url": "https://github.com/karamhouse/chartrove/issues/184"
+    },
+    {
+      "number": 183,
+      "title": "[Upstream #612] [Bug]: Suspect database issues",
+      "url": "https://github.com/karamhouse/chartrove/issues/183"
+    },
+    {
+      "number": 182,
+      "title": "[Upstream #592] [Bug]: an error occurred while bulk importing resources from source: unknown AdministrativeGender code `m`",
+      "url": "https://github.com/karamhouse/chartrove/issues/182"
+    },
+    {
+      "number": 181,
+      "title": "[Upstream #548] [Provider Request][International]: Trillium Health Partners",
+      "url": "https://github.com/karamhouse/chartrove/issues/181"
+    },
+    {
+      "number": 180,
+      "title": "[Upstream #547] [Provider Request][International]: lifelabs",
+      "url": "https://github.com/karamhouse/chartrove/issues/180"
+    },
+    {
+      "number": 179,
+      "title": "[Upstream #546] [Provider Request]: PocketHealth",
+      "url": "https://github.com/karamhouse/chartrove/issues/179"
+    },
+    {
+      "number": 178,
+      "title": "[Upstream #535] Help: Prebuilt Dashboards",
+      "url": "https://github.com/karamhouse/chartrove/issues/178"
+    },
+    {
+      "number": 177,
+      "title": "[Upstream #533] [Provider Request]: Orlando Health Melbourne Hospital",
+      "url": "https://github.com/karamhouse/chartrove/issues/177"
+    },
+    {
+      "number": 176,
+      "title": "[Upstream #532] [Bug][Allscripts]: Sarasota Memorial Health Care Error",
+      "url": "https://github.com/karamhouse/chartrove/issues/176"
+    },
+    {
+      "number": 175,
+      "title": "[Upstream #531] [Provider Request][Cerner]: Virginia Mason Franciscan Health MyVirginiaMason",
+      "url": "https://github.com/karamhouse/chartrove/issues/175"
+    },
+    {
+      "number": 174,
+      "title": "[Upstream #530] [Provider Request][Meditech]: Cayuga Medical Center - Central/Upstate NY",
+      "url": "https://github.com/karamhouse/chartrove/issues/174"
+    },
+    {
+      "number": 173,
+      "title": "[Upstream #528] [Provider Request][Epic]: CommonSpirit - Mountain",
+      "url": "https://github.com/karamhouse/chartrove/issues/173"
+    },
+    {
+      "number": 172,
+      "title": "[Upstream #527] [Provider Request][eCW]: Granger Medical Clinic",
+      "url": "https://github.com/karamhouse/chartrove/issues/172"
+    },
+    {
+      "number": 171,
+      "title": "[Upstream #525] [Provider Request][Cerner]: Publix Pharmacy",
+      "url": "https://github.com/karamhouse/chartrove/issues/171"
+    },
+    {
+      "number": 170,
+      "title": "[Upstream #524] [Bug][Epic]: Adding Novant Health connection times out.",
+      "url": "https://github.com/karamhouse/chartrove/issues/170"
+    },
+    {
+      "number": 169,
+      "title": "[Upstream #523] [Bug][Epic]: Bayhealth dynamic client error ",
+      "url": "https://github.com/karamhouse/chartrove/issues/169"
+    },
+    {
+      "number": 168,
+      "title": "[Upstream #522] [Bug]: Manual Upload does not work in Mac Desktop app",
+      "url": "https://github.com/karamhouse/chartrove/issues/168"
+    },
+    {
+      "number": 167,
+      "title": "[Upstream #521] [Bug]: Screen Shift ",
+      "url": "https://github.com/karamhouse/chartrove/issues/167"
+    },
+    {
+      "number": 166,
+      "title": "[Upstream #517] [Bug]: Athena sources do not work with caregiver accounts",
+      "url": "https://github.com/karamhouse/chartrove/issues/166"
+    },
+    {
+      "number": 165,
+      "title": "[Upstream #513] [Bug]: MS Store Permissions and Manual Upload",
+      "url": "https://github.com/karamhouse/chartrove/issues/165"
+    },
+    {
+      "number": 164,
+      "title": "[Upstream #511] Investigate FHIRcast as a sync mechanism",
+      "url": "https://github.com/karamhouse/chartrove/issues/164"
+    },
+    {
+      "number": 163,
+      "title": "[Upstream #510] [Bug]: 403 errors in source sync",
+      "url": "https://github.com/karamhouse/chartrove/issues/163"
+    },
+    {
+      "number": 162,
+      "title": "[Upstream #509] [Bug]: js console error from oauth4webapi.js",
+      "url": "https://github.com/karamhouse/chartrove/issues/162"
+    },
+    {
+      "number": 161,
+      "title": "[Upstream #508] [Provider Request][ModMed]: Gastroenterology Consultants PC of Savannah, GA",
+      "url": "https://github.com/karamhouse/chartrove/issues/161"
+    },
+    {
+      "number": 160,
+      "title": "[Upstream #507] Suggestion: Search Enhancements/Disambiguate providers",
+      "url": "https://github.com/karamhouse/chartrove/issues/160"
+    },
+    {
+      "number": 159,
+      "title": "[Upstream #506] [Bug] Line Graph does not appear to use data from DB",
+      "url": "https://github.com/karamhouse/chartrove/issues/159"
+    },
+    {
+      "number": 158,
+      "title": "[Upstream #502] [Bug]: Error loading lab/diagnostic report",
+      "url": "https://github.com/karamhouse/chartrove/issues/158"
+    },
+    {
+      "number": 157,
+      "title": "[Upstream #496] [Provider Request][Charm]",
+      "url": "https://github.com/karamhouse/chartrove/issues/157"
+    },
+    {
+      "number": 156,
+      "title": "[Upstream #495] [Bug]: cigna insurance provider links to a random epic site",
+      "url": "https://github.com/karamhouse/chartrove/issues/156"
+    },
+    {
+      "number": 155,
+      "title": "[Upstream #493] Apply for FUTO grant",
+      "url": "https://github.com/karamhouse/chartrove/issues/155"
+    },
+    {
+      "number": 154,
+      "title": "[Upstream #482] [Provider Request]: Blue Cross Blue Shield of Illinois ",
+      "url": "https://github.com/karamhouse/chartrove/issues/154"
+    },
+    {
+      "number": 153,
+      "title": "[Upstream #481] [Documentation] End user guide for importing data from the Dexcom g7 cgm into fh",
+      "url": "https://github.com/karamhouse/chartrove/issues/153"
+    },
+    {
+      "number": 152,
+      "title": "[Upstream #480] [Documentation] End user guide for fh/libre2 continuous glucose monitor (CGM)",
+      "url": "https://github.com/karamhouse/chartrove/issues/152"
+    },
+    {
+      "number": 151,
+      "title": "[Upstream #479] [Documentation] Guide for importing data from 'Apple Health' iPhone application.",
+      "url": "https://github.com/karamhouse/chartrove/issues/151"
+    },
+    {
+      "number": 150,
+      "title": "[Upstream #478] [Provider Request]: Cardiac Solutions",
+      "url": "https://github.com/karamhouse/chartrove/issues/150"
+    },
+    {
+      "number": 149,
+      "title": "[Upstream #474] [Provider Request][Elation]: Living Well Health Center",
+      "url": "https://github.com/karamhouse/chartrove/issues/149"
+    },
+    {
+      "number": 148,
+      "title": "[Upstream #473] [Provider Request][PracticeFusion]: Coho Medical Group",
+      "url": "https://github.com/karamhouse/chartrove/issues/148"
+    },
+    {
+      "number": 147,
+      "title": "[Upstream #467] [Bug][Nextgen]: Medical Source for Palms Medical group does not go to the correct url",
+      "url": "https://github.com/karamhouse/chartrove/issues/147"
+    },
+    {
+      "number": 146,
+      "title": "[Upstream #465] Pre Release - v1.1.3 ",
+      "url": "https://github.com/karamhouse/chartrove/issues/146"
+    },
+    {
+      "number": 145,
+      "title": "[Upstream #464] Record Locator Service - alternative way to find patient & their associated healthcare institutuions ",
+      "url": "https://github.com/karamhouse/chartrove/issues/145"
+    },
+    {
+      "number": 144,
+      "title": "[Upstream #460] [Bug][Epic]: Error While Importing from Fastmed",
+      "url": "https://github.com/karamhouse/chartrove/issues/144"
+    },
+    {
+      "number": 143,
+      "title": "[Upstream #451] Configurable Logout",
+      "url": "https://github.com/karamhouse/chartrove/issues/143"
+    },
+    {
+      "number": 142,
+      "title": "[Upstream #449] Pre-Release Notes  v1.1.2",
+      "url": "https://github.com/karamhouse/chartrove/issues/142"
+    },
+    {
+      "number": 141,
+      "title": "[Upstream #447] [Provider Request]: Compulink",
+      "url": "https://github.com/karamhouse/chartrove/issues/141"
+    },
+    {
+      "number": 140,
+      "title": "[Upstream #442] [Provider Request][Meditech]: MyHealthPortal/Salina Regional Health Center (SRHC)",
+      "url": "https://github.com/karamhouse/chartrove/issues/140"
+    },
+    {
+      "number": 139,
+      "title": "[Upstream #432] PopulateAndExtractSearchParameters - Observation valueString parsing \"Click Here\"",
+      "url": "https://github.com/karamhouse/chartrove/issues/139"
+    },
+    {
+      "number": 138,
+      "title": "[Upstream #431]  PopulateAndExtractSearchParameters - internal References should be translated before stored in columns",
+      "url": "https://github.com/karamhouse/chartrove/issues/138"
+    },
+    {
+      "number": 137,
+      "title": "[Upstream #430] PopulateAndExtractSearchParameters - Date/Periods are not correctly extracted into Start/End SearchParameterDateType",
+      "url": "https://github.com/karamhouse/chartrove/issues/137"
+    },
+    {
+      "number": 136,
+      "title": "[Upstream #429] [Provider Request][Meditech]: healthone",
+      "url": "https://github.com/karamhouse/chartrove/issues/136"
+    },
+    {
+      "number": 135,
+      "title": "[Upstream #428] [Bug]: Extracted `code` field may be missing content",
+      "url": "https://github.com/karamhouse/chartrove/issues/135"
+    },
+    {
+      "number": 134,
+      "title": "[Upstream #427] [Provider Request]: surest health",
+      "url": "https://github.com/karamhouse/chartrove/issues/134"
+    },
+    {
+      "number": 133,
+      "title": "[Upstream #426] [Provider Request]: elation health",
+      "url": "https://github.com/karamhouse/chartrove/issues/133"
+    },
+    {
+      "number": 132,
+      "title": "[Upstream #425] [Bug]: UCHealth provider links to the wrong UCHealth login page",
+      "url": "https://github.com/karamhouse/chartrove/issues/132"
+    },
+    {
+      "number": 131,
+      "title": "[Upstream #424] FHIRPath GOJA replacement",
+      "url": "https://github.com/karamhouse/chartrove/issues/131"
+    },
+    {
+      "number": 130,
+      "title": "[Upstream #423] [Bug]: Desktop users have difficulty navigating back after visiting a page. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/130"
+    },
+    {
+      "number": 129,
+      "title": "[Upstream #422] [ENHANCEMENT REQUEST] Implement 'Lost/Reset Password'",
+      "url": "https://github.com/karamhouse/chartrove/issues/129"
+    },
+    {
+      "number": 128,
+      "title": "[Upstream #421] [ENHANCEMENT REQUEST] Add the ability to send email from within the aplication",
+      "url": "https://github.com/karamhouse/chartrove/issues/128"
+    },
+    {
+      "number": 127,
+      "title": "[Upstream #420] Make sure design is accessible + add a 'Themes' feature to allow users to change to high-contrast mode",
+      "url": "https://github.com/karamhouse/chartrove/issues/127"
+    },
+    {
+      "number": 126,
+      "title": "[Upstream #417] [Provider Request]: Texas State University Student Health Center",
+      "url": "https://github.com/karamhouse/chartrove/issues/126"
+    },
+    {
+      "number": 125,
+      "title": "[Upstream #416] [Provider Request]: Premera Blue Cross",
+      "url": "https://github.com/karamhouse/chartrove/issues/125"
+    },
+    {
+      "number": 124,
+      "title": "[Upstream #414] Add a passwod confirmation field to the create admin form",
+      "url": "https://github.com/karamhouse/chartrove/issues/124"
+    },
+    {
+      "number": 123,
+      "title": "[Upstream #413] [Provider Request]: FEP Blue",
+      "url": "https://github.com/karamhouse/chartrove/issues/123"
+    },
+    {
+      "number": 122,
+      "title": "[Upstream #412] [Provider Request][Intelichart]: Intelichart based providers",
+      "url": "https://github.com/karamhouse/chartrove/issues/122"
+    },
+    {
+      "number": 121,
+      "title": "[Upstream #411] [Provider Request]: Blue Cross Blue Shield of Kansas (BCBS KS)",
+      "url": "https://github.com/karamhouse/chartrove/issues/121"
+    },
+    {
+      "number": 120,
+      "title": "[Upstream #405] [Bug]: 408 Timeout during initial import after 175 records",
+      "url": "https://github.com/karamhouse/chartrove/issues/120"
+    },
+    {
+      "number": 119,
+      "title": "[Upstream #399] [Feature Request] Add ability to change units of medical records displayed on dashboard",
+      "url": "https://github.com/karamhouse/chartrove/issues/119"
+    },
+    {
+      "number": 118,
+      "title": "[Upstream #397] pre-v1.1.1 Release Notes",
+      "url": "https://github.com/karamhouse/chartrove/issues/118"
+    },
+    {
+      "number": 117,
+      "title": "[Upstream #392] TEFCA - QHIN Integrations",
+      "url": "https://github.com/karamhouse/chartrove/issues/117"
+    },
+    {
+      "number": 116,
+      "title": "[Upstream #389] telemetry - link callbacks between multiple external requests",
+      "url": "https://github.com/karamhouse/chartrove/issues/116"
+    },
+    {
+      "number": 115,
+      "title": "[Upstream #386] Add a statuspage for Lighthouse",
+      "url": "https://github.com/karamhouse/chartrove/issues/115"
+    },
+    {
+      "number": 114,
+      "title": "[Upstream #378] Fasten Store - Update Download page",
+      "url": "https://github.com/karamhouse/chartrove/issues/114"
+    },
+    {
+      "number": 113,
+      "title": "[Upstream #374] [Bug]: No spinner/processbar/indication when manually uploading Bundle ",
+      "url": "https://github.com/karamhouse/chartrove/issues/113"
+    },
+    {
+      "number": 112,
+      "title": "[Upstream #373] Personal journal",
+      "url": "https://github.com/karamhouse/chartrove/issues/112"
+    },
+    {
+      "number": 111,
+      "title": "[Upstream #370] [Bug]: \"Encounter Type\" in \"Add a Condition\" = TMI",
+      "url": "https://github.com/karamhouse/chartrove/issues/111"
+    },
+    {
+      "number": 110,
+      "title": "[Upstream #363] [Provider Request][Intelichart]: Pediatric Healthcare Alliance",
+      "url": "https://github.com/karamhouse/chartrove/issues/110"
+    },
+    {
+      "number": 109,
+      "title": "[Upstream #361] [Feature]: Postgres Support",
+      "url": "https://github.com/karamhouse/chartrove/issues/109"
+    },
+    {
+      "number": 108,
+      "title": "[Upstream #357] Add ability to customize HTTP Timeout ",
+      "url": "https://github.com/karamhouse/chartrove/issues/108"
+    },
+    {
+      "number": 107,
+      "title": "[Upstream #356] Serveless Framework Deployer IAM role",
+      "url": "https://github.com/karamhouse/chartrove/issues/107"
+    },
+    {
+      "number": 106,
+      "title": "[Upstream #351] Add loading panel when fhir-datatables are loading - currently show empty table. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/106"
+    },
+    {
+      "number": 105,
+      "title": "[Upstream #348]  TypeError: null is not a non-null object for AddressMode .line",
+      "url": "https://github.com/karamhouse/chartrove/issues/105"
+    },
+    {
+      "number": 104,
+      "title": "[Upstream #347]  Encounters created manually have empty fhir-datagrid rows",
+      "url": "https://github.com/karamhouse/chartrove/issues/104"
+    },
+    {
+      "number": 103,
+      "title": "[Upstream #346]  when unable to find the user, we should return 401 error code so that the SPA redirects to login.",
+      "url": "https://github.com/karamhouse/chartrove/issues/103"
+    },
+    {
+      "number": 102,
+      "title": "[Upstream #345]  Wizard submit button should highlight nav-pill containing broken form entries.",
+      "url": "https://github.com/karamhouse/chartrove/issues/102"
+    },
+    {
+      "number": 101,
+      "title": "[Upstream #343]  Attachment popup & file upload broken in desktop.",
+      "url": "https://github.com/karamhouse/chartrove/issues/101"
+    },
+    {
+      "number": 100,
+      "title": "[Upstream #340] [Marketing] Submit icon to dashboard-icons",
+      "url": "https://github.com/karamhouse/chartrove/issues/100"
+    },
+    {
+      "number": 99,
+      "title": "[Upstream #338] Lefthand facets menu scrolling doesn't work on small screens",
+      "url": "https://github.com/karamhouse/chartrove/issues/99"
+    },
+    {
+      "number": 98,
+      "title": "[Upstream #337] **ChatGPT-Like Offline Interface** for Querying Your Health Record",
+      "url": "https://github.com/karamhouse/chartrove/issues/98"
+    },
+    {
+      "number": 97,
+      "title": "[Upstream #336] Requesting new Provider: NW Dermatology Institute",
+      "url": "https://github.com/karamhouse/chartrove/issues/97"
+    },
+    {
+      "number": 96,
+      "title": "[Upstream #335] Requesting new Provider: Orthopedic + Fracture Specialists",
+      "url": "https://github.com/karamhouse/chartrove/issues/96"
+    },
+    {
+      "number": 95,
+      "title": "[Upstream #334] Requesting new Provider: ZoomCare",
+      "url": "https://github.com/karamhouse/chartrove/issues/95"
+    },
+    {
+      "number": 94,
+      "title": "[Upstream #333] Requesting new Provider: Labcorp",
+      "url": "https://github.com/karamhouse/chartrove/issues/94"
+    },
+    {
+      "number": 93,
+      "title": "[Upstream #329] Requesting new Insurance Provider: CareFirst BlueChoice",
+      "url": "https://github.com/karamhouse/chartrove/issues/93"
+    },
+    {
+      "number": 92,
+      "title": "[Upstream #328] Requesting new Provider: Fertility Centers of Illinois",
+      "url": "https://github.com/karamhouse/chartrove/issues/92"
+    },
+    {
+      "number": 91,
+      "title": "[Upstream #326] [Provider Request][AdvancedMd]: Veritas Fertility",
+      "url": "https://github.com/karamhouse/chartrove/issues/91"
+    },
+    {
+      "number": 90,
+      "title": "[Upstream #319] landing page templates",
+      "url": "https://github.com/karamhouse/chartrove/issues/90"
+    },
+    {
+      "number": 89,
+      "title": "[Upstream #318] United Healthcare broken",
+      "url": "https://github.com/karamhouse/chartrove/issues/89"
+    },
+    {
+      "number": 88,
+      "title": "[Upstream #315] This is a great thing that you publish can I encourage you toward creating a \"loosening guide\"",
+      "url": "https://github.com/karamhouse/chartrove/issues/88"
+    },
+    {
+      "number": 87,
+      "title": "[Upstream #314] Two providers not working",
+      "url": "https://github.com/karamhouse/chartrove/issues/87"
+    },
+    {
+      "number": 86,
+      "title": "[Upstream #306] FHIR Resource SearchParamters using Subpahts are broken",
+      "url": "https://github.com/karamhouse/chartrove/issues/86"
+    },
+    {
+      "number": 85,
+      "title": "[Upstream #305] FHIR Resource version information should be extracted and available as a searchable field.  ",
+      "url": "https://github.com/karamhouse/chartrove/issues/85"
+    },
+    {
+      "number": 84,
+      "title": "[Upstream #300] Replace frontend FastenDisplay models with generated typescript classes",
+      "url": "https://github.com/karamhouse/chartrove/issues/84"
+    },
+    {
+      "number": 83,
+      "title": "[Upstream #298]  [Provider Request][Intelichart]: South Philadelphia Pediatrics",
+      "url": "https://github.com/karamhouse/chartrove/issues/83"
+    },
+    {
+      "number": 82,
+      "title": "[Upstream #297] Installation ID ideas",
+      "url": "https://github.com/karamhouse/chartrove/issues/82"
+    },
+    {
+      "number": 81,
+      "title": "[Upstream #295] use NPI number for storing logos",
+      "url": "https://github.com/karamhouse/chartrove/issues/81"
+    },
+    {
+      "number": 80,
+      "title": "[Upstream #294] When processing raw resources, we should populate code Display name is missing (and associated SortTitle)",
+      "url": "https://github.com/karamhouse/chartrove/issues/80"
+    },
+    {
+      "number": 79,
+      "title": "[Upstream #286] HIE/HIX Integrations",
+      "url": "https://github.com/karamhouse/chartrove/issues/79"
+    },
+    {
+      "number": 78,
+      "title": "[Upstream #285] Database Export",
+      "url": "https://github.com/karamhouse/chartrove/issues/78"
+    },
+    {
+      "number": 77,
+      "title": "[Upstream #274] eClinicalWorks [Ogden Clinic] Timeout Error",
+      "url": "https://github.com/karamhouse/chartrove/issues/77"
+    },
+    {
+      "number": 76,
+      "title": "[Upstream #271] Add Loading/Splash page or logo when SPA is still loading. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/76"
+    },
+    {
+      "number": 75,
+      "title": "[Upstream #268] Scheduled Background Jobs",
+      "url": "https://github.com/karamhouse/chartrove/issues/75"
+    },
+    {
+      "number": 74,
+      "title": "[Upstream #259] state syncing",
+      "url": "https://github.com/karamhouse/chartrove/issues/74"
+    },
+    {
+      "number": 73,
+      "title": "[Upstream #243] Add tests to Database extraction models",
+      "url": "https://github.com/karamhouse/chartrove/issues/73"
+    },
+    {
+      "number": 72,
+      "title": "[Upstream #239] [Marketing] Patient-Empowerment Application Directories",
+      "url": "https://github.com/karamhouse/chartrove/issues/72"
+    },
+    {
+      "number": 71,
+      "title": "[Upstream #231] Sync Optimizations - Performance",
+      "url": "https://github.com/karamhouse/chartrove/issues/71"
+    },
+    {
+      "number": 70,
+      "title": "[Upstream #230] EOB Enhancements (ExplanationOfBenefits)",
+      "url": "https://github.com/karamhouse/chartrove/issues/70"
+    },
+    {
+      "number": 69,
+      "title": "[Upstream #228] Period type DateTime SearchParameters are not being extracted properly",
+      "url": "https://github.com/karamhouse/chartrove/issues/69"
+    },
+    {
+      "number": 68,
+      "title": "[Upstream #227] Replace frontend parsing for display with SearchParameters? Analysis needed",
+      "url": "https://github.com/karamhouse/chartrove/issues/68"
+    },
+    {
+      "number": 67,
+      "title": "[Upstream #224] Medical History - Medication, Medication Request and Medication Administration should be handled together. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/67"
+    },
+    {
+      "number": 66,
+      "title": "[Upstream #218] CVS has separate APIs specific to COVID-19 encounters",
+      "url": "https://github.com/karamhouse/chartrove/issues/66"
+    },
+    {
+      "number": 65,
+      "title": "[Upstream #207] Patient Everything / EHI-Export endpoints",
+      "url": "https://github.com/karamhouse/chartrove/issues/65"
+    },
+    {
+      "number": 64,
+      "title": "[Upstream #204] Cerner: PDF Binary documents are not syncing correctly (404)",
+      "url": "https://github.com/karamhouse/chartrove/issues/64"
+    },
+    {
+      "number": 63,
+      "title": "[Upstream #197] Option to upload HL7_V3 xml files",
+      "url": "https://github.com/karamhouse/chartrove/issues/63"
+    },
+    {
+      "number": 62,
+      "title": "[Upstream #193] \"report editor\" or \"condition editor\" actually groups conditions and doesn't edit reports or conditions ",
+      "url": "https://github.com/karamhouse/chartrove/issues/62"
+    },
+    {
+      "number": 61,
+      "title": "[Upstream #192] Clickable things in Medical History should look like buttons or links",
+      "url": "https://github.com/karamhouse/chartrove/issues/61"
+    },
+    {
+      "number": 60,
+      "title": "[Upstream #189] Provider Request: MyIrMobile",
+      "url": "https://github.com/karamhouse/chartrove/issues/60"
+    },
+    {
+      "number": 59,
+      "title": "[Upstream #184] Add test with open sandbox Cerner processing",
+      "url": "https://github.com/karamhouse/chartrove/issues/59"
+    },
+    {
+      "number": 58,
+      "title": "[Upstream #183] Update Fasten Sources with data from User Contributed Google Drive Spreadsheet",
+      "url": "https://github.com/karamhouse/chartrove/issues/58"
+    },
+    {
+      "number": 57,
+      "title": "[Upstream #181] [Sources]Broken Sandbox integrations",
+      "url": "https://github.com/karamhouse/chartrove/issues/57"
+    },
+    {
+      "number": 56,
+      "title": "[Upstream #174] Self-hosted lighthouse.fastenhealth.com an option?",
+      "url": "https://github.com/karamhouse/chartrove/issues/56"
+    },
+    {
+      "number": 55,
+      "title": "[Upstream #171] Investigate International Patient Access (IPA)",
+      "url": "https://github.com/karamhouse/chartrove/issues/55"
+    },
+    {
+      "number": 54,
+      "title": "[Upstream #164] Vision Care Providers (eg. VSP)",
+      "url": "https://github.com/karamhouse/chartrove/issues/54"
+    },
+    {
+      "number": 53,
+      "title": "[Upstream #163] unknown AdministrativeGender code `M` when importing from Cambridge Health Alliance",
+      "url": "https://github.com/karamhouse/chartrove/issues/53"
+    },
+    {
+      "number": 52,
+      "title": "[Upstream #162] Production version should force users to change/set `jwt.issuer.key`",
+      "url": "https://github.com/karamhouse/chartrove/issues/52"
+    },
+    {
+      "number": 51,
+      "title": "[Upstream #155] [Marketing] Add Fasten to Awesome* lists",
+      "url": "https://github.com/karamhouse/chartrove/issues/51"
+    },
+    {
+      "number": 50,
+      "title": "[Upstream #154] Import NUCC Valueset into Glossary",
+      "url": "https://github.com/karamhouse/chartrove/issues/50"
+    },
+    {
+      "number": 49,
+      "title": "[Upstream #152] [Investigate] Emergency Medical Services Information System (NEMSIS)",
+      "url": "https://github.com/karamhouse/chartrove/issues/49"
+    },
+    {
+      "number": 48,
+      "title": "[Upstream #151] Manually scan & parse documents/OCR",
+      "url": "https://github.com/karamhouse/chartrove/issues/48"
+    },
+    {
+      "number": 47,
+      "title": "[Upstream #150] Smart/Wearable/Medical Device Support",
+      "url": "https://github.com/karamhouse/chartrove/issues/47"
+    },
+    {
+      "number": 46,
+      "title": "[Upstream #136] style helpers",
+      "url": "https://github.com/karamhouse/chartrove/issues/46"
+    },
+    {
+      "number": 45,
+      "title": "[Upstream #134] Show a note icon beside any resource that has a practitioner note",
+      "url": "https://github.com/karamhouse/chartrove/issues/45"
+    },
+    {
+      "number": 44,
+      "title": "[Upstream #124] automatic security scanning",
+      "url": "https://github.com/karamhouse/chartrove/issues/44"
+    },
+    {
+      "number": 43,
+      "title": "[Upstream #123] Add Glossary Summary",
+      "url": "https://github.com/karamhouse/chartrove/issues/43"
+    },
+    {
+      "number": 42,
+      "title": "[Upstream #122] Add Glossary to all resources that have codes",
+      "url": "https://github.com/karamhouse/chartrove/issues/42"
+    },
+    {
+      "number": 41,
+      "title": "[Upstream #121] [Medical History Report] When merging conditions, the new condition name should be a valid Condition as defined in SNOMED. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/41"
+    },
+    {
+      "number": 40,
+      "title": "[Upstream #119] If file attachments are larger than x bytes, we should store them in a Binary object, which is not queried as part of the graph. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/40"
+    },
+    {
+      "number": 39,
+      "title": "[Upstream #118] Lighthouse Institution Lookup Service",
+      "url": "https://github.com/karamhouse/chartrove/issues/39"
+    },
+    {
+      "number": 38,
+      "title": "[Upstream #115] DICOM WADO server Compatibility",
+      "url": "https://github.com/karamhouse/chartrove/issues/38"
+    },
+    {
+      "number": 37,
+      "title": "[Upstream #114] [Medical History Report] Successful merge reloads the page but does not refresh the view",
+      "url": "https://github.com/karamhouse/chartrove/issues/37"
+    },
+    {
+      "number": 36,
+      "title": "[Upstream #113] [Medical History Report] Can only merge one or more Encounters in Unassigned into one condition",
+      "url": "https://github.com/karamhouse/chartrove/issues/36"
+    },
+    {
+      "number": 35,
+      "title": "[Upstream #111] Resource Create - On Submit, we should disable the save button (and show a spinner)",
+      "url": "https://github.com/karamhouse/chartrove/issues/35"
+    },
+    {
+      "number": 34,
+      "title": "[Upstream #107] [Medical History Report] Insufficient detail to merge encounters",
+      "url": "https://github.com/karamhouse/chartrove/issues/34"
+    },
+    {
+      "number": 33,
+      "title": "[Upstream #105] [Medical History Report] Reassign individual medications to a different condition",
+      "url": "https://github.com/karamhouse/chartrove/issues/33"
+    },
+    {
+      "number": 32,
+      "title": "[Upstream #103] [Medical History Report] Dedupe medications listed in UNASSIGNED visits",
+      "url": "https://github.com/karamhouse/chartrove/issues/32"
+    },
+    {
+      "number": 31,
+      "title": "[Upstream #100] [Medical History Report] Report editor link should be clearer and available in multiple locations",
+      "url": "https://github.com/karamhouse/chartrove/issues/31"
+    },
+    {
+      "number": 30,
+      "title": "[Upstream #93] Trying to add a new source results in `TypeError: u.Sha256 is not a constructor`",
+      "url": "https://github.com/karamhouse/chartrove/issues/30"
+    },
+    {
+      "number": 29,
+      "title": "[Upstream #88] Resource Create - Store form data in local storage (wipe on submit). ",
+      "url": "https://github.com/karamhouse/chartrove/issues/29"
+    },
+    {
+      "number": 28,
+      "title": "[Upstream #86] Resource Create - Notes and Attachments are disabled. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/28"
+    },
+    {
+      "number": 27,
+      "title": "[Upstream #75] Resource Create - Practitioner Address information should be correctly parsed",
+      "url": "https://github.com/karamhouse/chartrove/issues/27"
+    },
+    {
+      "number": 26,
+      "title": "[Upstream #74] Resource Create - Select dropdown styling should match Bootstrap",
+      "url": "https://github.com/karamhouse/chartrove/issues/26"
+    },
+    {
+      "number": 25,
+      "title": "[Upstream #73] Resource Create - Dosage should be populated using Medication Name. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/25"
+    },
+    {
+      "number": 24,
+      "title": "[Upstream #71] International / National Practitioner Identification Numbers - NPI",
+      "url": "https://github.com/karamhouse/chartrove/issues/24"
+    },
+    {
+      "number": 23,
+      "title": "[Upstream #70] Coding Systems",
+      "url": "https://github.com/karamhouse/chartrove/issues/23"
+    },
+    {
+      "number": 22,
+      "title": "[Upstream #67] Caching graph in database",
+      "url": "https://github.com/karamhouse/chartrove/issues/22"
+    },
+    {
+      "number": 21,
+      "title": "[Upstream #64] CORS error when connecting to some Epic Sources",
+      "url": "https://github.com/karamhouse/chartrove/issues/21"
+    },
+    {
+      "number": 20,
+      "title": "[Upstream #61] support FHIR launch mode",
+      "url": "https://github.com/karamhouse/chartrove/issues/20"
+    },
+    {
+      "number": 19,
+      "title": "[Upstream #58] Store records locally in client/browser for offline access (when travelling, etc)",
+      "url": "https://github.com/karamhouse/chartrove/issues/19"
+    },
+    {
+      "number": 18,
+      "title": "[Upstream #57] RBAC/Role based access control",
+      "url": "https://github.com/karamhouse/chartrove/issues/18"
+    },
+    {
+      "number": 17,
+      "title": "[Upstream #50] use WebAuthN/TouchID/WindowsHello for authentication",
+      "url": "https://github.com/karamhouse/chartrove/issues/17"
+    },
+    {
+      "number": 16,
+      "title": "[Upstream #47] LDAP/SSO/IdP for authentication",
+      "url": "https://github.com/karamhouse/chartrove/issues/16"
+    },
+    {
+      "number": 15,
+      "title": "[Upstream #46] \"patient-friendly\" descriptions of LOINC/SNOMED/etc codes. ",
+      "url": "https://github.com/karamhouse/chartrove/issues/15"
+    },
+    {
+      "number": 14,
+      "title": "[Upstream #45] [Feature] Multi Factor Auth",
+      "url": "https://github.com/karamhouse/chartrove/issues/14"
+    },
+    {
+      "number": 13,
+      "title": "[Upstream #44] [Feature] External LDAP or LDAP import",
+      "url": "https://github.com/karamhouse/chartrove/issues/13"
+    },
+    {
+      "number": 12,
+      "title": "[Upstream #42] International Sources/Healthcare Institution Endpoints & Documentation",
+      "url": "https://github.com/karamhouse/chartrove/issues/12"
+    },
+    {
+      "number": 11,
+      "title": "[Upstream #40] Expose Addressbook using CardDAV api",
+      "url": "https://github.com/karamhouse/chartrove/issues/11"
+    },
+    {
+      "number": 10,
+      "title": "[Upstream #36] Localization for Fasten",
+      "url": "https://github.com/karamhouse/chartrove/issues/10"
+    },
+    {
+      "number": 9,
+      "title": "[Upstream #35] ensure that fasten works on mobile",
+      "url": "https://github.com/karamhouse/chartrove/issues/9"
+    },
+    {
+      "number": 8,
+      "title": "[Upstream #30] [Billing Report] Tasks",
+      "url": "https://github.com/karamhouse/chartrove/issues/8"
+    },
+    {
+      "number": 7,
+      "title": "[Upstream #29] [Medications Report] Tasks",
+      "url": "https://github.com/karamhouse/chartrove/issues/7"
+    },
+    {
+      "number": 6,
+      "title": "[Upstream #28] [AddressBook]",
+      "url": "https://github.com/karamhouse/chartrove/issues/6"
+    },
+    {
+      "number": 5,
+      "title": "[Upstream #26] [Patient Profile] Tasks",
+      "url": "https://github.com/karamhouse/chartrove/issues/5"
+    },
+    {
+      "number": 4,
+      "title": "[Upstream #25] [Sources] Tasks",
+      "url": "https://github.com/karamhouse/chartrove/issues/4"
+    },
+    {
+      "number": 3,
+      "title": "[Upstream #23] [Medical History Report] Tasks",
+      "url": "https://github.com/karamhouse/chartrove/issues/3"
+    },
+    {
+      "number": 2,
+      "title": "[Upstream #19] Broken Healthcare Providers/Sources",
+      "url": "https://github.com/karamhouse/chartrove/issues/2"
+    },
+    {
+      "number": 1,
+      "title": "[Upstream #14] are all the tiles listed in \"add source\" actually supposed to work?",
+      "url": "https://github.com/karamhouse/chartrove/issues/1"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 331,
+      "title": "fix(deps): update module github.com/urfave/cli/v2 to v3",
+      "url": "https://github.com/karamhouse/chartrove/pull/331",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-urfave-cli-v2-3.x",
+      "headRefOid": "1ebc8abdb21c93d0d12d889fb3ad4c09b25538f3",
+      "baseRefName": "main"
+    },
+    {
+      "number": 330,
+      "title": "fix(deps): update module github.com/google/go-github/v54 to v93",
+      "url": "https://github.com/karamhouse/chartrove/pull/330",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-google-go-github-v54-93.x",
+      "headRefOid": "ddbc6fa651ebb1c01ecced825e7b0ebba6cbc88b",
+      "baseRefName": "main"
+    },
+    {
+      "number": 329,
+      "title": "fix(deps): update module github.com/golang-jwt/jwt/v4 to v5",
+      "url": "https://github.com/karamhouse/chartrove/pull/329",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-golang-jwt-jwt-v4-5.x",
+      "headRefOid": "3528f6f089f9c8e1f7b53cfac40f34d9d258d6e5",
+      "baseRefName": "main"
+    },
+    {
+      "number": 328,
+      "title": "fix(deps): update module github.com/fastenhealth/fasten-onprem to v1",
+      "url": "https://github.com/karamhouse/chartrove/pull/328",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-fastenhealth-fasten-onprem-1.x",
+      "headRefOid": "1ecd7778116f80e55fd24417b3730e4124dd9cf0",
+      "baseRefName": "main"
+    },
+    {
+      "number": 327,
+      "title": "chore(deps): update tibdex/github-app-token action to v2",
+      "url": "https://github.com/karamhouse/chartrove/pull/327",
+      "state": "OPEN",
+      "headRefName": "renovate/tibdex-github-app-token-2.x",
+      "headRefOid": "97037049dada273ace3d9bad05084739ff4a5f54",
+      "baseRefName": "main"
+    },
+    {
+      "number": 326,
+      "title": "chore(deps): update react monorepo to v19",
+      "url": "https://github.com/karamhouse/chartrove/pull/326",
+      "state": "OPEN",
+      "headRefName": "renovate/major-react-monorepo",
+      "headRefOid": "91d36c7f0b5db31d3382fa62b5fd2b0007515115",
+      "baseRefName": "main"
+    },
+    {
+      "number": 325,
+      "title": "chore(deps): update github artifact actions (major)",
+      "url": "https://github.com/karamhouse/chartrove/pull/325",
+      "state": "OPEN",
+      "headRefName": "renovate/major-github-artifact-actions",
+      "headRefOid": "33fe8550c65d29267c536963a05758daeaec30a1",
+      "baseRefName": "main"
+    },
+    {
+      "number": 324,
+      "title": "chore(repo): reconcile editor settings and local metadata",
+      "url": "https://github.com/karamhouse/chartrove/pull/324",
+      "state": "MERGED",
+      "headRefName": "codex/primary-checkout-reconciliation",
+      "headRefOid": "3dfa514c8ed9722bfd6bbf994d7cc8881f1940e8",
+      "baseRefName": "main"
+    },
+    {
+      "number": 323,
+      "title": "Modernize Chartrove runtimes and fix authentication and record handling",
+      "url": "https://github.com/karamhouse/chartrove/pull/323",
+      "state": "MERGED",
+      "headRefName": "osamakaram/coffinfish",
+      "headRefOid": "c42643e2edfc14167f5c1f644e7a3388c9b883bf",
+      "baseRefName": "main"
+    },
+    {
+      "number": 322,
+      "title": "docs(desktop): correct restart validation procedure",
+      "url": "https://github.com/karamhouse/chartrove/pull/322",
+      "state": "MERGED",
+      "headRefName": "codex/desktop-restart-validation",
+      "headRefOid": "d17898c502eece1b3367e888f97905f01e2b1e8d",
+      "baseRefName": "main"
+    },
+    {
+      "number": 321,
+      "title": "feat(desktop): add direct SMART Patient preview and import",
+      "url": "https://github.com/karamhouse/chartrove/pull/321",
+      "state": "MERGED",
+      "headRefName": "codex/direct-smart-sources-ui",
+      "headRefOid": "bea594c27cc34fa5a0d5f2024f4a528e0f86e260",
+      "baseRefName": "main"
+    },
+    {
+      "number": 320,
+      "title": "feat(desktop): add direct SMART OAuth connection foundation",
+      "url": "https://github.com/karamhouse/chartrove/pull/320",
+      "state": "MERGED",
+      "headRefName": "codex/direct-smart-foundation",
+      "headRefOid": "82519e260d9e70c937017d24cf61d3f30a2e5d8f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 319,
+      "title": "fix(desktop): repair sandbox Patient import and shutdown",
+      "url": "https://github.com/karamhouse/chartrove/pull/319",
+      "state": "MERGED",
+      "headRefName": "codex/fix-native-import-shutdown",
+      "headRefOid": "2d7f03f88a1b4e03a576dfeeeeeae7d484c879e6",
+      "baseRefName": "main"
+    },
+    {
+      "number": 318,
+      "title": "chore(deps): update ghcr.io/devcontainers/features/node docker tag to v2",
+      "url": "https://github.com/karamhouse/chartrove/pull/318",
+      "state": "OPEN",
+      "headRefName": "renovate/ghcr.io-devcontainers-features-node-2.x",
+      "headRefOid": "9d18e902f8b2c4fe9e2ebe0f267ad936a3ccd12e",
+      "baseRefName": "main"
+    },
+    {
+      "number": 317,
+      "title": "Update Font Awesome (major) - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/317",
+      "state": "CLOSED",
+      "headRefName": "renovate/major-font-awesome",
+      "headRefOid": "080130cd80bd7106370a341b483ff1c01c77a4e9",
+      "baseRefName": "main"
+    },
+    {
+      "number": 316,
+      "title": "chore(deps): update docker/metadata-action action to v6",
+      "url": "https://github.com/karamhouse/chartrove/pull/316",
+      "state": "OPEN",
+      "headRefName": "renovate/docker-metadata-action-6.x",
+      "headRefOid": "4388f1a2c3cff549836571cad6ddb60a0345273e",
+      "baseRefName": "main"
+    },
+    {
+      "number": 315,
+      "title": "chore(deps): update docker/login-action action to v4",
+      "url": "https://github.com/karamhouse/chartrove/pull/315",
+      "state": "OPEN",
+      "headRefName": "renovate/docker-login-action-4.x",
+      "headRefOid": "7d098a12cdd18e897af686be6177f7da6600f6e1",
+      "baseRefName": "main"
+    },
+    {
+      "number": 314,
+      "title": "fix(deps): update dependency uuid to v14",
+      "url": "https://github.com/karamhouse/chartrove/pull/314",
+      "state": "OPEN",
+      "headRefName": "renovate/uuid-14.x",
+      "headRefOid": "5c11e3406bb9857c240842ed6b345765d395d1ab",
+      "baseRefName": "main"
+    },
+    {
+      "number": 313,
+      "title": "chore(deps): update dependency typescript to v7",
+      "url": "https://github.com/karamhouse/chartrove/pull/313",
+      "state": "OPEN",
+      "headRefName": "renovate/typescript-7.x",
+      "headRefOid": "de04cf6e0e129f005a123ddda8af53d9a355bde0",
+      "baseRefName": "main"
+    },
+    {
+      "number": 312,
+      "title": "chore(deps): update dependency ts-node to v10",
+      "url": "https://github.com/karamhouse/chartrove/pull/312",
+      "state": "OPEN",
+      "headRefName": "renovate/ts-node-10.x",
+      "headRefOid": "f682998c4262653a687325e085514a05b3217512",
+      "baseRefName": "main"
+    },
+    {
+      "number": 311,
+      "title": "Update dependency rxjs to v7 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/311",
+      "state": "CLOSED",
+      "headRefName": "renovate/rxjs-7.x",
+      "headRefOid": "ec6b56e98592822bcae3fa8aa0221cede145973b",
+      "baseRefName": "main"
+    },
+    {
+      "number": 310,
+      "title": "Update dependency node to v24 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/310",
+      "state": "CLOSED",
+      "headRefName": "renovate/node-24.x",
+      "headRefOid": "dba9448d6dec3f4eed6816e68405ee956ef27081",
+      "baseRefName": "main"
+    },
+    {
+      "number": 309,
+      "title": "Update dependency ngx-infinite-scroll to v22 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/309",
+      "state": "CLOSED",
+      "headRefName": "renovate/ngx-infinite-scroll-22.x",
+      "headRefOid": "117a9f27758aa378413725ff75a4233a1d671cfb",
+      "baseRefName": "main"
+    },
+    {
+      "number": 308,
+      "title": "fix(deps): update dependency ngx-highlightjs to v14",
+      "url": "https://github.com/karamhouse/chartrove/pull/308",
+      "state": "OPEN",
+      "headRefName": "renovate/ngx-highlightjs-14.x",
+      "headRefOid": "365da2a50be3bfd00547f2755ab3c76fab029464",
+      "baseRefName": "main"
+    },
+    {
+      "number": 307,
+      "title": "fix(deps): update dependency ng2-charts to v11",
+      "url": "https://github.com/karamhouse/chartrove/pull/307",
+      "state": "OPEN",
+      "headRefName": "renovate/ng2-charts-11.x",
+      "headRefOid": "215937671527051faf345c67fdd6a1da68ae537c",
+      "baseRefName": "main"
+    },
+    {
+      "number": 306,
+      "title": "fix(deps): update dependency lforms to v44",
+      "url": "https://github.com/karamhouse/chartrove/pull/306",
+      "state": "OPEN",
+      "headRefName": "renovate/lforms-44.x",
+      "headRefOid": "aca1bf5aa542e389f651aa7aef474d10e995b0f7",
+      "baseRefName": "main"
+    },
+    {
+      "number": 305,
+      "title": "fix(deps): update dependency jose to v6",
+      "url": "https://github.com/karamhouse/chartrove/pull/305",
+      "state": "OPEN",
+      "headRefName": "renovate/jose-6.x",
+      "headRefOid": "d500174f2795beeb5648803db4813d8d833e0b3a",
+      "baseRefName": "main"
+    },
+    {
+      "number": 304,
+      "title": "chore(deps): update dependency jasmine-core to v7",
+      "url": "https://github.com/karamhouse/chartrove/pull/304",
+      "state": "OPEN",
+      "headRefName": "renovate/major-jasmine-monorepo",
+      "headRefOid": "6b343dfbd7c7cd05f6d6df1a41289407d39c421a",
+      "baseRefName": "main"
+    },
+    {
+      "number": 303,
+      "title": "fix(deps): update dependency idb to v8",
+      "url": "https://github.com/karamhouse/chartrove/pull/303",
+      "state": "OPEN",
+      "headRefName": "renovate/idb-8.x",
+      "headRefOid": "124bc8a81e8c66cab2e4ad2e870d83e9319e82fb",
+      "baseRefName": "main"
+    },
+    {
+      "number": 302,
+      "title": "fix(deps): update dependency gridstack to v14",
+      "url": "https://github.com/karamhouse/chartrove/pull/302",
+      "state": "OPEN",
+      "headRefName": "renovate/gridstack-14.x",
+      "headRefOid": "ef02b1b3b6b5a839fe9c0642ba3dcc9629ba279a",
+      "baseRefName": "main"
+    },
+    {
+      "number": 301,
+      "title": "fix(deps): update dependency fhirpath to v5",
+      "url": "https://github.com/karamhouse/chartrove/pull/301",
+      "state": "OPEN",
+      "headRefName": "renovate/fhirpath-5.x",
+      "headRefOid": "d8e4269b06c7d75bddce11091af4373dc29934a2",
+      "baseRefName": "main"
+    },
+    {
+      "number": 300,
+      "title": "chore(deps): update dependency codelyzer to v6",
+      "url": "https://github.com/karamhouse/chartrove/pull/300",
+      "state": "OPEN",
+      "headRefName": "renovate/codelyzer-6.x",
+      "headRefOid": "3ed946e286c4e61ab85728e3082a34ae05daddbe",
+      "baseRefName": "main"
+    },
+    {
+      "number": 299,
+      "title": "chore(deps): update dependency chromatic to v18",
+      "url": "https://github.com/karamhouse/chartrove/pull/299",
+      "state": "OPEN",
+      "headRefName": "renovate/chromatic-18.x",
+      "headRefOid": "342bb79010b0b3c8c4ccca4daa8c476b65542110",
+      "baseRefName": "main"
+    },
+    {
+      "number": 298,
+      "title": "Update dependency bootstrap to v5 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/298",
+      "state": "CLOSED",
+      "headRefName": "renovate/bootstrap-5.x",
+      "headRefOid": "3abdd45f16464812ef9dc783837bebfffc6d4ad7",
+      "baseRefName": "main"
+    },
+    {
+      "number": 297,
+      "title": "chore(deps): update dependency @types/jasmine to v7",
+      "url": "https://github.com/karamhouse/chartrove/pull/297",
+      "state": "OPEN",
+      "headRefName": "renovate/jasmine-7.x",
+      "headRefOid": "b92a0d9e9e9cdd35ca2212fdd035230c77a8c11f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 296,
+      "title": "fix(deps): update dependency @swimlane/ngx-datatable to v25",
+      "url": "https://github.com/karamhouse/chartrove/pull/296",
+      "state": "OPEN",
+      "headRefName": "renovate/swimlane-ngx-datatable-25.x",
+      "headRefOid": "8a0201064e6988fbb891b0265240f6950bc499cf",
+      "baseRefName": "main"
+    },
+    {
+      "number": 295,
+      "title": "fix(deps): update dependency @ng-select/ng-select to v24",
+      "url": "https://github.com/karamhouse/chartrove/pull/295",
+      "state": "OPEN",
+      "headRefName": "renovate/ng-select-ng-select-24.x",
+      "headRefOid": "884a9f70b61cf72ce2998b88b0762169bb0c618b",
+      "baseRefName": "main"
+    },
+    {
+      "number": 294,
+      "title": "Update dependency @ng-bootstrap/ng-bootstrap to v21 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/294",
+      "state": "CLOSED",
+      "headRefName": "renovate/ng-bootstrap-ng-bootstrap-21.x",
+      "headRefOid": "c8de49b84bffa49c48732e103d3ef97a653e59a6",
+      "baseRefName": "main"
+    },
+    {
+      "number": 293,
+      "title": "chore(deps): update dependency @compodoc/compodoc to v2",
+      "url": "https://github.com/karamhouse/chartrove/pull/293",
+      "state": "OPEN",
+      "headRefName": "renovate/compodoc-compodoc-2.x",
+      "headRefOid": "782ae2a59b60e8f55a1089c223b3ca85f9796eef",
+      "baseRefName": "main"
+    },
+    {
+      "number": 292,
+      "title": "Update dependency @angular/cdk to v22 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/292",
+      "state": "CLOSED",
+      "headRefName": "renovate/major-angularmaterial-monorepo",
+      "headRefOid": "519bfd552892cef45edc765cba8f8a315712a56d",
+      "baseRefName": "main"
+    },
+    {
+      "number": 291,
+      "title": "chore(deps): update codecov/codecov-action action to v7",
+      "url": "https://github.com/karamhouse/chartrove/pull/291",
+      "state": "OPEN",
+      "headRefName": "renovate/codecov-codecov-action-7.x",
+      "headRefOid": "694b1465cbb5ef5ff55a2d1e4cc18f216b10f9ce",
+      "baseRefName": "main"
+    },
+    {
+      "number": 290,
+      "title": "chore(deps): update chromaui/action action to v18",
+      "url": "https://github.com/karamhouse/chartrove/pull/290",
+      "state": "OPEN",
+      "headRefName": "renovate/chromaui-action-18.x",
+      "headRefOid": "fdafad2f1b873179b30e12144a837239eedb3573",
+      "baseRefName": "main"
+    },
+    {
+      "number": 289,
+      "title": "chore(deps): update aws-actions/configure-aws-credentials action to v6",
+      "url": "https://github.com/karamhouse/chartrove/pull/289",
+      "state": "OPEN",
+      "headRefName": "renovate/aws-actions-configure-aws-credentials-6.x",
+      "headRefOid": "931cada6758bd92b831a9d5c13e8602003dae069",
+      "baseRefName": "main"
+    },
+    {
+      "number": 288,
+      "title": "Update angular-cli monorepo to v22 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/288",
+      "state": "CLOSED",
+      "headRefName": "renovate/major-angular-cli-monorepo",
+      "headRefOid": "bc2f33a94ca5a7982ff08855aa1cddc31198b6ac",
+      "baseRefName": "main"
+    },
+    {
+      "number": 287,
+      "title": "Update angular monorepo to v22 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/287",
+      "state": "CLOSED",
+      "headRefName": "renovate/major-angular-monorepo",
+      "headRefOid": "c40b5bb9a298d58105951c709f20f2b3e573f7c7",
+      "baseRefName": "main"
+    },
+    {
+      "number": 286,
+      "title": "chore(deps): update actions/setup-node action to v7",
+      "url": "https://github.com/karamhouse/chartrove/pull/286",
+      "state": "OPEN",
+      "headRefName": "renovate/actions-setup-node-7.x",
+      "headRefOid": "c2a2883f90d7b4caf7b3c7dbdd788c094ccf1962",
+      "baseRefName": "main"
+    },
+    {
+      "number": 285,
+      "title": "chore(deps): update actions/setup-go action to v7",
+      "url": "https://github.com/karamhouse/chartrove/pull/285",
+      "state": "OPEN",
+      "headRefName": "renovate/actions-setup-go-7.x",
+      "headRefOid": "6d1a9d03fe789da1b5108445931411759eb99b3f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 284,
+      "title": "chore(deps): update actions/checkout action to v7",
+      "url": "https://github.com/karamhouse/chartrove/pull/284",
+      "state": "OPEN",
+      "headRefName": "renovate/actions-checkout-7.x",
+      "headRefOid": "e814a4ffe265e6d6710d6b8f3b321fa1fcd610e2",
+      "baseRefName": "main"
+    },
+    {
+      "number": 283,
+      "title": "Update storybook monorepo to v7.6.24 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/283",
+      "state": "CLOSED",
+      "headRefName": "renovate/storybook-monorepo",
+      "headRefOid": "06db7b3cc0634cd935dd46d0ec19a182822bb2fe",
+      "baseRefName": "main"
+    },
+    {
+      "number": 282,
+      "title": "chore(deps): update react monorepo to v18.3.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/282",
+      "state": "OPEN",
+      "headRefName": "renovate/react-monorepo",
+      "headRefOid": "a2c1dc4b0005c63ae161d7f31d0f84afaf749b6f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 281,
+      "title": "fix(deps): update module gorm.io/gorm to v1.31.2",
+      "url": "https://github.com/karamhouse/chartrove/pull/281",
+      "state": "OPEN",
+      "headRefName": "renovate/gorm.io-gorm-1.x",
+      "headRefOid": "014f8baad7548d622b8766e53d36943456698113",
+      "baseRefName": "main"
+    },
+    {
+      "number": 280,
+      "title": "fix(deps): update module gorm.io/driver/sqlite to v1.6.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/280",
+      "state": "OPEN",
+      "headRefName": "renovate/gorm.io-driver-sqlite-1.x",
+      "headRefOid": "88d7e75c42b540119d5633e2da19323729e0d7d8",
+      "baseRefName": "main"
+    },
+    {
+      "number": 279,
+      "title": "fix(deps): update module gorm.io/driver/postgres to v1.6.3",
+      "url": "https://github.com/karamhouse/chartrove/pull/279",
+      "state": "OPEN",
+      "headRefName": "renovate/gorm.io-driver-postgres-1.x",
+      "headRefOid": "5ddaae1348cd66c738dbd83ef0f254fbf857f7b9",
+      "baseRefName": "main"
+    },
+    {
+      "number": 278,
+      "title": "fix(deps): update module gorm.io/datatypes to v1.2.7",
+      "url": "https://github.com/karamhouse/chartrove/pull/278",
+      "state": "OPEN",
+      "headRefName": "renovate/gorm.io-datatypes-1.x",
+      "headRefOid": "35c9177dc7ccc71ba0108d59b06aaae0666e87ed",
+      "baseRefName": "main"
+    },
+    {
+      "number": 277,
+      "title": "Update module golang.org/x/net to v0.61.0 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/277",
+      "state": "CLOSED",
+      "headRefName": "renovate/golang.org-x-net-0.x",
+      "headRefOid": "987f6df97f38b1e6624337d3cf84899134ce5372",
+      "baseRefName": "main"
+    },
+    {
+      "number": 276,
+      "title": "fix(deps): update module golang.org/x/mod to v0.42.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/276",
+      "state": "OPEN",
+      "headRefName": "renovate/golang.org-x-mod-0.x",
+      "headRefOid": "48c2b30e49580c39c125bd121399e0cb023b5412",
+      "baseRefName": "main"
+    },
+    {
+      "number": 275,
+      "title": "Update module golang.org/x/crypto to v0.58.0 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/275",
+      "state": "CLOSED",
+      "headRefName": "renovate/golang.org-x-crypto-0.x",
+      "headRefOid": "c30979081edf59094d6dc660c55fa12fdc155ba1",
+      "baseRefName": "main"
+    },
+    {
+      "number": 274,
+      "title": "fix(deps): update module github.com/urfave/cli/v2 to v2.27.7",
+      "url": "https://github.com/karamhouse/chartrove/pull/274",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-urfave-cli-v2-2.x",
+      "headRefOid": "4eb14230136f05760acc43a77bd0c62d51f4101d",
+      "baseRefName": "main"
+    },
+    {
+      "number": 273,
+      "title": "Update module github.com/stretchr/testify to v1.12.1 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/273",
+      "state": "CLOSED",
+      "headRefName": "renovate/github.com-stretchr-testify-1.x",
+      "headRefOid": "37d8080c13b2ba5d34e8cf0a7ac8a942640f7646",
+      "baseRefName": "main"
+    },
+    {
+      "number": 272,
+      "title": "fix(deps): update module github.com/spf13/viper to v1.21.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/272",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-spf13-viper-1.x",
+      "headRefOid": "6362bcc367fdacb0ba9cb11ec1cc246e9420b2be",
+      "baseRefName": "main"
+    },
+    {
+      "number": 271,
+      "title": "Update module github.com/sirupsen/logrus to v1.10.2 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/271",
+      "state": "CLOSED",
+      "headRefName": "renovate/github.com-sirupsen-logrus-1.x",
+      "headRefOid": "0c9d5edf1d24e37eaafef303535f0b1b9653cc2e",
+      "baseRefName": "main"
+    },
+    {
+      "number": 270,
+      "title": "fix(deps): update module github.com/samber/lo to v1.53.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/270",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-samber-lo-1.x",
+      "headRefOid": "bb09194c09aaa8a334119b13f03626b62948174b",
+      "baseRefName": "main"
+    },
+    {
+      "number": 269,
+      "title": "fix(deps): update module github.com/masterminds/sprig/v3 to v3.3.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/269",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-masterminds-sprig-v3-3.x",
+      "headRefOid": "883884d4602121a86914173dc7dc9e642681f006",
+      "baseRefName": "main"
+    },
+    {
+      "number": 268,
+      "title": "Update module github.com/lestrrat-go/jwx/v2 to v2.1.7 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/268",
+      "state": "CLOSED",
+      "headRefName": "renovate/github.com-lestrrat-go-jwx-v2-2.x",
+      "headRefOid": "96cfdc04504b7c46aec5e7c72f7ba074488eeae0",
+      "baseRefName": "main"
+    },
+    {
+      "number": 267,
+      "title": "fix(deps): update module github.com/johnfercher/maroto/v2 to v2.4.4",
+      "url": "https://github.com/karamhouse/chartrove/pull/267",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-johnfercher-maroto-v2-2.x",
+      "headRefOid": "ab77fa92a083548165dd748931ec783285093a04",
+      "baseRefName": "main"
+    },
+    {
+      "number": 266,
+      "title": "fix(deps): update module github.com/iancoleman/strcase to v0.3.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/266",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-iancoleman-strcase-0.x",
+      "headRefOid": "ac526e913b9090d4c8ecfc18f2fdc830cbb62120",
+      "baseRefName": "main"
+    },
+    {
+      "number": 265,
+      "title": "fix(deps): update module github.com/google/uuid to v1.6.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/265",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-google-uuid-1.x",
+      "headRefOid": "d5247b5b05a24b900801f9e7ddf8d2b6adbe2f18",
+      "baseRefName": "main"
+    },
+    {
+      "number": 264,
+      "title": "Update module github.com/golang-jwt/jwt/v4 to v4.5.2 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/264",
+      "state": "CLOSED",
+      "headRefName": "renovate/github.com-golang-jwt-jwt-v4-4.x",
+      "headRefOid": "c401d94c9706fc7b0c3b13bfcc74b975de0f6587",
+      "baseRefName": "main"
+    },
+    {
+      "number": 263,
+      "title": "Update module github.com/gin-gonic/gin to v1.12.0 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/263",
+      "state": "CLOSED",
+      "headRefName": "renovate/github.com-gin-gonic-gin-1.x",
+      "headRefOid": "b5bf811d7fe5cf20a9c4464d83e971af5a809b0f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 262,
+      "title": "fix(deps): update module github.com/fastenhealth/gofhir-models to v0.1.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/262",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-fastenhealth-gofhir-models-0.x",
+      "headRefOid": "127df3e9109f064226ef0af19581abe9b5104eb4",
+      "baseRefName": "main"
+    },
+    {
+      "number": 261,
+      "title": "fix(deps): update module github.com/fastenhealth/fasten-sources to v0.16.14",
+      "url": "https://github.com/karamhouse/chartrove/pull/261",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-fastenhealth-fasten-sources-0.x",
+      "headRefOid": "60df1ad6d1228bcd166e4fad247ffccc36b0e35f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 260,
+      "title": "fix(deps): update module github.com/fastenhealth/fasten-onprem to v0.2.2",
+      "url": "https://github.com/karamhouse/chartrove/pull/260",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-fastenhealth-fasten-onprem-0.x",
+      "headRefOid": "d4abf830e8f84cb9d0491a18028cb39dd20b4502",
+      "baseRefName": "main"
+    },
+    {
+      "number": 259,
+      "title": "fix(deps): update module github.com/dominikbraun/graph to v0.23.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/259",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-dominikbraun-graph-0.x",
+      "headRefOid": "ade0132f2ff0d17c22b0394e13f2ad98b1e6cd8c",
+      "baseRefName": "main"
+    },
+    {
+      "number": 258,
+      "title": "fix(deps): update module github.com/dave/jennifer to v1.7.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/258",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-dave-jennifer-1.x",
+      "headRefOid": "ab2473725d983451f0a574c62393333ac6923c83",
+      "baseRefName": "main"
+    },
+    {
+      "number": 257,
+      "title": "Update golang Docker tag to v1.27 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/257",
+      "state": "CLOSED",
+      "headRefName": "renovate/golang-1.x",
+      "headRefOid": "2b035c8f53646244814c19063c8daa28b9e6e0a9",
+      "baseRefName": "main"
+    },
+    {
+      "number": 256,
+      "title": "Update go toolchain directive to v1.27.3 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/256",
+      "state": "CLOSED",
+      "headRefName": "renovate/go-1.x",
+      "headRefOid": "0e2a2c239e92b1533955b6578a2dfa30a7dbacf9",
+      "baseRefName": "main"
+    },
+    {
+      "number": 255,
+      "title": "Update Font Awesome - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/255",
+      "state": "CLOSED",
+      "headRefName": "renovate/font-awesome",
+      "headRefOid": "5310bb73e3ec59ace7a9967166a1c95c9bed1bdf",
+      "baseRefName": "main"
+    },
+    {
+      "number": 254,
+      "title": "Update dependency webpack to v5.112.2 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/254",
+      "state": "CLOSED",
+      "headRefName": "renovate/webpack-5.x",
+      "headRefOid": "21eb72bbf701d5a68493ae8ce0290dee9623966b",
+      "baseRefName": "main"
+    },
+    {
+      "number": 253,
+      "title": "Update dependency typescript to ~4.9.0 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/253",
+      "state": "CLOSED",
+      "headRefName": "renovate/typescript-4.x",
+      "headRefOid": "3afd93f890109cb761122ee6cceb7fedf09499e5",
+      "baseRefName": "main"
+    },
+    {
+      "number": 252,
+      "title": "chore(deps): update dependency tslib to v2.9.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/252",
+      "state": "OPEN",
+      "headRefName": "renovate/tslib-2.x-lockfile",
+      "headRefOid": "166039d1a4b0b5994df2ac8a425b80844cc4d11f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 251,
+      "title": "chore(deps): update dependency ts-node to ~8.10.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/251",
+      "state": "OPEN",
+      "headRefName": "renovate/ts-node-8.x",
+      "headRefOid": "e08852b3e5a24e19b4817f7b1d47d19ee1f1ce88",
+      "baseRefName": "main"
+    },
+    {
+      "number": 250,
+      "title": "Update dependency rxjs to ~6.6.0 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/250",
+      "state": "CLOSED",
+      "headRefName": "renovate/rxjs-6.x",
+      "headRefOid": "f22215ff65b962235001f8633797e349d2d3d919",
+      "baseRefName": "main"
+    },
+    {
+      "number": 249,
+      "title": "chore(deps): update dependency moment to v2.31.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/249",
+      "state": "OPEN",
+      "headRefName": "renovate/moment-2.x-lockfile",
+      "headRefOid": "ecd605a06ebb254503bced397ef05995d409b554",
+      "baseRefName": "main"
+    },
+    {
+      "number": 248,
+      "title": "fix(deps): update dependency lforms to v34.4.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/248",
+      "state": "OPEN",
+      "headRefName": "renovate/lforms-34.x",
+      "headRefOid": "3ea3ed7b35146587074a28c8adadd796c8270f67",
+      "baseRefName": "main"
+    },
+    {
+      "number": 247,
+      "title": "chore(deps): update dependency karma-jasmine-html-reporter to v2.3.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/247",
+      "state": "OPEN",
+      "headRefName": "renovate/karma-jasmine-html-reporter-2.x-lockfile",
+      "headRefOid": "0bf78548f29a426d9fa54b28908ab4b36a98183c",
+      "baseRefName": "main"
+    },
+    {
+      "number": 246,
+      "title": "chore(deps): update dependency jose to v4.15.9",
+      "url": "https://github.com/karamhouse/chartrove/pull/246",
+      "state": "OPEN",
+      "headRefName": "renovate/jose-4.x-lockfile",
+      "headRefOid": "2fa57c44c2227d6e1a2ca0cadb213dba548553f6",
+      "baseRefName": "main"
+    },
+    {
+      "number": 245,
+      "title": "chore(deps): update dependency jasmine-core to ~5.13.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/245",
+      "state": "OPEN",
+      "headRefName": "renovate/jasmine-monorepo",
+      "headRefOid": "86b03df7cfa67d16e9da2a23bde4c23f4ed84061",
+      "baseRefName": "main"
+    },
+    {
+      "number": 244,
+      "title": "chore(deps): update dependency humanize-duration to v3.35.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/244",
+      "state": "OPEN",
+      "headRefName": "renovate/humanize-duration-3.x-lockfile",
+      "headRefOid": "6e3a9035e93f858e9afef756a6b94f988c45d703",
+      "baseRefName": "main"
+    },
+    {
+      "number": 243,
+      "title": "fix(deps): update dependency gridstack to v8.4.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/243",
+      "state": "OPEN",
+      "headRefName": "renovate/gridstack-8.x",
+      "headRefOid": "45454c74289960d827f9698ee4af043318922c99",
+      "baseRefName": "main"
+    },
+    {
+      "number": 242,
+      "title": "chore(deps): update dependency fishery to v2.4.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/242",
+      "state": "OPEN",
+      "headRefName": "renovate/fishery-2.x-lockfile",
+      "headRefOid": "f89f9a39406137da724deadb7d2153d59c821924",
+      "baseRefName": "main"
+    },
+    {
+      "number": 241,
+      "title": "chore(deps): update dependency fhirpath to v3.18.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/241",
+      "state": "OPEN",
+      "headRefName": "renovate/fhirpath-3.x-lockfile",
+      "headRefOid": "f4a69e8a951f4ea43bfa1b779217e09f8b3c4630",
+      "baseRefName": "main"
+    },
+    {
+      "number": 240,
+      "title": "fix(deps): update dependency dwv to ^0.36.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/240",
+      "state": "OPEN",
+      "headRefName": "renovate/dwv-0.x",
+      "headRefOid": "72ad6d299f240dcd4ac275c000a67fce09a5fe04",
+      "baseRefName": "main"
+    },
+    {
+      "number": 239,
+      "title": "chore(deps): update dependency chromatic to v6.24.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/239",
+      "state": "OPEN",
+      "headRefName": "renovate/chromatic-6.x-lockfile",
+      "headRefOid": "c142e75f7d47e797eebcb2f3734989bdd63b294b",
+      "baseRefName": "main"
+    },
+    {
+      "number": 238,
+      "title": "chore(deps): update dependency chart.js to v4.6.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/238",
+      "state": "OPEN",
+      "headRefName": "renovate/chart.js-4.x-lockfile",
+      "headRefOid": "2fee6a84de47456098ce6131db3e60c453a686c0",
+      "baseRefName": "main"
+    },
+    {
+      "number": 237,
+      "title": "chore(deps): update dependency @types/jasmine to ~3.10.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/237",
+      "state": "OPEN",
+      "headRefName": "renovate/jasmine-3.x",
+      "headRefOid": "b3bda0bbfc9d6d56ea61affd4346d6d1fa7fe61e",
+      "baseRefName": "main"
+    },
+    {
+      "number": 236,
+      "title": "Update dependency @storybook/testing-library to ^0.2.0 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/236",
+      "state": "CLOSED",
+      "headRefName": "renovate/storybook-testing-library-0.x",
+      "headRefOid": "a34cef1abfcdefa4949b4c86d84b4c6a431c7835",
+      "baseRefName": "main"
+    },
+    {
+      "number": 235,
+      "title": "chore(deps): update dependency @compodoc/compodoc to v1.2.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/235",
+      "state": "OPEN",
+      "headRefName": "renovate/compodoc-compodoc-1.x-lockfile",
+      "headRefOid": "d4ec14099c2f15326788feea7d953448aa6beaee",
+      "baseRefName": "main"
+    },
+    {
+      "number": 234,
+      "title": "fix(deps): update dependency zone.js to ~0.16.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/234",
+      "state": "OPEN",
+      "headRefName": "renovate/angular-monorepo",
+      "headRefOid": "466cd5b16f6463c0906bf40e9f645970865b8b9c",
+      "baseRefName": "main"
+    },
+    {
+      "number": 233,
+      "title": "fix(deps): update module github.com/twin/deepmerge to v0.2.2",
+      "url": "https://github.com/karamhouse/chartrove/pull/233",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-twin-deepmerge-0.x",
+      "headRefOid": "698f6fa00d0112d47883a8325483c84909c94784",
+      "baseRefName": "main"
+    },
+    {
+      "number": 232,
+      "title": "fix(deps): update module github.com/go-gormigrate/gormigrate/v2 to v2.1.7",
+      "url": "https://github.com/karamhouse/chartrove/pull/232",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-go-gormigrate-gormigrate-v2-2.x",
+      "headRefOid": "b72af58c4572ce0abfaba8af3a8288d0f95fcf1f",
+      "baseRefName": "main"
+    },
+    {
+      "number": 231,
+      "title": "Update dependency webcrypto-liner to v1.4.3 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/231",
+      "state": "CLOSED",
+      "headRefName": "renovate/webcrypto-liner-1.x-lockfile",
+      "headRefOid": "66cc4228bb25534e420227dc5f23e811b438d892",
+      "baseRefName": "main"
+    },
+    {
+      "number": 230,
+      "title": "chore(deps): update dependency uuid to v9.0.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/230",
+      "state": "OPEN",
+      "headRefName": "renovate/uuid-9.x-lockfile",
+      "headRefOid": "9b54c2b8e4353fcedf9d093fe792cecd0229a38b",
+      "baseRefName": "main"
+    },
+    {
+      "number": 229,
+      "title": "chore(deps): update dependency parse-full-name to v1.2.7",
+      "url": "https://github.com/karamhouse/chartrove/pull/229",
+      "state": "OPEN",
+      "headRefName": "renovate/parse-full-name-1.x-lockfile",
+      "headRefOid": "65db23b89c35cc3282765d13b7d169fd7aec7171",
+      "baseRefName": "main"
+    },
+    {
+      "number": 228,
+      "title": "chore(deps): update dependency karma to v6.4.4",
+      "url": "https://github.com/karamhouse/chartrove/pull/228",
+      "state": "OPEN",
+      "headRefName": "renovate/karma-6.x-lockfile",
+      "headRefOid": "91cd54066e380dbe01d21d5251d101cbd58cf3cd",
+      "baseRefName": "main"
+    },
+    {
+      "number": 227,
+      "title": "chore(deps): update dependency @types/qrcode to v1.5.6",
+      "url": "https://github.com/karamhouse/chartrove/pull/227",
+      "state": "OPEN",
+      "headRefName": "renovate/qrcode-1.x-lockfile",
+      "headRefOid": "b735eb16adc68b9364300204ec9c0eb667fb9380",
+      "baseRefName": "main"
+    },
+    {
+      "number": 226,
+      "title": "chore(deps): update dependency @types/jasminewd2 to v2.0.13",
+      "url": "https://github.com/karamhouse/chartrove/pull/226",
+      "state": "OPEN",
+      "headRefName": "renovate/jasminewd2-2.x-lockfile",
+      "headRefOid": "cf43bb0bfc5eac56bae054ac40aa4e9a5dbb5475",
+      "baseRefName": "main"
+    },
+    {
+      "number": 225,
+      "title": "fix(deps): update dependency @types/fhir to ^0.0.44",
+      "url": "https://github.com/karamhouse/chartrove/pull/225",
+      "state": "OPEN",
+      "headRefName": "renovate/fhir-0.x",
+      "headRefOid": "b65bd6af337b02ac8a5f6fc3f0aab9de959801a0",
+      "baseRefName": "main"
+    },
+    {
+      "number": 224,
+      "title": "fix(deps): update dependency @panva/oauth4webapi to v1.2.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/224",
+      "state": "OPEN",
+      "headRefName": "renovate/panva-oauth4webapi-1.x",
+      "headRefOid": "9cd9df46a06ffa74d5b5245697dcfcbf3f00fac7",
+      "baseRefName": "main"
+    },
+    {
+      "number": 223,
+      "title": "Update angular-cli monorepo to v14.2.13 - autoclosed",
+      "url": "https://github.com/karamhouse/chartrove/pull/223",
+      "state": "CLOSED",
+      "headRefName": "renovate/angular-cli-monorepo",
+      "headRefOid": "f71dc2457ac8f427085d0a0ec99eda0beba226c4",
+      "baseRefName": "main"
+    },
+    {
+      "number": 221,
+      "title": "fix(deps): update golang.org/x/exp digest to f0251eb",
+      "url": "https://github.com/karamhouse/chartrove/pull/221",
+      "state": "OPEN",
+      "headRefName": "renovate/golang.org-x-exp-digest",
+      "headRefOid": "265c8a26cf9fd1f505467a333d28dfcc5fdce47d",
+      "baseRefName": "main"
+    },
+    {
+      "number": 220,
+      "title": "fix(deps): update github.com/dop251/goja digest to cf2ff0e",
+      "url": "https://github.com/karamhouse/chartrove/pull/220",
+      "state": "OPEN",
+      "headRefName": "renovate/github.com-dop251-goja-digest",
+      "headRefOid": "f128d3aaad06f50d05abe2c23a1c069abcfca5a0",
+      "baseRefName": "main"
+    },
+    {
+      "number": 219,
+      "title": "Revive the Chartrove desktop app and preserve Fasten attribution",
+      "url": "https://github.com/karamhouse/chartrove/pull/219",
+      "state": "MERGED",
+      "headRefName": "codex/revive-desktop",
+      "headRefOid": "b5248a27d6358a97b09e93453a8df4b3a5e5805a",
+      "baseRefName": "main"
+    },
+    {
+      "number": 218,
+      "title": "Configure Renovate",
+      "url": "https://github.com/karamhouse/chartrove/pull/218",
+      "state": "MERGED",
+      "headRefName": "renovate/configure",
+      "headRefOid": "c6e6571b7abd1eb56f64d8bd6731de722b16e078",
+      "baseRefName": "main"
+    },
+    {
+      "number": 217,
+      "title": "[Upstream #636] Disallow reserved usernames during user registration",
+      "url": "https://github.com/karamhouse/chartrove/pull/217",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-636",
+      "headRefOid": "bba5c43f954346ef170c2f6abbf57cc09abb59aa",
+      "baseRefName": "migration/upstream-pr-636-base"
+    },
+    {
+      "number": 216,
+      "title": "[Upstream #625] Update docker-compose-prod.yml",
+      "url": "https://github.com/karamhouse/chartrove/pull/216",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-625",
+      "headRefOid": "33c95d548023a390dd2a581a2a52d85633793c63",
+      "baseRefName": "migration/upstream-pr-625-base"
+    },
+    {
+      "number": 215,
+      "title": "[Upstream #614] Delegated Access System (Local)",
+      "url": "https://github.com/karamhouse/chartrove/pull/215",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-614",
+      "headRefOid": "e7c9632e54e04ff2701f1cd36a51d39dd7388bb4",
+      "baseRefName": "migration/upstream-pr-614-base"
+    },
+    {
+      "number": 214,
+      "title": "[Upstream #613] Feature/OIDC auth support",
+      "url": "https://github.com/karamhouse/chartrove/pull/214",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-613",
+      "headRefOid": "bcb60fcb9feca0f683ab7b39fd221b4c274d6883",
+      "baseRefName": "migration/upstream-pr-613-base"
+    },
+    {
+      "number": 213,
+      "title": "[Upstream #610] updated readme",
+      "url": "https://github.com/karamhouse/chartrove/pull/213",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-610",
+      "headRefOid": "00c1725dda34c97f686b6b9df05a7397933dc217",
+      "baseRefName": "migration/upstream-pr-610-base"
+    },
+    {
+      "number": 212,
+      "title": "[Upstream #609] Feature/OCR Scan",
+      "url": "https://github.com/karamhouse/chartrove/pull/212",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-609",
+      "headRefOid": "658dc9751320427cd2d6da18e0b50e5d3fc00c75",
+      "baseRefName": "migration/upstream-pr-609-base"
+    },
+    {
+      "number": 211,
+      "title": "[Upstream #594] feat: Introduce Typesense-Powered Search, RAG Chat, and Platform Upgrades",
+      "url": "https://github.com/karamhouse/chartrove/pull/211",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-594",
+      "headRefOid": "3fec283a19c3edecc13e7fa27586fb699ec07882",
+      "baseRefName": "migration/upstream-pr-594-base"
+    },
+    {
+      "number": 210,
+      "title": "[Upstream #584] fix sources page ui jump",
+      "url": "https://github.com/karamhouse/chartrove/pull/210",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-584",
+      "headRefOid": "fda11e9c1519c058f77fb349fb8557e334d86ce5",
+      "baseRefName": "migration/upstream-pr-584-base"
+    },
+    {
+      "number": 209,
+      "title": "[Upstream #514] manage user permissions",
+      "url": "https://github.com/karamhouse/chartrove/pull/209",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-514",
+      "headRefOid": "cf4e493599dd0f7ce4716169ad713a2f360fc751",
+      "baseRefName": "migration/upstream-pr-514-base"
+    },
+    {
+      "number": 208,
+      "title": "[Upstream #512] remove unnecessary oauth4webapi script include",
+      "url": "https://github.com/karamhouse/chartrove/pull/208",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-512",
+      "headRefOid": "9ba8313e64cf57598f69551739176787e6fa0acb",
+      "baseRefName": "migration/upstream-pr-512-base"
+    },
+    {
+      "number": 207,
+      "title": "[Upstream #391] Bump github.com/lestrrat-go/jwx/v2 from 2.0.11 to 2.0.19",
+      "url": "https://github.com/karamhouse/chartrove/pull/207",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-391",
+      "headRefOid": "0077f23d5ac7bf5be2e77c96667218221610927d",
+      "baseRefName": "migration/upstream-pr-391-base"
+    },
+    {
+      "number": 206,
+      "title": "[Upstream #377] Bump follow-redirects from 1.15.2 to 1.15.4 in /frontend",
+      "url": "https://github.com/karamhouse/chartrove/pull/206",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-377",
+      "headRefOid": "f980859316d8732186374a68bd2d949b8f184d14",
+      "baseRefName": "migration/upstream-pr-377-base"
+    },
+    {
+      "number": 205,
+      "title": "[Upstream #375] Bump github.com/cloudflare/circl from 1.3.3 to 1.3.7",
+      "url": "https://github.com/karamhouse/chartrove/pull/205",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-375",
+      "headRefOid": "c348176be08673d4e058e76efc94b53ed1293ffb",
+      "baseRefName": "migration/upstream-pr-375-base"
+    },
+    {
+      "number": 204,
+      "title": "[Upstream #367] Bump golang.org/x/crypto from 0.14.0 to 0.17.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/204",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-367",
+      "headRefOid": "9a18d56aa13586fddb76404098d2df97ad455bc3",
+      "baseRefName": "migration/upstream-pr-367-base"
+    },
+    {
+      "number": 203,
+      "title": "[Upstream #339] Bump @adobe/css-tools from 4.1.0 to 4.3.2 in /frontend",
+      "url": "https://github.com/karamhouse/chartrove/pull/203",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-339",
+      "headRefOid": "c157dd482a4273e7d92b306e520d1c732f072304",
+      "baseRefName": "migration/upstream-pr-339-base"
+    },
+    {
+      "number": 202,
+      "title": "[Upstream #313] Bump golang.org/x/net from 0.14.0 to 0.17.0",
+      "url": "https://github.com/karamhouse/chartrove/pull/202",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-313",
+      "headRefOid": "ea2dde5bf02197256e0532a0e7a9a3f99a951749",
+      "baseRefName": "migration/upstream-pr-313-base"
+    },
+    {
+      "number": 201,
+      "title": "[Upstream #312] Bump semver from 5.7.1 to 5.7.2 in /frontend",
+      "url": "https://github.com/karamhouse/chartrove/pull/201",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-312",
+      "headRefOid": "e1fa9e5551189c4e4f98eec57efbef4cc3abeec2",
+      "baseRefName": "migration/upstream-pr-312-base"
+    },
+    {
+      "number": 200,
+      "title": "[Upstream #311] Bump github.com/gin-gonic/gin from 1.9.0 to 1.9.1",
+      "url": "https://github.com/karamhouse/chartrove/pull/200",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-311",
+      "headRefOid": "be737c5688a1962c3981465338694690cb80b335",
+      "baseRefName": "migration/upstream-pr-311-base"
+    },
+    {
+      "number": 199,
+      "title": "[Upstream #310] Bump crypto-js from 4.1.1 to 4.2.0 in /frontend",
+      "url": "https://github.com/karamhouse/chartrove/pull/199",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-310",
+      "headRefOid": "39407d4db398ec20d37d09ac00e529ba31c0b2d6",
+      "baseRefName": "migration/upstream-pr-310-base"
+    },
+    {
+      "number": 198,
+      "title": "[Upstream #309] Bump word-wrap from 1.2.3 to 1.2.5 in /frontend",
+      "url": "https://github.com/karamhouse/chartrove/pull/198",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-309",
+      "headRefOid": "9bf0b66443a0d629bcf1c170e0e4414566fb4a0d",
+      "baseRefName": "migration/upstream-pr-309-base"
+    },
+    {
+      "number": 197,
+      "title": "[Upstream #166] Unstick the footer, put at the bottom of the page",
+      "url": "https://github.com/karamhouse/chartrove/pull/197",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-166",
+      "headRefOid": "c38a44d7359c7cc628afa07590502ad13b632aa7",
+      "baseRefName": "migration/upstream-pr-166-base"
+    },
+    {
+      "number": 196,
+      "title": "[Upstream #66] Add deploy to digital ocean button",
+      "url": "https://github.com/karamhouse/chartrove/pull/196",
+      "state": "OPEN",
+      "headRefName": "migration/upstream-pr-66",
+      "headRefOid": "b857c07b881c175532290d9edb569e1361094410",
+      "baseRefName": "migration/upstream-pr-66-base"
+    }
+  ],
+  "remote_heads": [
+    "2d4c2c197fea27c46192bcb320a6c5a652da4020\trefs/heads/main",
+    "c38a44d7359c7cc628afa07590502ad13b632aa7\trefs/heads/migration/upstream-pr-166",
+    "3db6c421ca78e38162364b6f265716cdcb063252\trefs/heads/migration/upstream-pr-166-base",
+    "9bf0b66443a0d629bcf1c170e0e4414566fb4a0d\trefs/heads/migration/upstream-pr-309",
+    "0a8b4fe21e4206c5ccb491518b06b55965cef9a7\trefs/heads/migration/upstream-pr-309-base",
+    "39407d4db398ec20d37d09ac00e529ba31c0b2d6\trefs/heads/migration/upstream-pr-310",
+    "0a8b4fe21e4206c5ccb491518b06b55965cef9a7\trefs/heads/migration/upstream-pr-310-base",
+    "be737c5688a1962c3981465338694690cb80b335\trefs/heads/migration/upstream-pr-311",
+    "d23af018e7ada6d1c1f9e839788ed5e69d7f765c\trefs/heads/migration/upstream-pr-311-base",
+    "e1fa9e5551189c4e4f98eec57efbef4cc3abeec2\trefs/heads/migration/upstream-pr-312",
+    "0a8b4fe21e4206c5ccb491518b06b55965cef9a7\trefs/heads/migration/upstream-pr-312-base",
+    "ea2dde5bf02197256e0532a0e7a9a3f99a951749\trefs/heads/migration/upstream-pr-313",
+    "0a8b4fe21e4206c5ccb491518b06b55965cef9a7\trefs/heads/migration/upstream-pr-313-base",
+    "c157dd482a4273e7d92b306e520d1c732f072304\trefs/heads/migration/upstream-pr-339",
+    "7a77dcdcd679a8441263d9e98166772efa3c5c38\trefs/heads/migration/upstream-pr-339-base",
+    "9a18d56aa13586fddb76404098d2df97ad455bc3\trefs/heads/migration/upstream-pr-367",
+    "07677d0878bf626e88c55d0ea9e9637b0d93d82a\trefs/heads/migration/upstream-pr-367-base",
+    "c348176be08673d4e058e76efc94b53ed1293ffb\trefs/heads/migration/upstream-pr-375",
+    "f1c120cbb21150c52e2c7b9e2648c42b49aec148\trefs/heads/migration/upstream-pr-375-base",
+    "f980859316d8732186374a68bd2d949b8f184d14\trefs/heads/migration/upstream-pr-377",
+    "f1c120cbb21150c52e2c7b9e2648c42b49aec148\trefs/heads/migration/upstream-pr-377-base",
+    "0077f23d5ac7bf5be2e77c96667218221610927d\trefs/heads/migration/upstream-pr-391",
+    "c85e829c465746e8c745f3512e544a5bc3ebc340\trefs/heads/migration/upstream-pr-391-base",
+    "9ba8313e64cf57598f69551739176787e6fa0acb\trefs/heads/migration/upstream-pr-512",
+    "4a82064521db3dbdc5c96669fe8af8549ee21583\trefs/heads/migration/upstream-pr-512-base",
+    "cf4e493599dd0f7ce4716169ad713a2f360fc751\trefs/heads/migration/upstream-pr-514",
+    "cd2cc400dbff320bd2955e8d399dbd08edf43b99\trefs/heads/migration/upstream-pr-514-base",
+    "fda11e9c1519c058f77fb349fb8557e334d86ce5\trefs/heads/migration/upstream-pr-584",
+    "2cbb5bfbd6ab0f97cfb01191af17bc131945a78b\trefs/heads/migration/upstream-pr-584-base",
+    "3fec283a19c3edecc13e7fa27586fb699ec07882\trefs/heads/migration/upstream-pr-594",
+    "3d7e27ab2bddbb2eba453657311b66039a7bd749\trefs/heads/migration/upstream-pr-594-base",
+    "658dc9751320427cd2d6da18e0b50e5d3fc00c75\trefs/heads/migration/upstream-pr-609",
+    "210447e3f5e3538be5f7c8c6df5358ba5e8caf1d\trefs/heads/migration/upstream-pr-609-base",
+    "00c1725dda34c97f686b6b9df05a7397933dc217\trefs/heads/migration/upstream-pr-610",
+    "210447e3f5e3538be5f7c8c6df5358ba5e8caf1d\trefs/heads/migration/upstream-pr-610-base",
+    "bcb60fcb9feca0f683ab7b39fd221b4c274d6883\trefs/heads/migration/upstream-pr-613",
+    "d008d08f2c5c3ffc4bbe727077a565c73e509980\trefs/heads/migration/upstream-pr-613-base",
+    "e7c9632e54e04ff2701f1cd36a51d39dd7388bb4\trefs/heads/migration/upstream-pr-614",
+    "3d7e27ab2bddbb2eba453657311b66039a7bd749\trefs/heads/migration/upstream-pr-614-base",
+    "33c95d548023a390dd2a581a2a52d85633793c63\trefs/heads/migration/upstream-pr-625",
+    "503f2b7cccf8f7c6f98541f779be2393f8555340\trefs/heads/migration/upstream-pr-625-base",
+    "bba5c43f954346ef170c2f6abbf57cc09abb59aa\trefs/heads/migration/upstream-pr-636",
+    "36d92446884e9e20eda8d2b2a0a1115c9c57f7ef\trefs/heads/migration/upstream-pr-636-base",
+    "b857c07b881c175532290d9edb569e1361094410\trefs/heads/migration/upstream-pr-66",
+    "3692fd462f830115f9eb2fd7af81ed7b5f32aa16\trefs/heads/migration/upstream-pr-66-base",
+    "e814a4ffe265e6d6710d6b8f3b321fa1fcd610e2\trefs/heads/renovate/actions-checkout-7.x",
+    "6d1a9d03fe789da1b5108445931411759eb99b3f\trefs/heads/renovate/actions-setup-go-7.x",
+    "c2a2883f90d7b4caf7b3c7dbdd788c094ccf1962\trefs/heads/renovate/actions-setup-node-7.x",
+    "466cd5b16f6463c0906bf40e9f645970865b8b9c\trefs/heads/renovate/angular-monorepo",
+    "931cada6758bd92b831a9d5c13e8602003dae069\trefs/heads/renovate/aws-actions-configure-aws-credentials-6.x",
+    "2fee6a84de47456098ce6131db3e60c453a686c0\trefs/heads/renovate/chart.js-4.x-lockfile",
+    "342bb79010b0b3c8c4ccca4daa8c476b65542110\trefs/heads/renovate/chromatic-18.x",
+    "c142e75f7d47e797eebcb2f3734989bdd63b294b\trefs/heads/renovate/chromatic-6.x-lockfile",
+    "fdafad2f1b873179b30e12144a837239eedb3573\trefs/heads/renovate/chromaui-action-18.x",
+    "694b1465cbb5ef5ff55a2d1e4cc18f216b10f9ce\trefs/heads/renovate/codecov-codecov-action-7.x",
+    "3ed946e286c4e61ab85728e3082a34ae05daddbe\trefs/heads/renovate/codelyzer-6.x",
+    "d4ec14099c2f15326788feea7d953448aa6beaee\trefs/heads/renovate/compodoc-compodoc-1.x-lockfile",
+    "782ae2a59b60e8f55a1089c223b3ca85f9796eef\trefs/heads/renovate/compodoc-compodoc-2.x",
+    "7d098a12cdd18e897af686be6177f7da6600f6e1\trefs/heads/renovate/docker-login-action-4.x",
+    "4388f1a2c3cff549836571cad6ddb60a0345273e\trefs/heads/renovate/docker-metadata-action-6.x",
+    "72ad6d299f240dcd4ac275c000a67fce09a5fe04\trefs/heads/renovate/dwv-0.x",
+    "b65bd6af337b02ac8a5f6fc3f0aab9de959801a0\trefs/heads/renovate/fhir-0.x",
+    "f4a69e8a951f4ea43bfa1b779217e09f8b3c4630\trefs/heads/renovate/fhirpath-3.x-lockfile",
+    "d8e4269b06c7d75bddce11091af4373dc29934a2\trefs/heads/renovate/fhirpath-5.x",
+    "f89f9a39406137da724deadb7d2153d59c821924\trefs/heads/renovate/fishery-2.x-lockfile",
+    "9d18e902f8b2c4fe9e2ebe0f267ad936a3ccd12e\trefs/heads/renovate/ghcr.io-devcontainers-features-node-2.x",
+    "ab2473725d983451f0a574c62393333ac6923c83\trefs/heads/renovate/github.com-dave-jennifer-1.x",
+    "ade0132f2ff0d17c22b0394e13f2ad98b1e6cd8c\trefs/heads/renovate/github.com-dominikbraun-graph-0.x",
+    "f128d3aaad06f50d05abe2c23a1c069abcfca5a0\trefs/heads/renovate/github.com-dop251-goja-digest",
+    "d4abf830e8f84cb9d0491a18028cb39dd20b4502\trefs/heads/renovate/github.com-fastenhealth-fasten-onprem-0.x",
+    "1ecd7778116f80e55fd24417b3730e4124dd9cf0\trefs/heads/renovate/github.com-fastenhealth-fasten-onprem-1.x",
+    "60df1ad6d1228bcd166e4fad247ffccc36b0e35f\trefs/heads/renovate/github.com-fastenhealth-fasten-sources-0.x",
+    "127df3e9109f064226ef0af19581abe9b5104eb4\trefs/heads/renovate/github.com-fastenhealth-gofhir-models-0.x",
+    "b72af58c4572ce0abfaba8af3a8288d0f95fcf1f\trefs/heads/renovate/github.com-go-gormigrate-gormigrate-v2-2.x",
+    "3528f6f089f9c8e1f7b53cfac40f34d9d258d6e5\trefs/heads/renovate/github.com-golang-jwt-jwt-v4-5.x",
+    "ddbc6fa651ebb1c01ecced825e7b0ebba6cbc88b\trefs/heads/renovate/github.com-google-go-github-v54-93.x",
+    "d5247b5b05a24b900801f9e7ddf8d2b6adbe2f18\trefs/heads/renovate/github.com-google-uuid-1.x",
+    "ac526e913b9090d4c8ecfc18f2fdc830cbb62120\trefs/heads/renovate/github.com-iancoleman-strcase-0.x",
+    "ab77fa92a083548165dd748931ec783285093a04\trefs/heads/renovate/github.com-johnfercher-maroto-v2-2.x",
+    "883884d4602121a86914173dc7dc9e642681f006\trefs/heads/renovate/github.com-masterminds-sprig-v3-3.x",
+    "bb09194c09aaa8a334119b13f03626b62948174b\trefs/heads/renovate/github.com-samber-lo-1.x",
+    "6362bcc367fdacb0ba9cb11ec1cc246e9420b2be\trefs/heads/renovate/github.com-spf13-viper-1.x",
+    "698f6fa00d0112d47883a8325483c84909c94784\trefs/heads/renovate/github.com-twin-deepmerge-0.x",
+    "4eb14230136f05760acc43a77bd0c62d51f4101d\trefs/heads/renovate/github.com-urfave-cli-v2-2.x",
+    "1ebc8abdb21c93d0d12d889fb3ad4c09b25538f3\trefs/heads/renovate/github.com-urfave-cli-v2-3.x",
+    "265c8a26cf9fd1f505467a333d28dfcc5fdce47d\trefs/heads/renovate/golang.org-x-exp-digest",
+    "48c2b30e49580c39c125bd121399e0cb023b5412\trefs/heads/renovate/golang.org-x-mod-0.x",
+    "35c9177dc7ccc71ba0108d59b06aaae0666e87ed\trefs/heads/renovate/gorm.io-datatypes-1.x",
+    "5ddaae1348cd66c738dbd83ef0f254fbf857f7b9\trefs/heads/renovate/gorm.io-driver-postgres-1.x",
+    "88d7e75c42b540119d5633e2da19323729e0d7d8\trefs/heads/renovate/gorm.io-driver-sqlite-1.x",
+    "014f8baad7548d622b8766e53d36943456698113\trefs/heads/renovate/gorm.io-gorm-1.x",
+    "ef02b1b3b6b5a839fe9c0642ba3dcc9629ba279a\trefs/heads/renovate/gridstack-14.x",
+    "45454c74289960d827f9698ee4af043318922c99\trefs/heads/renovate/gridstack-8.x",
+    "6e3a9035e93f858e9afef756a6b94f988c45d703\trefs/heads/renovate/humanize-duration-3.x-lockfile",
+    "124bc8a81e8c66cab2e4ad2e870d83e9319e82fb\trefs/heads/renovate/idb-8.x",
+    "b3bda0bbfc9d6d56ea61affd4346d6d1fa7fe61e\trefs/heads/renovate/jasmine-3.x",
+    "b92a0d9e9e9cdd35ca2212fdd035230c77a8c11f\trefs/heads/renovate/jasmine-7.x",
+    "86b03df7cfa67d16e9da2a23bde4c23f4ed84061\trefs/heads/renovate/jasmine-monorepo",
+    "cf43bb0bfc5eac56bae054ac40aa4e9a5dbb5475\trefs/heads/renovate/jasminewd2-2.x-lockfile",
+    "2fa57c44c2227d6e1a2ca0cadb213dba548553f6\trefs/heads/renovate/jose-4.x-lockfile",
+    "d500174f2795beeb5648803db4813d8d833e0b3a\trefs/heads/renovate/jose-6.x",
+    "91cd54066e380dbe01d21d5251d101cbd58cf3cd\trefs/heads/renovate/karma-6.x-lockfile",
+    "0bf78548f29a426d9fa54b28908ab4b36a98183c\trefs/heads/renovate/karma-jasmine-html-reporter-2.x-lockfile",
+    "3ea3ed7b35146587074a28c8adadd796c8270f67\trefs/heads/renovate/lforms-34.x",
+    "aca1bf5aa542e389f651aa7aef474d10e995b0f7\trefs/heads/renovate/lforms-44.x",
+    "33fe8550c65d29267c536963a05758daeaec30a1\trefs/heads/renovate/major-github-artifact-actions",
+    "6b343dfbd7c7cd05f6d6df1a41289407d39c421a\trefs/heads/renovate/major-jasmine-monorepo",
+    "91d36c7f0b5db31d3382fa62b5fd2b0007515115\trefs/heads/renovate/major-react-monorepo",
+    "ecd605a06ebb254503bced397ef05995d409b554\trefs/heads/renovate/moment-2.x-lockfile",
+    "884a9f70b61cf72ce2998b88b0762169bb0c618b\trefs/heads/renovate/ng-select-ng-select-24.x",
+    "215937671527051faf345c67fdd6a1da68ae537c\trefs/heads/renovate/ng2-charts-11.x",
+    "365da2a50be3bfd00547f2755ab3c76fab029464\trefs/heads/renovate/ngx-highlightjs-14.x",
+    "9cd9df46a06ffa74d5b5245697dcfcbf3f00fac7\trefs/heads/renovate/panva-oauth4webapi-1.x",
+    "65db23b89c35cc3282765d13b7d169fd7aec7171\trefs/heads/renovate/parse-full-name-1.x-lockfile",
+    "b735eb16adc68b9364300204ec9c0eb667fb9380\trefs/heads/renovate/qrcode-1.x-lockfile",
+    "a2c1dc4b0005c63ae161d7f31d0f84afaf749b6f\trefs/heads/renovate/react-monorepo",
+    "8a0201064e6988fbb891b0265240f6950bc499cf\trefs/heads/renovate/swimlane-ngx-datatable-25.x",
+    "97037049dada273ace3d9bad05084739ff4a5f54\trefs/heads/renovate/tibdex-github-app-token-2.x",
+    "f682998c4262653a687325e085514a05b3217512\trefs/heads/renovate/ts-node-10.x",
+    "e08852b3e5a24e19b4817f7b1d47d19ee1f1ce88\trefs/heads/renovate/ts-node-8.x",
+    "166039d1a4b0b5994df2ac8a425b80844cc4d11f\trefs/heads/renovate/tslib-2.x-lockfile",
+    "de04cf6e0e129f005a123ddda8af53d9a355bde0\trefs/heads/renovate/typescript-7.x",
+    "5c11e3406bb9857c240842ed6b345765d395d1ab\trefs/heads/renovate/uuid-14.x",
+    "9b54c2b8e4353fcedf9d093fe792cecd0229a38b\trefs/heads/renovate/uuid-9.x-lockfile",
+    "62a89d799969b1de8ac208543e89a7da85345a91\trefs/heads/summary",
+    "38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e\trefs/heads/text_field_extract"
+  ],
+  "local_refs": [
+    "refs/heads/main 2d4c2c197fea27c46192bcb320a6c5a652da4020",
+    "refs/heads/task/protected-maintenance-ci 2d4c2c197fea27c46192bcb320a6c5a652da4020",
+    "refs/remotes/legacy-fork/AnalogJ-patch-1 f2cc50e989fd86357fe6c16c792f32c8df042f24",
+    "refs/remotes/legacy-fork/HEAD 36d92446884e9e20eda8d2b2a0a1115c9c57f7ef",
+    "refs/remotes/legacy-fork/beta 3314e0cc254be7e0c5181d3aa537e02b14d7d224",
+    "refs/remotes/legacy-fork/dependabot/go_modules/github.com/cloudflare/circl-1.3.7 c348176be08673d4e058e76efc94b53ed1293ffb",
+    "refs/remotes/legacy-fork/dependabot/go_modules/github.com/gin-gonic/gin-1.9.1 be737c5688a1962c3981465338694690cb80b335",
+    "refs/remotes/legacy-fork/dependabot/go_modules/github.com/lestrrat-go/jwx/v2-2.0.19 0077f23d5ac7bf5be2e77c96667218221610927d",
+    "refs/remotes/legacy-fork/dependabot/go_modules/golang.org/x/crypto-0.17.0 9a18d56aa13586fddb76404098d2df97ad455bc3",
+    "refs/remotes/legacy-fork/dependabot/go_modules/golang.org/x/net-0.17.0 ea2dde5bf02197256e0532a0e7a9a3f99a951749",
+    "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/adobe/css-tools-4.3.2 c157dd482a4273e7d92b306e520d1c732f072304",
+    "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/crypto-js-4.2.0 39407d4db398ec20d37d09ac00e529ba31c0b2d6",
+    "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/follow-redirects-1.15.4 f980859316d8732186374a68bd2d949b8f184d14",
+    "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/semver-5.7.2 e1fa9e5551189c4e4f98eec57efbef4cc3abeec2",
+    "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/word-wrap-1.2.5 9bf0b66443a0d629bcf1c170e0e4414566fb4a0d",
+    "refs/remotes/legacy-fork/export_summary d99da608970e14e8042f2ce7b0eae2a2906fa202",
+    "refs/remotes/legacy-fork/main 36d92446884e9e20eda8d2b2a0a1115c9c57f7ef",
+    "refs/remotes/legacy-fork/manual-input 04b30c2ea406d2633d9e2e84860fa4f45f1442da",
+    "refs/remotes/legacy-fork/summary 62a89d799969b1de8ac208543e89a7da85345a91",
+    "refs/remotes/legacy-fork/text_field_extract 38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e",
+    "refs/remotes/origin/HEAD 2d4c2c197fea27c46192bcb320a6c5a652da4020",
+    "refs/remotes/origin/main 2d4c2c197fea27c46192bcb320a6c5a652da4020",
+    "refs/tags/v0.0.1 94d26ad075847ee2cd67bede07d40bd383a20f25",
+    "refs/tags/v0.0.10 790a4e267ea8db77bdcaca3e850d872b376bab99",
+    "refs/tags/v0.0.11 917c858f8b703429cc57c487d133285a1f2e7636",
+    "refs/tags/v0.0.12 657e9b517485644b96004eeaceec2c197f72f3cf",
+    "refs/tags/v0.0.2 77c23e62f05359c604b78dc5055a9622052f6e1e",
+    "refs/tags/v0.0.3 0d7d64e089b2c248219f007f02a689107c4375c4",
+    "refs/tags/v0.0.4 139b48343591d232a37cf2e85dd64edc8665e1db",
+    "refs/tags/v0.0.5 8598a99860ea123d20ce56d25ca302c7b6d37587",
+    "refs/tags/v0.0.6 e3281baf989a0b5c27f68966b6b6ba9525a14d11",
+    "refs/tags/v0.0.8 b9ce651dbd4c59943a7da3795c13018ed076fd77",
+    "refs/tags/v0.0.9 e1fbd44e4d57bde832f970cdb18c3cf65f6c3814",
+    "refs/tags/v0.1.0 96c5ca10542867bdb4c5ee6322543c5409ea50c2",
+    "refs/tags/v0.1.1 b0538f4890873d25a8048fab2f739a77325c3dd2",
+    "refs/tags/v0.1.2 b6898a05e316a5af84a19b57b63ad384465c54f8",
+    "refs/tags/v0.1.3 c4b139525943d7e60c19d01e97d658319a6e8250",
+    "refs/tags/v0.1.4 81fc0878c42d8195f2e79ada14fcc8f37764f88a",
+    "refs/tags/v0.1.5 dd00a7d276867bdf4ec4ff5c4c2459ea06fdd0b9",
+    "refs/tags/v0.1.6 59a13b0e9c9e554325764ba89c615a425677f8df",
+    "refs/tags/v0.1.7 24ba2b12f96738962bd0868fe2d27b85fe8bc0c1",
+    "refs/tags/v0.1.8 11b8874a39d9996f014cf79b6f53ccc5ab3e5ecc",
+    "refs/tags/v0.2.0 2640f49a430587c410ed2ba5fac268ddf2a5bff8",
+    "refs/tags/v0.2.1 478cd7302ec69045e589773e1169ea9849b7f261",
+    "refs/tags/v0.2.2 c2a336bf8395d8971e4bde1a71a164f59b67c553",
+    "refs/tags/v1.0.0 d086e170cffbb0a07faa18737065424f10ac1ca2",
+    "refs/tags/v1.0.1 d384f72e32cfb2f44399655a0af05909d8a8ec09",
+    "refs/tags/v1.0.2 f6d6c84047fd54a5688b393ff313bf764949242a",
+    "refs/tags/v1.1.0 5273969d5cfe40461b0c9f761c7b9f55111da2dd",
+    "refs/tags/v1.1.1 371b64bd33706c73feca9b823e9a36102ede12f4",
+    "refs/tags/v1.1.2 f9023e7176af8efec8fd24601d9d25156516dfb5",
+    "refs/tags/v1.1.3 d2b18d9d73c112bc2b57b6d2e2d24085058a9964"
+  ]
+}

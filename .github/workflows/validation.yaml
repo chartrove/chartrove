@@ -1,0 +1,79 @@
+name: Validation
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  backend:
+    name: Backend
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: '1.27.3'
+          cache: false
+      - name: Private synthetic fixture directory
+        run: |
+          test_tmp=$(mktemp -d "$RUNNER_TEMP/chartrove-tests.XXXXXX")
+          printf 'TMPDIR=%s\n' "$test_tmp" >> "$GITHUB_ENV"
+      - run: make prepare-backend
+      - run: go mod verify
+      - run: go vet ./...
+      - run: go test -p 1 ./backend/... -count=1
+      - run: go build -o "$RUNNER_TEMP/fasten" ./backend/cmd/fasten
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      NG_CLI_ANALYTICS: 'false'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '26.13.0'
+      - run: make dep-frontend
+      - run: node --test frontend/desktop-tests/bridge.test.mjs
+      - working-directory: frontend
+        run: node node_modules/@angular/cli/bin/ng.js test --watch=false --progress=false --browsers=ChromeHeadlessCI --reporters=dots
+      - working-directory: frontend
+        run: node node_modules/@angular/cli/bin/ng.js build --configuration desktop_prod --output-path="$RUNNER_TEMP/frontend"
+  desktop:
+    name: Desktop
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: '1.27.3'
+          cache: false
+      - name: Private synthetic fixture directory
+        run: |
+          test_tmp=$(mktemp -d "$RUNNER_TEMP/chartrove-tests.XXXXXX")
+          printf 'TMPDIR=%s\n' "$test_tmp" >> "$GITHUB_ENV"
+      - run: make prepare-backend
+      - working-directory: desktop
+        run: go mod verify
+      - working-directory: desktop
+        run: go vet ./...
+      - working-directory: desktop
+        run: go test ./... -count=1
+      - working-directory: desktop
+        run: go test github.com/fastenhealth/fasten-onprem/backend/pkg/web -run TestEmbedded -count=1 -timeout=120s
+      - working-directory: desktop
+        run: go build -o "$RUNNER_TEMP/chartrove" ./cmd/fasten-desktop
