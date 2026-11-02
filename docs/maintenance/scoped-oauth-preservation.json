@@ -1,0 +1,78 @@
+{
+  "installed_source": "frontend/node_modules/@panva/oauth4webapi",
+  "installed_files_match_original_registry_tarball": true,
+  "source_file_count": 5,
+  "all_installed_paths": {
+    ".": {
+      "mode": 493,
+      "uid": 501,
+      "gid": 20,
+      "mtime_ns": 1793585327850098958,
+      "birthtime": 1793585316.9329867,
+      "flags": 0
+    },
+    "LICENSE.md": {
+      "mode": 420,
+      "uid": 501,
+      "gid": 20,
+      "mtime_ns": 1793585087030999898,
+      "birthtime": 1793585087.031,
+      "flags": 0,
+      "bytes": 1079,
+      "sha256": "81e7b4b0196e8caa43cf243131512e5e4ab04fc312623335e783abae6ff46d79"
+    },
+    "README.md": {
+      "mode": 420,
+      "uid": 501,
+      "gid": 20,
+      "mtime_ns": 1793585087030999898,
+      "birthtime": 1793585087.031,
+      "flags": 0,
+      "bytes": 5082,
+      "sha256": "d69f5b9f851bd47b5a89e9c5ea26233cfdfb6d7c57540c6fbc256fce85568612"
+    },
+    "build": {
+      "mode": 493,
+      "uid": 501,
+      "gid": 20,
+      "mtime_ns": 1793585344742071791,
+      "birthtime": 1793585317.9434588,
+      "flags": 0
+    },
+    "build/index.d.ts": {
+      "mode": 420,
+      "uid": 501,
+      "gid": 20,
+      "mtime_ns": 1793585087030999898,
+      "birthtime": 1793585087.031,
+      "flags": 0,
+      "bytes": 57305,
+      "sha256": "9771508f19dcd2a3a0b8db2f3b4272a9c91435af28d72b2664d2b93fed82e8a9"
+    },
+    "build/index.js": {
+      "mode": 420,
+      "uid": 501,
+      "gid": 20,
+      "mtime_ns": 1793585087030999898,
+      "birthtime": 1793585087.031,
+      "flags": 0,
+      "bytes": 59438,
+      "sha256": "9c4486545f2c98ee3bcfca9a9c3bd0ee029c02d08c8f66cea0e0761f1c1125fc"
+    },
+    "package.json": {
+      "mode": 420,
+      "uid": 501,
+      "gid": 20,
+      "mtime_ns": 1793585087030999898,
+      "birthtime": 1793585087.031,
+      "flags": 0,
+      "bytes": 2297,
+      "sha256": "67eafa835e93ba9dceacc254206b7c3a7d00810ddfc5c96160eac2e4cb5482e3"
+    }
+  },
+  "archive": "dist/validation/2026-11-01-consolidation/scoped-oauth-before-20261102.tar.zst",
+  "sha256": "5fdc8b78190cb29c56050819a6be5097139601209342c582156af9a435916296",
+  "bytes": 98050,
+  "preservation": "native tar --acls --xattrs --fflags includes complete installed leaf and .yarn-integrity",
+  "zstd_integrity_and_full_tar_traversal": "passed"
+}

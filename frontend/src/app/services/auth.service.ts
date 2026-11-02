@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import * as Oauth from '@panva/oauth4webapi';
+import * as Oauth from 'oauth4webapi';
 import * as jose from 'jose';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';

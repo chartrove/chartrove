@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 import {concatMap, delay, retryWhen, timeout, first, map, filter, catchError, tap} from 'rxjs/operators';
 import {ResponseWrapper} from '../models/response-wrapper';
 import {LighthouseSourceMetadata} from '../models/lighthouse/lighthouse-source-metadata';
-import * as Oauth from '@panva/oauth4webapi';
+import * as Oauth from 'oauth4webapi';
 import {SourceState} from '../models/fasten/source-state';
 import {uuidV4} from '../../lib/utils/uuid';
 import {LighthouseSourceSearch} from '../models/lighthouse/lighthouse-source-search';

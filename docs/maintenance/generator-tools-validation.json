@@ -62,6 +62,7 @@
     "desktop-applied-encrypted-backend.log": "0fb3ffdaeabe129431d2f756a1bfb291c6c2e19804497ebbb46f2495d0488177",
     "desktop-applied-build.log": "5056d9b7bd50d509eded2ff4953b43b6ebb1e893f7e4e4a76f4ef4220785ae1e"
   },
-  "protected_ci": "required before merge",
-  "new_native_smoke": "not rerun for excluded generator-only packages; last packaged application receipt remains native-4756cf99e-validation.json"
+  "protected_ci": "Backend, Frontend and Desktop passed in merged #356",
+  "new_native_smoke": "not rerun for excluded generator-only packages; last packaged application receipt remains native-4756cf99e-validation.json",
+  "integration_main": "869e3af39d96f1c31e51a34994cb2ace41325283"
 }
