@@ -46,7 +46,7 @@ jobs:
           node-version: '26.13.0'
           package-manager-cache: false
       - run: make dep-frontend
-      - run: node --test frontend/desktop-tests/bridge.test.mjs
+      - run: node --test frontend/desktop-tests/*.test.mjs
       - working-directory: frontend
         run: node node_modules/@angular/cli/bin/ng.js test --watch=false --progress=false --browsers=ChromeHeadlessCI --reporters=dots
       - working-directory: frontend

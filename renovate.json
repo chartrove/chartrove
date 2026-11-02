@@ -29,6 +29,17 @@
         "typescript"
       ],
       "allowedVersions": ">=6.0 <6.1"
+    },
+    {
+      "description": "Keep Jasmine core and declarations on the major supported by karma-jasmine; change the engine, adapter and declarations together.",
+      "matchManagers": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "jasmine-core",
+        "@types/jasmine"
+      ],
+      "allowedVersions": ">=4 <5"
     }
   ]
 }

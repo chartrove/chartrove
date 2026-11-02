@@ -1,0 +1,27 @@
+{
+  "pid": 35536,
+  "command": [
+    "/tmp/chartrove-consolidation.deb9lg/native-smoke-f30970052/extracted/Chartrove.app/Contents/MacOS/chartrove",
+    "--unencrypted",
+    "--data-dir",
+    "/tmp/chartrove-consolidation.deb9lg/picker-ui/data"
+  ],
+  "fixture_sha256": "2fbada96806a82b0c696f1e96882cbed11fac00a25d3d913b765725e18e2009c",
+  "fresh_synthetic_data_dir": "/tmp/chartrove-consolidation.deb9lg/picker-ui/data",
+  "no_provider_config": true,
+  "ui_control_attempts": [
+    {
+      "tool": "cua_repl getApp exact task app path",
+      "error": "Sky Computer Use native pipe startup failed"
+    },
+    {
+      "tool": "cua_repl getApp exact task app path retry",
+      "error": "Sky Computer Use native pipe startup failed"
+    }
+  ],
+  "native_file_picker_observed": false,
+  "synthetic_fixture_imported": false,
+  "issue_101_and_168_disposition": "remain open; native gesture/attachment acceptance not proven",
+  "task_owned_ui_process_stopped": true,
+  "local_evidence": "dist/validation/2026-11-01-consolidation/picker-ui-attempt"
+}

@@ -1,0 +1,41 @@
+{
+  "integration_pr": 357,
+  "integration_main": "6ba97e57c4e0cd7b21848b9368b76c5cb0bec92e",
+  "bundle": "dist/validation/2026-11-01-consolidation/oauth-patch-head-20261102.bundle",
+  "bundle_sha256": "2fa62d79fd309bd06517c4c9d338b6fd8d29b7535748f02a3a1b04d2c5124960",
+  "review_state_observations": [
+    {
+      "number": 224,
+      "state_before_disposition": "OPEN"
+    }
+  ],
+  "manually_retired": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 11,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/panva-oauth4webapi-1.x",
+      "headRefOid": "3afeddd98d612de8d53d7a7886f4c0b14cd213ac",
+      "number": 224,
+      "state": "OPEN",
+      "title": "fix(deps): update dependency @panva/oauth4webapi to v1.2.1"
+    }
+  ],
+  "already_absent_after_closure_actor_not_established": [],
+  "open_pr_dependencies_checked": 54,
+  "disposition": "deprecated scoped forwarding wrapper retired; direct exact official release 1.2.1 adopted; incidental historical delegate 1.4.1 not adopted",
+  "remote_absence_verified": true,
+  "verified_utc": "2026-11-02T13:05:03.487606+00:00"
+}
