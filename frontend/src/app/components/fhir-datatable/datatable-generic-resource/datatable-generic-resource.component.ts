@@ -1,9 +1,11 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild, ChangeDetectionStrategy} from '@angular/core';
 import {DatatableComponent, ColumnMode, SelectionType} from '@swimlane/ngx-datatable';
 import {ResourceFhir} from '../../../models/fasten/resource_fhir';
 import {FORMATTERS, getPath, obsValue, attributeXTime} from './utils';
 import {FastenApiService} from '../../../services/fasten-api.service';
 import {FastenDisplayModel} from '../../../../lib/models/fasten/fasten-display-model';
+import {Subscription} from 'rxjs';
+import {finalize} from 'rxjs/operators';
 
 //all Resource list components must implement this Interface
 export interface ResourceListComponentInterface {
@@ -41,7 +43,7 @@ class PageInfo {
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class DatatableGenericResourceComponent implements OnInit, ResourceListComponentInterface  {
+export class DatatableGenericResourceComponent implements OnInit, OnDestroy, ResourceListComponentInterface  {
   @Input() totalElements: number;
   @Input() resourceListType: string;
   @Input() sourceId: string;
@@ -58,6 +60,9 @@ export class DatatableGenericResourceComponent implements OnInit, ResourceListCo
   // datatable properties (DO NOT CHANGE)
   @ViewChild(DatatableComponent) table: DatatableComponent;
   rows = [];
+  loading = false;
+  loadError = false;
+  private resourceRequest?: Subscription;
   columns = []; //{ prop: 'name' }, { name: 'Company' }, { name: 'Gender' }
   ColumnMode = ColumnMode;
   SelectionType = SelectionType;
@@ -75,12 +80,28 @@ export class DatatableGenericResourceComponent implements OnInit, ResourceListCo
     this.changeRef.markForCheck()
   }
 
+  ngOnDestroy(): void {
+    this.resourceRequest?.unsubscribe();
+  }
+
   changePage(page: PageInfo){
+    this.resourceRequest?.unsubscribe();
     this.currentPage = page;
-    this.fastenApi.getResources(this.resourceListType, this.sourceId, null, this.currentPage.offset)
-      .subscribe((resourceList: ResourceFhir[]) => {
-        this.renderList(resourceList)
-        this.markForCheck()
+    this.rows = [];
+    this.loadError = false;
+    this.loading = true;
+    this.markForCheck();
+    this.resourceRequest = this.fastenApi.getResources(this.resourceListType, this.sourceId, null, this.currentPage.offset)
+      .pipe(finalize(() => { this.loading = false; }))
+      .subscribe({
+        next: (resourceList: ResourceFhir[]) => {
+          this.renderList(resourceList);
+          this.markForCheck();
+        },
+        error: () => {
+          this.loadError = true;
+          this.markForCheck();
+        },
       });
   }
 

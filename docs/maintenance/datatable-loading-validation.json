@@ -1,0 +1,271 @@
+{
+  "time": "2026-11-02T22:44:54.494526+00:00",
+  "base_main": "10b31279e5aed20f4cfd7b1da5846f60fc7cc1f5",
+  "issue": 106,
+  "scope": "shared/fallback request feedback and owned subscription lifecycle; no endpoint, query, schema or Wails binding changes",
+  "first_interrupted_red": {
+    "start": "2026-11-02T22:17:44.977340+00:00",
+    "end": "2026-11-02T22:19:51.964405+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-datatable/datatable-generic-resource/datatable-loading.component.spec.ts"
+    ],
+    "exit": 1,
+    "spec_sha256": "39688535f2f132c6e7d04c8d41feed0835ba520041bb2212f8f7846ce9a0aa0b",
+    "production_source_unchanged": true,
+    "frontend_coverage_existed_before": false,
+    "frontend_coverage_exists_after": false
+  },
+  "complete_red": {
+    "start": "2026-11-02T22:20:47.062171+00:00",
+    "end": "2026-11-02T22:21:33.243908+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-datatable/datatable-generic-resource/datatable-loading.component.spec.ts"
+    ],
+    "exit": 1,
+    "spec_sha256": "6f81058175d4fc3ca96b5869a2e918e54fc5372ab82c792102112d2adc51e420",
+    "production_source_unchanged": true,
+    "change": "HTTP errors are caught as explicit not.toThrow assertions inside fakeAsync; no assertion relaxed or product code changed"
+  },
+  "green": {
+    "start": "2026-11-02T22:24:05.856366+00:00",
+    "end": "2026-11-02T22:24:50.885662+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-datatable/datatable-generic-resource/datatable-loading.component.spec.ts"
+    ],
+    "exit": 0,
+    "spec_sha256": "6f81058175d4fc3ca96b5869a2e918e54fc5372ab82c792102112d2adc51e420",
+    "same_spec_as_corrected_red": true
+  },
+  "full_browser": {
+    "pass": 443,
+    "existing_skip": 1,
+    "exit": 0
+  },
+  "node_checks": 10,
+  "validation_commands": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T22:26:38.270852+00:00",
+      "end": "2026-11-02T22:26:39.204680+00:00",
+      "exit": 0
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-02T22:26:39.206397+00:00",
+      "end": "2026-11-02T22:28:20.643003+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/datatable-loading-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-02T22:28:20.648395+00:00",
+      "end": "2026-11-02T22:31:38.410460+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/datatable-loading-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-02T22:31:49.088271+00:00",
+      "end": "2026-11-02T22:38:46.248625+00:00",
+      "exit": 0
+    }
+  ],
+  "compiler_input_receipt": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23171,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "a855f28941d39a80974b444b2ae08df5fd0c57f6f5bf1102c1ba5858baee535b",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata_preservation": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "db432bbb26dd327ad4acc4faadfeb011a55dbaa3055c0bb5c09ced434c5ee8b6",
+      "bytes": 5939661
+    },
+    "original_absence_restored": true
+  },
+  "native_validation": {
+    "source_revision": "2f0fd5bfc8eecdd90d068f0deaaf92ef0516b72e",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-2f0fd5bfc-datatable-loading/Chartrove-2f0fd5bfc.zip",
+      "sha256": "45862b6ce184d20dc68626bcd77759ad4f29fc5dc211705d71959fdd2ef7b67b",
+      "bytes": 336722832
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP/signature, ten synthetic native checks and native Encounter table/navigation verified; original output restoration recorded",
+    "frontend_reuse": {
+      "committed_input_revision": "2f0fd5bfc8eecdd90d068f0deaaf92ef0516b72e",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/datatable-loading-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/datatable-loading-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "a855f28941d39a80974b444b2ae08df5fd0c57f6f5bf1102c1ba5858baee535b",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-2f0fd5bfc-datatable-loading/receipt.json",
+    "full_local_receipt_sha256": "4a06153150351332839a04c3cf5aa8b46e0de9e575f09962458ddb4deea75b03",
+    "frontend_comparison": {
+      "files": 22287,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "compiler_input_manifest_matches_committed_frontend": true,
+      "previous_qualified_frontend_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+      "artifact_delta": {
+        "added": [
+          "main.1edb3f92016c6c0a.js",
+          "main.1edb3f92016c6c0a.js.map"
+        ],
+        "removed": [
+          "main.dabc8d157beb8575.js",
+          "main.dabc8d157beb8575.js.map"
+        ],
+        "changed_common": [
+          "index.html"
+        ]
+      }
+    },
+    "native_table_ui": {
+      "time": "2026-11-02T22:59:47.280631+00:00",
+      "source_revision": "2f0fd5bfc8eecdd90d068f0deaaf92ef0516b72e",
+      "zip_sha256": "45862b6ce184d20dc68626bcd77759ad4f29fc5dc211705d71959fdd2ef7b67b",
+      "method": "cua-driver skill through cua_repl; exact task-owned app path and synthetic storage verified before selection",
+      "synthetic_existing_account_sign_in": "passed",
+      "explore_source": "92ee5b7b-9e3a-4d92-bb3b-8c1a1e1b084f",
+      "encounter_table_rendered": true,
+      "visible_reason": "Synthetic file picker validation",
+      "visible_footer": "0 selected / 1 total",
+      "row_selection_route": "wails://localhost/#/explore/92ee5b7b-9e3a-4d92-bb3b-8c1a1e1b084f/resource/chartrove-picker-encounter",
+      "record_view_start_date_visible": "Jan 2, 2020",
+      "native_loading_not_deliberately_delayed": true,
+      "pending_failure_retry_and_paging_cases_verified_by_real_service_browser_tests": 14,
+      "fixture_encounter_has_type": false,
+      "fixture_patient_has_birth_date": false,
+      "known_unresolved_display_limit": "missing DOB displays NaN Years Old; blank Encounter type cell is present for this fixture without type and does not by itself reconcile #104",
+      "task_owned_app_closed_via_window_close": true,
+      "pid_absence_verified": true,
+      "final_synthetic_fixture_counts": {
+        "fhir_patient": 1,
+        "fhir_encounter": 1,
+        "fhir_condition": 1
+      },
+      "original_synthetic_seed_unchanged": true,
+      "providers_unconfigured": true,
+      "real_family_or_purchased_fasten_records_accessed": false
+    }
+  },
+  "protected_integration": "pending required PR checks",
+  "real_records_accessed": false,
+  "source_snapshot_hashes": {
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-generic-resource.component.ts": "1a852a82060c5ff046998a660638f89c8ef83307d3c2224705288a2e37057c32",
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-generic-resource.component.html": "bbdf1ab3967706b4397a22c176f891ef99a20c9a7b6b100be0bbf5e1c2710678",
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-fallback.component.ts": "d9bfb8d02641b324e35b8eda77760b7ddabbe65416be46aea4a261c8063ceaf2",
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-fallback.component.html": "6b76747acc5ed9b08b6fc7d8e97bd8e0e34b39a9ffcb0ac0fa959af97f9394e7"
+  },
+  "known_ng01354_warning_count": {
+    "previous_qualified_browser": 138,
+    "current": 138
+  },
+  "native_wrapper_prebuild_diagnostic": {
+    "failure": "compiler manifest path variable shadowed by original preservation-manifest function; AttributeError before output movement",
+    "corrected_variable": "compiler_manifest_path",
+    "original_and_generated_staging_directories_empty": true,
+    "original_output_paths_intact": true,
+    "original_zip_sha256_verified": true,
+    "source_commit": "2f0fd5bfc8eecdd90d068f0deaaf92ef0516b72e",
+    "retained_attempt": "dist/validation/2026-11-01-consolidation/native-2f0fd5bfc-datatable-loading-prebuild-diagnostic",
+    "production_changes": false
+  },
+  "receipt_parser_diagnostic": {
+    "reason": "initial evidence assembler expected TAP # tests/# pass text; installed Node uses spec reporter with informational tests/pass summaries",
+    "application_checks": "all four validation commands exited0; no test or application change required",
+    "correction": "parse actual reporter format; retain original logs unchanged"
+  }
+}

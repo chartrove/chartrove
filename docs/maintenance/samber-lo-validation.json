@@ -464,7 +464,18 @@
     },
     "binary_build_info_uses_lo_v1_53_0": true
   },
-  "protected_integration": "pending required PR checks",
+  "protected_integration": {
+    "pr": 371,
+    "merge": "10b31279e5aed20f4cfd7b1da5846f60fc7cc1f5",
+    "head": "d347516643412a2a5e235c3f08be940566fa0d52",
+    "run": 41534379904,
+    "checks": [
+      "Backend",
+      "Frontend",
+      "Desktop"
+    ],
+    "all_success_app_15368": true
+  },
   "real_health_records_accessed": false,
   "test_event_counts": {
     "desktop-host-tests": {
