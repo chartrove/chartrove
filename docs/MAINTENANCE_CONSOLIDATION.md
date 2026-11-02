@@ -6,15 +6,15 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after dependency integration #349 and source/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after349.json).
-The receipt also records the next short-lived local manual-upload branch; that integration PR/branch is additional until
+Snapshot: November 2, 2026, after application integration #350 and source/ref
+reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after350.json).
+The receipt also records the next short-lived local unused-UUID branch; that integration PR/branch is additional until
 merged and removed. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `8e5b6ece77f746d1f7ef9c2508a6f9761c382450` (#349) |
-| Open issues | 176, including retained Renovate dashboard #222 |
+| Published application main | `949b2f2b5a06266675ff3ab0d8eaca39d32c533e` (#350) |
+| Open issues | 175, including retained Renovate dashboard #222 |
 | Open PRs | 64: 57 paused Renovate proposals and seven historical drafts |
 | Origin heads | 74 |
 | Default branch | main tracks origin/main with equal OIDs; next short-lived local task branch is additional |
@@ -35,11 +35,18 @@ workflow patches. The other dependency PRs also require individual review.
 
 ## Latest integrated safeguards and tooling
 
-The next application batch addresses manual-upload progress (#113). Seven new
+The next retirement batch removes the unused direct UUID v9 dependency while
+retaining the existing Web Crypto helper and UUID v8 tooling consumers. All 74
+retained direct versions and all generated application assets stay identical;
+frozen install, bridge, production and Storybook checks pass. #230/#314 stay open
+until protected integration; #46 is classified as an informational reference for
+retirement, while #193 remains open for its unresolved custom-TLS request.
+[Scope and recovery](maintenance/2026-11-02-unused-uuid-retirement.md).
+
+Merged #350 addresses manual-upload progress (#113). Seven new
 regressions fail before repair and pass afterward; the full ordinary browser
 command exits 0 with 422 passes/one existing skip, five bridge tests pass, and
-ten newly packaged native checks pass. Protected CI remains required before
-integration. [Scope, data boundaries and evidence](maintenance/2026-11-02-manual-upload-progress.md).
+ten newly packaged native checks and all three required protected checks pass. [Scope, data boundaries and evidence](maintenance/2026-11-02-manual-upload-progress.md).
 
 Merged #349 adopts Karma 6.4.4 through three lock lines.
 Its executable distribution is identical to 6.4.3; all 74 other direct versions
@@ -102,6 +109,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #347 | Optional address/contact edit-dialog crash repaired; issue #105 |
 | #348 | Remove unused upstream Chromatic publishing CLI; explicitly retire #239/#299 |
 | #349 | Minimal Karma 6.4.4 target; wider #228 graph refresh explicitly superseded |
+| #350 | Accessible manual-upload progress, duplicate guard and outcome cleanup; issue #113 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -120,7 +128,7 @@ do not repeat Angular 14–22 modernization or restore obsolete implementations.
 ## Validation and data boundaries
 
 All merged batches passed Backend/Frontend/Desktop. Frontend full suites currently
-have 415 passing tests and one existing skip; production builds retain the 9.92 MB
+have 422 passing tests and one existing skip; production builds retain the 9.92 MB
 budget/CommonJS warnings. Local Chrome teardown sometimes required forced
 termination after successful assertions; required fresh GitHub checks still passed.
 No timeout, test assertion, encryption contract or branch rule was relaxed.
@@ -131,9 +139,9 @@ Its missing-image preflight and pinned-image pull are preserved. No test contain
 remained. Callback cancellation fails before repair, passes 200 repetitions after
 repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-The latest packaged app source `d19dca35a` is the application tree merged by
-#347. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
-checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-d19dca35a-validation.json).
+The latest packaged app source `fd5194396` is the application tree merged by
+#350. Build, ZIP CRC, strict extracted signature and all ten real WebView smoke
+checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-fd5194396-validation.json).
 Tests use new explicit synthetic storage; direct SMART is disabled in smoke mode.
 No purchased-app storage, real family records, production-provider registration,
 Medplum cutover or real-data migration was accessed or introduced.

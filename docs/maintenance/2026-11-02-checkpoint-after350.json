@@ -1,0 +1,12 @@
+{
+  "snapshot_utc": "2026-11-02T11:12:29.428703+00:00",
+  "published_main": "949b2f2b5a06266675ff3ab0d8eaca39d32c533e",
+  "origin_main": "949b2f2b5a06266675ff3ab0d8eaca39d32c533e",
+  "open_issues": 175,
+  "open_prs": 64,
+  "open_renovate_prs": 57,
+  "all_open_renovate_paused": true,
+  "origin_heads": 74,
+  "additional_local_task_branch": "task/retire-unused-uuid",
+  "next_integration_pr_not_yet_published": true
+}
