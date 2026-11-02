@@ -7744,10 +7744,10 @@ graceful-fs@^4.2.11:
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
-gridstack@8.1.1:
-  version "8.1.1"
-  resolved "https://registry.npmjs.org/gridstack/-/gridstack-8.1.1.tgz#acdc910346989d2016e03763b0de55b0de0d3224"
-  integrity sha512-Ya7EdwAh72iug8A51hSjH8FI0v83zxPKjo9zIT5iw5Dvh3BUbgRl2hrrmGAkDfbPlfK5lgeEsQNx08UK8iNAQw==
+gridstack@8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/gridstack/-/gridstack-8.4.0.tgz#7af49159f9dc144c89a2c56246e1710406f75fcf"
+  integrity sha512-qLJuJrBy9bbG3hI+h2cEhiuZ51J3MyEMmv5AXg7MCFiBeG8A4HyIUytueqtD/oZcA3Pccq2Xoj7GrwpmKOS3ig==
 
 handlebars@^4.7.7:
   version "4.7.7"
