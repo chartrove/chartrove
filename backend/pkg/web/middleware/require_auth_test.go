@@ -8,6 +8,8 @@ import (
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	mock_config "github.com/fastenhealth/fasten-onprem/backend/pkg/config/mock"
+	mock_database "github.com/fastenhealth/fasten-onprem/backend/pkg/database/mock"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
@@ -31,6 +33,10 @@ func TestRequireAuthRejectsInvalidTokenBeforeProtectedHandler(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			config := mock_config.NewMockInterface(gomock.NewController(t))
 			config.EXPECT().GetString("jwt.issuer.key").Return(tt.key)
+			repo := mock_database.NewMockDatabaseRepository(gomock.NewController(t))
+			if tt.status == http.StatusNoContent {
+				repo.EXPECT().GetUserByUsername(gomock.Any(), "synthetic-user").Return(&models.User{Username: "synthetic-user"}, nil)
+			}
 			token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
 				Subject: "synthetic-user", ExpiresAt: tt.expiry,
 			}).SignedString([]byte(tt.key))
@@ -38,7 +44,7 @@ func TestRequireAuthRejectsInvalidTokenBeforeProtectedHandler(t *testing.T) {
 
 			called := false
 			router := gin.New()
-			router.Use(gin.Recovery(), func(c *gin.Context) { c.Set(pkg.ContextKeyTypeConfig, config) }, middleware.RequireAuth())
+			router.Use(gin.Recovery(), func(c *gin.Context) { c.Set(pkg.ContextKeyTypeConfig, config); c.Set(pkg.ContextKeyTypeDatabase, repo) }, middleware.RequireAuth())
 			router.GET("/protected", func(c *gin.Context) {
 				called = true
 				require.Equal(t, "synthetic-user", c.GetString(pkg.ContextKeyTypeAuthUsername))
