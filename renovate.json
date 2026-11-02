@@ -19,6 +19,16 @@
         "github.com/fastenhealth/fasten-sources"
       ],
       "enabled": false
+    },
+    {
+      "description": "Angular compiler-cli 22.2.4 requires TypeScript >=6.0 <6.1; advance TypeScript with a validated Angular compiler migration.",
+      "matchManagers": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "typescript"
+      ],
+      "allowedVersions": ">=6.0 <6.1"
     }
   ]
 }

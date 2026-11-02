@@ -1,0 +1,32 @@
+[
+  {
+    "number": 162,
+    "state_reason": "completed",
+    "disposition": "Resolved by merged modernization PR #323 (the attributed classic-script correction, original commit 4093a65c1). Current main 5bc9bf4aa has no oauth4webapi entry in Angular global scripts; Lighthouse/Auth services import it through the application module graph. The current production desktop frontend build succeeds, and the full browser suite passes 404 tests with one existing skip. This closes the reported Unexpected token export loading defect; it does not claim production-provider registration or interoperability.",
+    "url": "https://github.com/karamhouse/chartrove/issues/162"
+  },
+  {
+    "number": 73,
+    "state_reason": "completed",
+    "disposition": "Implemented in retained main 5bc9bf4aa: backend/pkg/models/database contains extraction tests for Patient, Condition, Encounter, CarePlan, Observation and AllergyIntolerance, the table-driven SearchParameterExtractor suite, and resource-isolation/invalid-JSON/date-column regressions. A fresh go test ./backend/pkg/models/database -count=1 passes. This closes the original request to add database extraction tests (which has no additional acceptance scope), not every extraction bug; specific reports including #69 and #86 remain open.",
+    "url": "https://github.com/karamhouse/chartrove/issues/73"
+  },
+  {
+    "number": 90,
+    "state_reason": "not planned",
+    "disposition": "Retired as not applicable to Chartrove. This imported record lists candidate templates for the upstream Fasten marketing landing page; it contains no Chartrove application defect or implemented feature. Chartrove retains Fasten attribution and its own maintained repository/desktop documentation. Creating an upstream marketing site is outside this repository-maintenance baseline. The original links and attributed issue remain recoverable here.",
+    "url": "https://github.com/karamhouse/chartrove/issues/90"
+  },
+  {
+    "number": 115,
+    "state_reason": "not planned",
+    "disposition": "Retired as not applicable to Chartrove. This is an upstream request to purchase/configure an Atlassian status page for the Fasten-operated Lighthouse service. Chartrove neither operates that service nor owns its availability or external status-page account; this assignment explicitly excludes restoring upstream cloud/publication operations. No replacement service or production-provider capability is claimed. Provider capability/replacement work remains separately tracked, including #56.",
+    "url": "https://github.com/karamhouse/chartrove/issues/115"
+  },
+  {
+    "number": 109,
+    "state_reason": "completed",
+    "disposition": "Resolved by merged PR #323 (portable FHIR date-column generation, original db0a65899 and related persistence/startup repairs). The report specifically reproduces PostgreSQL startup failing with datetime / SQLSTATE 42704. Current main 5bc9bf4aa lets the driver infer time.Time columns: SQLite retains datetime and PostgreSQL uses timestamptz. Fresh pinned disposable PostgreSQL integration passes (8.304s), covering startup, synthetic date persistence/reopen, parameter binding, credential-free connection logs, placeholder-account behavior and failed-startup cleanup. Its missing pinned image was fetched first; the original failed pre-startup attempt is retained. The fixture uses a new generated password, loopback-only port and tmpfs with no host data mounts, and removes its own container. No production database or real health records were inspected or migrated. This resolves the reported startup defect, not a promise of exhaustive PostgreSQL/provider query coverage.",
+    "url": "https://github.com/karamhouse/chartrove/issues/109"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "pr": {
+    "baseRefName": "main",
+    "headRefName": "renovate/typescript-7.x",
+    "headRefOid": "cf90057f50161591ca0bc1b56664ff8e1eefb300",
+    "number": 313,
+    "state": "OPEN"
+  },
+  "bundle": "dist/validation/2026-11-01-consolidation/typescript-pr313-20261102.bundle",
+  "sha256": "3d505089b8728c4e91056169ff2c792b964aac96384877c89dd01c9f321a8c78",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "all_prerequisites_ancestors_of": "caeb7c2f3830e73fae1fd564ce9ea3ce16976e40",
+  "strict_pack_validation": "passed in isolated object directory with read-only primary alternates",
+  "disposition": "retain until compiler compatibility rule merges; standalone TypeScript 7 conflicts with current Angular peer >=6.0 <6.1"
+}
