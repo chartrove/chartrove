@@ -1,0 +1,40 @@
+{
+  "source_revision": "7cca0f39fa8199138de7ec15aecc360594746e0b",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-7cca0f39f-jwt-v5/Chartrove-7cca0f39f.zip",
+    "sha256": "3d3d62dd67dc7aa85c6d59498d3f38c51583dbcdeadbd4503c912ba1a9fad96f",
+    "bytes": 336986450
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "source_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/generated/1",
+    "frontend_git_inputs_unchanged": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-7cca0f39f-jwt-v5/receipt.json",
+  "full_local_receipt_sha256": "c8c948a5a44b0d3528fe15fd219faf4118b3a2eb71c4724e09159798d7c3cc73"
+}

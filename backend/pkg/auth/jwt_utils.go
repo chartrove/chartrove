@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
-	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 // generateToken is a helper to generate JWT tokens with flexible claims
@@ -43,6 +43,7 @@ func JwtValidateFastenToken(encryptionKey string, signedToken string) (*UserRegi
 	if len(strings.TrimSpace(encryptionKey)) == 0 {
 		return nil, errors.New("issuer signing key cannot be empty")
 	}
+	// v5 skips issued-at checks by default; preserve v4 validation and require expiry.
 	token, err := jwt.ParseWithClaims(
 		signedToken,
 		&UserRegisteredClaims{},
@@ -52,6 +53,9 @@ func JwtValidateFastenToken(encryptionKey string, signedToken string) (*UserRegi
 			}
 			return []byte(encryptionKey), nil
 		},
+		jwt.WithValidMethods([]string{jwt.SigningMethodHS256.Alg()}),
+		jwt.WithExpirationRequired(),
+		jwt.WithIssuedAt(),
 	)
 	if err != nil {
 		return nil, err
@@ -59,12 +63,6 @@ func JwtValidateFastenToken(encryptionKey string, signedToken string) (*UserRegi
 	claims, ok := token.Claims.(*UserRegisteredClaims)
 	if !ok {
 		err = errors.New("couldn't parse claims")
-		return nil, err
-	}
-	// RegisteredClaims permits an omitted expiry, but Chartrove always issues
-	// expiring tokens. Requiring it here also avoids dereferencing a nil date.
-	if !claims.VerifyExpiresAt(time.Now(), true) {
-		err = errors.New("token is expired or missing expiry")
 		return nil, err
 	}
 	return claims, nil

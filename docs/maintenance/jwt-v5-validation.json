@@ -1,0 +1,495 @@
+{
+  "time": "2026-11-02T20:59:02.726628+00:00",
+  "base_main": "8ed4fda151da2ca5ab70f1378aa470dbc56ca596",
+  "target": "github.com/golang-jwt/jwt/v5 v5.3.1",
+  "red_green_rejection_tests": {
+    "red": {
+      "phase": "red",
+      "source_files_sha256": {
+        "backend/pkg/auth/jwt_utils_test.go": "e7bdced3a448d0c102315f3a0d1f141e08ca8db83a047ca9d0e7fa1a846439d4",
+        "backend/pkg/auth/jwt_wire_compatibility_test.go": "eaa08a7928da7921b67b9b51a161342fc4e7b461bb91853e8d8763cfc50d5a05",
+        "backend/pkg/web/middleware/require_auth_test.go": "d748a2cf791436b49727955c9a3ad5b905a33780adf81b69cd32a55c2d256d71"
+      },
+      "checks": [
+        {
+          "graph": "root",
+          "command": [
+            "go",
+            "test",
+            "-mod=readonly",
+            "-json",
+            "./backend/pkg/auth",
+            "./backend/pkg/web/middleware",
+            "-count=1"
+          ],
+          "cwd": ".",
+          "start": "2026-11-02T20:38:01.214208+00:00",
+          "end": "2026-11-02T20:38:06.954747+00:00",
+          "exit": 1,
+          "failed_tests": [
+            "TestJwtRejectsInvalidTokens/issued_in_future",
+            "TestJwtRejectsInvalidTokens",
+            null
+          ]
+        },
+        {
+          "graph": "desktop",
+          "command": [
+            "go",
+            "test",
+            "-mod=readonly",
+            "-json",
+            "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+            "github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware",
+            "-count=1"
+          ],
+          "cwd": "desktop",
+          "start": "2026-11-02T20:38:06.955155+00:00",
+          "end": "2026-11-02T20:38:10.280960+00:00",
+          "exit": 1,
+          "failed_tests": [
+            "TestJwtRejectsInvalidTokens/issued_in_future",
+            "TestJwtRejectsInvalidTokens",
+            null
+          ]
+        }
+      ]
+    },
+    "green": {
+      "phase": "green",
+      "source_files_sha256": {
+        "backend/pkg/auth/jwt_utils_test.go": "e7bdced3a448d0c102315f3a0d1f141e08ca8db83a047ca9d0e7fa1a846439d4",
+        "backend/pkg/auth/jwt_wire_compatibility_test.go": "eaa08a7928da7921b67b9b51a161342fc4e7b461bb91853e8d8763cfc50d5a05",
+        "backend/pkg/web/middleware/require_auth_test.go": "d748a2cf791436b49727955c9a3ad5b905a33780adf81b69cd32a55c2d256d71"
+      },
+      "checks": [
+        {
+          "graph": "root",
+          "command": [
+            "go",
+            "test",
+            "-mod=readonly",
+            "-json",
+            "./backend/pkg/auth",
+            "./backend/pkg/web/middleware",
+            "-count=1"
+          ],
+          "cwd": ".",
+          "start": "2026-11-02T20:40:05.189316+00:00",
+          "end": "2026-11-02T20:40:19.144556+00:00",
+          "exit": 0,
+          "failed_tests": []
+        },
+        {
+          "graph": "desktop",
+          "command": [
+            "go",
+            "test",
+            "-mod=readonly",
+            "-json",
+            "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+            "github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware",
+            "-count=1"
+          ],
+          "cwd": "desktop",
+          "start": "2026-11-02T20:40:19.145215+00:00",
+          "end": "2026-11-02T20:40:28.937002+00:00",
+          "exit": 0,
+          "failed_tests": []
+        }
+      ]
+    },
+    "tests_identical_between_candidate_and_fix": true,
+    "regression": "v5 default parser accepts future-issued token; explicit WithIssuedAt preserves rejection"
+  },
+  "wire_compatibility": {
+    "time": "2026-11-02T20:45:20.948161+00:00",
+    "old_v4_tokens_accepted_by_v5_in_both_graphs": true,
+    "new_v5_tokens_accepted_by_isolated_v4_reader": true,
+    "all_serialized_claims_preserved_both_directions": true,
+    "synthetic_only": true,
+    "legacy_reader_is_a_temporary_test_module_not_application_dependency": true
+  },
+  "module_comparison": {
+    "root_selected_module_delta": {
+      "github.com/golang-jwt/jwt/v5": [
+        null,
+        "v5.3.1"
+      ],
+      "github.com/golang-jwt/jwt/v4": [
+        "v4.5.2",
+        null
+      ]
+    },
+    "desktop_selected_module_delta": {
+      "github.com/golang-jwt/jwt/v5": [
+        null,
+        "v5.3.1"
+      ],
+      "github.com/golang-jwt/jwt/v4": [
+        "v4.5.2",
+        null
+      ]
+    },
+    "baseline_root_inventory": "graph-alignment-review/after/root-modules.stdout",
+    "baseline_desktop_inventory": "cli-review/after/desktop-modules.stdout",
+    "baseline_go_mod_identity_verified_against_saved_main": true,
+    "all_other_selected_versions_unchanged": true
+  },
+  "production_dependencies": {
+    "time": "2026-11-02T20:53:36.100955+00:00",
+    "graphs": [
+      {
+        "graph": "root",
+        "uses_v5": true,
+        "uses_v4": false,
+        "imports_deprecated_xcrypto_openpgp": false,
+        "sha256": "d7ac07e381851c6d4cd43668e3626cf481426d6b3dccb4c492cda823ee230bda"
+      },
+      {
+        "graph": "desktop",
+        "uses_v5": true,
+        "uses_v4": false,
+        "imports_deprecated_xcrypto_openpgp": false,
+        "sha256": "ed4ffe48db6c78061d90499233691be3155ba74d80bfca825a40c9b69ec2b16d"
+      }
+    ]
+  },
+  "target_package": {
+    "version": "v5.3.1",
+    "sum": "h1:kYf81DTWFe7t+1VvL7eS+jKFVWaUnK9cB1qbwn63YCY=",
+    "go_mod_sum": "h1:fxCRLWMO43lRc8nhHWY6LGqRcf+1gQWArsqaEUEa5bE=",
+    "archive": "jwt-v5.3.1.zip",
+    "archive_sha256": "5c9a74494e2bc746cee56558b5473252af5767f7ea4044caa9ea0fa2a056fec7",
+    "go_minimum": "1.21",
+    "runtime_module_requirements": []
+  },
+  "module_checks": [
+    {
+      "name": "verify-root",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:43:33.095973+00:00",
+      "end": "2026-11-02T20:43:44.221320+00:00",
+      "exit": 0
+    },
+    {
+      "name": "verify-desktop",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T20:43:44.222548+00:00",
+      "end": "2026-11-02T20:43:52.022011+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:43:52.023017+00:00",
+      "end": "2026-11-02T20:43:52.120919+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "all"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T20:43:52.121396+00:00",
+      "end": "2026-11-02T20:43:52.195910+00:00",
+      "exit": 0
+    }
+  ],
+  "broader_checks_after_evidence_boundary": [
+    {
+      "name": "root-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:48:24.810708+00:00",
+      "end": "2026-11-02T20:48:33.086305+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T20:48:33.087611+00:00",
+      "end": "2026-11-02T20:49:15.310444+00:00",
+      "exit": 0
+    },
+    {
+      "name": "model-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./backend/pkg/models",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:49:15.311098+00:00",
+      "end": "2026-11-02T20:49:19.263721+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-host-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./...",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T20:49:19.264157+00:00",
+      "end": "2026-11-02T20:49:30.343884+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-embedded-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbedded",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T20:49:30.344270+00:00",
+      "end": "2026-11-02T20:49:55.427399+00:00",
+      "exit": 0
+    },
+    {
+      "name": "upstream-jwt-tests",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "github.com/golang-jwt/jwt/v5/...",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:49:55.427939+00:00",
+      "end": "2026-11-02T20:49:57.087474+00:00",
+      "exit": 0
+    },
+    {
+      "name": "auth-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "./backend/pkg/auth",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:49:57.087949+00:00",
+      "end": "2026-11-02T20:50:27.488760+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-auth-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-02T20:50:27.489408+00:00",
+      "end": "2026-11-02T20:50:31.068454+00:00",
+      "exit": 0
+    },
+    {
+      "name": "server-build",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/jwt-v5-review/broader-after-boundary/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": ".",
+      "start": "2026-11-02T20:50:31.068788+00:00",
+      "end": "2026-11-02T20:50:42.666168+00:00",
+      "exit": 0
+    }
+  ],
+  "evidence_boundary": {
+    "time": "2026-11-02T20:48:24.767769+00:00",
+    "initial_failure": "full local go vet ./... discovered retained generated snapshot packages in dist/validation and could not find their intentionally unarchived embedded JS assets",
+    "boundary": "dist/validation/go.mod",
+    "boundary_text": "module chartrove.local/validation-evidence\n\ngo 1.26.0\n",
+    "boundary_sha256": "43d2071594f1d1d568201b1dc18d208d7a0b9c0612f4b66dfc1712ca8743f246",
+    "boundary_is_local_ignored_metadata": true,
+    "archived_regular_files_unchanged": 118,
+    "all_tracked_go_source_directories": [
+      "backend",
+      "desktop",
+      "scripts"
+    ],
+    "root_full_package_set_matches_all_backend_and_scripts": true,
+    "root_application_packages": [
+      "github.com/fastenhealth/fasten-onprem/backend/cmd/fasten",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/config/mock",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20231017112246",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20231201122541",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20240114092806",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20240114103850",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20240208112210",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20240813222836",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20250730100000",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/database/mock",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/errors",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus/mock",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/jwk",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/models",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/models/database",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/tls",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/utils",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/utils/ips",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/utils/ips_pdf",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/version",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware",
+      "github.com/fastenhealth/fasten-onprem/backend/resources",
+      "github.com/fastenhealth/fasten-onprem/scripts/related_versions"
+    ],
+    "desktop_has_separate_module_and_vet_check": true,
+    "checks_or_flags_relaxed": false
+  },
+  "auth_vulnerability_scan": {
+    "root": {
+      "config": {
+        "protocol_version": "v1.0.0",
+        "scanner_name": "govulncheck",
+        "scanner_version": "v1.9.0",
+        "db": "https://vuln.go.dev",
+        "db_last_modified": "2026-10-27T21:16:18Z",
+        "go_version": "go1.27.3",
+        "scan_level": "symbol",
+        "scan_mode": "source"
+      },
+      "called_findings": 0,
+      "jwt_findings_at_any_reported_level": 0,
+      "scope": "auth package and its analyzed dependency graph; not a whole-application security assessment"
+    },
+    "desktop": {
+      "config": {
+        "protocol_version": "v1.0.0",
+        "scanner_name": "govulncheck",
+        "scanner_version": "v1.9.0",
+        "db": "https://vuln.go.dev",
+        "db_last_modified": "2026-10-27T21:16:18Z",
+        "go_version": "go1.27.3",
+        "scan_level": "symbol",
+        "scan_mode": "source"
+      },
+      "called_findings": 0,
+      "jwt_findings_at_any_reported_level": 0,
+      "scope": "auth package and its analyzed dependency graph; not a whole-application security assessment"
+    }
+  },
+  "remaining_module_only_advisory": {
+    "id": "GO-2026-5932",
+    "module": "golang.org/x/crypto v0.58.0",
+    "package": "golang.org/x/crypto/openpgp",
+    "imported_by_either_production_binary": false,
+    "claim": "required-module advisory; no whole-application clean scan is claimed"
+  },
+  "all_existing_checksum_bytes_and_order_retained": true,
+  "new_checksum_lines_per_graph": 2,
+  "frontend_inputs_unchanged_since_qualified_native": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+  "fresh_native_validation": {
+    "source_revision": "7cca0f39fa8199138de7ec15aecc360594746e0b",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-7cca0f39f-jwt-v5/Chartrove-7cca0f39f.zip",
+      "sha256": "3d3d62dd67dc7aa85c6d59498d3f38c51583dbcdeadbd4503c912ba1a9fad96f",
+      "bytes": 336986450
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "frontend_reuse": {
+      "source_revision": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/native-5ad6c590a-zone/generated/1",
+      "frontend_git_inputs_unchanged": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "os_managed_provenance_changes": {},
+    "frontend_comparison": {
+      "files": 22287,
+      "qualified_frontend_source": "5ad6c590af04e481b23f41850e8622bec2ec5d5e",
+      "native_source": "7cca0f39fa8199138de7ec15aecc360594746e0b",
+      "qualified_reused_output_and_native_asset_tree_byte_identical": true
+    },
+    "binary_build_info_uses_v5_3_1_and_no_v4": true,
+    "full_receipt": "dist/validation/2026-11-01-consolidation/native-7cca0f39f-jwt-v5/receipt.json",
+    "full_receipt_sha256": "c8c948a5a44b0d3528fe15fd219faf4118b3a2eb71c4724e09159798d7c3cc73"
+  },
+  "real_records_or_keys_accessed": false,
+  "schema_or_provider_replacement_changed": false,
+  "protected_integration": "pending required PR checks"
+}

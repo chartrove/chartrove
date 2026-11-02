@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/github.com-golang-jwt-jwt-v4-5.x",
+  "tip": "f5e2f71b4b2ef8b084b112286c7dcc74eebe339a",
+  "bundle": "dist/validation/2026-11-01-consolidation/jwt-v5-head-20261102.bundle",
+  "sha256": "299b31fd1df30f6eb84dfd251cc9e1960c159170cbb49fa5f30e500a2871f964",
+  "bytes": 1379,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "53f6685ba2360818c832865de030362b1ae13aa8",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "2858453184cbe477c00bc77d7f9bc3fc7b752886",
+    "d5c3aae6aa1d3921689a04fe202479f304bbbf56",
+    "dfd7a1ba389f7aeafabd8384741eb8dabf9eb8bb",
+    "f5e2f71b4b2ef8b084b112286c7dcc74eebe339a"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/github.com-golang-jwt-jwt-v4-5.x",
+      "3528f6f089f9c8e1f7b53cfac40f34d9d258d6e5"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}
