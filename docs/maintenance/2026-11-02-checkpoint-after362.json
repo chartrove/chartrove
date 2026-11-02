@@ -1,0 +1,38 @@
+{
+  "snapshot_utc": "2026-11-02T17:48:03.889136+00:00",
+  "published_main": "f1ec2ddc6a72901364b5a1aa9582accdf5db1d8a",
+  "origin_main": "f1ec2ddc6a72901364b5a1aa9582accdf5db1d8a",
+  "open_issues": 173,
+  "open_prs": 44,
+  "open_renovate_prs": 38,
+  "all_open_renovate_paused": true,
+  "origin_heads": 53,
+  "local_heads": [
+    "refs/heads/main f1ec2ddc6a72901364b5a1aa9582accdf5db1d8a origin/main",
+    "refs/heads/task/native-attachment-upload 340d02293f9fdd0d77349b785aea7d1edd2bc41f "
+  ],
+  "tags": 30,
+  "worktrees": "worktree /Users/osama/Code/karamhouse/chartrove\nHEAD 340d02293f9fdd0d77349b785aea7d1edd2bc41f\nbranch refs/heads/task/native-attachment-upload\n\n",
+  "stashes": "",
+  "sparse_patterns_sha256": "d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc",
+  "origin_fetch": "+refs/heads/main:refs/remotes/origin/main",
+  "required_ruleset_id": 26337029,
+  "workflow_states": [
+    {
+      "id": 404053956,
+      "name": "Validation",
+      "state": "active",
+      "path": ".github/workflows/validation.yaml"
+    },
+    {
+      "id": 398282797,
+      "name": "Development",
+      "state": "disabled_manually",
+      "path": ".github/workflows/development.yaml"
+    }
+  ],
+  "historical_manual_ref_retirements": 54,
+  "additional_heads_observed_absent_actor_unknown": 9,
+  "acceptance_targets_complete": false,
+  "integration_note": "After #362 and issue #102 closure; native attachment task branch additional and unpublished."
+}

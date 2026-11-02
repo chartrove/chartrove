@@ -1,0 +1,39 @@
+{
+  "time": "2026-11-02T17:47:12.391020+00:00",
+  "source_revision": "340d02293f9fdd0d77349b785aea7d1edd2bc41f",
+  "app_pid": 56210,
+  "app_stopped": true,
+  "synthetic_only": true,
+  "native_ui": {
+    "popup_opened": true,
+    "native_chooser_selected": "native-picker/synthetic-picker-attachment.txt",
+    "wizard_attachment_count": 1,
+    "save_closed_wizard": true,
+    "dashboard_counts": {
+      "Clinical Notes": 1,
+      "Files": 1
+    },
+    "reloaded_encounter_clinical_reports_link": "Consult Note",
+    "document_id": "30df06c8-c457-48ce-94cd-aec3d0e766b4"
+  },
+  "read_only_database_verification": {
+    "DocumentReference": 1,
+    "Binary": 1,
+    "attachment_bytes": 78,
+    "attachment_sha256": "dcdc63e757256753345235c7f3ed7372b6868ff94841a1f950ab153b89096e9e",
+    "binary_reference_matches": true,
+    "original_synthetic_counts_preserved": {
+      "Patient": 1,
+      "Encounter": 1,
+      "Condition": 1
+    },
+    "quick_check": "ok"
+  },
+  "limits": [
+    "Clipboard conflict left field empty; reobserved before typing generated text.",
+    "Chooser AX target initially lost frame; reselected same verified app and observed actual selected row before Open.",
+    "Encounter required navigation reload to show its new Clinical Reports link; automatic in-place graph refresh not accepted as fixed."
+  ],
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/attachment-native-340d02293/observation-receipt.json",
+  "full_local_receipt_sha256": "f857dea9f95d3031b1beb55a31c764fd9ea645e9fa59ee2422aac3963337e891"
+}

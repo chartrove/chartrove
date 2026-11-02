@@ -6,19 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #361 and individual #244/#210 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after361.json).
-The receipt was captured on clean main before the wizard feedback branch;
-its integration PR/branch is additional until merged and removed. Requery live
-counts after every integration.
+Snapshot: November 2, 2026, after #362 and individual #102 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after362.json).
+The native attachment integration branch is additional and was unpublished at
+this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `9b499c88f3f81ba76b0c35b40ed019822c6b31d7` (#361; production runtime from #357) |
-| Open issues | 174, including retained Renovate dashboard #222 |
+| Published application main | `f1ec2ddc6a72901364b5a1aa9582accdf5db1d8a` (#362) |
+| Open issues | 173, including retained Renovate dashboard #222 |
 | Open PRs | 44: 38 paused Renovate proposals and six historical drafts |
 | Origin heads | 53 |
-| Default branch | main tracks origin/main with equal OIDs; wizard feedback branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; native attachment branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -201,6 +200,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #359 | Paired React 18 patch with required scheduler; reconcile #282 |
 | #360 | Compodoc 2 with preserved primitive documentation controls; reconcile #235/#293 |
 | #361 | Retire unused duration package and superseded source-filter layout proposal |
+| #362 | Identify invalid wizard sections without weakening Save guards; issue #102 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -219,8 +219,8 @@ do not repeat Angular 14–22 modernization or restore obsolete implementations.
 ## Validation and data boundaries
 
 All merged batches passed Backend/Frontend/Desktop. Frontend full suites currently
-have 423 passing tests and one existing skip; production builds retain the 9.92 MB
-budget/CommonJS warnings. Local Chrome teardown sometimes required forced
+have 427 passing tests and one existing skip in the attachment correction.
+Production builds retain the 9.93 MB budget/CommonJS warnings. Local Chrome teardown sometimes required forced
 termination after successful assertions; required fresh GitHub checks still passed.
 No timeout, test assertion, encryption contract or branch rule was relaxed.
 
@@ -230,14 +230,23 @@ Its missing-image preflight and pinned-image pull are preserved. No test contain
 remained. Callback cancellation fails before repair, passes 200 repetitions after
 repair, and passes race checks. Existing encrypted desktop integration also passes.
 
-The latest packaged app source `f30970052` contains the direct OAuth
-patch integrated by #357. Build, ZIP CRC, strict extracted signature and all ten real
-WebView smoke checks pass. [Artifact, SHA-256 and metadata receipt](maintenance/native-f30970052-validation.json).
-Original outputs match contents, stat metadata and all xattrs after restoration.
-The prior #353 runtime package remains retained; all required #357 checks passed. Tests use new explicit synthetic storage; direct SMART
-is disabled in smoke mode. No purchased-app storage, real family records,
-production-provider registration, Medplum cutover or real-data migration was
-accessed or introduced.
+The current attachment correction has a fresh packaged app from source
+`340d02293`. Production build, ZIP CRC, strict extracted signature and all ten
+native smoke checks pass. [Artifact and preservation receipt](maintenance/native-340d02293-validation.json).
+Actual native UI acceptance now proves the manual-upload chooser/import (#168)
+and, after correcting generated-file multipart serialization, attachment
+popup/selection/save/persistence (#101). Read-only verification of the stopped
+synthetic database confirms the exact 78 attachment bytes and preserves the
+original three synthetic resources. An encounter navigation reload was needed
+for the new report link; automatic in-place graph refresh remains unverified.
+[Acceptance and limits](maintenance/2026-11-02-native-attachment-upload.md).
+Both issues remain open until this protected integration passes and merges.
+
+Original outputs match all recorded content/stat fields; three OS-managed
+provenance xattrs changed, with exact old/new values retained. No provenance
+attribute was rewritten. Earlier ZIPs and original coverage recovery remain.
+Tests and UI acceptance use explicit synthetic storage with production providers
+unconfigured. No real family records or purchased Fasten storage were accessed.
 
 ## Preservation and branch retirement
 
@@ -249,8 +258,9 @@ remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
 Latest restoration matches contents, inodes, permissions, ownership, birth times,
-mtimes and all xattrs. The earlier c957 build recorded three OS-managed provenance
-attribute changes, with both old/new values preserved; no security-attribute rewrite.
+mtimes, flags and all non-provenance xattrs. The current 340d02293 build and earlier
+c957 build each recorded three OS-managed provenance attribute changes, with
+exact old/new values preserved; no security-attribute rewrite.
 
 The 17 cached legacy tracking refs plus HEAD now also have a private complete
 standalone bundle and local config/ref/reflog archive, with strict isolated object
@@ -320,10 +330,14 @@ The old repair saves the original temporary model rather than its recalculation;
 do not apply it or infer a safe real-data migration from archive verification.
 A continuation message is not an answer to those pending decisions.
 
-Native picker/attachment acceptance #101/#168 is still unverified because the
-exact-app UI-control bridge failed before observation; the isolated process was
-stopped and all synthetic evidence retained. #69/#137 range indexing still needs
-a compatible representation/migration decision. [Scope and retained boundaries](maintenance/2026-11-02-unresolved-acceptance.md).
+Native #101/#168 acceptance now has observed chooser and synthetic persistence
+evidence above; earlier bridge failures remain retained as historical evidence.
+#69/#137 range indexing still needs a compatible representation/migration
+decision. #186 lab-date review found that the edit endpoint replaces raw
+Observation payloads, so preservation must be addressed before adding date
+editing. No lab correction or migration has been implemented. Optional patient
+birth dates display NaN Years Old in Explore; that newly observed synthetic case
+also remains unresolved. [Retained boundaries](maintenance/2026-11-02-unresolved-acceptance.md).
 
 ## Resume safely
 
@@ -338,7 +352,10 @@ a compatible representation/migration decision. [Scope and retained boundaries](
   retire actionable defects or dependency targets. Provider-owned registrations,
   key recovery, delegated access and data migrations need their specific evidence.
 - Local permanent evidence is dist/validation/2026-11-01-consolidation/; disposable
-  diagnostics are /tmp/chartrove-consolidation.deb9lg. Do not remove original archives.
+  diagnostics are /var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn.
+  The old /tmp/chartrove-consolidation.deb9lg disappeared at the November 2 restart;
+  do not recreate it with different evidence. The restart pointer and reverified
+  durable artifacts are retained. Do not remove original archives.
 - At final acceptance, independently prove exactly issue #222, zero PRs, main only,
   protections, builds/tests and complete preservation. The count targets remain
   incomplete; the original-primary coverage recovery is verified above.

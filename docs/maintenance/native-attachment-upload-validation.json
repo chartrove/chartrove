@@ -1,0 +1,64 @@
+{
+  "source_revision": "340d02293f9fdd0d77349b785aea7d1edd2bc41f",
+  "native_frontend_files": 22287,
+  "all_generated_native_frontend_files_match_production_build": true,
+  "red": {
+    "exit": 1,
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/services/fasten-api.service.spec.ts"
+    ],
+    "spec_sha256": "12a1efa216d050e8208c2851c4222d6b150da143a531b1fdf64bbe2fa5072b2f",
+    "time": "2026-11-02T17:28:14.190412+00:00"
+  },
+  "green": {
+    "exit": 0,
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/services/fasten-api.service.spec.ts"
+    ],
+    "spec_sha256": "12a1efa216d050e8208c2851c4222d6b150da143a531b1fdf64bbe2fa5072b2f",
+    "time": "2026-11-02T17:29:40.726686+00:00"
+  },
+  "full": {
+    "exit": 0,
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots"
+    ],
+    "spec_sha256": "12a1efa216d050e8208c2851c4222d6b150da143a531b1fdf64bbe2fa5072b2f",
+    "time": "2026-11-02T17:30:51.105583+00:00"
+  },
+  "node": {
+    "command": [
+      "node",
+      "--test",
+      "frontend/desktop-tests/bridge.test.mjs",
+      "frontend/desktop-tests/compodoc-compat.test.mjs",
+      "frontend/desktop-tests/test-framework.test.mjs"
+    ],
+    "exit": 0
+  },
+  "full_browser_passes": 427,
+  "full_browser_existing_skips": 1,
+  "first_attempt": "attachment-red/ had a test fixture compile error; raw attempt retained",
+  "native_receipt": "docs/maintenance/native-340d02293-validation.json",
+  "native_ui_receipt": "docs/maintenance/native-attachment-340d02293-observations.json"
+}

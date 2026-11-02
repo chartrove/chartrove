@@ -1,19 +1,22 @@
 # Current unresolved acceptance boundaries
 
-#101 concerns attachment popup/file upload in the manual-entry wizard (linked
-upstream PR 330); #168 separately reports the trusted click in the manual-upload
-area not opening the macOS picker. They are overlapping reports, not proven
-duplicates. The latest task-built app was started with a new explicit unencrypted
-synthetic data directory and providers disabled. A minimal synthetic Patient
-bundle was prepared. Cua's exact-app control failed twice with
-`Sky Computer Use native pipe startup failed`, before any accessibility state or
-screenshot was obtained. No picker gesture or import was executed or proven.
-Only the exact task-owned process was stopped after verifying its full command;
-its synthetic data, fixture, logs and failed-control receipt remain retained.
-[Attempt receipt](desktop-picker-attempt.json). Both issues remain open; the ten
-passing packaged smoke checks do not substitute for this missing acceptance.
-No host security settings, permission prompts or installed control software were
-changed to work around the unavailable bridge.
+#101 concerns attachment popup/file upload in the manual-entry wizard; #168
+separately reports the manual-upload macOS picker gesture. The original bridge
+failure was historical and remains retained in the [attempt receipt](desktop-picker-attempt.json).
+After restart, the exact retained native app was observed against disposable
+synthetic data. Manual Upload opens the chooser and imports three generated
+records. The attachment popup/chooser works, but Save originally returned HTTP
+500 because generated-file FormData did not reach file extraction. The bounded
+multipart correction now has a fresh native package and actual UI save acceptance,
+plus read-only proof of the exact persisted attachment bytes. These are separate
+reported paths, individually evidenced, awaiting protected integration and
+individual closure. [Current acceptance](2026-11-02-native-attachment-upload.md).
+
+Automatic in-place encounter graph refresh required navigation reload during
+acceptance; that behavior is not claimed fixed. A synthetic patient without a
+birth date displayed NaN Years Old. Those remaining observations and #186's lab
+edit raw-payload replacement boundary require separate review. No date editing,
+record migration or real-data repair was performed.
 
 #69/#137 remain unresolved. The shared extractor currently selects the first
 scalar date or a Period start/end fallback. Generated model date fields are
