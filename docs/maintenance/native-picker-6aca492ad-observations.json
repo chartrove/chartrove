@@ -1,0 +1,33 @@
+{
+  "source_revision": "6aca492ad3b317a387de37460d3c7a2b64b26200",
+  "manual_upload": {
+    "native_chooser_opened": true,
+    "selected": "synthetic-picker-fixture.json",
+    "source_id": "92ee5b7b-9e3a-4d92-bb3b-8c1a1e1b084f",
+    "explore_heading": "Synthetic, Picker",
+    "visible_resource_counts": {
+      "Patient": 1,
+      "Encounter": 1,
+      "Condition": 1
+    }
+  },
+  "attachment": {
+    "popup": "New Attachment",
+    "native_chooser_opened": true,
+    "selected": "synthetic-picker-attachment.txt",
+    "category": "Consult Note",
+    "file_type": "text/plain",
+    "wizard_attachment_count": 1,
+    "save": "HTTP 500 POST /api/secure/resource/related; not accepted as persisted"
+  },
+  "automation_limits": [
+    "Hidden Manual Upload input had no AX frame; clicked visible dropzone from fresh screenshot.",
+    "Chooser calls timed out twice; recovered exact process, observed existing chooser, no blind replay.",
+    "Category typing initially lost a character; exact paste returned Consult Note."
+  ],
+  "other_observations": [
+    "Synthetic patient with omitted birth date displayed NaN Years Old; separate unresolved defect."
+  ],
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-picker-manual-6aca492ad/observation-receipt.json",
+  "full_local_receipt_sha256": "f858ccfb1a71b525f399318d5144e83625a12404a8dba5ae53a5ee9107db011a"
+}

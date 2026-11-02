@@ -196,13 +196,14 @@ export class FastenApiService {
 
   createRelatedResourcesFastenSource(resourceList: List): Observable<Source> {
 
-    let bundleBlob = new Blob([JSON.stringify(resourceList)], { type: 'application/json' });
-    let bundleFile = new File([ bundleBlob ], 'related.json', { type: 'application/json' });
+    // Like Patient snapshots, this JSON-only upload must survive WebKit's
+    // custom-scheme transport, which drops FormData bodies in the native app.
+    const boundary = `chartrove-related-${uuidV4()}`;
+    const body = `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="related.json"\r\nContent-Type: application/json\r\n\r\n${JSON.stringify(resourceList)}\r\n--${boundary}--\r\n`;
 
-    const formData = new FormData();
-    formData.append('file', bundleFile);
-
-    return this._httpClient.post<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/resource/related`, formData)
+    return this._httpClient.post<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/resource/related`, body, {
+      headers: {'Content-Type': `multipart/form-data; boundary=${boundary}`}
+    })
       .pipe(
         map((response: ResponseWrapper) => {
           return response.data as Source
