@@ -46,5 +46,9 @@ original intake tip. A new checksum-recorded bundle preserves its exact one-comm
 patch, with all four unique objects proved present in the original pack bytes,
 strict pack validation and main-reachable prerequisites. The original intake
 bundle and installed 2.2.2/Yarn metadata archive remain intact.
-[Recovery receipt](fishery-head-recovery.json). #242 and its branch stay open
-until protected integration and fresh dependency checks complete.
+[Recovery receipt](fishery-head-recovery.json). Protected PR #365 merged at
+`b32b087b727e428bc7d4e6e6f0738866fcf41058` after Backend, Frontend and
+Desktop succeeded in run 41511018125. #242 was individually closed as implemented.
+Its exact archived head and the merged task head were manually retired after
+fresh open-PR dependency checks and atomic exact-tip leases.
+[Retirement receipt](fishery-retirement-1.json).

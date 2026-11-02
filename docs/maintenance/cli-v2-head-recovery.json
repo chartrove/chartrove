@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/github.com-urfave-cli-v2-2.x",
+  "tip": "a5cff25a3ad25f31c33490ac917e14ccfeb33917",
+  "bundle": "dist/validation/2026-11-01-consolidation/cli-v2-head-20261102.bundle",
+  "sha256": "9712e9c6c7a7095d42ddf37b0db29fd6f985d5a08f5fae1cf3629a6fd1678491",
+  "bytes": 1687,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "b32b087b727e428bc7d4e6e6f0738866fcf41058",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "4932f437d3b0459eba60d898587c13ba2e1afd1f",
+    "4d56b116bb3fb4f46f258a69b2375b2f12ee8c9c",
+    "a5cff25a3ad25f31c33490ac917e14ccfeb33917",
+    "f50b0e5d2a65d527e77a7bb8aacd71a265cd1c7f"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/github.com-urfave-cli-v2-2.x",
+      "4eb14230136f05760acc43a77bd0c62d51f4101d"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

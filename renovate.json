@@ -40,6 +40,16 @@
         "@types/jasmine"
       ],
       "allowedVersions": ">=4 <5"
+    },
+    {
+      "description": "The existing server uses the maintained v2 bug/security-fix series. A v3 upgrade requires explicit imports, callbacks and flag migration; do not add an unused v3 module.",
+      "matchManagers": [
+        "gomod"
+      ],
+      "matchPackageNames": [
+        "github.com/urfave/cli/v2"
+      ],
+      "allowedVersions": "<3"
     }
   ]
 }
