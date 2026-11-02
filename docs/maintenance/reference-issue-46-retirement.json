@@ -1,0 +1,9 @@
+{
+  "number": 46,
+  "integration_pr": 351,
+  "integration_main": "0702e0ec6a409ed5eff95b6188644b4650947fe8",
+  "state": "CLOSED",
+  "state_reason": "not_planned",
+  "unchanged_body_and_no_new_comments_checked_before_disposition": true,
+  "claim": "informational reference retired; no feature implementation claimed"
+}
