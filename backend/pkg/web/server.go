@@ -376,6 +376,10 @@ func (ae *AppEngine) SetupInstallationRegistration() error {
 }
 
 func (ae *AppEngine) Start() error {
+	if err := config.ValidateJWTSigningKey(ae.Config); err != nil {
+		return err
+	}
+
 	//set the gin mode
 	gin.SetMode(gin.ReleaseMode)
 	if strings.ToLower(ae.Config.GetString("log.level")) == "debug" {
