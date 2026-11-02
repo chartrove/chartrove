@@ -40,7 +40,7 @@
   },
   "source_review": "registry SRI and full reporter JavaScript reviewed; declaration artifact has no JavaScript; adapter official dependency is jasmine-core ^4.1.0",
   "local_evidence": "dist/validation/2026-11-01-consolidation/jasmine-review",
-  "evidence_hash_manifest_sha256": "5b4b5d90924b258bb8f71edc827723747db4951c54d463b28d99a882d727dc65",
+  "evidence_hash_manifest_sha256": "edecc1673ba5c3967823df65798fdb5947f41d49432c029a05ea72275c73446e",
   "frontend_validation": "dist/validation/2026-11-01-consolidation/jasmine-alignment-validation",
   "frontend_receipt_sha256": "b30efcde4ed061fd0d1d5db303b329a4b13c135d65de2c20e942f1ebbfc0013e",
   "protected_ci": "required before integration",
@@ -50,5 +50,14 @@
     "247": "implement reporter 2.3.0",
     "297": "retire mismatched declaration major 7; no major 7 adoption claimed",
     "304": "retire standalone core 7 proposal; no major 7 engine migration claimed"
+  },
+  "original_evidence_hash_manifest_sha256": "5b4b5d90924b258bb8f71edc827723747db4951c54d463b28d99a882d727dc65",
+  "evidence_hash_manifest": "stable-evidence-hashes.json",
+  "mutable_finder_metadata": {
+    "paths": 5,
+    "initial_hashes_and_current_bytes_recorded": true,
+    "earlier_bytes_not_captured": true,
+    "original_task_source_paths_present": false,
+    "observations_file": "finder-metadata-observations.json"
   }
 }

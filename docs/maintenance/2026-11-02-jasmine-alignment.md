@@ -39,6 +39,16 @@ latest native package's frontend byte-for-byte; only its prior Finder metadata
 is absent. No new native run is claimed for this development-only change.
 
 [Validation and complete evidence hashes](jasmine-alignment-validation.json).
+Post-capture checks found newly OS-created destination .DS_Store files
+changed after the first hash manifest. All non-Finder evidence still matches.
+The original manifest and cache paths remain intact; current cache bytes are
+snapshotted with their earlier hashes recorded. The earlier cache bytes were not
+snapshotted and are not claimed recovered. These were absent in the original task
+source and are unrelated to the retained pre-task repository/Finder snapshots.
+The stable evidence manifest excludes only these mutable cache paths and includes
+the observation record and current-byte snapshots. No validation output or
+original user metadata was rewritten to force a checksum match.
+
 [Original installed packages, both old core copies and metadata archive](jasmine-installed-preservation.json).
 [All five exact historical tips, verified bundle and unique-object proof](jasmine-heads-recovery.json).
 Required fresh Backend/Frontend/Desktop checks still gate integration.
