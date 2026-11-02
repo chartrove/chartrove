@@ -5876,10 +5876,12 @@ chokidar@^4.0.1:
   dependencies:
     readdirp "^4.0.1"
 
-chromatic@^6.19.8:
-  version "6.19.8"
-  resolved "https://registry.npmjs.org/chromatic/-/chromatic-6.19.8.tgz#488c55452e925b7a86dc16fdc412cb676a7bbabc"
-  integrity sha512-cvQAd/BkhRscXYbHuwIYwkmqzgpLz50maBGvUDa+WdfpoxzYrUvG2uZ1YU3tS857dAwMuTL5wUFiawiffDIKvQ==
+chromatic@^18.0.0:
+  version "18.13.6"
+  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-18.13.6.tgz#52867f54e9de62aeb43499914aec81070718e1ea"
+  integrity sha512-4NVvud3yFIA8AGuBQeyIGhvYGih+ZcvFaKcnECotTSfHaA3FyUAckNutcqnvofnKDOxZz9ZrA33sT+wz7wz3HQ==
+  dependencies:
+    semver "^7.3.5"
 
 chrome-trace-event@^1.0.2:
   version "1.0.3"
