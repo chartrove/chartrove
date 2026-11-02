@@ -122,24 +122,24 @@ export class MedicalRecordWizardEditOrganizationComponent implements OnInit {
     this.organizationForm.get('type').setValue(organization.type?.[0])
 
     let addressGroup = this.organizationForm.get('address')
-    addressGroup.get('line1').setValue(organization.addresses?.[0].line?.[0])
-    addressGroup.get('line2').setValue(organization.addresses?.[0].line?.[1])
-    addressGroup.get('city').setValue(organization.addresses?.[0].city)
-    addressGroup.get('state').setValue(organization.addresses?.[0].state)
-    addressGroup.get('zip').setValue(organization.addresses?.[0].postalCode)
-    addressGroup.get('country').setValue(organization.addresses?.[0].country)
+    addressGroup.get('line1').setValue(organization.addresses?.[0]?.line?.[0])
+    addressGroup.get('line2').setValue(organization.addresses?.[0]?.line?.[1])
+    addressGroup.get('city').setValue(organization.addresses?.[0]?.city)
+    addressGroup.get('state').setValue(organization.addresses?.[0]?.state)
+    addressGroup.get('zip').setValue(organization.addresses?.[0]?.postalCode)
+    addressGroup.get('country').setValue(organization.addresses?.[0]?.country)
 
-    let organizationForm = organization.telecom.find((telecom) => telecom.system == 'phone')
+    let organizationForm = organization.telecom?.find((telecom) => telecom.system == 'phone')
     if (organizationForm) {
       this.organizationForm.get('phone').setValue(organizationForm.value)
     }
 
-    let organizationFax = organization.telecom.find((telecom) => telecom.system == 'fax')
+    let organizationFax = organization.telecom?.find((telecom) => telecom.system == 'fax')
     if (organizationFax) {
       this.organizationForm.get('fax').setValue(organizationFax.value)
     }
 
-    let organizationEmail = organization.telecom.find((telecom) => telecom.system == 'email')
+    let organizationEmail = organization.telecom?.find((telecom) => telecom.system == 'email')
     if (organizationEmail) {
       this.organizationForm.get('email').setValue(organizationEmail.value)
     }
@@ -151,6 +151,7 @@ export class MedicalRecordWizardEditOrganizationComponent implements OnInit {
 
   submit() {
     let organization = this.organization
+    organization.telecom ??= []
 
     let address = new AddressModel(null)
     address.city = this.organizationForm.get('address').get('city').value
