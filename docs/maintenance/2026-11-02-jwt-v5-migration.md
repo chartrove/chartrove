@@ -44,10 +44,17 @@ remains; those packages are absent from both production import lists. This is
 not a whole-application clean-security claim. [Detailed validation](jwt-v5-validation.json).
 
 Frontend inputs have no differences from qualified source 5ad6c590a. Fresh native
-Go packaging will reuse that exact validated Zone frontend through the existing
---skip-frontend build mode, preserving/restoring original output trees. Native
-package/signature/WebView acceptance and protected-main CI remain pending at
-this source checkpoint. No real family or purchased Fasten data is used.
+Go packaging at source `7cca0f39fa8199138de7ec15aecc360594746e0b` reuses that
+exact validated Zone frontend through the existing --skip-frontend mode. All
+22,287 frontend files are byte-identical across the qualified, reused and native
+asset trees. ZIP CRC, strict signature and all ten synthetic native WebView
+checks pass, including account creation/sign-in and callback isolation. Binary
+build metadata confirms jwt/v5.3.1 and no jwt/v4. Original output contents,
+recorded stat fields and all xattrs restore exactly, without provenance changes.
+The new ZIP SHA-256 is
+`3d3d62dd67dc7aa85c6d59498d3f38c51583dbcdeadbd4503c912ba1a9fad96f`.
+[Native receipt](native-7cca0f39f-validation.json). Protected-main CI/integration
+remains pending. No real family or purchased Fasten data is used.
 
 ## Evidence-store hygiene and preservation
 

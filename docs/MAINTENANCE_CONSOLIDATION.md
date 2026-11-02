@@ -297,7 +297,10 @@ with explicit validation after a reproduced default-parser regression in both
 graphs. Independent legacy HMAC/wire checks pass both directions, as do auth,
 model, desktop, encrypted-backend, upstream, vet and race checks. Auth scans
 show no JWT or called findings; the unrelated required-module OpenPGP advisory
-remains. Fresh native packaging and protected integration are next.
+remains. Fresh native Go packaging at 7cca0f39f reuses the byte-identical qualified
+frontend; ZIP/signature and all ten synthetic WebView checks pass. Original
+output contents/stat fields and all xattrs restore exactly. Protected integration
+is next.
 [Scope and receipts](maintenance/2026-11-02-jwt-v5-migration.md).
 
 ## Preservation and branch retirement
@@ -309,7 +312,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (5ad6c590a) matches contents, inodes, permissions, ownership,
+Latest restoration (7cca0f39f) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.
