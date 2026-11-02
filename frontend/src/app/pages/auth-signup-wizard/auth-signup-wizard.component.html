@@ -95,6 +95,14 @@
               }
             </div><!-- form-group -->
 
+            <div class="mb-3">
+              <label for="passwordConfirmation">Confirm password</label>
+              <input [(ngModel)]="passwordConfirmation" name="passwordConfirmation" id="passwordConfirmation" #confirmation="ngModel" required minlength="8" type="password" autocomplete="new-password" class="form-control" placeholder="Confirm your password">
+              @if (passwordConfirmation !== newUser.password && (confirmation.dirty || confirmation.touched || submitted)) {
+                <div class="alert alert-danger" role="alert">Passwords do not match.</div>
+              }
+            </div>
+
             <div class="mb-3 form-check">
               <input [(ngModel)]="newUser.agree_terms" name="agree_terms" #agree_terms="ngModel" type="checkbox" class="form-check-input" id="agreeTermsCheck" required>
               <label class="form-check-label" for="agreeTermsCheck">
@@ -112,7 +120,7 @@
               }
             </div>
 
-            <button [disabled]="!userForm.form.valid || loading" type="submit" class="btn btn-az-primary w-100">Create Account</button>
+            <button [disabled]="!userForm.form.valid || passwordConfirmation !== newUser.password || loading" type="submit" class="btn btn-az-primary w-100">Create Account</button>
 
             @if (errorMsg) {
               <div class="alert alert-danger mt-3" role="alert">
