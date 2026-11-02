@@ -1,0 +1,39 @@
+{
+  "issue": 113,
+  "parent_pr": 349,
+  "red": {
+    "failed": 7,
+    "passed": 5,
+    "exit": 1
+  },
+  "focused_green": {
+    "passed": 12,
+    "exit": 0
+  },
+  "full_green": {
+    "passed": 422,
+    "skipped": 1,
+    "exit": 0,
+    "normal_karma_configuration": true,
+    "forced_termination": false
+  },
+  "bridge": {
+    "passed": 5,
+    "exit": 0
+  },
+  "data": "Fresh synthetic Bundle/XML files; HttpTestingController intercepts conversion and local-import requests; no external conversion service or health database is contacted.",
+  "artifacts": [
+    {
+      "path": "dist/validation/2026-11-01-consolidation/upload-progress-validation/upload-red/output.log",
+      "sha256": "ca18659528ae71eaed487af12f093960ac78452935aea8e51fdd852be090b103"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/upload-progress-validation/upload-green/output.log",
+      "sha256": "6880907ea36391e57997686d0b21326f1e7ae9c80ed811158b3b3da8529b14c6"
+    },
+    {
+      "path": "dist/validation/2026-11-01-consolidation/upload-progress-validation/upload-full/output.log",
+      "sha256": "526380706fe8eb43b6317632b753ec3b2c51e2a9ee926010b801ccbd6f501610"
+    }
+  ]
+}

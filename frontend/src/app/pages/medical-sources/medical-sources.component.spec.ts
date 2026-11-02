@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MedicalSourcesComponent } from './medical-sources.component';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HTTP_CLIENT_TOKEN} from '../../dependency-injection';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
@@ -99,5 +99,115 @@ describe('MedicalSourcesComponent', () => {
     fixture.destroy();
     await pending;
     expect(signal.aborted).toBeTrue();
+  });
+
+  const syntheticBundle = () => new File(
+    ['{"resourceType":"Bundle","type":"collection","entry":[]}'],
+    'synthetic.json', { type: 'application/json' });
+  const isManualImport = request => request.url.endsWith('/secure/source/manual');
+  const isConversion = request => request.url.startsWith('https://api.platform.fastenhealth.com/v1/app/convert/ccda/to/fhir');
+  const uploadStatus = () => fixture.nativeElement.querySelector('ngx-dropzone').parentElement.querySelector('[role="status"]');
+
+  it('shows pending upload status until the synthetic import response completes', async () => {
+    const file = syntheticBundle();
+    const pending = component.uploadSourceBundleHandler({ addedFiles: [file] });
+    fixture.detectChanges();
+    expect(uploadStatus()).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('ngx-dropzone').getAttribute('aria-busy')).toBe('true');
+    expect(fixture.nativeElement.querySelector('ngx-dropzone input[type="file"]').disabled).toBeTrue();
+    const request = TestBed.inject(HttpTestingController).expectOne(isManualImport);
+    expect(request.request.body.get('file')).toBe(file);
+    request.flush({ success: true, data: { id: 'synthetic-source' } });
+    await pending;
+    fixture.detectChanges();
+    expect(uploadStatus()).toBeNull();
+    expect(component.uploadedFile).toEqual([]);
+    expect(component.uploadErrorMsg).toBe('');
+    expect(fixture.nativeElement.querySelector('ngx-dropzone input[type="file"]').disabled).toBeFalse();
+  });
+
+  it('clears failed-upload progress and allows a retry', async () => {
+    const http = TestBed.inject(HttpTestingController);
+    const pending = component.uploadSourceBundleHandler({ addedFiles: [syntheticBundle()] });
+    http.expectOne(isManualImport).flush({ error: 'Synthetic rejection' }, { status: 500, statusText: 'Test failure' });
+    await pending;
+    fixture.detectChanges();
+    expect(uploadStatus()).toBeNull();
+    expect(component.uploadedFile).toEqual([]);
+    expect(fixture.nativeElement.textContent).toContain('Synthetic rejection');
+    const retry = component.uploadSourceBundleHandler({ addedFiles: [syntheticBundle()] });
+    fixture.detectChanges();
+    expect(uploadStatus()).not.toBeNull();
+    http.expectOne(isManualImport).flush({ success: true, data: { id: 'synthetic-retry' } });
+    await retry;
+    fixture.detectChanges();
+    expect(uploadStatus()).toBeNull();
+    expect(component.uploadErrorMsg).toBe('');
+  });
+
+  it('submits only one import while an upload is pending', async () => {
+    const file = syntheticBundle();
+    const first = component.uploadSourceBundleHandler({ addedFiles: [file] });
+    const duplicate = component.uploadSourceBundleHandler({ addedFiles: [file] });
+    const requests = TestBed.inject(HttpTestingController).match(isManualImport);
+    expect(requests.length).toBe(1);
+    for (const request of requests) request.flush({ success: true, data: { id: 'synthetic-source' } });
+    await Promise.all([first, duplicate]);
+  });
+
+  it('ignores an empty accepted-file selection', async () => {
+    await expectAsync(component.uploadSourceBundleHandler({ addedFiles: [], rejectedFiles: [] })).toBeResolved();
+    expect(TestBed.inject(HttpTestingController).match(isManualImport).length).toBe(0);
+    expect(component.uploadedFile).toEqual([]);
+  });
+
+  it('clears pending status when the user declines external CCDA conversion', async () => {
+    let decide: (value: boolean) => void;
+    spyOn(component, 'showCcdaWarningModal').and.returnValue(new Promise(resolve => decide = resolve));
+    const pending = component.uploadSourceBundleHandler({ addedFiles: [new File(['<synthetic/>'], 'synthetic.xml', { type: 'text/xml' })] });
+    fixture.detectChanges();
+    expect(uploadStatus()).not.toBeNull();
+    decide(false);
+    await pending;
+    fixture.detectChanges();
+    expect(uploadStatus()).toBeNull();
+    expect(component.uploadedFile).toEqual([]);
+    const http = TestBed.inject(HttpTestingController);
+    expect(http.match(isConversion).length).toBe(0);
+    expect(http.match(isManualImport).length).toBe(0);
+  });
+
+  it('clears conversion failures without sending a local import', async () => {
+    spyOn(component, 'showCcdaWarningModal').and.returnValue(Promise.resolve(true));
+    const pending = component.uploadSourceBundleHandler({ addedFiles: [new File(['<synthetic/>'], 'synthetic.xml', { type: 'text/xml' })] });
+    await Promise.resolve();
+    fixture.detectChanges();
+    expect(uploadStatus()).not.toBeNull();
+    const http = TestBed.inject(HttpTestingController);
+    http.expectOne(isConversion).flush({ error: 'Synthetic conversion rejection' }, { status: 500, statusText: 'Test failure' });
+    await pending;
+    fixture.detectChanges();
+    expect(uploadStatus()).toBeNull();
+    expect(component.uploadedFile).toEqual([]);
+    expect(component.uploadErrorMsg).toContain('Error converting file:');
+    expect(http.match(isManualImport).length).toBe(0);
+  });
+
+  it('keeps progress visible through synthetic conversion and the local import', async () => {
+    spyOn(component, 'showCcdaWarningModal').and.returnValue(Promise.resolve(true));
+    const pending = component.uploadSourceBundleHandler({ addedFiles: [new File(['<synthetic/>'], 'synthetic.xml', { type: 'text/xml' })] });
+    await Promise.resolve();
+    const http = TestBed.inject(HttpTestingController);
+    http.expectOne(isConversion).flush({ resourceType: 'Bundle', type: 'collection', entry: [] });
+    await Promise.resolve();
+    fixture.detectChanges();
+    expect(uploadStatus()).not.toBeNull();
+    const request = http.expectOne(isManualImport);
+    expect(request.request.body.get('file').name).toBe('synthetic.xml.converted.json');
+    request.flush({ success: true, data: { id: 'synthetic-converted-source' } });
+    await pending;
+    fixture.detectChanges();
+    expect(uploadStatus()).toBeNull();
+    expect(component.uploadedFile).toEqual([]);
   });
 });

@@ -9,7 +9,7 @@ import {Source} from '../../models/fasten/source';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
-import {BehaviorSubject, forkJoin, Observable, of, Subject} from 'rxjs';
+import {BehaviorSubject, firstValueFrom, forkJoin, Observable, of, Subject} from 'rxjs';
 import {
   LighthouseSourceSearch,
   LighthouseSourceSearchAggregation,
@@ -53,6 +53,7 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
   private destroyed = false;
   @ViewChild(MedicalSourcesConnectedComponent) connectedSources?: MedicalSourcesConnectedComponent;
 
+  uploadingBundle = false
   uploadedFile: File[] = []
   uploadErrorMsg: string = ""
 
@@ -235,43 +236,30 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
    * @param event
    */
   public async uploadSourceBundleHandler(event) {
+    if (this.uploadingBundle || !event?.addedFiles?.length) return
+
     this.uploadErrorMsg = ""
     let processingFile = event.addedFiles[0] as File
     this.uploadedFile = [processingFile]
+    this.uploadingBundle = true
+    let stage = "uploading"
 
-    if(processingFile.type == "text/xml"){
-
-      let shouldConvert = await this.showCcdaWarningModal()
-      if(shouldConvert){
-        try {
-          let convertedFile = await this.platformApi.convertCcdaToFhir(processingFile).toPromise()
-          processingFile = convertedFile
-        } catch(err){
-          console.error(err)
-          this.uploadErrorMsg = "Error converting file: " + (extractErrorFromResponse(err) || "Unknown Error")
-          this.uploadedFile = []
-          return
-        }
-
-      } else {
-        this.uploadedFile = []
-        return
+    try {
+      if (processingFile.type == "text/xml") {
+        stage = "converting"
+        const shouldConvert = await this.showCcdaWarningModal()
+        if (!shouldConvert) return
+        processingFile = await firstValueFrom(this.platformApi.convertCcdaToFhir(processingFile))
       }
 
+      stage = "uploading"
+      await firstValueFrom(this.fastenApi.createManualSource(processingFile))
+    } catch (err) {
+      this.uploadErrorMsg = `Error ${stage} file: ` + (extractErrorFromResponse(err) || "Unknown Error")
+    } finally {
+      this.uploadingBundle = false
+      this.uploadedFile = []
     }
-
-    //TODO: handle manual bundles.
-    this.fastenApi.createManualSource(processingFile).subscribe(
-      (respData) => {
-      },
-      (err) => {
-        console.log(err)
-        this.uploadErrorMsg = "Error uploading file: " + (extractErrorFromResponse(err)|| "Unknown Error")
-      },
-      () => {
-        this.uploadedFile = []
-      }
-    )
   }
 
   showCcdaWarningModal(): Promise<boolean> {
