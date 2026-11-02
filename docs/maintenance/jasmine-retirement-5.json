@@ -1,0 +1,145 @@
+{
+  "integration_pr": 358,
+  "integration_main": "a9103d38cfa2aa8259032ca091c392c93539d3b7",
+  "bundle": "dist/validation/2026-11-01-consolidation/jasmine-heads-20261102.bundle",
+  "bundle_sha256": "4ea9806c530e55ff3fdfa075aef068eff6d4bf73f9446957e794eb25cd12ce30",
+  "individual_dispositions": {
+    "237": "Corrected replacement: declarations 4.6.6 now match the real 4.6 engine. The historical 3.10 version is superseded, not installed.",
+    "245": "Retired: the separate direct-core 5.13 proposal does not upgrade the ordinary adapter engine. The redundant 5.x installation is replaced by an explicit shared declaration of the existing 4.6 engine. No 5.13 adoption is claimed.",
+    "247": "Implemented: the reviewed HTML reporter 2.3.0 target is integrated.",
+    "297": "Retired: declaration major 7 does not match the actual engine major 4. Matching declarations 4.6.6 replace the inconsistent old types; no type-7 adoption is claimed.",
+    "304": "Retired: the standalone core-7 proposal is outside the coherent existing-engine baseline. A real engine-7 migration would need coordinated adapter/loader/reporters/types and compatibility validation. No engine-7 implementation is claimed."
+  },
+  "review_state_observations": [
+    {
+      "number": 237,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 245,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 247,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 297,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 304,
+      "state_before_disposition": "OPEN"
+    }
+  ],
+  "manually_retired": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/jasmine-3.x",
+      "headRefOid": "9cd51807f414aa9efd933ee95a9b0399f81c5233",
+      "number": 237,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency @types/jasmine to ~3.10.0"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/jasmine-monorepo",
+      "headRefOid": "aa05ea9585997d0fe9cf6c34f2c13895fdfbdc38",
+      "number": 245,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency jasmine-core to ~5.13.0"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 3,
+          "deletions": 3,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/karma-jasmine-html-reporter-2.x-lockfile",
+      "headRefOid": "2013e847f80702e3897b440bbf99d83cebedab05",
+      "number": 247,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency karma-jasmine-html-reporter to v2.3.0"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/jasmine-7.x",
+      "headRefOid": "f6659c2640f5ed5d6f7179015c76d0b4778ee0bd",
+      "number": 297,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency @types/jasmine to v7"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/package.json",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 4,
+          "deletions": 4,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/major-jasmine-monorepo",
+      "headRefOid": "dd7e39a0503f40fdb830d98a3a11ded195ae28b2",
+      "number": 304,
+      "state": "OPEN",
+      "title": "chore(deps): update dependency jasmine-core to v7"
+    }
+  ],
+  "already_absent_after_closure_actor_not_established": [],
+  "open_pr_dependencies_checked": 49,
+  "remote_absence_verified": true,
+  "verified_utc": "2026-11-02T14:08:08.523724+00:00"
+}

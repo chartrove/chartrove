@@ -1,0 +1,38 @@
+{
+  "snapshot_utc": "2026-11-02T14:14:51.541888+00:00",
+  "published_main": "a9103d38cfa2aa8259032ca091c392c93539d3b7",
+  "origin_main": "a9103d38cfa2aa8259032ca091c392c93539d3b7",
+  "open_issues": 174,
+  "open_prs": 49,
+  "open_renovate_prs": 42,
+  "all_open_renovate_paused": true,
+  "origin_heads": 59,
+  "local_heads": [
+    "refs/heads/main a9103d38cfa2aa8259032ca091c392c93539d3b7 origin/main"
+  ],
+  "tags": 30,
+  "worktrees": "worktree /Users/osama/Code/karamhouse/chartrove\nHEAD a9103d38cfa2aa8259032ca091c392c93539d3b7\nbranch refs/heads/main\n\n",
+  "stashes": "",
+  "sparse_patterns_sha256": "d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc",
+  "origin_fetch": "+refs/heads/main:refs/remotes/origin/main",
+  "required_ruleset_id": 26337029,
+  "workflow_states": [
+    {
+      "id": 404053956,
+      "name": "Validation",
+      "state": "active",
+      "path": ".github/workflows/validation.yaml"
+    },
+    {
+      "id": 398282797,
+      "name": "Development",
+      "state": "disabled_manually",
+      "path": ".github/workflows/development.yaml"
+    }
+  ],
+  "coverage_recovered": true,
+  "coverage_receipt_sha256": "32b238864389cc2d034eccee0ac9d45eadf79cdf174e9931788e74670ffbce22",
+  "historical_manual_ref_retirements": 48,
+  "additional_heads_observed_absent_actor_unknown": 9,
+  "acceptance_targets_complete": false
+}
