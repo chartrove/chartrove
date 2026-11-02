@@ -326,7 +326,10 @@ Current #106 correction adds shared/fallback loading, error/retry and request
 lifecycle handling. Fourteen actual-component/HTTP regressions fail before repair
 and pass unchanged afterward; the full browser suite passes 443 specs with one
 existing skip, ten Node checks, production and static Storybook builds pass.
-Native and protected validation remain pending.
+Fresh native packaging at 2f0fd5bfc, ZIP/signature and ten synthetic checks pass.
+Actual native Encounter rendering/row navigation pass with the three synthetic
+records retained. Original outputs/stat fields and all xattrs restore exactly.
+Protected integration remains pending.
 [Scope and diagnostics](maintenance/2026-11-02-datatable-loading-feedback.md).
 
 ## Preservation and branch retirement
@@ -338,7 +341,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (93aa68702) matches contents, inodes, permissions, ownership,
+Latest restoration (2f0fd5bfc) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.
