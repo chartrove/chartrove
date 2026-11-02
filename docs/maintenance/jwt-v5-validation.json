@@ -491,5 +491,16 @@
   },
   "real_records_or_keys_accessed": false,
   "schema_or_provider_replacement_changed": false,
-  "protected_integration": "pending required PR checks"
+  "protected_integration": {
+    "pr": 369,
+    "merge": "7fe1d418e935caac2a4bb7c3920315989f897e50",
+    "head": "f98a0219aee74ec8b0bbba0414c57c07a340ef90",
+    "run": 41526378763,
+    "checks": [
+      "Backend",
+      "Frontend",
+      "Desktop"
+    ],
+    "all_success_app_15368": true
+  }
 }

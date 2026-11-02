@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/github.com-google-go-github-v54-93.x",
+  "tip": "77a8aa3270cc3744c066a7f45da90df004285432",
+  "bundle": "dist/validation/2026-11-01-consolidation/github-client-head-20261102.bundle",
+  "sha256": "4c10bae6679d0dd7fbdc138d5aab4d87445dd468454d80144bbbb83ee7d139e0",
+  "bytes": 1518,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "7fe1d418e935caac2a4bb7c3920315989f897e50",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "77a8aa3270cc3744c066a7f45da90df004285432",
+    "7fef43f3d38f548c92ff9e2354b4a4335faa6a8f",
+    "e7316c277cb550933e307e6ec6e2475f46d97ac2",
+    "ecbfc9ed42d8797270051b3c3359ef6e95cf90a9"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/github.com-google-go-github-v54-93.x",
+      "ddbc6fa651ebb1c01ecced825e7b0ebba6cbc88b"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}
