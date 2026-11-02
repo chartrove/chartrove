@@ -514,8 +514,13 @@
      }" type="button" class="btn float-start" (click)="debugMode = !debugMode">
     <i class="fas fa-bug"></i>
   </button>
-  <button type="submit" class="btn btn-indigo" [disabled]="submitWizardLoading">
-    Save
+  <button type="submit" class="btn btn-indigo" [disabled]="submitWizardLoading || form.invalid" [attr.aria-busy]="submitWizardLoading">
+    @if (submitWizardLoading) {
+      <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+      <span role="status">Saving record…</span>
+    } @else {
+      Save
+    }
   </button>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>
