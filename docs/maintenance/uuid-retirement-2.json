@@ -1,0 +1,42 @@
+{
+  "integration_pr": 351,
+  "integration_main": "0702e0ec6a409ed5eff95b6188644b4650947fe8",
+  "bundle": "dist/validation/2026-11-01-consolidation/uuid-heads-20261102.bundle",
+  "bundle_sha256": "3a6de29ae4c6408833afac8c190f7ac83dcea1e4a30484e0f462e9c02dceffd9",
+  "review_state_observations": [
+    {
+      "number": 230,
+      "state_before_disposition": "OPEN"
+    },
+    {
+      "number": 314,
+      "state_before_disposition": "CLOSED"
+    }
+  ],
+  "manually_retired": [],
+  "already_absent_after_closure_actor_not_established": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/uuid-9.x-lockfile",
+      "headRefOid": "6e07c4c07950315a436db2716249273be355f5c4",
+      "number": 230,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/uuid-14.x",
+      "headRefOid": "62b1480123d7a002de353d2103774cda9dc2a932",
+      "number": 314,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    }
+  ],
+  "open_pr_dependencies_checked": 62,
+  "remote_absence_verified": true
+}

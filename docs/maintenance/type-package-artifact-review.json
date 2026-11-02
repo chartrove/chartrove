@@ -1,0 +1,46 @@
+[
+  {
+    "name": "@types/fhir",
+    "before": "0.0.35",
+    "after": "0.0.44",
+    "dependencies_before": {},
+    "dependencies_after": {},
+    "artifact_sha256": "ab08c91381317fcc76a0d10cddd6b14619ce369a1aa199080c7921795fc7c908",
+    "integrity_verified": true,
+    "regular_files": [
+      "fhir/LICENSE",
+      "fhir/README.md",
+      "fhir/index.d.ts",
+      "fhir/package.json",
+      "fhir/r2.d.ts",
+      "fhir/r3.d.ts",
+      "fhir/r4.d.ts",
+      "fhir/r4b.d.ts",
+      "fhir/r5.d.ts"
+    ],
+    "lifecycle_install_scripts": false
+  },
+  {
+    "name": "@types/qrcode",
+    "before": "1.5.5",
+    "after": "1.5.6",
+    "dependencies_before": {
+      "@types/node": "*"
+    },
+    "dependencies_after": {
+      "@types/node": "*"
+    },
+    "artifact_sha256": "5e30d3c9017383293b3ff4f348e4db680485957521f583151a6b7aabf23a7d4f",
+    "integrity_verified": true,
+    "regular_files": [
+      "qrcode/LICENSE",
+      "qrcode/README.md",
+      "qrcode/index.d.ts",
+      "qrcode/package.json",
+      "qrcode/build/qrcode.d.ts",
+      "qrcode/build/qrcode.tosjis.d.ts",
+      "qrcode/helper/to-sjis.d.ts"
+    ],
+    "lifecycle_install_scripts": false
+  }
+]

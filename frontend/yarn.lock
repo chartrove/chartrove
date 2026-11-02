@@ -4587,10 +4587,10 @@
     "@types/express-serve-static-core" "^5.0.0"
     "@types/serve-static" "^2"
 
-"@types/fhir@^0.0.35":
-  version "0.0.35"
-  resolved "https://registry.npmjs.org/@types/fhir/-/fhir-0.0.35.tgz#e598b99e6468fee556f0e78d398c13ad2571b1eb"
-  integrity sha512-y+VI3Y48xzZBM8AjXPq67EWbiY9VN4Cx5KzN8EplS0Zju8D2KahLXoK6P/PWlKyNTKvJBwemkHzJIocczLRkhQ==
+"@types/fhir@^0.0.44":
+  version "0.0.44"
+  resolved "https://registry.npmjs.org/@types/fhir/-/fhir-0.0.44.tgz#38d8985e7d37a3111db437c453ec2589738baf52"
+  integrity sha512-RhqRUNcUFeQSbEK9cOEYQ98sfsUFFRCUKbgozHvryiUfEAPiXuhgk2wqYV3MoD1T1qHp0gztrHDywU68bN7KYQ==
 
 "@types/gensync@^1.0.5":
   version "1.0.5"
@@ -4677,9 +4677,9 @@
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
 "@types/qrcode@^1.5.5":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@types/qrcode/-/qrcode-1.5.5.tgz#993ff7c6b584277eee7aac0a20861eab682f9dac"
-  integrity sha512-CdfBi/e3Qk+3Z/fXYShipBT13OJ2fDO2Q2w5CIP5anLTLIndQG9z6P1cnm+8zCWSpm5dnxMFd/uREtb0EXuQzg==
+  version "1.5.6"
+  resolved "https://registry.npmjs.org/@types/qrcode/-/qrcode-1.5.6.tgz#07c33cb9ec0ad88be4636e636e28e54d99b65f42"
+  integrity sha512-te7NQcV2BOvdj2b1hCAHzAoMNuj65kNBMz0KBaxM6c3VGBOhU0dURQKOtH8CFNI/dsKkwlv32p26qYQTWoB5bw==
   dependencies:
     "@types/node" "*"
 

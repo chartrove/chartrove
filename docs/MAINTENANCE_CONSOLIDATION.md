@@ -6,17 +6,17 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after application integration #350 and source/ref
-reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after350.json).
-The receipt also records the next short-lived local unused-UUID branch; that integration PR/branch is additional until
+Snapshot: November 2, 2026, after retirement integration #351 and source/ref
+reconciliation. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after351.json).
+The receipt also records the next short-lived local declaration-update branch; that integration PR/branch is additional until
 merged and removed. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `949b2f2b5a06266675ff3ab0d8eaca39d32c533e` (#350) |
-| Open issues | 175, including retained Renovate dashboard #222 |
-| Open PRs | 64: 57 paused Renovate proposals and seven historical drafts |
-| Origin heads | 74 |
+| Published application main | `0702e0ec6a409ed5eff95b6188644b4650947fe8` (#351) |
+| Open issues | 174, including retained Renovate dashboard #222 |
+| Open PRs | 62: 55 paused Renovate proposals and seven historical drafts |
+| Origin heads | 72 |
 | Default branch | main tracks origin/main with equal OIDs; next short-lived local task branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
@@ -35,12 +35,21 @@ workflow patches. The other dependency PRs also require individual review.
 
 ## Latest integrated safeguards and tooling
 
-The next retirement batch removes the unused direct UUID v9 dependency while
+The next declaration batch adopts @types/fhir 0.0.44 and @types/qrcode 1.5.6.
+Five compile errors exposed by the new FHIR declarations are corrected through
+erased annotations/imports. Production, ordinary 422-test browser suite and
+Storybook pass; executable assets match the current native package, with only
+two type edits embedded in one source map. Protected CI is required before
+reconciling #225/#227. [Scope and evidence](maintenance/2026-11-02-fhir-qrcode-declarations.md).
+
+Merged #351 removes the unused direct UUID v9 dependency while
 retaining the existing Web Crypto helper and UUID v8 tooling consumers. All 74
 retained direct versions and all generated application assets stay identical;
-frozen install, bridge, production and Storybook checks pass. #230/#314 stay open
-until protected integration; #46 is classified as an informational reference for
-retirement, while #193 remains open for its unresolved custom-TLS request.
+frozen install, bridge, production, Storybook and protected checks pass.
+#230/#314 are explicitly retired, not upgraded. Their exact heads were already
+absent after closure; no deletion actor is inferred. #46 is retired as an
+informational reference after a fresh body/comment check. #193 remains open for
+its unresolved custom-TLS request.
 [Scope and recovery](maintenance/2026-11-02-unused-uuid-retirement.md).
 
 Merged #350 addresses manual-upload progress (#113). Seven new
@@ -110,6 +119,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #348 | Remove unused upstream Chromatic publishing CLI; explicitly retire #239/#299 |
 | #349 | Minimal Karma 6.4.4 target; wider #228 graph refresh explicitly superseded |
 | #350 | Accessible manual-upload progress, duplicate guard and outcome cleanup; issue #113 |
+| #351 | Remove unused direct UUID v9; retire #230/#314 and informational reference #46 |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -177,7 +187,7 @@ Recovery references (incremental bundles need retained main prerequisites):
 
 Thirty-seven historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
-Five more (#313 and four utility heads) were already absent after closure;
+Seven more (#313, four utility heads and two UUID heads) were already absent after closure;
 deletion actors not established.
 Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [six more](https://github.com/karamhouse/chartrove/pull/333#issuecomment-6570768946),
@@ -187,7 +197,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [four utility heads observed absent](maintenance/utility-retirement-4.json),
 [four retired tooling heads](maintenance/legacy-tooling-retirement-4.json),
 [two Chromatic heads](maintenance/chromatic-retirement-2.json),
-[one Karma head](maintenance/karma-retirement-1.json).
+[one Karma head](maintenance/karma-retirement-1.json),
+[two UUID heads observed absent](maintenance/uuid-retirement-2.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Unresolved preservation gap and decisions
@@ -219,7 +230,7 @@ A continuation message is not an answer to those pending decisions.
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 57 existing Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 55 existing Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
