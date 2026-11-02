@@ -1,0 +1,158 @@
+[
+  {
+    "kind": "issue",
+    "number": 51,
+    "disposition": "retired-not-planned",
+    "reason": "Upstream Fasten marketing-list submissions; Chartrove attribution is retained, but promoting the upstream product is not a Chartrove maintenance deliverable."
+  },
+  {
+    "kind": "issue",
+    "number": 72,
+    "disposition": "retired-not-planned",
+    "reason": "Upstream Fasten marketplace/application-directory submissions and fees; no Chartrove production-provider certification or marketplace publication is authorized."
+  },
+  {
+    "kind": "issue",
+    "number": 100,
+    "disposition": "retired-not-planned",
+    "reason": "Upstream Fasten icon submission to a third-party dashboard; Chartrove branding/attribution already has its own documented boundary. No submission will be made."
+  },
+  {
+    "kind": "issue",
+    "number": 107,
+    "disposition": "retired-not-planned",
+    "reason": "Upstream Serverless/AWS deployer-role task; Chartrove validation deliberately retires inherited AWS publication in #332. No infrastructure provisioning belongs to this baseline."
+  },
+  {
+    "kind": "issue",
+    "number": 114,
+    "disposition": "retired-not-planned",
+    "reason": "Upstream Fasten Store download-page redesign; the Fasten commercial store is not owned by this repository. Local desktop build instructions remain in desktop/README.md."
+  },
+  {
+    "kind": "issue",
+    "number": 118,
+    "disposition": "retired-not-planned",
+    "reason": "Historical upstream v1.1.1 release-note record, preserved as release history; not an outstanding Chartrove implementation request. No listed feature is newly claimed implemented."
+  },
+  {
+    "kind": "issue",
+    "number": 142,
+    "disposition": "retired-not-planned",
+    "reason": "Historical upstream v1.1.2 release-note record, preserved as release history; not an outstanding Chartrove implementation request. No listed feature is newly claimed implemented."
+  },
+  {
+    "kind": "issue",
+    "number": 146,
+    "disposition": "retired-not-planned",
+    "reason": "Empty upstream v1.1.3 release-note placeholder; retained history and tags supply the audit trail. No Chartrove feature scope is present."
+  },
+  {
+    "kind": "issue",
+    "number": 155,
+    "disposition": "retired-not-planned",
+    "reason": "Grant/funding suggestion for Fasten; this task does not authorize applications, commercial commitments or promotion on behalf of upstream."
+  },
+  {
+    "kind": "issue",
+    "number": 189,
+    "disposition": "retired-not-planned",
+    "reason": "Upstream service-retirement announcement, retained as evidence for Chartrove provider limitations in desktop/LIGHTHOUSE_REPLACEMENT.md. Closing the announcement does not claim direct EHR interoperability restored."
+  },
+  {
+    "kind": "pr",
+    "number": 200,
+    "disposition": "superseded",
+    "reason": "Superseded by #323: Gin 1.12.0 in both Go graphs, with companion binding/serialization updates and backend/desktop regression evidence."
+  },
+  {
+    "kind": "pr",
+    "number": 202,
+    "disposition": "superseded",
+    "reason": "Superseded by #323: x/net 0.62.0, x/crypto 0.58.0, x/sys 0.49.0, x/term 0.47.0 and x/text 0.43.0 in both graphs exceed the original patch targets."
+  },
+  {
+    "kind": "pr",
+    "number": 204,
+    "disposition": "superseded",
+    "reason": "Superseded by #323: x/crypto 0.58.0 and matching network/crypto family in both graphs; existing auth/network tests pass."
+  },
+  {
+    "kind": "pr",
+    "number": 205,
+    "disposition": "superseded",
+    "reason": "Superseded by #323: CIRCL 1.6.5 and the matching x/crypto family in both graphs, with recorded crypto compatibility tests."
+  },
+  {
+    "kind": "pr",
+    "number": 207,
+    "disposition": "superseded",
+    "reason": "Corrected replacement merged in #323: JWX v3.4.0, including persisted-key and wrong-key/injection regression tests. The historical v2 patch must not restore the obsolete API."
+  },
+  {
+    "kind": "pr",
+    "number": 208,
+    "disposition": "superseded",
+    "reason": "Adapted fix merged in #323 as 4093a65c1 with David Radcliffe attribution and original commit 9ba8313e64cf57598f69551739176787e6fa0acb. angular.json no longer loads the ESM library as a classic script."
+  },
+  {
+    "kind": "pr",
+    "number": 260,
+    "disposition": "retired-not-planned",
+    "reason": "Retire ineffective upstream version proposal: desktop/go.mod intentionally replaces fasten-onprem with the local parent backend. Preserve this desktop contract; no upstream backend upgrade is claimed."
+  },
+  {
+    "kind": "pr",
+    "number": 261,
+    "disposition": "retired-not-planned",
+    "reason": "Retire ineffective original-module version proposal: the provenance-pinned fasten-sources replacement remains authoritative. Updating the original require line does not update the selected provider implementation; provider modernization remains unimplemented."
+  },
+  {
+    "kind": "pr",
+    "number": 328,
+    "disposition": "retired-not-planned",
+    "reason": "Retire ineffective upstream-major proposal: desktop local backend replacement is intentional and compatibility-sensitive; no external Fasten cutover is authorized."
+  },
+  {
+    "kind": "pr",
+    "number": 289,
+    "disposition": "retired-not-planned",
+    "reason": "Retire obsolete action-version patch: every modified executable workflow was retired in #332 and exact source is preserved under docs/retired-workflows. Validation does not use this publishing/reporting/artifact action. No upgraded publishing capability is claimed."
+  },
+  {
+    "kind": "pr",
+    "number": 290,
+    "disposition": "retired-not-planned",
+    "reason": "Retire obsolete action-version patch: every modified executable workflow was retired in #332 and exact source is preserved under docs/retired-workflows. Validation does not use this publishing/reporting/artifact action. No upgraded publishing capability is claimed."
+  },
+  {
+    "kind": "pr",
+    "number": 291,
+    "disposition": "retired-not-planned",
+    "reason": "Retire obsolete action-version patch: every modified executable workflow was retired in #332 and exact source is preserved under docs/retired-workflows. Validation does not use this publishing/reporting/artifact action. No upgraded publishing capability is claimed."
+  },
+  {
+    "kind": "pr",
+    "number": 315,
+    "disposition": "retired-not-planned",
+    "reason": "Retire obsolete action-version patch: every modified executable workflow was retired in #332 and exact source is preserved under docs/retired-workflows. Validation does not use this publishing/reporting/artifact action. No upgraded publishing capability is claimed."
+  },
+  {
+    "kind": "pr",
+    "number": 316,
+    "disposition": "retired-not-planned",
+    "reason": "Retire obsolete action-version patch: every modified executable workflow was retired in #332 and exact source is preserved under docs/retired-workflows. Validation does not use this publishing/reporting/artifact action. No upgraded publishing capability is claimed."
+  },
+  {
+    "kind": "pr",
+    "number": 325,
+    "disposition": "retired-not-planned",
+    "reason": "Retire obsolete action-version patch: every modified executable workflow was retired in #332 and exact source is preserved under docs/retired-workflows. Validation does not use this publishing/reporting/artifact action. No upgraded publishing capability is claimed."
+  },
+  {
+    "kind": "pr",
+    "number": 327,
+    "disposition": "retired-not-planned",
+    "reason": "Retire obsolete action-version patch: every modified executable workflow was retired in #332 and exact source is preserved under docs/retired-workflows. Validation does not use this publishing/reporting/artifact action. No upgraded publishing capability is claimed."
+  }
+]

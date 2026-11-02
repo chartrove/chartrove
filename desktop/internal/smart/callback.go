@@ -18,6 +18,7 @@ type callbackResult struct {
 	denied bool
 }
 type callbackListener struct {
+	listener net.Listener
 	server   *http.Server
 	result   chan callbackResult
 	ctx      context.Context
@@ -32,6 +33,9 @@ func (c *callbackListener) close() {
 		c.server.Shutdown(grace)
 		cancel()
 	}
+	// Serve may not have registered the listener when cancellation wins.
+	// Close the owned socket synchronously before reporting cleanup complete.
+	c.listener.Close()
 	c.server.Close()
 }
 
@@ -41,7 +45,7 @@ func listenCallback(ctx context.Context, p Profile, state string) (*callbackList
 	if err != nil {
 		return nil, errors.New("registered SMART callback port is unavailable")
 	}
-	c := &callbackListener{result: make(chan callbackResult, 1), ctx: ctx}
+	c := &callbackListener{listener: listener, result: make(chan callbackResult, 1), ctx: ctx}
 	c.server = &http.Server{ReadHeaderTimeout: 3 * time.Second, WriteTimeout: 5 * time.Second, IdleTimeout: 5 * time.Second, MaxHeaderBytes: 8192, ErrorLog: log.New(io.Discard, "", 0)}
 	c.server.Handler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
