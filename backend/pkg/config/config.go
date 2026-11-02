@@ -10,6 +10,8 @@ import (
 	"strings"
 )
 
+const defaultJWTIssuerKey = "thisismysupersecuressessionsecretlength"
+
 // When initializing this class the following methods must be called:
 // Config.New
 // Config.Init
@@ -39,7 +41,7 @@ func (c *configuration) Init() error {
 	//c.SetDefault("database.encryption.key", "") //encryption key must be set by the user.
 	c.SetDefault("cache.location", "/opt/fasten/cache/")
 
-	c.SetDefault("jwt.issuer.key", "thisismysupersecuressessionsecretlength")
+	c.SetDefault("jwt.issuer.key", defaultJWTIssuerKey)
 
 	c.SetDefault("log.level", "INFO")
 	c.SetDefault("log.file", "")
@@ -93,6 +95,16 @@ func (c *configuration) ValidateConfig() error {
 		if len(key) < 10 {
 			return errors.ConfigValidationError("database.encryption.key must be at least 10 characters")
 		}
+	}
+	return nil
+}
+
+// ValidateJWTSigningKey rejects the historical shared key before a server opens
+// storage or accepts requests. Existing private keys are never changed here.
+func ValidateJWTSigningKey(cfg Interface) error {
+	key := strings.TrimSpace(cfg.GetString("jwt.issuer.key"))
+	if key == "" || key == defaultJWTIssuerKey {
+		return errors.ConfigValidationError("jwt.issuer.key must be private to this installation; set FASTEN_JWT_ISSUER_KEY or jwt.issuer.key in configuration")
 	}
 	return nil
 }
