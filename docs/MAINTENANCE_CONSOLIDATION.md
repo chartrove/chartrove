@@ -14,10 +14,12 @@ baseline and backlog review retain historical observations, not current counts.
   intentionally retrieves only main; local tracking refs undercount remote branches.
 - Main ruleset `26337029` is active: PR required, zero approvals, conversations
   resolved, no force push/deletion, no bypass actors. Verified effective rules API.
-- First integration branch: `task/protected-maintenance-ci`, PR #332. Local backend, frontend, desktop tests and builds passed.
-- All six inherited workflow IDs were individually disabled by API.
-- Actions remain disabled until the inherited workflows are individually disabled
-  and this replacement is merged. Required checks follow actual successful runs.
+- First integration: PR #332 merged as `bc1ccfac4`; task branch deleted.
+- Current published main: `d1bd74f21` (PR #333). Required checks all passed.
+- All six inherited workflow IDs were individually disabled and source retired.
+- Actions is enabled with Validation only and GitHub-owned actions only. Backend,
+  Frontend and Desktop are all required from GitHub Actions app 15368, with strict
+  up-to-date checks, zero reviewer approvals and no bypass actors.
 
 ## First integration batch
 
@@ -120,3 +122,40 @@ remain reviewable; no provider feature or dependency upgrade is claimed.
 Historical summary/text migration disposition has been escalated to the user:
 archival-only retirement versus a separately tested opt-in repair. No real data
 has been inspected and neither branch is deleted pending that decision.
+
+## Published dispositions and active fixes - November 2
+
+#333 passed all required checks and merged as `d1bd74f21`; its local/remote task
+branch was removed after ancestry and exact-tip checks. Ten explicitly reviewed
+upstream administrative/release issues were closed as not planned. Six historical
+PRs (#200/#202/#204/#205/#207/#208) were closed with implementation evidence.
+Renovate had already closed the seven obsolete workflow-action PRs. Original
+records, attribution and recovery archives remain intact.
+
+#260/#261/#328 changed heads during review and were held, then independently
+re-reviewed at `84bc4f5cb357e01f5c1e09f03b49a0cde41a56a4`,
+`3f6900956d36b4a33a9a527710d4dcacc49c234e`, and
+`124b3a8528187d85a0c9be0a8c89c82ae1604722`. Each still changes only an overridden
+original-module requirement, so each was closed with the exact reviewed head and
+explicitly without claiming an underlying upgrade. These updated tips need an
+additional archive receipt before branch retirement. No historical branch has
+been deleted by this consolidation yet.
+
+Live snapshot before callback-fix publication: 186 open issues, 87 open PRs,
+121 origin heads. Acceptance counts remain unmet. #222 remains open.
+
+Active independent fixes:
+- #334: password confirmation for both signup forms (#124). Local production
+  build and 400 browser tests pass. Its CI exposed the callback lifecycle race;
+  do not rerun or waive the failing desktop assertion to manufacture a pass.
+- #335: reject shared/default server JWT signing keys before database setup
+  (#52), remove automatic configuration/token dumps. Local checks pass; CI pending.
+- Callback shutdown: [race and validation evidence](maintenance/2026-11-02-callback-shutdown.md).
+  Existing cancellation tests reproduce the failure before repair and pass 200
+  repetitions after repair; full SMART race tests and desktop host tests pass.
+  Merge this correction, then update #334/#335 to main and require fresh checks.
+
+The two product questions remain pending: archival-only versus corrected opt-in
+legacy narrative repair, and retirement versus retention of unimplemented upstream
+feature expansions. Continue applicable defect work without treating silence or
+"continue" as approval of either consequential product decision.
