@@ -3,7 +3,7 @@ module github.com/karamhouse/fasten-desktop
 go 1.26.0
 
 require (
-	github.com/fastenhealth/fasten-onprem v0.0.0
+	github.com/fastenhealth/fasten-onprem v1.1.3
 	github.com/sirupsen/logrus v1.10.2
 	github.com/wailsapp/wails/v3 v3.0.0
 )
