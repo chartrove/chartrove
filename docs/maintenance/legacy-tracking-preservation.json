@@ -1,0 +1,134 @@
+{
+  "created_utc": "2026-11-02T14:13:36.998092+00:00",
+  "remote": "legacy-fork",
+  "configured_url": "https://github.com/karamhouse/fasten-onprem.git",
+  "refs": [
+    {
+      "ref": "refs/remotes/legacy-fork/AnalogJ-patch-1",
+      "tip": "f2cc50e989fd86357fe6c16c792f32c8df042f24",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/HEAD",
+      "tip": "36d92446884e9e20eda8d2b2a0a1115c9c57f7ef",
+      "symbolic_target": "refs/remotes/legacy-fork/main",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/beta",
+      "tip": "3314e0cc254be7e0c5181d3aa537e02b14d7d224",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/go_modules/github.com/cloudflare/circl-1.3.7",
+      "tip": "c348176be08673d4e058e76efc94b53ed1293ffb",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/go_modules/github.com/gin-gonic/gin-1.9.1",
+      "tip": "be737c5688a1962c3981465338694690cb80b335",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/go_modules/github.com/lestrrat-go/jwx/v2-2.0.19",
+      "tip": "0077f23d5ac7bf5be2e77c96667218221610927d",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/go_modules/golang.org/x/crypto-0.17.0",
+      "tip": "9a18d56aa13586fddb76404098d2df97ad455bc3",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/go_modules/golang.org/x/net-0.17.0",
+      "tip": "ea2dde5bf02197256e0532a0e7a9a3f99a951749",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/adobe/css-tools-4.3.2",
+      "tip": "c157dd482a4273e7d92b306e520d1c732f072304",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/crypto-js-4.2.0",
+      "tip": "39407d4db398ec20d37d09ac00e529ba31c0b2d6",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/follow-redirects-1.15.4",
+      "tip": "f980859316d8732186374a68bd2d949b8f184d14",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/semver-5.7.2",
+      "tip": "e1fa9e5551189c4e4f98eec57efbef4cc3abeec2",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/dependabot/npm_and_yarn/frontend/word-wrap-1.2.5",
+      "tip": "9bf0b66443a0d629bcf1c170e0e4414566fb4a0d",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/export_summary",
+      "tip": "d99da608970e14e8042f2ce7b0eae2a2906fa202",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/main",
+      "tip": "36d92446884e9e20eda8d2b2a0a1115c9c57f7ef",
+      "symbolic_target": null,
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/manual-input",
+      "tip": "04b30c2ea406d2633d9e2e84860fa4f45f1442da",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/summary",
+      "tip": "62a89d799969b1de8ac208543e89a7da85345a91",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    },
+    {
+      "ref": "refs/remotes/legacy-fork/text_field_extract",
+      "tip": "38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e",
+      "symbolic_target": null,
+      "ancestor_of_main": false
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/legacy-tracking-recovery/legacy-fork-full-history.bundle",
+  "bundle_sha256": "33c468b4535cad0e7b620bb2424b85cde78808daac92b1b60ee5f71b37c37e59",
+  "bundle_bytes": 1084269893,
+  "standalone_without_main_prerequisites": true,
+  "strict_isolated_pack_verification": "passed; all 18 advertised commit tips present without alternates",
+  "metadata_archive": "dist/validation/2026-11-01-consolidation/legacy-tracking-recovery/legacy-fork-local-metadata.tar.zst",
+  "metadata_sha256": "64b1d8034f1130b18eb242f4ec6128e08fc323a851a757d48c79d9cd3b9bace5",
+  "metadata_bytes": 8693,
+  "metadata_paths": [
+    ".git/config",
+    ".git/packed-refs",
+    ".git/refs/remotes/legacy-fork",
+    ".git/logs/refs/remotes/legacy-fork"
+  ],
+  "metadata_native_acl_xattrs_flags_and_full_traversal": "passed",
+  "config_file_sha256": "7b59a2f284e81371b56a30d5726365b7e42b72f3305987f69c2cfc1fd0291bcf",
+  "all_refs_retained_unchanged": true,
+  "no_remote_config_or_ref_deleted": true,
+  "next_step": "Review cached alias purposes/unique work and PR dependencies before any explicit local alias decommission; summary/text_field_extract product decisions remain pending."
+}

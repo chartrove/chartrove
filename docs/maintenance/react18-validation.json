@@ -1,0 +1,50 @@
+{
+  "checked_utc": "2026-11-02T14:29:51.489788+00:00",
+  "proposal": 282,
+  "selected_versions": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "scheduler": "0.23.2"
+  },
+  "manifest_and_72_other_direct_versions": "unchanged",
+  "lock_scope": "only three necessary package blocks; incidental loose-envify registry-host change not adopted",
+  "installed_validation": {
+    "frozen_install_exit": 0,
+    "lock_unchanged_by_install": true,
+    "manifest_unchanged": true,
+    "retained_direct_versions_unchanged": 72,
+    "new_selected_versions": {
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "scheduler": "0.23.2"
+    },
+    "all_new_package_files_match_verified_registry_artifacts": true,
+    "synthetic_server_render_development_and_production": "passed",
+    "published_production_react_dom_export_version": "18.3.1-next-f1338f8080-20240426",
+    "version_label_source": "exact literal in integrity-verified official react-dom 18.3.1 production CJS and UMD files; package version is 18.3.1 and both packages share gitHead a87edf62d7d69705ddbcec9a24f0780b3db7535f",
+    "initial_diagnostic_failure_retained": "render-production.log; strict exported-label equality assumption failed before rendering, no product test modified"
+  },
+  "checks": {
+    "node_bridge_and_framework_guards": 7,
+    "browser_passes": 423,
+    "existing_skip": 1,
+    "ordinary_browser_exit": 0,
+    "production_build": "passed",
+    "storybook_build": "passed",
+    "synthetic_react_server_render_development_production": "passed"
+  },
+  "nonfatal_browser_post_suite_warning": "ERR_STREAM_PREMATURE_CLOSE after 423-pass summary; ordinary command exited 0; complete log retained",
+  "production_output_files": 22287,
+  "all_produced_application_files_match_current_native_frontend": true,
+  "native_runtime_receipt": "native-f30970052-validation.json",
+  "no_new_native_run_claimed_for_identical_app_output": true,
+  "original_documentation_metadata_restored": true,
+  "source_registry_integrities_verified": true,
+  "local_evidence": "dist/validation/2026-11-01-consolidation/react18-review",
+  "stable_evidence_manifest": "stable-evidence-hashes.json",
+  "stable_evidence_manifest_sha256": "7c673409a1f460a8ebada2bbd5b3d726954b2bc2e3377b32894fb0dead7ed6dd",
+  "frontend_validation": "dist/validation/2026-11-01-consolidation/react18-validation",
+  "frontend_receipt_sha256": "34af2db8b87d0d2a10c51a1d4fbb8676c1d1d38402600c2d4aef83cec1a17810",
+  "protected_ci": "required before integration",
+  "react_19_not_adopted": true
+}

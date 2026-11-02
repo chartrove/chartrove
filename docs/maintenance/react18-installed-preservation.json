@@ -1,0 +1,13 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/react18-installed-before-20261102.tar.zst",
+  "sha256": "f3586ac67f8110097c7111a31afb3ac5bba5971e83f1cbc473418ba12e6a7ea2",
+  "bytes": 827881,
+  "installed_packages": [
+    "react 18.2.0",
+    "react-dom 18.2.0",
+    "scheduler 0.23.0"
+  ],
+  "includes_yarn_integrity": true,
+  "native_acl_xattrs_flags_and_full_tar_traversal": "passed",
+  "stat_and_content_manifest_sha256": "f4f1c568af381f9eea4694d67d30b35023fd4e4959e49aaa2be81d97eb696275"
+}

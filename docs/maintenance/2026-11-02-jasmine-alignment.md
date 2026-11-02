@@ -68,3 +68,8 @@ These dependency targets are not application features. The historical proposals
 stay open until the corrected baseline integrates through protected main. A future
 coordinated engine migration remains possible using the preserved patches; this
 change does not force unsupported majors through the current adapter.
+
+Integration: #358 merged at `a9103d38cfa2aa8259032ca091c392c93539d3b7` after all
+three required checks passed. All five proposals received individual dispositions;
+their exact archived heads were manually retired after fresh dependencies and
+expected-tip leases. [Retirement receipt](jasmine-retirement-5.json).

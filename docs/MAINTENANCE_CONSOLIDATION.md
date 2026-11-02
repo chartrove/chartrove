@@ -6,19 +6,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after integration #357 and its historical proposal/ref
-retirement. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after357.json).
-The receipt was captured on clean main before the next Jasmine tooling branch;
+Snapshot: November 2, 2026, after integration #358 and five historical proposal/ref
+retirements. [Machine-readable receipt](maintenance/2026-11-02-checkpoint-after358.json).
+The receipt was captured on clean main before the next React tooling branch;
 its integration PR/branch is additional until merged and removed. Requery live
 counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `6ba97e57c4e0cd7b21848b9368b76c5cb0bec92e` (#357) |
+| Published application main | `a9103d38cfa2aa8259032ca091c392c93539d3b7` (#358; production runtime from #357) |
 | Open issues | 174, including retained Renovate dashboard #222 |
-| Open PRs | 54: 47 paused Renovate proposals and seven historical drafts |
-| Origin heads | 64 |
-| Default branch | main tracks origin/main with equal OIDs; Jasmine tooling branch is additional |
+| Open PRs | 49: 42 paused Renovate proposals and seven historical drafts |
+| Origin heads | 59 |
+| Default branch | main tracks origin/main with equal OIDs; React tooling branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -50,13 +50,21 @@ delegate is explicitly not adopted. The archived head was manually retired.
 [Scope](maintenance/2026-11-02-direct-oauth-patch.md),
 [retirement](maintenance/oauth-patch-retirement-1.json).
 
-Next reviewed batch: [coherent Jasmine tooling](maintenance/2026-11-02-jasmine-alignment.md).
-A real browser reports the existing 4.6.0 engine despite the old separate direct
-5.1.2 declaration. Two guards fail before alignment and pass afterward with the
-bridge suite (seven total). The active engine is byte-identical; matching types,
-reporter, 423 browser tests and production/Storybook pass, and every produced
-application file matches the latest native package. Protected CI still gates
-integration and the five individual proposal dispositions.
+Merged #358 aligns the actual existing Jasmine 4.6 engine, declarations and HTML
+reporter without forced overrides. Two guards fail before alignment and pass
+with the bridge suite (seven total); 423 browser tests, HTML diagnostic,
+production/Storybook and all three protected checks pass. Every produced app file
+matches the current native frontend. #237 is replaced by matching declarations,
+#247 is implemented and #245/#297/#304 are explicitly retired without claiming
+5.13/7 adoption; all five archived heads were manually retired.
+[Scope](maintenance/2026-11-02-jasmine-alignment.md),
+[retirement](maintenance/jasmine-retirement-5.json).
+
+Next reviewed batch: [React/DOM 18.3.1 tooling patch](maintenance/2026-11-02-react18-tooling.md)
+with scheduler 0.23.2, matching registry artifacts and 72 unchanged direct versions.
+Seven Node checks, 423 browser tests, synthetic development/production rendering,
+production and Storybook pass. Every produced app file matches the current native
+frontend; all three protected checks still gate integration and #282 reconciliation.
 
 Merged #354 adopts verified SHA-pinned v7 actions, unchanged project
 toolchains/permissions/commands/check names, and disabled credentials/caches.
@@ -165,6 +173,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #355 | Publish verified original-primary coverage recovery and metadata limits |
 | #356 | Align excluded model/version generators; reconcile #258/#276 |
 | #357 | Direct exact OAuth patch; supersede deprecated wrapper #224 |
+| #358 | Align actual Jasmine tooling and CI guards; individual five-proposal disposition |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten
@@ -216,6 +225,12 @@ Latest restoration matches contents, inodes, permissions, ownership, birth times
 mtimes and all xattrs. The earlier c957 build recorded three OS-managed provenance
 attribute changes, with both old/new values preserved; no security-attribute rewrite.
 
+The 17 cached legacy tracking refs plus HEAD now also have a private complete
+standalone bundle and local config/ref/reflog archive, with strict isolated object
+verification and no main prerequisites. They remain unchanged, with unique old
+prototype work held for reconciliation; none is falsely counted as retired.
+[Recovery and remaining review](maintenance/2026-11-02-legacy-tracking-preservation.md).
+
 Recovery references (incremental bundles need retained main prerequisites):
 
 - [Original intake bundle and receipt](maintenance/2026-11-01-history-receipt.json),
@@ -232,7 +247,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Forty-three historical origin refs were retired by this agent after individual review,
+Forty-eight historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Nine more (#313, four utility heads, two UUID heads and two declaration heads) were already absent after closure;
 deletion actors not established.
@@ -249,7 +264,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [two declaration heads observed absent](maintenance/type-package-retirement-2.json),
 [three validation-action heads](maintenance/actions-v7-retirement-3.json),
 [two generator-tool heads](maintenance/generator-tool-retirement-2.json),
-[one deprecated OAuth wrapper head](maintenance/oauth-patch-retirement-1.json).
+[one deprecated OAuth wrapper head](maintenance/oauth-patch-retirement-1.json),
+[five Jasmine proposal heads](maintenance/jasmine-retirement-5.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 ## Recovered coverage and remaining decisions
@@ -283,7 +299,7 @@ a compatible representation/migration decision. [Scope and retained boundaries](
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 47 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 42 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

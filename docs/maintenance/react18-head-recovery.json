@@ -1,0 +1,30 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "frontend/yarn.lock",
+          "additions": 12,
+          "deletions": 12,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/react-monorepo",
+      "headRefOid": "3378f27209003ac0d00beb85d94e339646335305",
+      "number": 282,
+      "state": "OPEN",
+      "title": "chore(deps): update react monorepo to v18.3.1"
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/react18-head-20261102.bundle",
+  "sha256": "07bf8a5dbc169cf7b2af750b688780e3eeead4f709312acc3cd0f421f69b2a79",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "6ba97e57c4e0cd7b21848b9368b76c5cb0bec92e",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 4,
+  "required_objects_included": true,
+  "intended_disposition": "Review React/DOM 18.3.1 with required scheduler 0.23.2 for existing Storybook tooling; retain other versions and prove application output invariance before protected integration."
+}

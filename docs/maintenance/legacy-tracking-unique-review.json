@@ -1,0 +1,70 @@
+[
+  {
+    "ref": "refs/remotes/legacy-fork/AnalogJ-patch-1",
+    "tip": "f2cc50e989fd86357fe6c16c792f32c8df042f24",
+    "unique_commit_count": 1,
+    "latest_unique_messages": [
+      "f2cc50e98 Update README to reflect Fasten Onprem data entry changes"
+    ],
+    "changed_file_count_from_merge_base": 1,
+    "sample_paths": [
+      "README.md"
+    ]
+  },
+  {
+    "ref": "refs/remotes/legacy-fork/beta",
+    "tip": "3314e0cc254be7e0c5181d3aa537e02b14d7d224",
+    "unique_commit_count": 1,
+    "latest_unique_messages": [
+      "3314e0cc2 WIP temp fix for building docker image quickly. ARM images are broken at the moment."
+    ],
+    "changed_file_count_from_merge_base": 1,
+    "sample_paths": [
+      "Dockerfile"
+    ]
+  },
+  {
+    "ref": "refs/remotes/legacy-fork/export_summary",
+    "tip": "d99da608970e14e8042f2ce7b0eae2a2906fa202",
+    "unique_commit_count": 29,
+    "latest_unique_messages": [
+      "d99da6089 update logos",
+      "d700a1e4e make sure the patient summary is exported in a specific order.",
+      "af1c033a5 working Patient record merge. Fixing IPS Export Data model for more flexibility.",
+      "182d56fb8 correctly extract existing Text field data."
+    ],
+    "changed_file_count_from_merge_base": 142,
+    "sample_paths": [
+      ".github/workflows/docker.yaml",
+      "backend/pkg/constants.go",
+      "backend/pkg/database/gorm_repository_query.go",
+      "backend/pkg/database/gorm_repository_query_sql_test.go",
+      "backend/pkg/database/gorm_repository_query_test.go",
+      "backend/pkg/database/gorm_repository_summary.go",
+      "backend/pkg/database/gorm_repository_summary_test.go",
+      "backend/pkg/database/interface.go",
+      "backend/pkg/models/database/fhir_account.go",
+      "backend/pkg/models/database/fhir_adverse_event.go",
+      "backend/pkg/models/database/fhir_allergy_intolerance.go",
+      "backend/pkg/models/database/fhir_allergy_intolerance_test.go"
+    ]
+  },
+  {
+    "ref": "refs/remotes/legacy-fork/manual-input",
+    "tip": "04b30c2ea406d2633d9e2e84860fa4f45f1442da",
+    "unique_commit_count": 5,
+    "latest_unique_messages": [
+      "04b30c2ea update tagline.",
+      "fac4e8cbd add info box.",
+      "08769d53a adding manual_record_create.json file for testing.",
+      "8afeb6ad9 update instructions."
+    ],
+    "changed_file_count_from_merge_base": 4,
+    "sample_paths": [
+      "backend/pkg/web/handler/testdata/manual_record_create.json",
+      "frontend/src/app/components/footer/footer.component.html",
+      "frontend/src/app/pages/resource-creator/resource-creator.component.html",
+      "frontend/src/app/pages/resource-creator/resource-creator.component.ts"
+    ]
+  }
+]
