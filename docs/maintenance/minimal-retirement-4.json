@@ -1,0 +1,34 @@
+[
+  {
+    "name": "migration/upstream-pr-166",
+    "tip": "c38a44d7359c7cc628afa07590502ad13b632aa7",
+    "related_closed_pr": 197,
+    "disposition": "minimal replacement #341 merged as 40040ac30862326ed07bbf71255a8b2d9beb8283; node_modules/unrelated root Docker npm manifests explicitly retired for #197",
+    "reachable_main": false,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-166-base",
+    "tip": "3db6c421ca78e38162364b6f265716cdcb063252",
+    "related_closed_pr": 197,
+    "disposition": "minimal replacement #341 merged as 40040ac30862326ed07bbf71255a8b2d9beb8283; node_modules/unrelated root Docker npm manifests explicitly retired for #197",
+    "reachable_main": true,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-625",
+    "tip": "33c95d548023a390dd2a581a2a52d85633793c63",
+    "related_closed_pr": 216,
+    "disposition": "minimal replacement #341 merged as 40040ac30862326ed07bbf71255a8b2d9beb8283; node_modules/unrelated root Docker npm manifests explicitly retired for #197",
+    "reachable_main": false,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  },
+  {
+    "name": "migration/upstream-pr-625-base",
+    "tip": "503f2b7cccf8f7c6f98541f779be2393f8555340",
+    "related_closed_pr": 216,
+    "disposition": "minimal replacement #341 merged as 40040ac30862326ed07bbf71255a8b2d9beb8283; node_modules/unrelated root Docker npm manifests explicitly retired for #197",
+    "reachable_main": true,
+    "archive_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+  }
+]

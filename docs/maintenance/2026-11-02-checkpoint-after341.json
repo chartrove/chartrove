@@ -1,0 +1,26 @@
+{
+  "queried_at_utc": "2026-11-02T08:23:53.406847+00:00",
+  "main_before_checkpoint": "40040ac30862326ed07bbf71255a8b2d9beb8283",
+  "open_issues": 177,
+  "open_prs": 75,
+  "origin_heads": 85,
+  "local_branches_at_default_branch_checkpoint": 1,
+  "legacy_cached_nonsymbolic_refs": 17,
+  "tags_unchanged": 30,
+  "ruleset": 26337029,
+  "required_checks": [
+    "Backend",
+    "Frontend",
+    "Desktop"
+  ],
+  "active_workflows": [
+    "Validation"
+  ],
+  "paused_renovate_prs": 68,
+  "acceptance": "INCOMPLETE",
+  "preservation_gap": "pre-existing primary coverage overwritten; recovery awaits user restore or Full Disk Access",
+  "raw_github_evidence_sha256": "abce2e4d8dbc4a08e1df2a884d77af13221ffe0df2cf246d731bd82efe273327",
+  "raw_local_preservation_evidence_sha256": "71db6cb76e009092fa0dc5008ba096cfa5ccba15c2927d674279ecff170abb1d",
+  "raw_evidence_directory": "dist/validation/2026-11-01-consolidation",
+  "snapshot_limit": "Counts precede this documentation-only checkpoint PR; requery after its short-lived branch is removed."
+}
