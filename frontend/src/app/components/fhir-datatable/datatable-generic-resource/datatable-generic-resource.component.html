@@ -1,4 +1,16 @@
 <div>
+  @if (loading) {
+    <div class="alert alert-info mb-2" role="status">
+      <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+      Loading resources…
+    </div>
+  }
+  @if (loadError) {
+    <div class="alert alert-danger mb-2" role="alert">
+      Unable to load resources.
+      <button type="button" class="btn btn-outline-danger btn-sm ms-2" (click)="changePage(currentPage)">Retry</button>
+    </div>
+  }
   <ngx-datatable
     #table
     class="bootstrap fhir-resource-datatable"
@@ -12,6 +24,9 @@
     [offset]="currentPage.offset"
     [limit]="20"
     [rows]="rows"
+    [attr.aria-busy]="loading"
+    [loadingIndicator]="loading"
+    [messages]="{emptyMessage: loading || loadError ? '' : 'No data to display', totalMessage: 'total', selectedMessage: 'selected'}"
     [selectCheck]="selectCheck()"
     [selectionType]="SelectionType.single"
     (select)="onSelect($event)"

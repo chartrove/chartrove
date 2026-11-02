@@ -49,13 +49,16 @@ packaging at 93aa68702 reuses the unchanged qualified 5ad6c590a frontend; all
 and ten synthetic WebView checks pass. Binary metadata confirms lo 1.53.0.
 Original output contents/stat fields and all xattrs restore exactly, with zero
 provenance changes. [Native receipt](native-93aa68702-validation.json).
-Protected integration and individual #270 reconciliation remain pending.
+All three required checks pass; protected PR #371 merged at
+10b31279e5aed20f4cfd7b1da5846f60fc7cc1f5. Historical #270 is individually
+reconciled as implemented.
 [Detailed validation](samber-lo-validation.json).
 
 [Exact current and original intake head recovery](samber-lo-head-recovery.json).
 The reviewed historical tip a2752392195b70192961475f81ded01764104fe5 has a
 verified checksum-recorded incremental bundle and unique-object proof, alongside
-the original intake history. Its branch remains live until protected integration
-and fresh dependency/expected-tip checks. Source archives, exact failures, test
+the original intake history. Fresh dependency and expected-tip checks preceded retirement of its exact
+archived branch and the merged task branch.
+[Retirement receipt](samber-lo-retirement-1.json). Source archives, exact failures, test
 commands, module inventories and all generator outputs are retained under
 dist/validation/2026-11-01-consolidation/samber-lo-review/ after atomic relocation.
