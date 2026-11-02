@@ -14,7 +14,7 @@ baseline and backlog review retain historical observations, not current counts.
   intentionally retrieves only main; local tracking refs undercount remote branches.
 - Main ruleset `26337029` is active: PR required, zero approvals, conversations
   resolved, no force push/deletion, no bypass actors. Verified effective rules API.
-- First integration branch: `task/protected-maintenance-ci`. Local backend/desktop validation passed; frontend validation running.
+- First integration branch: `task/protected-maintenance-ci`, PR #332. Local backend, frontend, desktop tests and builds passed.
 - All six inherited workflow IDs were individually disabled by API.
 - Actions remain disabled until the inherited workflows are individually disabled
   and this replacement is merged. Required checks follow actual successful runs.
@@ -81,3 +81,19 @@ Existing historical bundle independently verified by native Git and SHA-256:
 with checksum `03ffd099a7b71a3fa14ffa16982d423b13d79e5463297709c01392ca84535325`.
 It preserves beta/export_summary/manual-input/summary/text_field_extract. Four
 prerequisites remain required; do not describe it as a self-contained bundle.
+
+Final local checks for #332: production Angular build, backend executable build,
+and macOS host build exit 0. Angular: 390 pass/one existing skip; bridge: five pass.
+Existing 9.92 MB bundle budget warning, CommonJS/browser warnings, and macOS
+linker deployment-target warnings remain. `actionlint` passes after correcting
+runner-context availability in job environments. No app code changed.
+
+Fetched exact remaining heads into temporary `refs/maintenance-archive/20261101/`
+without changing fetch or sparse settings. Reachability inventory covers 127 heads
+(including the new task branch), 103 unique tips advertised by the incremental
+bundle; integrated tips remain reachable from starting main. Recovery receipt:
+[verified history](maintenance/2026-11-01-history-receipt.json). Archive retained
+at `dist/validation/2026-11-01-consolidation/history.bundle`, SHA-256
+`9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1`.
+All 30 prerequisites are ancestors of retained main. Historical branch retirement
+still requires individual source/PR dispositions and current expected-tip leases.
