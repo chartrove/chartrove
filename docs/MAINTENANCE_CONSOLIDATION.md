@@ -33,7 +33,7 @@ implemented features or blanket retirement candidates. #284/#285/#286 currently
 modify Validation itself and are valid update proposals, not obsolete retired-
 workflow patches. The other dependency PRs also require individual review.
 
-## Test-output protection batch
+## Current tooling batch
 
 #343 integrated the shared Go utilities after both graph checks, generator
 invariance, fresh PostgreSQL, protected CI and ten current native checks passed.
@@ -42,10 +42,14 @@ absent after closure; exact tips remain in the verified recovery bundle, and no
 deletion actor is inferred. [Scope](maintenance/2026-11-02-shared-go-utilities.md),
 [recovery](maintenance/utility-heads-recovery.json), [retirement observations](maintenance/utility-retirement-4.json).
 
-The next test-output-only fix makes ordinary Karma runs safe for retained reports.
-A real red/green synthetic-report regression, full browser suite and explicit-path
-check pass without changing thresholds, tests or application code. It is not yet
-integrated. [Behavior, proof and remaining recovery gap](maintenance/2026-11-02-coverage-isolation.md).
+#344 integrated safe default Karma output after protected checks. Real red/green
+synthetic-report, full suite and explicit-directory runs pass without changing
+thresholds, tests or application code. [Proof and remaining recovery gap](maintenance/2026-11-02-coverage-isolation.md).
+
+The next retirement removes unsupported TSLint/Protractor starter targets while
+preserving every source byte and the installed dependency tree. Runtime selections
+and retained package versions stay identical; current unit/production/Storybook
+checks pass. This is not yet integrated. [Scope and evidence](maintenance/2026-11-02-frontend-tooling-retirement.md).
 
 ## Integrated and resolved work
 
@@ -66,6 +70,7 @@ Task-created branches were removed only after merge ancestry and exact-tip check
 | #341 | Minimal footer replacement for #197; equivalent Compose cleanup for #216 |
 | #342 | Concise restart checkpoint and current native/ref receipts |
 | #343 | Shared Go utility alignment for #233/#265/#266/#269; unchanged generated models/replacements |
+| #344 | Fresh private coverage output by default; real synthetic-report preservation regression |
 
 Closed issues #73/#109/#162 have current implementation/test evidence. #90/#115
 are explicitly retired upstream marketing/status-page requests. Earlier ten

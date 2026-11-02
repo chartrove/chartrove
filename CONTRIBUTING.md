@@ -56,6 +56,12 @@ node --test desktop-tests/bridge.test.mjs
 node node_modules/@angular/cli/bin/ng.js test --watch=false --browsers=ChromeHeadlessCI
 ```
 
+The Angular 22 frontend uses production compilation/type checking and Karma
+browser tests. The unsupported TSLint/Protractor starter targets are retired with
+[their original source and rationale](docs/retired-frontend-tooling/README.md).
+A maintained frontend lint or full browser journey command is not currently
+configured; do not report the retired commands as passing validation.
+
 Frontend coverage goes to a fresh private temporary directory for each Karma
 invocation; the command prints its location. To retain a report at a chosen path,
 set `CHARTROVE_COVERAGE_DIR` explicitly. Reports at that explicit location may be
