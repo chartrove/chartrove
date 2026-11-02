@@ -50,5 +50,5 @@
   "full_browser_passes": 429,
   "full_existing_skips": 1,
   "raw_evidence_root": "dist/validation/2026-11-01-consolidation",
-  "native_acceptance": "pending source-identified package"
+  "native_acceptance": "fresh 9add19dd1 package passes build, CRC, strict signature and ten native smoke checks; payload privacy is separately covered by the component regressions"
 }

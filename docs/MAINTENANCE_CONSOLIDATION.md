@@ -244,11 +244,14 @@ for the new report link; automatic in-place graph refresh remains unverified.
 Both issues were individually closed after all three required checks passed and
 #363 merged. The current practitioner batch updates the name parser with 72
 other direct versions retained, and removes clinical payload/response/error
-console logging with red/green synthetic regressions. Fresh native acceptance
-for that batch is pending. [Scope](maintenance/2026-11-02-name-parser-patch.md).
+console logging with red/green synthetic regressions. Fresh package `9add19dd1`
+passes production build, CRC, strict signature and ten native checks. Actual wizard creation/save and read-only persisted-name checks
+pass; original output contents/stat fields and all xattrs match after restoration.
+[Scope and acceptance](maintenance/2026-11-02-name-parser-patch.md).
 
-Original outputs match all recorded content/stat fields; three OS-managed
-provenance xattrs changed, with exact old/new values retained. No provenance
+During #363, original contents/stat fields matched while three OS-managed
+provenance xattrs changed, with exact old/new values retained. The latest
+practitioner build also restores all xattrs exactly. No provenance
 attribute was rewritten. Earlier ZIPs and original coverage recovery remain.
 Tests and UI acceptance use explicit synthetic storage with production providers
 unconfigured. No real family records or purchased Fasten storage were accessed.
@@ -262,8 +265,8 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration matches contents, inodes, permissions, ownership, birth times,
-mtimes, flags and all non-provenance xattrs. The current 340d02293 build and earlier
+Latest restoration (9add19dd1) matches contents, inodes, permissions, ownership,
+birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.
 

@@ -50,5 +50,9 @@
   },
   "registry_sri_verified": true,
   "upstream_compare": "HTTP 404 retained; package tar source reviewed directly",
-  "native_acceptance": "pending source-identified fresh package"
+  "native_acceptance": "source 9add19dd1 package, ten native smoke checks and actual wizard practitioner creation/persistence passed",
+  "native_frontend_files_match": 22287,
+  "native_package_receipt": "native-9add19dd1-validation.json",
+  "native_ui_receipt": "native-practitioner-9add19dd1-observations.json",
+  "final_full_browser_receipt": "practitioner-privacy-validation.json"
 }
