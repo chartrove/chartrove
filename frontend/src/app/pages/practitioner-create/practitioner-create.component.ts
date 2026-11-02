@@ -100,12 +100,9 @@ export class PractitionerCreateComponent implements OnInit {
       qualification: this.formatQualification(practitionerData.qualification || [])
     };
     
-    console.log('Final FHIR practitioner:', fhirPractitioner);
-    
     // Create the practitioner using the available API method
     this.fastenApi.createPractitioner(fhirPractitioner).subscribe(
-      (response) => {
-        console.log('Practitioner created successfully:', response);
+      () => {
         this.isSubmitting = false;
         
         // Show success message and navigate back
@@ -113,7 +110,6 @@ export class PractitionerCreateComponent implements OnInit {
         this.navigateBack();
       },
       (error) => {
-        console.error('Error creating practitioner:', error);
         this.isSubmitting = false;
         
         // Show error message

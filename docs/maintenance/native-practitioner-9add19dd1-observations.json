@@ -1,0 +1,43 @@
+{
+  "time": "2026-11-02T18:46:43.193291+00:00",
+  "source_revision": "9add19dd1c16964e01a6648cf307703fc433e250",
+  "app_pid": 95090,
+  "app_stopped": true,
+  "synthetic_only": true,
+  "native_ui": {
+    "existing_smoke_account_signin": true,
+    "encounter_wizard_create_practitioner": true,
+    "typed_name": "Dr. Avery Quinn Sample, Jr.",
+    "type": "Family Medicine Physician",
+    "optional_contact_and_address_blank": true,
+    "save_closed_wizard": true,
+    "address_book_row_visible": true
+  },
+  "read_only_database_verification": {
+    "Practitioner": 1,
+    "id": "a333fa90-13d7-4789-98ea-0f822f80232d",
+    "name": {
+      "family": "Sample",
+      "given": [
+        "Avery"
+      ],
+      "suffix": [
+        "Jr."
+      ],
+      "text": "Dr. Avery Quinn Sample, Jr.",
+      "use": "official"
+    },
+    "original_synthetic_counts_preserved": {
+      "Patient": 1,
+      "Encounter": 1,
+      "Condition": 1
+    },
+    "quick_check": "ok"
+  },
+  "scope_limits": [
+    "This proves one native manual-wizard create path; other parser cases are covered by the 16-case compatibility sample.",
+    "Creation-page payload privacy is verified separately by real-component HTTP regressions."
+  ],
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/practitioner-native-9add19dd1/observation-receipt.json",
+  "full_local_receipt_sha256": "3181b4051a456d19d1fecdf81e53158cb75e6a2365ee1f9b3800d39d637784d4"
+}

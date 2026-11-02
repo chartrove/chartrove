@@ -1,0 +1,21 @@
+{
+  "branch": "renovate/parse-full-name-1.x-lockfile",
+  "tip": "6a1e3d7124ff634bf145c068af6e4ffd17b2550a",
+  "bundle": "dist/validation/2026-11-01-consolidation/name-parser-head-20261102.bundle",
+  "sha256": "990a3f1ce7678837cacde3c32413a245a8faa1ee0322ca7b6afb080987cfa447",
+  "bytes": 1451,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "25b6b1dc1d11ab4626d019c2c9a96561953c058f",
+  "strict_isolated_pack_validation": "passed using main object alternates; all required unique objects independently proved in original archive bytes by pack offsets",
+  "required_objects": [
+    "65535a1f14258af89153392842740be001f1922f",
+    "6a1e3d7124ff634bf145c068af6e4ffd17b2550a",
+    "874c09421f505c5a7c9a24ded3a0d19ebdb3528f",
+    "8fd65ede9a916137ff54d57e47c973913897416b"
+  ],
+  "required_objects_included": true,
+  "old_intake_tip": "65db23b89c35cc3282765d13b7d169fd7aec7171",
+  "intended_disposition": "Review isolated 1.2.7 package patch before protected replacement; historical branch remains live until integration and fresh PR dependency checks."
+}
