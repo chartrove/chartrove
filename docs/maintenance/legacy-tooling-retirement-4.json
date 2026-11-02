@@ -1,0 +1,34 @@
+[
+  {
+    "number": 226,
+    "name": "renovate/jasminewd2-2.x-lockfile",
+    "tip": "8853970d8785fe6e1f61a484ceeaeb17d5ac9956",
+    "archive_sha256": "d0580c7810f5fe6c5e1400c637dfae51c777f3410a2eea8d7a185d3f299af30c",
+    "action": "exact-tip deletion",
+    "disposition": "unsupported starter tooling retired by #345, merged as ce5a554690de6dc71783a5864f93b5992c2ed230"
+  },
+  {
+    "number": 251,
+    "name": "renovate/ts-node-8.x",
+    "tip": "60c4c918e8c1cab9621a0df4eac17f46bc9812ad",
+    "archive_sha256": "d0580c7810f5fe6c5e1400c637dfae51c777f3410a2eea8d7a185d3f299af30c",
+    "action": "exact-tip deletion",
+    "disposition": "unsupported starter tooling retired by #345, merged as ce5a554690de6dc71783a5864f93b5992c2ed230"
+  },
+  {
+    "number": 300,
+    "name": "renovate/codelyzer-6.x",
+    "tip": "be83d77895df791afcfe4f7a38f1582e2d0e0ee5",
+    "archive_sha256": "d0580c7810f5fe6c5e1400c637dfae51c777f3410a2eea8d7a185d3f299af30c",
+    "action": "exact-tip deletion",
+    "disposition": "unsupported starter tooling retired by #345, merged as ce5a554690de6dc71783a5864f93b5992c2ed230"
+  },
+  {
+    "number": 312,
+    "name": "renovate/ts-node-10.x",
+    "tip": "5f61b6f56b4d604be754c3e806f778362fcdad33",
+    "archive_sha256": "d0580c7810f5fe6c5e1400c637dfae51c777f3410a2eea8d7a185d3f299af30c",
+    "action": "exact-tip deletion",
+    "disposition": "unsupported starter tooling retired by #345, merged as ce5a554690de6dc71783a5864f93b5992c2ed230"
+  }
+]

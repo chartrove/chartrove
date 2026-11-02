@@ -1,0 +1,17 @@
+{
+  "queried_at_utc": "2026-11-02T10:16:47.118258+00:00",
+  "last_application_main": "ce5a554690de6dc71783a5864f93b5992c2ed230",
+  "open_issues": 177,
+  "open_prs": 67,
+  "origin_heads": 77,
+  "paused_renovate_prs": 60,
+  "local_default_branch_checkpoint": "clean main tracking origin/main, only one local branch",
+  "unchanged_tags": 30,
+  "cached_legacy_nonsymbolic_refs": 17,
+  "ruleset": 26337029,
+  "only_active_workflow": "Validation",
+  "all_acceptance_targets_met": false,
+  "original_primary_coverage_recovered": false,
+  "limit": "documentation checkpoint PR/branch is additional until merged and deleted; requery afterward",
+  "raw_evidence_sha256": "4d278ccda5e7b9bd961a5b24ca0bc2b2df44f747e14a6a6df78c0735de2dd191"
+}
