@@ -1,0 +1,35 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/uuid-9.x-lockfile",
+      "headRefOid": "6e07c4c07950315a436db2716249273be355f5c4",
+      "number": 230,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/yarn.lock"
+      ]
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "renovate/uuid-14.x",
+      "headRefOid": "62b1480123d7a002de353d2103774cda9dc2a932",
+      "number": 314,
+      "state": "OPEN",
+      "reviewed_paths": [
+        "frontend/package.json",
+        "frontend/yarn.lock"
+      ]
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/uuid-heads-20261102.bundle",
+  "sha256": "3a6de29ae4c6408833afac8c190f7ac83dcea1e4a30484e0f462e9c02dceffd9",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "8e5b6ece77f746d1f7ef9c2508a6f9761c382450",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 9,
+  "required_objects_included": true,
+  "intended_disposition": "Remove unused direct UUID v9 while retaining all transitive v8 consumers and the existing Web Crypto helper; retire upgrade proposals only after protected integration."
+}

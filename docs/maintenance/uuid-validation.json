@@ -1,0 +1,67 @@
+{
+  "checks": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path=/tmp/chartrove-consolidation.deb9lg/uuid-validation/frontend"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "run",
+        "build-storybook",
+        "--output-dir=/tmp/chartrove-consolidation.deb9lg/uuid-validation/storybook"
+      ],
+      "exit": 0
+    }
+  ],
+  "production_application_assets_byte_identical_to_native_fd5194396": true,
+  "production_output_file_count": 22287,
+  "extra_finder_metadata_in_preserved_native_frontend": {
+    ".DS_Store": "2be82b873b959dd623be3c58e7b19a0f6da9a4d0d15752f5954111b97f66b77b",
+    "assets/.DS_Store": "bc6722b5ba4699fcbcfa72d8883cad2990bd101bfab6386bd1565f8e132984ab"
+  },
+  "finder_metadata_remains_in_preserved_native_tree": true,
+  "documentation_original_state_restored": true,
+  "local_log_directory": "dist/validation/2026-11-01-consolidation/uuid-validation",
+  "local_receipt_sha256": "ebc5f915e3b4fc5a09db3bc006e0d817942fd3b05d6bbfe29aa5a442bb8d7a4c",
+  "frozen_install_exit": 0,
+  "consumer_resolution": {
+    "retained_direct_versions_unchanged": 74,
+    "root_uuid_after_hoisting": "8.3.2",
+    "transitive_consumers": [
+      {
+        "name": "@compodoc/compodoc",
+        "selected_version": "8.3.2",
+        "module_relative": "node_modules/uuid/dist/index.js",
+        "module_sha256": "069a2230d395723583c8e45a7c0fee2622af2fbd08dc35f81e4d57836122e59f"
+      },
+      {
+        "name": "http-auth",
+        "selected_version": "8.3.2",
+        "module_relative": "node_modules/uuid/dist/index.js",
+        "module_sha256": "069a2230d395723583c8e45a7c0fee2622af2fbd08dc35f81e4d57836122e59f"
+      }
+    ]
+  }
+}
