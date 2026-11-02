@@ -1,0 +1,58 @@
+{
+  "review": [
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "go.mod",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "go.sum",
+          "additions": 2,
+          "deletions": 0,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/github.com-dave-jennifer-1.x",
+      "headRefOid": "83600a67acaa60421efb91fa3e401c09f5154fff",
+      "number": 258,
+      "state": "OPEN",
+      "title": "fix(deps): update module github.com/dave/jennifer to v1.7.1"
+    },
+    {
+      "baseRefName": "main",
+      "files": [
+        {
+          "path": "go.mod",
+          "additions": 1,
+          "deletions": 1,
+          "changeType": "MODIFIED"
+        },
+        {
+          "path": "go.sum",
+          "additions": 2,
+          "deletions": 0,
+          "changeType": "MODIFIED"
+        }
+      ],
+      "headRefName": "renovate/golang.org-x-mod-0.x",
+      "headRefOid": "218f0b24746900cc2268599ae9bacb6d257d0e96",
+      "number": 276,
+      "state": "OPEN",
+      "title": "fix(deps): update module golang.org/x/mod to v0.42.0"
+    }
+  ],
+  "bundle": "dist/validation/2026-11-01-consolidation/generator-tool-heads-20261102.bundle",
+  "sha256": "4979431d049eafeeb3ce7090b203a8ec87717b890317939511df2f6e4310e2a1",
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "8f21c8394ecc63408ce6729ff279a443a143481b",
+  "strict_isolated_pack_verification": "passed",
+  "required_objects": 8,
+  "required_objects_included": true,
+  "intended_disposition": "Review developer generator tools on current graphs, prove model/version output invariance and executable dependency exclusion, then protected CI before individual reconciliation."
+}
