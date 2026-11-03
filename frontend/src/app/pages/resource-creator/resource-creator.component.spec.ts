@@ -29,6 +29,7 @@ describe('ResourceCreatorComponent', () => {
     fixture = TestBed.createComponent(ResourceCreatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

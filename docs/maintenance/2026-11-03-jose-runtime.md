@@ -33,8 +33,12 @@ Both historical heads are preserved in verified checksum-recorded bundles, with
 all four unique objects for #246 and five for #305 proved present in archive
 bytes. Prerequisites remain reachable from main; earlier intake tips are linked.
 [v4 recovery](jose4-head-recovery.json), [v6 recovery](jose6-head-recovery.json).
-Both proposals and branches stay live until protected integration and fresh
-dependency checks.
+Protected PR #385 merged as 6419a63e029d592542c14e341b1468d294af6baf after
+all three required checks passed (run 41590962910). #305 is closed as implemented;
+#246 is closed as superseded by v6. Both historical branches were already absent
+when independently checked for retirement; their actor is unknown. Exact tips
+remain archived. The integrated task head was deleted after ancestry, exact-tip
+and open-PR dependency checks. [Retirement receipt](jose-retirement-1.json).
 
 Fresh native packaging at 50cabfe5696e7275a3c6b83c71fe62c9292d1e71 passes
 ZIP CRC, strict signature and all ten synthetic smoke checks. All 22,287 frontend
@@ -42,7 +46,13 @@ asset files match the qualified build; original output contents/stat/xattrs are
 restored exactly with zero provenance changes. The actual app signs in to the
 known synthetic profile, renders the dashboard and shows desktop-smoke with
 Administrator in its profile menu. Sign Out returns to the empty sign-in form.
-Both raw synthetic records and the original seed remain unchanged. Tab completed
+Both raw synthetic records and the seed database bytes remain unchanged. The
+read-only SQLite verifier created an empty WAL and a 32 KiB SHM sidecar in the
+synthetic seed at verification time; whole-directory unchanged wording was too
+broad. Both sidecars and the original receipts are retained, with the correction
+recorded separately. No real/purchased data was involved. Subsequent checks query
+copies of stopped profiles and use immutable access for checkpointed seeds.
+[Metadata correction](synthetic-seed-sidecar-correction.json). Tab completed
 deferred initial/sign-in rendering; no source or asset workaround was applied.
 The app is closed and ps confirms absence; no Cua call follows closure.
 [Native receipt](native-50cabfe56-validation.json).

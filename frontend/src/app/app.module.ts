@@ -29,7 +29,6 @@ import { ReportLabsComponent } from './pages/report-labs/report-labs.component';
 import {PipesModule} from './pipes/pipes.module';
 import { ResourceCreatorComponent } from './pages/resource-creator/resource-creator.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { NgSelectModule } from '@ng-select/ng-select';
 import {HTTP_CLIENT_TOKEN} from "./dependency-injection";
 import {WidgetsModule} from './widgets/widgets.module';
 import { ExploreComponent } from './pages/explore/explore.component';
@@ -87,7 +86,6 @@ import { GetEncryptionKeyWizardComponent } from './pages/get-encryption-key-wiza
     MomentModule,
     PipesModule,
     InfiniteScrollModule,
-    NgSelectModule,
     WidgetsModule,
     DirectivesModule,
     IconsModule,

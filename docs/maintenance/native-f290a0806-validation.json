@@ -1,0 +1,79 @@
+{
+  "source_revision": "f290a0806365280620b4908a80aad1f18dc98136",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-f290a0806-ngselect/Chartrove-f290a0806.zip",
+    "sha256": "8106ffe08fd98eda750a48fde11c23c292242143ac3c3aa0ee1e6535332abfd3",
+    "bytes": 337726937
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "f290a0806365280620b4908a80aad1f18dc98136",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/ngselect-review/validation-lazy-qualified/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/ngselect-review/validation-lazy-qualified/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "c73d0e94a17aa1c44dff6aa99a8a9d70ca930b385e502d744904e8df91c201d7",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-f290a0806-ngselect/receipt.json",
+  "full_local_receipt_sha256": "5c3ab3da9b29bb3c2821bcaabf535ff798d512f1428c49bb8f3c2e8257cadd0c",
+  "frontend_comparison": {
+    "files": 22289,
+    "compiled_reused_and_native_asset_trees_byte_identical": true,
+    "diagnostic_stats_excluded_from_runtime_assets": "retained as validation-lazy-qualified/webpack-stats.json"
+  },
+  "native_wizard_ui": {
+    "time": "2026-11-03T07:40:54.751471+00:00",
+    "source_revision": "f290a0806365280620b4908a80aad1f18dc98136",
+    "method": "cua_repl exact app after sole PID/private data-cache verification",
+    "pid": 42716,
+    "normal_signin_route": "#/dashboard",
+    "create_route_wizard": "#/resource/create opens Medical Record Wizard; required Encounter guidance and disabled Save visible",
+    "create_route_dismissal": "returns to #/medical-history",
+    "timeline_source_resource": "synthetic-manual-encounter at 2253d45d-737f-4732-a5af-faccf52a7cfd",
+    "timeline_wizard": "Synthetic office visit; Start date Feb 29, 2024; section tabs enabled",
+    "native_attachment_picker_observations": [
+      "Medication draft renders Select Attachment disabled without attachments; incomplete row disables Save",
+      "Procedure draft renders Select Attachment disabled without attachments"
+    ],
+    "native_multiple_selection": "not exercised; actual DOM consumer cases on both versions cover select/hide/remove/serialized IDs",
+    "drafts_dismissed_without_save": true,
+    "focus_observation": "Tab completed deferred sign-in rendering; create action first needed viewport scroll before activation, no source workaround",
+    "app_closed_using_fresh_full_ax_close_index": true,
+    "process_absence_verified_by_ps_only": true,
+    "no_cua_call_after_close": true,
+    "synthetic_raw_records_byte_identical_to_seed": true,
+    "synthetic_counts": {
+      "fhir_patient": 1,
+      "fhir_encounter": 1
+    },
+    "frozen_seed_database_and_existing_sidecar_hashes_unchanged_during_this_check": true,
+    "stopped_app_profile_hashes_unchanged_by_verification": true,
+    "verification_method": "query a copied stopped profile; immutable=1 for checkpointed seed with empty WAL; before/after hash checks",
+    "prior_seed_sidecar_correction": "docs/maintenance/synthetic-seed-sidecar-correction.json",
+    "real_records_used": false
+  }
+}

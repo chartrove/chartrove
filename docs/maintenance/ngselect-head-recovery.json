@@ -1,0 +1,29 @@
+{
+  "branch": "renovate/ng-select-ng-select-24.x",
+  "tip": "9c62548d9e170ffc8fcfc935db8c99d4456de91b",
+  "bundle": "dist/validation/2026-11-01-consolidation/ngselect-head-20261103.bundle",
+  "sha256": "aea5898d8d921f66f3a2dd23f70e5b30c78eab8a889d1b809cb38780752dfee1",
+  "bytes": 1549,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "ce751170ed9453747bbe2d44c372c51524660cf1",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "0b4dd337f29e726031ce20e3df761aad72293eda",
+    "598fb79c35329318a8bdd3c70993b57297433c6f",
+    "9c62548d9e170ffc8fcfc935db8c99d4456de91b",
+    "b0824b2b1b874a8d40a9987c68c0f32619e3b699",
+    "bdf836eec3bc305d6ffb95b1e794f0b82071f417"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/ng-select-ng-select-24.x",
+      "884a9f70b61cf72ce2998b88b0762169bb0c618b"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

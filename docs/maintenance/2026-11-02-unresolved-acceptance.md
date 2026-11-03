@@ -30,8 +30,10 @@ or real-record repair is applied or implied by successful date-column portabilit
 checks. #383 corrects only missing Period endpoints in table presentation and
 does not resolve this indexing policy.
 
-The previously pending summary/text_field_extract narrative disposition and
-upstream expansion scope decisions also remain unanswered. Coverage recovery and
-routine continuation are not answers to these product/data choices. Safe work on
-independent dependencies/defects continues; none of these boundaries authorizes
-blanket issue closure or retirement of unique unimplemented features.
+The maintainer has now chosen retirement of summary/text_field_extract's legacy
+repair with archives/records preserved; publication and exact-tip retirement
+checks are recorded separately. Selected upstream expansions remain in product
+scope, with the specific areas pending clarification. Preserve all prototypes
+until the selections are established. Safe work on independent dependencies and
+defects continues; these decisions do not authorize blanket issue closure or
+retirement of other unique unimplemented features.

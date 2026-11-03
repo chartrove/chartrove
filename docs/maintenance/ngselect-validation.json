@@ -1,0 +1,346 @@
+{
+  "scope": "ng-select 23.11.0 to 24.2.1 with unchanged Angular 22/Node 26 and 72 other direct versions; corrected lazy wizard boundary required by unchanged 10 MB budget",
+  "integrity": {
+    "version": "24.2.1",
+    "registry_git_head": "21a6fd70864b6b7830959fda05c14319fd1ce5e2",
+    "official_tag_target_matches_registry": true,
+    "registry_sha1_and_sha512_verified": true,
+    "published_archive_sha256": "a2c9dfef31ed3f70194a637a695344a71c365eb3b75c8229a0fefacfbc7d76af",
+    "upstream_source_archive_sha256": "1f643572fec9811b067d3a613aec6d2578141b2621745e4a577625c1ae56e59e",
+    "mapped_runtime_source_entries_identical_to_official_tag": [
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/directives/ng-templates.directive.ts",
+        "sha256": "16ab4d9b4ac9ee75567122008e05a1f18a5651402074ca475c94fcc4db9f39ff"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/dropdown-panel/dropdown-panel-dom-events.ts",
+        "sha256": "29aacda46770981f21e4e3e6955c0d94eb951b338a18fd240d4562d1d51b4091"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/dropdown-panel/dropdown-position.ts",
+        "sha256": "29f6008f8233677ecfa36683035657ddb81c3dc1d942a105f38f7bdd452323af"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/dropdown-panel/ng-dropdown-panel.service.ts",
+        "sha256": "5a3c04b90b084215587464134350e63c1db87d2ff339fcac70b14874e210d78e"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/utils/value-utils.ts",
+        "sha256": "bf3473b9db7bcdbac322800e73c91dc1cbf24d4c65f525f8870ee14d95fa596c"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/dropdown-panel/ng-dropdown-panel.component.ts",
+        "sha256": "1bc789a89e1e7cc54eee31dc856f2c9c91dac54d0fd1a3b696e0041621d590c1"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/ng-option.component.ts",
+        "sha256": "b71596012b05ce1d465622f1f45481b0aeeb3133891b354d8029bfdb745b3f84"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/dropdown-panel/dropdown-overlay-container.ts",
+        "sha256": "1c8e4ba40bcea2224dd2e0d239d00f1570ede4556d35df4ce6c9de4c44aef9f0"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/dropdown-panel/dropdown-overlay-manager.ts",
+        "sha256": "177e49d43cbd793923f78b1751f6dc95a3c7b6ac84cd12d51d1405d78a83182c"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/dropdown-panel/dropdown-panel-classes.ts",
+        "sha256": "813f0492eee5e3505796ef684663b760620ac30fa4d92b56cc3574d0773a25ca"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/types/id.ts",
+        "sha256": "3f62602c127cbfb1ce88fe95ece2d3aa470abdef679dab7afae3de4b0db57802"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/utils/search-helper.ts",
+        "sha256": "05183432e01010e7e203a5517b692b8ff95bc69bc93c0cd40293b23b51a1c2f7"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/items-list.ts",
+        "sha256": "fc90963a4af4361fff91eb18b288026b96ba1d40fe87bff7ffd23f420d81738f"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/selection-model.ts",
+        "sha256": "3f3b76c69f05fc957b9d6199fa15b848dcc2d17cceeb74ecb73ab79922c561fa"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/services/config.service.ts",
+        "sha256": "7399f74dd8ff8f99f68cc630e13e14661ff8fac4a6f8f546b20d1478edfe55b5"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/services/console.service.ts",
+        "sha256": "3fb90d4498c5d44299320dcf749a3b5732ae55797a567c54067268e9c88fc601"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/types/ng-select.types.ts",
+        "sha256": "b1f8746aab26999f07af159404c5002a6b94989d345e06ae96f5524bb8eab2ad"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/ng-select/ng-select-model-value.ts",
+        "sha256": "606583754c13cdfe363810c97c27d9052c76d117b8dacb6ea936833a573ae7ac"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/ng-select/ng-select.component.ts",
+        "sha256": "8513c7f3d9258fd16ff9f772b7b784b6bd18205bd5ba927cf2503fc1cc1e9926"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/ng-select/ng-select.component.html",
+        "sha256": "73a1f866c6d4d974ca6be063c5386bcc6d636ca7c1cc60b14f1a9b2c6ea25c0d"
+      },
+      {
+        "map": "fesm2022/ng-select-ng-select.mjs.map",
+        "source": "src/ng-select/lib/ng-select.module.ts",
+        "sha256": "88cc87999413186cdc4642500a55cb49c0d9c21482793d16b1acca9a2548b474"
+      }
+    ],
+    "identical_published_scss_sources": [
+      "material.theme.scss",
+      "default.theme.scss",
+      "_mixins.scss",
+      "ant.design.theme.scss"
+    ],
+    "CSS_maps_without_embedded_sources": [
+      "themes/ant.design.theme.css.map",
+      "themes/material.theme.css.map",
+      "themes/default.theme.css.map"
+    ],
+    "initial_source_map_preflight": "KeyError sourcesContent on CSS maps; retained original maps, corrected verification explicitly separates maps without embedded sources; no redownload",
+    "peers": {
+      "@angular/cdk": "^22.0.0",
+      "@angular/core": "^22.0.0",
+      "@angular/forms": "^22.0.0",
+      "@angular/common": "^22.0.0"
+    },
+    "engine": {
+      "node": "^22.12.0 || ^24.0.0 || ^26.0.0"
+    },
+    "MIT_license_retained": true,
+    "full_upstream_suite": "not run; actual wizard selection consumers tested on both versions"
+  },
+  "all_15_installed_files_match_verified_package": true,
+  "frontend": {
+    "receipts": [
+      {
+        "name": "frozen-install",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "install",
+          "--frozen-lockfile",
+          "--registry",
+          "https://registry.npmjs.org",
+          "--network-concurrency",
+          "4"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T06:53:15.000073+00:00",
+        "end": "2026-11-03T06:53:20.481720+00:00",
+        "exit": 0,
+        "reused_from": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/ngselect-review/validation",
+        "dependency_and_node_check_inputs_unchanged": true
+      },
+      {
+        "name": "node",
+        "command": [
+          "node",
+          "--test",
+          "frontend/desktop-tests/bridge.test.mjs",
+          "frontend/desktop-tests/compodoc-compat.test.mjs",
+          "frontend/desktop-tests/test-framework.test.mjs"
+        ],
+        "cwd": ".",
+        "start": "2026-11-03T06:53:46.094550+00:00",
+        "end": "2026-11-03T06:53:46.343547+00:00",
+        "exit": 0,
+        "reused_from": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/ngselect-review/validation",
+        "dependency_and_node_check_inputs_unchanged": true
+      },
+      {
+        "name": "production",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "build",
+          "--configuration",
+          "desktop_prod",
+          "--stats-json",
+          "--output-path",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/ngselect-review/validation-lazy-qualified/frontend"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T07:22:54.611737+00:00",
+        "end": "2026-11-03T07:23:36.159442+00:00",
+        "exit": 0
+      },
+      {
+        "name": "browser",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "test",
+          "--watch=false",
+          "--progress=false",
+          "--browsers=ChromeHeadlessCI",
+          "--reporters=dots"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T07:23:37.603493+00:00",
+        "end": "2026-11-03T07:23:54.280079+00:00",
+        "exit": 0
+      },
+      {
+        "name": "storybook",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "exec",
+          "ng",
+          "--",
+          "run",
+          "fastenhealth:build-storybook",
+          "--output-dir",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/ngselect-review/validation-lazy-qualified/storybook"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T07:23:55.314088+00:00",
+        "end": "2026-11-03T07:24:42.378668+00:00",
+        "exit": 0
+      }
+    ],
+    "production_initial_budget": {
+      "initial_asset_bytes": 9973017,
+      "unchanged_maximum_error_bytes": 10000000,
+      "initial_asset_files": [
+        "main.3e984e372efc9e05.js",
+        "polyfills.94167db94855dfbe.js",
+        "runtime.e12477468d6fd229.js",
+        "styles.a665e65cbdef7510.css"
+      ],
+      "wizard_modules": [
+        {
+          "chunk": 395,
+          "initial": false,
+          "files": [
+            "395.960b1efbd02493f6.js"
+          ],
+          "module": "./src/app/components/medical-record-wizard/medical-record-wizard.component.ts + 37 modules"
+        },
+        {
+          "chunk": 395,
+          "initial": false,
+          "files": [
+            "395.960b1efbd02493f6.js"
+          ],
+          "module": "./src/app/components/medical-record-wizard/medical-record-wizard.component.ts"
+        }
+      ],
+      "diagnostic_stats_not_a_runtime_asset": "moved stats.json to webpack-stats.json before native asset reuse; no emitted runtime asset changed",
+      "original_failure": "ng-select update exceeded original 10 MB maximum by 20.95 kB",
+      "first_lazy_attempt": "separate wizard chunk, still exceeded maximum by 10.54 kB",
+      "qualified_fix": "remove unused eager app ng-select import and shared standalone wizard/dialog registry entries; load wizard only at existing entry points, preserving Encounter snapshot and canceled-view guards"
+    },
+    "attachment_selection_cases": {
+      "old": 4,
+      "new": 4,
+      "same_spec_sha256": "79052851e54365366d65e5e5a89ae5fb84f07bfe9ef17b8a96062b8735afec56",
+      "scope": "real medication/procedure picker DOM, readonly, multiselect/hide-selected/remove, serialized IDs and original attachment data"
+    },
+    "entry_point_cases": {
+      "baseline": 3,
+      "final": 6,
+      "final_spec_sha256": "fcab844c5e5134a8853dd5726ddc6f82468a75bfce91521e89449118e3b4d937",
+      "scope": "real modal create/save/dismiss, same/click-time Encounter, canceled-view guards"
+    },
+    "browser_passed": 523,
+    "existing_skip": 1,
+    "node_passed": 10,
+    "production_passed": true,
+    "storybook_passed": true,
+    "other_direct_versions_unchanged": 72,
+    "coverage_and_documentation_json_absence_preserved": true
+  },
+  "diagnostics_retained": [
+    "initial attachment suite used wrong Surgery tab label; corrected to actual Procedures",
+    "teardown originally demanded inline panel disappear before Angular host removal; corrected owned-host cleanup, external-panel leak checks retained",
+    "initial candidate production failed 10 MB budget by 20.95 kB; first lazy attempt still failed by 10.54 kB; no budget threshold changed",
+    "initial source-map comparison expected CSS sourcesContent; CSS maps lack embedded sources, runtime 21 mapped sources and four published SCSS files independently match official tag"
+  ],
+  "current_Go_database_Wails_raw_record_contracts_changed": false,
+  "full_upstream_suite": "not run; actual wizard consumers are the qualified boundary",
+  "native": {
+    "receipt": "docs/maintenance/native-f290a0806-validation.json",
+    "source_revision": "f290a0806365280620b4908a80aad1f18dc98136",
+    "build_zip_signature_smoke": "passed; ten synthetic native checks",
+    "zip_sha256": "8106ffe08fd98eda750a48fde11c23c292242143ac3c3aa0ee1e6535332abfd3",
+    "frontend_comparison": {
+      "files": 22289,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "diagnostic_stats_excluded_from_runtime_assets": "retained as validation-lazy-qualified/webpack-stats.json"
+    },
+    "native_wizard_ui": {
+      "time": "2026-11-03T07:40:54.751471+00:00",
+      "source_revision": "f290a0806365280620b4908a80aad1f18dc98136",
+      "method": "cua_repl exact app after sole PID/private data-cache verification",
+      "pid": 42716,
+      "normal_signin_route": "#/dashboard",
+      "create_route_wizard": "#/resource/create opens Medical Record Wizard; required Encounter guidance and disabled Save visible",
+      "create_route_dismissal": "returns to #/medical-history",
+      "timeline_source_resource": "synthetic-manual-encounter at 2253d45d-737f-4732-a5af-faccf52a7cfd",
+      "timeline_wizard": "Synthetic office visit; Start date Feb 29, 2024; section tabs enabled",
+      "native_attachment_picker_observations": [
+        "Medication draft renders Select Attachment disabled without attachments; incomplete row disables Save",
+        "Procedure draft renders Select Attachment disabled without attachments"
+      ],
+      "native_multiple_selection": "not exercised; actual DOM consumer cases on both versions cover select/hide/remove/serialized IDs",
+      "drafts_dismissed_without_save": true,
+      "focus_observation": "Tab completed deferred sign-in rendering; create action first needed viewport scroll before activation, no source workaround",
+      "app_closed_using_fresh_full_ax_close_index": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_call_after_close": true,
+      "synthetic_raw_records_byte_identical_to_seed": true,
+      "synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_encounter": 1
+      },
+      "frozen_seed_database_and_existing_sidecar_hashes_unchanged_during_this_check": true,
+      "stopped_app_profile_hashes_unchanged_by_verification": true,
+      "verification_method": "query a copied stopped profile; immutable=1 for checkpointed seed with empty WAL; before/after hash checks",
+      "prior_seed_sidecar_correction": "docs/maintenance/synthetic-seed-sidecar-correction.json",
+      "real_records_used": false
+    },
+    "original_output_content_stat_and_xattrs_restored_exactly": true
+  },
+  "protected_integration": "pending",
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/ngselect-review/"
+}
