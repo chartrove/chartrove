@@ -13,6 +13,10 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    // Exercise the published custom element in its Angular host without mocks.
+    files: [
+      {pattern: 'node_modules/lforms/dist/lforms/**/*.js', included: false, watched: false},
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),

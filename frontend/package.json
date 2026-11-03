@@ -45,7 +45,7 @@
     "fhirpath": "^5.0.0",
     "gridstack": "14.0.0",
     "jose": "^6.0.0",
-    "lforms": "34.0.0",
+    "lforms": "^44.0.0",
     "moment": "^2.29.4",
     "ng2-charts": "^11.0.0",
     "ngx-dropzone": "^3.1.0",

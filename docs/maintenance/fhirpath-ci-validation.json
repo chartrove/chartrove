@@ -1,0 +1,46 @@
+{
+  "pr": 400,
+  "head": "13dd7ff283a8182fb8656182ad8ee132283236bd",
+  "merge": "3fbaabd01fb1ebade6d72ed5003ceeb64773b893",
+  "run": 41733313776,
+  "Backend": "success",
+  "Frontend": "success",
+  "Desktop": "success",
+  "browser_pass": 555,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.05 MB",
+  "unchanged_budget": "10 MB",
+  "deferred_rtf_chunk": "3.99 MB",
+  "full_job_logs": [
+    {
+      "name": "frontend",
+      "job": 126255971039,
+      "bytes": 122685,
+      "sha256": "5d8a13b2326a0e4063dc67e1436f318ffc0b539e0c77ef91b60db01b20361396",
+      "download_exit": 0
+    },
+    {
+      "name": "desktop",
+      "job": 126255970687,
+      "bytes": 54588,
+      "sha256": "a5f1a06da23f1031661bb1fb560b64dfdac61c976bf22bee4a3a8da3ca9e9bab",
+      "download_exit": 0
+    },
+    {
+      "name": "backend",
+      "job": 126255970957,
+      "bytes": 37282,
+      "sha256": "e16e8283559cd760fbf7d1981f2cec2ec97a1f1f454e1ba18dfbe5471536f913",
+      "download_exit": 0
+    }
+  ],
+  "native": "No fresh locally packaged UI acceptance; last qualified source33c64fbdb predates update.",
+  "independent_main_push_checks": {
+    "sha": "3fbaabd01fb1ebade6d72ed5003ceeb64773b893",
+    "Backend": "success",
+    "Frontend": "success",
+    "Desktop": "success",
+    "raw": "dist/validation/2026-11-01-consolidation/fhirpath-family-review/main-check-runs-after400.json"
+  }
+}
