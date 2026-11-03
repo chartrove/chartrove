@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/github.com-spf13-viper-1.x",
+  "tip": "98feaa2d66fe94808c57affbed6dccc3ad4101c6",
+  "bundle": "dist/validation/2026-11-01-consolidation/viper-head-20261102.bundle",
+  "sha256": "846079f0bbdba1813a2f32cde500ff5e4c96e8e74c2c605ee1a40c3c2396ea65",
+  "bytes": 2431,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "8adb31486e8803135495dba6b5809afb8e74a478",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "232365732cf5618899312cd1f0a131824c1782c0",
+    "28b8e0166a18395a1cfc5a1b558a240648deb3a3",
+    "98feaa2d66fe94808c57affbed6dccc3ad4101c6",
+    "ee3c3fbff46baf948e254487ccaddc9b966ec4af"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/github.com-spf13-viper-1.x",
+      "6362bcc367fdacb0ba9cb11ec1cc246e9420b2be"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

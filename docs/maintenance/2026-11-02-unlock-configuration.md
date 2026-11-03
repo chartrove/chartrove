@@ -32,7 +32,9 @@ c8c6e4a9f build. Fresh native packaging at 6368cdcc3 passes ZIP CRC, strict sign
 ten synthetic native checks. All 22,287 qualified frontend files remain identical.
 Original output content/stat fields and all xattrs restore exactly, with zero
 provenance changes. [Native receipt](native-6368cdcc3-validation.json).
-Protected integration remains pending.
+Protected PR #374 merged at `f0afc0d7776918d831c5eb01620427270f9c1daa`
+after all three required checks passed in run 41561366101. The integrated task
+head was retired after fresh dependency, exact-tip and ancestry checks.
 [Detailed commands and receipts](unlock-configuration-validation.json).
 
 An initial temporary overlay used the checkout alias's lowercase path, while Go's

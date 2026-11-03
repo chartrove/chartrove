@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #373 and guarded task-branch retirement.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after373.json).
-The unlock-configuration branch is additional and unpublished at
+Snapshot: November 2, 2026, after #374 and guarded task-branch retirement.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after374.json).
+The Viper-maintenance branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `8adb31486e8803135495dba6b5809afb8e74a478` (#373) |
+| Published application main | `f0afc0d7776918d831c5eb01620427270f9c1daa` (#374) |
 | Open issues | 168, including retained Renovate dashboard #222 |
 | Open PRs | 35: 29 paused Renovate proposals and six historical drafts |
 | Origin heads | 44 |
-| Default branch | main tracks origin/main with equal OIDs; unlock-configuration branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; Viper-maintenance branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -346,14 +346,24 @@ observation found it absent, with no actor established. Its original hash receip
 is retained; no restoration or unrelated cleanup was attempted.
 [Metadata receipt](maintenance/observation-held-metadata.json).
 
-Current embedded unlock correction preserves explicit database, loopback and
+Merged #374 preserves explicit database, loopback and
 unsafe-route settings in a separate immutable snapshot. Two actual regressions
 fail in each Go graph and pass unchanged after repair. Full web suites (16 each),
 unlock race suites (four each), both vet checks, desktop tests and server build
 pass. Dependency and frontend bytes remain unchanged. Fresh native packaging at
 6368cdcc3 passes ZIP/signature and ten synthetic checks; all 22,287 frontend
-files and original output metadata are preserved. Protected integration remains
-pending. [Scope](maintenance/2026-11-02-unlock-configuration.md).
+files and original output metadata are preserved. All three required checks pass;
+its exact task head is integrated and retired.
+[Scope](maintenance/2026-11-02-unlock-configuration.md).
+
+Current Viper #272 replacement uses required library-family updates while
+retaining Go minimums, database/provider replacements and all original checksum
+bytes. Four old/new configuration probes, 17 config/web tests per graph, 139
+upstream events (one Linux-only skip), both vet checks and unlock race suites,
+desktop tests and server build pass. Full selected/import graph deltas are retained;
+no production module is downgraded. Today's module scans retain only the known
+unimported deprecated OpenPGP finding. Fresh native/protected integration remains
+pending. [Scope and limits](maintenance/2026-11-02-viper-maintenance.md).
 
 ## Preservation and branch retirement
 
