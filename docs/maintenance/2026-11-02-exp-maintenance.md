@@ -43,8 +43,12 @@ OpenPGP finding; that package is absent from both production import closures.
 No x/exp-family finding is reported. This is not whole-application security or
 call-reachability assurance. All scanner outputs and exact commands are retained.
 
-Fresh native packaging, protected integration and individual #221 reconciliation
-remain pending. [Exact current and original intake recovery](exp-head-recovery.json).
+Fresh native packaging at 48db0aba7 passes ZIP CRC, strict signature and
+ten synthetic native checks. All 22,287 qualified frontend files remain identical;
+binary metadata confirms the target x/exp revision. Original output content/stat
+fields and all xattrs restore exactly, with zero provenance changes.
+[Native receipt](native-48db0aba7-validation.json). Protected integration and
+individual #221 reconciliation remain pending. [Exact current and original intake recovery](exp-head-recovery.json).
 The historical tip 88562f34117dbedac29a7df8283ed9f9878f7df5 has a verified
 checksum-recorded bundle with all four unique objects independently proved present
 in its original archive bytes. Its branch remains live pending integration.

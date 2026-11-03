@@ -373,7 +373,9 @@ replacements. Seven query/summary checks pass before/after in both graphs; 116
 upstream used-package tests pass. All 57 isolated generator files and related
 metadata are identical, and both dashboard cache boundary suites pass. Module,
 vet, race, desktop and server checks pass; only x/exp changes in either production
-import closure. Native/protected integration remains pending.
+import closure. Fresh native packaging at 48db0aba7 passes ZIP/signature
+and ten synthetic checks, with all frontend files and original output metadata
+preserved. Protected integration remains pending.
 [Scope and provenance](maintenance/2026-11-02-exp-maintenance.md).
 
 ## Preservation and branch retirement
@@ -385,7 +387,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (b36c00e74) matches contents, inodes, permissions, ownership,
+Latest restoration (48db0aba7) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.
