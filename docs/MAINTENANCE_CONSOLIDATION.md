@@ -362,8 +362,10 @@ bytes. Four old/new configuration probes, 17 config/web tests per graph, 139
 upstream events (one Linux-only skip), both vet checks and unlock race suites,
 desktop tests and server build pass. Full selected/import graph deltas are retained;
 no production module is downgraded. Today's module scans retain only the known
-unimported deprecated OpenPGP finding. Fresh native/protected integration remains
-pending. [Scope and limits](maintenance/2026-11-02-viper-maintenance.md).
+unimported deprecated OpenPGP finding. Fresh native packaging at b36c00e74
+passes ZIP/signature and ten synthetic checks; all qualified frontend files and
+original outputs/metadata remain identical. Protected integration remains pending.
+[Scope and limits](maintenance/2026-11-02-viper-maintenance.md).
 
 ## Preservation and branch retirement
 

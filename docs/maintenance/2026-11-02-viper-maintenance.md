@@ -41,8 +41,12 @@ is not whole-application security or call-reachability assurance. Two initial
 scanner argument/current-directory errors are retained as unqualified diagnostics.
 Returned advisory inventory records are not counted as affected findings.
 
-The frontend remains byte-identical to the qualified c8c6e4a9f build. Fresh native
-packaging, protected integration and individual #272 disposition remain pending.
+Fresh native packaging at b36c00e74 passes ZIP CRC, strict signature and
+ten synthetic native checks. All 22,287 qualified c8c6e4a9f frontend files remain
+byte-identical. Binary metadata confirms Viper 1.21.0 and mapstructure v2.4.0.
+Original output content/stat fields and all xattrs restore exactly, with zero
+provenance changes. [Native receipt](native-b36c00e74-validation.json).
+Protected integration and individual #272 disposition remain pending.
 [Exact current and original intake recovery](viper-head-recovery.json). The current
 historical tip 98feaa2d66fe94808c57affbed6dccc3ad4101c6 is preserved in a verified
 checksum-recorded bundle with all four unique objects independently proved present

@@ -1,0 +1,50 @@
+{
+  "source_revision": "b36c00e7479140a123cfae7e964939b8c217e747",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-b36c00e74-viper-maintenance/Chartrove-b36c00e74.zip",
+    "sha256": "ed085e3b9f4c39db05a7dfc81a0fb454e2de49008ef499ab69759e6d02886263",
+    "bytes": 336760301
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "b36c00e7479140a123cfae7e964939b8c217e747",
+    "qualified_frontend_source_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-b36c00e74-viper-maintenance/receipt.json",
+  "full_local_receipt_sha256": "42a7e3af13c655c8237c40cdec76d6e1b5ea62711c74a7f638b6a58fd2cdd0cc",
+  "frontend_comparison": {
+    "files": 22287,
+    "qualified_reused_output_and_native_asset_tree_byte_identical": true,
+    "qualified_frontend_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1"
+  },
+  "binary_build_info_uses_viper1_21_and_mapstructure2_4": true
+}
