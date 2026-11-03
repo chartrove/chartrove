@@ -1,0 +1,11 @@
+{
+  "source_revision": "4b1bc202ea8f93bb3a10ae192219f374a7f112db",
+  "scope": "tracked code/style/workflow/shell files, excluding docs and synthetic fixture data; no runtime source consumer or IndexedDB implementation found",
+  "scanned_files": 847,
+  "source_match_paths": [],
+  "source_input_manifest_sha256": "51d3d900ecfbcd6ea37007223d798e80ac40263c7de1a68dd4335208edbf9910",
+  "installed_dependency_manifests_scanned": 859,
+  "installed_idb_consumers": [],
+  "unique_lock_block": "idb@^7.1.0",
+  "offline_browser_storage_feature": "not implemented; no browser database or storage touched"
+}

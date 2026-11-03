@@ -1,0 +1,29 @@
+{
+  "branch": "renovate/idb-8.x",
+  "tip": "1d528c93182757ade297d9c18e4fa9acf7f55972",
+  "bundle": "dist/validation/2026-11-01-consolidation/idb-head-20261103.bundle",
+  "sha256": "0da7c90c5d4a89c1c442452fdc007347b18b842953df8ffa08b2688996ae935f",
+  "bytes": 1516,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "b617d3c04740eb26d85c9cafc288481b7a416e65",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "1d528c93182757ade297d9c18e4fa9acf7f55972",
+    "49a48d0689cf9dd0ec95e3e0c617a1fe265ec0bd",
+    "4ac34c0fe0aa713d7b9cf097bd595639aceb1395",
+    "9563415e1ddfa68c7dcc45830fb04b880e2534fd",
+    "d36815a6b29b23c0c15c63839059e82de85e1e54"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "retire unused direct dependency after reviewed removal integrates; v8 upgrade is not implemented",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/idb-8.x",
+      "124bc8a81e8c66cab2e4ad2e870d83e9319e82fb"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}
