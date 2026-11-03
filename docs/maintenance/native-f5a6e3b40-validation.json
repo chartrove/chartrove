@@ -1,0 +1,86 @@
+{
+  "source_revision": "f5a6e3b404c4f6aa99baf8193f821e92cf9b642a",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-f5a6e3b40-encounter-row/Chartrove-f5a6e3b40.zip",
+    "sha256": "b76e307e1051aec54fee1490f76076b5009f08e555def439925684f6332fd01b",
+    "bytes": 337526790
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "f5a6e3b404c4f6aa99baf8193f821e92cf9b642a",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/encounter-row-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/encounter-row-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "893528b29d1f89d75fa6bef0a99eba4a293daca94f43daca7fc5110100b7332b",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-f5a6e3b40-encounter-row/receipt.json",
+  "full_local_receipt_sha256": "d4ad972f20462c756f9845aa9ede39605b9c51c44bf93b529b011dfa32228f1f",
+  "frontend_comparison": {
+    "files": 22287,
+    "compiled_reused_and_native_asset_trees_byte_identical": true,
+    "previous_qualified_frontend_revision": "c109657a66dea0de624487eb16a9af57e4f68516",
+    "artifact_delta": {
+      "added": [
+        "main.a0e5f2821bfd3b29.js",
+        "main.a0e5f2821bfd3b29.js.map"
+      ],
+      "removed": [
+        "main.14113a69f43c422f.js",
+        "main.14113a69f43c422f.js.map"
+      ],
+      "changed_common": [
+        "index.html"
+      ]
+    }
+  },
+  "native_manual_encounter_ui": {
+    "time": "2026-11-03T05:58:51.872069+00:00",
+    "method": "cua_repl exact task app, sole PID/private data/cache verified; actual synthetic sign-in and Explore navigation",
+    "pid": 60333,
+    "source": "2253d45d-737f-4732-a5af-faccf52a7cfd",
+    "visible_row_description": "Synthetic office visit",
+    "visible_row_period": "2024-02-29 - 12:00 am -> Not provided",
+    "row_selection_route": "#/explore/2253d45d-737f-4732-a5af-faccf52a7cfd/resource/synthetic-manual-encounter",
+    "record_heading": "Synthetic office visit",
+    "record_start_label": "Start date Feb 29, 2024",
+    "synthetic_counts": {
+      "fhir_patient": 1,
+      "fhir_encounter": 1
+    },
+    "raw_resources_byte_identical_to_seed": true,
+    "type_and_end_still_absent": true,
+    "seed_files_unchanged": true,
+    "focus_observation": "sign-in state completed after Tab; no source or asset workaround",
+    "navigation_observation": "source cards/tabs lacked AX action roles; used fresh screenshots for uploaded-source and Encounter-tab clicks",
+    "window_closed_using_fresh_full_ax_close_index": true,
+    "process_absence_verified_by_ps_only": true,
+    "no_cua_call_after_close": true,
+    "remaining_observation": "source-profile title appears low-contrast on a pale banner in existing dark theme; styles unchanged by this fix, follow-up remains",
+    "real_records_used": false
+  }
+}
