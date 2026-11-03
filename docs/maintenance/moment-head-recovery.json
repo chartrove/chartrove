@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/moment-2.x-lockfile",
+  "tip": "82065e60dd9f044665fcb1e8e97ea0f6b96c7f7a",
+  "bundle": "dist/validation/2026-11-01-consolidation/moment-head-20261102.bundle",
+  "sha256": "f22af654814000b2468f72b9d87c2ec5a9546dc730fa428540d227e60c1ed48c",
+  "bytes": 1456,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "8b060a484912a5cce196962c97dda7add4ee6864",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "1ed3cae2cac101fc12038e468a21871baf705eea",
+    "35062a74a46ef04a1a8460ada8e9686afba00ee0",
+    "82065e60dd9f044665fcb1e8e97ea0f6b96c7f7a",
+    "b90ad1b2b49187e7d653592bdfc60b01cee85d3b"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/moment-2.x-lockfile",
+      "ecd605a06ebb254503bced397ef05995d409b554"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

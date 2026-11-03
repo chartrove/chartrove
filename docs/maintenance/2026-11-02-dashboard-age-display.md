@@ -44,6 +44,8 @@ The initial background window was blank. Title click/Raise did not immediately
 render, and a body click returned AXError.notImplemented; Tab keyboard focus
 then exposed the expected dashboard. The targeted sample and sandbox warning
 are retained without claiming a cause or adding an application workaround.
-Protected integration is pending.
+[PR #379](https://github.com/karamhouse/chartrove/pull/379) merged after all three
+protected checks passed at exact head 05fb163ad099ede1d15f5e0ebc595b5a9d4222b7.
+The integrated task head was retired after fresh ancestry/dependency checks.
 Raw evidence is retained under
 `dist/validation/2026-11-01-consolidation/dashboard-age-review/`.
