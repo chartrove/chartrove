@@ -1,0 +1,202 @@
+{
+  "raw_directory": "dist/validation/2026-11-01-consolidation/next-datatable-review",
+  "target": "@swimlane/ngx-datatable25.0.0",
+  "old": "20.1.0",
+  "peer_admission": {
+    "rxjs": {
+      "actual": "7.8.2",
+      "range": "7.x || 8.x",
+      "pass": true
+    },
+    "@angular/core": {
+      "actual": "22.2.4",
+      "range": "20.x || 21.x || 22.x",
+      "pass": true
+    },
+    "@angular/common": {
+      "actual": "22.2.4",
+      "range": "20.x || 21.x || 22.x",
+      "pass": true
+    },
+    "@angular/platform-browser": {
+      "actual": "22.2.4",
+      "range": "20.x || 21.x || 22.x",
+      "pass": true
+    }
+  },
+  "manifest_lock": {
+    "old": "20.1.0",
+    "new": "25.0.0",
+    "changed_lock_blocks": 1,
+    "all_other_lock_bytes_exact": true,
+    "required_runtime_dependencies_unchanged": {
+      "tslib": "^2.0.0"
+    },
+    "api_migration": "Repeated library page events adapted without suppressing explicit Retry; both selectedChange arrays wrapped for existing handler; pre-existing empty-selection and missing fallback filter corrected."
+  },
+  "frozen_install": {
+    "command": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=corepack@0.35.0",
+      "--",
+      "corepack",
+      "yarn",
+      "install",
+      "--frozen-lockfile",
+      "--registry",
+      "https://registry.npmjs.org",
+      "--network-concurrency",
+      "4"
+    ],
+    "exit": 0,
+    "seconds": 58.22,
+    "manifest_lock_sha256_before": {
+      "package.json": "ce68f5815394fd361bb425ce8636a5293a85bca8ba7538ce89359bd17484e01b",
+      "yarn.lock": "58583289f41796b5680337ad1103e1a8b828faa2a50b3f4752fbb3776b7b78c7"
+    },
+    "manifest_lock_sha256_after": {
+      "package.json": "ce68f5815394fd361bb425ce8636a5293a85bca8ba7538ce89359bd17484e01b",
+      "yarn.lock": "58583289f41796b5680337ad1103e1a8b828faa2a50b3f4752fbb3776b7b78c7"
+    },
+    "unchanged": true
+  },
+  "installed_version_delta": {
+    "@swimlane/ngx-datatable": {
+      "before": {
+        "name": "@swimlane/ngx-datatable",
+        "version": "20.1.0"
+      },
+      "after": {
+        "name": "@swimlane/ngx-datatable",
+        "version": "25.0.0"
+      }
+    }
+  },
+  "published_payloads": {
+    "package": "@swimlane/ngx-datatable",
+    "version": "25.0.0",
+    "published_files": 28,
+    "all_installed_payloads_match_verified_archive": true,
+    "archive_sha256": "d986340926b1e3e282475264d1cf20b491690d97de2626139bb9d8f1ee2804a9"
+  },
+  "consumer_controls": {
+    "stages": [
+      {
+        "name": "old-before",
+        "versions": {
+          "@swimlane/ngx-datatable": "20.1.0",
+          "ng2-charts": "11.0.0",
+          "chart.js": "4.6.1"
+        },
+        "cli_exit": 143,
+        "browser_cases": 31,
+        "failed_browser_cases": 2,
+        "log_sha256": "86f4e29a97a5be2a9887ca331edc473618f0ceb2475bd2d16ff175448c1a8268",
+        "specs_unchanged": true,
+        "private_scratch_disposed": true
+      },
+      {
+        "name": "old-qualified",
+        "versions": {
+          "@swimlane/ngx-datatable": "20.1.0",
+          "ng2-charts": "11.0.0",
+          "chart.js": "4.6.1"
+        },
+        "cli_exit": 1,
+        "browser_cases": 31,
+        "failed_browser_cases": 1,
+        "log_sha256": "6c35e694132a26f142ca3372508c49b85bc39e9dc84f298b27d9095c612e04a6",
+        "specs_unchanged": true,
+        "private_scratch_disposed": true
+      },
+      {
+        "name": "old-corrected",
+        "versions": {
+          "@swimlane/ngx-datatable": "20.1.0",
+          "ng2-charts": "11.0.0",
+          "chart.js": "4.6.1"
+        },
+        "cli_exit": 0,
+        "browser_cases": 31,
+        "failed_browser_cases": 0,
+        "log_sha256": "608da0a040cf7c12b2129afd15f95aa9b4c4a34adb8f0eb404c1cb956cf44c4e",
+        "specs_unchanged": true,
+        "private_scratch_disposed": true
+      },
+      {
+        "name": "new-unmigrated",
+        "versions": {
+          "@swimlane/ngx-datatable": "25.0.0",
+          "ng2-charts": "11.0.0",
+          "chart.js": "4.6.1"
+        },
+        "cli_exit": 1,
+        "browser_cases": 31,
+        "failed_browser_cases": 18,
+        "log_sha256": "ce41535ba6161a3b5e3b3c5592b03d7e564f4bd6499197c514b0996689f5685a",
+        "specs_unchanged": true,
+        "private_scratch_disposed": true
+      },
+      {
+        "name": "new-page-adapter-only",
+        "versions": {
+          "@swimlane/ngx-datatable": "25.0.0",
+          "ng2-charts": "11.0.0",
+          "chart.js": "4.6.1"
+        },
+        "cli_exit": 1,
+        "browser_cases": 31,
+        "failed_browser_cases": 4,
+        "log_sha256": "3d789bf850397c90e0484764b76223447efad832f5af9df800865f023f7d061a",
+        "specs_unchanged": true,
+        "private_scratch_disposed": true
+      },
+      {
+        "name": "new-corrected",
+        "versions": {
+          "@swimlane/ngx-datatable": "25.0.0",
+          "ng2-charts": "11.0.0",
+          "chart.js": "4.6.1"
+        },
+        "cli_exit": 0,
+        "browser_cases": 31,
+        "failed_browser_cases": 0,
+        "log_sha256": "73a8a6a40197b0067fdf365a01d036025566ea26165dec0e570dc088f327c243",
+        "specs_unchanged": true,
+        "private_scratch_disposed": true
+      }
+    ],
+    "identical_spec_sha256": {
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-interaction.component.spec.ts": "c7a51c2cf909862947f19f5ae6ef34e0d98f7b6df714fd38f689020a3dc70231",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-loading.component.spec.ts": "6f81058175d4fc3ca96b5869a2e918e54fc5372ab82c792102112d2adc51e420",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter-manual.component.spec.ts": "cb841a7b748ba94657f4d136d433756511266e4f97bb4b29e1800d49b3b96e33"
+    }
+  },
+  "app_typecheck": {
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--project",
+      "tsconfig.app.json",
+      "--noEmit"
+    ],
+    "exit": 0,
+    "seconds": 17.61,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "final_source_sha256": {
+    "frontend/package.json": "ce68f5815394fd361bb425ce8636a5293a85bca8ba7538ce89359bd17484e01b",
+    "frontend/yarn.lock": "58583289f41796b5680337ad1103e1a8b828faa2a50b3f4752fbb3776b7b78c7",
+    "frontend/src/styles.scss": "8494d1abe63e79cee44dc77967ade89e32adbc9869e501ed2e45f6bded2429bf",
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-generic-resource.component.ts": "a90791600e21cf3f2a280fe97a66ca31d0e9bef73d88b458564f5409173ded31",
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-generic-resource.component.html": "42fc0d6b7240022075efdc8be71996ecb0fd0a78d96a340663f6ab7c741a4a00",
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-fallback.component.html": "b35c584eef17c4ade2400422f0fba4b3ef4a1baf258b8ac6cc1ccc8e49b2e84f",
+    "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-interaction.component.spec.ts": "c7a51c2cf909862947f19f5ae6ef34e0d98f7b6df714fd38f689020a3dc70231"
+  },
+  "storage_free_gib_at_receipt": 39.08,
+  "full_local_workflows": "No full browser/production/Storybook/native workflow below unchanged50GiB admission; focused scratch disposed. No cache, backup, fixture, personal data or independent owner cleanup.",
+  "native_qualification": "Last locally qualified source33c64fbdb predates these dependency changes; no new packaged native UI acceptance claimed.",
+  "protected_checks": "Backend/Frontend/Desktop mandatory on final published head; no bypass."
+}

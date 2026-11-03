@@ -1,0 +1,35 @@
+{
+  "time": "2026-11-03T20:47:15.874863+00:00",
+  "main": "a4bf6b3ad9d724aa8e761ce630ccf20561d0fc95",
+  "branches": [
+    {
+      "name": "renovate/ng2-charts-11.x",
+      "sha": "b5c028028dbd752a11073da39b6515cad806790d",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/ng2-charts-11.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/ng2charts-11",
+      "sha": "526b0a4b778f0bea83c0d5866c938cfc50918fcf",
+      "kind": "merged task",
+      "ref": "refs/heads/task/ng2charts-11",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/ng2-charts-11.x\n - [deleted]               task/ng2charts-11\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/ng2-charts-11.x\n - [deleted]               task/ng2charts-11\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true,
+  "disposition": "original #307 implemented by protected #397; exact historical archive and merged task verified"
+}

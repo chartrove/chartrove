@@ -1,0 +1,21 @@
+{
+  "branch": "renovate/swimlane-ngx-datatable-25.x",
+  "tip": "a64023a2b205edcd87152abda058d60198bfcc47",
+  "bundle": "dist/validation/2026-11-01-consolidation/next-datatable-head-20261103.bundle",
+  "sha256": "65cbb810e09604c2c42542ad63d3f2f05f733261d41261c7111a3ab605f3c0b3",
+  "bytes": 1558,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "bc5c271ceede89a29bfba14898626a5cc1d40d06",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "539d3918afaa345d44e79b64b75cc490276f6be1",
+    "56ea8aea52915270b35bfc2aa9710a0acf8bb7f5",
+    "a64023a2b205edcd87152abda058d60198bfcc47",
+    "ab04a35f21acf34426573f4c23a9ee65c72d713e",
+    "fc2b7bc50f2898306eb7c3e4f82bb512f2cbd8a2"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks"
+}
