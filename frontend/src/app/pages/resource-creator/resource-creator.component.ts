@@ -1,7 +1,6 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import {MedicalRecordWizardComponent} from '../../components/medical-record-wizard/medical-record-wizard.component';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,11 +10,14 @@ import {Router} from '@angular/router';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class ResourceCreatorComponent implements OnInit {
+export class ResourceCreatorComponent implements OnInit, OnDestroy {
+  private destroyed = false;
 
   constructor( private modalService: NgbModal, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const {MedicalRecordWizardComponent} = await import('../../components/medical-record-wizard/medical-record-wizard.component');
+    if (this.destroyed) return;
 
     const modalRef = this.modalService.open(MedicalRecordWizardComponent, {
       size: 'xl',
@@ -27,5 +29,9 @@ export class ResourceCreatorComponent implements OnInit {
     }).catch((error) => {
       this.router.navigate(['/medical-history']);
     })
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
   }
 }

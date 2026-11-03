@@ -1,10 +1,9 @@
-import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {ResourceFhir} from '../../models/fasten/resource_fhir';
 import {EncounterModel} from '../../../lib/models/resources/encounter-model';
 import {RecResourceRelatedDisplayModel} from '../../../lib/utils/resource_related_display_model';
 import {DiagnosticReportModel} from '../../../lib/models/resources/diagnostic-report-model';
 import {FastenDisplayModel} from '../../../lib/models/fasten/fasten-display-model';
-import {MedicalRecordWizardComponent} from '../medical-record-wizard/medical-record-wizard.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,9 +13,10 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class ReportMedicalHistoryTimelinePanelComponent implements OnInit {
+export class ReportMedicalHistoryTimelinePanelComponent implements OnInit, OnDestroy {
   @Input() resourceFhir: ResourceFhir
   displayModel: EncounterModel
+  private destroyed = false;
 
   constructor(private modalService: NgbModal) { }
 
@@ -37,13 +37,17 @@ export class ReportMedicalHistoryTimelinePanelComponent implements OnInit {
   }
 
 
-  openMedicalRecordWizard(): void {
-
-
+  async openMedicalRecordWizard(): Promise<void> {
+    const encounter = this.displayModel;
+    const {MedicalRecordWizardComponent} = await import('../medical-record-wizard/medical-record-wizard.component');
+    if (this.destroyed) return;
     const modalRef = this.modalService.open(MedicalRecordWizardComponent, {
       size: 'xl',
     });
-    modalRef.componentInstance.existingEncounter = this.displayModel;
+    modalRef.componentInstance.existingEncounter = encounter;
   }
 
+  ngOnDestroy(): void {
+    this.destroyed = true;
+  }
 }
