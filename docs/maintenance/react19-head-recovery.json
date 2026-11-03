@@ -1,0 +1,29 @@
+{
+  "branch": "renovate/major-react-monorepo",
+  "tip": "8fed0c8108bf481f9a65fbb68750ba27b390520d",
+  "bundle": "dist/validation/2026-11-01-consolidation/react19-head-20261103.bundle",
+  "sha256": "cb51540803937b83875943a995157c7b80ebce597afb37b8b2a58265f3e63933",
+  "bytes": 1666,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "6419a63e029d592542c14e341b1468d294af6baf",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "5618685f4ace5a4a0a9264bcd47de90cfd586537",
+    "8fed0c8108bf481f9a65fbb68750ba27b390520d",
+    "981af1f0b782444564702ef5075166522f70455c",
+    "d74c3d685020ec3d8c7a45a7f4ab302bf1f0e872",
+    "f6e458c7e313bee3d91a27f444ff0d7e4ad261e2"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/major-react-monorepo",
+      "91d36c7f0b5db31d3382fa62b5fd2b0007515115"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

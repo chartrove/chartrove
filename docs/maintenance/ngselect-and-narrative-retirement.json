@@ -1,0 +1,37 @@
+{
+  "main": "b617d3c04740eb26d85c9cafc288481b7a416e65",
+  "branches": [
+    {
+      "name": "renovate/ng-select-ng-select-24.x",
+      "sha": "9c62548d9e170ffc8fcfc935db8c99d4456de91b",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/ng-select-ng-select-24.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/ng-select-attachments",
+      "sha": "5ccd36b6e39620281de67696e1ca7e1809ed1835",
+      "kind": "merged task",
+      "ref": "refs/heads/task/ng-select-attachments",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "summary",
+      "sha": "62a89d799969b1de8ac208543e89a7da85345a91",
+      "ref": "refs/heads/summary",
+      "kind": "retired legacy prototype by maintainer decision",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "text_field_extract",
+      "sha": "38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e",
+      "ref": "refs/heads/text_field_extract",
+      "kind": "retired legacy prototype by maintainer decision",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "operations": {
+    "ngselect": "dist/validation/2026-11-01-consolidation/ngselect-review/branch-retirement.json",
+    "legacy_narratives": "dist/validation/2026-11-01-consolidation/legacy-narrative-retirement/branch-retirement.json"
+  }
+}
