@@ -65,6 +65,23 @@ For frontend iteration, select the existing `desktop_prod` configuration. A nati
 
 ## Validation
 
+For the full frontend check with bounded storage, use `make validate-frontend`
+after installing the locked dependencies. It runs Node checks, browser tests,
+desktop production compilation and Storybook. Each run retains command logs,
+exit codes and generated-file inventories under `dist/validation/frontend-*`.
+Expanded builds, coverage and temporary files are removed on success or failure;
+pre-existing `frontend/documentation.json` is restored. A failed step stops the
+run and retains its log. macOS test Chrome launches disable `MacAppCodeSignClone`
+so interrupted browser tests do not leave another copy of the Chrome app.
+
+Keep expanded frontend, Storybook and native ZIP extractions in one disposable
+task directory. Remove them after their processes exit and record that disposal
+alongside the receipts. Retain source changes, logs, screenshots, recovery bundles,
+input manifests and deliberately selected release archives. Do not copy entire
+build trees into every validation checkpoint. Reuse one qualified build while
+testing it; request an explicitly retained build only when a follow-on native
+check needs it. Never sweep fixture/health-record directories or active output.
+
 From the repository root:
 
 ```sh

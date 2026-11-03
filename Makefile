@@ -102,6 +102,10 @@ build-frontend-offline-sandbox: dep-frontend
 	cd frontend && $(NG) build --configuration offline_sandbox --output-path=../dist
 
 .PHONY: test-frontend
+.PHONY: validate-frontend
+validate-frontend:
+	node frontend/tools/validate.mjs
+
 # reduce logging, disable angular-cli analytics for ci environment
 test-frontend: dep-frontend
 	cd frontend && $(NG) test --watch=false
