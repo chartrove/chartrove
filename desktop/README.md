@@ -4,13 +4,13 @@ Chartrove is an independent fork of Fasten Onprem, with a revived macOS Wails v3
 
 ## Build
 
-Use Go 1.26 or newer, macOS with Xcode Command Line Tools, and Mise Node 26.13.0. The separate desktop Go module pins Wails to v3.0.0. The frontend migration from Angular 14 to Angular 22 is in progress; Angular 14 does not officially support Node 26. See [the contributor toolchain instructions](../CONTRIBUTING.md) for the pinned Yarn launcher and current validation limits.
+Use Go 1.26 or newer, macOS with Xcode Command Line Tools, and Mise Node 26.13.0. The separate desktop Go module pins Wails to v3.0.0. The frontend is on Angular 22 with the committed lockfile. See [the contributor toolchain instructions](../CONTRIBUTING.md) for the pinned Yarn launcher and current validation limits.
 
-With Node 20 selected in your shell:
+With Node 26.13.0 selected in your shell:
 
 ```sh
 cd frontend
-npm exec --yes --package=corepack@0.35.0 -- corepack yarn install --frozen-lockfile --ignore-optional --registry https://registry.npmjs.org --network-concurrency 4
+npm exec --yes --package=corepack@0.35.0 -- corepack yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-concurrency 4
 cd ..
 sh desktop/build.sh
 ```
@@ -20,6 +20,8 @@ The result is `dist/Chartrove.zip`, containing `Chartrove.app` for the build mac
 After a successful frontend build, `sh desktop/build.sh --skip-frontend` can rebuild only the native package when frontend inputs have not changed. It uses the existing `dist/frontend` output. A normal build regenerates frontend output and synchronizes the embedded assets to remove stale files.
 
 ## Data and startup
+
+[Local data and security settings](../docs/LOCAL_DATA_SAFETY.md) distinguishes desktop defaults, inherited server settings and explicit synthetic-test options.
 
 The default data directory on macOS is `~/Library/Application Support/FastenCommunity`. The host creates it privately, keeps a persistent JWT signing key in a mode-0600 file, and locks it against a second desktop instance. This compatibility directory name is intentionally retained through the Chartrove rebrand, together with bundle identifier `house.karam.fasten-community`, database filename `fasten.db`, key files, and bridge service names. No data migration is performed. This directory is separate from the purchased application's storage.
 

@@ -1,0 +1,293 @@
+{
+  "time": "2026-11-03T05:15:36.701335+00:00",
+  "base_main": "c0c44ce62d06c2948b187b23414b63cc29b0015b",
+  "scope": "data/security guide and example config; application sources, dependencies and stored keys unchanged",
+  "proposed_issue_dispositions": {
+    "88": "complete requested credential/default guidance; existing key guard is already integrated, no blanket security certification",
+    "193": "retire attributed upstream community recipe as reference; preserve comments and explain existing HTTPS control, with no integration/custom-certificate API claim"
+  },
+  "qualified_config_probes": {
+    "root": {
+      "receipt": {
+        "graph": "root",
+        "command": [
+          "go",
+          "run",
+          "-mod=readonly",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/local-safety-review/config-probe-qualified.go",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/local-safety-review/before/config.yaml",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/local-safety-review/candidate-config.yaml"
+        ],
+        "start": "2026-11-03T05:08:16.709690+00:00",
+        "end": "2026-11-03T05:08:24.123790+00:00",
+        "exit": 0
+      },
+      "result": {
+        "cases": [
+          {
+            "case": "factory fallbacks",
+            "host": "0.0.0.0",
+            "https": false,
+            "sqlite_encryption": false,
+            "unsafe_routes": false
+          },
+          {
+            "case": "example 0",
+            "example_sqlite_encryption_enabled_before_test_override": true,
+            "harness_encryption_disabled_to_prevent_standby": true,
+            "https": true,
+            "no_startup_log_output": true,
+            "signing_key_rejected_before_database": true
+          },
+          {
+            "case": "example 1",
+            "example_sqlite_encryption_enabled_before_test_override": true,
+            "harness_encryption_disabled_to_prevent_standby": true,
+            "https": true,
+            "no_startup_log_output": true,
+            "signing_key_rejected_before_database": true
+          },
+          {
+            "case": "explicit environment controls",
+            "configuration_validation_only_no_server_start": true,
+            "https_false_honored": true,
+            "private_key_accepted": true
+          }
+        ],
+        "database_type": "synthetic-no-database",
+        "outbound_http_attempts": 0
+      }
+    },
+    "desktop": {
+      "receipt": {
+        "graph": "desktop",
+        "command": [
+          "go",
+          "run",
+          "-mod=readonly",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/local-safety-review/config-probe-qualified.go",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/local-safety-review/before/config.yaml",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/local-safety-review/candidate-config.yaml"
+        ],
+        "start": "2026-11-03T05:08:16.709845+00:00",
+        "end": "2026-11-03T05:08:24.123410+00:00",
+        "exit": 0
+      },
+      "result": {
+        "cases": [
+          {
+            "case": "factory fallbacks",
+            "host": "0.0.0.0",
+            "https": false,
+            "sqlite_encryption": false,
+            "unsafe_routes": false
+          },
+          {
+            "case": "example 0",
+            "example_sqlite_encryption_enabled_before_test_override": true,
+            "harness_encryption_disabled_to_prevent_standby": true,
+            "https": true,
+            "no_startup_log_output": true,
+            "signing_key_rejected_before_database": true
+          },
+          {
+            "case": "example 1",
+            "example_sqlite_encryption_enabled_before_test_override": true,
+            "harness_encryption_disabled_to_prevent_standby": true,
+            "https": true,
+            "no_startup_log_output": true,
+            "signing_key_rejected_before_database": true
+          },
+          {
+            "case": "explicit environment controls",
+            "configuration_validation_only_no_server_start": true,
+            "https_false_honored": true,
+            "private_key_accepted": true
+          }
+        ],
+        "database_type": "synthetic-no-database",
+        "outbound_http_attempts": 0
+      }
+    }
+  },
+  "example_settings": {
+    "only_changed_configuration_value": "jwt.issuer.key",
+    "all_other_resolved_values_identical": true,
+    "method": "actual Go configuration loader, detached settings comparison; no server startup"
+  },
+  "links": {
+    "one_h1_per_guide": true,
+    "verified_local_links": 38,
+    "links": [
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../README.md#project-status"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../desktop/README.md#data-and-startup"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../desktop/PROVIDER_VALIDATION.md#current-validation-status"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../README.md#desktop-development"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../config.yaml"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../CONTRIBUTING.md#server-signing-key"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../desktop/cmd/fasten-desktop/main.go"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../desktop/internal/host/storage.go"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../backend/pkg/config/config.go"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../backend/pkg/web/server.go"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../backend/pkg/web/signing_key_test.go"
+      },
+      {
+        "file": "docs/LOCAL_DATA_SAFETY.md",
+        "target": "../README.md#fasten-attribution-and-license"
+      },
+      {
+        "file": "README.md",
+        "target": "CONTRIBUTING.md#toolchain"
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/README.md"
+      },
+      {
+        "file": "README.md",
+        "target": "CONTRIBUTING.md"
+      },
+      {
+        "file": "README.md",
+        "target": "docs/LOCAL_DATA_SAFETY.md"
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/README.md"
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/PROVIDER_VALIDATION.md"
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/LIGHTHOUSE_REPLACEMENT.md"
+      },
+      {
+        "file": "README.md",
+        "target": "docs/BRANDING.md"
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/BRANDING_VALIDATION.md"
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/PROVIDER_VALIDATION.md#current-validation-status"
+      },
+      {
+        "file": "README.md",
+        "target": "CONTRIBUTING.md#pull-requests-and-automation"
+      },
+      {
+        "file": "README.md",
+        "target": "LICENSE.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/MAINTENANCE_BASELINE.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/retired-workflows/README.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/MAINTENANCE_CONSOLIDATION.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "desktop/README.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/retired-frontend-tooling/README.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/LOCAL_DATA_SAFETY.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/BRANDING.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "desktop/PROVIDER_VALIDATION.md"
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "desktop/LIGHTHOUSE_REPLACEMENT.md"
+      },
+      {
+        "file": "desktop/README.md",
+        "target": "../CONTRIBUTING.md"
+      },
+      {
+        "file": "desktop/README.md",
+        "target": "../docs/LOCAL_DATA_SAFETY.md"
+      },
+      {
+        "file": "desktop/README.md",
+        "target": "DIRECT_SMART.md"
+      },
+      {
+        "file": "desktop/README.md",
+        "target": "PROVIDER_VALIDATION.md"
+      },
+      {
+        "file": "desktop/README.md",
+        "target": "BRANDING_VALIDATION.md"
+      }
+    ]
+  },
+  "initial_harness_incident": {
+    "time": "2026-11-03T05:08:16.675074+00:00",
+    "qualification": "both initial runs failed, excluded from guide validation",
+    "root_exit": 1,
+    "desktop_exit": 1,
+    "cause": "positive AppEngine.Start control loaded encrypted example with no encryption key; standby returned before unsupported database type validation, then startup entered listener path",
+    "observed_listener": "task-owned desktop probe PID 49782 TCP *:8080 in standby",
+    "termination": "SIGTERM exact verified task-owned child; ps independently confirms absence",
+    "database_open_file_matches_at_termination": 0,
+    "data_boundary": "unsupported database type configured, no encryption key, no family/purchased records selected or supplied; initializeDatabase standby skips repository creation and Start skips hosted registration in standby",
+    "limits": "captured logger buffers were in the child; incoming request history is not reconstructed. Socket/file/process evidence and source are retained. No claim of zero listener exposure.",
+    "corrected_harness": "negative controls disable encryption only inside the synthetic unsupported-database harness to prevent standby; positive control uses only config.ValidateJWTSigningKey and getters, never server Start; bounded producer timeout 30s"
+  },
+  "parser_preflight_diagnostic": "Node yaml module absent; failed preflight retained, no package installed; actual Go configuration loader used for detached settings comparison instead",
+  "application_evidence_reused": "Goja source 4d1067a6167a3ae6664de8704f348c832ee5fcea; executable sources/dependencies/frontend unchanged; example settings verified separately",
+  "required_ci": "pending new PR head",
+  "real_records_used": false
+}
