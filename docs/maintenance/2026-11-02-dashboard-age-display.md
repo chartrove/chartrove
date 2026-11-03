@@ -28,6 +28,22 @@ absence restores, and coverage stays private. The adversarial unparseable-date
 fixture's Moment warning remains visible; no warning/assertion is suppressed.
 [Validation receipt](dashboard-age-validation.json).
 
-Fresh native packaging, synthetic smoke/UI and protected integration are pending.
+Fresh native packaging at 9518224f1 passes ZIP CRC, strict signature and all ten
+synthetic checks. All 22,287 compiled/reused/native frontend assets match; only
+main bundle/map filenames and index differ from qualified 3b9e3a55b. Original
+output content/stat fields and all xattrs restore exactly, with zero provenance
+changes. [Native receipt](native-9518224f1-validation.json).
+
+Native dashboard UI shows Age not provided and the known synthetic Encounter.
+All three raw resources remain byte-identical to the seed; Patient birthDate is
+still absent. The existing synthetic session restored without a new manual
+sign-in; fresh sign-in is separately covered by native smoke. After closing the
+window, ps proves process absence, with no Cua calls after close.
+
+The initial background window was blank. Title click/Raise did not immediately
+render, and a body click returned AXError.notImplemented; Tab keyboard focus
+then exposed the expected dashboard. The targeted sample and sandbox warning
+are retained without claiming a cause or adding an application workaround.
+Protected integration is pending.
 Raw evidence is retained under
 `dist/validation/2026-11-01-consolidation/dashboard-age-review/`.

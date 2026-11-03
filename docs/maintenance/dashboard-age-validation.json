@@ -166,5 +166,95 @@
     "no broader name/gender/vital-sign refresh repair",
     "synthetic fixtures only"
   ],
-  "native_validation": "pending fresh packaging and ten-check synthetic smoke"
+  "native_validation": {
+    "source_revision": "9518224f1b6bdf3bee1bf257878a17ad2df80cf2",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-9518224f1-dashboard-age/Chartrove-9518224f1.zip",
+      "sha256": "f50178816997c430d9eb1b9feea4e98ef68bdca3b4a7d2e64c539bd5bff594ed",
+      "bytes": 336760718
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "committed_input_revision": "9518224f1b6bdf3bee1bf257878a17ad2df80cf2",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/dashboard-age-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/dashboard-age-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "a9af0fd1c421276fe9132d52e3bf75bc0335e5055d744204a7fabf63db5956d9",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-9518224f1-dashboard-age/receipt.json",
+    "full_local_receipt_sha256": "3aa17da7a8cc95f506a17afb1328f64aa07b7d5e2761aa7e73e157e23c60aa1e",
+    "frontend_comparison": {
+      "files": 22287,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "previous_qualified_frontend_revision": "3b9e3a55b37c4ada193714cb4279ed9acc53111f",
+      "artifact_delta": {
+        "added": [
+          "main.b62c813500aad6aa.js",
+          "main.b62c813500aad6aa.js.map"
+        ],
+        "removed": [
+          "main.0238dda93ea6baf4.js",
+          "main.0238dda93ea6baf4.js.map"
+        ],
+        "changed_common": [
+          "index.html"
+        ]
+      }
+    },
+    "native_dashboard_ui": {
+      "time": "2026-11-03T03:49:15.331595+00:00",
+      "method": "cua_repl exact task app, explicit private data/cache, sole PID verified before UI",
+      "pid": 41402,
+      "visible_dashboard_age": "Age not provided",
+      "visible_synthetic_encounter": "chartrove-picker-encounter",
+      "fixture_birth_date_absent_before_and_after": true,
+      "synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_encounter": 1,
+        "fhir_condition": 1
+      },
+      "all_three_raw_resources_byte_identical_to_seed": true,
+      "seed_files_unchanged": true,
+      "existing_synthetic_session_restored": "dashboard rendered without a new manual sign-in; fresh sign-in separately covered by ten-check native smoke",
+      "window_closed_with_fresh_full_ax_close_index": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_calls_after_close": true,
+      "startup_diagnostic": {
+        "initial": "blank background window, no WebView AX content",
+        "attempts": [
+          "title-bar click and AX Raise did not immediately render",
+          "body click returned AXError.notImplemented",
+          "Tab keyboard focus then exposed normal dashboard"
+        ],
+        "causal_limit": "native sample shows idle event loop; retained sandbox-extension warning is not established as causal; no application workaround/source changes used"
+      },
+      "real_records_used": false
+    }
+  },
+  "native_validation_receipt": "docs/maintenance/native-9518224f1-validation.json"
 }
