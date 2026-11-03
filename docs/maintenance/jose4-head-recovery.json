@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/jose-4.x-lockfile",
+  "tip": "d66e4e7e9a6143dd7f0c2f64bc68fdb97c8f1707",
+  "bundle": "dist/validation/2026-11-01-consolidation/jose4-head-20261103.bundle",
+  "sha256": "1041109029584db86c0051801f55dc5e9c46337cfc41050309972b311589d9f1",
+  "bytes": 1446,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "32bf17c3def0d0526ee655a6c96e86ea18ee5eba",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "0c101fa9e3b40f5025d007d010d2b3641ed2e5f4",
+    "c3ee8c809ac724b52a0c3c80ab8ea037abad106b",
+    "d29573de8cfa07081d5e7a4aac18ecdb74eab9da",
+    "d66e4e7e9a6143dd7f0c2f64bc68fdb97c8f1707"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/jose-4.x-lockfile",
+      "2fa57c44c2227d6e1a2ca0cadb213dba548553f6"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

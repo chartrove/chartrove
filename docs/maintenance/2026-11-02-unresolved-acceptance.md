@@ -8,24 +8,27 @@ synthetic data. Manual Upload opens the chooser and imports three generated
 records. The attachment popup/chooser works, but Save originally returned HTTP
 500 because generated-file FormData did not reach file extraction. The bounded
 multipart correction now has a fresh native package and actual UI save acceptance,
-plus read-only proof of the exact persisted attachment bytes. These are separate
-reported paths, individually evidenced, awaiting protected integration and
-individual closure. [Current acceptance](2026-11-02-native-attachment-upload.md).
+plus read-only proof of the exact persisted attachment bytes. These separate
+reported paths were individually validated, integrated through protected PR
+#363 and closed. [Acceptance evidence](2026-11-02-native-attachment-upload.md).
 
 Automatic in-place encounter graph refresh required navigation reload during
-acceptance; that behavior is not claimed fixed. A synthetic patient without a
-birth date displayed NaN Years Old. Those remaining observations and #186's lab
-edit raw-payload replacement boundary require separate review. No date editing,
-record migration or real-data repair was performed.
+acceptance; that behavior is not claimed fixed. The missing-birth-date NaN
+profile and invented dashboard age were subsequently corrected in #378/#379,
+with raw records unchanged. #186's lab-edit raw-payload replacement boundary
+still requires separate review. No date editing, record migration or real-data
+repair was performed.
 
-#69/#137 remain unresolved. The shared extractor currently selects the first
+#69 remains unresolved; #137 was individually closed as its duplicate, without
+claiming implementation. The shared extractor currently selects the first
 scalar date or a Period start/end fallback. Generated model date fields are
 *time.Time; the separate SearchParameterDateType bounds/array shape is not stored
 by those fields. Returning range JSON would break the existing parser and database
 contract. Correct range/array indexing requires a reviewed representation and
 migration/reindex decision with synthetic preservation tests; no such migration
 or real-record repair is applied or implied by successful date-column portability
-checks. These two reports are not closed as duplicates or as already fixed.
+checks. #383 corrects only missing Period endpoints in table presentation and
+does not resolve this indexing policy.
 
 The previously pending summary/text_field_extract narrative disposition and
 upstream expansion scope decisions also remain unanswered. Coverage recovery and

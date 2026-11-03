@@ -319,5 +319,14 @@
     "all_22287_frontend_asset_files_identical": true,
     "original_contents_stat_and_xattrs_restored_exactly": true
   },
-  "protected_integration": "pending"
+  "protected_integration": {
+    "pr": 384,
+    "merge": "ce751170ed9453747bbe2d44c372c51524660cf1",
+    "required_checks": "Backend/Frontend/Desktop success from Actions app 15368",
+    "run": 41588676615,
+    "historical_pr": 252,
+    "historical_pr_disposition": "implemented by replacement; closed after fresh unchanged-content check",
+    "historical_and_task_branches": "retired exact reviewed tips after bundle/reachability/dependency checks",
+    "retirement_receipt": "docs/maintenance/tslib-retirement-1.json"
+  }
 }

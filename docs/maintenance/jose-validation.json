@@ -1,0 +1,178 @@
+{
+  "scope": "jose v6.2.15 replaces v4.11.2; only direct manifest value and existing lock block plus actual AuthService compatibility coverage",
+  "runtime_use": "only decodeJwt at two current AuthService call sites; application/Go/database/Wails authentication behavior unchanged",
+  "integrity": {
+    "source_tag": "v6.2.15",
+    "source_archive_sha256": "25cbaba5aaecfc5a4fa2ad9e97b7780f5509f476951be819b1984b237efe82a4",
+    "published_files": 80,
+    "identical_runtime_declaration_license_readme_files": 79,
+    "only_different_file": "package.json",
+    "package_json_difference": "exact removal of imports, scripts and devDependencies; every remaining field unchanged",
+    "initial_all_files_identity_assertion": "failed on package.json; original comparison and exact diff retained; no archive redownload or runtime producer rerun",
+    "runtime_contract_fields_unchanged_from_tag": true,
+    "sha1_and_sha512_verified_against_registry": true,
+    "published_archive_sha256": "e6d47adc1d83ec95215d791e966362629e75ce1973902fd29ae4bbd468500e9c",
+    "all_80_installed_files_match_verified_published_package": true
+  },
+  "frontend": {
+    "receipts": [
+      {
+        "name": "frozen-install",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "install",
+          "--frozen-lockfile",
+          "--registry",
+          "https://registry.npmjs.org",
+          "--network-concurrency",
+          "4"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T06:25:11.620864+00:00",
+        "end": "2026-11-03T06:25:17.804546+00:00",
+        "exit": 0
+      },
+      {
+        "name": "claims",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "test",
+          "--watch=false",
+          "--progress=false",
+          "--browsers=ChromeHeadlessCI",
+          "--reporters=dots",
+          "--include=src/app/services/auth-claims-compatibility.service.spec.ts"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T06:25:22.248386+00:00",
+        "end": "2026-11-03T06:25:38.446693+00:00",
+        "exit": 0
+      },
+      {
+        "name": "node",
+        "command": [
+          "node",
+          "--test",
+          "frontend/desktop-tests/bridge.test.mjs",
+          "frontend/desktop-tests/compodoc-compat.test.mjs",
+          "frontend/desktop-tests/test-framework.test.mjs"
+        ],
+        "cwd": ".",
+        "start": "2026-11-03T06:25:38.447425+00:00",
+        "end": "2026-11-03T06:25:38.684075+00:00",
+        "exit": 0
+      },
+      {
+        "name": "browser",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "test",
+          "--watch=false",
+          "--progress=false",
+          "--browsers=ChromeHeadlessCI",
+          "--reporters=dots"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T06:25:38.684407+00:00",
+        "end": "2026-11-03T06:25:53.670923+00:00",
+        "exit": 0
+      },
+      {
+        "name": "production",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "build",
+          "--configuration",
+          "desktop_prod",
+          "--output-path",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/jose-review/validation/frontend"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T06:25:53.671407+00:00",
+        "end": "2026-11-03T06:26:34.401626+00:00",
+        "exit": 0
+      },
+      {
+        "name": "storybook",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "exec",
+          "ng",
+          "--",
+          "run",
+          "fastenhealth:build-storybook",
+          "--output-dir",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/jose-review/validation/storybook"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T06:26:36.767147+00:00",
+        "end": "2026-11-03T06:27:18.155881+00:00",
+        "exit": 0
+      }
+    ],
+    "baseline_claim_cases": 13,
+    "candidate_claim_cases": 13,
+    "same_spec_sha256": "9242518eecb66f429b198f20d4740211f037ea54ac99ceee1d3551d04e4752ae",
+    "browser_passed": 513,
+    "existing_skip": 1,
+    "node_passed": 10,
+    "production_passed": true,
+    "storybook_passed": true,
+    "all_other_72_direct_versions_unchanged": true,
+    "coverage_and_documentation_json_absence_preserved": true
+  },
+  "retained_diagnostics": [
+    "baseline compilation failed on expected-value typing; qualified exact-value assertions use unknown for unmodeled wire claims, no runtime/model change",
+    "initial all-published-files-vs-tag assertion failed on package.json; retained diff proves exact removal of imports/scripts/devDependencies and unchanged remaining metadata; all other 79 files identical"
+  ],
+  "upstream_suites": "full upstream cryptographic suite not run; actual decoder consumer compatibility and application builds are the qualified boundary",
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/jose-review",
+  "native": {
+    "receipt": "docs/maintenance/native-50cabfe56-validation.json",
+    "source_revision": "50cabfe5696e7275a3c6b83c71fe62c9292d1e71",
+    "build_zip_signature_smoke": "passed; ten fresh synthetic native checks",
+    "zip_sha256": "b124cb72ea34bbe92422778eea02467e5a6d1fee567d6f6855b2445cbb7538cf",
+    "frontend_asset_files_identical": 22287,
+    "native_auth_ui": {
+      "time": "2026-11-03T06:35:06.910010+00:00",
+      "source_revision": "50cabfe5696e7275a3c6b83c71fe62c9292d1e71",
+      "method": "cua_repl exact verified app; sole PID and explicit private data/cache verified before binding",
+      "pid": 72859,
+      "successful_normal_signin_route": "#/dashboard",
+      "profile_username": "desktop-smoke",
+      "profile_role": "Administrator",
+      "users_navigation_visible": true,
+      "dashboard_patient_label": "Table Synthetic | Age not provided | Unknown",
+      "signout_route": "#/auth/signin",
+      "signin_form_after_signout": "username/password empty, Sign In disabled",
+      "focus_observation": "Tab completed deferred initial and sign-in rendering; no source/asset workaround or cause claim",
+      "synthetic_raw_records_byte_identical_to_seed": true,
+      "original_seed_hashes_unchanged": true,
+      "synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_encounter": 1
+      },
+      "app_closed_using_fresh_full_ax_close_index": true,
+      "process_absence_verified_with_ps_only": true,
+      "no_cua_call_after_close": true,
+      "real_records_used": false
+    },
+    "original_outputs_content_stat_xattrs_restored_exactly": true
+  },
+  "protected_integration": "pending"
+}

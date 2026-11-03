@@ -1,0 +1,33 @@
+{
+  "time": "2026-11-03T06:21:13.766418+00:00",
+  "main": "ce751170ed9453747bbe2d44c372c51524660cf1",
+  "branches": [
+    {
+      "name": "renovate/tslib-2.x-lockfile",
+      "sha": "ea71bafafa7536b902f199a9ea55ca58442fc4f2",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/tslib-2.x-lockfile",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/tslib-maintenance",
+      "sha": "8ab021d4c3edfe0f2d383f84eb0b10df56be0425",
+      "kind": "merged task",
+      "ref": "refs/heads/task/tslib-maintenance",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/tslib-2.x-lockfile\n - [deleted]             task/tslib-maintenance\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/tslib-2.x-lockfile\n - [deleted]             task/tslib-maintenance\n"
+    }
+  }
+}
