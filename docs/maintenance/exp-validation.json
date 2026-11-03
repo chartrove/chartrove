@@ -1,0 +1,579 @@
+{
+  "time": "2026-11-03T02:28:21.968555+00:00",
+  "base_main": "0c55e3d2e349a9679b4bc05abd6e50ab0ca2b0cc",
+  "target": "golang.org/x/exp v0.0.0-20261014143641-f0251eb4aa3e in both graphs",
+  "companion_x_mod": "v0.42.0 already selected before update; retained and explicitly recorded by desktop",
+  "required_x_tools_selection": "v0.51.0 to v0.52.0; absent from both production import closures",
+  "unchanged_go_minimums": "1.26.0",
+  "unchanged_database_provider_replacements": true,
+  "selected_graphs_match_prevalidated_candidates": true,
+  "checksum_preservation": {
+    "root": {
+      "existing_checksum_bytes_and_order_retained": true,
+      "added_checksum_lines": 2,
+      "candidate_checksum_set_matches_applied": true
+    },
+    "desktop": {
+      "existing_checksum_bytes_and_order_retained": true,
+      "added_checksum_lines": 4,
+      "candidate_checksum_set_matches_applied": true
+    }
+  },
+  "graph_delta": {
+    "root": {
+      "counts": [
+        209,
+        211
+      ],
+      "delta": {
+        "golang.org/x/exp": {
+          "before": "v0.0.0-20220303212507-bbda1eaf7a17",
+          "after": "v0.0.0-20261014143641-f0251eb4aa3e"
+        },
+        "golang.org/x/tools": {
+          "before": "v0.51.0",
+          "after": "v0.52.0"
+        },
+        "golang.org/x/tools/go/expect": {
+          "before": null,
+          "after": "v0.1.1-deprecated"
+        },
+        "golang.org/x/tools/go/packages/packagestest": {
+          "before": null,
+          "after": "v0.1.1-deprecated"
+        }
+      }
+    },
+    "desktop": {
+      "counts": [
+        325,
+        325
+      ],
+      "delta": {
+        "golang.org/x/exp": {
+          "before": "v0.0.0-20260410095643-746e56fc9e2f",
+          "after": "v0.0.0-20261014143641-f0251eb4aa3e"
+        },
+        "golang.org/x/tools": {
+          "before": "v0.51.0",
+          "after": "v0.52.0"
+        }
+      }
+    }
+  },
+  "production_import_delta": {
+    "root": {
+      "changed_modules": {
+        "golang.org/x/exp": {
+          "before": "v0.0.0-20220303212507-bbda1eaf7a17",
+          "after": "v0.0.0-20261014143641-f0251eb4aa3e"
+        }
+      },
+      "x_tools_imported_in_either_production_closure": false,
+      "deprecated_openpgp_imported": false
+    },
+    "desktop": {
+      "changed_modules": {
+        "golang.org/x/exp": {
+          "before": "v0.0.0-20260410095643-746e56fc9e2f",
+          "after": "v0.0.0-20261014143641-f0251eb4aa3e"
+        }
+      },
+      "x_tools_imported_in_either_production_closure": false,
+      "deprecated_openpgp_imported": false
+    }
+  },
+  "desktop_baseline_provenance": {
+    "reason": "After root candidate application, desktop baseline modfile still replaces backend with current checkout; dependency root go.mod is now candidate. Baseline load refused read-only module updates, and is not qualified.",
+    "reused_qualified_snapshot": "dist/validation/2026-11-01-consolidation/viper-review/desktop-candidate-production-imports.txt",
+    "sha256": "f90752302e5d8ef63f389bd52c9fd56339f1ead8a643ffb092665624ff2d0696",
+    "all_selected_module_versions_replacements_and_go_versions_match_exp_baseline": true,
+    "all_executable_sources_unchanged_since_snapshot": "337fa90cd2e42f240ac62ac6bdb77e7a341afa5b",
+    "no_source_copy_or_worktree_created": true
+  },
+  "query_summary_before_after": [
+    {
+      "name": "root-baseline",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/exp-review/baseline/root.mod",
+        "-json",
+        "./backend/pkg/database",
+        "-run",
+        "^(TestProcessSearchParameter|TestProcessSearchParameterValue|TestSearchCodeToWhereClause|TestSearchCodeToFromClause|TestProcessAggregationParameter|TestRepositorySummaryTestSuiteSuite)$",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:12:04.057319+00:00",
+      "end": "2026-11-03T02:12:12.803574+00:00",
+      "exit": 0,
+      "entered": [
+        "TestProcessSearchParameter",
+        "TestProcessSearchParameterValue",
+        "TestSearchCodeToWhereClause",
+        "TestSearchCodeToFromClause",
+        "TestProcessAggregationParameter",
+        "TestRepositorySummaryTestSuiteSuite",
+        "TestRepositorySummaryTestSuiteSuite/TestGetInternationalPatientSummaryBundle"
+      ],
+      "passes": 7,
+      "skipped_tests": []
+    },
+    {
+      "name": "root-candidate",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/exp-review/candidate/root.mod",
+        "-json",
+        "./backend/pkg/database",
+        "-run",
+        "^(TestProcessSearchParameter|TestProcessSearchParameterValue|TestSearchCodeToWhereClause|TestSearchCodeToFromClause|TestProcessAggregationParameter|TestRepositorySummaryTestSuiteSuite)$",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:12:12.803928+00:00",
+      "end": "2026-11-03T02:12:18.835354+00:00",
+      "exit": 0,
+      "entered": [
+        "TestProcessSearchParameter",
+        "TestProcessSearchParameterValue",
+        "TestSearchCodeToWhereClause",
+        "TestSearchCodeToFromClause",
+        "TestProcessAggregationParameter",
+        "TestRepositorySummaryTestSuiteSuite",
+        "TestRepositorySummaryTestSuiteSuite/TestGetInternationalPatientSummaryBundle"
+      ],
+      "passes": 7,
+      "skipped_tests": []
+    },
+    {
+      "name": "desktop-baseline",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/exp-review/baseline/desktop.mod",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+        "-run",
+        "^(TestProcessSearchParameter|TestProcessSearchParameterValue|TestSearchCodeToWhereClause|TestSearchCodeToFromClause|TestProcessAggregationParameter|TestRepositorySummaryTestSuiteSuite)$",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:12:18.836207+00:00",
+      "end": "2026-11-03T02:12:24.543448+00:00",
+      "exit": 0,
+      "entered": [
+        "TestProcessSearchParameter",
+        "TestProcessSearchParameterValue",
+        "TestSearchCodeToWhereClause",
+        "TestSearchCodeToFromClause",
+        "TestProcessAggregationParameter",
+        "TestRepositorySummaryTestSuiteSuite",
+        "TestRepositorySummaryTestSuiteSuite/TestGetInternationalPatientSummaryBundle"
+      ],
+      "passes": 7,
+      "skipped_tests": []
+    },
+    {
+      "name": "desktop-candidate",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/exp-review/candidate/desktop.mod",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+        "-run",
+        "^(TestProcessSearchParameter|TestProcessSearchParameterValue|TestSearchCodeToWhereClause|TestSearchCodeToFromClause|TestProcessAggregationParameter|TestRepositorySummaryTestSuiteSuite)$",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:12:24.543808+00:00",
+      "end": "2026-11-03T02:12:30.013279+00:00",
+      "exit": 0,
+      "entered": [
+        "TestProcessSearchParameter",
+        "TestProcessSearchParameterValue",
+        "TestSearchCodeToWhereClause",
+        "TestSearchCodeToFromClause",
+        "TestProcessAggregationParameter",
+        "TestRepositorySummaryTestSuiteSuite",
+        "TestRepositorySummaryTestSuiteSuite/TestGetInternationalPatientSummaryBundle"
+      ],
+      "passes": 7,
+      "skipped_tests": []
+    }
+  ],
+  "upstream_used_packages": {
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-json",
+      "./maps",
+      "./slices",
+      "./constraints",
+      "-count=1"
+    ],
+    "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/exp-review/upstream-exp",
+    "start": "2026-11-03T02:14:36.252374+00:00",
+    "scope": "used exp packages only; no whole experimental module suite claim",
+    "exit": 0,
+    "end": "2026-11-03T02:14:37.459040+00:00",
+    "passes": 116,
+    "skipped_tests": [],
+    "failed_tests": []
+  },
+  "model_and_related_versions_generation": {
+    "model_files": 57,
+    "qualified_lo_generator_hashes_identical": true,
+    "model_source_and_inputs_unchanged_since_qualified_baseline": true,
+    "hashes": {
+      "fhir_procedure.go": "8346071ff5d7683dce7bda4ad78e58fd7e360b0a04a0507b3fc69f2537ba8290",
+      "fhir_medication_statement.go": "46bc591c3b251033863381ea7b7e3d48ead954a790266edf092f7d9ada6e02ed",
+      "fhir_encounter.go": "382bb51a8df1eeda70daf83656aa87cab4f58bd8048c677b621265d37dda89a1",
+      "fhir_observation.go": "44ab82856e0eb0892197f3f6dadf7ea9812d9349c35761f465b15520f1b055a8",
+      "fhir_medication.go": "d72ddb6feb06e28e6b8c8e560f5b8eed988ce0f1fe1b96c2dec6f34663bccf4c",
+      "fhir_nutrition_order.go": "061ee10e81c616a0bd91bfd3048d34ca844495f9c9c85594542b6b244bc4abc7",
+      "fhir_organization.go": "36dc43c6c5fbd7233de0b568bf93aae9d1394e50cf7724730307eaf5a6e166fb",
+      "fhir_insurance_plan.go": "135e0e59430aa8a93fe0b3dac36b11e4721bd5bd5ccdac9f13458e3c3ed48017",
+      "fhir_adverse_event.go": "2516b15fa58521af4846e1c940a28fc41a47082bf8e721af9ae4a24b06e808e5",
+      "fhir_family_member_history.go": "c8a242ac54326fd7ed161344b22e03dfcc0163aa9dec1925c788e0214445ec81",
+      "fhir_explanation_of_benefit.go": "96a2466455b3ab985643528ef873a39f5026812f9a0d5a4dea14725210b50e39",
+      "fhir_goal.go": "cf613733f23bcd3baac69440735fac56889b65067cedf5fc6604c0c0f59c1f4c",
+      "fhir_allergy_intolerance.go": "89c81211c45313e3266db90864a7e2ac8b8a353e6e77566b016410d1d8be018e",
+      "fhir_coverage.go": "290e05b6f74ea9110bff25c03c42231db691e5b18d1dbc942c2484f502eda404",
+      "fhir_device_request.go": "db5f590a62033706ca8c729b314a75b6de568160a96495bdc4ad81b754725789",
+      "fhir_consent.go": "5c2e862999d9d1b3498b8f1f8062b39bc14bbf1dab17956229ef8416d37a6bae",
+      "fhir_medication_administration.go": "fe27cea0db5d8dca122d2d5490e6e9023384138b640fc6fd0bd924b228daada7",
+      "fhir_enrollment_response.go": "f3dde8311b4522d5a12434bee339d6148aa04cf195ba8884aa56ff8502aa9a78",
+      "fhir_account.go": "d9d9b168be6e6713f870094807d96aa68928b682218866e5f07d269402c4ecff",
+      "fhir_provenance.go": "dae498f0d8e1636a7685d9379be995ad147753515d1dce0acdf7c290d100a252",
+      "fhir_claim.go": "bf1f9616e9b86f1cb6c0a5230bb2139a28385d2ef8bdc2d506711634744d76b5",
+      "fhir_enrollment_request.go": "9e1479062c05ff3ea362af7f14ff49594764684a7cecf084bf84ce1ed40bac33",
+      "fhir_vision_prescription.go": "a809595ae29dd329979e28ee7dceeb0e7cec034172d9bfa88e3c7683e9b35caa",
+      "fhir_specimen.go": "6b118f0f4188c3b2c4e3d073de996ebd7375ea00e3a565b2a997de87d77a81c1",
+      "fhir_coverage_eligibility_request.go": "caf130f71c5579153f27d738cfc8f1d815ae2a6a2f49e49207db773b62866b05",
+      "fhir_service_request.go": "87ef119f40993f9e8d0dc0b7a9f24583d4cdafa965add006d4083af8fbdab1f4",
+      "fhir_clinical_impression.go": "258432c1eb801338bc0a9e396bbfac5c3a2f49abd10c0cb216313732984a4e4e",
+      "fhir_organization_affiliation.go": "464e35ca47f1f7b387d00b76804f1cecc03cc51fa373032b2de3a9dc2a8548c1",
+      "fhir_medication_dispense.go": "23e229b51afe2e8e3cea372bb1535c9b6b27da3571108806711e0c9260af815d",
+      "fhir_diagnostic_report.go": "8017cf196e96c2140139a9f9f986de802a2112ffa6d3237b425b362395f5f4e5",
+      "fhir_imaging_study.go": "76f7c06642a7cf1b8e7dc1aa0c110073e464310bd1b2322d6db7c90093bf8492",
+      "fhir_slot.go": "82f60f89fe1b768b34a55899d6d3fae7a38ee02010e1580d1dca016ecbc361c4",
+      "fhir_schedule.go": "c75e34f3b6c70773fc7ce9cc8e0bbb800f7551ce3c038972dca8c618883f7892",
+      "fhir_related_person.go": "25717c6e9458464d7d2045550866f1bdd88ec55c0ffb49cc479315819b63b7c5",
+      "fhir_practitioner.go": "e7a0903dc9b0cffc0777eb3925c559572de32aeba1e7f599a67a53586e34cdc4",
+      "fhir_practitioner_role.go": "c9584c4508f6c09d22df3a92f23e4f6b9e253924c377dbeaed37f56c90a984ab",
+      "utils.go": "3c820d62cb9702abb8d5b837500cc2cc458383c831924d9562c2f49b5656c1ab",
+      "fhir_document_manifest.go": "f63ecf24d3c9479d7e72f857763bbf9aaf35d7604fa8df50a3ffd7f647af8e84",
+      "fhir_care_plan.go": "7f83c65f51000741c21f411752fa1b45ddeeece3f9e06c71b2bc5afa57060245",
+      "fhir_device.go": "ef3f766d78fade5e0854443b32c4408a9fccf1a0b1e59f7a4bff3dc533fc105a",
+      "fhir_document_reference.go": "109d5a29df975bb2095aaf38b42f8e420a9d66ddb90bad95b0155b65c8bd5db1",
+      "fhir_medication_request.go": "859d9e943cf571a50d3043d26c1ca7499dcce8cd741ce9f21aa2ae7bb1ba5a0d",
+      "fhir_appointment.go": "862674dc14fbb253ddf29ea4ab673ff31fdd66d01cd74749a4cfef493f0e4fa6",
+      "fhir_claim_response.go": "f61cbd53a2c585ccd3bbe00d200d2404213660a357a39429e251d2df1c04f8f4",
+      "fhir_questionnaire.go": "03752ae5ee04fba5cc89b3d20af1414c49fa092d9973de8730ac895ba59c5ad5",
+      "fhir_care_team.go": "310860f2fc71e36cbe7962f3dcd1baa327d47623c2010735fae51040d27840e2",
+      "fhir_endpoint.go": "7c100e17d614f9cabac25de993df7c8e7a9fa93fc06477967b3f840c9869eb2b",
+      "fhir_location.go": "ba5874e05a3f247741837f35ff50699ca9949d6fe4de7488293933789a5b896c",
+      "fhir_immunization.go": "6a60b3e7e05a686dbcef6170b321c753bffb6db19c56995a3d6871618d9049c3",
+      "fhir_media.go": "2739f312266b9f15267862f2044c4604ea4b6f72cb0a776017ee601716bdf912",
+      "fhir_composition.go": "7b6a5a557b0d9d3eb8c50aa316ad877a47b69efb4574b9c48372c834d3b1edc7",
+      "fhir_person.go": "6b257e1abdd53cb0492646a1df9254e1a1af1882163289a0efb1b62965c6e0ec",
+      "fhir_questionnaire_response.go": "81b8816e9f81a728feee875835f0d35413db9bc088d41a23c4b64824fcd209ce",
+      "fhir_condition.go": "98771b6de3c077e900f89858510c2d54e7969811f0f3ef7aa2fc60ff20affdcb",
+      "fhir_binary.go": "eb8b462fd9929ea95602879ca3c44c8a30cd51e7082b01f8c90ac6b31eac96e5",
+      "fhir_patient.go": "b9591b05995d6ef673d2a50104774a41b23fe28b8c32e583af18f73c01819b5d",
+      "fhir_coverage_eligibility_response.go": "a7645338e89639180e45a301ab30e46bf5a4d563684abba766b51450b2dc2913"
+    },
+    "related_versions_json_identical": true,
+    "related_versions_sha256": "2a9a70fcf9ee823ee45a3b6277e74904c0e426d64294dd4508e4cd4e51dc666d",
+    "no_tracked_model_or_metadata_regeneration": true
+  },
+  "dashboard_cache_boundary_checks": [
+    {
+      "name": "root",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./backend/pkg/web/handler",
+        "-run",
+        "^TestCustomDashboardGistBoundary$",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:21:28.904232+00:00",
+      "end": "2026-11-03T02:21:33.755844+00:00",
+      "exit": 0,
+      "entered": [
+        "TestCustomDashboardGistBoundary",
+        "TestCustomDashboardGistBoundary/object",
+        "TestCustomDashboardGistBoundary/null",
+        "TestCustomDashboardGistBoundary/outside-id"
+      ],
+      "passes": 4,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "desktop",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+        "-run",
+        "^TestCustomDashboardGistBoundary$",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:21:33.756411+00:00",
+      "end": "2026-11-03T02:21:38.013187+00:00",
+      "exit": 0,
+      "entered": [
+        "TestCustomDashboardGistBoundary",
+        "TestCustomDashboardGistBoundary/object",
+        "TestCustomDashboardGistBoundary/null",
+        "TestCustomDashboardGistBoundary/outside-id"
+      ],
+      "passes": 4,
+      "skipped_tests": [],
+      "failed_tests": []
+    }
+  ],
+  "applied_validation": [
+    {
+      "name": "root-verify",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:18:57.244401+00:00",
+      "end": "2026-11-03T02:19:00.099021+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-verify",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:19:00.099504+00:00",
+      "end": "2026-11-03T02:19:02.227269+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "-json",
+        "all"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:19:02.227660+00:00",
+      "end": "2026-11-03T02:19:02.254399+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "-json",
+        "all"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:19:02.254926+00:00",
+      "end": "2026-11-03T02:19:02.277096+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:19:02.277462+00:00",
+      "end": "2026-11-03T02:19:08.368967+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:19:08.369449+00:00",
+      "end": "2026-11-03T02:19:12.772442+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "-json",
+        "./backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlock",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:19:12.773564+00:00",
+      "end": "2026-11-03T02:19:28.787915+00:00",
+      "exit": 0,
+      "passes": 4,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "desktop-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlock",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:19:28.788566+00:00",
+      "end": "2026-11-03T02:19:41.895853+00:00",
+      "exit": 0,
+      "passes": 4,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "desktop-host",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./...",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T02:19:41.896454+00:00",
+      "end": "2026-11-03T02:19:51.228741+00:00",
+      "exit": 0,
+      "passes": 28,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "server-build",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/exp-review/applied-validation/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T02:19:51.229562+00:00",
+      "end": "2026-11-03T02:19:57.701235+00:00",
+      "exit": 0
+    }
+  ],
+  "module_scans": {
+    "root": {
+      "config": [
+        {
+          "protocol_version": "v1.0.0",
+          "scanner_name": "govulncheck",
+          "scanner_version": "v1.9.0",
+          "db": "https://vuln.go.dev",
+          "db_last_modified": "2026-11-02T22:01:43Z",
+          "go_version": "go1.27.3",
+          "scan_level": "module",
+          "scan_mode": "source"
+        }
+      ],
+      "findings": [
+        {
+          "osv": "GO-2026-5932",
+          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
+          "trace": [
+            {
+              "module": "golang.org/x/crypto",
+              "version": "v0.58.0"
+            }
+          ]
+        }
+      ],
+      "actual_finding_ids": [
+        "GO-2026-5932"
+      ],
+      "osv_inventory_is_not_finding_list": true
+    },
+    "desktop": {
+      "config": [
+        {
+          "protocol_version": "v1.0.0",
+          "scanner_name": "govulncheck",
+          "scanner_version": "v1.9.0",
+          "db": "https://vuln.go.dev",
+          "db_last_modified": "2026-11-02T22:01:43Z",
+          "go_version": "go1.27.3",
+          "scan_level": "module",
+          "scan_mode": "source"
+        }
+      ],
+      "findings": [
+        {
+          "osv": "GO-2026-5932",
+          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
+          "trace": [
+            {
+              "module": "golang.org/x/crypto",
+              "version": "v0.58.0"
+            }
+          ]
+        }
+      ],
+      "actual_finding_ids": [
+        "GO-2026-5932"
+      ],
+      "osv_inventory_is_not_finding_list": true
+    }
+  },
+  "module_scan_is_not_whole_application_security_assurance": true,
+  "frontend_qualified_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+  "native_validation": "pending",
+  "protected_integration": "pending required PR checks",
+  "historical_pr221": "live pending protected replacement integration and individual reconciliation",
+  "real_health_records_accessed": false
+}
