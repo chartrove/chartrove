@@ -1,0 +1,29 @@
+{
+  "branch": "renovate/ngx-highlightjs-14.x",
+  "tip": "498d01b5a9ffd06b322fb0164d22a49a215a9a33",
+  "bundle": "dist/validation/2026-11-01-consolidation/highlight-head-20261103.bundle",
+  "sha256": "cad079552e960c9fbc1852a03b8b60ee2f4e55921740fb088e436cd8a047b9a9",
+  "bytes": 1740,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "42a11084261cc6c1f5cdd82a2295d7571742531e",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "498d01b5a9ffd06b322fb0164d22a49a215a9a33",
+    "6bbb485bc65e277fd77206aa049829b9ee725661",
+    "8807930775f1509948b48bb9863f1e25f8e6b21e",
+    "9b0973e21bc2289fa0a8c348cf3a4e4fe83e48e2",
+    "ab131e3cb4a655e46d1df3b4b78b9586b3242651"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/ngx-highlightjs-14.x",
+      "365da2a50be3bfd00547f2755ab3c76fab029464"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

@@ -1,0 +1,13 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/highlight-installed-before-20261103.tar.zst",
+  "sha256": "be8c1145da55efb4b7eadc694d94cbc50204e3b906859d2bebb2159928092356",
+  "bytes": 1126417,
+  "installed_packages": [
+    "ngx-highlightjs 7.0.1",
+    "highlight.js 11.7.0",
+    "highlightjs-line-numbers.js 2.8.0"
+  ],
+  "includes_yarn_integrity": true,
+  "native_acl_xattrs_flags_full_traversal_extracted_file_hashes": "passed",
+  "stat_and_content_manifest_sha256": "44ca681fdfc3e72bf7282af748a03dc225cd4c87bcee3d35b5661442fdb3362f"
+}
