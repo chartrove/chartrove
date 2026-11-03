@@ -1,0 +1,424 @@
+{
+  "raw_directory": "dist/validation/2026-11-01-consolidation/fhirpath-family-review",
+  "adopted_target_pending_protected_integration": "5.2.3",
+  "overlapping_originals": {
+    "301": "Pending implemented disposition after protected integration",
+    "241": "Pending superseded disposition only after validated5.2.3 integration; do not claim3.18 installed"
+  },
+  "manifest_lock": {
+    "direct_fhirpath": "3.3.1\u21925.2.3",
+    "new_required_packages": [
+      [
+        "@lhncbc/ucum-lhc",
+        "7.1.10"
+      ],
+      [
+        "@loxjs/url-join",
+        "1.0.2"
+      ],
+      [
+        "commander",
+        "14.0.3"
+      ],
+      [
+        "csv-parse",
+        "7.0.3"
+      ],
+      [
+        "decimal.js",
+        "10.6.0"
+      ]
+    ],
+    "js_yaml": "Only new ^4.1.1 selector aliases existing4.3.2 payload; no version or payload change",
+    "all_other_lock_blocks_exact": true,
+    "lforms34_manifest_and_fhirpath3.2_lock_unchanged": true,
+    "other_direct_manifest_values_unchanged": true,
+    "no_application_runtime_source_migration_yet": false
+  },
+  "frozen_install": {
+    "command": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=corepack@0.35.0",
+      "--",
+      "corepack",
+      "yarn",
+      "install",
+      "--frozen-lockfile",
+      "--registry",
+      "https://registry.npmjs.org",
+      "--network-concurrency",
+      "4"
+    ],
+    "exit": 0,
+    "seconds": 14.32,
+    "manifest_lock_sha256_before": {
+      "package.json": "219c7299aedbbba5b427ac557bc84a452e0b8372f66e504f23a2e2859548213e",
+      "yarn.lock": "b0cb36acfc807600d5c074dbdc9c912a4b6dd1b73b44a02cdd1b6dc616876a8a"
+    },
+    "manifest_lock_sha256_after": {
+      "package.json": "219c7299aedbbba5b427ac557bc84a452e0b8372f66e504f23a2e2859548213e",
+      "yarn.lock": "b0cb36acfc807600d5c074dbdc9c912a4b6dd1b73b44a02cdd1b6dc616876a8a"
+    },
+    "unchanged": true,
+    "freeBeforeBytes": 39155920896,
+    "freeAfterBytes": 39136923648,
+    "hostFreeDeltaBytes": -18997248
+  },
+  "installed_semantic_delta": {
+    "introduced": [
+      [
+        "@lhncbc/ucum-lhc",
+        "7.1.10"
+      ],
+      [
+        "@loxjs/url-join",
+        "1.0.2"
+      ],
+      [
+        "commander",
+        "14.0.3"
+      ],
+      [
+        "csv-parse",
+        "7.0.3"
+      ],
+      [
+        "decimal.js",
+        "10.6.0"
+      ],
+      [
+        "fhirpath",
+        "5.2.3"
+      ]
+    ],
+    "retired": [
+      [
+        "fhirpath",
+        "3.3.1"
+      ]
+    ],
+    "all_other_installed_name_version_pairs_unchanged": true,
+    "path_moves_in": "installed-version-delta.json"
+  },
+  "published_payloads": {
+    "fhirpath": {
+      "version": "5.2.3",
+      "locations": [
+        "fhirpath"
+      ],
+      "published_files": 90,
+      "all_payloads_match_verified_archive": true,
+      "archive_sha256": "393c26874a414fb24b82c7f6e162dfe2b7eda86b36cb2e40aa7d030552f103bc"
+    },
+    "@lhncbc/ucum-lhc": {
+      "version": "7.1.10",
+      "locations": [
+        "fhirpath/node_modules/@lhncbc/ucum-lhc"
+      ],
+      "published_files": 48,
+      "all_payloads_match_verified_archive": true,
+      "archive_sha256": "80c117aa3bbfa5f000ec323de99038cb90e1b35cf0468fb8e9683f50654dad0f"
+    },
+    "@loxjs/url-join": {
+      "version": "1.0.2",
+      "locations": [
+        "@loxjs/url-join"
+      ],
+      "published_files": 3,
+      "all_payloads_match_verified_archive": true,
+      "archive_sha256": "ddcfbbf41c6dea2d33641f8da312fefc373526b88b0c35c0279e583d9310dbcd"
+    },
+    "commander": {
+      "version": "14.0.3",
+      "locations": [
+        "fhirpath/node_modules/commander"
+      ],
+      "published_files": 14,
+      "all_payloads_match_verified_archive": true,
+      "archive_sha256": "5849703c500e0f324eb01340d8bda1f9ec48fc37bb7be9712eb0dd52aad92f6c"
+    },
+    "csv-parse": {
+      "version": "7.0.3",
+      "locations": [
+        "fhirpath/node_modules/csv-parse"
+      ],
+      "published_files": 33,
+      "all_payloads_match_verified_archive": true,
+      "archive_sha256": "7d30727d09622fc7d9483153e369a7b8f3a879a10733cb45cbd7ac7e067dc4b4"
+    },
+    "decimal.js": {
+      "version": "10.6.0",
+      "locations": [
+        "decimal.js"
+      ],
+      "published_files": 6,
+      "all_payloads_match_verified_archive": true,
+      "archive_sha256": "433210122e8149972f64054c54b0ce0872e5f15a3c5835aab57ff1a8e6d071b1"
+    }
+  },
+  "lforms_contexts": {
+    "lforms_fhirpath": {
+      "version": "3.2.0",
+      "old_path": "node_modules/lforms/node_modules/fhirpath/package.json",
+      "new_path": "node_modules/lforms/node_modules/fhirpath/package.json",
+      "path_unchanged": true,
+      "all_own_payloads_exact_from_original_archive": true,
+      "files": 127
+    },
+    "lforms_ucum": {
+      "version": "4.2.0",
+      "old_path": "node_modules/lforms/node_modules/@lhncbc/ucum-lhc/package.json",
+      "new_path": "node_modules/@lhncbc/ucum-lhc/package.json",
+      "path_unchanged": false,
+      "all_own_payloads_exact_from_original_archive": true,
+      "files": 47
+    },
+    "lforms_fhirpath_ucum": {
+      "version": "4.1.7",
+      "old_path": "node_modules/lforms/node_modules/fhirpath/node_modules/@lhncbc/ucum-lhc/package.json",
+      "new_path": "node_modules/lforms/node_modules/fhirpath/node_modules/@lhncbc/ucum-lhc/package.json",
+      "path_unchanged": true,
+      "all_own_payloads_exact_from_original_archive": true,
+      "files": 48
+    }
+  },
+  "sync_adapter": {
+    "initial_v5_exit": 1,
+    "runtime_assertions_executed": false,
+    "initial_errors": "Published generic async option variants infer array|Promise when options are omitted. Existing synchronous consumers cannot join/iterate/read length.",
+    "adapter": "frontend/src/lib/fhirpath.ts",
+    "options": {
+      "async": false
+    },
+    "no_cast_or_compiler_flag_change": true,
+    "caller_files": [
+      {
+        "file": "frontend/src/lib/models/datatypes/address-model.ts",
+        "adapter_import": "../../fhirpath",
+        "final_sha256": "8346b8621c4b090153e6f5d32bcdb04a66b7688769929b8e18c47df865108476"
+      },
+      {
+        "file": "frontend/src/lib/models/resources/explanation-of-benefit-model.ts",
+        "adapter_import": "../../fhirpath",
+        "final_sha256": "8c197929d59376eb819c70271c7845acee95901969d5593b32058efc4e260ca3"
+      },
+      {
+        "file": "frontend/src/app/components/report-header/report-header.component.ts",
+        "adapter_import": "../../../lib/fhirpath",
+        "final_sha256": "9750591e5f93b4fb400487a1ead32037e0a64e8c819583cc43b75ca905f33dd5"
+      },
+      {
+        "file": "frontend/src/app/pages/report-labs/report-labs.component.ts",
+        "adapter_import": "../../../lib/fhirpath",
+        "final_sha256": "26b8f9335ec4a62d96874109dca736afb57f4c63918171ad962823ba4ee44ef0"
+      },
+      {
+        "file": "frontend/src/app/pipes/fhir-path.pipe.ts",
+        "adapter_import": "../../lib/fhirpath",
+        "final_sha256": "63242215033204672a11906d08ab4df2b5bcdaa878edb7dbc877659c50e96293"
+      },
+      {
+        "file": "frontend/src/app/widgets/dashboard-widget/dashboard-widget.component.ts",
+        "adapter_import": "../../../lib/fhirpath",
+        "final_sha256": "d3f7c05c237e678b4e568df5943d9f2053d7f5c8fd85fdfd8396dc013da0299f"
+      }
+    ],
+    "all_test_sources_unchanged": true
+  },
+  "old_qualified_consumer": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/services/fhirpath-compatibility.spec.ts",
+      "--include=src/app/pipes/fhir-path.pipe.spec.ts",
+      "--include=src/lib/models/resources/explanation-of-benefit-model.spec.ts",
+      "--include=src/lib/models/datatypes/address-model.spec.ts"
+    ],
+    "versions": {
+      "fhirpath": "3.3.1",
+      "lforms": "34.0.0",
+      "@swimlane/ngx-datatable": "25.0.0"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/services/fhirpath-compatibility.spec.ts": "29044cbf2090a8805ad418ec9aa491d9a14b0bbf9bdb8d5a7bc653eacf94c1d0",
+      "frontend/src/app/pipes/fhir-path.pipe.spec.ts": "6c544afd0cc7b82ead323a76ef664db75618fc348f80c3d6f31d609673099e67",
+      "frontend/src/lib/models/resources/explanation-of-benefit-model.spec.ts": "5be901c602d1bc9b16c63da4a51ea24c57d9580612bcc317608394b3532d6bca",
+      "frontend/src/lib/models/datatypes/address-model.spec.ts": "1637fa8334486e914ba507444cd02552bddc7d6ebdcaab961e5a752d3e9c1305"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 40661905408,
+    "freeAfterCommandBytes": 38443692032,
+    "freeAfterCleanupBytes": 38474158080,
+    "freeDeltaBytes": -2187747328,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "new_corrected_consumer": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/services/fhirpath-compatibility.spec.ts",
+      "--include=src/app/pipes/fhir-path.pipe.spec.ts",
+      "--include=src/lib/models/resources/explanation-of-benefit-model.spec.ts",
+      "--include=src/lib/models/datatypes/address-model.spec.ts"
+    ],
+    "versions": {
+      "fhirpath": "5.2.3",
+      "lforms": "34.0.0",
+      "@swimlane/ngx-datatable": "25.0.0"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/services/fhirpath-compatibility.spec.ts": "29044cbf2090a8805ad418ec9aa491d9a14b0bbf9bdb8d5a7bc653eacf94c1d0",
+      "frontend/src/app/pipes/fhir-path.pipe.spec.ts": "6c544afd0cc7b82ead323a76ef664db75618fc348f80c3d6f31d609673099e67",
+      "frontend/src/lib/models/resources/explanation-of-benefit-model.spec.ts": "5be901c602d1bc9b16c63da4a51ea24c57d9580612bcc317608394b3532d6bca",
+      "frontend/src/lib/models/datatypes/address-model.spec.ts": "1637fa8334486e914ba507444cd02552bddc7d6ebdcaab961e5a752d3e9c1305"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 38577950720,
+    "freeAfterCommandBytes": 38323634176,
+    "freeAfterCleanupBytes": 38354415616,
+    "freeDeltaBytes": -223535104,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "browser_cases_each": 11,
+  "qualified_old_spec_types": {
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--project",
+      "tsconfig.spec.json",
+      "--noEmit"
+    ],
+    "exit": 0,
+    "seconds": 229.25,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "new_sync_spec_types": {
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--project",
+      "tsconfig.spec.json",
+      "--noEmit"
+    ],
+    "exit": 0,
+    "seconds": 11.56,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "initial_failed_stages": {
+    "old-before": "New spec compile TS2353; no runtime assertions. Initial source retained; corrected same coverage-object assertion via serialization.",
+    "new-before": "Array|Promise type errors in existing sync consumers; no runtime assertions. Corrected with documented async:false adapter, not casts/flags."
+  },
+  "license_comparison": {
+    "old_sha256": "e3845fb19fe87896d697d9f350e90ad1c00255ffbf2882d843d3009e589a4dac",
+    "new_sha256": "e3845fb19fe87896d697d9f350e90ad1c00255ffbf2882d843d3009e589a4dac",
+    "exact": true
+  },
+  "storage_rules": "Live workspace cache=false, private scratch disposed. Metrics are host-wide. No full workflow below unchanged50GiB reserve, no repeat cleanup or cache-fix build.",
+  "native_qualification": "Last locally qualified package source33c64fbdb predates later dependencies; no new packaged UI acceptance claimed.",
+  "protected_checks": "Mandatory Backend/Frontend/Desktop on final published head; no bypass.",
+  "initial_protected_run": {
+    "run": 41729384592,
+    "head": "6cfa043ddf671a6667c082b599f7efcfae8c96ac",
+    "Backend": "success",
+    "Desktop": "success",
+    "Frontend": "failure",
+    "browser_pass": 552,
+    "browser_skip": 1,
+    "initial_bundle": "10.04 MB",
+    "budget": "10 MB unchanged",
+    "over_budget_bytes_display": "39.81 kB",
+    "full_log": "ci-frontend-initial.log"
+  },
+  "rtf_correction": {
+    "reason": "Defer existing optional renderer to reduce initial bundle without changing budget; component-scoped target and destruction guard fix reproduced cross-record writes.",
+    "renderer_version_unchanged": true,
+    "raw_source_unchanged": true,
+    "final_old": {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots",
+        "--include=src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts"
+      ],
+      "versions": {
+        "fhirpath": "5.2.3",
+        "lforms": "34.0.0",
+        "@swimlane/ngx-datatable": "25.0.0"
+      },
+      "exit": 1,
+      "spec_sha256": {
+        "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts": "8bfce1e3f7bfc9525a0e2e5b30f783a441c07267a9ac5ba2fb3769c560168216"
+      },
+      "spec_unchanged": true,
+      "private_scratch_disposed": true,
+      "live_workspace_cache_enabled": false,
+      "freeBeforeBytes": 24587489280,
+      "freeAfterCommandBytes": 24559345664,
+      "freeAfterCleanupBytes": 24589774848,
+      "freeDeltaBytes": 2285568,
+      "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+    },
+    "final_new": {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots",
+        "--include=src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts"
+      ],
+      "versions": {
+        "fhirpath": "5.2.3",
+        "lforms": "34.0.0",
+        "@swimlane/ngx-datatable": "25.0.0"
+      },
+      "exit": 0,
+      "spec_sha256": {
+        "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts": "8bfce1e3f7bfc9525a0e2e5b30f783a441c07267a9ac5ba2fb3769c560168216"
+      },
+      "spec_unchanged": true,
+      "private_scratch_disposed": true,
+      "live_workspace_cache_enabled": false,
+      "freeBeforeBytes": 24586969088,
+      "freeAfterCommandBytes": 24552779776,
+      "freeAfterCleanupBytes": 24582873088,
+      "freeDeltaBytes": -4096000,
+      "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+    },
+    "final_cases_each": 4,
+    "final_old_failures": 2,
+    "qualifications": {
+      "rtf-before": "Initial observer5s deadline raced Jasmine5s; leaked afterAll/browser error. Not a complete15-case result; source/log retained.",
+      "rtf-qualified-before": "Observer3s and allSettled; all15 ran with2 genuine original-renderer failures.",
+      "rtf-corrected": "14/15 pass; destruction harness used default host change detection and did not remove child. Host fixed to Eager and removal asserted; final unchanged control rerun on both original/corrected source."
+    },
+    "source_sha256": {
+      "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.ts": "a82ac973c843594709e8faf8ba4c5cf77b5739ab598b5b0e0cfb23650e2861ed",
+      "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.html": "faa2048fe08ca3b6bf4646446683c4d39f244c1fae58480f762a05f1f0db34d9"
+    }
+  }
+}

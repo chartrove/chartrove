@@ -1,7 +1,6 @@
-import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectionStrategy} from '@angular/core';
 
 import {BinaryModel} from '../../../../../lib/models/resources/binary-model';
-import {EMFJS, RTFJS, WMFJS} from 'rtf.js';
 
 @Component({
     imports: [],
@@ -10,29 +9,38 @@ import {EMFJS, RTFJS, WMFJS} from 'rtf.js';
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./rtf.component.scss']
 })
-export class RtfComponent implements OnInit {
+export class RtfComponent implements OnInit, OnDestroy {
   @Input() displayModel: BinaryModel
+  @ViewChild('rtfContent', {static: true}) private rtfContent: ElementRef<HTMLElement>;
+  private destroyed = false;
 
   constructor() { }
 
-  ngOnInit(): void {
-
-    let doc = new RTFJS.Document(this.stringToArrayBuffer(this.displayModel.content), null);
-    doc.render().then(function(htmlElements) {
-      const parent: HTMLElement = document.getElementById('rtfContent');
-      for(let i = 0; i < htmlElements.length; i++){
-        parent.appendChild(htmlElements[i])
+  async ngOnInit(): Promise<void> {
+    const source = this.displayModel.content;
+    const {RTFJS} = await import('rtf.js');
+    if (this.destroyed) return;
+    const doc = new RTFJS.Document(this.stringToArrayBuffer(source), null);
+    try {
+      const htmlElements = await doc.render();
+      if (this.destroyed) return;
+      for (const element of htmlElements) {
+        this.rtfContent.nativeElement.appendChild(element);
       }
-    }).catch(e => {
+    } catch (e) {
+      if (this.destroyed) return;
       if (e instanceof RTFJS.Error) {
         console.error("Error: " + e.message);
-        document.getElementById('rtfContent').innerHTML = e.message;
+        this.rtfContent.nativeElement.textContent = e.message;
       }
       else {
         throw e;
       }
-    });
+    }
+  }
 
+  ngOnDestroy(): void {
+    this.destroyed = true;
   }
 
   private stringToArrayBuffer(string): ArrayBuffer {

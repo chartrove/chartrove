@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {FastenApiService} from '../../services/fasten-api.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ResourceFhir} from '../../models/fasten/resource_fhir';
-import * as fhirpath from 'fhirpath';
+import {evaluateFhirPath} from '../../../lib/fhirpath';
 import {forkJoin, Observable} from 'rxjs';
 import {flatMap, map, mergeMap} from 'rxjs/operators';
 import {ResponseWrapper} from '../../models/response-wrapper';
@@ -125,7 +125,7 @@ export class ReportLabsComponent implements OnInit {
 
 
           //get a list of all the observations associated with this report
-          let observationIds = fhirpath.evaluate(diagnosticReport.resource_raw, "DiagnosticReport.result.reference")
+          let observationIds = evaluateFhirPath(diagnosticReport.resource_raw, "DiagnosticReport.result.reference")
 
           //request each observation, and find the lab codes associated with each
           let requests = []
@@ -142,7 +142,7 @@ export class ReportLabsComponent implements OnInit {
           //for each result, loop through the observations and find the loinc code
           for(let result of results){
             for(let observation of result){
-              let observationGroup = fhirpath.evaluate(observation.resource_raw, "Observation.code.coding.where(system='http://loinc.org').first().code")[0]
+              let observationGroup = evaluateFhirPath(observation.resource_raw, "Observation.code.coding.where(system='http://loinc.org').first().code")[0]
               allObservationGroups.push('http://loinc.org|' + observationGroup)
             }
           }
@@ -213,12 +213,12 @@ export class ReportLabsComponent implements OnInit {
 
         //loop though all observations, group by "code.system": "http://loinc.org"
         for(let observation of response.data){
-          let observationGroup = fhirpath.evaluate(observation.resource_raw, "Observation.code.coding.where(system='http://loinc.org').first().code")[0]
+          let observationGroup = evaluateFhirPath(observation.resource_raw, "Observation.code.coding.where(system='http://loinc.org').first().code")[0]
           observationGroups[observationGroup] = observationGroups[observationGroup] ? observationGroups[observationGroup] : []
           observationGroups[observationGroup].push(observation)
 
           if(!observationGroupTitles[observationGroup]){
-            observationGroupTitles[observationGroup] = fhirpath.evaluate(observation.resource_raw, "Observation.code.coding.where(system='http://loinc.org').first().display")[0]
+            observationGroupTitles[observationGroup] = evaluateFhirPath(observation.resource_raw, "Observation.code.coding.where(system='http://loinc.org').first().display")[0]
           }
         }
 

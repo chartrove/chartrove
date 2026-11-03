@@ -1,28 +1,30 @@
 # Maintenance consolidation checkpoint
 
-Owner: maintenance agent in the existing primary checkout. A separately
-authorized artifact-retention owner holds its existing worktree and branch;
-preserve both. No additional worktrees or subagents were created by maintenance.
+Owner: maintenance agent in the existing primary checkout. Two independently
+authorized retention tasks hold their existing worktrees and branches; preserve
+both until separately authorized cleanup. No additional worktrees or subagents
+were created by maintenance.
 GitHub and this tracked checkpoint are authoritative.
 This is an incomplete consolidation, not a claim that target counts are achieved.
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #397 and individual #307 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after397.json).
-The datatable-25 task branch is additional to this historical snapshot.
-The separately owned artifact-retention branch/worktree remains preserved.
+Snapshot: November 3, 2026, after #399, following #398 and individual #296 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after399.json).
+The fhirpath-5 task branch is additional to this historical snapshot.
+The separately owned artifact-retention and angular-cache-retention branches/
+worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `a4bf6b3ad9d724aa8e761ce630ccf20561d0fc95` (#397) |
+| Published application main | `64078400e3777940c64d9ae0b83aafd62d0758d1` (#399) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 12: six paused Renovate proposals and six historical drafts |
-| Origin heads | 19 |
-| Default branch | main tracks origin/main; current table task is additional |
+| Open PRs | 11: five paused Renovate proposals and six historical drafts |
+| Origin heads | 19, including the held cache owner ref |
+| Default branch | main tracks origin/main; current FHIRPath task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
-| Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
+| Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
 | Required checks | Backend, Frontend, Desktop from Actions app 15368; strict up-to-date |
 | PR workflow | PR required, zero external approvals, conversations resolved |
@@ -135,12 +137,45 @@ cleanup or retention adoption is repeated.
 [protected checks](maintenance/ng2charts-ci-validation.json),
 [retirement](maintenance/ng2charts-retirement.json).
 
-The next #296 replacement targets ngx-datatable 25 with one leaf dependency change.
-All 31 identical old/new consumer cases pass after correcting pre-existing
-empty-selection/fallback-disabled defects, adapting repeated library page events
-without suppressing explicit Retry, and migrating both selection bindings.
-Intermediate old/new failures are retained; all protected checks remain mandatory.
-[Scope and controls](maintenance/2026-11-03-datatable-25.md).
+Merged #398 implements #296 with ngx-datatable 25 selection and page-event adapters,
+retaining explicit same-page Retry. It also corrects pre-existing empty-selection
+and missing fallback disabled-filter defects. All 31 identical old/new consumer
+cases pass; intermediate old/new failures remain preserved. All required PR and
+separate main-push checks pass: 546 browser passes, one skip and 9.86 MB initial
+output under unchanged 10 MB. Original #296 is individually closed as implemented;
+its exact archived head and task ref are retired after full gates. Historical
+manual retirements now 85, unknown-actor prior absences remain 13.
+[Scope](maintenance/2026-11-03-datatable-25.md),
+[CI](maintenance/datatable-ci-validation.json),
+[retirement](maintenance/datatable-retirement.json).
+
+The independent cache owner merged #399 at 64078400e3777940c64d9ae0b83aafd62d0758d1
+with all three protected checks passing on 3eed5f762ad39c74218c3437fd2210dc85bbfc98.
+The clean primary was fast-forwarded and the live workspace cache setting is
+verified false. This supported setting covers direct commands; validation now
+records host free bytes per command and after disposal. The owner reported 29.3 GiB
+of old cache removed, a controlled production build without cache regrowth and
+its output disposed. These measurements were not repeated by maintenance. Both
+independent worktrees/branches are explicitly held until separate cleanup
+permission. No repeat of original #391 adoption, backup/fixture/cache pruning or
+full build solely for this fix occurred. Local frontend hold was released only
+after the merged setting was applied. The 50 GiB full-workflow reserve remains.
+[Verified applied handoff](maintenance/angular-cache-handoff.json).
+
+The next FHIRPath replacement reviews #301's resolved 5.2.3 target against current
+3.3.1 and overlapping #241's 3.18 proposal. The old 11-case baseline passes. V5's
+array/Promise typing requires an explicit synchronous adapter in six caller files;
+queries, raw objects and test source remain unchanged. The separate LForms 3.2/
+UCUM graphs retain versions and own payloads, including documented hoisting.
+All 11 identical old/new browser cases and post-adapter spec types pass; all
+protected checks remain mandatory. Neither original PR is yet called implemented
+or superseded. Initial PR #400 CI passes Backend, Desktop and 552 browser cases
+but fails the unchanged 10 MB initial budget by 39.81 kB. The follow-up defers
+existing RTF loading and corrects component targeting/destruction: identical final
+four-case controls fail twice on original and pass on corrected source, preserving
+raw strings. Initial harness qualifications and failed CI remain documented;
+final full protected validation is still required. No local full build is run
+below the reserve. [Scope](maintenance/2026-11-03-fhirpath-5.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
@@ -770,7 +805,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all six remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all five remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

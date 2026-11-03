@@ -1,4 +1,4 @@
-import * as fhirpath from 'fhirpath';
+import {evaluateFhirPath} from '../../fhirpath';
 
 export class AddressModel {
   city: string
@@ -12,10 +12,10 @@ export class AddressModel {
     if(!fhirData){
       return
     }
-    this.city = fhirpath.evaluate(fhirData, "city").join("")
-    this.line = fhirpath.evaluate(fhirData, "line")
-    this.state = fhirpath.evaluate(fhirData, "state").join("")
-    this.country = fhirpath.evaluate(fhirData, "country").join("")
-    this.postalCode = fhirpath.evaluate(fhirData, "postalCode").join("")
+    this.city = evaluateFhirPath(fhirData, "city").join("")
+    this.line = evaluateFhirPath(fhirData, "line")
+    this.state = evaluateFhirPath(fhirData, "state").join("")
+    this.country = evaluateFhirPath(fhirData, "country").join("")
+    this.postalCode = evaluateFhirPath(fhirData, "postalCode").join("")
   }
 }

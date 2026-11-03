@@ -1,0 +1,15 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/fhirpath-installed-before-20261103.tar",
+  "sha256": "f69407f752fa50d8ed1599dbaf379a4e35fd4345993b5b271c9f1beb365871b1",
+  "bytes": 12588032,
+  "entries": 482,
+  "all_extracted_payloads_exact": true,
+  "source_content_stat_xattrs_unchanged": true,
+  "metadata_differences": 0,
+  "extracted_xattrs_exact": false,
+  "xattr_differences_only_system_provenance": true,
+  "system_provenance_changes": 462,
+  "original_xattr_hex_manifest": "dist/validation/2026-11-01-consolidation/fhirpath-family-review/installed-original-xattrs.json",
+  "verification_scratch_disposed": true,
+  "scope": "Original application FHIRPath3.3.1/UCUM4.1.7, nested LForms FHIRPath3.2.0/UCUM4.2.0 and current Yarn integrity; no original package/cache/dependency is deleted by archive operation"
+}
