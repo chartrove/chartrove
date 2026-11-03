@@ -1,0 +1,156 @@
+{
+  "scope": "Storybook development React/DOM 18.3.1 to 19.3.1; types 18.3.31 to 19.3.0; 70 other direct versions unchanged",
+  "frontend": {
+    "receipts": [
+      {
+        "name": "frozen-install",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "install",
+          "--frozen-lockfile",
+          "--registry",
+          "https://registry.npmjs.org",
+          "--network-concurrency",
+          "4"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T08:09:05.072497+00:00",
+        "end": "2026-11-03T08:09:10.964453+00:00",
+        "exit": 0
+      },
+      {
+        "name": "node",
+        "command": [
+          "node",
+          "--test",
+          "frontend/desktop-tests/bridge.test.mjs",
+          "frontend/desktop-tests/compodoc-compat.test.mjs",
+          "frontend/desktop-tests/test-framework.test.mjs"
+        ],
+        "cwd": ".",
+        "start": "2026-11-03T08:09:15.233427+00:00",
+        "end": "2026-11-03T08:09:15.509945+00:00",
+        "exit": 0
+      },
+      {
+        "name": "browser",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "test",
+          "--watch=false",
+          "--progress=false",
+          "--browsers=ChromeHeadlessCI",
+          "--reporters=dots"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T08:09:15.510253+00:00",
+        "end": "2026-11-03T08:09:36.699685+00:00",
+        "exit": 0
+      },
+      {
+        "name": "production",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "build",
+          "--configuration",
+          "desktop_prod",
+          "--output-path",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/react19-review/validation/frontend"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T08:09:36.700197+00:00",
+        "end": "2026-11-03T08:10:15.809993+00:00",
+        "exit": 0
+      },
+      {
+        "name": "storybook",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "exec",
+          "ng",
+          "--",
+          "run",
+          "fastenhealth:build-storybook",
+          "--output-dir",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/react19-review/validation/storybook"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T08:10:17.799111+00:00",
+        "end": "2026-11-03T08:10:56.538874+00:00",
+        "exit": 0
+      }
+    ],
+    "browser_passed": 523,
+    "existing_skip": 1,
+    "node_passed": 10,
+    "production_passed": true,
+    "storybook_build_passed": true,
+    "interactive_storybook": {
+      "interactive_storybook": "not verified",
+      "browser_connector": "browser access host unavailable; no tab created",
+      "staged_installed_chrome": "strict signature failed Info.plist match; never launched; installed original untouched",
+      "official_testing_chrome": "official archive CRC passed; strict signature failed code has no resources but signature indicates they must be present; never launched",
+      "loopback_server": "own PID 76190 stopped with Ctrl-C; ps absence verified",
+      "timestamp": "2026-11-03T09:01:02.163426+00:00"
+    },
+    "frontend_inputs_unchanged": true,
+    "coverage_and_documentation_absence_preserved": true
+  },
+  "lock_delta": {
+    "removed_unselected_blocks": [
+      "\"@types/prop-types@*\":",
+      "loose-envify@^1.1.0:",
+      "react-dom@^18.2.0:",
+      "react@^18.2.0:",
+      "scheduler@^0.23.2:"
+    ],
+    "coalesced_selectors": {
+      "\"react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0\":": "\"react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0\", react@^19.0.0:",
+      "\"react-dom@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0\":": "\"react-dom@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0\", react-dom@^19.0.0:",
+      "\"js-tokens@^3.0.0 || ^4.0.0\", js-tokens@^4.0.0:": "js-tokens@^4.0.0:"
+    },
+    "types_updated": "18.3.31 to 19.3.0",
+    "other_lock_blocks_byte_identical": true,
+    "direct_manifest_values_only": [
+      "react",
+      "react-dom",
+      "@types/react"
+    ]
+  },
+  "runtime_comparison": {
+    "runtime_source_names_identical": true,
+    "unminified_runtime_sources_byte_identical": true,
+    "initial_exact_asset_tree_reuse_gate": "failed and retained; all application chunks/styles/polyfills identical, runtime minified local names/maps/index references differ",
+    "native_plan": "build/package current qualified assets; do not claim byte-identical old native artifact reuse"
+  },
+  "integrity": {
+    "registry_sha1_sha512_verified": true,
+    "all_installed_published_files_match_verified_archives": {
+      "react": 27,
+      "react-dom": 43,
+      "@types/react": 16
+    },
+    "archive_sha256": {
+      "react-19.3.1": "56936913918dcf1f7a6fe58784e79df54b18200a88655ce809cf5e9c4ef871aa",
+      "react-dom-19.3.1": "8b49975821eec6311e00d2b3f4b8337923253c876517388a33f9839c61ab262e",
+      "@types-react-19.3.0": "ffa77ffdbdc82e5f67a0fd74d750990375a7dfd8685ec7f10a27c0db128f7766"
+    }
+  },
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/react19-review/",
+  "native": "pending fresh package; previous runtime bytes differ",
+  "protected_integration": "pending"
+}
