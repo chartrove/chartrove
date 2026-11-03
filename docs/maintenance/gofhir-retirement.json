@@ -1,0 +1,35 @@
+{
+  "time": "2026-11-03T20:06:18.721272+00:00",
+  "main": "bc5c271ceede89a29bfba14898626a5cc1d40d06",
+  "branches": [
+    {
+      "name": "renovate/github.com-fastenhealth-gofhir-models-0.x",
+      "sha": "8fefb92c640012524c0f86aab34078f2afb66d0a",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/github.com-fastenhealth-gofhir-models-0.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/gofhir-compatible-models",
+      "sha": "8a14d61d1eb429cb767a72b7432462efafef8316",
+      "kind": "merged task",
+      "ref": "refs/heads/task/gofhir-compatible-models",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-fastenhealth-gofhir-models-0.x\n - [deleted]               task/gofhir-compatible-models\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-fastenhealth-gofhir-models-0.x\n - [deleted]               task/gofhir-compatible-models\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true,
+  "historical_disposition": "retired incompatible 0.1.1 proposal; adopted compatible 0.0.9; issue53 remains open"
+}

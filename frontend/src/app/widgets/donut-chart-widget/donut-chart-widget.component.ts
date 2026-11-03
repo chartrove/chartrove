@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {NgChartsModule} from 'ng2-charts';
+import { ChartroveChartsModule } from '../../components/chartrove-charts.module';
 import {ChartConfiguration} from 'chart.js';
 import {DashboardWidgetComponent} from '../dashboard-widget/dashboard-widget.component';
 import {CommonModule} from '@angular/common';
@@ -7,7 +7,7 @@ import {LoadingWidgetComponent} from '../loading-widget/loading-widget.component
 import {EmptyWidgetComponent} from '../empty-widget/empty-widget.component';
 
 @Component({
-    imports: [NgChartsModule, CommonModule, LoadingWidgetComponent, EmptyWidgetComponent],
+    imports: [ChartroveChartsModule, CommonModule, LoadingWidgetComponent, EmptyWidgetComponent],
     selector: 'donut-chart-widget',
     templateUrl: './donut-chart-widget.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

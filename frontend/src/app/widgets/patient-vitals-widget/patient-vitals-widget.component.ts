@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {NgChartsModule} from 'ng2-charts';
+import { ChartroveChartsModule } from '../../components/chartrove-charts.module';
 import {DashboardWidgetComponent} from '../dashboard-widget/dashboard-widget.component';
 import {DashboardWidgetConfig} from '../../models/widget/dashboard-widget-config';
 import * as _ from 'lodash';
@@ -10,7 +10,7 @@ import {MomentModule} from 'ngx-moment';
 import {LoadingWidgetComponent} from '../loading-widget/loading-widget.component';
 import {EmptyWidgetComponent} from '../empty-widget/empty-widget.component';
 @Component({
-    imports: [NgChartsModule, CommonModule, MomentModule, LoadingWidgetComponent, EmptyWidgetComponent],
+    imports: [ChartroveChartsModule, CommonModule, MomentModule, LoadingWidgetComponent, EmptyWidgetComponent],
     selector: 'patient-vitals-widget',
     templateUrl: './patient-vitals-widget.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

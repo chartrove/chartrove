@@ -1,0 +1,21 @@
+{
+  "branch": "renovate/ng2-charts-11.x",
+  "tip": "b5c028028dbd752a11073da39b6515cad806790d",
+  "bundle": "dist/validation/2026-11-01-consolidation/ng2charts-head-20261103.bundle",
+  "sha256": "6c1c07b802e467d2605fa9c1237620d780644d66d1acbf2a21e1e9be7c9f0594",
+  "bytes": 1756,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "bc5c271ceede89a29bfba14898626a5cc1d40d06",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "4af000988c7e6d26ec1933bb1c5ddaf7aaabc80e",
+    "51e9e1d0d3c3f1cdccf7ffcd9929b3ca3efe60c1",
+    "9f8f457ed8e218428d8a40fa786850739c129847",
+    "b5c028028dbd752a11073da39b6515cad806790d",
+    "e60e601d326994b6bac48dc105006126def9d3e0"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks"
+}

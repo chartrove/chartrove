@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {NgChartsModule} from 'ng2-charts';
+import { ChartroveChartsModule } from '../../components/chartrove-charts.module';
 import {ChartConfiguration} from 'chart.js';
 
 import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    imports: [NgChartsModule, NgbPopoverModule],
+    imports: [ChartroveChartsModule, NgbPopoverModule],
     selector: 'complex-line-widget',
     templateUrl: './complex-line-widget.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

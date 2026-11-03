@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MedicalSourcesComponent } from './pages/medical-sources/medical-sources.component';
 import {DirectSmartSourcesComponent} from './components/direct-smart-sources/direct-smart-sources.component';
-import { NgChartsModule } from 'ng2-charts';
+import { ChartroveChartsModule } from './components/chartrove-charts.module';
 import {SharedModule} from './components/shared.module';
 import { ResourceDetailComponent } from './pages/resource-detail/resource-detail.component';
 import { AuthSignupComponent } from './pages/auth-signup/auth-signup.component';
@@ -77,7 +77,7 @@ import { GetEncryptionKeyWizardComponent } from './pages/get-encryption-key-wiza
     FhirDatatableModule,
     AppRoutingModule,
     NgbModule,
-    NgChartsModule,
+    ChartroveChartsModule,
     NgxDropzoneModule,
     HighlightModule,
     MomentModule,

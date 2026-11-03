@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {NgChartsModule} from 'ng2-charts';
+import { ChartroveChartsModule } from '../../components/chartrove-charts.module';
 import {ChartConfiguration} from 'chart.js';
 import {DashboardWidgetComponent} from '../dashboard-widget/dashboard-widget.component';
 import {CommonModule} from '@angular/common';
@@ -8,7 +8,7 @@ import {EmptyWidgetComponent} from '../empty-widget/empty-widget.component';
 import {PipesModule} from '../../pipes/pipes.module';
 
 @Component({
-    imports: [NgChartsModule, CommonModule, LoadingWidgetComponent, EmptyWidgetComponent, PipesModule],
+    imports: [ChartroveChartsModule, CommonModule, LoadingWidgetComponent, EmptyWidgetComponent, PipesModule],
     selector: 'grouped-bar-chart-widget',
     templateUrl: './grouped-bar-chart-widget.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

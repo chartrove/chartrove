@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ChartConfiguration, ChartDataset, ChartOptions, ChartType} from 'chart.js';
 import {DashboardWidgetConfig} from '../../models/widget/dashboard-widget-config';
-import {NgChartsModule} from 'ng2-charts';
+import { ChartroveChartsModule } from '../../components/chartrove-charts.module';
 
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {DashboardWidgetComponentInterface} from '../dashboard-widget-component-interface';
@@ -17,7 +17,7 @@ import fhirpath from 'fhirpath';
 import {map} from 'rxjs/operators';
 
 @Component({
-    imports: [NgChartsModule, NgbDatepickerModule, LoadingWidgetComponent],
+    imports: [ChartroveChartsModule, NgbDatepickerModule, LoadingWidgetComponent],
     selector: 'app-dashboard-widget',
     templateUrl: './dashboard-widget.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

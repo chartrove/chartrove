@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {NgChartsModule} from 'ng2-charts';
+import { ChartroveChartsModule } from '../../components/chartrove-charts.module';
 import {DashboardWidgetConfig} from '../../models/widget/dashboard-widget-config';
 import {FastenApiService} from '../../services/fasten-api.service';
 import {DashboardWidgetComponent} from '../dashboard-widget/dashboard-widget.component';
@@ -10,7 +10,7 @@ import {EmptyWidgetComponent} from '../empty-widget/empty-widget.component';
 import {PipesModule} from '../../pipes/pipes.module';
 
 @Component({
-    imports: [NgChartsModule, CommonModule, LoadingWidgetComponent, EmptyWidgetComponent, PipesModule],
+    imports: [ChartroveChartsModule, CommonModule, LoadingWidgetComponent, EmptyWidgetComponent, PipesModule],
     selector: 'simple-line-chart-widget',
     templateUrl: './simple-line-chart-widget.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

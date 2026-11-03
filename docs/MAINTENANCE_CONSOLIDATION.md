@@ -8,19 +8,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #395 and individual #267 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after395.json).
-The gofhir-compatible-models task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #396 and individual #262 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after396.json).
+The ng2-charts task branch is additional to this historical snapshot.
 The separately owned artifact-retention branch/worktree remains preserved.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `0b6455253299b2f57804cdf6023317e624f30b28` (#395) |
+| Published application main | `bc5c271ceede89a29bfba14898626a5cc1d40d06` (#396) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 14: eight paused Renovate proposals and six historical drafts |
-| Origin heads | 21 |
-| Default branch | main tracks origin/main; current FHIR task is additional |
+| Open PRs | 13: seven paused Renovate proposals and six historical drafts |
+| Origin heads | 20 |
+| Default branch | main tracks origin/main; current chart-wrapper task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -88,16 +88,19 @@ owner/worktree/clean-main checks qualify the final receipt without repeating it.
 [Scope](maintenance/2026-11-03-maroto-pdf.md),
 [qualified retirement](maintenance/maroto-retirement.json).
 
-The next FHIR candidate advances the compatible library from 0.0.7 to 0.0.9.
+Merged #396 advances the compatible FHIR library from 0.0.7 to 0.0.9.
 #262's 0.1.1 compiles and accepts shorthand imports but fails typed resourceType/
-known-field serialization on stable Go 1.27.3; it is not adopted. A scoped
-retirement of that incompatible version follows protected integration of 0.0.9,
-without an implementation claim for 0.1.1 or the still-open shorthand issue #53.
-All 98 supported canonical outputs among 100 synthetic fixtures match, with two
-unchanged unsupported inputs. Raw unknown-number/zero/false/date/Unicode and
-SDK interfaces, encrypted old/new/old and desktop cold opens pass. Other selected
-versions and all replacements stay unchanged. No real records or native package
-are used as validation. [Scope](maintenance/2026-11-03-gofhir-compatibility.md).
+known-field serialization on stable Go 1.27.3; that target is individually retired
+as incompatible, without declaring shorthand issue #53 implemented. All 98
+supported canonical outputs among 100 synthetic fixtures match, with the same
+two unsupported inputs. Raw unknown-number/zero/false/date/Unicode and SDK
+interfaces, encrypted old/new/old and desktop cold opens pass. A valid escaped
+standard gender is old-red/new-green. All protected checks pass. Both exact
+historical/task tips are retired after archive, dependency and ownership checks.
+Historical manual retirements now total 83; unknown-actor absent heads remain 13.
+Other selected versions and replacements stay unchanged. No real records or new
+native package were used. [Scope](maintenance/2026-11-03-gofhir-compatibility.md),
+[retirement](maintenance/gofhir-retirement.json).
 
 Each historical feature draft now has a source-admission review, with concrete
 unmerged auth/data/service gaps and preserved capabilities. A strict verified
@@ -117,9 +120,13 @@ cleanup/adoption is complete and must not be repeated.
 [Patient evidence](maintenance/2026-11-03-patient-detail-age.md),
 [retention adoption](maintenance/2026-11-03-retention-adoption.md).
 
-The separate ng2-charts #307 major migration remains pending; #392 does not
-implement its new wrapper APIs. Local focused checks do not bypass full-run
-storage admission, and no storage cleanup or retention adoption is repeated.
+The corrected ng2-charts #307 replacement targets version 11 and its standalone
+directive/provider APIs. All 11 identical old/new focused cases, app types and
+changed-story transitive types pass; full protected checks remain mandatory.
+Only the wrapper and its required es-toolkit/orphan lodash-es leaves change.
+Local focused checks do not bypass full-run storage admission, and no storage
+cleanup or retention adoption is repeated.
+[Scope and qualification](maintenance/2026-11-03-ng2charts-11.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
@@ -730,9 +737,10 @@ held unchanged for separate review. No repair or migration was run.
 The old repair saves the original temporary model rather than its recalculation;
 do not apply it or infer a safe real-data migration from archive verification.
 [Decision and recovery](maintenance/2026-11-03-legacy-narrative-retirement.md).
-The maintainer also selected retention of selected upstream expansions; the
-specific LDAP/OIDC, delegated-permissions, OCR and Typesense/RAG selections are
-pending clarification. Preserve every prototype while that choice is pending.
+The maintainer explicitly retained all six remaining historical capabilities on
+November 3: permissions, Typesense/RAG, OCR, OIDC, delegated access and reserved
+usernames. Preserve every prototype while corrected implementations and specific
+authentication/data policies are established.
 
 Native #101/#168 acceptance now has observed chooser and synthetic persistence
 evidence above; earlier bridge failures remain retained as historical evidence.
@@ -748,7 +756,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 16 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all seven remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
