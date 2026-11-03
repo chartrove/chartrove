@@ -1,0 +1,23 @@
+{
+  "branch": "renovate/chart.js-4.x-lockfile",
+  "tip": "12f0b6528b6b524bd7b0c85d50ae8aa2204d8433",
+  "bundle": "dist/validation/2026-11-01-consolidation/chartjs-head-20261103.bundle",
+  "sha256": "2e49da38fc5743305c1664c0952b589324deef63b1cf5f02fff89f6cbc30828b",
+  "bytes": 1591,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "66c7032cc0d34a104d613b76abf1fdfa7f2f3f48",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "010c27d6e39ebb055f8a3e9e3df4913fa4f07dab",
+    "04834bbffdd4415a1dc62bbc23cbe9528a25bc27",
+    "12f0b6528b6b524bd7b0c85d50ae8aa2204d8433",
+    "c9184ee82b019b9dd0f574a5337e3d849d169f5f"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": "2fee6a84de47456098ce6131db3e60c453a686c0 refs/maintenance-archive/20261101/renovate/chart.js-4.x-lockfile",
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

@@ -1,0 +1,13 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/chartjs-review/installed-chartjs4-before.tar.zst",
+  "sha256": "78ebc604ca2d48b9ce74305f23eb65467ba4edd1dfa526a8a53e5981fa2bca1a",
+  "bytes": 969349,
+  "original_content_and_stat_unchanged_during_archive": true,
+  "all_extracted_payload_hashes_match": true,
+  "entries": 139,
+  "paths": [
+    "./chart.js",
+    "./@kurkle/color",
+    "./.yarn-integrity"
+  ]
+}

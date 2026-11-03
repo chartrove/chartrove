@@ -16,7 +16,7 @@ import {PipesModule} from '../../pipes/pipes.module';
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./simple-line-chart-widget.component.scss']
 })
-export class SimpleLineChartWidgetComponent extends DashboardWidgetComponent implements OnInit {
+export class SimpleLineChartWidgetComponent extends DashboardWidgetComponent<'line'> implements OnInit {
 
   constructor(public fastenApi: FastenApiService) {
     super(fastenApi);
