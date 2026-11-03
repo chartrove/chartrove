@@ -1,0 +1,22 @@
+{
+  "branch": "renovate/gridstack-14.x",
+  "tip": "d13ae33a154f181e8e8552232212864f164c51bf",
+  "bundle": "dist/validation/2026-11-01-consolidation/gridstack14-head-20261103.bundle",
+  "sha256": "14d0cf7107c8d0bef227d67bac247fda7e09a530089d7bb4621960e339ac6fba",
+  "bytes": 1537,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "d401de996a5d8cce5adc91829aedc046df539d08",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "393e2ad03d0f853f4414d2b7fbbb7adcaa4230c4",
+    "707e766dcbe1ff67d60655b396fa1fb0f131adc9",
+    "a45d3f7c13167ff7fa663a122bea4622dd4b8509",
+    "d13ae33a154f181e8e8552232212864f164c51bf",
+    "d305d12e3008db22c3929db16716e30a0fa09f8e"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": "ef02b1b3b6b5a839fe9c0642ba3dcc9629ba279a refs/maintenance-archive/20261101/renovate/gridstack-14.x"
+}

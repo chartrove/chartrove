@@ -43,7 +43,7 @@
     "chart.js": "^4.4.2",
     "dwv": "^0.31.0",
     "fhirpath": "^3.3.0",
-    "gridstack": "8.1.1",
+    "gridstack": "14.0.0",
     "jose": "^6.0.0",
     "lforms": "34.0.0",
     "moment": "^2.29.4",

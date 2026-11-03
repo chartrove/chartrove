@@ -1,0 +1,8 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/gridstack-review/gridstack8-installed-before.tar.zst",
+  "sha256": "f921e60af2e57210406cb91550d0bf70a03d67f99b1efdc49d4947d4723736c5",
+  "bytes": 406458,
+  "entries": 112,
+  "original_content_stat_unchanged": true,
+  "extracted_all_file_payloads_match": true
+}

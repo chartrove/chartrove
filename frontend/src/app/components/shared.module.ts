@@ -19,8 +19,6 @@ import { ReportMedicalHistoryConditionComponent } from './report-medical-history
 import { ReportMedicalHistoryExplanationOfBenefitComponent } from './report-medical-history-explanation-of-benefit/report-medical-history-explanation-of-benefit.component';
 import { ToastComponent } from './toast/toast.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {GridstackComponent} from './gridstack/gridstack.component';
-import {GridstackItemComponent} from './gridstack/gridstack-item.component';
 import {HighlightModule} from 'ngx-highlightjs';
 import {NgbCollapseModule, NgbModule, NgbDropdownModule, NgbAccordionModule, NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
 import {PipesModule} from '../pipes/pipes.module';
@@ -52,8 +50,6 @@ import { FormRequestHealthSystemComponent } from './form-request-health-system/f
 
     //standalone components
     GlossaryLookupComponent,
-    GridstackComponent,
-    GridstackItemComponent,
     LoadingSpinnerComponent,
     NlmTypeaheadComponent,
 
@@ -90,8 +86,6 @@ import { FormRequestHealthSystemComponent } from './form-request-health-system/f
 
       //standalone components
       GlossaryLookupComponent,
-      GridstackComponent,
-      GridstackItemComponent,
       LoadingSpinnerComponent,
       MedicalSourcesCategoryLookupPipe,
       NlmTypeaheadComponent,

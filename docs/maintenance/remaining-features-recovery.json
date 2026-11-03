@@ -1,0 +1,129 @@
+{
+  "bundle": "dist/validation/2026-11-01-consolidation/remaining-features-heads-and-bases-20261103.bundle",
+  "sha256": "4d277cdab4ed2944f4e828d60f3cbb5204ae531178beca3344feb85e39bed8f0",
+  "bytes": 1281491,
+  "tips": [
+    {
+      "number": 209,
+      "head": {
+        "branch": "migration/upstream-pr-514",
+        "tip": "cf4e493599dd0f7ce4716169ad713a2f360fc751",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr209-head"
+      },
+      "base": {
+        "branch": "migration/upstream-pr-514-base",
+        "tip": "cd2cc400dbff320bd2955e8d399dbd08edf43b99",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr209-base"
+      },
+      "base_reachable_from_preserved_main": true,
+      "base_is_ancestor_of_head": true
+    },
+    {
+      "number": 211,
+      "head": {
+        "branch": "migration/upstream-pr-594",
+        "tip": "3fec283a19c3edecc13e7fa27586fb699ec07882",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr211-head"
+      },
+      "base": {
+        "branch": "migration/upstream-pr-594-base",
+        "tip": "3d7e27ab2bddbb2eba453657311b66039a7bd749",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr211-base"
+      },
+      "base_reachable_from_preserved_main": true,
+      "base_is_ancestor_of_head": true
+    },
+    {
+      "number": 212,
+      "head": {
+        "branch": "migration/upstream-pr-609",
+        "tip": "658dc9751320427cd2d6da18e0b50e5d3fc00c75",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr212-head"
+      },
+      "base": {
+        "branch": "migration/upstream-pr-609-base",
+        "tip": "210447e3f5e3538be5f7c8c6df5358ba5e8caf1d",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr212-base"
+      },
+      "base_reachable_from_preserved_main": true,
+      "base_is_ancestor_of_head": true
+    },
+    {
+      "number": 214,
+      "head": {
+        "branch": "migration/upstream-pr-613",
+        "tip": "bcb60fcb9feca0f683ab7b39fd221b4c274d6883",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr214-head"
+      },
+      "base": {
+        "branch": "migration/upstream-pr-613-base",
+        "tip": "d008d08f2c5c3ffc4bbe727077a565c73e509980",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr214-base"
+      },
+      "base_reachable_from_preserved_main": true,
+      "base_is_ancestor_of_head": false
+    },
+    {
+      "number": 215,
+      "head": {
+        "branch": "migration/upstream-pr-614",
+        "tip": "e7c9632e54e04ff2701f1cd36a51d39dd7388bb4",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr215-head"
+      },
+      "base": {
+        "branch": "migration/upstream-pr-614-base",
+        "tip": "3d7e27ab2bddbb2eba453657311b66039a7bd749",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr215-base"
+      },
+      "base_reachable_from_preserved_main": true,
+      "base_is_ancestor_of_head": false
+    },
+    {
+      "number": 217,
+      "head": {
+        "branch": "migration/upstream-pr-636",
+        "tip": "bba5c43f954346ef170c2f6abbf57cc09abb59aa",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr217-head"
+      },
+      "base": {
+        "branch": "migration/upstream-pr-636-base",
+        "tip": "36d92446884e9e20eda8d2b2a0a1115c9c57f7ef",
+        "requested_archive_ref": "refs/maintenance-archive/20261103/feature-pr217-base"
+      },
+      "base_reachable_from_preserved_main": true,
+      "base_is_ancestor_of_head": true
+    }
+  ],
+  "prerequisites": [
+    "cd2cc400dbff320bd2955e8d399dbd08edf43b99",
+    "8007559a2faa6d545987a526c701a3cf9c287f9d",
+    "26e088ab6ec03d30eb2cb7c980cfc5b1e8cdd5a9",
+    "c2cf83581bf7fb55c4d2755de592c46cf96eff35",
+    "8eefac47f20df6880692a6bb95c0644b889b6379",
+    "10d848a51627b47d86fbf8ff35ce04a147ef4b34",
+    "28445ba9de61b559bcc4dbb1788460ad0035d6c2",
+    "447a4e0758eea47b91295cf2b4cc5e198148eb53",
+    "62144cafd4fe9e70260ea9a0381357677598e703",
+    "c3d50bebe195836745a26ef79f14afa7cb688c2b",
+    "617abebcda2aded6c410f9ba4e1ccc64dad2ef31",
+    "7e72d5060af1ae2dfa667d1dd7854750d59e3537",
+    "d008d08f2c5c3ffc4bbe727077a565c73e509980",
+    "210447e3f5e3538be5f7c8c6df5358ba5e8caf1d",
+    "3d7e27ab2bddbb2eba453657311b66039a7bd749",
+    "36d92446884e9e20eda8d2b2a0a1115c9c57f7ef"
+  ],
+  "prerequisites_reachable_from": "66c7032cc0d34a104d613b76abf1fdfa7f2f3f48",
+  "required_unique_objects": 2586,
+  "all_required_objects_present_in_original_pack": true,
+  "advertised_refs": [
+    "refs/maintenance-archive/20261103/feature-pr209-head",
+    "refs/maintenance-archive/20261103/feature-pr211-head",
+    "refs/maintenance-archive/20261103/feature-pr212-head",
+    "refs/maintenance-archive/20261103/feature-pr214-head",
+    "refs/maintenance-archive/20261103/feature-pr215-head",
+    "refs/maintenance-archive/20261103/feature-pr217-head"
+  ],
+  "qualification": "Six requested base refs are excluded by ^main because all six base commits are main ancestors; exact base OIDs recorded and recover from preserved main. Some are not PR-head ancestors. First advertised-ref assertion stopped before retirement; corrected main reachability proof passed.",
+  "strict_index_pack": "passed with original-object offset proof",
+  "refs_retired": false
+}

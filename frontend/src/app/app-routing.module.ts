@@ -10,7 +10,6 @@ import { AuthSigninComponent } from './pages/auth-signin/auth-signin.component';
 import { AuthSignupWizardComponent } from './pages/auth-signup-wizard/auth-signup-wizard.component';
 import { AuthSignupComponent } from './pages/auth-signup/auth-signup.component';
 import { BackgroundJobsComponent } from './pages/background-jobs/background-jobs.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DesktopCallbackComponent } from './pages/desktop-callback/desktop-callback.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { MedicalHistoryComponent } from './pages/medical-history/medical-history.component';
@@ -43,7 +42,7 @@ const routes: Routes = [
   { path: 'encryption-key/wizard-restore', component: SetupEncryptionKeyComponent },
 
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [ IsAuthenticatedAuthGuard ] },
+  { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent), canActivate: [ IsAuthenticatedAuthGuard ] },
 
   //explore page will replace source/* pages
   { path: 'explore', component: ExploreComponent, canActivate: [ IsAuthenticatedAuthGuard ] },
