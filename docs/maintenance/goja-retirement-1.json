@@ -1,0 +1,33 @@
+{
+  "time": "2026-11-03T04:58:33.958450+00:00",
+  "main": "c0c44ce62d06c2948b187b23414b63cc29b0015b",
+  "branches": [
+    {
+      "name": "renovate/github.com-dop251-goja-digest",
+      "sha": "3190b3ad9d208415e42446159b22904d75356293",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/github.com-dop251-goja-digest",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/goja-runtime",
+      "sha": "675ca23d040359496cc8984d14a49ba5d4a90a2e",
+      "kind": "merged task",
+      "ref": "refs/heads/task/goja-runtime",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/github.com-dop251-goja-digest\n - [deleted]             task/goja-runtime\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/github.com-dop251-goja-digest\n - [deleted]             task/goja-runtime\n"
+    }
+  }
+}

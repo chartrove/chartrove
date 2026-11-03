@@ -126,6 +126,8 @@ Choose checks appropriate to the change. Do not relax timeouts, encryption, or t
 
 ## Server signing key
 
+See [local data and security settings](docs/LOCAL_DATA_SAFETY.md) for the different desktop/server defaults and explicit development options.
+
 Server startup rejects an empty key or the historical shared JWT signing key
 before opening a database. Configure `FASTEN_JWT_ISSUER_KEY` or `jwt.issuer.key`
 with a private value unique to the installation. Generate a new value with

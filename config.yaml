@@ -27,13 +27,15 @@ database:
   encryption:
     enabled: true
   #    key: ''
-  type: 'sqlite' # postgres will be supported in the future, but is completely **BROKEN** at the moment.
-  location: '/opt/fasten/db/fasten.db' # if postgres (**BROKEN**) use a DSN, eg. `host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=required TimeZone=Asia/Shanghai`
+  type: 'sqlite' # PostgreSQL is validated with disposable fixtures; see CONTRIBUTING.md.
+  location: '/opt/fasten/db/fasten.db' # PostgreSQL requires an explicit private DSN; existing production databases are not validation fixtures.
 log:
   file: '' # absolute or relative paths allowed, eg. web.log
   level: INFO
 jwt:
   issuer:
-    # you should ABSOLUTELY change this value before deploying Fasten.
-    # TODO: in future versions, this will be generated on first run with a random value, and stored as a System Setting.
-    key: "thisismysupersecuressessionsecretlength"
+    # Required for standalone startup: supply a private per-installation value.
+    # FASTEN_JWT_ISSUER_KEY overrides this example; retain existing private keys.
+    # Empty values and the historical shared example are rejected before storage access.
+    # The desktop manages its own persistent signing key. See docs/LOCAL_DATA_SAFETY.md.
+    key: ""

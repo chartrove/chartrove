@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #380 and individual #249 implementation closure.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after380.json).
-The goja-runtime task branch is additional to this snapshot.
+Snapshot: November 2, 2026, after #381 and individual #220 implementation closure.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after381.json).
+The local-data-guidance task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `27314645ee2efdeaf969c03d5c248bddf43c83ba` (#380) |
+| Published application main | `c0c44ce62d06c2948b187b23414b63cc29b0015b` (#381) |
 | Open issues | 167, including retained Renovate dashboard #222 |
-| Open PRs | 32: 26 paused Renovate proposals and six historical drafts |
-| Origin heads | 41 |
-| Default branch | main tracks origin/main with equal OIDs; goja-runtime branch is additional |
+| Open PRs | 31: 25 paused Renovate proposals and six historical drafts |
+| Origin heads | 40 |
+| Default branch | main tracks origin/main with equal OIDs; local-data-guidance branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,17 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #381 updates Goja and required semver/regexp2/v2 in both graphs, retaining
+Go minimum, original checksums and database/provider replacements. Actual graph
+checks, isolated searches/races, full models/web, upstream suites with explicit
+skips, generator invariance, signed native ten-check smoke and protected checks
+pass. Strict canonical outputs match 88 supported synthetic examples across 32
+types; raw key-order variation also occurs on repeated old-engine runs. The same
+12 fixture files remain unsupported. #220 is closed as implemented; its verified
+historical tip and integrated task head are retired.
+[Evidence](maintenance/2026-11-02-goja-runtime.md),
+[retirement](maintenance/goja-retirement-1.json).
 
 Merged #380 implements Moment 2.31.0, preserving unrelated lock bytes and 72
 other direct versions. Frozen install, ten Node checks, 487 browser tests (one
@@ -461,7 +472,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Sixty-five historical origin refs were retired by this agent after individual review,
+Sixty-six historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Ten more (#313, four utility heads, two UUID heads, two declaration heads and
 the parser head) were already absent after closure;
@@ -494,7 +505,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one slice-helper head](maintenance/samber-lo-retirement-1.json),
 [one Viper head](maintenance/viper-retirement-1.json),
 [one experimental-helper head](maintenance/exp-retirement-1.json),
-[one Moment head](maintenance/moment-retirement-1.json).
+[one Moment head](maintenance/moment-retirement-1.json),
+[one Goja head](maintenance/goja-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 Local artifact storage now has an ignored Go module boundary at
@@ -540,7 +552,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 26 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 25 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

@@ -23,7 +23,7 @@ Use macOS with Xcode Command Line Tools, Go 1.26 or newer, and Mise Node 26.13.0
 
 ```sh
 cd frontend
-npm exec --yes --package=corepack@0.35.0 -- corepack yarn install --frozen-lockfile --ignore-optional --registry https://registry.npmjs.org --network-concurrency 4
+npm exec --yes --package=corepack@0.35.0 -- corepack yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-concurrency 4
 cd ..
 sh desktop/build.sh
 ```
@@ -48,6 +48,7 @@ Do not edit or regenerate `healthit.yaml` as part of this rebrand.
 ## Documentation
 
 - [Contributing and development](CONTRIBUTING.md)
+- [Local data and security settings](docs/LOCAL_DATA_SAFETY.md)
 - [Desktop build and testing](desktop/README.md)
 - [Provider connection validation](desktop/PROVIDER_VALIDATION.md)
 - [Replacing Lighthouse for production](desktop/LIGHTHOUSE_REPLACEMENT.md)

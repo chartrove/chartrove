@@ -50,5 +50,9 @@ exactly, with zero provenance changes.
 No additional manual UI session is claimed for this Go-only change. The qualified
 Moment UI is unchanged; actual new-graph embedded web tests cover synthetic FHIR
 import and encrypted reopen/unlock, while the fresh native smoke covers the host.
-Protected integration is pending. #220 and its head remain open/live.
+[PR #381](https://github.com/karamhouse/chartrove/pull/381) merged after all three
+protected checks passed at exact head 675ca23d040359496cc8984d14a49ba5d4a90a2e.
+#220 is individually closed as implemented. Its archived historical head and
+integrated task head are retired after fresh dependency/reachability/lease checks.
+[Retirement](goja-retirement-1.json).
 Raw evidence: `dist/validation/2026-11-01-consolidation/goja-review/`.
