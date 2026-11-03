@@ -21,6 +21,11 @@ function inventory(root) {
   return files;
 }
 
+function freeBytes(root) {
+  const disk = statfsSync(root);
+  return disk.bavail * disk.bsize;
+}
+
 export function runCommand(command, cwd, env, log) {
   return new Promise((resolveCommand, reject) => {
     const fd = openSync(log, 'wx');
@@ -97,7 +102,7 @@ export async function validate({ root, reportDir, run = runCommand }) {
   // The checkout may be on a different volume from OS scratch. Keep the
   // original beside it so both preservation/restoration renames stay local.
   const originalDocumentation = join(lock, 'documentation-before');
-  const receipt = { started: new Date().toISOString(), scratch, steps: [], outputs: [] };
+  const receipt = { started: new Date().toISOString(), scratch, freeBeforeBytes: freeBytes(root), steps: [], outputs: [] };
   const save = () => writeFileSync(join(reportDir, 'receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
   const hadDocumentation = (() => {
     try { lstatSync(documentation); return true; } catch (error) {
@@ -128,10 +133,12 @@ export async function validate({ root, reportDir, run = runCommand }) {
   try {
     save();
     for (const [name, command] of steps) {
-      const step = { name, command, started: new Date().toISOString() };
+      const step = { name, command, started: new Date().toISOString(), freeBeforeBytes: freeBytes(root) };
       receipt.steps.push(step);
       save();
       step.exit = await run(command, frontend, env, join(reportDir, `${name}.log`));
+      step.freeAfterBytes = freeBytes(root);
+      step.freeDeltaBytes = step.freeAfterBytes - step.freeBeforeBytes;
       step.finished = new Date().toISOString();
       save();
       if (step.exit !== 0) { result = step.exit; break; }
@@ -156,6 +163,8 @@ export async function validate({ root, reportDir, run = runCommand }) {
     rmSync(scratch, { recursive: true, force: true });
     rmSync(lock, { recursive: true });
     receipt.scratchRemoved = !existsSync(scratch);
+    receipt.freeAfterCleanupBytes = freeBytes(root);
+    receipt.freeDeltaBytes = receipt.freeAfterCleanupBytes - receipt.freeBeforeBytes;
     receipt.finished = new Date().toISOString();
     save();
   }

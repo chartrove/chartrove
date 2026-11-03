@@ -59,6 +59,14 @@ for (const failure of [false, true]) {
       assert.equal(readFileSync(join(root, 'frontend', 'documentation.json'), 'utf8'), 'original documentation');
       const receipt = JSON.parse(readFileSync(join(reportDir, 'receipt.json')));
       assert.equal(receipt.scratchRemoved, true);
+      assert.ok(Number.isSafeInteger(receipt.freeBeforeBytes));
+      assert.ok(Number.isSafeInteger(receipt.freeAfterCleanupBytes));
+      assert.equal(receipt.freeDeltaBytes, receipt.freeAfterCleanupBytes - receipt.freeBeforeBytes);
+      for (const step of receipt.steps) {
+        assert.ok(Number.isSafeInteger(step.freeBeforeBytes));
+        assert.ok(Number.isSafeInteger(step.freeAfterBytes));
+        assert.equal(step.freeDeltaBytes, step.freeAfterBytes - step.freeBeforeBytes);
+      }
       assert.equal(receipt.steps.length, failure ? 1 : 4);
       assert.equal(receipt.outputs[0].files[0].path, 'index.html');
       assert.equal(readFileSync(join(reportDir, 'node.log'), 'utf8'), 'retained command log');
