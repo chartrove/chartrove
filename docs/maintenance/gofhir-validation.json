@@ -1,0 +1,289 @@
+{
+  "raw_directory": "dist/validation/2026-11-01-consolidation/gofhir-review",
+  "adopted_version": "v0.0.9",
+  "retired_target_pending_protected_integration": "v0.1.1",
+  "issue53": "remains open and unresolved",
+  "applied_commands": [
+    {
+      "name": "root-module-verify",
+      "cwd": ".",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "exit": 0,
+      "seconds": 8.89,
+      "sha256": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd"
+    },
+    {
+      "name": "desktop-module-verify",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "exit": 0,
+      "seconds": 6.7,
+      "sha256": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd"
+    },
+    {
+      "name": "root-vet",
+      "cwd": ".",
+      "command": [
+        "go",
+        "vet",
+        "./backend/..."
+      ],
+      "exit": 0,
+      "seconds": 7.12,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "desktop-vet",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "exit": 0,
+      "seconds": 12.96,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "backend-tests",
+      "cwd": ".",
+      "command": [
+        "go",
+        "test",
+        "-p",
+        "1",
+        "./backend/...",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "seconds": 356.66,
+      "sha256": "7db21ca1cfeafceb28eddfecc2104a57c1728f2dc3dfd76fd68058c036ef0ae5"
+    },
+    {
+      "name": "desktop-tests",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "test",
+        "./...",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "seconds": 10.74,
+      "sha256": "459f09ea5c1f9e7eb621152029e205e7014923e46c590de9d73fda2a5d9e96b9"
+    },
+    {
+      "name": "desktop-embedded",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "test",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbedded",
+        "-count=1",
+        "-timeout=120s",
+        "-json"
+      ],
+      "exit": 0,
+      "seconds": 22.19,
+      "sha256": "41e60d1ff3867712c826638988af5f33675bc30377fa957f9d3fc69363feb9fe"
+    }
+  ],
+  "events": {
+    "backend-tests": {
+      "skip": 15,
+      "pass": 367
+    },
+    "desktop-tests": {
+      "skip": 2,
+      "pass": 33
+    },
+    "desktop-embedded": {
+      "pass": 17
+    }
+  },
+  "escaped_standard_code_controls": [
+    {
+      "phase": "old-red",
+      "command": [
+        "go",
+        "test",
+        "-modfile=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gofhir-review/applied-before/go.mod",
+        "./backend/pkg/web",
+        "-run",
+        "^TestFHIRModelEscapedGenderContract$",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "test_sha256": "538943d12d56c872c5d525177a00856ff5d313dd8c24e81811ae3cea937be7ba"
+    },
+    {
+      "phase": "root-green",
+      "command": [
+        "go",
+        "test",
+        "./backend/pkg/web",
+        "-run",
+        "^TestFHIRModelEscapedGenderContract$",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "test_sha256": "538943d12d56c872c5d525177a00856ff5d313dd8c24e81811ae3cea937be7ba"
+    },
+    {
+      "phase": "desktop-green",
+      "command": [
+        "go",
+        "test",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "^TestFHIRModelEscapedGenderContract$",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "test_sha256": "538943d12d56c872c5d525177a00856ff5d313dd8c24e81811ae3cea937be7ba"
+    }
+  ],
+  "fixture_vectors": {
+    "inputs": 100,
+    "accepted": 98,
+    "unsupported_both": [
+      "bundle/example3.json",
+      "diagnosticReport/example2.json"
+    ],
+    "acceptance_and_canonical_outputs_exact": true,
+    "source_fixture_hashes_unchanged": true,
+    "new_acceptance_or_canonical_differences": 0
+  },
+  "public_api": {
+    "old_public_symbols": 8812,
+    "new_public_symbols": 8818,
+    "existing_structs_with_boolean_alias": 258,
+    "added_symbols": [
+      "fhir401/func/*Boolean.UnmarshalJSON",
+      "fhir401/func/Boolean.MarshalJSON",
+      "fhir401/type/Boolean",
+      "fhir430/func/*Boolean.UnmarshalJSON",
+      "fhir430/func/Boolean.MarshalJSON",
+      "fhir430/type/Boolean"
+    ],
+    "all_existing_field_names_tags_and_nonboolean_types_unchanged": true,
+    "all_existing_callable_type_signatures_unchanged": true,
+    "parameter_names_excluded_from_signature_equivalence": true,
+    "wire_boolean_and_sdk_contracts_validated_separately": true,
+    "initial_guard_qualification": "Initial normalization handled optional *Boolean/[]Boolean only; 56 structs also wrap required Boolean fields. Exact colon-delimited type normalization includes those; raw AST differences are retained. No source or assertion was changed."
+  },
+  "module_graph": {
+    "changes": {
+      "root": {
+        "github.com/fastenhealth/gofhir-models": {
+          "before": "v0.0.7",
+          "after": "v0.0.9"
+        }
+      },
+      "desktop": {
+        "github.com/fastenhealth/gofhir-models": {
+          "before": "v0.0.7",
+          "after": "v0.0.9"
+        }
+      }
+    },
+    "go_minimum_unchanged": "1.26.1",
+    "all_replacements_unchanged": true,
+    "selected_other_module_versions_unchanged": true
+  },
+  "cold_compatibility": [
+    {
+      "phase": "new-root",
+      "command": [
+        "go",
+        "run",
+        "-modfile=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gofhir-review/compatible-v009/root.mod",
+        "/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/gorm-cold-probe.go",
+        "verify",
+        "/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gofhir-review/cold-api/gorm-family-cold-fixtures/new-root"
+      ],
+      "exit": 0,
+      "original_seed_unchanged": true
+    },
+    {
+      "phase": "old-reopen-after-new",
+      "command": [
+        "go",
+        "run",
+        "/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/gorm-cold-probe.go",
+        "verify",
+        "/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gofhir-review/cold-api/gorm-family-cold-fixtures/old-reopen-after-new"
+      ],
+      "exit": 0,
+      "original_seed_unchanged": true
+    },
+    {
+      "phase": "new-desktop",
+      "command": [
+        "go",
+        "run",
+        "-modfile=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gofhir-review/compatible-v009/desktop.mod",
+        "/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/gorm-cold-probe.go",
+        "verify",
+        "/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gofhir-review/cold-api/gorm-family-cold-fixtures/new-desktop"
+      ],
+      "exit": 0,
+      "original_seed_unchanged": true
+    }
+  ],
+  "v011_runtime_diagnostics": [
+    {
+      "name": "old-qualified-contracts",
+      "command": [
+        "go",
+        "test",
+        "-overlay=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/next-go-dependency-review/gofhir-probe/contracts-overlay-qualified.json",
+        "./backend/pkg/web",
+        "-run",
+        "^(TestFHIRModel|TestEmbeddedFHIRModel)",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 1,
+      "test_sha256": "794174f8b31313a75488d917923a18160605fc838d15a80e24618d529842c35c"
+    },
+    {
+      "name": "new-qualified-contracts",
+      "command": [
+        "go",
+        "test",
+        "-overlay=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/next-go-dependency-review/gofhir-probe/contracts-overlay-qualified.json",
+        "-modfile=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/next-go-dependency-review/gofhir-probe/root.mod",
+        "./backend/pkg/web",
+        "-run",
+        "^(TestFHIRModel|TestEmbeddedFHIRModel)",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 1,
+      "test_sha256": "794174f8b31313a75488d917923a18160605fc838d15a80e24618d529842c35c"
+    }
+  ],
+  "v011_typed_output": "{\"Unknown\":{\"resourceType\":\"Patient\"},\"id\":\"synthetic-model\",\"active\":false,\"gender\":\"unknown\",\"multipleBirthInteger\":0}",
+  "final_test_sha256": "538943d12d56c872c5d525177a00856ff5d313dd8c24e81811ae3cea937be7ba",
+  "local_full_suite_qualification": "Full backend/desktop/embedded runs precede addition of the final escaped-standard-code assertion; final focused old-red/root-green/desktop-green controls run identical complete test source. Protected CI must run every test at the final published head.",
+  "native_package": "no new local package claimed; unchanged 50 GiB full-build admission; no cleanup"
+}

@@ -35,7 +35,7 @@ require (
 	github.com/dop251/goja v0.0.0-20261031103838-cf2ff0ec0b31 // indirect
 	github.com/f-amaral/go-async v0.3.0 // indirect
 	github.com/fastenhealth/fasten-sources v0.6.25 // indirect
-	github.com/fastenhealth/gofhir-models v0.0.7 // indirect
+	github.com/fastenhealth/gofhir-models v0.0.9 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.12 // indirect

@@ -8,19 +8,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #394 and individual #232/#278/#279/#280/#281 dispositions.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after394.json).
-The maroto-pdf-compatibility task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #395 and individual #267 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after395.json).
+The gofhir-compatible-models task branch is additional to this historical snapshot.
 The separately owned artifact-retention branch/worktree remains preserved.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `4a4efc69f3c031e1a08b0ac01581229947ae92bc` (#394) |
+| Published application main | `0b6455253299b2f57804cdf6023317e624f30b28` (#395) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 15: nine paused Renovate proposals and six historical drafts |
-| Origin heads | 22 |
-| Default branch | main tracks origin/main; current PDF task is additional |
+| Open PRs | 14: eight paused Renovate proposals and six historical drafts |
+| Origin heads | 21 |
+| Default branch | main tracks origin/main; current FHIR task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -76,13 +76,28 @@ heads and merged task ref are retired. Historical manual retirements now total
 [Scope and retained failures](maintenance/2026-11-03-gorm-persistence-family.md),
 [guarded retirement](maintenance/gorm-family-retirement.json).
 
-The next PDF candidate implements #267's Maroto 2.4.4 with its required Go 1.26.1
-patch-level minimum, retaining the actual Go 1.27.3 toolchain. Thirty old/new
-structural cases and independent small/seven-page synthetic PDF consumers pass
-with corrected patient fixture and explicitly reviewed border metadata. Applied
-root/desktop IPS, verification/vet, host and encrypted embedded checks pass.
-Original #267 remains open until protected integration and individual fresh guards.
-[Scope and limits](maintenance/2026-11-03-maroto-pdf.md).
+Merged #395 implements #267's Maroto 2.4.4 with its required Go 1.26.1
+patch-level minimum, retaining actual Go/CI 1.27.3. Thirty old/root/desktop
+structural cases and independent one/seven-page synthetic PDF consumers pass;
+all applied and protected checks pass. The original PR is individually closed as
+implemented. Its archived exact tip was already absent at retirement, actor
+unknown; the merged task ref is retired. Historical manual retirements remain
+82 and already-absent heads with unknown actors now total 13. An outer receipt
+postprocessing error followed the successful guarded core operation; independent
+owner/worktree/clean-main checks qualify the final receipt without repeating it.
+[Scope](maintenance/2026-11-03-maroto-pdf.md),
+[qualified retirement](maintenance/maroto-retirement.json).
+
+The next FHIR candidate advances the compatible library from 0.0.7 to 0.0.9.
+#262's 0.1.1 compiles and accepts shorthand imports but fails typed resourceType/
+known-field serialization on stable Go 1.27.3; it is not adopted. A scoped
+retirement of that incompatible version follows protected integration of 0.0.9,
+without an implementation claim for 0.1.1 or the still-open shorthand issue #53.
+All 98 supported canonical outputs among 100 synthetic fixtures match, with two
+unchanged unsupported inputs. Raw unknown-number/zero/false/date/Unicode and
+SDK interfaces, encrypted old/new/old and desktop cold opens pass. Other selected
+versions and all replacements stay unchanged. No real records or native package
+are used as validation. [Scope](maintenance/2026-11-03-gofhir-compatibility.md).
 
 Each historical feature draft now has a source-admission review, with concrete
 unmerged auth/data/service gaps and preserved capabilities. A strict verified

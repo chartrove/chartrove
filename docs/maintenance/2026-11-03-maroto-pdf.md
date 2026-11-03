@@ -78,3 +78,16 @@ archive bytes; prerequisites remain reachable from main.
 [Recovery receipt](maroto-head-recovery.json).
 The original PR and branch remain live until protected replacement integration,
 fresh individual content/head checks and guarded ownership/consumer retirement.
+
+## Protected publication
+
+Merged #395 at 0b6455253299b2f57804cdf6023317e624f30b28 with all three required
+checks successful on exact head e9d5f4d5ef441e46663597dcaa325f2c12932e18.
+#267 passed individual full-content/head guards and is closed as implemented.
+Its exact archived branch was already absent when retirement began; actor unknown.
+The incorporated task branch was deleted with an exact-tip lease. An outer
+postprocessing variable shadowed the receipt path after core retirement completed;
+no retirement was repeated. Independent owner/worktree/clean-main checks qualify
+the final [retirement receipt](maroto-retirement.json). The separate retention
+owner remains preserved. Fresh snapshot: 163 issues, 14 PRs and 21 origin heads;
+consolidation remains incomplete.

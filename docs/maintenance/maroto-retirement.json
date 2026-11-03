@@ -1,0 +1,35 @@
+{
+  "time": "2026-11-03T19:10:46.016564+00:00",
+  "main": "0b6455253299b2f57804cdf6023317e624f30b28",
+  "branches": [
+    {
+      "name": "renovate/github.com-johnfercher-maroto-v2-2.x",
+      "sha": "ac49aa46139a5e951aaac6cdd2a2d6d458b0ea4f",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/github.com-johnfercher-maroto-v2-2.x",
+      "outcome": "already absent; actor unknown"
+    },
+    {
+      "name": "task/maroto-pdf-compatibility",
+      "sha": "e9d5f4d5ef441e46663597dcaa325f2c12932e18",
+      "kind": "merged task",
+      "ref": "refs/heads/task/maroto-pdf-compatibility",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/maroto-pdf-compatibility\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/maroto-pdf-compatibility\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true,
+  "postprocessing_qualification": "Core guarded retirement and receipt completed. Outer postprocessing then failed because exec reused r as a receipt dict, shadowing its path. No retirement was repeated; independent owner/worktree/clean-main checks passed before adding this qualification."
+}
