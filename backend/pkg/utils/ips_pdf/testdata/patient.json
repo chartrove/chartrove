@@ -28,7 +28,7 @@
 							"type": "col",
 							"nodes": [
 								{
-									"value": "",
+									"value": "John Doe",
 									"type": "text",
 									"details": {
 										"prop_align": "L",
@@ -61,7 +61,7 @@
 					"type": "row",
 					"details": {
 						"prop_background_color": "RGB(220, 220, 220)",
-						"prop_border_type": "1"
+						"prop_border_type": 15
 					},
 					"nodes": [
 						{
@@ -180,7 +180,7 @@
 					"value": 11.055555555555557,
 					"type": "row",
 					"details": {
-						"prop_border_type": "1"
+						"prop_border_type": 15
 					},
 					"nodes": [
 						{

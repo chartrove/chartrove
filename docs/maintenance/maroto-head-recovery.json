@@ -1,0 +1,20 @@
+{
+  "branch": "renovate/github.com-johnfercher-maroto-v2-2.x",
+  "tip": "ac49aa46139a5e951aaac6cdd2a2d6d458b0ea4f",
+  "bundle": "dist/validation/2026-11-01-consolidation/maroto-head-20261103.bundle",
+  "sha256": "e804aa6e86d299338d72514c6a2b836ae145746ea5722fdbe73863ead29b553f",
+  "bytes": 2472,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "4a4efc69f3c031e1a08b0ac01581229947ae92bc",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "1231b1618eff102259820756258378b49f0f9c6f",
+    "736e168cdbe37f7ee4afbdaf98db6a1778ce21fa",
+    "ac49aa46139a5e951aaac6cdd2a2d6d458b0ea4f",
+    "d08fe8c0b99f48276d7f1429ddae30fae1936bb5"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks"
+}

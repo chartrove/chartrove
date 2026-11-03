@@ -539,7 +539,7 @@ func TestRenderPatientSection(t *testing.T) {
 	m := maroto.NewMetricsDecorator(mrt)
 
 	patient := &database.FhirPatient{
-		Name:      datatypes.JSON(`[{"text": "John Doe"}]`),
+		Name:      datatypes.JSON(`["John Doe"]`),
 		Address:   datatypes.JSON(`["123 Main St"]`),
 		Telecom:   datatypes.JSON(`[{"code": "555-555-5555"},{"code": "test@email.com"}]`),
 		Birthdate: lo.ToPtr(time.Date(1970, 1, 1, 0, 0, 0, 0, time.UTC)),

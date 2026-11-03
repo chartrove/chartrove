@@ -113,3 +113,15 @@ rewriting the original command receipts. Original PRs remain open until protecte
 integration and fresh individual whole-content/head guards. Branch retirement
 also requires exact-tip leases, all-PR consumer checks and ownership checks;
 the independent artifact-retention branch/worktree is outside this batch.
+
+## Protected publication
+
+Merged #394 at 4a4efc69f3c031e1a08b0ac01581229947ae92bc after Backend, Frontend
+and Desktop checks passed on exact head 497861ad460ea9743da74bbe65f6f8ccfcf21dd9.
+Full original-content/head guards passed separately for each of the five original
+PRs before closure as implemented by the corrected replacement. All five
+historical tips and the merged task branch were retired in one atomic exact-tip
+lease operation after fresh consumer, reachability, archive and worktree ownership
+checks. The independent artifact-retention owner remains untouched.
+[Retirement receipt](gorm-family-retirement.json). The fresh checkpoint has
+163 issues, 15 PRs and 22 origin heads; this remains an incomplete consolidation.

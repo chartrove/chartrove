@@ -4,7 +4,7 @@ Chartrove is an independent fork of [Fasten Onprem](https://github.com/fastenhea
 
 ## Toolchain
 
-- Go 1.26 or newer; root and desktop modules retain separate dependency graphs.
+- Go 1.26.1 or newer; root and desktop modules retain separate dependency graphs.
 - Node 26.13.0, pinned in `mise.toml`, with the committed Yarn 1.22.22 configuration.
 - Angular 22.x through the local, locked CLI (currently core 22.2.4, CLI/CDK 22.2.5, and TypeScript 6.0.3).
 - macOS with Xcode Command Line Tools for native desktop builds.

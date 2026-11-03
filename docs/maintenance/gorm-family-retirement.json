@@ -1,0 +1,62 @@
+{
+  "time": "2026-11-03T18:46:52.368120+00:00",
+  "main": "4a4efc69f3c031e1a08b0ac01581229947ae92bc",
+  "branches": [
+    {
+      "name": "renovate/github.com-go-gormigrate-gormigrate-v2-2.x",
+      "sha": "06d89f69429a03227811cc1612984cd980ed5c34",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/github.com-go-gormigrate-gormigrate-v2-2.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "renovate/gorm.io-datatypes-1.x",
+      "sha": "47b14f984b3e93d6c81fc12e2e78c3cdfe86e4a6",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/gorm.io-datatypes-1.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "renovate/gorm.io-driver-postgres-1.x",
+      "sha": "6bb11ddaa74bd33dd0c3c56b69747d6dd9c09c16",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/gorm.io-driver-postgres-1.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "renovate/gorm.io-driver-sqlite-1.x",
+      "sha": "2fabe4ed7444297c972e6f1389d073dc217558a8",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/gorm.io-driver-sqlite-1.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "renovate/gorm.io-gorm-1.x",
+      "sha": "131eb895a16caf4a40afbebcf8e8d48838cd6c16",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/gorm.io-gorm-1.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/gorm-persistence-family",
+      "sha": "497861ad460ea9743da74bbe65f6f8ccfcf21dd9",
+      "kind": "merged task",
+      "ref": "refs/heads/task/gorm-persistence-family",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-go-gormigrate-gormigrate-v2-2.x\n - [deleted]               renovate/gorm.io-datatypes-1.x\n - [deleted]               renovate/gorm.io-driver-postgres-1.x\n - [deleted]               renovate/gorm.io-driver-sqlite-1.x\n - [deleted]               renovate/gorm.io-gorm-1.x\n - [deleted]               task/gorm-persistence-family\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/github.com-go-gormigrate-gormigrate-v2-2.x\n - [deleted]               renovate/gorm.io-datatypes-1.x\n - [deleted]               renovate/gorm.io-driver-postgres-1.x\n - [deleted]               renovate/gorm.io-driver-sqlite-1.x\n - [deleted]               renovate/gorm.io-gorm-1.x\n - [deleted]               task/gorm-persistence-family\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true
+}
