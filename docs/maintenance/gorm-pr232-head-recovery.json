@@ -1,0 +1,17 @@
+{
+  "branch": "renovate/github.com-go-gormigrate-gormigrate-v2-2.x",
+  "tip": "06d89f69429a03227811cc1612984cd980ed5c34",
+  "bundle": "dist/validation/2026-11-01-consolidation/gorm-family-heads-20261103.bundle",
+  "sha256": "c588137f3bde424f8b84a3d9b9f9db8be9fcb6c3b6bf1064f72496667ef60943",
+  "bytes": 7852,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "cbe5954caa6e1722d02f025f65225e77102434a4",
+  "required_objects_included": true,
+  "strict_pack_validation": "passed with original-object offset proof",
+  "unique_commits": [
+    "06d89f69429a03227811cc1612984cd980ed5c34"
+  ],
+  "original_intake_reference": "b72af58c4572ce0abfaba8af3a8288d0f95fcf1f refs/maintenance-archive/20261101/renovate/github.com-go-gormigrate-gormigrate-v2-2.x"
+}

@@ -1,0 +1,17 @@
+{
+  "branch": "renovate/gorm.io-driver-sqlite-1.x",
+  "tip": "2fabe4ed7444297c972e6f1389d073dc217558a8",
+  "bundle": "dist/validation/2026-11-01-consolidation/gorm-family-heads-20261103.bundle",
+  "sha256": "c588137f3bde424f8b84a3d9b9f9db8be9fcb6c3b6bf1064f72496667ef60943",
+  "bytes": 7852,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "cbe5954caa6e1722d02f025f65225e77102434a4",
+  "required_objects_included": true,
+  "strict_pack_validation": "passed with original-object offset proof",
+  "unique_commits": [
+    "2fabe4ed7444297c972e6f1389d073dc217558a8"
+  ],
+  "original_intake_reference": "88d7e75c42b540119d5633e2da19323729e0d7d8 refs/maintenance-archive/20261101/renovate/gorm.io-driver-sqlite-1.x"
+}

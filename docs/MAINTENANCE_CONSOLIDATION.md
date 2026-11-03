@@ -8,19 +8,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #392 and individual #238 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after392.json).
-The gridstack-14-compatibility task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #393 and individual #302/#243 dispositions.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after393.json).
+The gorm-persistence-family task branch is additional to this historical snapshot.
 The separately owned artifact-retention branch/worktree remains preserved.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `d401de996a5d8cce5adc91829aedc046df539d08` (#392) |
+| Published application main | `cbe5954caa6e1722d02f025f65225e77102434a4` (#393) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 22: 16 paused Renovate proposals and six historical drafts |
-| Origin heads | 29 |
-| Default branch | main tracks origin/main; current GridStack task is additional |
+| Open PRs | 20: 14 paused Renovate proposals and six historical drafts |
+| Origin heads | 27 |
+| Default branch | main tracks origin/main; current GORM task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -32,7 +32,9 @@ Requery live counts after every integration.
 The six remaining drafts are #209 (permissions),
 #211 (Typesense/RAG), #212 (OCR), #214 (OIDC), #215 (delegated access), and #217
 (reserved usernames). Their head/base dependencies remain live. These are not
-implemented features or blanket retirement candidates. #284/#285/#286 are now
+implemented features or blanket retirement candidates. The maintainer explicitly
+retained all six capabilities on November 3; corrected implementations and their
+individual data/authentication policies remain required. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
@@ -49,11 +51,24 @@ locally packaged native source remains 33c64fbdb, before this runtime-library
 update, and must not be presented as a new Chart.js package.
 [Scope and limits](maintenance/2026-11-03-chartjs-4-maintenance.md).
 
-The overlapping GridStack #302/#243 proposals now have exact-tip recovery bundles
-and a corrected v14 candidate. Identical final adapter cases pass old/new,
-including rendered pixels, zero/false configuration, public edit state, callbacks
-and responsive restoration. Host free space is about 40 GiB; full local admission
-remains blocked. [Scope and retained failures](maintenance/2026-11-03-gridstack-14.md).
+Merged #393 updates GridStack to 14.0.0 through the attributed custom adapter.
+Old/new real-browser geometry, configuration, edit-state and responsive cases pass.
+The first production check exceeded the unchanged 10 MB budget by 3.57 kB;
+loading the existing guarded dashboard lazily corrects this. Actual router controls
+prove authenticated loading and signed-out denial. Final protected checks pass:
+541 browser tests, one existing skip, 16 Node tests, and 9.86 MB initial output.
+#302 is implemented; #243 is superseded by validated v14, without claiming v8.4
+remains installed. Both archived historical tips and the task branch are retired.
+Local native chunk loading and pointer dragging remain unverified; no new local
+package is claimed. [Scope and retained failures](maintenance/2026-11-03-gridstack-14.md).
+
+The next GORM family candidate covers #232/#278/#279/#280/#281 together. Its
+uncorrected selected graph bypassed the version-qualified SQLCipher replacement
+and failed the encrypted-header test. The correction matches every selected
+SQLite version to the exact existing cipher source in both graphs. Synthetic
+old/new/old cold opens and all three old/root/desktop PostgreSQL fixture runs pass.
+No original PR is closed before protected integration and individual fresh guards.
+[Scope and limits](maintenance/2026-11-03-gorm-persistence-family.md).
 
 Each historical feature draft now has a source-admission review, with concrete
 unmerged auth/data/service gaps and preserved capabilities. A strict verified

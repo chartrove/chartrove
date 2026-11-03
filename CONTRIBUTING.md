@@ -139,6 +139,15 @@ This checks driver parameter binding, fresh repository migration, synthetic
 account and FHIR date persistence, and reopen. It does not establish compatibility
 of every advanced resource query or an existing production database.
 
+For ORM or SQLite updates, inspect the effective replacement with
+`go list -m -json github.com/mattn/go-sqlite3` in both module graphs.
+The selected mattn version is dependency metadata; the
+replacement must still select the pinned SQLCipher fork. Keep its replacement
+version-independent so a transitive minimum cannot silently select plaintext
+SQLite. Check encrypted headers, wrong-key rejection and cold synthetic database
+reopen across the old/new graphs, as well as the opt-in PostgreSQL fixture.
+Do not use an existing personal database for these checks.
+
 Choose checks appropriate to the change. Do not relax timeouts, encryption, or test assertions to make a failing check pass. Distinguish a source check from a successful build and a real native UI check.
 
 ## Server signing key

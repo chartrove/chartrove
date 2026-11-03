@@ -15,10 +15,12 @@ No prototype was executed against records or a production provider.
 | #215 / upstream #614 | Delegated access | New routes are authenticated but do not call HasAccess for delegated resource reads/edits. Repository reads trust requested owner/source identity; UpdateResourceRaw filters only source/resource identifiers and writes raw JSON without checking delegate rights/current owner or refreshing derived FHIR indexes. Requires ownership/source-policy checks, revocation, authorization-denial fixtures and atomic raw/derived consistency before integration. The original proposal's external-source edit restriction is not established by the inspected write path. |
 | #217 / upstream #636 | Reserved registration usernames | The full one-file patch rejects a fixed case-insensitive list, including admin/administrator; it has no tests. Existing roles are determined by actual role/first-user logic, not a username string. This is a registration/name policy, not a fix proving current role escalation. Requires an explicit Chartrove naming policy, creation-only behavior and legacy-account compatibility tests. Do not silently ban legitimate local maintainer names or infer that the feature is implemented. |
 
-The prior user decision retained selected LDAP/OIDC, delegated permissions, OCR
-and Typesense/RAG expansions but did not identify the selected subset. Preserve
-all prototypes while that choice is unspecified. This review does not blanket
-retire them, merge unsafe code, or convert unimplemented capabilities into closed
+On November 3 the maintainer explicitly selected **all six** capabilities above
+for Chartrove's implementation scope. This resolves the earlier unspecified
+subset, but does not approve the unsafe prototype implementations or settle
+credential, indexing, provisioning, naming and migration policies. All six remain
+open for corrected integration and capability-specific validation. This review
+does not blanket retire them or convert unimplemented capabilities into closed
 issues. Generic/type-only modernization overlaps must be separated from feature
 work (for example, Chart.js widget type corrections are now integrated by #392).
 

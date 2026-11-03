@@ -1,0 +1,242 @@
+{
+  "raw_directory": "dist/validation/2026-11-01-consolidation/gorm-family-review",
+  "applied_commands": [
+    {
+      "name": "root-module-verify",
+      "cwd": ".",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "exit": 0,
+      "seconds": 3.29,
+      "sha256": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd"
+    },
+    {
+      "name": "desktop-module-verify",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "exit": 0,
+      "seconds": 3.11,
+      "sha256": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd"
+    },
+    {
+      "name": "root-vet",
+      "cwd": ".",
+      "command": [
+        "go",
+        "vet",
+        "./backend/..."
+      ],
+      "exit": 0,
+      "seconds": 1.44,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "desktop-vet",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "exit": 0,
+      "seconds": 5.73,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "backend-tests",
+      "cwd": ".",
+      "command": [
+        "go",
+        "test",
+        "-p",
+        "1",
+        "./backend/...",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "seconds": 109.43,
+      "sha256": "5385d5f9c43df5b33005b2ce672e4d9f530365dd92e9b16218ebc8776efb7a0c"
+    },
+    {
+      "name": "desktop-tests",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "test",
+        "./...",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "seconds": 6.76,
+      "sha256": "96d076937cd0547a7da0b9d46f847a64c52c19e08e6af5b9fd40a137632b1957"
+    },
+    {
+      "name": "desktop-embedded",
+      "cwd": "desktop",
+      "command": [
+        "go",
+        "test",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbedded",
+        "-count=1",
+        "-timeout=120s",
+        "-json"
+      ],
+      "exit": 0,
+      "seconds": 8.69,
+      "sha256": "ec2f9902f64c6777a0a29cd02dba2747cb9b433d2bb58182b0d684d96a8a44d7"
+    }
+  ],
+  "events": {
+    "backend-tests": {
+      "skip": 15,
+      "pass": 342
+    },
+    "desktop-tests": {
+      "skip": 2,
+      "pass": 33
+    },
+    "desktop-embedded": {
+      "pass": 12
+    }
+  },
+  "qualified_pagination_controls": [
+    {
+      "name": "cross-table-qualified-red",
+      "command": [
+        "go",
+        "test",
+        "-overlay=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/applied-validation/old-query-overlay-qualified.json",
+        "./backend/pkg/database",
+        "-run",
+        "^TestCrossTablePaginationPreservesScope$",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "test_sha256": "8d9941bc3d67d2bcbd7969ea66e04f84fcddfb9e96628f470836ddd8cfde9c9e",
+      "overlay_source": "/Users/osama/Code/karamhouse/Chartrove/backend/pkg/database"
+    },
+    {
+      "name": "cross-table-qualified-old-control",
+      "command": [
+        "go",
+        "test",
+        "-overlay=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/applied-validation/old-query-overlay-qualified.json",
+        "-modfile=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/applied-before/go.mod",
+        "./backend/pkg/database",
+        "-run",
+        "^TestCrossTablePaginationPreservesScope$",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "test_sha256": "8d9941bc3d67d2bcbd7969ea66e04f84fcddfb9e96628f470836ddd8cfde9c9e",
+      "overlay_source": "/Users/osama/Code/karamhouse/Chartrove/backend/pkg/database"
+    },
+    {
+      "name": "cross-table-qualified-green",
+      "command": [
+        "go",
+        "test",
+        "./backend/pkg/database",
+        "-run",
+        "^TestCrossTablePaginationPreservesScope$",
+        "-count=1",
+        "-json"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "test_sha256": "8d9941bc3d67d2bcbd7969ea66e04f84fcddfb9e96628f470836ddd8cfde9c9e",
+      "overlay_source": "/Users/osama/Code/karamhouse/Chartrove/backend/pkg/database"
+    }
+  ],
+  "limits": [
+    "No personal or purchased-app database opened",
+    "No new local packaged native artifact claimed",
+    "No authentication/authorization expansion implemented by the ORM update",
+    "Initial failed backend run, fixture/overlay controls and HTTP500 setup failure retained"
+  ],
+  "module_graph_receipt_sha256": "8619886df0fa492f40472203109b209dffde9f0a53259d7d16eb4033a3ee319a",
+  "postgres_final_commands": [
+    {
+      "name": "postgres-qualified-old-query-control",
+      "command": [
+        "go",
+        "test",
+        "-tags=postgres_integration",
+        "-overlay=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/applied-validation/old-query-overlay-qualified.json",
+        "-modfile=/Users/osama/Code/karamhouse/chartrove/dist/validation/2026-11-01-consolidation/gorm-family-review/applied-before/go.mod",
+        "./backend/pkg/database",
+        "-run",
+        "^TestPostgresIntegration$",
+        "-count=1",
+        "-json"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "exit": 0,
+      "events": {
+        "pass": 14
+      }
+    },
+    {
+      "name": "postgres-qualified-root",
+      "command": [
+        "go",
+        "test",
+        "-tags=postgres_integration",
+        "./backend/pkg/database",
+        "-run",
+        "^TestPostgresIntegration$",
+        "-count=1",
+        "-json"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove",
+      "exit": 0,
+      "events": {
+        "pass": 14
+      }
+    },
+    {
+      "name": "postgres-qualified-desktop",
+      "command": [
+        "go",
+        "test",
+        "-tags=postgres_integration",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+        "-run",
+        "^TestPostgresIntegration$",
+        "-count=1",
+        "-json"
+      ],
+      "cwd": "/Users/osama/Code/karamhouse/chartrove/desktop",
+      "exit": 0,
+      "events": {
+        "pass": 14
+      }
+    }
+  ],
+  "postgres_final_container_inventory_empty": true,
+  "publication_inputs": {
+    "go.mod": "350dd1c16054d5da7c27abad684303f144e1416ddfa194ce421fa4a27c19d548",
+    "go.sum": "debe5950055286a6f34915fa1f024ba614ef33961d0a0413f69d597d956cd7a6",
+    "desktop/go.mod": "ea3007fa3967139aa2b96c71e81072e55ba4563e5666392100454f8d4b0dec6e",
+    "desktop/go.sum": "772d33195e3ee58fd959f3680a1ece6f87b1b1e3b23f907a5eda0e537fefc97d",
+    "backend/pkg/database/gorm_common.go": "77889a147deacc6b83b8cd9bddb8ba58ab9d2b6d6a4cddf031dc98a68122c97e",
+    "backend/pkg/database/gorm_cross_table_pagination_test.go": "8d9941bc3d67d2bcbd7969ea66e04f84fcddfb9e96628f470836ddd8cfde9c9e",
+    "backend/pkg/database/postgres_integration_test.go": "299595a5fd8100501885c24ae3beb5fd0b9ec58a6e43088b862f3796ee2dcf6e"
+  },
+  "unexpected_image_disappearance": "Final old-control admission failed before tests because pinned image was absent; actor unknown. Exact documented fixture image was pulled again; no pruning. Original failure retained."
+}

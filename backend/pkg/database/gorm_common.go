@@ -1496,7 +1496,9 @@ func (gr *GormRepository) getResourcesFromAllTables(queryBuilder *gorm.DB, query
 			return nil, err
 		}
 		var tempWrappedResourceModels []models.ResourceBase
-		results := queryBuilder.
+		// Clone the configured statement for each table. Pagination makes the
+		// builder reusable; table-qualified filters must not leak between queries.
+		results := queryBuilder.Session(&gorm.Session{}).
 			Where(queryParam).
 			Table(tableName).
 			Find(&tempWrappedResourceModels)

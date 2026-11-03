@@ -1,0 +1,17 @@
+{
+  "branch": "renovate/gorm.io-gorm-1.x",
+  "tip": "131eb895a16caf4a40afbebcf8e8d48838cd6c16",
+  "bundle": "dist/validation/2026-11-01-consolidation/gorm-family-heads-20261103.bundle",
+  "sha256": "c588137f3bde424f8b84a3d9b9f9db8be9fcb6c3b6bf1064f72496667ef60943",
+  "bytes": 7852,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "cbe5954caa6e1722d02f025f65225e77102434a4",
+  "required_objects_included": true,
+  "strict_pack_validation": "passed with original-object offset proof",
+  "unique_commits": [
+    "131eb895a16caf4a40afbebcf8e8d48838cd6c16"
+  ],
+  "original_intake_reference": "014f8baad7548d622b8766e53d36943456698113 refs/maintenance-archive/20261101/renovate/gorm.io-gorm-1.x"
+}

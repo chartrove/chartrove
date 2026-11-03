@@ -1,0 +1,60 @@
+{
+  "bundle": "dist/validation/2026-11-01-consolidation/gorm-family-heads-20261103.bundle",
+  "sha256": "c588137f3bde424f8b84a3d9b9f9db8be9fcb6c3b6bf1064f72496667ef60943",
+  "bytes": 7852,
+  "branches": [
+    {
+      "number": 232,
+      "branch": "renovate/github.com-go-gormigrate-gormigrate-v2-2.x",
+      "tip": "06d89f69429a03227811cc1612984cd980ed5c34",
+      "archive_ref": "refs/maintenance-archive/20261103/gorm-family-pr232",
+      "unique_commits": [
+        "06d89f69429a03227811cc1612984cd980ed5c34"
+      ]
+    },
+    {
+      "number": 278,
+      "branch": "renovate/gorm.io-datatypes-1.x",
+      "tip": "47b14f984b3e93d6c81fc12e2e78c3cdfe86e4a6",
+      "archive_ref": "refs/maintenance-archive/20261103/gorm-family-pr278",
+      "unique_commits": [
+        "47b14f984b3e93d6c81fc12e2e78c3cdfe86e4a6"
+      ]
+    },
+    {
+      "number": 279,
+      "branch": "renovate/gorm.io-driver-postgres-1.x",
+      "tip": "6bb11ddaa74bd33dd0c3c56b69747d6dd9c09c16",
+      "archive_ref": "refs/maintenance-archive/20261103/gorm-family-pr279",
+      "unique_commits": [
+        "6bb11ddaa74bd33dd0c3c56b69747d6dd9c09c16"
+      ]
+    },
+    {
+      "number": 280,
+      "branch": "renovate/gorm.io-driver-sqlite-1.x",
+      "tip": "2fabe4ed7444297c972e6f1389d073dc217558a8",
+      "archive_ref": "refs/maintenance-archive/20261103/gorm-family-pr280",
+      "unique_commits": [
+        "2fabe4ed7444297c972e6f1389d073dc217558a8"
+      ]
+    },
+    {
+      "number": 281,
+      "branch": "renovate/gorm.io-gorm-1.x",
+      "tip": "131eb895a16caf4a40afbebcf8e8d48838cd6c16",
+      "archive_ref": "refs/maintenance-archive/20261103/gorm-family-pr281",
+      "unique_commits": [
+        "131eb895a16caf4a40afbebcf8e8d48838cd6c16"
+      ]
+    }
+  ],
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "cbe5954caa6e1722d02f025f65225e77102434a4",
+  "required_unique_objects": 20,
+  "all_unique_objects_in_original_pack": true,
+  "strict_index_pack": "passed with original-object offset proof",
+  "retirement_performed": false
+}

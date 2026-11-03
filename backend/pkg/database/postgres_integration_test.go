@@ -15,6 +15,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	mock_config "github.com/fastenhealth/fasten-onprem/backend/pkg/config/mock"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
@@ -122,6 +123,20 @@ func TestPostgresIntegration(t *testing.T) {
 		require.NoError(t, reopened.(*GormRepository).GormClient.First(&persistedPatient, "id = ?", patient.ID).Error)
 		require.NotNil(t, persistedPatient.MetaLastUpdated)
 		require.True(t, updated.Equal(*persistedPatient.MetaLastUpdated))
+		t.Run("CrossTablePagination", func(t *testing.T) {
+			ctx := context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, user.Username)
+			options := models.ListResourceQueryOptions{SourceID: patient.SourceID.String(), Limit: 1}
+			rows, err := reopened.ListResources(ctx, options)
+			require.NoError(t, err)
+			require.Len(t, rows, 1)
+			require.Equal(t, user.ID, rows[0].UserID)
+			require.Equal(t, patient.SourceID, rows[0].SourceID)
+			require.Equal(t, patient.ID, rows[0].ID)
+			options.Offset = 1
+			rows, err = reopened.ListResources(ctx, options)
+			require.NoError(t, err)
+			require.Empty(t, rows)
+		})
 		t.Run("LegacyAdminMigrationPreservesCredentials", func(t *testing.T) {
 			admin := models.User{Username: "admin", Password: user.Password}
 			gormRepo := reopened.(*GormRepository)
