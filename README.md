@@ -19,7 +19,7 @@ Fasten's retired production integration infrastructure is not restored by renami
 
 ## Desktop development
 
-Use macOS with Xcode Command Line Tools, Go 1.26 or newer, and Mise Node 26.13.0. The frontend uses the committed Yarn lockfile; the desktop module pins Wails v3.0.0. The Angular migration needed for supported Node 26 compatibility is in progress; see [the toolchain status](CONTRIBUTING.md#toolchain).
+Use macOS with Xcode Command Line Tools, Go 1.26 or newer, and Mise Node 26.13.0. The frontend uses the committed Yarn lockfile; the desktop module pins Wails v3.0.0. The locked Angular 22 frontend supports the selected Node runtime; see [the toolchain status](CONTRIBUTING.md#toolchain).
 
 ```sh
 cd frontend
@@ -60,7 +60,9 @@ Historical Fasten documentation is available in the [upstream docs repository](h
 
 Use [Chartrove issues](https://github.com/karamhouse/chartrove/issues) and [pull requests](https://github.com/karamhouse/chartrove/pulls). Public reports must omit health information, credentials, and identifying details.
 
-The upstream open backlog was copied with original-author credit and discussion links. Migrated PRs are drafts against historical base commits; they require review and retargeting or rebasing before integration into `main`. Copied review transcripts are not new approvals. GitHub Actions remain disabled while the inherited workflows are assessed.
+Chartrove uses the maintained guides above and GitHub support for this fork; upstream hosted FAQs and Discord invitations are managed separately. [Provider validation status](desktop/PROVIDER_VALIDATION.md#current-validation-status) distinguishes local imports, historical sandbox evidence and production blockers; an inherited provider name is not a production connection guarantee.
+
+The upstream open backlog was copied with original-author credit and discussion links. Migrated PRs are drafts against historical base commits; they require review and retargeting or rebasing before integration into `main`. Copied review transcripts are not new approvals. Only validation CI is active. Protected `main` requires the Backend, Frontend and Desktop checks through a pull request; inherited publishing workflows remain retired. See [the contribution workflow](CONTRIBUTING.md#pull-requests-and-automation).
 
 ## Fasten attribution and license
 

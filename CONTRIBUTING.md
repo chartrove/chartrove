@@ -25,6 +25,21 @@ child command on Node 26.
 
 Angular 22 officially supports Node 26 and TypeScript 6.0. Keep TypeScript within the selected Angular compiler's supported range and report concrete compatibility failures; do not reinstall retired Node runtimes or bypass engine checks. See [the maintenance baseline](docs/MAINTENANCE_BASELINE.md) for validation evidence and the sequential migration history.
 
+## Pull requests and automation
+
+Changes to protected `main` require a pull request with up-to-date successful
+Backend, Frontend and Desktop checks and resolved review conversations. No
+reviewer approval minimum is configured for the single-maintainer workflow. Force pushes
+and branch deletion are blocked on `main`; do not bypass validation to merge.
+
+Only the validation workflow is active. Inherited cloud, CDN, container and
+release publishing sources are retained in the
+[retired workflow archive](docs/retired-workflows/README.md); the old Development
+registration stays disabled. Use short-lived task branches and retire them only
+after integration and preservation of any unique history. GitHub issues and the
+[consolidation checkpoint](docs/MAINTENANCE_CONSOLIDATION.md) record outstanding
+work; closed historical proposals do not imply unimplemented features exist.
+
 ## Repository layout
 
 | Path | Purpose |
@@ -84,6 +99,11 @@ go test github.com/fastenhealth/fasten-onprem/backend/pkg/web -run TestEmbedded 
 ```
 
 The native `--smoke-test` mode requires `--unencrypted` and an explicit fresh `--data-dir`. It refuses an existing database. It validates the real WebView bridge and uses synthetic records only.
+
+During automated GUI checks, verify process exit after closing the test window.
+Do not query a closed app through automation that can relaunch it without the
+explicit test arguments. Every new test launch must select and verify its
+disposable data directory again.
 
 The opt-in PostgreSQL driver regression requires Docker with a local Unix socket.
 Pull its pinned PostgreSQL 17 image, then run from the repository root:

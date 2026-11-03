@@ -1,0 +1,172 @@
+{
+  "link_and_statement_checks": {
+    "relative_links_checked": [
+      {
+        "file": "README.md",
+        "target": "CONTRIBUTING.md#toolchain",
+        "exists": true,
+        "anchor_valid": true
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/README.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "README.md",
+        "target": "CONTRIBUTING.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/README.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/PROVIDER_VALIDATION.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/LIGHTHOUSE_REPLACEMENT.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "README.md",
+        "target": "docs/BRANDING.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/BRANDING_VALIDATION.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "README.md",
+        "target": "desktop/PROVIDER_VALIDATION.md#current-validation-status",
+        "exists": true,
+        "anchor_valid": true
+      },
+      {
+        "file": "README.md",
+        "target": "CONTRIBUTING.md#pull-requests-and-automation",
+        "exists": true,
+        "anchor_valid": true
+      },
+      {
+        "file": "README.md",
+        "target": "LICENSE.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/MAINTENANCE_BASELINE.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/retired-workflows/README.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/MAINTENANCE_CONSOLIDATION.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "desktop/README.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/retired-frontend-tooling/README.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "docs/BRANDING.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "desktop/PROVIDER_VALIDATION.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "CONTRIBUTING.md",
+        "target": "desktop/LIGHTHOUSE_REPLACEMENT.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "desktop/PROVIDER_VALIDATION.md",
+        "target": "LIGHTHOUSE_REPLACEMENT.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "desktop/PROVIDER_VALIDATION.md",
+        "target": "README.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "desktop/PROVIDER_VALIDATION.md",
+        "target": "../CONTRIBUTING.md",
+        "exists": true,
+        "anchor_valid": null
+      },
+      {
+        "file": "desktop/PROVIDER_VALIDATION.md",
+        "target": "BRANDING_VALIDATION.md",
+        "exists": true,
+        "anchor_valid": null
+      }
+    ],
+    "one_h1_per_document": true,
+    "workflow_go_versions": [
+      "1.27.3",
+      "1.27.3"
+    ],
+    "current_angular_family_verified": "22.x",
+    "executable_source_or_health_data_changed": false,
+    "source_hashes": {
+      "README.md": "60277e2c2f12a58412853264121ba632134d68bdf496a51e6395db49f7427cac",
+      "CONTRIBUTING.md": "13c5afef52ca229f1da3ddcfd2d403a15175c8d6c74195ac53807ded4da8efa9",
+      "desktop/PROVIDER_VALIDATION.md": "2b7e3727fa43fc84a766a338eaec2acba4143194f216ac853c9f362573eedb60"
+    }
+  },
+  "application_and_dependency_paths_unchanged": true,
+  "qualified_native_source": "48db0aba7cf666c2a4a467cb1d4b5abc10fa9a88",
+  "issue191_disposition": {
+    "issue": 191,
+    "source": "upstream website FAQ/Discord link report plus request for provider capability documentation",
+    "current_repo": "README already directs support to Chartrove GitHub; no matching upstream FAQ/Discord targets in current application navigation/docs search",
+    "proposed_disposition": "retire upstream-site repair as outside this independent fork; explicitly document maintained fork support routes and current validation inventory without claiming upstream URLs fixed or production integrations implemented",
+    "remaining_product_capability": "production provider ownership/registration and complete flow remain unqualified and documented; not declared implemented",
+    "documentation_repairs": [
+      "replace stale Angular-migration statement",
+      "replace stale Actions-disabled statement",
+      "explain protected single-maintainer workflow",
+      "separate historical sandbox evidence from current qualification"
+    ]
+  },
+  "protected_integration": "pending required PR checks"
+}
