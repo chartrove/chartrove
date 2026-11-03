@@ -1,0 +1,21 @@
+{
+  "time": "2026-11-03T07:36:17.992139+00:00",
+  "scope": "synthetic seed metadata only, no real or purchased-app data",
+  "original_seed_database_sha256_unchanged": "7c450b31cfeab5324700480454f03f2c71d1004b5ad7cdf37a673f038733ee15",
+  "sidecars": {
+    "fasten.db-wal": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "birthtime_utc": "2026-11-03T06:35:06.902601+00:00"
+    },
+    "fasten.db-shm": {
+      "bytes": 32768,
+      "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+      "birthtime_utc": "2026-11-03T06:35:06.902687+00:00"
+    }
+  },
+  "earlier_jose_verification": "original seed hashes checked before opening SQLite mode=ro; that connection can create WAL/SHM metadata, so whole-directory unchanged wording was too broad",
+  "record_and_database_bytes": "unchanged; empty WAL, synthetic raw comparison passed",
+  "preservation": "sidecars retained; original receipts kept, correction appended",
+  "future_verification": "copy stopped task profile before querying; frozen seed only with immutable=1 and empty/no WAL"
+}

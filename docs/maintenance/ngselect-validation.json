@@ -298,7 +298,49 @@
   ],
   "current_Go_database_Wails_raw_record_contracts_changed": false,
   "full_upstream_suite": "not run; actual wizard consumers are the qualified boundary",
-  "native": "pending source commit/package/UI acceptance",
+  "native": {
+    "receipt": "docs/maintenance/native-f290a0806-validation.json",
+    "source_revision": "f290a0806365280620b4908a80aad1f18dc98136",
+    "build_zip_signature_smoke": "passed; ten synthetic native checks",
+    "zip_sha256": "8106ffe08fd98eda750a48fde11c23c292242143ac3c3aa0ee1e6535332abfd3",
+    "frontend_comparison": {
+      "files": 22289,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "diagnostic_stats_excluded_from_runtime_assets": "retained as validation-lazy-qualified/webpack-stats.json"
+    },
+    "native_wizard_ui": {
+      "time": "2026-11-03T07:40:54.751471+00:00",
+      "source_revision": "f290a0806365280620b4908a80aad1f18dc98136",
+      "method": "cua_repl exact app after sole PID/private data-cache verification",
+      "pid": 42716,
+      "normal_signin_route": "#/dashboard",
+      "create_route_wizard": "#/resource/create opens Medical Record Wizard; required Encounter guidance and disabled Save visible",
+      "create_route_dismissal": "returns to #/medical-history",
+      "timeline_source_resource": "synthetic-manual-encounter at 2253d45d-737f-4732-a5af-faccf52a7cfd",
+      "timeline_wizard": "Synthetic office visit; Start date Feb 29, 2024; section tabs enabled",
+      "native_attachment_picker_observations": [
+        "Medication draft renders Select Attachment disabled without attachments; incomplete row disables Save",
+        "Procedure draft renders Select Attachment disabled without attachments"
+      ],
+      "native_multiple_selection": "not exercised; actual DOM consumer cases on both versions cover select/hide/remove/serialized IDs",
+      "drafts_dismissed_without_save": true,
+      "focus_observation": "Tab completed deferred sign-in rendering; create action first needed viewport scroll before activation, no source workaround",
+      "app_closed_using_fresh_full_ax_close_index": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_call_after_close": true,
+      "synthetic_raw_records_byte_identical_to_seed": true,
+      "synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_encounter": 1
+      },
+      "frozen_seed_database_and_existing_sidecar_hashes_unchanged_during_this_check": true,
+      "stopped_app_profile_hashes_unchanged_by_verification": true,
+      "verification_method": "query a copied stopped profile; immutable=1 for checkpointed seed with empty WAL; before/after hash checks",
+      "prior_seed_sidecar_correction": "docs/maintenance/synthetic-seed-sidecar-correction.json",
+      "real_records_used": false
+    },
+    "original_output_content_stat_and_xattrs_restored_exactly": true
+  },
   "protected_integration": "pending",
   "raw_evidence": "dist/validation/2026-11-01-consolidation/ngselect-review/"
 }

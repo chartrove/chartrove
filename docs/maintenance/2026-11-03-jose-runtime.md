@@ -46,7 +46,13 @@ asset files match the qualified build; original output contents/stat/xattrs are
 restored exactly with zero provenance changes. The actual app signs in to the
 known synthetic profile, renders the dashboard and shows desktop-smoke with
 Administrator in its profile menu. Sign Out returns to the empty sign-in form.
-Both raw synthetic records and the original seed remain unchanged. Tab completed
+Both raw synthetic records and the seed database bytes remain unchanged. The
+read-only SQLite verifier created an empty WAL and a 32 KiB SHM sidecar in the
+synthetic seed at verification time; whole-directory unchanged wording was too
+broad. Both sidecars and the original receipts are retained, with the correction
+recorded separately. No real/purchased data was involved. Subsequent checks query
+copies of stopped profiles and use immutable access for checkpointed seeds.
+[Metadata correction](synthetic-seed-sidecar-correction.json). Tab completed
 deferred initial/sign-in rendering; no source or asset workaround was applied.
 The app is closed and ps confirms absence; no Cua call follows closure.
 [Native receipt](native-50cabfe56-validation.json).

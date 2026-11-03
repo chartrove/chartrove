@@ -162,7 +162,6 @@
       "signin_form_after_signout": "username/password empty, Sign In disabled",
       "focus_observation": "Tab completed deferred initial and sign-in rendering; no source/asset workaround or cause claim",
       "synthetic_raw_records_byte_identical_to_seed": true,
-      "original_seed_hashes_unchanged": true,
       "synthetic_counts": {
         "fhir_patient": 1,
         "fhir_encounter": 1
@@ -170,9 +169,13 @@
       "app_closed_using_fresh_full_ax_close_index": true,
       "process_absence_verified_with_ps_only": true,
       "no_cua_call_after_close": true,
-      "real_records_used": false
+      "real_records_used": false,
+      "original_seed_database_bytes_unchanged": true,
+      "whole_seed_directory_unchanged": false,
+      "verification_metadata_correction": "docs/maintenance/synthetic-seed-sidecar-correction.json"
     },
-    "original_outputs_content_stat_xattrs_restored_exactly": true
+    "original_outputs_content_stat_xattrs_restored_exactly": true,
+    "verification_metadata_correction": "docs/maintenance/synthetic-seed-sidecar-correction.json"
   },
   "protected_integration": {
     "pr": 385,

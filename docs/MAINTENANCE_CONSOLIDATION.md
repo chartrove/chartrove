@@ -39,7 +39,10 @@ real AuthService cases pass on old/new versions; the full suite passes 513 tests
 with one existing skip. Node checks, production/Storybook, signed native ten-check
 smoke and all protected checks pass. Native sign-in renders the synthetic user
 and Administrator; sign-out returns to the empty form. Both raw synthetic records
-and the seed remain unchanged. #305 is closed as implemented; #246 is superseded
+and seed database bytes remain unchanged. Its read-only verifier created an empty
+WAL and SHM metadata in that synthetic seed; both sidecars and original receipts are
+retained, with [qualified correction](maintenance/synthetic-seed-sidecar-correction.json).
+#305 is closed as implemented; #246 is superseded
 by v6, without claiming that v4 remains installed. Both historical branches were
 already absent at retirement checks, actor unknown; exact archived tips remain
 recoverable. The integrated task branch was deleted after guarded checks.
