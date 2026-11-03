@@ -29,3 +29,20 @@ Owner cleanup report/patch:
 artifact-retention.patch. Reported 47.01 GiB free and 88.94 GiB file footprint
 removed reflect APFS sharing, not equivalent physical recovery. Backups, caches,
 dependencies and fixtures remain outside this adoption's cleanup scope.
+
+PR #391 review found a real cross-filesystem preservation defect: renaming
+documentation from a checkout volume to OS temp fails with EXDEV. The first
+merge admission stopped on its unresolved conversation even though all three
+checks passed. The finding, blocked admission and red/green receipts remain in
+resource-card-age-review/retention-exdev/ and admission-first-blocked.json.
+
+A follow-up on the integration branch keeps the documentation backup inside the
+already-owned checkout validation lock. The original ed81d1b commit and owner's
+worktree remain untouched. Two identical success/failure regressions fail before
+the fix and pass after it on real /dev/shm versus /tmp filesystems in an isolated
+existing Linux image (no network, only the test/helper fixture mounted read-only).
+All six storage tests pass there; the full macOS Node run passes 14 with those
+two filesystem-dependent cases skipped. Linux CI exercises them without skips.
+The regression checks original contents, inode, permissions and scratch cleanup.
+No browser, production compiler or native application input changed in this
+follow-up; the previously qualified native application remains applicable.

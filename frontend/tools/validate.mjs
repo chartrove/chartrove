@@ -94,7 +94,9 @@ export async function validate({ root, reportDir, run = runCommand }) {
   }
   const frontend = join(root, 'frontend');
   const documentation = join(frontend, 'documentation.json');
-  const originalDocumentation = join(scratch, 'documentation-before');
+  // The checkout may be on a different volume from OS scratch. Keep the
+  // original beside it so both preservation/restoration renames stay local.
+  const originalDocumentation = join(lock, 'documentation-before');
   const receipt = { started: new Date().toISOString(), scratch, steps: [], outputs: [] };
   const save = () => writeFileSync(join(reportDir, 'receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
   const hadDocumentation = (() => {
