@@ -33,7 +33,7 @@
     "all_other_lock_blocks_exact": true,
     "lforms34_manifest_and_fhirpath3.2_lock_unchanged": true,
     "other_direct_manifest_values_unchanged": true,
-    "no_application_runtime_source_migration_yet": true
+    "no_application_runtime_source_migration_yet": false
   },
   "frozen_install": {
     "command": [
@@ -333,5 +333,92 @@
   },
   "storage_rules": "Live workspace cache=false, private scratch disposed. Metrics are host-wide. No full workflow below unchanged50GiB reserve, no repeat cleanup or cache-fix build.",
   "native_qualification": "Last locally qualified package source33c64fbdb predates later dependencies; no new packaged UI acceptance claimed.",
-  "protected_checks": "Mandatory Backend/Frontend/Desktop on final published head; no bypass."
+  "protected_checks": "Mandatory Backend/Frontend/Desktop on final published head; no bypass.",
+  "initial_protected_run": {
+    "run": 41729384592,
+    "head": "6cfa043ddf671a6667c082b599f7efcfae8c96ac",
+    "Backend": "success",
+    "Desktop": "success",
+    "Frontend": "failure",
+    "browser_pass": 552,
+    "browser_skip": 1,
+    "initial_bundle": "10.04 MB",
+    "budget": "10 MB unchanged",
+    "over_budget_bytes_display": "39.81 kB",
+    "full_log": "ci-frontend-initial.log"
+  },
+  "rtf_correction": {
+    "reason": "Defer existing optional renderer to reduce initial bundle without changing budget; component-scoped target and destruction guard fix reproduced cross-record writes.",
+    "renderer_version_unchanged": true,
+    "raw_source_unchanged": true,
+    "final_old": {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots",
+        "--include=src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts"
+      ],
+      "versions": {
+        "fhirpath": "5.2.3",
+        "lforms": "34.0.0",
+        "@swimlane/ngx-datatable": "25.0.0"
+      },
+      "exit": 1,
+      "spec_sha256": {
+        "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts": "8bfce1e3f7bfc9525a0e2e5b30f783a441c07267a9ac5ba2fb3769c560168216"
+      },
+      "spec_unchanged": true,
+      "private_scratch_disposed": true,
+      "live_workspace_cache_enabled": false,
+      "freeBeforeBytes": 24587489280,
+      "freeAfterCommandBytes": 24559345664,
+      "freeAfterCleanupBytes": 24589774848,
+      "freeDeltaBytes": 2285568,
+      "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+    },
+    "final_new": {
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots",
+        "--include=src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts"
+      ],
+      "versions": {
+        "fhirpath": "5.2.3",
+        "lforms": "34.0.0",
+        "@swimlane/ngx-datatable": "25.0.0"
+      },
+      "exit": 0,
+      "spec_sha256": {
+        "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.spec.ts": "8bfce1e3f7bfc9525a0e2e5b30f783a441c07267a9ac5ba2fb3769c560168216"
+      },
+      "spec_unchanged": true,
+      "private_scratch_disposed": true,
+      "live_workspace_cache_enabled": false,
+      "freeBeforeBytes": 24586969088,
+      "freeAfterCommandBytes": 24552779776,
+      "freeAfterCleanupBytes": 24582873088,
+      "freeDeltaBytes": -4096000,
+      "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+    },
+    "final_cases_each": 4,
+    "final_old_failures": 2,
+    "qualifications": {
+      "rtf-before": "Initial observer5s deadline raced Jasmine5s; leaked afterAll/browser error. Not a complete15-case result; source/log retained.",
+      "rtf-qualified-before": "Observer3s and allSettled; all15 ran with2 genuine original-renderer failures.",
+      "rtf-corrected": "14/15 pass; destruction harness used default host change detection and did not remove child. Host fixed to Eager and removal asserted; final unchanged control rerun on both original/corrected source."
+    },
+    "source_sha256": {
+      "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.ts": "a82ac973c843594709e8faf8ba4c5cf77b5739ab598b5b0e0cfb23650e2861ed",
+      "frontend/src/app/components/fhir-card/datatypes/rtf/rtf.component.html": "faa2048fe08ca3b6bf4646446683c4d39f244c1fae58480f762a05f1f0db34d9"
+    }
+  }
 }

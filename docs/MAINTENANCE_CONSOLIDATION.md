@@ -169,7 +169,13 @@ queries, raw objects and test source remain unchanged. The separate LForms 3.2/
 UCUM graphs retain versions and own payloads, including documented hoisting.
 All 11 identical old/new browser cases and post-adapter spec types pass; all
 protected checks remain mandatory. Neither original PR is yet called implemented
-or superseded. [Scope](maintenance/2026-11-03-fhirpath-5.md).
+or superseded. Initial PR #400 CI passes Backend, Desktop and 552 browser cases
+but fails the unchanged 10 MB initial budget by 39.81 kB. The follow-up defers
+existing RTF loading and corrects component targeting/destruction: identical final
+four-case controls fail twice on original and pass on corrected source, preserving
+raw strings. Initial harness qualifications and failed CI remain documented;
+final full protected validation is still required. No local full build is run
+below the reserve. [Scope](maintenance/2026-11-03-fhirpath-5.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
