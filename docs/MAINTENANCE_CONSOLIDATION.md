@@ -350,8 +350,10 @@ Current embedded unlock correction preserves explicit database, loopback and
 unsafe-route settings in a separate immutable snapshot. Two actual regressions
 fail in each Go graph and pass unchanged after repair. Full web suites (16 each),
 unlock race suites (four each), both vet checks, desktop tests and server build
-pass. Dependency and frontend bytes remain unchanged. Native and protected checks
-remain pending. [Scope](maintenance/2026-11-02-unlock-configuration.md).
+pass. Dependency and frontend bytes remain unchanged. Fresh native packaging at
+6368cdcc3 passes ZIP/signature and ten synthetic checks; all 22,287 frontend
+files and original output metadata are preserved. Protected integration remains
+pending. [Scope](maintenance/2026-11-02-unlock-configuration.md).
 
 ## Preservation and branch retirement
 

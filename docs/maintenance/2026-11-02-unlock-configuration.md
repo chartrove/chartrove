@@ -28,7 +28,11 @@ both unlock race suites pass four; both full vet checks, 28 desktop tests and th
 server build pass. Two desktop packages have no test files, with no named test
 skips. The encrypted desktop web suite retains the 120-second timeout. Module
 files remain byte-identical, and every tracked frontend input matches the qualified
-c8c6e4a9f build. Fresh native packaging and protected integration remain pending.
+c8c6e4a9f build. Fresh native packaging at 6368cdcc3 passes ZIP CRC, strict signature and
+ten synthetic native checks. All 22,287 qualified frontend files remain identical.
+Original output content/stat fields and all xattrs restore exactly, with zero
+provenance changes. [Native receipt](native-6368cdcc3-validation.json).
+Protected integration remains pending.
 [Detailed commands and receipts](unlock-configuration-validation.json).
 
 An initial temporary overlay used the checkout alias's lowercase path, while Go's
