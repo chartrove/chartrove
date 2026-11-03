@@ -1,0 +1,11 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/idb-installed-before-20261103.tar.zst",
+  "sha256": "32fd15cd5f5e7713ae8de6e0eeb5385f8d7408b4e571d810d4ab1b3a55fc0446",
+  "bytes": 80551,
+  "installed_packages": [
+    "idb 7.1.1"
+  ],
+  "includes_yarn_integrity": true,
+  "native_acl_xattrs_flags_and_full_tar_traversal": "passed",
+  "stat_and_content_manifest_sha256": "1e95d9e74ef6b87fbe4faeccc6d4fcb17878350501a65449c64808aa312e2d93"
+}

@@ -1,0 +1,148 @@
+{
+  "scope": "remove unused direct idb 7.1.1; proposed v8 upgrade is not implemented",
+  "installed_preserved": "docs/maintenance/idb-installed-preservation.json",
+  "consumer_review": "docs/maintenance/idb-unused-consumer-review.json",
+  "frontend": {
+    "receipts": [
+      {
+        "name": "frozen-install",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "install",
+          "--frozen-lockfile",
+          "--registry",
+          "https://registry.npmjs.org",
+          "--network-concurrency",
+          "4"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T09:12:36.244257+00:00",
+        "end": "2026-11-03T09:12:41.660677+00:00",
+        "exit": 0
+      },
+      {
+        "name": "node",
+        "command": [
+          "node",
+          "--test",
+          "frontend/desktop-tests/bridge.test.mjs",
+          "frontend/desktop-tests/compodoc-compat.test.mjs",
+          "frontend/desktop-tests/test-framework.test.mjs"
+        ],
+        "cwd": ".",
+        "start": "2026-11-03T09:12:46.002343+00:00",
+        "end": "2026-11-03T09:12:46.276804+00:00",
+        "exit": 0
+      },
+      {
+        "name": "browser",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "test",
+          "--watch=false",
+          "--progress=false",
+          "--browsers=ChromeHeadlessCI",
+          "--reporters=dots"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T09:12:46.277136+00:00",
+        "end": "2026-11-03T09:13:06.272850+00:00",
+        "exit": 0
+      },
+      {
+        "name": "production",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "build",
+          "--configuration",
+          "desktop_prod",
+          "--output-path",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/idb-review/validation/frontend"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T09:13:06.279247+00:00",
+        "end": "2026-11-03T09:13:44.962943+00:00",
+        "exit": 0
+      },
+      {
+        "name": "storybook",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "exec",
+          "ng",
+          "--",
+          "run",
+          "fastenhealth:build-storybook",
+          "--output-dir",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/idb-review/validation/storybook"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T09:13:46.698511+00:00",
+        "end": "2026-11-03T09:14:24.082850+00:00",
+        "exit": 0
+      }
+    ],
+    "retained_direct_versions_unchanged": 72,
+    "browser_passed": 523,
+    "existing_skip": 1,
+    "node_passed": 10,
+    "production_and_storybook_passed": true,
+    "coverage_and_documentation_absence_preserved": true
+  },
+  "lock_delta": {
+    "removed_manifest_line_only": true,
+    "removed_single_leaf_lock_block_only": true,
+    "all_remaining_lock_bytes_identical": true,
+    "removed_lock_block_sha256": "41997fb455393eb49f9a213a0d21f4f95879c3ecde085e3634ed8553d05553a3"
+  },
+  "production_asset_comparison": {
+    "old_files": 22289,
+    "new_files": 22289,
+    "changed_common": [
+      "main.3e984e372efc9e05.js.map"
+    ],
+    "old_only": [],
+    "new_only": [],
+    "exact_old_native_reuse_gate": "failed; preserve difference; package current assets",
+    "runtime_source_names_identical": true,
+    "unminified_runtime_sources_byte_identical": true,
+    "runtime_js_maps_index_all_identical": true,
+    "main_source_map_source_changes": [],
+    "qualified_scope": "only main source map differs; runtime JS, runtime map, index and all other assets are byte-identical",
+    "main_map_parsed_json_keys_different": [
+      "mappings"
+    ],
+    "main_map_all_embedded_source_names_and_contents_identical": true
+  },
+  "native": {
+    "receipt": "docs/maintenance/native-4414fd36a-validation.json",
+    "source_revision": "4414fd36a3987be7aa7617f09fdef3045bd5272e",
+    "zip_sha256": "0121a204e83e9c640379110613f532015edb02b2b1a075ed66b62efd5aec924b",
+    "checks": 10,
+    "zip_crc_strict_signature_smoke": "passed",
+    "current_compiled_reused_native_asset_trees_identical_files": 22289,
+    "original_output_content_stat_xattrs_restore_exactly": true
+  },
+  "protected_integration": "pending",
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/idb-review/",
+  "nested_installed_consumers": {
+    "after_qualified_frozen_install": "all nested package manifests scanned",
+    "count": 3114,
+    "idb_consumers": [],
+    "idb_directory_absent": true
+  }
+}

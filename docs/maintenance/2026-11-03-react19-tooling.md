@@ -38,3 +38,9 @@ signature and all ten synthetic native checks. All 22,289 current compiled,
 reused and native asset files match. Original output content, stat metadata
 and xattrs restore exactly. ZIP SHA-256 `cad5fe98662678f6058425fdf71213cead2718548088624458f6d23bffa78a38`.
 [Native receipt](native-d0b98e1a5-validation.json).
+
+Integration: #387 merged at `1220f9208f8982bebb312e4ae78da31836d71103`
+after all three protected checks passed. #326 is individually reconciled, and
+its verified exact historical tip and merged task branch were manually retired
+after fresh dependency review and guarded atomic expected-tip deletion.
+[Retirement](react19-retirement-1.json).
