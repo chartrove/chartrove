@@ -1,0 +1,191 @@
+{
+  "raw_directory": "dist/validation/2026-11-01-consolidation/maroto-review",
+  "applied_commands": [
+    {
+      "name": "root-module-verify",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "seconds": 2.98,
+      "events": {},
+      "sha256": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd"
+    },
+    {
+      "name": "desktop-module-verify",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "desktop",
+      "exit": 0,
+      "seconds": 2.08,
+      "events": {},
+      "sha256": "b4537ed75f533f993f371954de47e42a793b8e5b0587577de7e27fb3e50696bd"
+    },
+    {
+      "name": "root-vet",
+      "command": [
+        "go",
+        "vet",
+        "./backend/..."
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "seconds": 3.28,
+      "events": {},
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "desktop-vet",
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "cwd": "desktop",
+      "exit": 0,
+      "seconds": 16.21,
+      "events": {},
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "root-ips",
+      "command": [
+        "go",
+        "test",
+        "./backend/pkg/utils/ips...",
+        "-count=1",
+        "-json"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "seconds": 5.02,
+      "events": {
+        "pass": 34
+      },
+      "sha256": "426f9ef59fd43794320daaa0ac19bb9035917171695ec0678acd7f92cff9cd50"
+    },
+    {
+      "name": "desktop-ips",
+      "command": [
+        "go",
+        "test",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/utils/ips...",
+        "-count=1",
+        "-json"
+      ],
+      "cwd": "desktop",
+      "exit": 0,
+      "seconds": 4.42,
+      "events": {
+        "pass": 34
+      },
+      "sha256": "4b941ac0d61bceeef5ec834b2a6d3d45a5dd077e852442fc8be45e932604458d"
+    },
+    {
+      "name": "desktop-tests",
+      "command": [
+        "go",
+        "test",
+        "./...",
+        "-count=1",
+        "-json"
+      ],
+      "cwd": "desktop",
+      "exit": 0,
+      "seconds": 29.76,
+      "events": {
+        "skip": 2,
+        "pass": 33
+      },
+      "sha256": "c522f8984cfe5be466da642d0c9fe7650c249130a7d10e5a46c045382cef4281"
+    },
+    {
+      "name": "desktop-embedded",
+      "command": [
+        "go",
+        "test",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbedded",
+        "-count=1",
+        "-timeout=120s",
+        "-json"
+      ],
+      "cwd": "desktop",
+      "exit": 0,
+      "seconds": 27.56,
+      "events": {
+        "pass": 12
+      },
+      "sha256": "8d58bc9ee00602d2d0b6772ae50d141364df8465184544aac23c873688d504db"
+    }
+  ],
+  "isolated_structural_counts": {
+    "old": {
+      "pass": 30,
+      "fail": 0,
+      "skip": 0
+    },
+    "root": {
+      "pass": 30,
+      "fail": 0,
+      "skip": 0
+    },
+    "desktop": {
+      "pass": 30,
+      "fail": 0,
+      "skip": 0
+    }
+  },
+  "independent_pdf_comparisons": [
+    {
+      "rows": 1,
+      "graph": "root",
+      "old_pages": 1,
+      "new_pages": 1,
+      "normalized_raw_text_exact": true,
+      "token_counts_exact": true,
+      "tokens_added": {},
+      "tokens_removed": {}
+    },
+    {
+      "rows": 1,
+      "graph": "desktop",
+      "old_pages": 1,
+      "new_pages": 1,
+      "normalized_raw_text_exact": true,
+      "token_counts_exact": true,
+      "tokens_added": {},
+      "tokens_removed": {}
+    },
+    {
+      "rows": 120,
+      "graph": "root",
+      "old_pages": 7,
+      "new_pages": 7,
+      "normalized_raw_text_exact": true,
+      "token_counts_exact": true,
+      "tokens_added": {},
+      "tokens_removed": {}
+    },
+    {
+      "rows": 120,
+      "graph": "desktop",
+      "old_pages": 7,
+      "new_pages": 7,
+      "normalized_raw_text_exact": true,
+      "token_counts_exact": true,
+      "tokens_added": {},
+      "tokens_removed": {}
+    }
+  ],
+  "module_graph_receipt_sha256": "f75900984ced6ee461a27dd2903bc596ce62523b682c85083abd27fc2598db71",
+  "full_local_frontend_and_native_packaging": "Not repeated for this Go-only change; unchanged 50 GiB admission; no storage cleanup",
+  "protected_checks": "required before integration; not claimed from focused tests"
+}

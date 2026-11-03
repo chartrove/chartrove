@@ -8,19 +8,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #393 and individual #302/#243 dispositions.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after393.json).
-The gorm-persistence-family task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #394 and individual #232/#278/#279/#280/#281 dispositions.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after394.json).
+The maroto-pdf-compatibility task branch is additional to this historical snapshot.
 The separately owned artifact-retention branch/worktree remains preserved.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `cbe5954caa6e1722d02f025f65225e77102434a4` (#393) |
+| Published application main | `4a4efc69f3c031e1a08b0ac01581229947ae92bc` (#394) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 20: 14 paused Renovate proposals and six historical drafts |
-| Origin heads | 27 |
-| Default branch | main tracks origin/main; current GORM task is additional |
+| Open PRs | 15: nine paused Renovate proposals and six historical drafts |
+| Origin heads | 22 |
+| Default branch | main tracks origin/main; current PDF task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -62,13 +62,27 @@ remains installed. Both archived historical tips and the task branch are retired
 Local native chunk loading and pointer dragging remain unverified; no new local
 package is claimed. [Scope and retained failures](maintenance/2026-11-03-gridstack-14.md).
 
-The next GORM family candidate covers #232/#278/#279/#280/#281 together. Its
-uncorrected selected graph bypassed the version-qualified SQLCipher replacement
-and failed the encrypted-header test. The correction matches every selected
-SQLite version to the exact existing cipher source in both graphs. Synthetic
-old/new/old cold opens and all three old/root/desktop PostgreSQL fixture runs pass.
-No original PR is closed before protected integration and individual fresh guards.
-[Scope and limits](maintenance/2026-11-03-gorm-persistence-family.md).
+Merged #394 integrates #232/#278/#279/#280/#281 as one compatible family in
+both Go graphs. The uncorrected version-qualified SQLCipher replacement failed
+an actual encrypted-header test. The correction retains the exact cipher source
+for every selected SQLite version. A separate cross-table pagination regression
+is old-green/new-red/corrected-green. Full backend, desktop, embedded and all
+protected checks pass; synthetic encrypted old/new/old and desktop cold opens
+preserve records and credentials. Expanded PostgreSQL old/root/desktop fixtures
+each pass 14 events with no failures/skips, and no owned containers remain.
+All five original PRs are individually closed as implemented; their exact archived
+heads and merged task ref are retired. Historical manual retirements now total
+82, with 12 previously absent heads still attributed to unknown actors.
+[Scope and retained failures](maintenance/2026-11-03-gorm-persistence-family.md),
+[guarded retirement](maintenance/gorm-family-retirement.json).
+
+The next PDF candidate implements #267's Maroto 2.4.4 with its required Go 1.26.1
+patch-level minimum, retaining the actual Go 1.27.3 toolchain. Thirty old/new
+structural cases and independent small/seven-page synthetic PDF consumers pass
+with corrected patient fixture and explicitly reviewed border metadata. Applied
+root/desktop IPS, verification/vet, host and encrypted embedded checks pass.
+Original #267 remains open until protected integration and individual fresh guards.
+[Scope and limits](maintenance/2026-11-03-maroto-pdf.md).
 
 Each historical feature draft now has a source-admission review, with concrete
 unmerged auth/data/service gaps and preserved capabilities. A strict verified
