@@ -168,5 +168,18 @@
       "separate historical sandbox evidence from current qualification"
     ]
   },
-  "protected_integration": "pending required PR checks"
+  "protected_integration": {
+    "pr": 377,
+    "merge": "92721d64515588b4a9cd6a8c660e612f043c84f4",
+    "head": "e3badf43591b3fae1cf62eb2c7d70a05a1955cdf",
+    "validation_run": 41568231043,
+    "required_checks": "Backend/Frontend/Desktop all successful, Actions app15368",
+    "task_branch": "retired after merge/dependency/exact-tip checks"
+  },
+  "issue191_final_disposition": {
+    "state": "closed",
+    "state_reason": "not_planned",
+    "reason": "retired upstream-site repair request; maintained fork routes and bounded provider validation documentation supplied, no upstream repair or production feature claim",
+    "evidence": "https://github.com/karamhouse/chartrove/issues/191#issuecomment-6594293067"
+  }
 }
