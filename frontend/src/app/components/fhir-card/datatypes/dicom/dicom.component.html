@@ -1,23 +1,26 @@
 <div class="row">
   <div class="col text-center">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button ngbTooltip="scroll layers" type="button" (click)="onChangeTool('Scroll')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'Scroll'"><i class="fas fa-bars"></i></button>
-      <button ngbTooltip="zoom and pan" type="button" (click)="onChangeTool('ZoomAndPan')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'ZoomAndPan'"><i class="fas fa-search"></i></button>
-      <button ngbTooltip="change brightness" type="button" (click)="onChangeTool('WindowLevel')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'WindowLevel'"><i class="fas fa-adjust"></i></button>
-      <button ngbTooltip="add measurements" type="button" (click)="onChangeTool('Draw')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'Draw'"><i class="fas fa-edit"></i></button>
+      <button ngbTooltip="scroll layers" type="button" (click)="onChangeTool('Scroll')" [disabled]="!canRunTool('Scroll')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'Scroll'"><i class="fas fa-bars"></i></button>
+      <button ngbTooltip="zoom and pan" type="button" (click)="onChangeTool('ZoomAndPan')" [disabled]="!canRunTool('ZoomAndPan')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'ZoomAndPan'"><i class="fas fa-search"></i></button>
+      <button ngbTooltip="change brightness" type="button" (click)="onChangeTool('WindowLevel')" [disabled]="!canRunTool('WindowLevel')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'WindowLevel'"><i class="fas fa-adjust"></i></button>
+      <button ngbTooltip="add measurements" type="button" (click)="onChangeTool('Draw')" [disabled]="!canRunTool('Draw')" class="btn btn-secondary pd-x-25" [class.active]="selectedTool == 'Draw'"><i class="fas fa-edit"></i></button>
     </div>
 
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button ngbTooltip="toggle orientation" type="button" (click)="toggleOrientation()" class="btn btn-secondary pd-x-25"><i class="fas fa-compress"></i></button>
+      <button ngbTooltip="toggle orientation" type="button" (click)="toggleOrientation()" [disabled]="!dataLoaded" class="btn btn-secondary pd-x-25"><i class="fas fa-compress"></i></button>
     </div>
 
     <div class="btn-group" role="group" aria-label="Info">
-      <button ngbTooltip="show info" type="button" (click)="openTagsModal(tagsModal)" class="btn btn-secondary pd-x-25"><i class="fas fa-info"></i></button>
+      <button ngbTooltip="show info" type="button" (click)="openTagsModal(tagsModal)" [disabled]="!dataLoaded" class="btn btn-secondary pd-x-25"><i class="fas fa-info"></i></button>
     </div>
   </div>
 </div>
 
-<div id="dwv">
+@if (loadError) {
+  <div class="alert alert-danger" role="alert">{{loadError}}</div>
+}
+<div class="dicom-viewer">
   <!--  <mat-progress-bar mode="determinate" value="{{ loadProgress }}"></mat-progress-bar>-->
   <!--  <div class="button-row">-->
   <!--    <mat-button-toggle-group name="tool" [disabled]="!dataLoaded">-->
@@ -29,8 +32,8 @@
   <!--        <mat-icon>{{ getToolIcon(tool) }}</mat-icon>-->
 <!--      </mat-button-toggle>-->
 <!--    </mat-button-toggle-group>-->
-<div id="layerGroup0" class="layerGroup pd-t-10">
-  <div id="dropBox"></div>
+<div [id]="layerGroupId" class="layerGroup pd-t-10">
+
 </div>
 </div>
 

@@ -33,8 +33,8 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "./node_modules/dwv/decoders/",
-                "output": "/assets/dwv/decoders/"
+                "input": "./node_modules/dwv/dist/assets/",
+                "output": "/assets/"
               },
               {
                 "glob": "**/*.js",
@@ -322,7 +322,12 @@
                 "output": "assets/webfonts"
               },
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/dwv/dist/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -348,8 +353,8 @@
               "src/assets/images",
               {
                 "glob": "**/*",
-                "input": "./node_modules/dwv/decoders/",
-                "output": "/assets/dwv/decoders/"
+                "input": "./node_modules/dwv/dist/assets/",
+                "output": "/assets/"
               }
             ],
             "port": 6006
