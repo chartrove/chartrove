@@ -1,0 +1,80 @@
+{
+  "source_revision": "c109657a66dea0de624487eb16a9af57e4f68516",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-c109657a6-moment/Chartrove-c109657a6.zip",
+    "sha256": "069d217e2e7e399594a0980bc6cdab447e247677dff464d2d1b54c554994ecee",
+    "bytes": 336773548
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "c109657a66dea0de624487eb16a9af57e4f68516",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/moment-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/moment-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "7415194d9888319e76ef63834a590632db67a9ef187ef89807e1dc1eff204a48",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-c109657a6-moment/receipt.json",
+  "full_local_receipt_sha256": "04f326e770f875c284751194a6dea2e2d700472ebef49b981da632853cc8d1f3",
+  "frontend_comparison": {
+    "files": 22287,
+    "compiled_reused_and_native_asset_trees_byte_identical": true,
+    "previous_qualified_frontend_revision": "9518224f1b6bdf3bee1bf257878a17ad2df80cf2",
+    "artifact_delta": {
+      "added": [
+        "main.14113a69f43c422f.js",
+        "main.14113a69f43c422f.js.map"
+      ],
+      "removed": [
+        "main.b62c813500aad6aa.js",
+        "main.b62c813500aad6aa.js.map"
+      ],
+      "changed_common": [
+        "3rdpartylicenses.txt",
+        "index.html"
+      ]
+    }
+  },
+  "native_ui": {
+    "time": "2026-11-03T04:11:09.351695+00:00",
+    "method": "cua_repl exact task app after sole PID/private data/cache verification; actual synthetic account sign-in",
+    "pid": 79613,
+    "visible_patient_age": "Moment Synthetic | 26 years | Unknown",
+    "visible_vital": "Heart Rate: June 15, 2026; 72.0 beats/minute",
+    "synthetic_counts": {
+      "fhir_patient": 1,
+      "fhir_observation": 1
+    },
+    "all_raw_resources_byte_identical_to_seed": true,
+    "seed_files_unchanged": true,
+    "window_closed_using_fresh_full_ax_close_index": true,
+    "process_absence_verified_by_ps_only": true,
+    "no_cua_call_after_close": true,
+    "focus_observation": "Tab exposed content at initial background startup and again after sign-in; intervening screenshot remained on disabled sign-in state; no source/assets workaround, no causal claim",
+    "real_records_used": false
+  }
+}

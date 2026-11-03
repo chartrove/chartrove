@@ -31,6 +31,18 @@ Chartrove source; no application exploit path or clean dependency audit is
 claimed. No Go/Wails/API/database or application source changes are included.
 
 A fresh synthetic Patient/date/vital fixture was created through actual embedded
-signup/import routes with zero outbound HTTP. Native packaging, ten-check smoke,
-UI and protected integration remain pending. #249 and its head stay open/live.
+signup/import routes with zero outbound HTTP. Fresh native packaging at c109657a6 passes ZIP CRC, strict signature and ten
+synthetic checks. All 22,287 compiled/reused/native frontend files match; the
+artifact delta is main bundle/map, index and generated third-party license
+notice. The notice diff is retained. Original output content/stat fields and all
+xattrs restore exactly, with zero provenance changes.
+[Native receipt](native-c109657a6-validation.json).
+
+Native UI signs into the actual synthetic account and renders Moment Synthetic,
+26 years, and Heart Rate 72.0 beats/minute dated June 15, 2026. Both raw resources
+and original seed files remain unchanged. The app closes and ps proves process
+absence, with no Cua call after close. Tab keyboard focus exposed WebView content
+at startup and after sign-in; intervening states are recorded without attributing
+a cause or adding an application workaround.
+Protected integration remains pending. #249 and its head stay open/live.
 Raw evidence: `dist/validation/2026-11-01-consolidation/moment-review/`.
