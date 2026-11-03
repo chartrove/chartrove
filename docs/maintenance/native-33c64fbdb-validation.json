@@ -1,0 +1,46 @@
+{
+  "source_revision": "33c64fbdb6727d30a3fd5fc3794e789b915aee90",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-33c64fbdb-patient-detail/Chartrove-33c64fbdb.zip",
+    "sha256": "ddae5ef1a1ebeab98c2dc02a8b6b82f61d88468d9cef2babf78b94458d705879",
+    "bytes": 337728058
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "33c64fbdb6727d30a3fd5fc3794e789b915aee90",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/resource-card-age-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/resource-card-age-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "bc0fb4c63aa7f34c9d638b3ac319f852d4352c1c298613d3f02d5834ba99b666",
+    "compiler_inputs_match_except_three_reviewed_test_tooling_paths": true,
+    "reuse_qualification": "dist/validation/2026-11-01-consolidation/resource-card-age-review/validation/retention-tooling-reuse-qualification.json",
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-33c64fbdb-patient-detail/receipt.json",
+  "full_local_receipt_sha256": "626f51fb20486d6e40fc482d8e42549eb4a481b326fbd2514f8d8c4be81d4611",
+  "disposable_build_scratch_removed": true,
+  "disposable_smoke_scratch_removed": true
+}

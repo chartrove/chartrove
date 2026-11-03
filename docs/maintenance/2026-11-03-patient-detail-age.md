@@ -21,14 +21,20 @@ No timeout, assertion or budget was relaxed.
 Raw evidence is retained under
 dist/validation/2026-11-01-consolidation/resource-card-age-review/. It was moved
 intact from the private diagnostic directory; relocation.json explains original
-absolute paths in unmodified producer receipts. Compiled frontend output is held
-only for the pending native consumer. Native validation of this correction is
-pending at this source checkpoint.
+absolute paths in unmodified producer receipts. Native packaging at 33c64fbdb6
+reuses those qualified production inputs, with the three adopted test-tooling
+paths explicitly accounted for. ZIP CRC, strict signature and all ten synthetic
+native checks pass. Original ZIP/frontend/assets content, stat metadata and
+xattrs are restored exactly. Expanded native build/smoke output and this run's
+frontend/Storybook output were disposed after consumers exited, retaining file
+inventories, logs, ZIP and synthetic smoke data. Native patient-card UI was not
+repeated; its display behavior is covered by the browser DOM regressions.
+[Native receipt](native-33c64fbdb-validation.json).
 
 The separately authorized artifact-retention owner holds task/artifact-retention
 in /Users/osama/Code/_worktrees/karamhouse/chartrove/artifact-retention. Preserve
-that branch/worktree. Adopt final ed81d1bbede20c0618a01a859a9af887388ca26c after
-this clean source checkpoint, before further browser checks. Superseded unpublished
+that branch/worktree. Final ed81d1bbede20c0618a01a859a9af887388ca26c was merged
+after this clean source checkpoint, before further browser checks. Superseded unpublished
 0c02f5f2aa is not the adoption target. No full rebuild solely for that tooling fix,
 backup/cache/dependency/fixture pruning, or wait for 50 GiB is authorized by the
 cleanup handoff. Future expanded output must use disposable scratch.
