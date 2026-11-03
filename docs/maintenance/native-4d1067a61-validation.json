@@ -1,0 +1,59 @@
+{
+  "source_revision": "4d1067a6167a3ae6664de8704f348c832ee5fcea",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-4d1067a61-goja-runtime/Chartrove-4d1067a61.zip",
+    "sha256": "20d346f257c69a42b2a4a724f2633ee1de9573431c0a732aca15b7a6f183c98f",
+    "bytes": 337526850
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "qualified_frontend_source_revision": "c109657a66dea0de624487eb16a9af57e4f68516",
+    "committed_input_revision": "4d1067a6167a3ae6664de8704f348c832ee5fcea",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/moment-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/moment-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "7415194d9888319e76ef63834a590632db67a9ef187ef89807e1dc1eff204a48",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-4d1067a61-goja-runtime/receipt.json",
+  "full_local_receipt_sha256": "17daf7a60b0077657365347ff7fc341fdde277d1c76e4e488077825a44edef17",
+  "asset_and_module_proof": {
+    "qualified_frontend_source": "c109657a66dea0de624487eb16a9af57e4f68516",
+    "files": 22287,
+    "qualified_and_both_native_asset_trees_byte_identical": true,
+    "compiled_module_versions": {
+      "github.com/dop251/goja": "v0.0.0-20261031103838-cf2ff0ec0b31",
+      "github.com/Masterminds/semver/v3": "v3.5.0",
+      "github.com/dlclark/regexp2/v2": "v2.11.0"
+    },
+    "old_regexp2_v1_absent_from_compiled_binary": true,
+    "native_source_revision_matches": true,
+    "sqlcipher_and_provider_replacements_match": true,
+    "build_info": "dist/validation/2026-11-01-consolidation/native-4d1067a61-goja-runtime/native-build-info.txt",
+    "vcs_modified_during_packaging": "temporary task-owned frontend embedding changes tracked .gitkeep during build; wrapper proves original restoration and final clean source"
+  }
+}

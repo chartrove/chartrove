@@ -39,6 +39,16 @@ closures. This is module analysis, not call reachability or a clean whole-app sc
 
 The entire frontend input manifest matches qualified c109657a6. Reuse its passing
 Node/browser/production/Storybook and native UI evidence; hosted Frontend must
-still pass on the new PR head. Fresh native packaging, ten-check synthetic smoke
-and protected integration are pending. #220 and its head remain open/live.
+still pass on the new PR head. Fresh native packaging at 4d1067a61 passes ZIP CRC, strict signature and all ten
+fresh synthetic checks. All 22,287 qualified/reused/native frontend files match.
+Executable build metadata confirms the exact new Goja, semver and regexp2/v2,
+absence of linked regexp2/v1, current source revision and unchanged SQLCipher/
+provider mirrors. Original output content/stat fields and all xattrs restore
+exactly, with zero provenance changes.
+[Native receipt](native-4d1067a61-validation.json).
+
+No additional manual UI session is claimed for this Go-only change. The qualified
+Moment UI is unchanged; actual new-graph embedded web tests cover synthetic FHIR
+import and encrypted reopen/unlock, while the fresh native smoke covers the host.
+Protected integration is pending. #220 and its head remain open/live.
 Raw evidence: `dist/validation/2026-11-01-consolidation/goja-review/`.
