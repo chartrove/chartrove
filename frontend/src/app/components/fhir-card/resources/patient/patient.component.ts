@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
@@ -9,6 +9,7 @@ import { FhirCardComponentInterface } from '../../fhir-card/fhir-card-component-
 
 @Component({
     imports: [NgbCollapseModule, CommonModule, BadgeComponent, TableComponent, RouterModule],
+    providers: [DatePipe],
     selector: 'fhir-patient',
     templateUrl: './patient.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
@@ -19,7 +20,20 @@ export class PatientComponent implements OnInit, FhirCardComponentInterface {
   @Input() showDetails: boolean = true;
   @Input() isCollapsed: boolean = false;
 
-  constructor(public changeRef: ChangeDetectorRef, public router: Router) { }
+  constructor(public changeRef: ChangeDetectorRef, public router: Router, private datePipe: DatePipe) { }
+
+  get patientAgeDisplay(): number | string {
+    const age = this.displayModel?.patient_age;
+    return typeof age === 'number' && Number.isFinite(age) ? age : 'Not provided';
+  }
+
+  get patientBirthDateDisplay(): string {
+    try {
+      return this.datePipe.transform(this.displayModel?.patient_birthdate, 'mediumDate') ?? '';
+    } catch {
+      return '';
+    }
+  }
 
   ngOnInit(): void {
   }

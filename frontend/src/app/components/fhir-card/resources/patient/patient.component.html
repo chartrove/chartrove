@@ -8,8 +8,8 @@
       <div class="col-md-6 mb-4">
         <h3 class="h5 mb-3">Basic Information</h3>
         <ul class="list-unstyled">
-          <li><strong>Date of Birth:</strong> {{ displayModel.patient_birthdate | date:'mediumDate' }}</li>
-          <li><strong>Age:</strong> {{ displayModel.patient_age }}</li>
+          <li><strong>Date of Birth:</strong> {{ patientBirthDateDisplay }}</li>
+          <li><strong>Age:</strong> {{ patientAgeDisplay }}</li>
           <li><strong>Gender:</strong> {{ displayModel.patient_gender | titlecase }}</li>
           <li><strong>Birth Sex:</strong> {{ displayModel.birth_sex }}</li>
           <li><strong>Marital Status:</strong> {{ displayModel.marital_status }}</li>

@@ -1,25 +1,28 @@
 # Maintenance consolidation checkpoint
 
-Owner: sole active maintenance agent in the existing primary checkout. No new
-worktrees or subagents. GitHub and this tracked checkpoint are authoritative.
+Owner: maintenance agent in the existing primary checkout. A separately
+authorized artifact-retention owner holds its existing worktree and branch;
+preserve both. No additional worktrees or subagents were created by maintenance.
+GitHub and this tracked checkpoint are authoritative.
 This is an incomplete consolidation, not a claim that target counts are achieved.
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #389 and individual #318 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after389.json).
-The highlight-angular-22 task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #390 and individual #308 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after390.json).
+The patient-detail-age-display and authorized artifact-retention local branches
+and the retention worktree are subsequent additions to this historical snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `10be971e890e85795d505356b080774299396569` (#389) |
+| Published application main | `aef268fd3b6e7b0df0467e301afd6a6bf9031245` (#390) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 24: 18 paused Renovate proposals and six historical drafts |
-| Origin heads | 31 |
-| Default branch | main tracks origin/main with equal OIDs; highlight-angular-22 branch is additional |
+| Open PRs | 23: 17 paused Renovate proposals and six historical drafts |
+| Origin heads | 30 |
+| Default branch | main tracks origin/main; current patient task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
-| Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
+| Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
 | Required checks | Backend, Frontend, Desktop from Actions app 15368; strict up-to-date |
 | PR workflow | PR required, zero external approvals, conversations resolved |
@@ -33,6 +36,18 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
+consumer cases, 529 full browser tests (one existing skip), production/Storybook,
+signed native ten-check smoke and protected checks pass. Isolated native light
+theme JSON tokens are observed; native XML and dark contrast remain unverified.
+#308 is reconciled and its exact archived tip retired. The resulting synthetic
+patient-card NaN finding has a validated source repair pending integration.
+[Patient detail evidence](maintenance/2026-11-03-patient-detail-age.md).
+
+The maintainer chose to retain provider-addition requests as future product work.
+Those unresolved issues remain open; the one-issue goal is not achieved by
+retiring them. [Decision and individual-review boundaries](maintenance/2026-11-03-provider-future-scope.md).
 
 Merged #389 changes only the devcontainer Node feature key from :1 to :2, with
 Node26.13.0/Go1.27.3/Chrome and all other configuration retained. Published OCI
@@ -649,7 +664,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 18 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 17 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
