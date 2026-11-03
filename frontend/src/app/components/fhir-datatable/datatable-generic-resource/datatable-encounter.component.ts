@@ -11,7 +11,7 @@ import {GenericColumnDefn, DatatableGenericResourceComponent, ResourceListCompon
 export class DatatableEncounterComponent extends DatatableGenericResourceComponent  {
   columnDefinitions: GenericColumnDefn[] = [
     { title: 'Period', versions: '*', format: 'period', getter: e => e.period },
-    { title: 'Encounter', versions: '*', format: 'codeableConcept', getter: e => e.type?.[0] },
+    { title: 'Encounter', versions: '*', format: 'codeableConcept', getter: e => e.type?.[0] ?? e.serviceType },
     { title: 'Reason', versions: '*', format: 'codeableConcept', getter: e => e.reasonCode?.[0] },
     { title: 'Practitioner', versions: '*', getter: e => e.participant?.[0]?.individual?.display },
     { title: 'Discharge Disposition', versions: '*', format: 'codeableConcept', getter: e => e.hospitalization?.dischargeDisposition },

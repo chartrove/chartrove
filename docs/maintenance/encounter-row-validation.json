@@ -1,0 +1,251 @@
+{
+  "time": "2026-11-03T05:50:25.795712+00:00",
+  "base_main": "4510e834d6ab977f169c7fd67e13c25683c6114e",
+  "issue": 104,
+  "scope": "Encounter type fallback to serviceType and factual missing Period endpoints; presentation only, preserve wizard serialization and raw records",
+  "qualified_red": {
+    "start": "2026-11-03T05:40:43.597478+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter-manual.component.spec.ts"
+    ],
+    "spec_sha256": "cb841a7b748ba94657f4d136d433756511266e4f97bb4b29e1800d49b3b96e33",
+    "production_source_hashes": {
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter.component.ts": "b1758934fea00c2e7c52b01898dba43e51ff61f855d6f90b668d5970a21d58d5",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/utils.ts": "48d03dce1b84e88afe641d6e90df912f7a09b5ab79a56f8d4e236a8661ee7c50"
+    },
+    "exit": 1,
+    "end": "2026-11-03T05:40:53.954451+00:00"
+  },
+  "red_count": {
+    "entered": 13,
+    "failed": 9,
+    "passing_controls": 4
+  },
+  "green_same_test_bytes": {
+    "start": "2026-11-03T05:42:45.965551+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter-manual.component.spec.ts"
+    ],
+    "spec_sha256": "cb841a7b748ba94657f4d136d433756511266e4f97bb4b29e1800d49b3b96e33",
+    "production_source_hashes": {
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter.component.ts": "fb536eab1f266a4d02859c3fd075365f4d94620f1d8534b4c211807d71d13e5e",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/utils.ts": "b82aea4a7895a002b877e29c8e80844745905efa29816052e98d4d9f0bdc93c9"
+    },
+    "exit": 0,
+    "end": "2026-11-03T05:43:08.378672+00:00"
+  },
+  "green_count": 13,
+  "initial_red": "13 entered/9 failed/4 passed; subsequent test setup resets captured modal result per case before qualified red, production unchanged",
+  "ordinary_browser_suite": {
+    "passed": 500,
+    "total": 501,
+    "existing_skipped": 1
+  },
+  "frontend_checks": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T03:57:15.028024+00:00",
+      "end": "2026-11-03T03:57:15.315084+00:00",
+      "exit": 0,
+      "reused_from": "dist/validation/2026-11-01-consolidation/moment-review/validation",
+      "node_check_inputs_unchanged": true
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T05:44:52.103748+00:00",
+      "end": "2026-11-03T05:45:09.844294+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/encounter-row-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T05:45:09.844883+00:00",
+      "end": "2026-11-03T05:45:46.939442+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/encounter-row-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T05:45:49.330028+00:00",
+      "end": "2026-11-03T05:46:29.199827+00:00",
+      "exit": 0
+    }
+  ],
+  "node_reuse_proof": {
+    "qualified_frontend": "c109657a66dea0de624487eb16a9af57e4f68516",
+    "entire_frontend_input_delta": [
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter-manual.component.spec.ts",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter.component.ts",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/utils.ts"
+    ],
+    "node_check_and_dependency_inputs_unchanged": true
+  },
+  "production_inputs": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23173,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "893528b29d1f89d75fa6bef0a99eba4a293daca94f43daca7fc5110100b7332b",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "13cac913856f42416a044357b574cf40197090ef7bab7349f2f252bfa574cc48",
+      "bytes": 5942261
+    },
+    "original_absence_restored": true
+  },
+  "boundaries": [
+    "provider type retains priority when supplied",
+    "no wizard, raw resource, source/selection identity or Go/database/Wails contract change",
+    "unrecorded reasons/practitioners are not fabricated",
+    "existing partial-date precision, invalid supplied date handling, database Period bounds/multiplicity/reindex decisions in #69 unchanged",
+    "no real or purchased data used"
+  ],
+  "native_validation": {
+    "source_revision": "f5a6e3b404c4f6aa99baf8193f821e92cf9b642a",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-f5a6e3b40-encounter-row/Chartrove-f5a6e3b40.zip",
+      "sha256": "b76e307e1051aec54fee1490f76076b5009f08e555def439925684f6332fd01b",
+      "bytes": 337526790
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "committed_input_revision": "f5a6e3b404c4f6aa99baf8193f821e92cf9b642a",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/encounter-row-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/encounter-row-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "893528b29d1f89d75fa6bef0a99eba4a293daca94f43daca7fc5110100b7332b",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-f5a6e3b40-encounter-row/receipt.json",
+    "full_local_receipt_sha256": "d4ad972f20462c756f9845aa9ede39605b9c51c44bf93b529b011dfa32228f1f",
+    "frontend_comparison": {
+      "files": 22287,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "previous_qualified_frontend_revision": "c109657a66dea0de624487eb16a9af57e4f68516",
+      "artifact_delta": {
+        "added": [
+          "main.a0e5f2821bfd3b29.js",
+          "main.a0e5f2821bfd3b29.js.map"
+        ],
+        "removed": [
+          "main.14113a69f43c422f.js",
+          "main.14113a69f43c422f.js.map"
+        ],
+        "changed_common": [
+          "index.html"
+        ]
+      }
+    },
+    "native_manual_encounter_ui": {
+      "time": "2026-11-03T05:58:51.872069+00:00",
+      "method": "cua_repl exact task app, sole PID/private data/cache verified; actual synthetic sign-in and Explore navigation",
+      "pid": 60333,
+      "source": "2253d45d-737f-4732-a5af-faccf52a7cfd",
+      "visible_row_description": "Synthetic office visit",
+      "visible_row_period": "2024-02-29 - 12:00 am -> Not provided",
+      "row_selection_route": "#/explore/2253d45d-737f-4732-a5af-faccf52a7cfd/resource/synthetic-manual-encounter",
+      "record_heading": "Synthetic office visit",
+      "record_start_label": "Start date Feb 29, 2024",
+      "synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_encounter": 1
+      },
+      "raw_resources_byte_identical_to_seed": true,
+      "type_and_end_still_absent": true,
+      "seed_files_unchanged": true,
+      "focus_observation": "sign-in state completed after Tab; no source or asset workaround",
+      "navigation_observation": "source cards/tabs lacked AX action roles; used fresh screenshots for uploaded-source and Encounter-tab clicks",
+      "window_closed_using_fresh_full_ax_close_index": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_call_after_close": true,
+      "remaining_observation": "source-profile title appears low-contrast on a pale banner in existing dark theme; styles unchanged by this fix, follow-up remains",
+      "real_records_used": false
+    }
+  },
+  "native_validation_receipt": "docs/maintenance/native-f5a6e3b40-validation.json"
+}

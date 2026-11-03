@@ -13,6 +13,10 @@ export function getPath(obj, path = ""): string {
   return path.split(".").reduce((out, key) => out ? out[key] : undefined, obj)
 }
 
+const formatPeriodEndpoint = (value) => value == null || value === ''
+  ? 'Not provided'
+  : moment(value).format('YYYY-MM-DD - h:mm a');
+
 export const FORMATTERS = {
   age: (patientDOB: number|string): number => {
     if (patientDOB == null) { return NaN; }
@@ -65,7 +69,7 @@ export const FORMATTERS = {
     if (contact.use) contactParts.push(`(${contact.use})`)
     return contactParts.join(' ')
   },
-  period: (period) => period ? `${moment(period.start).format('YYYY-MM-DD - h:mm a')} -> ${moment(period.end).format('YYYY-MM-DD - h:mm a')}` : ''
+  period: (period) => period ? `${formatPeriodEndpoint(period.start)} -> ${formatPeriodEndpoint(period.end)}` : ''
 };
 
 export function round(num, digits) {
