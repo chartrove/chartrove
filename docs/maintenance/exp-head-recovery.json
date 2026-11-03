@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/golang.org-x-exp-digest",
+  "tip": "88562f34117dbedac29a7df8283ed9f9878f7df5",
+  "bundle": "dist/validation/2026-11-01-consolidation/exp-head-20261102.bundle",
+  "sha256": "f6e12abea08620bb1847cf9c15a992be1e1aebb993da5d0b03ea13425253f8d2",
+  "bytes": 1575,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "0c55e3d2e349a9679b4bc05abd6e50ab0ca2b0cc",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "88562f34117dbedac29a7df8283ed9f9878f7df5",
+    "95dd8e0fdec57392b3d2613df451b60520b2d1fa",
+    "9c3cd863a0300843147a622e49291fb631fbd7b3",
+    "b4336160f7ddb8dc65155c9dcd23a56125b080ea"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/golang.org-x-exp-digest",
+      "265c8a26cf9fd1f505467a333d28dfcc5fdce47d"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

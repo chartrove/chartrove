@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #374 and guarded task-branch retirement.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after374.json).
-The Viper-maintenance branch is additional and unpublished at
+Snapshot: November 2, 2026, after #375 and individual #272 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after375.json).
+The x/exp-maintenance branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `f0afc0d7776918d831c5eb01620427270f9c1daa` (#374) |
+| Published application main | `0c55e3d2e349a9679b4bc05abd6e50ab0ca2b0cc` (#375) |
 | Open issues | 168, including retained Renovate dashboard #222 |
-| Open PRs | 35: 29 paused Renovate proposals and six historical drafts |
-| Origin heads | 44 |
-| Default branch | main tracks origin/main with equal OIDs; Viper-maintenance branch is additional |
+| Open PRs | 34: 28 paused Renovate proposals and six historical drafts |
+| Origin heads | 43 |
+| Default branch | main tracks origin/main with equal OIDs; x/exp-maintenance branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -356,7 +356,7 @@ files and original output metadata are preserved. All three required checks pass
 its exact task head is integrated and retired.
 [Scope](maintenance/2026-11-02-unlock-configuration.md).
 
-Current Viper #272 replacement uses required library-family updates while
+Merged #375 implements the Viper #272 replacement using required library-family updates while
 retaining Go minimums, database/provider replacements and all original checksum
 bytes. Four old/new configuration probes, 17 config/web tests per graph, 139
 upstream events (one Linux-only skip), both vet checks and unlock race suites,
@@ -364,8 +364,19 @@ desktop tests and server build pass. Full selected/import graph deltas are retai
 no production module is downgraded. Today's module scans retain only the known
 unimported deprecated OpenPGP finding. Fresh native packaging at b36c00e74
 passes ZIP/signature and ten synthetic checks; all qualified frontend files and
-original outputs/metadata remain identical. Protected integration remains pending.
+original outputs/metadata remain identical. All required checks pass; #272 is
+individually reconciled and both exact reviewed heads are retired.
 [Scope and limits](maintenance/2026-11-02-viper-maintenance.md).
+
+Current x/exp #221 replacement retains the Go 1.26 minimum and database/provider
+replacements. Seven query/summary checks pass before/after in both graphs; 116
+upstream used-package tests pass. All 57 isolated generator files and related
+metadata are identical, and both dashboard cache boundary suites pass. Module,
+vet, race, desktop and server checks pass; only x/exp changes in either production
+import closure. Fresh native packaging at 48db0aba7 passes ZIP/signature
+and ten synthetic checks, with all frontend files and original output metadata
+preserved. Protected integration remains pending.
+[Scope and provenance](maintenance/2026-11-02-exp-maintenance.md).
 
 ## Preservation and branch retirement
 
@@ -376,7 +387,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (2f0fd5bfc) matches contents, inodes, permissions, ownership,
+Latest restoration (48db0aba7) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.
@@ -430,7 +441,11 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one Fishery head](maintenance/fishery-retirement-1.json),
 [two CLI heads](maintenance/cli-retirement-2.json),
 [one graph head](maintenance/graph-retirement-1.json),
-[one Zone head](maintenance/zone-retirement-1.json).
+[one Zone head](maintenance/zone-retirement-1.json),
+[one JWT v5 head](maintenance/jwt-v5-retirement-1.json),
+[one GitHub SDK head](maintenance/github-client-retirement-1.json),
+[one slice-helper head](maintenance/samber-lo-retirement-1.json),
+[one Viper head](maintenance/viper-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 Local artifact storage now has an ignored Go module boundary at

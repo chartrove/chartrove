@@ -1,0 +1,50 @@
+{
+  "source_revision": "48db0aba7cf666c2a4a467cb1d4b5abc10fa9a88",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-48db0aba7-exp-maintenance/Chartrove-48db0aba7.zip",
+    "sha256": "2709a3c8dca9f6a87ea19615bb3e9ac8dc7790ddc6d4a2458b353055029dc814",
+    "bytes": 336760423
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "48db0aba7cf666c2a4a467cb1d4b5abc10fa9a88",
+    "qualified_frontend_source_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-48db0aba7-exp-maintenance/receipt.json",
+  "full_local_receipt_sha256": "f54701753936c9c7f5618d44350dc158c04e33e2bad274635ca0eedecff8e06f",
+  "frontend_comparison": {
+    "files": 22287,
+    "qualified_reused_output_and_native_asset_tree_byte_identical": true,
+    "qualified_frontend_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1"
+  },
+  "binary_build_info_uses_target_exp": true
+}

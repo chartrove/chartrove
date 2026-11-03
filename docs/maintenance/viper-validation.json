@@ -1157,8 +1157,15 @@
     },
     "binary_build_info_uses_viper1_21_and_mapstructure2_4": true
   },
-  "protected_integration": "pending required PR checks",
-  "historical_pr272": "live pending protected replacement integration and individual reconciliation",
+  "protected_integration": {
+    "pr": 375,
+    "merge": "0c55e3d2e349a9679b4bc05abd6e50ab0ca2b0cc",
+    "head": "d072db0d89dc319565600533caae9026305a2081",
+    "validation_run": 41563444499,
+    "required_checks": "Backend/Frontend/Desktop all successful, Actions app15368",
+    "historical_pr272": "closed as implemented; exact archived head and integrated task head retired"
+  },
+  "historical_pr272": "individually reconciled as implemented by protected replacement PR375",
   "real_health_records_accessed": false,
   "diagnostics": {
     "original_config_probe": "AllSettings copy lost explicit precedence, reproduced and independently fixed in protected PR374 before adoption",
