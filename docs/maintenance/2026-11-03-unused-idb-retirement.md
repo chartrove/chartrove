@@ -33,3 +33,9 @@ alone is not retirement authority or implementation evidence.
 [installed preservation](idb-installed-preservation.json),
 [Git recovery](idb-head-recovery.json), [validation](idb-validation.json).
 Raw evidence: `dist/validation/2026-11-01-consolidation/idb-review/`.
+
+Fresh package source `4414fd36a3987be7aa7617f09fdef3045bd5272e` passes ZIP CRC, strict extracted signature
+and all ten synthetic native checks. Its 22,289 compiled/reused/native assets
+match exactly. Original output content, stat metadata and xattrs restore exactly.
+ZIP SHA-256 `0121a204e83e9c640379110613f532015edb02b2b1a075ed66b62efd5aec924b`.
+[Native receipt](native-4414fd36a-validation.json).

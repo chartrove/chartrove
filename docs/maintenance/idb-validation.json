@@ -128,7 +128,21 @@
     ],
     "main_map_all_embedded_source_names_and_contents_identical": true
   },
-  "native": "pending fresh package because exact asset reuse failed",
+  "native": {
+    "receipt": "docs/maintenance/native-4414fd36a-validation.json",
+    "source_revision": "4414fd36a3987be7aa7617f09fdef3045bd5272e",
+    "zip_sha256": "0121a204e83e9c640379110613f532015edb02b2b1a075ed66b62efd5aec924b",
+    "checks": 10,
+    "zip_crc_strict_signature_smoke": "passed",
+    "current_compiled_reused_native_asset_trees_identical_files": 22289,
+    "original_output_content_stat_xattrs_restore_exactly": true
+  },
   "protected_integration": "pending",
-  "raw_evidence": "dist/validation/2026-11-01-consolidation/idb-review/"
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/idb-review/",
+  "nested_installed_consumers": {
+    "after_qualified_frozen_install": "all nested package manifests scanned",
+    "count": 3114,
+    "idb_consumers": [],
+    "idb_directory_absent": true
+  }
 }
