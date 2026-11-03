@@ -15,9 +15,9 @@ export class RangeModel implements Range {
     if (this.low.hasValue() && this.high.hasValue()) {
       return [this.low.display(), '\u{2013}', this.high.display()].join(' ').trim();
     } else if (this.low.hasValue()) {
-      return ['>', this.low.display()].join(' ').trim();
+      return ['>=', this.low.display()].join(' ').trim();
     } else if (this.high.hasValue()) {
-      return ['<', this.high.display()].join(' ').trim();
+      return ['<=', this.high.display()].join(' ').trim();
     }
 
     return '';

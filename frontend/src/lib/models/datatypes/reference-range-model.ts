@@ -30,7 +30,7 @@ export class ReferenceRangeModel implements ObservationReferenceRange {
   }
 
   hasValue(): boolean {
-    return !!this.text || !!this.low_value || !!this.high_value;
+    return !!this.text || this.low_value != null || this.high_value != null;
   }
 
   display(): string {
@@ -38,7 +38,7 @@ export class ReferenceRangeModel implements ObservationReferenceRange {
   }
 
   chartableReferenceRange(): { low?: number, high?: number} {
-    if (this.low.value || this.high.value) {
+    if (this.low.value != null || this.high.value != null) {
       return { low: this.low.value, high: this.high.value }
     }
 

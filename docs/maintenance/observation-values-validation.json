@@ -1,0 +1,315 @@
+{
+  "time": "2026-11-03T01:17:30.466591+00:00",
+  "base_main": "c92d3695ceb97bfcd362af5378418db481f47bd3",
+  "scope": "frontend primitive zero/false, absent values and reference boundary display; synthetic fixture defaults",
+  "initial_red": {
+    "start": "2026-11-02T23:31:48.493385+00:00",
+    "end": "2026-11-02T23:32:34.512089+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts",
+      "--include=src/lib/models/datatypes/range-model.spec.ts"
+    ],
+    "exit": 1,
+    "spec_hashes": {
+      "frontend/src/lib/models/resources/observation-value-boundaries.spec.ts": "aec5fed0fe6ecbb79f903d43835e480121f3e8ec04cda6a1b89d581705011652",
+      "frontend/src/lib/models/datatypes/range-model.spec.ts": "be4eb44e2de70aeaeddadb9c3e84ecab3fb460a51e1a2f948d99ae8113920bb8"
+    },
+    "production_source_unchanged": true
+  },
+  "initial_green_same_bytes": {
+    "start": "2026-11-03T01:02:23.607612+00:00",
+    "end": "2026-11-03T01:02:41.615275+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts",
+      "--include=src/lib/models/datatypes/range-model.spec.ts"
+    ],
+    "exit": 0,
+    "spec_hashes": {
+      "frontend/src/lib/models/resources/observation-value-boundaries.spec.ts": "aec5fed0fe6ecbb79f903d43835e480121f3e8ec04cda6a1b89d581705011652",
+      "frontend/src/lib/models/datatypes/range-model.spec.ts": "be4eb44e2de70aeaeddadb9c3e84ecab3fb460a51e1a2f948d99ae8113920bb8"
+    },
+    "same_spec_bytes_as_red": true
+  },
+  "followup_red": {
+    "start": "2026-11-03T01:12:46.321516+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts"
+    ],
+    "spec_sha256": "beb84703c32f5d3ea33c53677f9b8d9f5cec5da4204f7fe4c79b55d99e7245f9",
+    "exit": 1,
+    "end": "2026-11-03T01:13:05.695900+00:00"
+  },
+  "followup_green_same_bytes": {
+    "start": "2026-11-03T01:13:26.145176+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts"
+    ],
+    "spec_sha256": "beb84703c32f5d3ea33c53677f9b8d9f5cec5da4204f7fe4c79b55d99e7245f9",
+    "exit": 0,
+    "end": "2026-11-03T01:13:36.319818+00:00"
+  },
+  "full_browser": {
+    "pass": 474,
+    "existing_skip": 1,
+    "exit": 0
+  },
+  "node_checks": 10,
+  "validation_commands": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:03:58.351808+00:00",
+      "end": "2026-11-03T01:03:58.532915+00:00",
+      "exit": 0,
+      "reused_from": "validation-first-full-diagnostic"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T01:13:51.074361+00:00",
+      "end": "2026-11-03T01:14:13.753560+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/observation-values-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T01:14:13.754391+00:00",
+      "end": "2026-11-03T01:15:43.472904+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/observation-values-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T01:15:47.297968+00:00",
+      "end": "2026-11-03T01:16:57.913278+00:00",
+      "exit": 0
+    }
+  ],
+  "compiler_input_receipt": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23172,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata_preservation": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "1c03108d04870fb9f346d64d7f744a898933aa7296fddba23d17588764c74072",
+      "bytes": 5939895
+    },
+    "original_absence_restored": true
+  },
+  "native_validation": {
+    "source_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-c8c6e4a9f-observation-values/Chartrove-c8c6e4a9f.zip",
+      "sha256": "0166227d035510626040e3d2bc4eb22368219688d85e6617eec60a701f33f29d",
+      "bytes": 336723845
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "ZIP/signature and ten isolated native smoke checks pass; synthetic value UI verified; post-close Cua relaunch incident explicitly retained; original output preservation exact",
+    "frontend_reuse": {
+      "committed_input_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-c8c6e4a9f-observation-values/receipt.json",
+    "full_local_receipt_sha256": "4599ec168086ede4b70ebe7844acb392669d1567632f11f72ef7355e94828fdb",
+    "frontend_comparison": {
+      "files": 22287,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "previous_qualified_frontend_revision": "2f0fd5bfc8eecdd90d068f0deaaf92ef0516b72e",
+      "artifact_delta": {
+        "added": [
+          "main.6d619463bef6f1b7.js",
+          "main.6d619463bef6f1b7.js.map"
+        ],
+        "removed": [
+          "main.1edb3f92016c6c0a.js",
+          "main.1edb3f92016c6c0a.js.map"
+        ],
+        "changed_common": [
+          "index.html"
+        ]
+      }
+    },
+    "native_observation_ui": {
+      "method": "cua-driver skill through cua_repl; explicit task executable/data/cache and sole PID13303 verified before selection",
+      "source_id": "405a0db7-e7d4-4453-b89d-bb58da8c7665",
+      "native_table": {
+        "integer_zero": "0",
+        "boolean_false": "false",
+        "quantity_zero": "0.00 1",
+        "pending": "empty cell; no invented reading",
+        "bounded_quantity": "10.00 1"
+      },
+      "native_boolean_card": "Value false",
+      "native_pending_card": "registered; Issued on/Subject/Coding rows; no Value row or chart",
+      "integer_card_and_chart_reference_bounds": "verified by real component browser regressions; not separately claimed observed in native UI",
+      "final_synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_observation": 5
+      },
+      "original_synthetic_seed_files_unchanged": true,
+      "task_process_and_unexpected_relaunch_both_closed": true,
+      "post_close_tooling_incident": {
+        "time": "2026-11-03T01:23:16.229651+00:00",
+        "trigger": "cua getAXState called after closing the last task window",
+        "synthetic_process_pid": 13303,
+        "unexpected_pid": 14284,
+        "unexpected_command": "same task executable, no arguments",
+        "action": "closed reopened window immediately; both PIDs independently absent; no further default-profile inspection or actions",
+        "qualification": "All value observations occurred before closing verified synthetic PID13303. Post-close isolation failed; no blanket isolated-UI claim.",
+        "source_analysis": {
+          "desktop_main": "omitted unencrypted flag enables encryption and explicitly empty key",
+          "initialize_database": "encrypted empty-key startup returns STANDBY before NewRepository; no unlock/key submission was performed",
+          "default_storage": "OpenStorage selects FastenCommunity and may read/create lock and signing-key metadata; no profile bytes inspected or modified by recovery actions"
+        },
+        "correction": "After closing a native test window verify process absence with ps only. Do not invoke any Cua method on the closed binding."
+      }
+    }
+  },
+  "protected_integration": "pending required PR checks",
+  "issue_158": "still open; broader reported failure not reproduced/resolved",
+  "normative_contracts": {
+    "verified_at": "2026-11-02T23:25:21.277256+00:00",
+    "observation": {
+      "url": "https://hl7.org/fhir/R4/observation-definitions.html#Observation.value_x_",
+      "value_cardinality": "0..1",
+      "boolean_and_integer_choices_supported": true
+    },
+    "primitives": {
+      "url": "https://hl7.org/fhir/R4/datatypes.html#primitive",
+      "integer_is_integral_signed32_bit": true,
+      "boolean_false_is_a_value": true
+    },
+    "range": {
+      "url": "https://hl7.org/fhir/R4/datatypes-definitions.html#Range.low",
+      "low_inclusive": true,
+      "high_inclusive": true,
+      "missing_bound_is_unknown": true
+    }
+  },
+  "inherited_assertion_corrections": [
+    {
+      "source": "https://hl7.org/fhir/R4/datatypes-definitions.html#Range.low",
+      "reason": "existing low/high display assertions encoded exclusive signs; R4 Range numeric limits are inclusive",
+      "only_expected_operators_changed": 4,
+      "production_unchanged": true
+    },
+    {
+      "reason": "Existing test treated a literal zero as absence; zero is a present FHIR decimal. Preserve [5,0] and additionally prove absent high bounds when low is zero. No assertions removed.",
+      "file": "frontend/src/app/components/fhir-card/common/observation-bar-chart/observation-bar-chart.component.spec.ts",
+      "before_sha256": "b38309a69c2d232c0d5f00d3313947c6bd83d789e74bb8da66fcfe49367b44a8",
+      "after_sha256": "0e345ddfe9c0f0e51aa3f6c75e05b8bec8efd9748cb38f01552c66768e504d8b",
+      "failed_suite": "validation-first-full-diagnostic/browser.log"
+    }
+  ],
+  "retained_diagnostics": {
+    "first_full_suite": "one pre-existing assertion expected zero replaced with maximum; corrected assertion, no skip or removed cases",
+    "intermediate_build": "build exit0; unchanged-input identity assertion rejected after follow-up test additions; output retained and not qualified"
+  },
+  "known_ng01354_warning_count": {
+    "previous_qualified_browser": 138,
+    "current": 138
+  },
+  "data_boundary": "Explicit synthetic test operations only; post-close no-argument relaunch entered encrypted standby by source contract and was immediately closed. Default profile metadata may have been touched; no profile inspection/unlock/repair performed."
+}

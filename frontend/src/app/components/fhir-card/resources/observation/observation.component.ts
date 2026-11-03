@@ -31,13 +31,10 @@ export class ObservationComponent implements OnInit {
       return
     }
 
-    let visualizationTypes = this.displayModel?.value_model?.visualizationTypes()
+    const visualizationTypes = this.displayModel?.value_model?.visualizationTypes() ?? [];
 
-    // If only table is allowed, just don't display anything since we are already displaying
-    // everything in tabular format.
-    if (visualizationTypes.length == 1 && visualizationTypes[0] == 'table') {
-      this.displayVisualization = false
-    }
+    // The card already displays tabular values; missing values have no chart.
+    this.displayVisualization = visualizationTypes.some(type => type !== 'table');
 
     this.tableData.push(
       {

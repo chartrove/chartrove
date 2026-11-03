@@ -52,9 +52,9 @@ export class ObservationModel extends FastenDisplayModel {
     // TODO: there are more value types that can be set: valueRange, valueRatio, valueSampledData, valueTime, valueDateTime, valuePeriod
     // TODO: It is possible for values to be set in the Component element instead of any value component from above. Figure out what to do for that
     if (_.get(fhirResource, 'valueQuantity')) { this.value_model = new QuantityModel(fhirResource['valueQuantity']) }
-    if (_.get(fhirResource, 'valueString')) { this.value_model = new StringModel(fhirResource['valueString']) }
-    if (_.get(fhirResource, 'valueInteger')) { this.value_model = new IntegerModel(fhirResource['valueInteger']) }
-    if (_.get(fhirResource, 'valueBoolean')) { this.value_model = new BooleanModel(fhirResource['valueBoolean']) }
+    if (_.get(fhirResource, 'valueString') != null) { this.value_model = new StringModel(fhirResource['valueString']) }
+    if (_.get(fhirResource, 'valueInteger') != null) { this.value_model = new IntegerModel(fhirResource['valueInteger']) }
+    if (_.get(fhirResource, 'valueBoolean') != null) { this.value_model = new BooleanModel(fhirResource['valueBoolean']) }
     if (_.get(fhirResource, 'valueCodeableConcept')) { this.value_model = new ObservationValueCodeableConceptModel(fhirResource['valueCodeableConcept']) }
     if (_.get(fhirResource, 'dataAbsentReason')) { this.value_model = new DataAbsentReasonModel(fhirResource['dataAbsentReason']) }
   }
