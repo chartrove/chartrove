@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #388 and individual #303 retirement.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after388.json).
-The devcontainer-node-feature-2 task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #389 and individual #318 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after389.json).
+The highlight-angular-22 task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `42a11084261cc6c1f5cdd82a2295d7571742531e` (#388) |
+| Published application main | `10be971e890e85795d505356b080774299396569` (#389) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 25: 19 paused Renovate proposals and six historical drafts |
-| Origin heads | 32 |
-| Default branch | main tracks origin/main with equal OIDs; devcontainer-node-feature-2 branch is additional |
+| Open PRs | 24: 18 paused Renovate proposals and six historical drafts |
+| Origin heads | 31 |
+| Default branch | main tracks origin/main with equal OIDs; highlight-angular-22 branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,17 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #389 changes only the devcontainer Node feature key from :1 to :2, with
+Node26.13.0/Go1.27.3/Chrome and all other configuration retained. Published OCI
+integrity/source checks, JSONC semantics, isolated linux/arm64 actual Makefile
+Corepack/Yarn validation and all three protected checks pass. Full Go/Chrome
+project devcontainer and amd64 installation remain unverified. The initial global
+Corepack harness failure is retained. Sparse patterns and the original S flag
+remain unchanged; the excluded file was never materialized. #318 is individually
+reconciled; exact historical/task heads retired after fresh gates.
+[Scope](maintenance/2026-11-03-devcontainer-node-feature.md),
+[retirement](maintenance/node-feature-retirement-1.json).
 
 Merged #388 removes the unused direct idb declaration and sole leaf lock block.
 All 72 retained direct versions and remaining lock bytes stay unchanged. Frozen
@@ -547,7 +558,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Seventy-two historical origin refs were retired by this agent after individual review,
+Seventy-three historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Twelve more (#313, four utility heads, two UUID heads, two declaration heads,
 the parser head and two jose heads) were already absent after closure;
@@ -586,7 +597,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [two jose heads observed absent](maintenance/jose-retirement-1.json),
 [ng-select plus two approved narrative heads](maintenance/ngselect-and-narrative-retirement.json),
 [React 19 tooling head](maintenance/react19-retirement-1.json),
-[unused idb head](maintenance/idb-retirement-1.json).
+[unused idb head](maintenance/idb-retirement-1.json),
+[Node devcontainer feature head](maintenance/node-feature-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 Local artifact storage now has an ignored Go module boundary at
@@ -637,7 +649,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 19 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 18 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

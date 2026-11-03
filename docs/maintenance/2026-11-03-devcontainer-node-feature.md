@@ -36,3 +36,10 @@ strictly verified, with prerequisite ancestry and the original intake reference.
 [Validation and platform limits](node-feature-validation.json),
 [Git recovery](node-feature-head-recovery.json).
 Raw evidence: `dist/validation/2026-11-01-consolidation/node-feature-review/`.
+
+Integration: #389 merged at `10be971e890e85795d505356b080774299396569`
+after all three protected checks passed. #318 is individually reconciled; its
+archived exact historical tip and merged task head were retired after fresh
+PR dependencies, dry run and atomic exact-tip leases. Sparse S flag and exclusion
+remain independently verified after fast-forward.
+[Retirement](node-feature-retirement-1.json).

@@ -18,7 +18,7 @@
           Enable Debug mode: <input type="checkbox" [(ngModel)]="debugMode"/>
         </div>
         @if (resource && debugMode) {
-          <pre><code  [highlight]="resource.resource_raw | json"></code></pre>
+          <pre><code  [highlight]="resource.resource_raw | json" language="json"></code></pre>
         }
       } @else {
         <div class="row">

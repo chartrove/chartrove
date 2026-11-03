@@ -1,0 +1,43 @@
+{
+  "source_revision": "6c07e1bfcfbf7fe136c8755325a1a8286467ffcb",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-6c07e1bfc-highlight/Chartrove-6c07e1bfc.zip",
+    "sha256": "12ec21c0b28f8389d174493765218b9df58425b6312bd05ef4330d252eefa86e",
+    "bytes": 337727312
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "6c07e1bfcfbf7fe136c8755325a1a8286467ffcb",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/highlight-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/highlight-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "3789b3c5e3d224327697c7830ee315c6528c5ae00cb32083ddcc3c313d318331",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-6c07e1bfc-highlight/receipt.json",
+  "full_local_receipt_sha256": "cbd5f4f030931175b0028a6a83092466d01c79b3532a7c424e7e2df01c841217"
+}

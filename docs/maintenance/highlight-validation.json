@@ -1,0 +1,470 @@
+{
+  "scope": "ngx-highlightjs7.0.1 to14.0.1, required highlight.js11.7.0 to11.12.0, retire unused transitive line-number loader; Angular22/Node26 unchanged",
+  "packages": {
+    "ngx-highlightjs": {
+      "version": "14.0.1",
+      "registry_sha1_sha512_verified": true,
+      "archive_sha256": "f34108b5c4f1f6337d8f6ed69e30be86e4090e1be921ccc5d00eb850315cacf0",
+      "all_installed_published_files_identical": 31,
+      "installation_hooks": null,
+      "peer_dependencies": {
+        "rxjs": ">=7.0.0",
+        "@angular/cdk": ">=19.0.0",
+        "@angular/core": ">=19.0.0",
+        "@angular/common": ">=19.0.0"
+      },
+      "dependencies": {
+        "tslib": "^2.3.0",
+        "highlight.js": "^11.11.1"
+      }
+    },
+    "highlight.js": {
+      "version": "11.12.0",
+      "registry_sha1_sha512_verified": true,
+      "archive_sha256": "accbfaaab745088609b4eea2bdca2ad62f1f1dd27304e0f8df65cfe0fe042143",
+      "all_installed_published_files_identical": 1569,
+      "installation_hooks": null,
+      "peer_dependencies": null,
+      "dependencies": null
+    },
+    "other_direct_versions_unchanged": 71,
+    "obsolete_transitive_line_numbers_directory_absent": true
+  },
+  "source_comparison": {
+    "official_registry_git_head": "582d35941b7f4d3f739d8f3aa7ab9c186d970c4d",
+    "mapped_TS_source_comparisons": [
+      {
+        "map": "ngx-highlightjs-plus.mjs.map",
+        "source": "projects/ngx-highlightjs/plus/src/gist.model.ts",
+        "official_git_blob": "773a08f4b2fab2ec942d7124a6fe9ab5d5230790",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "32b4f0b157c17f407723516bafd9945c43d052780b9c83e5697c3f60a7f6c9ea",
+        "LF_sha256": "68961a844c75c24f70e97ddecd92eb1b8aa27e4accd39da9a47579f16b275795"
+      },
+      {
+        "map": "ngx-highlightjs-plus.mjs.map",
+        "source": "projects/ngx-highlightjs/plus/src/code-loader.ts",
+        "official_git_blob": "d858d1dd922e6c7082e5674c8c49244d5960b8c2",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "1d93addc6f236eaa5708c8e0472fe321d2ee9f8eeef60c219cb5cb116d5bf6c4",
+        "LF_sha256": "800f468d11320ddc46f2218df6586298d590145ab0fe8846ac38bcea74459460"
+      },
+      {
+        "map": "ngx-highlightjs-plus.mjs.map",
+        "source": "projects/ngx-highlightjs/plus/src/gist.ts",
+        "official_git_blob": "9055ce37c7b9f993eaf69ce5dc6b7207c4c5bdc6",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "a407afe719859436af2044d20d0c17dfe9d2446221d0dad1c69853831b525267",
+        "LF_sha256": "632f471ec858c6e003d671534bf07750fa775dfb075206937870b133e01b983e"
+      },
+      {
+        "map": "ngx-highlightjs-plus.mjs.map",
+        "source": "projects/ngx-highlightjs/plus/src/code-file-location.ts",
+        "official_git_blob": "afcd8c25a811cc5baa6731d9fc74507b3f01d7c6",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "6da3ff7ae7551d94cab26322360625a9338758f89f02d7705f7661b558714aa0",
+        "LF_sha256": "93ee3ff5c4870b55be1291d6e72b1350e8cb0ce486321d7289ef35b6a6e20d22"
+      },
+      {
+        "map": "ngx-highlightjs-plus.mjs.map",
+        "source": "projects/ngx-highlightjs/plus/src/code-from-url.ts",
+        "official_git_blob": "682daa17b49c7a5e380910e03e88362be29dbaf3",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "af98f4bfb8db23d4eb47b32440f9eb39ad3438c1ea5adaed756487308195f0e3",
+        "LF_sha256": "7a273562fd5eeb8d70c4b3b3cd440c7b13f92000236c5d3605f3cb6d57c5462b"
+      },
+      {
+        "map": "ngx-highlightjs-plus.mjs.map",
+        "source": "projects/ngx-highlightjs/plus/src/highlight-plus.module.ts",
+        "official_git_blob": "2c2162919db4b07bf0ff7a66145cdbf728238ceb",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "4463952d38ae9b0b50e87f22805a62ec3a4b1d14885b22771145e9ce63e7eb82",
+        "LF_sha256": "b713b1362d23c89c9c7f5e839f70726c7d79b54dda9c13880132f33e4ce6592e"
+      },
+      {
+        "map": "ngx-highlightjs-line-numbers.mjs.map",
+        "source": "projects/ngx-highlightjs/line-numbers/src/line-numbers-lib.ts",
+        "official_git_blob": "43fe756cf4daca9b3510bd879c426d118dbc9fc7",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "cedcc9ce728631060c3a68d93f7e4758f9de2512a549feeecf952cf219fa1ed2",
+        "LF_sha256": "ce582eb7c8c38b873dfe00113e475222c774a7e7ae23a6aeaa56d2f2d529650f"
+      },
+      {
+        "map": "ngx-highlightjs-line-numbers.mjs.map",
+        "source": "projects/ngx-highlightjs/line-numbers/src/line-numbers.ts",
+        "official_git_blob": "84b800b8939921a441167206cc9d1338cd608a43",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "4b0e06b34c71bdca766428eff7f0878c0b733d9968d2b943d8f6047955751579",
+        "LF_sha256": "86b39cf013afc418d39f1b020a2e200d5aa33b77249cb38c2530083c8a4ef7ce"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/highlight.model.ts",
+        "official_git_blob": "688ac6e71c51774022cf45f41d0ee56c409bbd6e",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "e41ee0c7e26ad42894ad8cd42342e543cabb69180467f19f63b6e4af068d03a9",
+        "LF_sha256": "ff64912f5268be63074a5fc2f31dae4084861216bbec0c4045ead73f67212492"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/loader-errors.ts",
+        "official_git_blob": "a20e26f7e775b40cc83e53c0ce742a1b8626e10d",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "b3591a87129fb750417961b9bf9b5addcc01fd4e2badf29d35b40d935407b4f1",
+        "LF_sha256": "74dceb09cf4f4d3945540c9a2279303a2e05f5f364e0d34bae979c1f0252008b"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/highlight.loader.ts",
+        "official_git_blob": "df96b3e24cdd99474dc52b4ab32583a28a3d8e32",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "a0781095fbe31a2c65484276585acbbc4daae655890e51f9cb0c15db16b54105",
+        "LF_sha256": "2aaeab49a35dcbcf755f257e450007545a745d4091ba8ea3fbde277f1fd76cd0"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/highlight.service.ts",
+        "official_git_blob": "49f0818d8ce525306754a73c639f0e56fce633b6",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "df12307fd0a4c783a60a9983ea7e03ba2b2fc95f7672b723ca8b86435a06b23f",
+        "LF_sha256": "4af64c1fdc5c4565cf5531c41e753e465a98742b0905efe2a477cd97f5614f7c"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/trusted-types.ts",
+        "official_git_blob": "4cd9954f61c1b6f2689f86c00859b333e11ba838",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "3165c7de2e421708267dd91777779db54b2dc95c3c5ca09f4811ef3dd3ee6b88",
+        "LF_sha256": "bc627c549eb6609f9e594b1ba4e4eb003ab7b147d97eed4464e42a133f0871d1"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/highlight-base.ts",
+        "official_git_blob": "dd81f17b7ab1670d77a02096bcd5438cf8acfd8e",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "17786bfa90a6dcc2f43d3bc2d65921191a9f85c8cf92e047c9b5088748263e08",
+        "LF_sha256": "aec7f62d4a2fb0da632b9315bbcf294d27ebdb9e1ebee08aa4110619a223815d"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/highlight.ts",
+        "official_git_blob": "9f4f6b3c59d0e9846159f986958f630990605542",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "50ca064d91e8ea678aa5201e9d591d14ebb96082335d46c04fed9b9f8ef0a77a",
+        "LF_sha256": "527d70ef3bd241f1aa315b62dada55a43fc8471b5e66a15b68c235392c3c4aff"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/highlight-auto.ts",
+        "official_git_blob": "ac6b02da310d02f1b9fbe90423a1c07e9c39673e",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "3f647216bae1b63c2e23ee62a6da8f94bc9190729887a31aba72c88d123fc305",
+        "LF_sha256": "314f5208e1f480a651a3ea041b9ecda0c09db0771798feb94fbf8922cf551564"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/lib/highlight.module.ts",
+        "official_git_blob": "7a3da9a2a7d7c4be616cd6b5ecbedf6ecc85c74d",
+        "comparison": "identical after explicit CRLF-to-LF normalization",
+        "raw_sha256": "cc72a967e4658f4f1c9956415b7b31c24445aa6925d595cf14db97d268e51f68",
+        "LF_sha256": "de8341ea34e001ce9cd47c46974c95c0fb40cb5ffa314d3f1e77b3c2a2ac6bd6"
+      }
+    ],
+    "generated_bundle_indices_qualified_separately": [
+      {
+        "map": "ngx-highlightjs-plus.mjs.map",
+        "source": "projects/ngx-highlightjs/plus/src/ngx-highlightjs-plus.ts",
+        "raw_sha256": "cdf3e57e6f634d9c80aabea264acaf4e659f934ceaeec959864514defcf28df6",
+        "qualification": "generated bundle index, not repository source; covered by published archive integrity"
+      },
+      {
+        "map": "ngx-highlightjs-line-numbers.mjs.map",
+        "source": "projects/ngx-highlightjs/line-numbers/src/ngx-highlightjs-line-numbers.ts",
+        "raw_sha256": "cdf3e57e6f634d9c80aabea264acaf4e659f934ceaeec959864514defcf28df6",
+        "qualification": "generated bundle index, not repository source; covered by published archive integrity"
+      },
+      {
+        "map": "ngx-highlightjs.mjs.map",
+        "source": "projects/ngx-highlightjs/src/ngx-highlightjs.ts",
+        "raw_sha256": "269d25eb06209a2c77ae508fc403acce843266c8a3c2cc55b511a264b5c1868c",
+        "qualification": "generated bundle index, not repository source; covered by published archive integrity"
+      }
+    ],
+    "initial_diagnostics": [
+      "assumed ng:/// paths; actual paths are ../../../projects, retained originals",
+      "raw byte comparison failed because published map sources have CRLF while Git uses LF; opposite normalization check also failed; one fetched official blob independently verifies LF bytes and no line-content diff"
+    ],
+    "source_code_text_difference_after_line_ending_normalization": false,
+    "full_upstream_suite": "not run; actual application consumers checked old/new"
+  },
+  "consumer_qualification": {
+    "old_consumer_exit": 0,
+    "old_passed": 8,
+    "new_consumer_exit": 0,
+    "new_passed": 8,
+    "identical_completion_aware_specs": {
+      "frontend/src/app/components/fhir-card/resources/fallback/fallback.component.spec.ts": "540b96845c6633f6a9892efbb3edb88e4592485de4f11ddfdaf94e9f849d211e",
+      "frontend/src/app/components/fhir-card/resources/binary/binary.component.spec.ts": "158d904b4ddb6e3a4aa9d8b1bdb452eb4c4d1bf1e7a403948814b545348bd211"
+    },
+    "initial_new_failure": "same six semantic cases observed before requestAnimationFrame DOM writes; original log retained; await actual token/text mutation with all assertions intact",
+    "old_overlay_strict_wrapper_exit": 1,
+    "candidate_content_and_stat_restored_exactly": true,
+    "candidate_nonprovenance_xattrs_restored_exactly": true,
+    "os_managed_provenance_changes": {
+      "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/ngx-highlightjs: com.apple.provenance:": {
+        "before": [
+          "00000000  01 02 00 3D 0F 4F 5B B2 5D DB 6B                 |...=.O[.].k|",
+          "0000000B"
+        ],
+        "after": [
+          "00000000  01 02 00 2A 06 F0 B5 04 E2 78 4E                 |...*.....xN|",
+          "0000000B"
+        ]
+      },
+      "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/highlight.js: com.apple.provenance:": {
+        "before": [
+          "00000000  01 02 00 3D 0F 4F 5B B2 5D DB 6B                 |...=.O[.].k|",
+          "0000000B"
+        ],
+        "after": [
+          "00000000  01 02 00 2A 06 F0 B5 04 E2 78 4E                 |...*.....xN|",
+          "0000000B"
+        ]
+      }
+    },
+    "security_metadata_not_rewritten": true,
+    "original_failed_receipt_retained": "completion-aware-old/receipt.json",
+    "historical_installed_old_package_archive_unchanged": true
+  },
+  "migration": {
+    "files": {
+      "frontend/src/app/pages/practitioner-edit/practitioner-edit.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/pages/resource-detail/resource-detail.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/pages/background-jobs/background-jobs.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/pages/practitioner-create/practitioner-create.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-edit-practitioner/medical-record-wizard-edit-practitioner.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-edit-organization/medical-record-wizard-edit-organization.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/nlm-typeahead/nlm-typeahead.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-add-attachment/medical-record-wizard-add-attachment.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-add-practitioner/medical-record-wizard-add-practitioner.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-edit-encounter/medical-record-wizard-edit-encounter.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-add-organization/medical-record-wizard-add-organization.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-edit-procedure/medical-record-wizard-edit-procedure.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-edit-medication/medical-record-wizard-edit-medication.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard-add-encounter/medical-record-wizard-add-encounter.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/medical-record-wizard/medical-record-wizard.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/fhir-card/resources/fallback/fallback.component.html": {
+        "bindings_changed": 1,
+        "migration": "explicit JSON language for existing JSON-pipe input"
+      },
+      "frontend/src/app/components/fhir-card/resources/binary/binary.component.html": {
+        "bindings_changed": 1,
+        "migration": "highlightAuto with existing json/xml restriction"
+      },
+      "frontend/src/app/app.module.ts": {
+        "migration": "remove unused obsolete line-number loader; register XML for existing Binary JSON/XML support"
+      }
+    },
+    "raw_record_models_database_Wails_changed": false,
+    "initial_spec_hashes_at_template_migration": {
+      "frontend/src/app/components/fhir-card/resources/fallback/fallback.component.spec.ts": "625e8734c1c0b514539545790161b947faeebeaf07ed67288215dbde15e8157c",
+      "frontend/src/app/components/fhir-card/resources/binary/binary.component.spec.ts": "8e98ecb3de4b14bfd4d1c3d399d1a62ad5c1b7c9c42ccdc1ec4ee348b2cfaa2e"
+    },
+    "final_specs": "consumer_qualification.identical_completion_aware_specs"
+  },
+  "frontend": {
+    "receipts": [
+      {
+        "name": "frozen-install",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "install",
+          "--frozen-lockfile",
+          "--registry",
+          "https://registry.npmjs.org",
+          "--network-concurrency",
+          "4"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T13:14:13.954649+00:00",
+        "end": "2026-11-03T13:14:15.398306+00:00",
+        "exit": 0
+      },
+      {
+        "name": "node",
+        "command": [
+          "node",
+          "--test",
+          "frontend/desktop-tests/bridge.test.mjs",
+          "frontend/desktop-tests/compodoc-compat.test.mjs",
+          "frontend/desktop-tests/test-framework.test.mjs"
+        ],
+        "cwd": ".",
+        "start": "2026-11-03T13:14:16.312826+00:00",
+        "end": "2026-11-03T13:14:16.459650+00:00",
+        "exit": 0
+      },
+      {
+        "name": "browser",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "test",
+          "--watch=false",
+          "--progress=false",
+          "--browsers=ChromeHeadlessCI",
+          "--reporters=dots"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T13:14:16.460002+00:00",
+        "end": "2026-11-03T13:14:33.610600+00:00",
+        "exit": 0
+      },
+      {
+        "name": "production",
+        "command": [
+          "node",
+          "node_modules/@angular/cli/bin/ng.js",
+          "build",
+          "--configuration",
+          "desktop_prod",
+          "--output-path",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/highlight-review/validation/frontend"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T13:14:33.611272+00:00",
+        "end": "2026-11-03T13:15:31.992143+00:00",
+        "exit": 0
+      },
+      {
+        "name": "storybook",
+        "command": [
+          "npm",
+          "exec",
+          "--yes",
+          "--package=corepack@0.35.0",
+          "--",
+          "corepack",
+          "yarn",
+          "exec",
+          "ng",
+          "--",
+          "run",
+          "fastenhealth:build-storybook",
+          "--output-dir",
+          "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/highlight-review/validation/storybook"
+        ],
+        "cwd": "frontend",
+        "start": "2026-11-03T13:15:34.344091+00:00",
+        "end": "2026-11-03T13:16:26.359655+00:00",
+        "exit": 0
+      }
+    ],
+    "node_passed": 10,
+    "browser_passed": 529,
+    "existing_skip": 1,
+    "production_and_storybook_passed": true,
+    "source_inputs_unchanged_during_validation": true,
+    "coverage_and_documentation_absence_preserved": true
+  },
+  "native": {
+    "source_revision": "6c07e1bfcfbf7fe136c8755325a1a8286467ffcb",
+    "receipt": "docs/maintenance/native-6c07e1bfc-validation.json",
+    "zip_sha256": "12ec21c0b28f8389d174493765218b9df58425b6312bd05ef4330d252eefa86e",
+    "build_zip_crc_strict_signature_ten_smoke_checks": "passed",
+    "compiled_reused_native_assets_identical_files": 22289,
+    "original_output_content_stat_xattrs_restored_exactly": true,
+    "qa_native_UI": {
+      "time": "2026-11-03T13:52:02.021478+00:00",
+      "source_revision": "6c07e1bfcfbf7fe136c8755325a1a8286467ffcb",
+      "method": "cua_repl exact QA app after CLI exact PID/private database/unique WebKit identifier proof",
+      "pid": 29780,
+      "qa_bundle_identifier": "house.karam.chartrove.qa.highlight.s6c07e1bfc.ab61d6abdc7944a7b787052ed6e41b49",
+      "qa_metadata_variant": "identifier/name/display name and resulting ad-hoc signature only; production package/extracted app unchanged",
+      "synthetic_signin": "desktop-smoke -> dashboard",
+      "resource_route": "#/explore/2253d45d-737f-4732-a5af-faccf52a7cfd/resource/synthetic-encounter-row-patient",
+      "raw_JSON": "expected synthetic Patient displayed completely; light-theme screenshot shows blue JSON keys and distinct values",
+      "dark_theme": "raw text visible; token-color contrast not claimed corrected",
+      "native_XML_rendering": "not exercised; old/new browser consumer cases cover XML",
+      "debug_only_no_record_saves": true,
+      "window_closed_with_fresh_full_AX_close_button": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_call_after_close": true,
+      "records": {
+        "fhir_patient": [
+          {
+            "id": "synthetic-encounter-row-patient",
+            "sha256": "cf1e3a595f71ca1b77dcd0b00f74215337b91c1e65862b6454fcde8364443dde"
+          }
+        ],
+        "fhir_encounter": [
+          {
+            "id": "synthetic-manual-encounter",
+            "sha256": "843feed00280eeb33252af1ef6a451e1b7c9071a0eb58708d61ca026ed8c4616"
+          }
+        ]
+      },
+      "synthetic_raw_records_byte_identical_to_seed": true,
+      "seed_database_and_sidecar_hashes_unchanged": true,
+      "stopped_profile_hashes_unchanged_by_verification": true,
+      "verification_method": "query copied stopped profile; original checkpointed seed read immutable with empty WAL; before/after hashes",
+      "real_records_accessed": false,
+      "new_qa_WebKit_and_cache_paths_verified_created": "profile-path-proof.json",
+      "separate_observation": "patient-detail card shows Age: NaN for absent birth date; untouched by this migration, retained follow-up",
+      "UI_interruption": "first getApp tool response took 842 seconds; later source-tile click returned aborted but fresh resumed AX proved its navigation completed; REPL binding was re-established only after exact PID proof"
+    }
+  },
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/highlight-review/",
+  "protected_integration": "pending"
+}
