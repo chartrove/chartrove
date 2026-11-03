@@ -1,0 +1,220 @@
+{
+  "time": "2026-11-03T01:17:30.466591+00:00",
+  "base_main": "c92d3695ceb97bfcd362af5378418db481f47bd3",
+  "scope": "frontend primitive zero/false, absent values and reference boundary display; synthetic fixture defaults",
+  "initial_red": {
+    "start": "2026-11-02T23:31:48.493385+00:00",
+    "end": "2026-11-02T23:32:34.512089+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts",
+      "--include=src/lib/models/datatypes/range-model.spec.ts"
+    ],
+    "exit": 1,
+    "spec_hashes": {
+      "frontend/src/lib/models/resources/observation-value-boundaries.spec.ts": "aec5fed0fe6ecbb79f903d43835e480121f3e8ec04cda6a1b89d581705011652",
+      "frontend/src/lib/models/datatypes/range-model.spec.ts": "be4eb44e2de70aeaeddadb9c3e84ecab3fb460a51e1a2f948d99ae8113920bb8"
+    },
+    "production_source_unchanged": true
+  },
+  "initial_green_same_bytes": {
+    "start": "2026-11-03T01:02:23.607612+00:00",
+    "end": "2026-11-03T01:02:41.615275+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts",
+      "--include=src/lib/models/datatypes/range-model.spec.ts"
+    ],
+    "exit": 0,
+    "spec_hashes": {
+      "frontend/src/lib/models/resources/observation-value-boundaries.spec.ts": "aec5fed0fe6ecbb79f903d43835e480121f3e8ec04cda6a1b89d581705011652",
+      "frontend/src/lib/models/datatypes/range-model.spec.ts": "be4eb44e2de70aeaeddadb9c3e84ecab3fb460a51e1a2f948d99ae8113920bb8"
+    },
+    "same_spec_bytes_as_red": true
+  },
+  "followup_red": {
+    "start": "2026-11-03T01:12:46.321516+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts"
+    ],
+    "spec_sha256": "beb84703c32f5d3ea33c53677f9b8d9f5cec5da4204f7fe4c79b55d99e7245f9",
+    "exit": 1,
+    "end": "2026-11-03T01:13:05.695900+00:00"
+  },
+  "followup_green_same_bytes": {
+    "start": "2026-11-03T01:13:26.145176+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/lib/models/resources/observation-value-boundaries.spec.ts"
+    ],
+    "spec_sha256": "beb84703c32f5d3ea33c53677f9b8d9f5cec5da4204f7fe4c79b55d99e7245f9",
+    "exit": 0,
+    "end": "2026-11-03T01:13:36.319818+00:00"
+  },
+  "full_browser": {
+    "pass": 474,
+    "existing_skip": 1,
+    "exit": 0
+  },
+  "node_checks": 10,
+  "validation_commands": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:03:58.351808+00:00",
+      "end": "2026-11-03T01:03:58.532915+00:00",
+      "exit": 0,
+      "reused_from": "validation-first-full-diagnostic"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T01:13:51.074361+00:00",
+      "end": "2026-11-03T01:14:13.753560+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/observation-values-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T01:14:13.754391+00:00",
+      "end": "2026-11-03T01:15:43.472904+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/observation-values-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T01:15:47.297968+00:00",
+      "end": "2026-11-03T01:16:57.913278+00:00",
+      "exit": 0
+    }
+  ],
+  "compiler_input_receipt": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23172,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata_preservation": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "1c03108d04870fb9f346d64d7f744a898933aa7296fddba23d17588764c74072",
+      "bytes": 5939895
+    },
+    "original_absence_restored": true
+  },
+  "native_validation": "pending",
+  "protected_integration": "pending required PR checks",
+  "issue_158": "still open; broader reported failure not reproduced/resolved",
+  "real_records_accessed": false,
+  "normative_contracts": {
+    "verified_at": "2026-11-02T23:25:21.277256+00:00",
+    "observation": {
+      "url": "https://hl7.org/fhir/R4/observation-definitions.html#Observation.value_x_",
+      "value_cardinality": "0..1",
+      "boolean_and_integer_choices_supported": true
+    },
+    "primitives": {
+      "url": "https://hl7.org/fhir/R4/datatypes.html#primitive",
+      "integer_is_integral_signed32_bit": true,
+      "boolean_false_is_a_value": true
+    },
+    "range": {
+      "url": "https://hl7.org/fhir/R4/datatypes-definitions.html#Range.low",
+      "low_inclusive": true,
+      "high_inclusive": true,
+      "missing_bound_is_unknown": true
+    }
+  },
+  "inherited_assertion_corrections": [
+    {
+      "source": "https://hl7.org/fhir/R4/datatypes-definitions.html#Range.low",
+      "reason": "existing low/high display assertions encoded exclusive signs; R4 Range numeric limits are inclusive",
+      "only_expected_operators_changed": 4,
+      "production_unchanged": true
+    },
+    {
+      "reason": "Existing test treated a literal zero as absence; zero is a present FHIR decimal. Preserve [5,0] and additionally prove absent high bounds when low is zero. No assertions removed.",
+      "file": "frontend/src/app/components/fhir-card/common/observation-bar-chart/observation-bar-chart.component.spec.ts",
+      "before_sha256": "b38309a69c2d232c0d5f00d3313947c6bd83d789e74bb8da66fcfe49367b44a8",
+      "after_sha256": "0e345ddfe9c0f0e51aa3f6c75e05b8bec8efd9748cb38f01552c66768e504d8b",
+      "failed_suite": "validation-first-full-diagnostic/browser.log"
+    }
+  ],
+  "retained_diagnostics": {
+    "first_full_suite": "one pre-existing assertion expected zero replaced with maximum; corrected assertion, no skip or removed cases",
+    "intermediate_build": "build exit0; unchanged-input identity assertion rejected after follow-up test additions; output retained and not qualified"
+  },
+  "known_ng01354_warning_count": {
+    "previous_qualified_browser": 138,
+    "current": 138
+  }
+}

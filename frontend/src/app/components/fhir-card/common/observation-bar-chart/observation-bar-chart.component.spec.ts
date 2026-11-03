@@ -24,18 +24,22 @@ describe('ObservationBarChartComponent', () => {
   });
 
   describe('updateNullMax', () => {
-    it('updates the second value to the max if and only if the first value is present and the second is falsey', () => {
+    it('fills only absent upper bounds and preserves explicit zero limits', () => {
       let test = [
         [5, null],
         [5, 0],
         [5, undefined],
+        [0, null],
+        [0, undefined],
         [0, 0],
         [4, 6]
       ]
       let expected = [
         [5, 8],
+        [5, 0],
         [5, 8],
-        [5, 8],
+        [0, 8],
+        [0, 8],
         [0, 0],
         [4, 6]
       ]
@@ -58,7 +62,7 @@ describe('ObservationBarChartComponent', () => {
 
       expect(component['extractReferenceRange'](observation)).toEqual([5, 10])
       expect(component['extractReferenceRange'](observation2)).toEqual([0, 10])
-      expect(component['extractReferenceRange'](observation3)).toEqual([5, 0])
+      expect(component['extractReferenceRange'](observation3)).toEqual([5, null])
     });
   });
 

@@ -241,7 +241,15 @@
       "real_family_or_purchased_fasten_records_accessed": false
     }
   },
-  "protected_integration": "pending required PR checks",
+  "protected_integration": {
+    "pr": 372,
+    "merge": "c92d3695ceb97bfcd362af5378418db481f47bd3",
+    "head": "f8261b95131430e69d63b6ed7bdb5b3c3db39e94",
+    "validation_run": 41542525672,
+    "required_checks": "Backend/Frontend/Desktop all successful, Actions app15368",
+    "issue_106": "completed; linked closure evidence in scope document",
+    "task_branch": "retired after exact-tip/dependency/ancestry checks"
+  },
   "real_records_accessed": false,
   "source_snapshot_hashes": {
     "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-generic-resource.component.ts": "1a852a82060c5ff046998a660638f89c8ef83307d3c2224705288a2e37057c32",

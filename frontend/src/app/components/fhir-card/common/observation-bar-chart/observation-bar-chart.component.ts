@@ -140,7 +140,10 @@ export class ObservationBarChartComponent implements OnInit {
   private extractReferenceRange(observation: ObservationModel): [number, number] {
     let refRange = observation.reference_range;
 
-    return [refRange.low_value || 0, refRange.high_value || 0]
+    // Keep an unknown upper limit distinct from an explicit zero. With no
+    // reference at all, retain the existing empty [0, 0] chart placeholder.
+    return [refRange.low_value ?? 0,
+      refRange.high_value ?? (refRange.low_value != null ? null : 0)]
   }
 
   private extractCurrentValue(observation: ObservationModel): [any, any] {
@@ -157,7 +160,7 @@ export class ObservationBarChartComponent implements OnInit {
   // Necessary in order to display greater-than ranges that have no upper bound.
   private updateNullMax(array: any[][], max: number): any[][] {
     return array.map(values => {
-      if (values[0] && !values[1]) {
+      if (values[0] != null && values[1] == null) {
         return [values[0], max]
       } else {
         return [values[0], values[1]]

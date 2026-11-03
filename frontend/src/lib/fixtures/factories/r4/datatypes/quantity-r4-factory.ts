@@ -3,7 +3,7 @@ import { Factory } from 'fishery';
 class QuantityR4Factory extends Factory<{}> {
   value(value?: number) {
     return this.params({
-      value: value || 5.5
+      value: value ?? 5.5
     })
   }
 

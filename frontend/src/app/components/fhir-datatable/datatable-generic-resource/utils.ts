@@ -79,11 +79,15 @@ export function obsValue(entry){
     return round(entry.valueQuantity.value, 2) + ' ' + entry.valueQuantity.code;
   } else if (entry.valueCodeableConcept) {
     return entry.valueCodeableConcept.coding[0].display;
-  } else if (entry.valueString) {
+  } else if (entry.valueString != null) {
     return entry.valueString;
+  } else if (entry.valueInteger != null) {
+    return String(entry.valueInteger);
+  } else if (entry.valueBoolean != null) {
+    return String(entry.valueBoolean);
   }
 
-  if (entry.code.coding[0].display === "Blood Pressure") {
+  if (entry.code?.coding?.[0]?.display === "Blood Pressure") {
 
     if (!entry.component[0].valueQuantity) {
       return ''; // WTF!!

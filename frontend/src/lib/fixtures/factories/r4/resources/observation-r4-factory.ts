@@ -12,7 +12,7 @@ class ObservationR4Factory extends Factory<{}> {
   valueString(value?: string) {
     return this.params({
       valueQuantity: null,
-      valueString: value || '5.5mmol/l'
+      valueString: value ?? '5.5mmol/l'
     })
   }
 
@@ -20,7 +20,7 @@ class ObservationR4Factory extends Factory<{}> {
     let p = params || {}
     return this.params({
       valueQuantity: {
-        value: p['value'] || 6.3,
+        value: p['value'] ?? 6.3,
         unit: p['unit'] || 'mmol/l',
         system: 'http://unitsofmeasure.org',
         code: p['code'] || 'mmol/L',
@@ -32,7 +32,7 @@ class ObservationR4Factory extends Factory<{}> {
   valueInteger(value?: number) {
     return this.params({
       valueQuantity: null,
-      valueInteger: value || 4.9
+      valueInteger: value ?? 4
     })
   }
 
@@ -56,7 +56,7 @@ class ObservationR4Factory extends Factory<{}> {
   valueBoolean(value?: boolean) {
     return this.params({
       valueQuantity: null,
-      valueBoolean: value || true
+      valueBoolean: value ?? true
     })
   }
 
@@ -80,13 +80,13 @@ class ObservationR4Factory extends Factory<{}> {
       referenceRange: [
         {
           low: {
-            value: low || 3.1,
+            value: low ?? 3.1,
             unit: 'mmol/l',
             system: 'http://unitsofmeasure.org',
             code: 'mmol/L'
           },
           high: {
-            value: high || 6.5,
+            value: high ?? 6.5,
             unit: 'mmol/l',
             system: 'http://unitsofmeasure.org',
             code: 'mmol/L'
@@ -101,7 +101,7 @@ class ObservationR4Factory extends Factory<{}> {
       referenceRange: [
         {
           high: {
-            value: value || 6.5,
+            value: value ?? 6.5,
             unit: 'mmol/l',
             system: 'http://unitsofmeasure.org',
             code: 'mmol/L'
@@ -116,7 +116,7 @@ class ObservationR4Factory extends Factory<{}> {
       referenceRange: [
         {
           low: {
-            value: value || 3.1,
+            value: value ?? 3.1,
             unit: 'mmol/l',
             system: 'http://unitsofmeasure.org',
             code: 'mmol/L'

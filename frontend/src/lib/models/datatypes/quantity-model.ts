@@ -24,7 +24,7 @@ export class QuantityModel implements Quantity, ObservationValue {
   }
 
   hasValue(): boolean {
-    return !!this.value;
+    return this.value != null;
   }
 
   display(): string {

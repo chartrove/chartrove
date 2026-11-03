@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #371 and individual #270 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after371.json).
-The table-loading branch is additional and unpublished at
+Snapshot: November 2, 2026, after #372 and individual #106 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after372.json).
+The Observation-boundary branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `10b31279e5aed20f4cfd7b1da5846f60fc7cc1f5` (#371) |
-| Open issues | 169, including retained Renovate dashboard #222 |
+| Published application main | `c92d3695ceb97bfcd362af5378418db481f47bd3` (#372) |
+| Open issues | 168, including retained Renovate dashboard #222 |
 | Open PRs | 35: 29 paused Renovate proposals and six historical drafts |
 | Origin heads | 44 |
-| Default branch | main tracks origin/main with equal OIDs; table-loading branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; Observation-boundary branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -322,14 +322,15 @@ and all xattrs restore exactly. All three protected checks pass; #270 is
 individually reconciled and its exact archived head retired.
 [Scope and preserved diagnostics](maintenance/2026-11-02-lo-maintenance.md).
 
-Current #106 correction adds shared/fallback loading, error/retry and request
+Merged #372 implements the #106 correction: shared/fallback loading, error/retry and request
 lifecycle handling. Fourteen actual-component/HTTP regressions fail before repair
 and pass unchanged afterward; the full browser suite passes 443 specs with one
 existing skip, ten Node checks, production and static Storybook builds pass.
 Fresh native packaging at 2f0fd5bfc, ZIP/signature and ten synthetic checks pass.
 Actual native Encounter rendering/row navigation pass with the three synthetic
 records retained. Original outputs/stat fields and all xattrs restore exactly.
-Protected integration remains pending.
+All three required checks pass; #106 is individually closed with its evidence.
+The task head was retired after exact-tip, dependency and merge checks.
 [Scope and diagnostics](maintenance/2026-11-02-datatable-loading-feedback.md).
 
 ## Preservation and branch retirement

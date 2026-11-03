@@ -30,7 +30,10 @@ the correction; no test timeout, assertion or coverage threshold is relaxed.
 The full ordinary browser command passes 443 specs with the one existing skip.
 All ten Node bridge checks, production and static Storybook builds pass. Existing browser-list,
 builder deprecation, CommonJS and bundle-budget warnings remain. Fresh
-native packaging and synthetic UI validation pass; protected integration is pending. Coverage is
+native packaging and synthetic UI validation pass. Protected PR #372 merged at
+`c92d3695ceb97bfcd362af5378418db481f47bd3` after all three checks passed.
+[Issue #106 closure](https://github.com/karamhouse/chartrove/issues/106#issuecomment-6590926367)
+records the individual disposition. The exact task head is integrated and retired. Coverage is
 generated under private TMPDIR; original frontend/coverage absence remains.
 Generated Storybook documentation is retained and its original absence restored.
 [Detailed validation](datatable-loading-validation.json).
