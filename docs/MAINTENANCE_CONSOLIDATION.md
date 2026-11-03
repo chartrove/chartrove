@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #376 and individual #221 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after376.json).
-The support-documentation branch is additional and unpublished at
+Snapshot: November 2, 2026, after #377 and individual #191 retirement.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after377.json).
+The patient-age-display branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `9ce3494f9e0d0ff20ae6bbe950d1990ff90ac4c3` (#376) |
-| Open issues | 168, including retained Renovate dashboard #222 |
+| Published application main | `92721d64515588b4a9cd6a8c660e612f043c84f4` (#377) |
+| Open issues | 167, including retained Renovate dashboard #222 |
 | Open PRs | 33: 27 paused Renovate proposals and six historical drafts |
 | Origin heads | 42 |
-| Default branch | main tracks origin/main with equal OIDs; support-documentation branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; patient-age-display branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -379,14 +379,21 @@ preserved. All three required checks pass; #221 is individually reconciled and
 both exact reviewed heads are retired.
 [Scope and provenance](maintenance/2026-11-02-exp-maintenance.md).
 
-Current documentation refresh corrects stale README toolchain/CI statements,
+Merged #377 corrects stale README toolchain/CI statements,
 documents the protected PR workflow and post-close native automation guard, and
 separates current provider qualification from dated sandbox protocol evidence.
 All 23 relative links/anchors pass; application/dependency source is unchanged.
-Historical #191 is reviewed for explicit upstream-site retirement with maintained
-fork support alternatives; no closure or production-provider implementation is
-claimed yet. Protected integration remains pending.
+Historical #191 is individually retired as an upstream-site request, with maintained
+fork support alternatives and explicit production limitations. All three protected
+checks pass; its exact task head is integrated and retired.
 [Scope and disposition boundary](maintenance/2026-11-02-support-documentation.md).
+
+Current patient-profile display correction replaces a non-finite age with Not
+provided, while retaining the numeric getter and zero/adult results. Three actual
+rendering failures become passing with identical test bytes; the full suite passes
+479 tests with one existing skip. Production/Storybook pass, with unchanged Node
+checks strictly reused. Native UI and protected integration remain pending.
+[Scope](maintenance/2026-11-02-patient-age-display.md).
 
 ## Preservation and branch retirement
 

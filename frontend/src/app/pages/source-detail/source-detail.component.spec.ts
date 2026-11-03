@@ -59,4 +59,45 @@ describe('SourceDetailComponent', () => {
     component.selectedPatient = new ResourceFhir({resource_raw: {resourceType: 'Patient', id: 'synthetic-only'}});
     expect(component.getPatientName()).toBe('Name not provided');
   });
+
+  for (const example of [
+    {name: 'absent', raw: {}},
+    {name: 'explicitly null', raw: {birthDate: null}},
+    {name: 'unparseable', raw: {birthDate: 'synthetic-invalid-date'}},
+  ]) {
+    it(`shows a missing-value label for an ${example.name} birth date without inventing an age`, () => {
+      component.selectedSource = {id: 'synthetic-age-source', brand_id: '00000000-0000-0000-0000-000000000000'} as any;
+      component.selectedPatient = new ResourceFhir({source_resource_id: 'synthetic-age-patient',
+        resource_raw: {resourceType: 'Patient', id: 'synthetic-age-patient', ...example.raw}});
+      const before = JSON.stringify(component.selectedPatient.resource_raw);
+      fixture.detectChanges();
+      const view = fixture.nativeElement as HTMLElement;
+      const ageLabel = Array.from(view.querySelectorAll('div')).find(element => element.textContent.trim() === 'Age:');
+      expect(ageLabel?.nextElementSibling?.textContent.trim()).toBe('Not provided');
+      expect(view.textContent).not.toContain('NaN');
+      expect(view.textContent).not.toContain('0 Years Old');
+      expect(JSON.stringify(component.selectedPatient.resource_raw)).toBe(before);
+    });
+  }
+
+  for (const example of [
+    {name: 'a zero-year age', date: '2026-06-14', display: '0 Years Old'},
+    {name: 'an existing adult age', date: '2000-06-15', display: '26 Years Old'},
+  ]) {
+    it(`retains ${example.name} in the rendered profile`, () => {
+      jasmine.clock().install();
+      try {
+        jasmine.clock().mockDate(new Date('2026-06-15T00:00:00Z'));
+        component.selectedSource = {id: 'synthetic-age-source', brand_id: '00000000-0000-0000-0000-000000000000'} as any;
+        component.selectedPatient = new ResourceFhir({source_resource_id: 'synthetic-age-patient',
+          resource_raw: {resourceType: 'Patient', id: 'synthetic-age-patient', birthDate: example.date}});
+        fixture.detectChanges();
+        const view = fixture.nativeElement as HTMLElement;
+        const ageLabel = Array.from(view.querySelectorAll('div')).find(element => element.textContent.trim() === 'Age:');
+        expect(ageLabel?.nextElementSibling?.textContent.trim()).toBe(example.display);
+      } finally {
+        jasmine.clock().uninstall();
+      }
+    });
+  }
 });

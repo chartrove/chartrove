@@ -88,6 +88,10 @@ export class SourceDetailComponent implements OnInit {
     var age = Date.now() - patientDOB;
     return Math.floor(age / msInYear);
   }
+  getPatientAgeDisplay(): string {
+    const age = this.getPatientAge();
+    return Number.isFinite(age) ? `${age} Years Old` : 'Not provided';
+  }
   getPatientPhone(){
     // @ts-ignore
     return (this.selectedPatient?.resource_raw?.telecom || []).filter(

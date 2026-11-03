@@ -1,0 +1,180 @@
+{
+  "time": "2026-11-03T03:12:12.442608+00:00",
+  "base_main": "92721d64515588b4a9cd6a8c660e612f043c84f4",
+  "scope": "format non-finite source-profile age as Not provided; preserve existing numeric getter/calculation and zero age",
+  "red": {
+    "start": "2026-11-03T03:01:22.658162+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/pages/source-detail/source-detail.component.spec.ts"
+    ],
+    "spec_sha256": "386fe5833126399c3bf7e9d42e639c8c9874411e3a5f1df9954b11e4f972da44",
+    "production_source_hashes": {
+      "frontend/src/app/pages/source-detail/source-detail.component.ts": "a145bc183e825e9d900d5eef362cf52a950af70373dfb4e00b6396bfe40f42cd",
+      "frontend/src/app/pages/source-detail/source-detail.component.html": "d126b0bf366dbb6ec0753a8d1ed46760d6fcbd82122c1e9d68d50283ee49fe22"
+    },
+    "exit": 1,
+    "end": "2026-11-03T03:01:45.719072+00:00"
+  },
+  "green_identical_test_bytes": {
+    "start": "2026-11-03T03:03:48.846381+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/pages/source-detail/source-detail.component.spec.ts"
+    ],
+    "spec_sha256": "386fe5833126399c3bf7e9d42e639c8c9874411e3a5f1df9954b11e4f972da44",
+    "production_source_hashes": {
+      "frontend/src/app/pages/source-detail/source-detail.component.ts": "a7a172a10ecafa166cde284f61d3381f563eb79fe49294cdcfd7f2803e3f6577",
+      "frontend/src/app/pages/source-detail/source-detail.component.html": "41e818edf929885cb64668621574d5a735b2cbfb83e7a652098bb2cf2ef3f600"
+    },
+    "exit": 0,
+    "end": "2026-11-03T03:04:00.027267+00:00"
+  },
+  "same_existing_getPatientAge_body": true,
+  "full_browser": {
+    "pass": 479,
+    "existing_skip": 1,
+    "exit": 0
+  },
+  "node_checks": {
+    "pass": 10,
+    "reused_with_input_identity_proof": {
+      "qualified_frontend": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+      "entire_frontend_input_delta": [
+        "frontend/src/app/pages/source-detail/source-detail.component.html",
+        "frontend/src/app/pages/source-detail/source-detail.component.spec.ts",
+        "frontend/src/app/pages/source-detail/source-detail.component.ts"
+      ],
+      "node_check_and_dependency_inputs_unchanged": true
+    }
+  },
+  "validation_commands": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:03:58.351808+00:00",
+      "end": "2026-11-03T01:03:58.532915+00:00",
+      "exit": 0,
+      "reused_from": "dist/validation/2026-11-01-consolidation/observation-values-review/validation",
+      "node_check_inputs_unchanged": true
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:05:06.348091+00:00",
+      "end": "2026-11-03T03:05:22.275283+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/patient-age-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:05:22.276023+00:00",
+      "end": "2026-11-03T03:06:05.186600+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/patient-age-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:06:06.231853+00:00",
+      "end": "2026-11-03T03:07:00.425613+00:00",
+      "exit": 0
+    }
+  ],
+  "compiler_input_receipt": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23172,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "42aa6053532e1986c2190b46a5d0ef33c14c076e0e43d72cdcecbf41c3b0605c",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata_preservation": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "43915a2090e025a35bb8196c2ee41819fc0531a41a3a4e9ea29f3fdf86986a68",
+      "bytes": 5940537
+    },
+    "original_absence_restored": true
+  },
+  "synthetic_native_fixture": {
+    "source": "dist/validation/2026-11-01-consolidation/datatable-loading-review/native-ui/data",
+    "source_hashes": {
+      "fasten.db": "0ba96294c5a6db18ed4e5d00f6385387d3db20cfaa3e8ce8ab2b1af656116fd4",
+      "fasten.db-wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fasten.db-shm": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+      ".desktop.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "jwt.key": "036dac9f5c6514891ae05bf76c5088aef537b1f2251489c7a8e3ca619ccd929d"
+    },
+    "original_archived_synthetic_fixture_unchanged": true,
+    "counts": {
+      "fhir_patient": 1,
+      "fhir_encounter": 1,
+      "fhir_condition": 1
+    },
+    "patient_id": "chartrove-picker-patient",
+    "birth_date_absent": true,
+    "provenance": "known synthetic picker fixture from native datatable acceptance; never a real record directory"
+  },
+  "native_validation": "pending",
+  "protected_integration": "pending required PR checks",
+  "real_health_records_accessed": false,
+  "limits": "existing approximate numeric/calendar calculation, other age formatters, FHIR partial-date policy and persisted records unchanged",
+  "known_ng01354_warning_count": {
+    "previous_qualified_browser": 138,
+    "current": 138
+  }
+}
