@@ -267,7 +267,15 @@
       }
     }
   },
-  "protected_integration": "pending required PR checks",
+  "protected_integration": {
+    "pr": 373,
+    "merge": "8adb31486e8803135495dba6b5809afb8e74a478",
+    "head": "cb71e609a4255d21ae51d0dc8d00fcf84fda1aa8",
+    "validation_run": 41559562042,
+    "required_checks": "Backend/Frontend/Desktop all successful, Actions app15368",
+    "task_branch": "retired after exact-tip/dependency/ancestry checks",
+    "issue_158": "still open"
+  },
   "issue_158": "still open; broader reported failure not reproduced/resolved",
   "normative_contracts": {
     "verified_at": "2026-11-02T23:25:21.277256+00:00",

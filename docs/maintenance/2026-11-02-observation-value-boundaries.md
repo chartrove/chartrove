@@ -43,7 +43,9 @@ remain unchanged, coverage uses private TMPDIR, and generated documentation is
 retained with its original absence restored. Fresh native packaging at c8c6e4a9f passes ZIP/signature and ten synthetic
 native checks. All 22,287 compiled, reused and native frontend files match.
 Original output content/stat fields and all xattrs restore exactly. Protected
-integration remains in progress. [Detailed validation](observation-values-validation.json). Raw logs, source-before
+PR #373 merged at `8adb31486e8803135495dba6b5809afb8e74a478` after all three
+required checks passed in run 41559562042. The integrated task head was retired
+with fresh dependency and exact-tip checks. [Detailed validation](observation-values-validation.json). Raw logs, source-before
 snapshots, test hashes and receipts are retained at
 `dist/validation/2026-11-01-consolidation/observation-values-review/`.
 

@@ -1,0 +1,351 @@
+{
+  "time": "2026-11-03T01:37:41.812201+00:00",
+  "base_main": "8adb31486e8803135495dba6b5809afb8e74a478",
+  "scope": "preserve effective explicit configuration precedence in an immutable embedded unlock snapshot",
+  "reproduction": [
+    {
+      "name": "root",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlockKeepsExplicit",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:33:12.005959+00:00",
+      "end": "2026-11-03T01:33:17.408881+00:00",
+      "exit": 1,
+      "entered": [
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection"
+      ],
+      "fails": [
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection"
+      ],
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085",
+      "production_source_sha256": "2288e8b27daf8c5f0bb3cf4b1d5e1fb257610db3d1a677c9a2c8be2c6c51f7cc"
+    },
+    {
+      "name": "desktop",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlockKeepsExplicit",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:33:17.409245+00:00",
+      "end": "2026-11-03T01:33:21.226958+00:00",
+      "exit": 1,
+      "entered": [
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection"
+      ],
+      "fails": [
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection"
+      ],
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085",
+      "production_source_sha256": "2288e8b27daf8c5f0bb3cf4b1d5e1fb257610db3d1a677c9a2c8be2c6c51f7cc"
+    }
+  ],
+  "green_and_application_validation": [
+    {
+      "name": "root-web",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./backend/pkg/web",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:34:38.186440+00:00",
+      "end": "2026-11-03T01:34:52.569787+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085",
+      "entered": [
+        "TestEmbeddedFreshDatabasePersistsAccountWithoutRegistration",
+        "TestEmbeddedEncryptionUnlockIsSynchronousAndRejectsWrongKey",
+        "TestEmbeddedKeepsAPI404SeparateFromFrontend",
+        "TestEmbeddedCloseCancelsActiveRequests",
+        "TestEmbeddedUnlockWhilePollingHealth",
+        "TestEmbeddedUnlockDoesNotMutateConfigurationUsedByExistingRequests",
+        "TestEmbeddedFreshDatabaseImportsSyntheticFHIRWithoutNetworkOrTempFileResidue",
+        "TestEmbeddedCloseReleasesDatabasePool",
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup/missing",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup/whitespace",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup/historical_default",
+        "TestStartUsesConfiguredEnvironmentSigningKey",
+        "TestEmbeddedDeletedAccountRejectsStaleSession"
+      ],
+      "passes": 16,
+      "skips": 0,
+      "fails": []
+    },
+    {
+      "name": "desktop-web",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:34:52.570612+00:00",
+      "end": "2026-11-03T01:35:08.708852+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085",
+      "entered": [
+        "TestEmbeddedFreshDatabasePersistsAccountWithoutRegistration",
+        "TestEmbeddedEncryptionUnlockIsSynchronousAndRejectsWrongKey",
+        "TestEmbeddedKeepsAPI404SeparateFromFrontend",
+        "TestEmbeddedCloseCancelsActiveRequests",
+        "TestEmbeddedUnlockWhilePollingHealth",
+        "TestEmbeddedUnlockDoesNotMutateConfigurationUsedByExistingRequests",
+        "TestEmbeddedFreshDatabaseImportsSyntheticFHIRWithoutNetworkOrTempFileResidue",
+        "TestEmbeddedCloseReleasesDatabasePool",
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup/missing",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup/whitespace",
+        "TestStartRejectsUnsafeSigningKeyBeforeDatabaseSetup/historical_default",
+        "TestStartUsesConfiguredEnvironmentSigningKey",
+        "TestEmbeddedDeletedAccountRejectsStaleSession"
+      ],
+      "passes": 16,
+      "skips": 0,
+      "fails": []
+    },
+    {
+      "name": "root-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "-json",
+        "./backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlock",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:35:08.709883+00:00",
+      "end": "2026-11-03T01:35:25.397733+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085",
+      "entered": [
+        "TestEmbeddedUnlockWhilePollingHealth",
+        "TestEmbeddedUnlockDoesNotMutateConfigurationUsedByExistingRequests",
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection"
+      ],
+      "passes": 4,
+      "skips": 0,
+      "fails": []
+    },
+    {
+      "name": "desktop-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlock",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:35:25.398368+00:00",
+      "end": "2026-11-03T01:35:39.563412+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085",
+      "entered": [
+        "TestEmbeddedUnlockWhilePollingHealth",
+        "TestEmbeddedUnlockDoesNotMutateConfigurationUsedByExistingRequests",
+        "TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment",
+        "TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection"
+      ],
+      "passes": 4,
+      "skips": 0,
+      "fails": []
+    },
+    {
+      "name": "root-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:35:39.564045+00:00",
+      "end": "2026-11-03T01:35:44.297342+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085"
+    },
+    {
+      "name": "desktop-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:35:44.297827+00:00",
+      "end": "2026-11-03T01:35:48.523835+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085"
+    },
+    {
+      "name": "desktop-host",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./...",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:35:48.524346+00:00",
+      "end": "2026-11-03T01:35:54.118625+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085",
+      "entered": [
+        "TestStorageExcludesSecondInstanceAndPersistsSigningKey",
+        "TestStorageRejectsSymlinkDataDirectory",
+        "TestFrontendServesSPAWithoutMaskingMissingAssets",
+        "TestExternalURLValidation",
+        "TestOnlyOwnedWindowsCanInvokeDesktopActions",
+        "TestShouldQuitAfterDrainsWithoutBlockingNativeThread",
+        "TestConnectPKCEReadPatientAndDisconnect",
+        "TestSyntheticFixtureConnectsDistinctSourcesWithSamePatient",
+        "TestCancelAndCloseReleasePendingListener",
+        "TestCancelAndCloseReleasePendingListener/false",
+        "TestSyntheticFixtureSlowAuthorizationCancels",
+        "TestCancelAndCloseReleasePendingListener/true",
+        "TestSyntheticFixtureRejectsInvalidPKCEReplayAndCrossTenantAccess",
+        "TestProviderErrorsDoNotExposeBodies",
+        "TestSMARTServiceRejectsCallsWithoutMainWindow",
+        "TestSyntheticFixtureConfinesNetworkAndCopiesProfiles",
+        "TestBrowserFailureIsRedactedAndListenerCloses",
+        "TestProfilesDisabledByDefaultAndStrict",
+        "TestAsyncBrowserReceivesCompleteCallbackResponse",
+        "TestCallbackCloseWaitsForResponseHandler",
+        "TestDiscoveryMismatchDoesNotOpenBrowser",
+        "TestPatientRedirectNeverReceivesBearer",
+        "TestPatientIdentityAndExpiryAreEnforced",
+        "TestDenialDoesNotExchangeCode",
+        "TestInsufficientGrantDoesNotCreateConnection",
+        "TestCallbackIsSingleUseAndRejectsAmbiguousResponses",
+        "TestTimeoutAndBusyProvider",
+        "TestSyntheticSMARTModeRequiresFreshIsolatedData"
+      ],
+      "passes": 28,
+      "skips": 2,
+      "fails": []
+    },
+    {
+      "name": "server-build",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/unlock-config-review/validation/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:35:54.119474+00:00",
+      "end": "2026-11-03T01:35:59.784432+00:00",
+      "exit": 0,
+      "spec_sha256": "a722674a8a7b7db28c556501eadae29a32169cfc557341e8788d8d953a4dd085"
+    }
+  ],
+  "same_regression_bytes_before_after": true,
+  "unchanged_module_files": true,
+  "frontend_inputs_match_qualified_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+  "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+  "native_validation": {
+    "source_revision": "6368cdcc3c1bb8ba424198b1beb89d3d4e913bbc",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-6368cdcc3-unlock-configuration/Chartrove-6368cdcc3.zip",
+      "sha256": "1d62e0ff5b8a6583833140ccb8f0c70b3c5402a6ec185d289b4c466f78b4d4f9",
+      "bytes": 336725904
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "committed_input_revision": "6368cdcc3c1bb8ba424198b1beb89d3d4e913bbc",
+      "qualified_frontend_source_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-6368cdcc3-unlock-configuration/receipt.json",
+    "full_local_receipt_sha256": "5910d23420255298bcec6d3bcf89ca2c3e2ca79df3ac849d0faa2bb10a130471",
+    "frontend_comparison": {
+      "files": 22287,
+      "qualified_reused_output_and_native_asset_tree_byte_identical": true,
+      "qualified_frontend_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1"
+    }
+  },
+  "protected_integration": "pending required PR checks",
+  "diagnostics": {
+    "initial_config_probe": "AllSettings clone mismatch before any library change; led to actual embedded regressions",
+    "overlay_case_mismatch": "Two discarded overlay invocations entered zero named tests because root and desktop Go paths use different Chartrove capitalization. Neither is counted as a pass; actual checkout red runs enter/fail both tests in both graphs.",
+    "candidate_viper": "temporary module files only; repository dependency files untouched"
+  },
+  "desktop_host_package_skips": "two packages without test files; zero skipped named tests",
+  "test_data": "fresh private synthetic SQLite/SQLCipher databases plus unrelated text sentinel; sentinel unchanged in failing/passing cases; no real health records accessed"
+}

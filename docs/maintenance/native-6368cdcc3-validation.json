@@ -1,0 +1,49 @@
+{
+  "source_revision": "6368cdcc3c1bb8ba424198b1beb89d3d4e913bbc",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-6368cdcc3-unlock-configuration/Chartrove-6368cdcc3.zip",
+    "sha256": "1d62e0ff5b8a6583833140ccb8f0c70b3c5402a6ec185d289b4c466f78b4d4f9",
+    "bytes": 336725904
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "6368cdcc3c1bb8ba424198b1beb89d3d4e913bbc",
+    "qualified_frontend_source_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-6368cdcc3-unlock-configuration/receipt.json",
+  "full_local_receipt_sha256": "5910d23420255298bcec6d3bcf89ca2c3e2ca79df3ac849d0faa2bb10a130471",
+  "frontend_comparison": {
+    "files": 22287,
+    "qualified_reused_output_and_native_asset_tree_byte_identical": true,
+    "qualified_frontend_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1"
+  }
+}
