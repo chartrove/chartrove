@@ -310,6 +310,14 @@
     "documentation_json_absence_restored": true
   },
   "raw_evidence": "dist/validation/2026-11-01-consolidation/tslib-review",
-  "native": "pending source commit/package validation",
+  "native": {
+    "receipt": "docs/maintenance/native-b4d3e714f-validation.json",
+    "source_revision": "b4d3e714fb3a3ccad634f5d3a23c4776ea6aa675",
+    "zip_sha256": "75171849a65feb6d3ecf6518d50da92e99117dfe0a9580ba00222ed7a989797a",
+    "smoke_checks": 10,
+    "signature": "passed",
+    "all_22287_frontend_asset_files_identical": true,
+    "original_contents_stat_and_xattrs_restored_exactly": true
+  },
   "protected_integration": "pending"
 }

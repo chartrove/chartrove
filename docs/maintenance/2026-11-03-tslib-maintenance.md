@@ -27,5 +27,12 @@ archive bytes. The original intake bundle and its earlier branch tip remain
 linked in the [recovery receipt](tslib-head-recovery.json). The historical branch
 stays live until protected integration and fresh PR dependency checks.
 
-Native packaging and protected integration remain pending. #252 stays open.
+Fresh packaging at source b4d3e714fb3a3ccad634f5d3a23c4776ea6aa675 passes
+ZIP CRC, strict signature verification and all ten synthetic native checks.
+All 22,287 frontend files match the qualified build. Original output contents,
+stat fields and all xattrs restore exactly, with no provenance changes.
+[Native receipt](native-b4d3e714f-validation.json).
+
+Protected integration remains pending. #252 stays open until integration; its
+attributed historical discussion and archived exact head will remain recoverable.
 Raw evidence: dist/validation/2026-11-01-consolidation/tslib-review/.

@@ -1,0 +1,48 @@
+{
+  "source_revision": "b4d3e714fb3a3ccad634f5d3a23c4776ea6aa675",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-b4d3e714f-tslib/Chartrove-b4d3e714f.zip",
+    "sha256": "75171849a65feb6d3ecf6518d50da92e99117dfe0a9580ba00222ed7a989797a",
+    "bytes": 337529108
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "b4d3e714fb3a3ccad634f5d3a23c4776ea6aa675",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/tslib-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/tslib-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "a2e3b21e532091322dcf487819d5634432de12bc7f89ea5da3c6d56152b434ba",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-b4d3e714f-tslib/receipt.json",
+  "full_local_receipt_sha256": "7aa7b28a2e7d6531075e349f143122f107d6bb6fb63529a53e6aed4ea2ce90f5",
+  "frontend_comparison": {
+    "files": 22287,
+    "compiled_reused_and_native_asset_trees_byte_identical": true,
+    "qualified_frontend_revision": "b4d3e714fb3a3ccad634f5d3a23c4776ea6aa675"
+  }
+}
