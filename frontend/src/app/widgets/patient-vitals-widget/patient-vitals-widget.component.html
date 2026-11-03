@@ -12,7 +12,7 @@
   <div class="card card-dashboard-pageviews h-100">
     <div class="card-header">
       <h6 class="card-title">Patient Vitals</h6>
-      <p class="card-text">{{name}} | {{age}} | {{gender | titlecase}}</p>
+      <p class="card-text">{{name}} | {{age || 'Age not provided'}} | {{gender | titlecase}}</p>
     </div><!-- card-header -->
     <div class="card-body">
       @for (vitalSignData of vitalSigns; track vitalSignData) {

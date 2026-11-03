@@ -82,6 +82,9 @@ export class PatientVitalsWidgetComponent extends DashboardWidgetComponent imple
       return
     }
 
+    // Recalculate age from this result, rather than retaining an earlier Patient date.
+    this.age = '';
+
     //process Patient objects
     let sortedPatients = _.sortBy(queryResults?.[1], ['birthDate'])
     for(let patient of sortedPatients){
@@ -89,10 +92,12 @@ export class PatientVitalsWidgetComponent extends DashboardWidgetComponent imple
         this.name = `${_.get(patient, 'name[0].given[0]')} ${_.get(patient, 'name[0].family')}`
       }
       const birthDate = _.get(patient, 'birthDate');
-      if(!this.age && birthDate){
-        const birthDateString = Array.isArray(birthDate) ? birthDate[0] : birthDate;
+      const birthDateString = Array.isArray(birthDate) ? birthDate[0] : birthDate;
+      if(!this.age && birthDateString){
         const birthDateMoment = moment(birthDateString);
-        this.age = `${moment().diff(birthDateMoment, 'years')} years`; // moment.diff rounds down
+        if(birthDateMoment.isValid()){
+          this.age = `${moment().diff(birthDateMoment, 'years')} years`; // moment.diff rounds down
+        }
       }
       if(!this.gender && _.get(patient, 'gender[0]')){
         this.gender = _.get(patient, 'gender[0]')

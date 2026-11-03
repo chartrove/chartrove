@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #377 and individual #191 retirement.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after377.json).
-The patient-age-display branch is additional and unpublished at
+Snapshot: November 2, 2026, after #378; #191 was individually retired after #377.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after378.json).
+The dashboard-patient-age branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `92721d64515588b4a9cd6a8c660e612f043c84f4` (#377) |
+| Published application main | `8b060a484912a5cce196962c97dda7add4ee6864` (#378) |
 | Open issues | 167, including retained Renovate dashboard #222 |
 | Open PRs | 33: 27 paused Renovate proposals and six historical drafts |
 | Origin heads | 42 |
-| Default branch | main tracks origin/main with equal OIDs; patient-age-display branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; dashboard-patient-age branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,16 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #378 corrects the source-profile missing-age display. Three DOM regressions
+fail before repair and pass unchanged afterward; valid zero/adult controls remain.
+The full frontend suite passes 479 tests with one existing skip, production and
+Storybook build, and a fresh native package passes all ten synthetic checks.
+Native UI shows Not provided while retaining all three synthetic records. All
+three protected checks pass; the integrated task head is retired.
+[Scope and native evidence](maintenance/2026-11-02-patient-age-display.md).
+The independently observed dashboard age defect is the next isolated correction;
+no broader calendar-date policy or persisted Patient change is implied.
 
 Merged #356 aligns the two excluded Go generator tools. All 57 model outputs,
 related-version JSON and executable package inputs match; application verification,
@@ -435,7 +445,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Fifty-nine historical origin refs were retired by this agent after individual review,
+Sixty-four historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Ten more (#313, four utility heads, two UUID heads, two declaration heads and
 the parser head) were already absent after closure;
@@ -505,15 +515,15 @@ evidence above; earlier bridge failures remain retained as historical evidence.
 bounds and multiplicity, and still needs a compatible representation/migration
 decision. [Consolidation evidence](maintenance/date-period-duplicate-137.json). #186 lab-date review found that the edit endpoint replaces raw
 Observation payloads, so preservation must be addressed before adding date
-editing. No lab correction or migration has been implemented. Optional patient
-birth dates display NaN Years Old in Explore; that newly observed synthetic case
-also remains unresolved. [Retained boundaries](maintenance/2026-11-02-unresolved-acceptance.md).
+editing. No lab correction or migration has been implemented. Optional missing/unparseable patient birth dates now show Not provided in Explore
+after #378, with the original numeric getter/calculation unchanged. A separate
+dashboard age path still invents zero for missing dates; a regression fix is in progress. [Retained boundaries](maintenance/2026-11-02-unresolved-acceptance.md).
 
 ## Resume safely
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 32 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 27 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
