@@ -1,0 +1,15 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/lforms-installed-before-20261103.tar",
+  "sha256": "e9c71fb1b0154be1f84717c060b2bd46628fb67164bb0d834361933eb61f1069",
+  "bytes": 278446592,
+  "entries": 35402,
+  "all_extracted_payloads_exact": true,
+  "source_content_stat_xattrs_unchanged": true,
+  "metadata_differences": 0,
+  "extracted_xattrs_exact": false,
+  "xattr_differences_only_system_provenance": true,
+  "system_provenance_changes": 34525,
+  "original_xattr_hex_manifest": "dist/validation/2026-11-01-consolidation/lforms-family-review/installed-original-xattrs.json",
+  "verification_scratch_disposed": true,
+  "scope": "Original LForms34 and every resolved dependency context including nested packages and Yarn metadata; no source/package/cache/dependency deleted by archive operation"
+}

@@ -1,0 +1,42 @@
+{
+  "owner_angular_cache_retention_untouched": true,
+  "time": "2026-11-03T22:50:34.580245+00:00",
+  "main": "3fbaabd01fb1ebade6d72ed5003ceeb64773b893",
+  "branches": [
+    {
+      "name": "renovate/fhirpath-5.x",
+      "sha": "cb93520f210392fef3cb505e7d2cc9cb6fc46952",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/fhirpath-5.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "renovate/fhirpath-3.x-lockfile",
+      "sha": "8ccb95de8721747d83e32bd12a197076d676b783",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/fhirpath-3.x-lockfile",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/fhirpath-5",
+      "sha": "13dd7ff283a8182fb8656182ad8ee132283236bd",
+      "kind": "merged task",
+      "ref": "refs/heads/task/fhirpath-5",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/fhirpath-3.x-lockfile\n - [deleted]               renovate/fhirpath-5.x\n - [deleted]               task/fhirpath-5\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/fhirpath-3.x-lockfile\n - [deleted]               renovate/fhirpath-5.x\n - [deleted]               task/fhirpath-5\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true
+}

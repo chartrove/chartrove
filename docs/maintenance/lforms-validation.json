@@ -1,0 +1,874 @@
+{
+  "qualified_browser_control": {
+    "started": "2026-11-03T22:49:06.405Z",
+    "freeBeforeBytes": 24576450560,
+    "no_real_records": true,
+    "externalRequests": [],
+    "chromeExit": 0,
+    "scratchDisposed": true,
+    "freeAfterCommandBytes": 24492269568,
+    "freeAfterCleanupBytes": 24576196608,
+    "finished": "2026-11-03T22:49:09.375Z"
+  },
+  "installed_preservation": {
+    "archive": "dist/validation/2026-11-01-consolidation/lforms-installed-before-20261103.tar",
+    "sha256": "e9c71fb1b0154be1f84717c060b2bd46628fb67164bb0d834361933eb61f1069",
+    "bytes": 278446592,
+    "entries": 35402,
+    "all_extracted_payloads_exact": true,
+    "source_content_stat_xattrs_unchanged": true,
+    "metadata_differences": 0,
+    "extracted_xattrs_exact": false,
+    "xattr_differences_only_system_provenance": true,
+    "system_provenance_changes": 34525,
+    "original_xattr_hex_manifest": "dist/validation/2026-11-01-consolidation/lforms-family-review/installed-original-xattrs.json",
+    "verification_scratch_disposed": true,
+    "scope": "Original LForms34 and every resolved dependency context including nested packages and Yarn metadata; no source/package/cache/dependency deleted by archive operation"
+  },
+  "new_package_count": 43,
+  "new_published_file_count": 15180,
+  "lock_bodies_exact": true,
+  "old_context_count": 119,
+  "frozen_install": {
+    "command": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=corepack@0.35.0",
+      "--",
+      "corepack",
+      "yarn",
+      "install",
+      "--frozen-lockfile",
+      "--registry",
+      "https://registry.npmjs.org",
+      "--network-concurrency",
+      "4"
+    ],
+    "exit": 0,
+    "seconds": 23.34,
+    "manifest_lock_sha256_before": {
+      "package.json": "3f7c38cb76071b5f73498d9c4fb22b8abcd7d711dd67f03347b359830fde6cf2",
+      "yarn.lock": "955ae2b8ccad146008471fb4671b3da67f197ce2fd6d376d81561691a716eb89"
+    },
+    "manifest_lock_sha256_after": {
+      "package.json": "3f7c38cb76071b5f73498d9c4fb22b8abcd7d711dd67f03347b359830fde6cf2",
+      "yarn.lock": "955ae2b8ccad146008471fb4671b3da67f197ce2fd6d376d81561691a716eb89"
+    },
+    "unchanged": true
+  },
+  "actual_resolution": {
+    "direct_fhirpath": {
+      "file": "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/fhirpath/package.json",
+      "path": "node_modules/fhirpath/package.json",
+      "name": "fhirpath",
+      "version": "5.2.3"
+    },
+    "direct_ucum": {
+      "file": "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/@lhncbc/ucum-lhc/package.json",
+      "path": "node_modules/@lhncbc/ucum-lhc/package.json",
+      "name": "@lhncbc/ucum-lhc",
+      "version": "7.1.10"
+    },
+    "lforms_fhirpath": {
+      "file": "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/lforms/node_modules/fhirpath/package.json",
+      "path": "node_modules/lforms/node_modules/fhirpath/package.json",
+      "name": "fhirpath",
+      "version": "4.11.0"
+    },
+    "lforms_ucum": {
+      "file": "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/@lhncbc/ucum-lhc/package.json",
+      "path": "node_modules/@lhncbc/ucum-lhc/package.json",
+      "name": "@lhncbc/ucum-lhc",
+      "version": "7.1.10"
+    },
+    "lforms_fhirpath_ucum": {
+      "file": "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/lforms/node_modules/fhirpath/node_modules/@lhncbc/ucum-lhc/package.json",
+      "path": "node_modules/lforms/node_modules/fhirpath/node_modules/@lhncbc/ucum-lhc/package.json",
+      "name": "@lhncbc/ucum-lhc",
+      "version": "5.0.4"
+    },
+    "direct_jsyaml": {
+      "file": "/Users/osama/Code/karamhouse/chartrove/frontend/node_modules/js-yaml/package.json",
+      "path": "node_modules/js-yaml/package.json",
+      "name": "js-yaml",
+      "version": "4.3.2"
+    }
+  },
+  "semantic_delta": {
+    "introduced": [
+      [
+        "@angular/animations",
+        "20.3.35"
+      ],
+      [
+        "@angular/cdk",
+        "20.2.14"
+      ],
+      [
+        "@angular/common",
+        "20.3.35"
+      ],
+      [
+        "@angular/compiler",
+        "20.3.35"
+      ],
+      [
+        "@angular/core",
+        "20.3.35"
+      ],
+      [
+        "@angular/elements",
+        "20.3.35"
+      ],
+      [
+        "@angular/forms",
+        "20.3.35"
+      ],
+      [
+        "@angular/platform-browser",
+        "20.3.35"
+      ],
+      [
+        "@angular/platform-browser-dynamic",
+        "20.3.35"
+      ],
+      [
+        "@angular/router",
+        "20.3.35"
+      ],
+      [
+        "@ant-design/colors",
+        "7.2.1"
+      ],
+      [
+        "@ant-design/fast-color",
+        "2.0.6"
+      ],
+      [
+        "@ant-design/icons-angular",
+        "20.0.0"
+      ],
+      [
+        "@lhncbc/ucum-lhc",
+        "5.0.4"
+      ],
+      [
+        "@types/jquery",
+        "3.5.34"
+      ],
+      [
+        "autocomplete-lhc",
+        "20.1.2"
+      ],
+      [
+        "available-typed-arrays",
+        "1.0.7"
+      ],
+      [
+        "call-bind",
+        "1.0.9"
+      ],
+      [
+        "deep-equal",
+        "2.2.3"
+      ],
+      [
+        "define-data-property",
+        "1.1.4"
+      ],
+      [
+        "define-properties",
+        "1.2.1"
+      ],
+      [
+        "fast-copy",
+        "3.1.0"
+      ],
+      [
+        "fhirpath",
+        "4.11.0"
+      ],
+      [
+        "for-each",
+        "0.3.5"
+      ],
+      [
+        "has-property-descriptors",
+        "1.0.2"
+      ],
+      [
+        "has-tostringtag",
+        "1.0.2"
+      ],
+      [
+        "inline-style-parser",
+        "0.2.7"
+      ],
+      [
+        "lforms",
+        "44.2.0"
+      ],
+      [
+        "linkify-it",
+        "5.0.2"
+      ],
+      [
+        "markdown-it",
+        "14.3.3"
+      ],
+      [
+        "mdurl",
+        "2.1.0"
+      ],
+      [
+        "moment",
+        "2.29.4"
+      ],
+      [
+        "ng-zorro-antd",
+        "20.4.4"
+      ],
+      [
+        "possible-typed-array-names",
+        "1.1.0"
+      ],
+      [
+        "punycode.js",
+        "2.3.1"
+      ],
+      [
+        "regexp.prototype.flags",
+        "1.5.4"
+      ],
+      [
+        "set-function-length",
+        "1.2.2"
+      ],
+      [
+        "set-function-name",
+        "2.0.2"
+      ],
+      [
+        "string-replace-async",
+        "3.0.2"
+      ],
+      [
+        "style-to-object",
+        "1.0.14"
+      ],
+      [
+        "uc.micro",
+        "2.1.0"
+      ],
+      [
+        "which-typed-array",
+        "1.1.24"
+      ],
+      [
+        "zone.js",
+        "0.15.1"
+      ]
+    ],
+    "retired": [
+      [
+        "@angular/animations",
+        "14.2.12"
+      ],
+      [
+        "@angular/cdk",
+        "14.2.7"
+      ],
+      [
+        "@angular/common",
+        "14.2.12"
+      ],
+      [
+        "@angular/compiler",
+        "14.2.12"
+      ],
+      [
+        "@angular/core",
+        "14.2.12"
+      ],
+      [
+        "@angular/elements",
+        "14.3.0"
+      ],
+      [
+        "@angular/forms",
+        "14.2.12"
+      ],
+      [
+        "@angular/platform-browser",
+        "14.2.12"
+      ],
+      [
+        "@angular/platform-browser-dynamic",
+        "14.2.12"
+      ],
+      [
+        "@angular/router",
+        "14.2.12"
+      ],
+      [
+        "@ant-design/colors",
+        "5.1.1"
+      ],
+      [
+        "@ant-design/icons-angular",
+        "14.1.0"
+      ],
+      [
+        "@lhncbc/ucum-lhc",
+        "4.1.7"
+      ],
+      [
+        "@lhncbc/ucum-lhc",
+        "4.2.0"
+      ],
+      [
+        "@types/jquery",
+        "3.5.29"
+      ],
+      [
+        "argparse",
+        "1.0.10"
+      ],
+      [
+        "autocomplete-lhc",
+        "18.6.3"
+      ],
+      [
+        "deep-equal",
+        "2.2.1"
+      ],
+      [
+        "fast-copy",
+        "2.1.7"
+      ],
+      [
+        "fhirpath",
+        "3.2.0"
+      ],
+      [
+        "js-yaml",
+        "3.14.1"
+      ],
+      [
+        "lforms",
+        "34.0.0"
+      ],
+      [
+        "ng-zorro-antd",
+        "14.3.0"
+      ],
+      [
+        "parse5",
+        "5.1.1"
+      ],
+      [
+        "regexp.prototype.flags",
+        "1.5.0"
+      ],
+      [
+        "rxjs",
+        "6.6.7"
+      ],
+      [
+        "sprintf-js",
+        "1.0.3"
+      ],
+      [
+        "tslib",
+        "2.6.2"
+      ],
+      [
+        "which-typed-array",
+        "1.1.9"
+      ],
+      [
+        "zone.js",
+        "0.11.8"
+      ]
+    ],
+    "all_retired_version_pairs_in_archived_old_contexts": true,
+    "all_introduced_version_pairs_in_reviewed_published_candidates": true,
+    "other_installed_name_version_pairs_unchanged": true
+  },
+  "license": {
+    "original_sha256": "97778f0922d2f5b95be265e1cbdc2ea8179d65be46b54067bb275412af7dd619",
+    "candidate_sha256": "97778f0922d2f5b95be265e1cbdc2ea8179d65be46b54067bb275412af7dd619",
+    "exact": true
+  },
+  "hook_review": {
+    "sha1_sha512_pass": true,
+    "archive_sha256": "02423a86233e6e28e9f33ef9e886e7d075dd5e3bf3567507c8d50afa1672af26",
+    "script_sha256": "43cc3f4bb8946c8cdbbbbbb6dfd589518ee4827974715baeff701a100543b006",
+    "no_demo_directory_in_published_archive": true,
+    "review": "Only calls npm ci under ../demo when it exists; verified published archive excludes demo. No hook run in review."
+  },
+  "host_harness_qualification": {
+    "initial": "Mixed real custom elements with unit mocks sharing global LForms; old17cases had1failure, new17pass; fixed-order old assets also17pass. Initial failure is not sufficient evidence of a product fix.",
+    "attempted_cross_realm_host": "Overriding production Angular DOCUMENT across realms failed readiness/input binding; unrepresentative boundary, retained as unsuccessful harness attempt.",
+    "final": "Private real-widget realm passes identical15case old34/new44 controls with actual runtime tags and byte-verified assets. Fourteen existing production-wizard lifecycle cases unchanged. Final test covers public property/validation/export contract, not a newly packaged native wizard."
+  },
+  "metadata_resolver_qualification": "Initial registry semver version endpoint404; selected full-packument maxSatisfying metadata used instead; no live mutation before admission.",
+  "archive_qualification": "@types/jquery uses a jquery v3.5 archive root. Verified exact alternate root/name/version/path-safety; retained downloaded archives reused.",
+  "protected_integration": "Not yet published or merged; both original PRs remain open.",
+  "final_browser_controls": {
+    "old": {
+      "actual_widget_asset_version": "34",
+      "asset_sha256": {
+        "webcomponent/lhc-forms.js": "82a859c61cf01c558181bae52800d63e6a084f29f137a071292a8f38eb1a602d",
+        "fhir/lformsFHIRAll.min.js": "e627a3a2371346809ed81e21e062eaad2489fa8095f2fb8052f9fbfebe39ee5e",
+        "webcomponent/assets/lib/zone.min.js": "cd0d6ae2f712f7dbf18691068ccd50f68db8fe87fc0f31f8b4401fbdb9956742"
+      },
+      "fixed_jasmine_seed": "314159",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots",
+        "--karma-config=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-fhirpath-focused-lV3J0a/karma-control.cjs",
+        "--include=src/app/components/lab-results-widget.spec.ts",
+        "--include=src/app/components/lab-results-lifecycle.spec.ts"
+      ],
+      "versions": {
+        "fhirpath": "5.2.3",
+        "lforms": "44.2.0",
+        "@swimlane/ngx-datatable": "25.0.0"
+      },
+      "exit": 0,
+      "spec_sha256": {
+        "frontend/src/app/components/lab-results-widget.spec.ts": "72852ff8d2db17389133c93686a56bbb6ba9256c5f2267a90b8b5f40de15b2f2",
+        "frontend/src/app/components/lab-results-lifecycle.spec.ts": "bde3cdbc4fd3e09b96497a3fad097277a3f9aeca59b8b24439734bbcc2ba2ab3"
+      },
+      "spec_unchanged": true,
+      "private_scratch_disposed": true,
+      "live_workspace_cache_enabled": false,
+      "freeBeforeBytes": 24820146176,
+      "freeAfterCommandBytes": 24785453056,
+      "freeAfterCleanupBytes": 24819171328,
+      "freeDeltaBytes": -974848,
+      "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+    },
+    "new": {
+      "actual_widget_asset_version": "44",
+      "asset_sha256": {
+        "webcomponent/lhc-forms.js": "12d60fe67d58d4678330a899cc43a181db48ea62575855252a99834bfd506b09",
+        "fhir/lformsFHIRAll.min.js": "cf4e5d55b02091f83ffa4dd93e238769ef535d6a005419a154ef64fe397a1ba0",
+        "webcomponent/assets/lib/zone.min.js": "71d535d91e868fff82124d19ac13ff2a5e98a2e38ef42f40f1c33e601158a034"
+      },
+      "fixed_jasmine_seed": "314159",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots",
+        "--karma-config=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-fhirpath-focused-dlzCyW/karma-control.cjs",
+        "--include=src/app/components/lab-results-widget.spec.ts",
+        "--include=src/app/components/lab-results-lifecycle.spec.ts"
+      ],
+      "versions": {
+        "fhirpath": "5.2.3",
+        "lforms": "44.2.0",
+        "@swimlane/ngx-datatable": "25.0.0"
+      },
+      "exit": 0,
+      "spec_sha256": {
+        "frontend/src/app/components/lab-results-widget.spec.ts": "72852ff8d2db17389133c93686a56bbb6ba9256c5f2267a90b8b5f40de15b2f2",
+        "frontend/src/app/components/lab-results-lifecycle.spec.ts": "bde3cdbc4fd3e09b96497a3fad097277a3f9aeca59b8b24439734bbcc2ba2ab3"
+      },
+      "spec_unchanged": true,
+      "private_scratch_disposed": true,
+      "live_workspace_cache_enabled": false,
+      "freeBeforeBytes": 23694163968,
+      "freeAfterCommandBytes": 23655411712,
+      "freeAfterCleanupBytes": 23686225920,
+      "freeDeltaBytes": -7938048,
+      "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+    },
+    "cases_each": 15,
+    "runtime_tags_confirm_actual34_and44": true,
+    "underlying_installed_graph_during_final_paired_controls": "44.2.0 for both; original34published widget/FHIR/Zone asset bytes restored only into private scratch and served by exact URL proxy; app Angular22 unchanged."
+  },
+  "new_published_packages": [
+    {
+      "name": "lforms",
+      "version": "44.2.0",
+      "archive_sha256": "b63cfe1f2bb6278ea385aad86d9df838f1c7b0ac6bacfb9db7afb5bef0f798c9",
+      "published_root": "package",
+      "bytes": 15306041,
+      "files": 46
+    },
+    {
+      "name": "moment",
+      "version": "2.29.4",
+      "archive_sha256": "42bc763358b31c962bfd0c2563e6cd66e73b8e952833ed03faf351a3ad871c74",
+      "published_root": "package",
+      "bytes": 698263,
+      "files": 533
+    },
+    {
+      "name": "zone.js",
+      "version": "0.15.1",
+      "archive_sha256": "d9d9fa0132d23f49666f03ebe762a8d28ab5bfdb8f8f29d61f5371c7c04582b9",
+      "published_root": "package",
+      "bytes": 432763,
+      "files": 138
+    },
+    {
+      "name": "fhirpath",
+      "version": "4.11.0",
+      "archive_sha256": "02423a86233e6e28e9f33ef9e886e7d075dd5e3bf3567507c8d50afa1672af26",
+      "published_root": "package",
+      "bytes": 340443,
+      "files": 73
+    },
+    {
+      "name": "@lhncbc/ucum-lhc",
+      "version": "5.0.4",
+      "archive_sha256": "3a02ce3a3969d923807a375ece7f9e8c331532fc2e438037adfbd82485a4f648",
+      "published_root": "package",
+      "bytes": 314299,
+      "files": 47
+    },
+    {
+      "name": "fast-copy",
+      "version": "3.1.0",
+      "archive_sha256": "1f086d69a210d01e37bca2836cef750d80db569718713211f3fd6e0e68bd61f2",
+      "published_root": "package",
+      "bytes": 81629,
+      "files": 42
+    },
+    {
+      "name": "deep-equal",
+      "version": "2.2.3",
+      "archive_sha256": "02887309deedb2dd564a72712687f3736b27d02b11f9d45fecfdca479c6c96cf",
+      "published_root": "package",
+      "bytes": 22991,
+      "files": 12
+    },
+    {
+      "name": "call-bind",
+      "version": "1.0.9",
+      "archive_sha256": "05d8d0c559ee3207fb9bd6de835633bfac5339c31b50968ed976d78251823f75",
+      "published_root": "package",
+      "bytes": 8050,
+      "files": 12
+    },
+    {
+      "name": "set-function-length",
+      "version": "1.2.2",
+      "archive_sha256": "a339df70dfa3507a3fe2137464915212d69a9585d201c253b90f0c13fd952b4a",
+      "published_root": "package",
+      "bytes": 5784,
+      "files": 12
+    },
+    {
+      "name": "define-data-property",
+      "version": "1.1.4",
+      "archive_sha256": "16304ad73df1364ca8623c28a8969de01cd7189b4f9b05668fadb598f110e4d2",
+      "published_root": "package",
+      "bytes": 8913,
+      "files": 11
+    },
+    {
+      "name": "has-property-descriptors",
+      "version": "1.0.2",
+      "archive_sha256": "0219bbd8f32e268eeb6efff55a2c6ff2d502098f49c583ff023b2d9d5a8bfa87",
+      "published_root": "package",
+      "bytes": 4429,
+      "files": 9
+    },
+    {
+      "name": "regexp.prototype.flags",
+      "version": "1.5.4",
+      "archive_sha256": "e3336e954c29414c532721aa3f6e1e7f15c26a67a63dd77072d273f8431a0c9f",
+      "published_root": "package",
+      "bytes": 13056,
+      "files": 17
+    },
+    {
+      "name": "define-properties",
+      "version": "1.2.1",
+      "archive_sha256": "5de7e3804fadee9d773cd494b695e6efedfee8837e751fd9b9b77c3e9c6b40f4",
+      "published_root": "package",
+      "bytes": 5203,
+      "files": 9
+    },
+    {
+      "name": "set-function-name",
+      "version": "2.0.2",
+      "archive_sha256": "9240e77a97e0532e6eeee5a46df853cf4aa858e2c98c22dd1ffdac8177033ef3",
+      "published_root": "package",
+      "bytes": 6437,
+      "files": 9
+    },
+    {
+      "name": "which-typed-array",
+      "version": "1.1.24",
+      "archive_sha256": "3e402092eb6a3415a2744c2da78fdbfaec7cbbe8159aaf16b2d743daf516c4f7",
+      "published_root": "package",
+      "bytes": 17005,
+      "files": 10
+    },
+    {
+      "name": "for-each",
+      "version": "0.3.5",
+      "archive_sha256": "4bd2cfc8e674c93cf7abb3bd3d6fd8e388fa10324bec011223a8fa4f287185d1",
+      "published_root": "package",
+      "bytes": 8133,
+      "files": 13
+    },
+    {
+      "name": "has-tostringtag",
+      "version": "1.0.2",
+      "archive_sha256": "dc1c74e3f1179a6271f84747d72c89f258aa46ad3e6464fae0e41737a7f0ef7b",
+      "published_root": "package",
+      "bytes": 6465,
+      "files": 16
+    },
+    {
+      "name": "available-typed-arrays",
+      "version": "1.0.7",
+      "archive_sha256": "8b140e0fa3fede3d81d1dffcc400c9755d7388e8a4add228487f5e20c9cf7863",
+      "published_root": "package",
+      "bytes": 7360,
+      "files": 11
+    },
+    {
+      "name": "possible-typed-array-names",
+      "version": "1.1.0",
+      "archive_sha256": "c29791211b8e2f181c049247214843292380e4134c140c5105376b7c6ae3e3c7",
+      "published_root": "package",
+      "bytes": 4178,
+      "files": 10
+    },
+    {
+      "name": "markdown-it",
+      "version": "14.3.3",
+      "archive_sha256": "7191a8dc99822f327f6772f19f9ae8992c7b51f557eb85b8a3f9d18e703e2f3f",
+      "published_root": "package",
+      "bytes": 460718,
+      "files": 63
+    },
+    {
+      "name": "mdurl",
+      "version": "2.1.0",
+      "archive_sha256": "23fc27c3d70e776c3aa40ec019c2be21ef43ed33b73f8476ada8715c5aabd11d",
+      "published_root": "package",
+      "bytes": 8330,
+      "files": 10
+    },
+    {
+      "name": "uc.micro",
+      "version": "2.1.0",
+      "archive_sha256": "a31660c690ddac370fe4b17fe6a3a73b8df094f99194ac90d0668d797dabf69b",
+      "published_root": "package",
+      "bytes": 4180,
+      "files": 11
+    },
+    {
+      "name": "linkify-it",
+      "version": "5.0.2",
+      "archive_sha256": "f5169c5e5d837b5229180cb7214102d42f5c963f6932f284b608ef9549e927b4",
+      "published_root": "package",
+      "bytes": 12905,
+      "files": 6
+    },
+    {
+      "name": "punycode.js",
+      "version": "2.3.1",
+      "archive_sha256": "8768d89aa6359164220014ba575e1464e3ddff11bedff1cc268e39a21f7324a8",
+      "published_root": "package",
+      "bytes": 7601,
+      "files": 5
+    },
+    {
+      "name": "@angular/core",
+      "version": "20.3.35",
+      "archive_sha256": "68811e0304725baa6bf93f348a771b5e0a70662e57ac1d455963a5b00d50f26d",
+      "published_root": "package",
+      "bytes": 2344530,
+      "files": 85
+    },
+    {
+      "name": "@types/jquery",
+      "version": "3.5.34",
+      "archive_sha256": "4e7128ca08783e7707545e23b8d399437848da0cbfd71607744169946210eb44",
+      "published_root": "jquery v3.5",
+      "bytes": 118879,
+      "files": 8
+    },
+    {
+      "name": "ng-zorro-antd",
+      "version": "20.4.4",
+      "archive_sha256": "b09f6f90d41804c1928b708ee0e17276d7167fecbd4b0772b398339587437a79",
+      "published_root": "package",
+      "bytes": 3503381,
+      "files": 7565
+    },
+    {
+      "name": "@angular/cdk",
+      "version": "20.2.14",
+      "archive_sha256": "263de43a5343b8b7c825992b533a2f3d88bcd774596744db17b014c3b9a1e9b0",
+      "published_root": "package",
+      "bytes": 933879,
+      "files": 403
+    },
+    {
+      "name": "@ant-design/icons-angular",
+      "version": "20.0.0",
+      "archive_sha256": "ccceba192088303cec3ff0abcc909d81bf0ffe55fc4f936f6c84a96fc6524156",
+      "published_root": "package",
+      "bytes": 702927,
+      "files": 1675
+    },
+    {
+      "name": "@ant-design/colors",
+      "version": "7.2.1",
+      "archive_sha256": "051d1c523cd4655f675eed5cab6d0f742e7aaf3fce9d355ef77929ef1b29c4ec",
+      "published_root": "package",
+      "bytes": 7812,
+      "files": 27
+    },
+    {
+      "name": "@ant-design/fast-color",
+      "version": "2.0.6",
+      "archive_sha256": "ca7712f5f16c3c838177090ff02d6775064c8a251708bc428c32488267730013",
+      "published_root": "package",
+      "bytes": 7689,
+      "files": 15
+    },
+    {
+      "name": "@angular/forms",
+      "version": "20.3.35",
+      "archive_sha256": "edb5f33c71cc396ba936f948c35b989b91fb4b4e89a114b6e8fa3869e1f8195e",
+      "published_root": "package",
+      "bytes": 186850,
+      "files": 6
+    },
+    {
+      "name": "@angular/common",
+      "version": "20.3.35",
+      "archive_sha256": "fd10398f9b8ed1538c9c3916915b4dbf0710ee840ab179f09f191eb98f8de478",
+      "published_root": "package",
+      "bytes": 874486,
+      "files": 4073
+    },
+    {
+      "name": "@angular/router",
+      "version": "20.3.35",
+      "archive_sha256": "1ec8c647fa7cde3a62d542300f8f6c8357c6aca15f850342959f2052ad815eeb",
+      "published_root": "package",
+      "bytes": 263817,
+      "files": 17
+    },
+    {
+      "name": "style-to-object",
+      "version": "1.0.14",
+      "archive_sha256": "edfb15e0912047f3f78e683015d310dc35903f1623aada6a8e629ed9077bf45d",
+      "published_root": "package",
+      "bytes": 11483,
+      "files": 18
+    },
+    {
+      "name": "inline-style-parser",
+      "version": "0.2.7",
+      "archive_sha256": "edc328b12a2fc88d990bd877e4cebed9823b8427d79a6a73d9c65591d3ccb6bc",
+      "published_root": "package",
+      "bytes": 11488,
+      "files": 14
+    },
+    {
+      "name": "autocomplete-lhc",
+      "version": "20.1.2",
+      "archive_sha256": "209089de2d54533dde3d75bab5689ff565487049591bbb29358e4c78497bfc32",
+      "published_root": "package",
+      "bytes": 186342,
+      "files": 85
+    },
+    {
+      "name": "@angular/compiler",
+      "version": "20.3.35",
+      "archive_sha256": "1ad539fc78247b0993fb3b4016d728cc01bed7fd68669615a4161f131a90f008",
+      "published_root": "package",
+      "bytes": 880808,
+      "files": 6
+    },
+    {
+      "name": "@angular/elements",
+      "version": "20.3.35",
+      "archive_sha256": "dcda6bb051f3eb81859c610b9994d03bf4d91c8f0960d2e412b8da048137b3aa",
+      "published_root": "package",
+      "bytes": 14180,
+      "files": 6
+    },
+    {
+      "name": "@angular/animations",
+      "version": "20.3.35",
+      "archive_sha256": "01d53b56b0a4c42146acd03a65b9f5b9da1d697cb39b8d25d56da3dc944ed42e",
+      "published_root": "package",
+      "bytes": 174478,
+      "files": 18
+    },
+    {
+      "name": "string-replace-async",
+      "version": "3.0.2",
+      "archive_sha256": "214b81ea44efafe116ccd497141fddd4dd064ba4ed92e90bf2408f455db58562",
+      "published_root": "package",
+      "bytes": 3076,
+      "files": 5
+    },
+    {
+      "name": "@angular/platform-browser",
+      "version": "20.3.35",
+      "archive_sha256": "f8140615ff03d1d9836fd3a5b673ba5186500d9f2aac1d4f0f337809520e051c",
+      "published_root": "package",
+      "bytes": 92581,
+      "files": 20
+    },
+    {
+      "name": "@angular/platform-browser-dynamic",
+      "version": "20.3.35",
+      "archive_sha256": "a573487c4b7186dfcee09359cf46cf79aa38900b232bde9cc153fd401f4b0946",
+      "published_root": "package",
+      "bytes": 5868,
+      "files": 9
+    }
+  ],
+  "public_nlm_definition": {
+    "url": "https://lforms-service.nlm.nih.gov/loinc_form_definitions?loinc_num=55399-0",
+    "time": "2026-11-03T23:10:19.978284+00:00",
+    "sha256": "92016e47fc1ed6ba78dd9540adbe0d52a309c3e645155707371d947a2285c298",
+    "bytes": 5234,
+    "public_form_definition_only_no_health_records": true,
+    "lformsVersion": "29.0.0",
+    "items": 10,
+    "missing_linkIds": 0,
+    "status": "retrieved; no live submission or provider registration",
+    "raw_committed": false
+  },
+  "app_toolchain_unchanged": {
+    "angular_core": "22.2.4",
+    "angular_compiler_cli": "22.2.4",
+    "typescript": "6.0.3",
+    "zone.js": "0.16.3",
+    "direct_fhirpath": "5.2.3"
+  },
+  "actual_edge_admission": {
+    "contexts": 179,
+    "edges": 307,
+    "all_ranges_satisfied": true,
+    "all_new_node_engines_satisfied": true,
+    "node": "26.13.0"
+  }
+}

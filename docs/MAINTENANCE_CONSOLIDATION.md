@@ -9,20 +9,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #399, following #398 and individual #296 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after399.json).
-The fhirpath-5 task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #400 and individual #301/#241 dispositions.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after400.json).
+The lforms-44 task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `64078400e3777940c64d9ae0b83aafd62d0758d1` (#399) |
+| Published application main | `3fbaabd01fb1ebade6d72ed5003ceeb64773b893` (#400) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 11: five paused Renovate proposals and six historical drafts |
-| Origin heads | 19, including the held cache owner ref |
-| Default branch | main tracks origin/main; current FHIRPath task is additional |
+| Open PRs | 9: three paused Renovate proposals and six historical drafts |
+| Origin heads | 17, including the held cache owner ref |
+| Default branch | main tracks origin/main; current LForms task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -162,20 +162,34 @@ full build solely for this fix occurred. Local frontend hold was released only
 after the merged setting was applied. The 50 GiB full-workflow reserve remains.
 [Verified applied handoff](maintenance/angular-cache-handoff.json).
 
-The next FHIRPath replacement reviews #301's resolved 5.2.3 target against current
-3.3.1 and overlapping #241's 3.18 proposal. The old 11-case baseline passes. V5's
-array/Promise typing requires an explicit synchronous adapter in six caller files;
-queries, raw objects and test source remain unchanged. The separate LForms 3.2/
-UCUM graphs retain versions and own payloads, including documented hoisting.
-All 11 identical old/new browser cases and post-adapter spec types pass; all
-protected checks remain mandatory. Neither original PR is yet called implemented
-or superseded. Initial PR #400 CI passes Backend, Desktop and 552 browser cases
-but fails the unchanged 10 MB initial budget by 39.81 kB. The follow-up defers
-existing RTF loading and corrects component targeting/destruction: identical final
-four-case controls fail twice on original and pass on corrected source, preserving
-raw strings. Initial harness qualifications and failed CI remain documented;
-final full protected validation is still required. No local full build is run
-below the reserve. [Scope](maintenance/2026-11-03-fhirpath-5.md).
+Merged #400 integrates #301's resolved FHIRPath 5.2.3 through an explicit
+synchronous adapter, preserving all six callers' query/fallback/raw behavior and
+LForms' separate parser/unit payloads and versions. Eleven identical old/new
+consumer cases pass. Initial CI passed 552 browser cases but failed the unchanged
+10 MB budget by39.81 kB. Deferring the existing renderer and correcting scoped RTF
+targets/destruction guards passes identical four-case old-red/new-green controls.
+Final Backend/Frontend/Desktop pass:555 browser cases, one skip,16 Node checks,
+6.05 MB initial output; full failed/final logs are retained. #301 is individually
+closed implemented and #241 superseded, without claiming3.18installed. Their two
+verified archived heads and merged task ref are retired after exact-tip/consumer/
+owner checks. Historical manual retirements total87;13absent heads remain actor
+unknown. Both independent worktrees/branches stay held. No fresh local packaged
+native UI acceptance or below-reserve full build is claimed.
+[Scope](maintenance/2026-11-03-fhirpath-5.md),
+[CI](maintenance/fhirpath-ci-validation.json),
+[retirement](maintenance/fhirpath-retirement.json).
+
+The LForms replacement reviews #306's44.2.0 against #248's34.4.0 overlap.
+Identical final15-case controls pass actual old/new widget assets in a private
+realm plus unchanged wizard lifecycle cases, covering zero/unit/Unicode, required
+fields, real input changes and isolated transaction references. Initial mixed
+real/mock host failures are qualified as insufficient product-defect evidence;
+no false bug fix is claimed. All43candidate packages/15,180files match verified
+published archives;307actual dependency edges satisfy ranges, frozen install is
+exact and all30retired version pairs are covered by119archived contexts. App
+Angular22/TypeScript6/Zone0.16/direct FHIRPath5 remain unchanged. Both originals
+stay open until protected integration and individual disposition. #186's unsafe
+lab raw replacement remains unresolved. [Scope](maintenance/2026-11-03-lforms-44.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
