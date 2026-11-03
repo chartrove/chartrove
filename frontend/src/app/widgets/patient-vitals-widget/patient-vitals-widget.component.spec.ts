@@ -30,7 +30,9 @@ describe('PatientVitalsWidgetComponent', () => {
       ]
     })
     .compileComponents();
-    mockedFastenApiService.queryResources.and.returnValue(of(patientVitalsObservationFixture));
+    mockedFastenApiService.queryResources.and.callFake(query => of(
+      query.from === 'Patient' ? {success: true, data: []} : patientVitalsObservationFixture
+    ));
 
 
     fixture = TestBed.createComponent(PatientVitalsWidgetComponent);
@@ -83,4 +85,81 @@ describe('PatientVitalsWidgetComponent', () => {
       });
     })
   })
+  describe('age from projected Patient birth dates', () => {
+    beforeEach(() => {
+      jasmine.clock().install();
+      jasmine.clock().mockDate(new Date('2026-06-15T12:00:00Z'));
+    });
+
+    afterEach(() => jasmine.clock().uninstall());
+
+    function projectPatient(birthDate: unknown, includeBirthDate = true) {
+      const patient: any = {
+        resourceType: 'Patient', id: 'synthetic-vitals-patient',
+        name: [{use: 'official', family: 'Synthetic', given: ['Patient']}],
+        gender: 'unknown'
+      };
+      if (includeBirthDate) patient.birthDate = birthDate;
+      const original = JSON.stringify(patient);
+      const projected = component.processQueryResourcesSelectClause(
+        component.widgetConfig.queries[1].q,
+        {success: true, data: [{resource_raw: patient}]} as any
+      );
+      return {patient, original, projected};
+    }
+
+    function renderAge(projected: any[]) {
+      component.vitalsProcessQueryResults([[], projected]);
+      component.loading = false;
+      component.isEmpty = false;
+      fixture.detectChanges();
+      return fixture.nativeElement.querySelector('.card-text').textContent;
+    }
+
+    for (const entry of [
+      {label: 'absent', value: undefined, include: false},
+      {label: 'null', value: null, include: true},
+      {label: 'empty', value: '', include: true},
+      {label: 'unparseable', value: 'not-a-date', include: true}
+    ]) {
+      it(`shows missing age for a ${entry.label} birth date without changing the Patient`, () => {
+        const sample = projectPatient(entry.value, entry.include);
+        if (!entry.include) expect(sample.projected[0].birthDate).toEqual([]);
+        const text = renderAge(sample.projected);
+        expect(text).toContain('Age not provided');
+        expect(text).not.toContain('0 years');
+        expect(text).not.toContain('NaN');
+        expect(JSON.stringify(sample.patient)).toBe(sample.original);
+      });
+    }
+
+    for (const entry of [
+      {birthDate: '2026-06-14', display: '0 years'},
+      {birthDate: '2000-06-15', display: '26 years'}
+    ]) {
+      it(`keeps valid ${entry.display} visible`, () => {
+        const sample = projectPatient(entry.birthDate);
+        expect(renderAge(sample.projected)).toContain(entry.display);
+        expect(component.age).toBe(entry.display);
+        expect(JSON.stringify(sample.patient)).toBe(sample.original);
+      });
+    }
+
+    it('clears the previous age when refreshed Patient data has no birth date', () => {
+      expect(renderAge(projectPatient('2000-06-15').projected)).toContain('26 years');
+      const sample = projectPatient(undefined, false);
+      const text = renderAge(sample.projected);
+      expect(text).toContain('Age not provided');
+      expect(text).not.toContain('26 years');
+      expect(JSON.stringify(sample.patient)).toBe(sample.original);
+    });
+
+    it('clears the previous age when a refreshed result contains no Patient', () => {
+      expect(renderAge(projectPatient('2000-06-15').projected)).toContain('26 years');
+      const text = renderAge([]);
+      expect(text).toContain('Age not provided');
+      expect(text).not.toContain('26 years');
+    });
+  });
+
 });

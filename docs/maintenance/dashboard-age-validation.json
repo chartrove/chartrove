@@ -1,0 +1,170 @@
+{
+  "time": "2026-11-03T03:43:24.694657+00:00",
+  "base_main": "8b060a484912a5cce196962c97dda7add4ee6864",
+  "scope": "dashboard age only: unwrap projected date, reject absent/invalid values, clear previous age on complete refreshed result; preserve valid calendar calculation and raw resources",
+  "qualified_red": {
+    "start": "2026-11-03T03:39:21.923268+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.spec.ts"
+    ],
+    "spec_sha256": "8064097d0140a8ac289be05e386ef0aeed36f82bb9ca5ac821a8013e3ff4fd0e",
+    "production_source_hashes": {
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.ts": "aef449150b43c93f6881d7fd5d5336be73de5ef3c74052ef2d19ae04c003ab0c",
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.html": "a36e7011ff47c3ae7ba45eb6902c39d60cf16820f2fd13fd9f640dc4c0cdb66b"
+    },
+    "exit": 1,
+    "end": "2026-11-03T03:39:32.979869+00:00"
+  },
+  "red_count": {
+    "entered": 10,
+    "failed": 6,
+    "passing_controls_and_existing": 4
+  },
+  "green_identical_test_bytes": {
+    "start": "2026-11-03T03:39:52.043835+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.spec.ts"
+    ],
+    "spec_sha256": "8064097d0140a8ac289be05e386ef0aeed36f82bb9ca5ac821a8013e3ff4fd0e",
+    "production_source_hashes": {
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.ts": "252ce5845b06187db8fed8bae13f8776b105bfaf738fa9c0e5ae03cbf353d83e",
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.html": "1aa122260c6f579d91da31153b3c7bf12d7cc5b1bf5f584073aa74d2529daddc"
+    },
+    "exit": 0,
+    "end": "2026-11-03T03:40:02.579436+00:00"
+  },
+  "green_count": 10,
+  "initial_diagnostic": {
+    "path": "dist/validation/2026-11-01-consolidation/dashboard-age-review/red",
+    "qualified": false,
+    "reason": "inherited test mock returned Observation resources to the Patient query, pre-seeding an invalid zero age even in adult controls; corrected response shape before qualified red without changing production"
+  },
+  "ordinary_browser_suite": {
+    "passed": 487,
+    "total": 488,
+    "existing_skipped": 1
+  },
+  "validation": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:03:58.351808+00:00",
+      "end": "2026-11-03T01:03:58.532915+00:00",
+      "exit": 0,
+      "reused_from": "dist/validation/2026-11-01-consolidation/patient-age-review/validation",
+      "node_check_inputs_unchanged": true
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:40:18.800679+00:00",
+      "end": "2026-11-03T03:40:34.185472+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/dashboard-age-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:40:34.186114+00:00",
+      "end": "2026-11-03T03:41:26.345215+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/dashboard-age-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:41:28.135326+00:00",
+      "end": "2026-11-03T03:42:47.262302+00:00",
+      "exit": 0
+    }
+  ],
+  "node_reuse": {
+    "qualified_frontend": "3b9e3a55b37c4ada193714cb4279ed9acc53111f",
+    "entire_frontend_input_delta": [
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.html",
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.spec.ts",
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.ts"
+    ],
+    "node_check_and_dependency_inputs_unchanged": true
+  },
+  "production_inputs": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23172,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "a9af0fd1c421276fe9132d52e3bf75bc0335e5055d744204a7fabf63db5956d9",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "9a8fb1ec419bc72ff15f41c6361d5378e317a246338cfbd34b9bfdef2635e2c3",
+      "bytes": 5940727
+    },
+    "original_absence_restored": true
+  },
+  "known_warnings": "existing build budget/CSS/CommonJS/deprecated builder/browser targets; adversarial not-a-date fixture triggers retained Moment fallback warning without suppressing it",
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/dashboard-age-review",
+  "boundaries": [
+    "no stored Patient resource changes",
+    "no dependency or Go/database/API/Wails changes",
+    "no new date normalization/partial-date policy",
+    "no broader name/gender/vital-sign refresh repair",
+    "synthetic fixtures only"
+  ],
+  "native_validation": "pending fresh packaging and ten-check synthetic smoke"
+}

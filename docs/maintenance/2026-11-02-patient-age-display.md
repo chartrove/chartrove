@@ -24,7 +24,9 @@ Original output contents/stat fields and all xattrs restore exactly, with zero
 provenance changes. Native UI against the known no-DOB fixture shows Age: Not
 provided. All three records and the original fixture remain intact. The app closes
 with process absence verified using ps only. [Native receipt](native-3b9e3a55b-validation.json).
-Protected integration remains pending.
+[PR #378](https://github.com/karamhouse/chartrove/pull/378) merged after all three
+required checks passed at exact head 2aa8fe46751f9fe0e65db13bd5ea733ad02c8963.
+The integrated task head was retired after fresh dependency/ancestry checks.
 The native fixture is a copy of the previously verified three-record synthetic
 picker dataset, with no Patient birthDate. No real or purchased records are used.
 This changes no Go/API/Wails, database, migration, persisted raw resource, dependency,
