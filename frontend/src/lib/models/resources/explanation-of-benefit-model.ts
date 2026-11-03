@@ -5,7 +5,7 @@ import {fhirVersions, ResourceType} from '../constants';
 import {FastenOptions} from '../fasten/fasten-options';
 import * as _ from "lodash";
 import {CodingModel} from '../datatypes/coding-model';
-import * as fhirpath from 'fhirpath';
+import {evaluateFhirPath} from '../../fhirpath';
 
 export class ExplanationOfBenefitModel extends FastenDisplayModel {
   code: CodableConceptModel | undefined
@@ -102,7 +102,7 @@ export class ExplanationOfBenefitModel extends FastenDisplayModel {
   };
 
   r4DTO(fhirResource){
-    let principalDiagnosis = fhirpath.evaluate(fhirResource, "ExplanationOfBenefit.diagnosis.where(type.coding.code='principal').first().diagnosisCodeableConcept.first()")
+    let principalDiagnosis = evaluateFhirPath(fhirResource, "ExplanationOfBenefit.diagnosis.where(type.coding.code='principal').first().diagnosisCodeableConcept.first()")
 
     if(principalDiagnosis.length > 0) {
       this.code = principalDiagnosis[0] as CodableConceptModel

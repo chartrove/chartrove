@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ResourceFhir} from '../../models/fasten/resource_fhir';
 import {FastenApiService} from '../../services/fasten-api.service';
-import * as fhirpath from 'fhirpath';
+import {evaluateFhirPath} from '../../../lib/fhirpath';
 import {PractitionerModel} from '../../../lib/models/resources/practitioner-model';
 import {Summary} from '../../../app/models/fasten/summary';
 
@@ -35,7 +35,7 @@ export class ReportHeaderComponent implements OnInit {
       this.patient = results[0]
       if(!this.patient) return
 
-      let primaryCareId = fhirpath.evaluate(this.patient?.resource_raw, "Patient.generalPractitioner.reference.first()")
+      let primaryCareId = evaluateFhirPath(this.patient?.resource_raw, "Patient.generalPractitioner.reference.first()")
       if(primaryCareId){
         let primaryCareIdStr = primaryCareId.join("")
         let primaryCareIdParts = primaryCareIdStr.split("/")

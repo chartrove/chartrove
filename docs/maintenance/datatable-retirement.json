@@ -1,0 +1,35 @@
+{
+  "time": "2026-11-03T21:25:25.992628+00:00",
+  "main": "955c262c27d68fa7d3a921192f6fd64707cd77ac",
+  "branches": [
+    {
+      "name": "renovate/swimlane-ngx-datatable-25.x",
+      "sha": "a64023a2b205edcd87152abda058d60198bfcc47",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/swimlane-ngx-datatable-25.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/datatable-25",
+      "sha": "47e6743eae9eaad2797fb2e015d20ea4fe273435",
+      "kind": "merged task",
+      "ref": "refs/heads/task/datatable-25",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/swimlane-ngx-datatable-25.x\n - [deleted]               task/datatable-25\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/swimlane-ngx-datatable-25.x\n - [deleted]               task/datatable-25\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true,
+  "disposition": "original #296 implemented by protected #398; exact historical archive and merged task verified"
+}

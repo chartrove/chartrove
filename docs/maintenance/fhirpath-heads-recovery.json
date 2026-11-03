@@ -1,0 +1,45 @@
+{
+  "family": "fhirpath",
+  "bundle": "dist/validation/2026-11-01-consolidation/fhirpath-heads-20261103.bundle",
+  "sha256": "ae1b28cdf87e82c5f5d609bea39f1ae60468916a920e494316cf2d881eb91e89",
+  "bytes": 4513,
+  "branches": [
+    {
+      "number": 301,
+      "branch": "renovate/fhirpath-5.x",
+      "tip": "cb93520f210392fef3cb505e7d2cc9cb6fc46952",
+      "ref": "refs/maintenance-archive/20261103/fhirpath-pr301",
+      "unique_commits": [
+        "cb93520f210392fef3cb505e7d2cc9cb6fc46952"
+      ]
+    },
+    {
+      "number": 241,
+      "branch": "renovate/fhirpath-3.x-lockfile",
+      "tip": "8ccb95de8721747d83e32bd12a197076d676b783",
+      "ref": "refs/maintenance-archive/20261103/fhirpath-pr241",
+      "unique_commits": [
+        "8ccb95de8721747d83e32bd12a197076d676b783"
+      ]
+    }
+  ],
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "955c262c27d68fa7d3a921192f6fd64707cd77ac",
+  "required_objects": [
+    "0314853845a57a0ef77dc5a7590bf1a95a84739f",
+    "1e37fd3fa75e15d5ed7c2f8877dd455564dc9fdb",
+    "2b099dcdcb9965392042864cf7806ce4126d98f5",
+    "347c4535717a86bd6d67c502118c66241c795b06",
+    "3abdf8ed2f018527557d2461a77f255d6aabacb6",
+    "6a54baab2ece9899a8d9e51ed1872299a9065f0d",
+    "8ccb95de8721747d83e32bd12a197076d676b783",
+    "b481d04643b19e43d7ffa18d2c252b5672706e39",
+    "cb93520f210392fef3cb505e7d2cc9cb6fc46952"
+  ],
+  "all_unique_objects_in_original_pack": true,
+  "strict_pack_validation": "passed; every required unique object independently proved present in original archive bytes by pack offset",
+  "temporary_refs_removed": true,
+  "disposition": "Pending compatible isolated review/protected integration; neither lower proposal is called implemented or superseded yet; all live heads preserved"
+}

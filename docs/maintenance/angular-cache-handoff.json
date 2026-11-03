@@ -1,0 +1,20 @@
+{
+  "time": "2026-11-03T21:38:12.729878+00:00",
+  "previous_main": "955c262c27d68fa7d3a921192f6fd64707cd77ac",
+  "main": "64078400e3777940c64d9ae0b83aafd62d0758d1",
+  "source_head": "3eed5f762ad39c74218c3437fd2210dc85bbfc98",
+  "protected_pr": 399,
+  "all_required_checks_success": true,
+  "changed_files": [
+    "CONTRIBUTING.md",
+    "frontend/angular.json",
+    "frontend/desktop-tests/validation-storage.test.mjs",
+    "frontend/tools/validate.mjs"
+  ],
+  "live_cli_cache_enabled": false,
+  "primary_clean_main_tracking_origin": true,
+  "sparse_and_tags_unchanged": true,
+  "worktrees_preserved": "worktree /Users/osama/Code/karamhouse/chartrove\nHEAD 64078400e3777940c64d9ae0b83aafd62d0758d1\nbranch refs/heads/main\n\nworktree /Users/osama/Code/_worktrees/karamhouse/chartrove/angular-cache-retention\nHEAD 3eed5f762ad39c74218c3437fd2210dc85bbfc98\nbranch refs/heads/task/angular-cache-retention\n\nworktree /Users/osama/Code/_worktrees/karamhouse/chartrove/artifact-retention\nHEAD ed81d1bbede20c0618a01a859a9af887388ca26c\nbranch refs/heads/task/artifact-retention",
+  "no_repeated_cleanup_build_or_dependency_install": true,
+  "local_frontend_hold": "Released after verified merged live cache=false; unchanged50GiB full-workflow reserve still applies. Both independent task branches/worktrees remain held until separately authorized cleanup."
+}

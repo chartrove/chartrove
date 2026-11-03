@@ -42,7 +42,7 @@
     "bootstrap": "~5.3.8",
     "chart.js": "^4.4.2",
     "dwv": "^0.31.0",
-    "fhirpath": "^3.3.0",
+    "fhirpath": "^5.0.0",
     "gridstack": "14.0.0",
     "jose": "^6.0.0",
     "lforms": "34.0.0",

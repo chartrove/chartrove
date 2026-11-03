@@ -13,7 +13,7 @@ import {LoadingWidgetComponent} from '../loading-widget/loading-widget.component
 import {ResponseWrapper} from '../../models/response-wrapper';
 import {ResourceFhir} from '../../models/fasten/resource_fhir';
 import {DashboardWidgetQuery} from '../../models/widget/dashboard-widget-query';
-import fhirpath from 'fhirpath';
+import {evaluateFhirPath} from '../../../lib/fhirpath';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -175,7 +175,7 @@ export class DashboardWidgetComponent<TType extends ChartType = ChartType> imple
         if(selectPathFilter == '*'){
           results[alias] = rawResource
         } else {
-          results[alias] = fhirpath.evaluate(rawResource, selectPathFilter)
+          results[alias] = evaluateFhirPath(rawResource, selectPathFilter)
         }
       }
 

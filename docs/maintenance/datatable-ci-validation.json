@@ -1,0 +1,30 @@
+{
+  "run": 41720212418,
+  "head": "47e6743eae9eaad2797fb2e015d20ea4fe273435",
+  "jobs": {
+    "backend": {
+      "job": 126210673075,
+      "file": "dist/validation/2026-11-01-consolidation/next-datatable-review/ci-backend.log",
+      "bytes": 37279,
+      "sha256": "30d80707d609030f1697fea844a6fa3bd51c5872873bbe4bd3ff12076ff7670b",
+      "download_exit": 0
+    },
+    "frontend": {
+      "job": 126210673076,
+      "file": "dist/validation/2026-11-01-consolidation/next-datatable-review/ci-frontend.log",
+      "bytes": 121115,
+      "sha256": "78d7ae5e9df5c1e7f0d6032625faf955c6c6a34fe44a0fb7d50f3574e2d3c6aa",
+      "download_exit": 0
+    },
+    "desktop": {
+      "job": 126210672713,
+      "file": "dist/validation/2026-11-01-consolidation/next-datatable-review/ci-desktop.log",
+      "bytes": 54859,
+      "sha256": "eee2626ea2ceb14f0a87fc3a9fddd985d0a98003224df64fb625ab1bccd9d3c5",
+      "download_exit": 0
+    }
+  },
+  "all_required_success": true,
+  "frontend_browser": "546 passed, 1 skipped",
+  "frontend_initial_budget": "9.86 MB against unchanged 10 MB"
+}
