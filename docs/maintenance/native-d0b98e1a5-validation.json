@@ -1,0 +1,43 @@
+{
+  "source_revision": "d0b98e1a56d48ab14efd5d44251c93400bc63b49",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-d0b98e1a5-react19/Chartrove-d0b98e1a5.zip",
+    "sha256": "cad5fe98662678f6058425fdf71213cead2718548088624458f6d23bffa78a38",
+    "bytes": 337727037
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "d0b98e1a56d48ab14efd5d44251c93400bc63b49",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/react19-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/react19-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "76c0751bd86d00ba8c3bc4fefe2b5c37024289e5ed39ae29ad8c48dae58556bc",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-d0b98e1a5-react19/receipt.json",
+  "full_local_receipt_sha256": "26482dee644fe0238e3d133987de14481b57696e9ccec3dc54c1fb347a9ba856"
+}

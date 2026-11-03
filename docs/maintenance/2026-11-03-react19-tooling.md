@@ -32,3 +32,9 @@ unique objects; original intake bundle/reference remains separately recorded.
 
 [Validation](react19-validation.json), [recovery](react19-head-recovery.json).
 Raw local evidence: `dist/validation/2026-11-01-consolidation/react19-review/`.
+
+Fresh native package source `d0b98e1a56d48ab14efd5d44251c93400bc63b49` passes ZIP CRC, strict extracted
+signature and all ten synthetic native checks. All 22,289 current compiled,
+reused and native asset files match. Original output content, stat metadata
+and xattrs restore exactly. ZIP SHA-256 `cad5fe98662678f6058425fdf71213cead2718548088624458f6d23bffa78a38`.
+[Native receipt](native-d0b98e1a5-validation.json).

@@ -151,6 +151,15 @@
     }
   },
   "raw_evidence": "dist/validation/2026-11-01-consolidation/react19-review/",
-  "native": "pending fresh package; previous runtime bytes differ",
+  "native": {
+    "receipt": "docs/maintenance/native-d0b98e1a5-validation.json",
+    "source_revision": "d0b98e1a56d48ab14efd5d44251c93400bc63b49",
+    "build_zip_signature_smoke": "passed; ten synthetic native checks",
+    "zip_sha256": "cad5fe98662678f6058425fdf71213cead2718548088624458f6d23bffa78a38",
+    "frontend_files": 22289,
+    "compiled_reused_native_asset_trees_byte_identical": true,
+    "original_outputs_content_stat_xattrs_restored_exactly": true,
+    "interactive_storybook": "unverified; preserved connector/signature failures"
+  },
   "protected_integration": "pending"
 }

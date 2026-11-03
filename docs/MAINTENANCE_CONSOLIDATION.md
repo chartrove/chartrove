@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #385 and individual #246/#305 dispositions.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after385.json).
-The ng-select-attachments task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #386, #295 disposition and approved legacy narrative retirement.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after386.json).
+The storybook-react-19 task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `6419a63e029d592542c14e341b1468d294af6baf` (#385) |
+| Published application main | `b617d3c04740eb26d85c9cafc288481b7a416e65` (#386) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 28: 22 paused Renovate proposals and six historical drafts |
-| Origin heads | 37 |
-| Default branch | main tracks origin/main with equal OIDs; ng-select-attachments branch is additional |
+| Open PRs | 27: 21 paused Renovate proposals and six historical drafts |
+| Origin heads | 34 |
+| Default branch | main tracks origin/main with equal OIDs; storybook-react-19 branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,21 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #386 updates ng-select to 24.2.1 and corrects the wizard lazy-loading
+boundary within the unchanged 10 MB production budget. Selection cases pass on
+old/new versions; 523 browser tests, production/Storybook, signed native smoke
+and all protected checks pass. Synthetic native UI exercises both entry points
+and disabled empty attachment pickers; native multiple-selection remains
+unverified (covered by browser DOM cases). #295 is individually reconciled.
+[Scope](maintenance/2026-11-03-ng-select-attachments.md),
+[validated historical and approved narrative retirement](maintenance/ngselect-and-narrative-retirement.json).
+
+The React 19 tooling candidate is source-committed, with ten Node checks, 523
+browser tests (one existing skip), production/Storybook builds and a fresh signed
+native ten-check smoke passing. Interactive Storybook is unverified because the
+connector and staged browser signature checks failed; diagnostics remain intact.
+[Scope and limits](maintenance/2026-11-03-react19-tooling.md).
 
 Merged #385 adopts jose 6.2.15 for the two existing decodeJwt consumers. Thirteen
 real AuthService cases pass on old/new versions; the full suite passes 513 tests
@@ -517,10 +532,10 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Sixty-six historical origin refs were retired by this agent after individual review,
+Seventy historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
-Ten more (#313, four utility heads, two UUID heads, two declaration heads and
-the parser head) were already absent after closure;
+Twelve more (#313, four utility heads, two UUID heads, two declaration heads,
+the parser head and two jose heads) were already absent after closure;
 deletion actors not established.
 Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [six more](https://github.com/karamhouse/chartrove/pull/333#issuecomment-6570768946),
@@ -551,7 +566,10 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one Viper head](maintenance/viper-retirement-1.json),
 [one experimental-helper head](maintenance/exp-retirement-1.json),
 [one Moment head](maintenance/moment-retirement-1.json),
-[one Goja head](maintenance/goja-retirement-1.json).
+[one Goja head](maintenance/goja-retirement-1.json),
+[one tslib head](maintenance/tslib-retirement-1.json),
+[two jose heads observed absent](maintenance/jose-retirement-1.json),
+[ng-select plus two approved narrative heads](maintenance/ngselect-and-narrative-retirement.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 Local artifact storage now has an ignored Go module boundary at
@@ -576,10 +594,11 @@ stays absent, protected from ordinary Karma writes by #344.
 
 The maintainer authorized retirement of the legacy narrative repair prototypes
 while preserving archives and records. A verified bundle covers both exact tips,
-two unique commits and all 77 unique objects. Keep live summary
-`62a89d799969b1de8ac208543e89a7da85345a91` and text_field_extract
-`38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e` until this disposition is published
-and fresh dependency/exact-tip retirement checks pass.
+two unique commits and all 77 unique objects. After #386 published the decision,
+fresh dependency and exact-tip gates passed and both origin heads were retired:
+summary `62a89d799969b1de8ac208543e89a7da85345a91` and text_field_extract
+`38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e`. Cached legacy aliases remain
+held unchanged for separate review. No repair or migration was run.
 The old repair saves the original temporary model rather than its recalculation;
 do not apply it or infer a safe real-data migration from archive verification.
 [Decision and recovery](maintenance/2026-11-03-legacy-narrative-retirement.md).
@@ -601,7 +620,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 22 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 21 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
