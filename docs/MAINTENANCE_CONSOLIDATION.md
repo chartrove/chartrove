@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #372 and individual #106 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after372.json).
-The Observation-boundary branch is additional and unpublished at
+Snapshot: November 2, 2026, after #373 and guarded task-branch retirement.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after373.json).
+The unlock-configuration branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `c92d3695ceb97bfcd362af5378418db481f47bd3` (#372) |
+| Published application main | `8adb31486e8803135495dba6b5809afb8e74a478` (#373) |
 | Open issues | 168, including retained Renovate dashboard #222 |
 | Open PRs | 35: 29 paused Renovate proposals and six historical drafts |
 | Origin heads | 44 |
-| Default branch | main tracks origin/main with equal OIDs; Observation-boundary branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; unlock-configuration branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -333,15 +333,25 @@ All three required checks pass; #106 is individually closed with its evidence.
 The task head was retired after exact-tip, dependency and merge checks.
 [Scope and diagnostics](maintenance/2026-11-02-datatable-loading-feedback.md).
 
-Current Observation correction preserves zero/false/absent results and inclusive
+Merged #373 preserves zero/false/absent results and inclusive
 reference limits. The full browser suite passes 474 tests with one existing skip;
 Node, production/Storybook, native ZIP/signature and ten synthetic checks pass.
 Native synthetic table/false/pending-card acceptance passes; an unintended
 post-close Cua relaunch is explicitly documented with its standby boundary.
 [Scope and incident](maintenance/2026-11-02-observation-value-boundaries.md).
-Protected integration remains pending. Newly observed untracked `.kilo/` metadata
-has unknown provenance and is held in place; it is excluded from task commits.
+All three required checks passed; its exact task head is integrated and retired.
+Newly observed local `.kilo/` metadata
+has unknown provenance. This task never changed it; a subsequent read-only
+observation found it absent, with no actor established. Its original hash receipt
+is retained; no restoration or unrelated cleanup was attempted.
 [Metadata receipt](maintenance/observation-held-metadata.json).
+
+Current embedded unlock correction preserves explicit database, loopback and
+unsafe-route settings in a separate immutable snapshot. Two actual regressions
+fail in each Go graph and pass unchanged after repair. Full web suites (16 each),
+unlock race suites (four each), both vet checks, desktop tests and server build
+pass. Dependency and frontend bytes remain unchanged. Native and protected checks
+remain pending. [Scope](maintenance/2026-11-02-unlock-configuration.md).
 
 ## Preservation and branch retirement
 

@@ -110,8 +110,11 @@ func (app *EmbeddedApplication) UnlockDatabase(key string) error {
 	if err != nil {
 		return err
 	}
-	if err := nextConfig.MergeConfigMap(copied); err != nil {
-		return err
+	// AllSettings is the already resolved configuration, including explicit CLI
+	// choices. Preserve that precedence when rebuilding the immutable snapshot:
+	// MergeConfigMap would let AutomaticEnv override those choices on unlock.
+	for name, value := range copied {
+		nextConfig.Set(name, value)
 	}
 	nextConfig.Set("database.encryption.key", key)
 	next := &AppEngine{Config: nextConfig, Logger: app.engine.Logger, EventBus: app.engine.EventBus, embedded: app}

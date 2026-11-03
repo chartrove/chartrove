@@ -295,3 +295,53 @@ func TestEmbeddedCloseReleasesDatabasePool(t *testing.T) {
 		t.Fatal("embedded Close left the database pool open")
 	}
 }
+
+func TestEmbeddedUnlockKeepsExplicitDatabaseLocationOverEnvironment(t *testing.T) {
+	sentinel := filepath.Join(t.TempDir(), "must-not-open.db")
+	original := []byte("synthetic unrelated file: never open as the explicit database")
+	if err := os.WriteFile(sentinel, original, 0600); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() {
+		after, err := os.ReadFile(sentinel)
+		if err != nil || !bytes.Equal(after, original) {
+			t.Errorf("synthetic unrelated file changed: %v", err)
+		}
+	})
+	t.Setenv("FASTEN_DATABASE_LOCATION", sentinel)
+	explicit := filepath.Join(t.TempDir(), "explicit.db")
+	cfg := embeddedConfig(t, explicit, true)
+	app := openEmbedded(t, cfg)
+	if err := app.UnlockDatabase(strings.Repeat("synthetic", 4)); err != nil {
+		t.Fatalf("unlock lost the explicitly selected database: %v", err)
+	}
+	if app.engine.Config.GetString("database.location") != explicit {
+		t.Fatal("environment replaced explicit database path")
+	}
+	if _, err := os.Stat(explicit); err != nil {
+		t.Fatalf("explicit database was not created: %v", err)
+	}
+}
+
+func TestEmbeddedUnlockKeepsExplicitUnsafeEndpointRejection(t *testing.T) {
+	t.Setenv("FASTEN_WEB_ALLOW_UNSAFE_ENDPOINTS", "true")
+	t.Setenv("FASTEN_WEB_LISTEN_HOST", "0.0.0.0")
+	cfg := embeddedConfig(t, filepath.Join(t.TempDir(), "explicit.db"), true)
+	cfg.Set("web.allow_unsafe_endpoints", false)
+	cfg.Set("web.listen.host", "127.0.0.1")
+	app := openEmbedded(t, cfg)
+	if err := app.UnlockDatabase(strings.Repeat("synthetic", 4)); err != nil {
+		t.Fatal(err)
+	}
+	if app.engine.Config.GetBool("web.allow_unsafe_endpoints") {
+		t.Error("unlock reenabled explicitly disabled unsafe endpoints")
+	}
+	if app.engine.Config.GetString("web.listen.host") != "127.0.0.1" {
+		t.Error("unlock replaced explicit loopback setting")
+	}
+	for _, route := range app.routes.Load().Routes() {
+		if strings.HasPrefix(route.Path, "/api/unsafe/") {
+			t.Errorf("unlock registered forbidden unauthenticated route %s", route.Path)
+		}
+	}
+}

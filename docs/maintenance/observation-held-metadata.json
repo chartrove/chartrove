@@ -27,5 +27,12 @@
       "size": 7381,
       "mtime_ns": 1790622291000000000
     }
+  },
+  "subsequent_observation": {
+    "exists": false,
+    "untracked_status": "",
+    "file_hashes": {},
+    "task_action": "none; no file removal, rewrite, ignore-rule change or restoration",
+    "actor": "unknown; task made no metadata or ignore-rule changes"
   }
 }
