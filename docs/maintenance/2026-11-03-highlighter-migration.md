@@ -44,3 +44,21 @@ GUI validation remain pending before protected integration.
 [installed preservation](highlight-installed-preservation.json),
 [exact Git recovery](highlight-head-recovery.json).
 Raw evidence: `dist/validation/2026-11-01-consolidation/highlight-review/`.
+
+Fresh package source `6c07e1bfcfbf7fe136c8755325a1a8286467ffcb` passes ZIP CRC, strict extracted signature
+and all ten synthetic native checks. Its 22,289 compiled/reused/native assets
+match; original output content/stat/xattrs restore exactly. ZIP SHA-256
+`12ec21c0b28f8389d174493765218b9df58425b6312bd05ef4330d252eefa86e`.
+[Native receipt](native-6c07e1bfc-validation.json).
+
+A QA copy with a unique bundle identifier/name and resulting local ad-hoc
+signature demonstrates synthetic sign-in and raw Patient JSON rendering, including
+blue syntax keys in light mode. Original package/extracted app remain unchanged.
+New QA WebKit/cache directories and explicit private database/cache arguments
+were verified before selection; no ordinary application profile was selected.
+Native XML was not exercised; browser consumer cases cover it. Dark-theme token
+contrast is not corrected. The exact QA process was closed, verified by ps only.
+Both raw synthetic records, original seed database and existing sidecars remain
+unchanged; stopped-profile verification queries a copied profile. A separate
+patient-detail card still shows Age: NaN for missing birth date; that untouched
+path is retained as follow-up. No record saves or real-record access occurred.

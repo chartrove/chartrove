@@ -418,7 +418,53 @@
     "source_inputs_unchanged_during_validation": true,
     "coverage_and_documentation_absence_preserved": true
   },
-  "native": "pending fresh package and synthetic GUI check",
+  "native": {
+    "source_revision": "6c07e1bfcfbf7fe136c8755325a1a8286467ffcb",
+    "receipt": "docs/maintenance/native-6c07e1bfc-validation.json",
+    "zip_sha256": "12ec21c0b28f8389d174493765218b9df58425b6312bd05ef4330d252eefa86e",
+    "build_zip_crc_strict_signature_ten_smoke_checks": "passed",
+    "compiled_reused_native_assets_identical_files": 22289,
+    "original_output_content_stat_xattrs_restored_exactly": true,
+    "qa_native_UI": {
+      "time": "2026-11-03T13:52:02.021478+00:00",
+      "source_revision": "6c07e1bfcfbf7fe136c8755325a1a8286467ffcb",
+      "method": "cua_repl exact QA app after CLI exact PID/private database/unique WebKit identifier proof",
+      "pid": 29780,
+      "qa_bundle_identifier": "house.karam.chartrove.qa.highlight.s6c07e1bfc.ab61d6abdc7944a7b787052ed6e41b49",
+      "qa_metadata_variant": "identifier/name/display name and resulting ad-hoc signature only; production package/extracted app unchanged",
+      "synthetic_signin": "desktop-smoke -> dashboard",
+      "resource_route": "#/explore/2253d45d-737f-4732-a5af-faccf52a7cfd/resource/synthetic-encounter-row-patient",
+      "raw_JSON": "expected synthetic Patient displayed completely; light-theme screenshot shows blue JSON keys and distinct values",
+      "dark_theme": "raw text visible; token-color contrast not claimed corrected",
+      "native_XML_rendering": "not exercised; old/new browser consumer cases cover XML",
+      "debug_only_no_record_saves": true,
+      "window_closed_with_fresh_full_AX_close_button": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_call_after_close": true,
+      "records": {
+        "fhir_patient": [
+          {
+            "id": "synthetic-encounter-row-patient",
+            "sha256": "cf1e3a595f71ca1b77dcd0b00f74215337b91c1e65862b6454fcde8364443dde"
+          }
+        ],
+        "fhir_encounter": [
+          {
+            "id": "synthetic-manual-encounter",
+            "sha256": "843feed00280eeb33252af1ef6a451e1b7c9071a0eb58708d61ca026ed8c4616"
+          }
+        ]
+      },
+      "synthetic_raw_records_byte_identical_to_seed": true,
+      "seed_database_and_sidecar_hashes_unchanged": true,
+      "stopped_profile_hashes_unchanged_by_verification": true,
+      "verification_method": "query copied stopped profile; original checkpointed seed read immutable with empty WAL; before/after hashes",
+      "real_records_accessed": false,
+      "new_qa_WebKit_and_cache_paths_verified_created": "profile-path-proof.json",
+      "separate_observation": "patient-detail card shows Age: NaN for absent birth date; untouched by this migration, retained follow-up",
+      "UI_interruption": "first getApp tool response took 842 seconds; later source-tile click returned aborted but fresh resumed AX proved its navigation completed; REPL binding was re-established only after exact PID proof"
+    }
+  },
   "raw_evidence": "dist/validation/2026-11-01-consolidation/highlight-review/",
   "protected_integration": "pending"
 }
