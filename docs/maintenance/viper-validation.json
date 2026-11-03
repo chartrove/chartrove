@@ -1,0 +1,1168 @@
+{
+  "time": "2026-11-03T01:56:10.226828+00:00",
+  "base_main": "f0afc0d7776918d831c5eb01620427270f9c1daa",
+  "target": "github.com/spf13/viper v1.21.0",
+  "candidate_preparation": {
+    "application_head": "cb71e609a4255d21ae51d0dc8d00fcf84fda1aa8",
+    "mode": "read-only candidate preparation; repository module files untouched",
+    "module_hashes": {
+      "go.mod": "56dfb50baf33e58ad59ee8baa462918a33803f9aee471a06d9f87cbbf953b835",
+      "go.sum": "8b5de744060beff53dfa0b30368f55c528cd522ce3b069bf86515e6b1bfa2556",
+      "desktop/go.mod": "a451d3356e46ef1d1a9a77193e4bd7f6dd907dd8d5991582773e9b111554f4ae",
+      "desktop/go.sum": "02c84d6a5c6777f698d30ae9dc959d0773857aa7296b8110acb55ed8628b7ec0"
+    }
+  },
+  "candidate_configuration_web_source": "337fa90cd2e42f240ac62ac6bdb77e7a341afa5b; executable source equals applied baseline main",
+  "applied_module_files_and_selected_graphs_match_prevalidated_candidates": true,
+  "checksum_preservation": {
+    "root": {
+      "original_checksum_bytes_and_order_retained": true,
+      "added_checksum_lines": 18,
+      "candidate_checksum_set_matches_applied": true
+    },
+    "desktop": {
+      "original_checksum_bytes_and_order_retained": true,
+      "added_checksum_lines": 14,
+      "candidate_checksum_set_matches_applied": true
+    }
+  },
+  "graph_delta": {
+    "root": {
+      "selected_changes": {
+        "cloud.google.com/go": {
+          "before": "v0.100.2",
+          "after": null
+        },
+        "cloud.google.com/go/bigquery": {
+          "before": "v1.8.0",
+          "after": null
+        },
+        "cloud.google.com/go/compute": {
+          "before": "v1.6.1",
+          "after": null
+        },
+        "cloud.google.com/go/datastore": {
+          "before": "v1.1.0",
+          "after": null
+        },
+        "cloud.google.com/go/firestore": {
+          "before": "v1.6.1",
+          "after": null
+        },
+        "cloud.google.com/go/pubsub": {
+          "before": "v1.3.1",
+          "after": null
+        },
+        "cloud.google.com/go/storage": {
+          "before": "v1.14.0",
+          "after": null
+        },
+        "dmitri.shuralyov.com/gpu/mtl": {
+          "before": "v0.0.0-20190408044501-666a987793e9",
+          "after": null
+        },
+        "github.com/BurntSushi/xgb": {
+          "before": "v0.0.0-20160522181843-27f122750802",
+          "after": null
+        },
+        "github.com/armon/go-metrics": {
+          "before": "v0.3.10",
+          "after": null
+        },
+        "github.com/census-instrumentation/opencensus-proto": {
+          "before": "v0.2.1",
+          "after": null
+        },
+        "github.com/client9/misspell": {
+          "before": "v0.3.4",
+          "after": null
+        },
+        "github.com/cncf/udpa/go": {
+          "before": "v0.0.0-20201120205902-5459f2c99403",
+          "after": null
+        },
+        "github.com/coreos/go-semver": {
+          "before": "v0.3.0",
+          "after": null
+        },
+        "github.com/coreos/go-systemd/v22": {
+          "before": "v22.3.2",
+          "after": null
+        },
+        "github.com/envoyproxy/go-control-plane": {
+          "before": "v0.9.9-0.20201210154907-fd9021fe5dad",
+          "after": null
+        },
+        "github.com/envoyproxy/protoc-gen-validate": {
+          "before": "v0.1.0",
+          "after": null
+        },
+        "github.com/fsnotify/fsnotify": {
+          "before": "v1.5.4",
+          "after": "v1.9.0"
+        },
+        "github.com/go-gl/glfw": {
+          "before": "v0.0.0-20190409004039-e6da0acd62b1",
+          "after": null
+        },
+        "github.com/go-gl/glfw/v3.3/glfw": {
+          "before": "v0.0.0-20200222043503-6f7a984d4dc4",
+          "after": null
+        },
+        "github.com/go-viper/mapstructure/v2": {
+          "before": null,
+          "after": "v2.4.0"
+        },
+        "github.com/gogo/protobuf": {
+          "before": "v1.3.2",
+          "after": null
+        },
+        "github.com/golang/glog": {
+          "before": "v0.0.0-20160126235308-23def4e6c14b",
+          "after": null
+        },
+        "github.com/golang/groupcache": {
+          "before": "v0.0.0-20210331224755-41bb18bfe9da",
+          "after": null
+        },
+        "github.com/google/btree": {
+          "before": "v1.0.0",
+          "after": null
+        },
+        "github.com/google/martian": {
+          "before": "v2.1.0+incompatible",
+          "after": null
+        },
+        "github.com/google/martian/v3": {
+          "before": "v3.1.0",
+          "after": null
+        },
+        "github.com/googleapis/gax-go/v2": {
+          "before": "v2.4.0",
+          "after": null
+        },
+        "github.com/googleapis/google-cloud-go-testing": {
+          "before": "v0.0.0-20200911160855-bcd43fbb19e8",
+          "after": null
+        },
+        "github.com/hashicorp/consul/api": {
+          "before": "v1.12.0",
+          "after": null
+        },
+        "github.com/hashicorp/go-cleanhttp": {
+          "before": "v0.5.2",
+          "after": null
+        },
+        "github.com/hashicorp/go-hclog": {
+          "before": "v1.2.0",
+          "after": null
+        },
+        "github.com/hashicorp/go-immutable-radix": {
+          "before": "v1.3.1",
+          "after": null
+        },
+        "github.com/hashicorp/go-rootcerts": {
+          "before": "v1.0.2",
+          "after": null
+        },
+        "github.com/hashicorp/golang-lru": {
+          "before": "v0.5.4",
+          "after": null
+        },
+        "github.com/hashicorp/serf": {
+          "before": "v0.9.7",
+          "after": null
+        },
+        "github.com/jstemmer/go-junit-report": {
+          "before": "v0.9.1",
+          "after": null
+        },
+        "github.com/kr/fs": {
+          "before": "v0.1.0",
+          "after": null
+        },
+        "github.com/pkg/sftp": {
+          "before": "v1.13.1",
+          "after": null
+        },
+        "github.com/prometheus/client_model": {
+          "before": "v0.0.0-20190812154241-14fe0d1b01d4",
+          "after": null
+        },
+        "github.com/sagikazarmark/crypt": {
+          "before": "v0.6.0",
+          "after": null
+        },
+        "github.com/sagikazarmark/locafero": {
+          "before": null,
+          "after": "v0.11.0"
+        },
+        "github.com/sourcegraph/conc": {
+          "before": null,
+          "after": "v0.3.1-0.20240121214520-5f936abd7ae8"
+        },
+        "github.com/spf13/afero": {
+          "before": "v1.8.2",
+          "after": "v1.15.0"
+        },
+        "github.com/spf13/cast": {
+          "before": "v1.7.0",
+          "after": "v1.10.0"
+        },
+        "github.com/spf13/pflag": {
+          "before": "v1.0.5",
+          "after": "v1.0.10"
+        },
+        "github.com/spf13/viper": {
+          "before": "v1.12.0",
+          "after": "v1.21.0"
+        },
+        "github.com/subosito/gotenv": {
+          "before": "v1.3.0",
+          "after": "v1.6.0"
+        },
+        "go.etcd.io/etcd/api/v3": {
+          "before": "v3.5.4",
+          "after": null
+        },
+        "go.etcd.io/etcd/client/pkg/v3": {
+          "before": "v3.5.4",
+          "after": null
+        },
+        "go.etcd.io/etcd/client/v2": {
+          "before": "v2.305.4",
+          "after": null
+        },
+        "go.etcd.io/etcd/client/v3": {
+          "before": "v3.5.4",
+          "after": null
+        },
+        "go.opencensus.io": {
+          "before": "v0.23.0",
+          "after": null
+        },
+        "go.uber.org/atomic": {
+          "before": "v1.7.0",
+          "after": "v1.6.0"
+        },
+        "go.uber.org/multierr": {
+          "before": "v1.6.0",
+          "after": "v1.5.0"
+        },
+        "go.uber.org/zap": {
+          "before": "v1.17.0",
+          "after": "v1.13.0"
+        },
+        "golang.org/x/lint": {
+          "before": "v0.0.0-20201208152925-83fdc39ff7b5",
+          "after": "v0.0.0-20190930215403-16217165b5de"
+        },
+        "golang.org/x/mobile": {
+          "before": "v0.0.0-20190719004257-d2bd2a29d028",
+          "after": null
+        },
+        "golang.org/x/time": {
+          "before": "v0.0.0-20191024005414-555d28b269f0",
+          "after": null
+        },
+        "golang.org/x/xerrors": {
+          "before": "v0.0.0-20220517211312-f3a8303e98df",
+          "after": "v0.0.0-20200804184101-5ec99f83aff1"
+        },
+        "google.golang.org/api": {
+          "before": "v0.81.0",
+          "after": null
+        },
+        "google.golang.org/genproto": {
+          "before": "v0.0.0-20220519153652-3a47de7e79bd",
+          "after": null
+        },
+        "google.golang.org/grpc": {
+          "before": "v1.46.2",
+          "after": null
+        },
+        "honnef.co/go/tools": {
+          "before": "v0.0.1-2020.1.4",
+          "after": "v0.0.1-2019.2.3"
+        },
+        "rsc.io/binaryregexp": {
+          "before": "v0.2.0",
+          "after": null
+        },
+        "rsc.io/quote/v3": {
+          "before": "v3.1.0",
+          "after": null
+        },
+        "rsc.io/sampler": {
+          "before": "v1.3.0",
+          "after": null
+        }
+      },
+      "module_counts": [
+        258,
+        209
+      ],
+      "candidate_go_header": [
+        "module github.com/fastenhealth/fasten-onprem",
+        "",
+        "go 1.26.0",
+        ""
+      ]
+    },
+    "desktop": {
+      "selected_changes": {
+        "cloud.google.com/go": {
+          "before": "v0.100.2",
+          "after": null
+        },
+        "cloud.google.com/go/bigquery": {
+          "before": "v1.8.0",
+          "after": null
+        },
+        "cloud.google.com/go/compute": {
+          "before": "v1.6.1",
+          "after": null
+        },
+        "cloud.google.com/go/datastore": {
+          "before": "v1.1.0",
+          "after": null
+        },
+        "cloud.google.com/go/firestore": {
+          "before": "v1.6.1",
+          "after": null
+        },
+        "cloud.google.com/go/pubsub": {
+          "before": "v1.3.1",
+          "after": null
+        },
+        "cloud.google.com/go/storage": {
+          "before": "v1.14.0",
+          "after": null
+        },
+        "dmitri.shuralyov.com/gpu/mtl": {
+          "before": "v0.0.0-20190408044501-666a987793e9",
+          "after": null
+        },
+        "github.com/BurntSushi/xgb": {
+          "before": "v0.0.0-20160522181843-27f122750802",
+          "after": null
+        },
+        "github.com/armon/go-metrics": {
+          "before": "v0.3.10",
+          "after": null
+        },
+        "github.com/census-instrumentation/opencensus-proto": {
+          "before": "v0.2.1",
+          "after": null
+        },
+        "github.com/client9/misspell": {
+          "before": "v0.3.4",
+          "after": null
+        },
+        "github.com/cncf/udpa/go": {
+          "before": "v0.0.0-20201120205902-5459f2c99403",
+          "after": null
+        },
+        "github.com/coreos/go-semver": {
+          "before": "v0.3.0",
+          "after": null
+        },
+        "github.com/coreos/go-systemd/v22": {
+          "before": "v22.3.2",
+          "after": null
+        },
+        "github.com/envoyproxy/go-control-plane": {
+          "before": "v0.9.9-0.20201210154907-fd9021fe5dad",
+          "after": null
+        },
+        "github.com/envoyproxy/protoc-gen-validate": {
+          "before": "v0.1.0",
+          "after": null
+        },
+        "github.com/fsnotify/fsnotify": {
+          "before": "v1.5.4",
+          "after": "v1.9.0"
+        },
+        "github.com/go-gl/glfw": {
+          "before": "v0.0.0-20190409004039-e6da0acd62b1",
+          "after": null
+        },
+        "github.com/go-gl/glfw/v3.3/glfw": {
+          "before": "v0.0.0-20200222043503-6f7a984d4dc4",
+          "after": null
+        },
+        "github.com/go-viper/mapstructure/v2": {
+          "before": null,
+          "after": "v2.4.0"
+        },
+        "github.com/gogo/protobuf": {
+          "before": "v1.3.2",
+          "after": null
+        },
+        "github.com/golang/glog": {
+          "before": "v0.0.0-20160126235308-23def4e6c14b",
+          "after": null
+        },
+        "github.com/google/btree": {
+          "before": "v1.0.0",
+          "after": null
+        },
+        "github.com/google/martian": {
+          "before": "v2.1.0+incompatible",
+          "after": null
+        },
+        "github.com/google/martian/v3": {
+          "before": "v3.1.0",
+          "after": null
+        },
+        "github.com/googleapis/gax-go/v2": {
+          "before": "v2.4.0",
+          "after": null
+        },
+        "github.com/googleapis/google-cloud-go-testing": {
+          "before": "v0.0.0-20200911160855-bcd43fbb19e8",
+          "after": null
+        },
+        "github.com/hashicorp/consul/api": {
+          "before": "v1.12.0",
+          "after": null
+        },
+        "github.com/hashicorp/go-cleanhttp": {
+          "before": "v0.5.2",
+          "after": null
+        },
+        "github.com/hashicorp/go-hclog": {
+          "before": "v1.2.0",
+          "after": null
+        },
+        "github.com/hashicorp/go-immutable-radix": {
+          "before": "v1.3.1",
+          "after": null
+        },
+        "github.com/hashicorp/go-rootcerts": {
+          "before": "v1.0.2",
+          "after": null
+        },
+        "github.com/hashicorp/golang-lru": {
+          "before": "v0.5.4",
+          "after": null
+        },
+        "github.com/hashicorp/serf": {
+          "before": "v0.9.7",
+          "after": null
+        },
+        "github.com/jstemmer/go-junit-report": {
+          "before": "v0.9.1",
+          "after": null
+        },
+        "github.com/kr/fs": {
+          "before": "v0.1.0",
+          "after": null
+        },
+        "github.com/pkg/sftp": {
+          "before": "v1.13.1",
+          "after": null
+        },
+        "github.com/prometheus/client_model": {
+          "before": "v0.0.0-20190812154241-14fe0d1b01d4",
+          "after": null
+        },
+        "github.com/sagikazarmark/crypt": {
+          "before": "v0.6.0",
+          "after": null
+        },
+        "github.com/sagikazarmark/locafero": {
+          "before": null,
+          "after": "v0.11.0"
+        },
+        "github.com/sourcegraph/conc": {
+          "before": null,
+          "after": "v0.3.1-0.20240121214520-5f936abd7ae8"
+        },
+        "github.com/spf13/afero": {
+          "before": "v1.8.2",
+          "after": "v1.15.0"
+        },
+        "github.com/spf13/viper": {
+          "before": "v1.12.0",
+          "after": "v1.21.0"
+        },
+        "github.com/subosito/gotenv": {
+          "before": "v1.3.0",
+          "after": "v1.6.0"
+        },
+        "go.etcd.io/etcd/api/v3": {
+          "before": "v3.5.4",
+          "after": null
+        },
+        "go.etcd.io/etcd/client/pkg/v3": {
+          "before": "v3.5.4",
+          "after": null
+        },
+        "go.etcd.io/etcd/client/v2": {
+          "before": "v2.305.4",
+          "after": null
+        },
+        "go.etcd.io/etcd/client/v3": {
+          "before": "v3.5.4",
+          "after": null
+        },
+        "go.opencensus.io": {
+          "before": "v0.23.0",
+          "after": null
+        },
+        "go.uber.org/atomic": {
+          "before": "v1.7.0",
+          "after": "v1.6.0"
+        },
+        "go.uber.org/multierr": {
+          "before": "v1.6.0",
+          "after": "v1.5.0"
+        },
+        "go.uber.org/zap": {
+          "before": "v1.17.0",
+          "after": "v1.13.0"
+        },
+        "golang.org/x/lint": {
+          "before": "v0.0.0-20201208152925-83fdc39ff7b5",
+          "after": "v0.0.0-20190930215403-16217165b5de"
+        },
+        "golang.org/x/mobile": {
+          "before": "v0.0.0-20190719004257-d2bd2a29d028",
+          "after": null
+        },
+        "golang.org/x/time": {
+          "before": "v0.0.0-20191024005414-555d28b269f0",
+          "after": null
+        },
+        "golang.org/x/xerrors": {
+          "before": "v0.0.0-20220517211312-f3a8303e98df",
+          "after": "v0.0.0-20200804184101-5ec99f83aff1"
+        },
+        "google.golang.org/api": {
+          "before": "v0.81.0",
+          "after": null
+        },
+        "google.golang.org/genproto": {
+          "before": "v0.0.0-20220519153652-3a47de7e79bd",
+          "after": null
+        },
+        "google.golang.org/grpc": {
+          "before": "v1.46.2",
+          "after": null
+        },
+        "honnef.co/go/tools": {
+          "before": "v0.0.1-2020.1.4",
+          "after": "v0.0.1-2019.2.3"
+        },
+        "rsc.io/binaryregexp": {
+          "before": "v0.2.0",
+          "after": null
+        },
+        "rsc.io/quote/v3": {
+          "before": "v3.1.0",
+          "after": null
+        },
+        "rsc.io/sampler": {
+          "before": "v1.3.0",
+          "after": null
+        }
+      },
+      "module_counts": [
+        373,
+        325
+      ],
+      "candidate_go_header": [
+        "module github.com/karamhouse/fasten-desktop",
+        "",
+        "go 1.26.0",
+        ""
+      ]
+    }
+  },
+  "production_import_delta": {
+    "root": {
+      "runtime_module_changes": {
+        "github.com/fsnotify/fsnotify": {
+          "before": "v1.5.4",
+          "after": "v1.9.0"
+        },
+        "github.com/go-viper/mapstructure/v2": {
+          "before": null,
+          "after": "v2.4.0"
+        },
+        "github.com/hashicorp/hcl": {
+          "before": "v1.0.0",
+          "after": null
+        },
+        "github.com/magiconair/properties": {
+          "before": "v1.8.6",
+          "after": null
+        },
+        "github.com/mitchellh/mapstructure": {
+          "before": "v1.5.0",
+          "after": null
+        },
+        "github.com/sagikazarmark/locafero": {
+          "before": null,
+          "after": "v0.11.0"
+        },
+        "github.com/sourcegraph/conc": {
+          "before": null,
+          "after": "v0.3.1-0.20240121214520-5f936abd7ae8"
+        },
+        "github.com/spf13/afero": {
+          "before": "v1.8.2",
+          "after": "v1.15.0"
+        },
+        "github.com/spf13/cast": {
+          "before": "v1.7.0",
+          "after": "v1.10.0"
+        },
+        "github.com/spf13/jwalterweatherman": {
+          "before": "v1.1.0",
+          "after": null
+        },
+        "github.com/spf13/pflag": {
+          "before": "v1.0.5",
+          "after": "v1.0.10"
+        },
+        "github.com/spf13/viper": {
+          "before": "v1.12.0",
+          "after": "v1.21.0"
+        },
+        "github.com/subosito/gotenv": {
+          "before": "v1.3.0",
+          "after": "v1.6.0"
+        },
+        "go.yaml.in/yaml/v3": {
+          "before": null,
+          "after": "v3.0.5"
+        },
+        "gopkg.in/ini.v1": {
+          "before": "v1.66.4",
+          "after": null
+        }
+      },
+      "selected_graph_downgrades": {
+        "go.uber.org/atomic": {
+          "before": "v1.7.0",
+          "after": "v1.6.0"
+        },
+        "go.uber.org/multierr": {
+          "before": "v1.6.0",
+          "after": "v1.5.0"
+        },
+        "go.uber.org/zap": {
+          "before": "v1.17.0",
+          "after": "v1.13.0"
+        },
+        "golang.org/x/lint": {
+          "before": "v0.0.0-20201208152925-83fdc39ff7b5",
+          "after": "v0.0.0-20190930215403-16217165b5de"
+        },
+        "golang.org/x/xerrors": {
+          "before": "v0.0.0-20220517211312-f3a8303e98df",
+          "after": "v0.0.0-20200804184101-5ec99f83aff1"
+        },
+        "honnef.co/go/tools": {
+          "before": "v0.0.1-2020.1.4",
+          "after": "v0.0.1-2019.2.3"
+        }
+      },
+      "downgraded_modules_in_production_closure": []
+    },
+    "desktop": {
+      "runtime_module_changes": {
+        "github.com/fsnotify/fsnotify": {
+          "before": "v1.5.4",
+          "after": "v1.9.0"
+        },
+        "github.com/go-viper/mapstructure/v2": {
+          "before": null,
+          "after": "v2.4.0"
+        },
+        "github.com/hashicorp/hcl": {
+          "before": "v1.0.0",
+          "after": null
+        },
+        "github.com/magiconair/properties": {
+          "before": "v1.8.6",
+          "after": null
+        },
+        "github.com/mitchellh/mapstructure": {
+          "before": "v1.5.0",
+          "after": null
+        },
+        "github.com/sagikazarmark/locafero": {
+          "before": null,
+          "after": "v0.11.0"
+        },
+        "github.com/sourcegraph/conc": {
+          "before": null,
+          "after": "v0.3.1-0.20240121214520-5f936abd7ae8"
+        },
+        "github.com/spf13/afero": {
+          "before": "v1.8.2",
+          "after": "v1.15.0"
+        },
+        "github.com/spf13/jwalterweatherman": {
+          "before": "v1.1.0",
+          "after": null
+        },
+        "github.com/spf13/viper": {
+          "before": "v1.12.0",
+          "after": "v1.21.0"
+        },
+        "github.com/subosito/gotenv": {
+          "before": "v1.3.0",
+          "after": "v1.6.0"
+        },
+        "go.yaml.in/yaml/v3": {
+          "before": null,
+          "after": "v3.0.5"
+        },
+        "gopkg.in/ini.v1": {
+          "before": "v1.66.4",
+          "after": null
+        }
+      },
+      "selected_graph_downgrades": {
+        "go.uber.org/atomic": {
+          "before": "v1.7.0",
+          "after": "v1.6.0"
+        },
+        "go.uber.org/multierr": {
+          "before": "v1.6.0",
+          "after": "v1.5.0"
+        },
+        "go.uber.org/zap": {
+          "before": "v1.17.0",
+          "after": "v1.13.0"
+        },
+        "golang.org/x/lint": {
+          "before": "v0.0.0-20201208152925-83fdc39ff7b5",
+          "after": "v0.0.0-20190930215403-16217165b5de"
+        },
+        "golang.org/x/xerrors": {
+          "before": "v0.0.0-20220517211312-f3a8303e98df",
+          "after": "v0.0.0-20200804184101-5ec99f83aff1"
+        },
+        "honnef.co/go/tools": {
+          "before": "v0.0.1-2020.1.4",
+          "after": "v0.0.1-2019.2.3"
+        }
+      },
+      "downgraded_modules_in_production_closure": []
+    }
+  },
+  "configuration_contract_probes": [
+    {
+      "name": "root-baseline",
+      "command": [
+        "go",
+        "run",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/baseline/root.mod",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-config-probe-resolved-settings.go",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/probe-resolved-settings-root-baseline"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:38:06.955569+00:00",
+      "end": "2026-11-03T01:38:08.662871+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-candidate",
+      "command": [
+        "go",
+        "run",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/candidate/root.mod",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-config-probe-resolved-settings.go",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/probe-resolved-settings-root-candidate"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:38:08.663325+00:00",
+      "end": "2026-11-03T01:38:09.777086+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-baseline",
+      "command": [
+        "go",
+        "run",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/baseline/desktop.mod",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-config-probe-resolved-settings.go",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/probe-resolved-settings-desktop-baseline"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:38:09.777518+00:00",
+      "end": "2026-11-03T01:38:10.188440+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-candidate",
+      "command": [
+        "go",
+        "run",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/candidate/desktop.mod",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-config-probe-resolved-settings.go",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/probe-resolved-settings-desktop-candidate"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:38:10.188940+00:00",
+      "end": "2026-11-03T01:38:10.704205+00:00",
+      "exit": 0
+    }
+  ],
+  "configuration_probe_canonical_results_equal_before_after_each_graph": true,
+  "upstream_suite": {
+    "command": [
+      "go",
+      "test",
+      "-mod=readonly",
+      "-json",
+      "./...",
+      "-count=1"
+    ],
+    "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/upstream",
+    "start": "2026-11-03T01:42:13.477026+00:00",
+    "exit": 0,
+    "end": "2026-11-03T01:42:17.873418+00:00",
+    "passes": 139,
+    "skipped_tests": [
+      "TestWatchFile/link_to_real_file_changed_(\u00e0_la_Kubernetes)"
+    ],
+    "failed_tests": []
+  },
+  "upstream_module_source_bytes_unchanged_during_tests": true,
+  "candidate_configuration_web_suites": [
+    {
+      "name": "root",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/candidate/root.mod",
+        "-json",
+        "./backend/pkg/config",
+        "./backend/pkg/web",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:44:50.177155+00:00",
+      "end": "2026-11-03T01:45:07.167739+00:00",
+      "exit": 0,
+      "passes": 17,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "desktop",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-modfile=/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/candidate/desktop.mod",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:45:07.168049+00:00",
+      "end": "2026-11-03T01:45:22.202489+00:00",
+      "exit": 0,
+      "passes": 17,
+      "skipped_tests": [],
+      "failed_tests": []
+    }
+  ],
+  "applied_validation": [
+    {
+      "name": "root-verify",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:51:56.305420+00:00",
+      "end": "2026-11-03T01:51:58.942460+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-verify",
+      "command": [
+        "go",
+        "mod",
+        "verify"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:51:58.942847+00:00",
+      "end": "2026-11-03T01:52:00.912700+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "-json",
+        "all"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:52:00.913089+00:00",
+      "end": "2026-11-03T01:52:00.936567+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-modules",
+      "command": [
+        "go",
+        "list",
+        "-mod=readonly",
+        "-m",
+        "-json",
+        "all"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:52:00.936928+00:00",
+      "end": "2026-11-03T01:52:00.958457+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:52:00.958791+00:00",
+      "end": "2026-11-03T01:52:06.916089+00:00",
+      "exit": 0
+    },
+    {
+      "name": "desktop-vet",
+      "command": [
+        "go",
+        "vet",
+        "-mod=readonly",
+        "./..."
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:52:06.917089+00:00",
+      "end": "2026-11-03T01:52:11.905874+00:00",
+      "exit": 0
+    },
+    {
+      "name": "root-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "-json",
+        "./backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlock",
+        "-count=1"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:52:11.906288+00:00",
+      "end": "2026-11-03T01:52:28.861175+00:00",
+      "exit": 0,
+      "passes": 4,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "desktop-race",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-race",
+        "-json",
+        "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "-run",
+        "TestEmbeddedUnlock",
+        "-count=1",
+        "-timeout=120s"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:52:28.861826+00:00",
+      "end": "2026-11-03T01:52:47.980482+00:00",
+      "exit": 0,
+      "passes": 4,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "desktop-host",
+      "command": [
+        "go",
+        "test",
+        "-mod=readonly",
+        "-json",
+        "./...",
+        "-count=1"
+      ],
+      "cwd": "desktop",
+      "start": "2026-11-03T01:52:47.981456+00:00",
+      "end": "2026-11-03T01:52:58.411090+00:00",
+      "exit": 0,
+      "passes": 28,
+      "skipped_tests": [],
+      "failed_tests": []
+    },
+    {
+      "name": "server-build",
+      "command": [
+        "go",
+        "build",
+        "-mod=readonly",
+        "-o",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/viper-review/applied-validation/fasten-cli",
+        "./backend/cmd/fasten"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T01:52:58.412237+00:00",
+      "end": "2026-11-03T01:53:05.875763+00:00",
+      "exit": 0
+    }
+  ],
+  "module_scans": {
+    "root": {
+      "config": [
+        {
+          "protocol_version": "v1.0.0",
+          "scanner_name": "govulncheck",
+          "scanner_version": "v1.9.0",
+          "db": "https://vuln.go.dev",
+          "db_last_modified": "2026-11-02T22:01:43Z",
+          "go_version": "go1.27.3",
+          "scan_level": "module",
+          "scan_mode": "source"
+        }
+      ],
+      "findings": [
+        {
+          "osv": "GO-2026-5932",
+          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
+          "trace": [
+            {
+              "module": "golang.org/x/crypto",
+              "version": "v0.58.0"
+            }
+          ]
+        }
+      ],
+      "actual_finding_ids": [
+        "GO-2026-5932"
+      ],
+      "osv_records_returned": 280,
+      "osv_inventory_is_not_finding_list": true
+    },
+    "desktop": {
+      "config": [
+        {
+          "protocol_version": "v1.0.0",
+          "scanner_name": "govulncheck",
+          "scanner_version": "v1.9.0",
+          "db": "https://vuln.go.dev",
+          "db_last_modified": "2026-11-02T22:01:43Z",
+          "go_version": "go1.27.3",
+          "scan_level": "module",
+          "scan_mode": "source"
+        }
+      ],
+      "findings": [
+        {
+          "osv": "GO-2026-5932",
+          "fixed_version": "v0.58.1-0.20261009181718-2f1f834330b2",
+          "trace": [
+            {
+              "module": "golang.org/x/crypto",
+              "version": "v0.58.0"
+            }
+          ]
+        }
+      ],
+      "actual_finding_ids": [
+        "GO-2026-5932"
+      ],
+      "osv_records_returned": 280,
+      "osv_inventory_is_not_finding_list": true
+    }
+  },
+  "module_scan_is_not_whole_application_security_assurance": true,
+  "frontend_inputs_unchanged_since": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+  "native_validation": {
+    "source_revision": "b36c00e7479140a123cfae7e964939b8c217e747",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-b36c00e74-viper-maintenance/Chartrove-b36c00e74.zip",
+      "sha256": "ed085e3b9f4c39db05a7dfc81a0fb454e2de49008ef499ab69759e6d02886263",
+      "bytes": 336760301
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "committed_input_revision": "b36c00e7479140a123cfae7e964939b8c217e747",
+      "qualified_frontend_source_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-b36c00e74-viper-maintenance/receipt.json",
+    "full_local_receipt_sha256": "42a7e3af13c655c8237c40cdec76d6e1b5ea62711c74a7f638b6a58fd2cdd0cc",
+    "frontend_comparison": {
+      "files": 22287,
+      "qualified_reused_output_and_native_asset_tree_byte_identical": true,
+      "qualified_frontend_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1"
+    },
+    "binary_build_info_uses_viper1_21_and_mapstructure2_4": true
+  },
+  "protected_integration": "pending required PR checks",
+  "historical_pr272": "live pending protected replacement integration and individual reconciliation",
+  "real_health_records_accessed": false,
+  "diagnostics": {
+    "original_config_probe": "AllSettings copy lost explicit precedence, reproduced and independently fixed in protected PR374 before adoption",
+    "scanner_cli": "two rejected/incomplete invocations retained; qualified module scans run from actual executable package directories without package patterns",
+    "osv_inventory": "returned advisory records are not affected findings; corrected finding summary uses finding.osv only"
+  }
+}

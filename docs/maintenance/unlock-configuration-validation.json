@@ -340,7 +340,14 @@
       "qualified_frontend_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1"
     }
   },
-  "protected_integration": "pending required PR checks",
+  "protected_integration": {
+    "pr": 374,
+    "merge": "f0afc0d7776918d831c5eb01620427270f9c1daa",
+    "head": "337fa90cd2e42f240ac62ac6bdb77e7a341afa5b",
+    "validation_run": 41561366101,
+    "required_checks": "Backend/Frontend/Desktop all successful, Actions app15368",
+    "task_branch": "retired after exact-tip/dependency/ancestry checks"
+  },
   "diagnostics": {
     "initial_config_probe": "AllSettings clone mismatch before any library change; led to actual embedded regressions",
     "overlay_case_mismatch": "Two discarded overlay invocations entered zero named tests because root and desktop Go paths use different Chartrove capitalization. Neither is counted as a pass; actual checkout red runs enter/fail both tests in both graphs.",
