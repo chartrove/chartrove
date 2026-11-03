@@ -3,6 +3,7 @@ import { ObservationBarChartComponent } from './observation-bar-chart.component'
 import { ObservationModel } from 'src/lib/models/resources/observation-model';
 import { observationR4Factory } from 'src/lib/fixtures/factories/r4/resources/observation-r4-factory';
 import { fhirVersions } from 'src/lib/models/constants';
+import { BarElement, Chart } from 'chart.js';
 
 describe('ObservationBarChartComponent', () => {
   let component: ObservationBarChartComponent;
@@ -21,6 +22,38 @@ describe('ObservationBarChartComponent', () => {
   it('should create', () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
+  });
+
+  it('renders zero measurements and inclusive reference bounds without changing raw observations', async () => {
+    component.observations = [0, 6].map((value, index) => new ObservationModel({
+      resourceType: 'Observation',
+      id: `synthetic-chart-${index}`,
+      status: 'final',
+      code: { text: 'Synthetic measurement' },
+      effectiveDateTime: `2024-01-0${index + 1}T12:00:00Z`,
+      valueQuantity: { value, unit: 'mg' },
+      referenceRange: [{ low: { value: 0, unit: 'mg' }, high: { value: 10, unit: 'mg' } }],
+    }, fhirVersions.R4));
+    const rawBefore = JSON.stringify(component.observations.map(value => value.fhirResource));
+    fixture.nativeElement.style.width = '600px';
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const canvas = fixture.nativeElement.querySelector('canvas') as HTMLCanvasElement;
+    const chart = Chart.getChart(canvas);
+    expect(chart).toBeDefined();
+    if (!chart) throw new Error('Synthetic observation chart was not registered');
+    chart.update('none');
+    expect(chart.width).toBeGreaterThan(0);
+    expect(chart.data.datasets[0].data).toEqual([[0, 10], [0, 10]]);
+    expect(chart.data.datasets[1].data).toEqual([[0, 0], [6, 6]]);
+    expect(chart.options.scales?.['x'].max).toBe(13);
+    const reference = chart.getDatasetMeta(0).data[0];
+    expect(reference instanceof BarElement).toBeTrue();
+    if (reference instanceof BarElement) expect(reference.getProps(['width'], true).width).toBeGreaterThan(0);
+    expect(Number.isFinite(chart.getDatasetMeta(1).data[0].x)).toBeTrue();
+    expect(JSON.stringify(component.observations.map(value => value.fhirResource))).toBe(rawBefore);
+    fixture.destroy();
+    expect(Chart.getChart(canvas)).toBeUndefined();
   });
 
   describe('updateNullMax', () => {

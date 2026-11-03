@@ -2,14 +2,14 @@ import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core
 import { formatDate } from '@angular/common';
 import { ObservationModel } from '../../../../../lib/models/resources/observation-model';
 import { ChartConfiguration } from 'chart.js';
-import { NgChartsModule } from 'ng2-charts';
+import { ChartroveChartsModule } from '../../../chartrove-charts.module';
 
 const defaultChartHeight = 65;
 const defaultChartEntryHeight = 30;
 
 @Component({
     selector: 'observation-bar-chart',
-    imports: [NgChartsModule],
+    imports: [ChartroveChartsModule],
     templateUrl: './observation-bar-chart.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./observation-bar-chart.component.scss']

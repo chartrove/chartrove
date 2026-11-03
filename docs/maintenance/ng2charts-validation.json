@@ -1,0 +1,207 @@
+{
+  "raw_directory": "dist/validation/2026-11-01-consolidation/ng2charts-review",
+  "target": "ng2-charts11.0.0",
+  "peer_admission": {
+    "rxjs": {
+      "actual": "7.8.2",
+      "range": "^6.5.3 || ^7.4.0",
+      "pass": true
+    },
+    "chart.js": {
+      "actual": "4.6.1",
+      "range": "^3.4.0 || ^4.0.0",
+      "pass": true
+    },
+    "@angular/cdk": {
+      "actual": "22.2.5",
+      "range": ">=22.0.0",
+      "pass": true
+    },
+    "@angular/core": {
+      "actual": "22.2.4",
+      "range": ">=22.0.0",
+      "pass": true
+    },
+    "@angular/common": {
+      "actual": "22.2.4",
+      "range": ">=22.0.0",
+      "pass": true
+    },
+    "@angular/platform-browser": {
+      "actual": "22.2.4",
+      "range": ">=22.0.0",
+      "pass": true
+    }
+  },
+  "manifest_lock": {
+    "old": "4.1.1",
+    "new": "11.0.0",
+    "new_leaf": "es-toolkit1.53.1",
+    "removed_orphan_leaf": "lodash-es4.17.21",
+    "all_other_lock_blocks_exact": true,
+    "api_sites": [
+      "frontend/src/app/app.module.ts",
+      "frontend/src/app/components/shared.module.ts",
+      "frontend/src/app/widgets/records-summary-widget/records-summary-widget.component.ts",
+      "frontend/src/app/widgets/patient-vitals-widget/patient-vitals-widget.component.ts",
+      "frontend/src/app/widgets/dual-gauges-widget/dual-gauges-widget.component.ts",
+      "frontend/src/app/widgets/complex-line-widget/complex-line-widget.component.ts",
+      "frontend/src/app/widgets/grouped-bar-chart-widget/grouped-bar-chart-widget.component.ts",
+      "frontend/src/app/widgets/image-list-group-widget/image-list-group-widget.component.ts",
+      "frontend/src/app/widgets/table-widget/table-widget.component.ts",
+      "frontend/src/app/widgets/dashboard-widget/dashboard-widget.component.ts",
+      "frontend/src/app/widgets/donut-chart-widget/donut-chart-widget.component.ts",
+      "frontend/src/app/widgets/simple-line-chart-widget/simple-line-chart-widget.component.ts",
+      "frontend/src/app/components/report-labs-observation/report-labs-observation.stories.ts",
+      "frontend/src/app/components/fhir-card/common/observation-bar-chart/observation-bar-chart.component.ts"
+    ],
+    "api_module": "frontend/src/app/components/chartrove-charts.module.ts"
+  },
+  "frozen_install": {
+    "command": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=corepack@0.35.0",
+      "--",
+      "corepack",
+      "yarn",
+      "install",
+      "--frozen-lockfile",
+      "--registry",
+      "https://registry.npmjs.org",
+      "--network-concurrency",
+      "4"
+    ],
+    "exit": 0,
+    "seconds": 48.31,
+    "manifest_lock_sha256_before": {
+      "package.json": "3afa5b1b5dc4c4862d209b7f0c7c8f54d33d02449a1c3e71e696e12cac4a0662",
+      "yarn.lock": "4ef612c9a3fe2217bf9aeae29cbd80236a28052856b4d963c700334ea865b6b4"
+    },
+    "manifest_lock_sha256_after": {
+      "package.json": "3afa5b1b5dc4c4862d209b7f0c7c8f54d33d02449a1c3e71e696e12cac4a0662",
+      "yarn.lock": "4ef612c9a3fe2217bf9aeae29cbd80236a28052856b4d963c700334ea865b6b4"
+    },
+    "unchanged": true
+  },
+  "installed_version_delta": {
+    "es-toolkit": {
+      "before": null,
+      "after": {
+        "name": "es-toolkit",
+        "version": "1.53.1"
+      }
+    },
+    "lodash-es": {
+      "before": {
+        "name": "lodash-es",
+        "version": "4.17.21"
+      },
+      "after": null
+    },
+    "ng2-charts": {
+      "before": {
+        "name": "ng2-charts",
+        "version": "4.1.1"
+      },
+      "after": {
+        "name": "ng2-charts",
+        "version": "11.0.0"
+      }
+    }
+  },
+  "published_payloads": {
+    "ng2-charts": {
+      "published_files": 31,
+      "all_installed_payloads_match_archive": true,
+      "archive_sha256": "58456c2eff0fe5eb3662651479dcf7e2debcb1ac52771028ea0abe7c3038f7b0"
+    },
+    "es-toolkit": {
+      "published_files": 4341,
+      "all_installed_payloads_match_archive": true,
+      "archive_sha256": "ad0e087e88c2e7526990ec5579dee9b183762fd0db263dbc892f79e41f6809a6"
+    }
+  },
+  "old_consumer": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/widgets/chart-rendering.spec.ts",
+      "--include=src/app/components/fhir-card/common/observation-bar-chart/observation-bar-chart.component.spec.ts"
+    ],
+    "versions": {
+      "ng2-charts": "4.1.1",
+      "chart.js": "4.6.1"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/widgets/chart-rendering.spec.ts": "2780b3cf01946e7774413c8bd69445bc93e278a5bb75d533a8685604b358bb73",
+      "frontend/src/app/components/fhir-card/common/observation-bar-chart/observation-bar-chart.component.spec.ts": "92f0a17ba304fe29a2fcf0c92adf6e8195fe2f3f6056010229b4de35e0d96394"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "runner": "existing protected process-group runner; focused browser invocation only, no full-workflow storage admission override"
+  },
+  "new_consumer": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/widgets/chart-rendering.spec.ts",
+      "--include=src/app/components/fhir-card/common/observation-bar-chart/observation-bar-chart.component.spec.ts"
+    ],
+    "versions": {
+      "ng2-charts": "11.0.0",
+      "chart.js": "4.6.1"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/widgets/chart-rendering.spec.ts": "2780b3cf01946e7774413c8bd69445bc93e278a5bb75d533a8685604b358bb73",
+      "frontend/src/app/components/fhir-card/common/observation-bar-chart/observation-bar-chart.component.spec.ts": "92f0a17ba304fe29a2fcf0c92adf6e8195fe2f3f6056010229b4de35e0d96394"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "runner": "existing protected process-group runner; focused browser invocation only, no full-workflow storage admission override"
+  },
+  "focused_cases_each": 11,
+  "app_typecheck": {
+    "name": "app-types",
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--project",
+      "tsconfig.app.json",
+      "--noEmit"
+    ],
+    "exit": 0,
+    "seconds": 30.69,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "changed_story_typecheck": {
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--project",
+      "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-ng2-story-types-zcsq4u0q/tsconfig.json",
+      "--noEmit"
+    ],
+    "exit": 0,
+    "seconds": 37.53,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "private_scratch_disposed": true,
+    "scope": "Changed Storybook story plus its transitive source imports, original compiler options, explicit frontend rootDir. Whole Storybook noEmit remains unavailable without generated documentation.json; no declaration stub/config production edit or full build is used."
+  },
+  "whole_storybook_typecheck": "Not passing: raw CLI rootDir TS6059; explicit rootDir then missing generated documentation.json. Both logs retained. Changed story/transitive source passes separately; no full Storybook build or stub used.",
+  "full_local_native_package": "Not rerun below unchanged 50GiB admission; historical qualified native source33c64fbdb predates dependencies.",
+  "protected_checks": "Mandatory on final published head; no bypass."
+}

@@ -1,0 +1,17 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/ng2charts-installed-before-20261103.tar",
+  "sha256": "d0e32559036f3724bbe9a0a6e023939ed187cd138b397bfae170d69afcdd0711",
+  "bytes": 3353600,
+  "entries": 811,
+  "all_extracted_payloads_exact": true,
+  "source_content_stat_xattrs_unchanged": true,
+  "metadata_differences": 0,
+  "extracted_xattrs_exact": false,
+  "metadata_recovery_manifest": "dist/validation/2026-11-01-consolidation/ng2charts-review/installed-original-manifest.json",
+  "verification_scratch_disposed": true,
+  "qualification": "Initial Python xattr API was unavailable; guard stopped before archive/mutation. Native xattr CLI supplies the before/after proof.",
+  "scope": "Only ng2-charts, its orphan lodash-es dependency and Yarn integrity; no existing module is removed by this archive operation",
+  "xattr_qualification": "installed-xattr-qualification.json",
+  "original_xattr_hex_manifest": "installed-original-xattrs.json",
+  "xattr_differences_only_system_provenance": true
+}

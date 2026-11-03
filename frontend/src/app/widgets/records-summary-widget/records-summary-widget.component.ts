@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {NgChartsModule} from 'ng2-charts';
+import { ChartroveChartsModule } from '../../components/chartrove-charts.module';
 import {CommonModule} from '@angular/common';
 import {MomentModule} from 'ngx-moment';
 import {LoadingWidgetComponent} from '../loading-widget/loading-widget.component';

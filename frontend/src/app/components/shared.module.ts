@@ -11,7 +11,7 @@ import { MedicalSourcesCategoryLookupPipe } from './medical-sources-filter/medic
 import { MedicalSourcesConnectedComponent } from './medical-sources-connected/medical-sources-connected.component';
 import { MedicalSourcesFilterComponent } from './medical-sources-filter/medical-sources-filter.component';
 import { MomentModule } from 'ngx-moment';
-import { NgChartsModule } from 'ng2-charts';
+import { ChartroveChartsModule } from './chartrove-charts.module';
 import { NlmTypeaheadComponent } from './nlm-typeahead/nlm-typeahead.component';
 import { ReportHeaderComponent } from './report-header/report-header.component';
 import { ReportLabsObservationComponent } from './report-labs-observation/report-labs-observation.component';
@@ -41,7 +41,7 @@ import { FormRequestHealthSystemComponent } from './form-request-health-system/f
     FormsModule,
     ReactiveFormsModule,
     MomentModule,
-    NgChartsModule,
+    ChartroveChartsModule,
     HighlightModule,
     PipesModule,
     DirectivesModule,

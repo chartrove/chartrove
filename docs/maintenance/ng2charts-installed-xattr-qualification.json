@@ -1,0 +1,8 @@
+{
+  "attributes": 811,
+  "changed_only_system_provenance": 810,
+  "other_attribute_changes": 0,
+  "original_values_retained_in_sidecar": true,
+  "source_attributes_unchanged": true,
+  "qualification": "Native extraction regenerates com.apple.provenance identifiers; original xattr bytes are retained for audit/recovery. Extracted payloads and all recorded POSIX/stat fields match exactly. No live package attribute was rewritten."
+}
