@@ -33,6 +33,10 @@ All 22,287 frontend files match the qualified build. Original output contents,
 stat fields and all xattrs restore exactly, with no provenance changes.
 [Native receipt](native-b4d3e714f-validation.json).
 
-Protected integration remains pending. #252 stays open until integration; its
-attributed historical discussion and archived exact head will remain recoverable.
+Protected PR #384 merged as ce751170ed9453747bbe2d44c372c51524660cf1 after all
+three required checks passed (run 41588676615). #252 is individually closed as
+implemented through this replacement after a fresh unchanged-content check.
+Its attributed history and archived exact head remain recoverable. Fresh bundle,
+ancestry, exact-tip and open-PR dependency checks precede retirement of its
+historical branch and the integrated task branch. [Receipt](tslib-retirement-1.json).
 Raw evidence: dist/validation/2026-11-01-consolidation/tslib-review/.

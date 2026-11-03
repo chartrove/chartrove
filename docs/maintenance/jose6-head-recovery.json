@@ -1,0 +1,29 @@
+{
+  "branch": "renovate/jose-6.x",
+  "tip": "567cad6d346ecd839aee28ff0598aff878ab15b3",
+  "bundle": "dist/validation/2026-11-01-consolidation/jose6-head-20261103.bundle",
+  "sha256": "054b40a6bf9007beb6f9dd1b6064d4759e1434ccec0cab42862a9a63c71dd22a",
+  "bytes": 1523,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "32bf17c3def0d0526ee655a6c96e86ea18ee5eba",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "567cad6d346ecd839aee28ff0598aff878ab15b3",
+    "874876617f0c3d74000a873a06a5696a531d8596",
+    "9a9e0879d3bb676137ba5f058e6ea3eea2d13a68",
+    "c92b581c5ccd66979e0d3dab312b39b0f9500398",
+    "e6313a8b13fec4671aa81ab19e3f8b7acadaf9f4"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/jose-6.x",
+      "d500174f2795beeb5648803db4813d8d833e0b3a"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

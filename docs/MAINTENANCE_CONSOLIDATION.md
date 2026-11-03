@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #383 and the integrated #104 correction.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after383.json).
-The tslib-maintenance task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #384/#252 and the individual #56 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after384.json).
+The jose-runtime task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `32bf17c3def0d0526ee655a6c96e86ea18ee5eba` (#383) |
-| Open issues | 164, including retained Renovate dashboard #222 |
-| Open PRs | 31: 25 paused Renovate proposals and six historical drafts |
-| Origin heads | 40 |
-| Default branch | main tracks origin/main with equal OIDs; tslib-maintenance branch is additional |
+| Published application main | `ce751170ed9453747bbe2d44c372c51524660cf1` (#384) |
+| Open issues | 163, including retained Renovate dashboard #222 |
+| Open PRs | 30: 24 paused Renovate proposals and six historical drafts |
+| Origin heads | 39 |
+| Default branch | main tracks origin/main with equal OIDs; jose-runtime branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,22 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #384 updates tslib's historical direct selector to 2.9.1. Other lock
+bytes, package.json, separate selectors and 72 other direct versions remain
+unchanged. All 38 upstream Node tests (no skips/todos), ten existing Node checks,
+500 browser tests (one existing skip), production/Storybook, fresh signed native
+ten-check smoke and all protected checks pass. All 22,287 frontend files match;
+original output content/stat/xattrs restore exactly. #252 is individually closed
+as implemented; its verified archived head and integrated task branch are retired.
+[Evidence](maintenance/2026-11-03-tslib-maintenance.md),
+[retirement](maintenance/tslib-retirement-1.json).
+
+#56 is separately retired as an accepted upstream support explanation whose
+remaining task was a Fasten FAQ update. Already published fork documentation
+records the Lighthouse/direct-SMART boundary. No self-hosted Lighthouse or
+individual provider fix is claimed. Original authorship/discussion and before/
+after evidence remain intact. [Disposition](maintenance/lighthouse-question-disposition.json).
 
 Merged #383 fixes manual Encounter descriptions by falling back to serviceType
 while preserving provider type priority. Missing Period endpoints show Not
@@ -566,7 +582,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 25 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 24 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

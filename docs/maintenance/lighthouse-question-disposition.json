@@ -1,0 +1,11 @@
+{
+  "time": "2026-11-03T06:16:47.753505+00:00",
+  "issue": 56,
+  "disposition": "retired as upstream FAQ follow-up, not planned; maintained Chartrove boundary documentation already published",
+  "evidence_main": "32bf17c3def0d0526ee655a6c96e86ea18ee5eba",
+  "state": "closed",
+  "state_reason": "not_planned",
+  "original_description_and_comments_unchanged_before_disposition": true,
+  "self_hosted_lighthouse_implemented": false,
+  "individual_provider_fixes_claimed": false
+}
