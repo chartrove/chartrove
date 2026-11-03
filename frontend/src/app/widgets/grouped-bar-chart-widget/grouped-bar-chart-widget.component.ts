@@ -14,7 +14,7 @@ import {PipesModule} from '../../pipes/pipes.module';
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./grouped-bar-chart-widget.component.scss']
 })
-export class GroupedBarChartWidgetComponent extends DashboardWidgetComponent implements OnInit {
+export class GroupedBarChartWidgetComponent extends DashboardWidgetComponent<'bar'> implements OnInit {
 
   ngOnInit(): void {
     this.chartDatasetsDefaults = [{

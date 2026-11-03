@@ -8,19 +8,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #390 and individual #308 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after390.json).
-The patient-detail-age-display and authorized artifact-retention local branches
-and the retention worktree are subsequent additions to this historical snapshot.
+Snapshot: November 3, 2026, after #391.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after391.json).
+The chartjs-4-maintenance task branch is additional to this historical snapshot.
+The separately owned artifact-retention branch/worktree remains preserved.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `aef268fd3b6e7b0df0467e301afd6a6bf9031245` (#390) |
+| Published application main | `66c7032cc0d34a104d613b76abf1fdfa7f2f3f48` (#391) |
 | Open issues | 163, including retained Renovate dashboard #222 |
 | Open PRs | 23: 17 paused Renovate proposals and six historical drafts |
 | Origin heads | 30 |
-| Default branch | main tracks origin/main; current patient task is additional |
+| Default branch | main tracks origin/main; current Chart.js task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -37,12 +37,30 @@ implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
 
+Merged #391 preserves patient detail missing-date/age display, the original
+artifact-retention commit and a tested cross-filesystem documentation preservation
+correction. Backend/Frontend/Desktop checks pass, including all 16 Node cases in
+Linux CI; signed native ten-check smoke passes with qualified production-input
+reuse. Primary main is clean; the patient task branch was retired at its exact
+integrated tip. The retention owner's branch/worktree remains untouched. Storage
+cleanup/adoption is complete and must not be repeated.
+[Patient evidence](maintenance/2026-11-03-patient-detail-age.md),
+[retention adoption](maintenance/2026-11-03-retention-adoption.md).
+
+The next bounded batch reviews Chart.js #238 separately from ng2-charts #307.
+Its direct update exposed stricter generic types; two erased bar/line type
+arguments restore compilation. Identical real chart consumers pass on old/new
+versions. Host space is about 42 GiB: full local workflows remain below admission,
+so protected CI must supply full browser/production/native Go checks; local
+focused checks do not bypass the 50 GiB reserve.
+[Scope, recovery and unverified native UI](maintenance/2026-11-03-chartjs-4-maintenance.md).
+
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
 signed native ten-check smoke and protected checks pass. Isolated native light
 theme JSON tokens are observed; native XML and dark contrast remain unverified.
 #308 is reconciled and its exact archived tip retired. The resulting synthetic
-patient-card NaN finding has a validated source repair pending integration.
+patient-card NaN finding is corrected by #391.
 [Patient detail evidence](maintenance/2026-11-03-patient-detail-age.md).
 
 The maintainer chose to retain provider-addition requests as future product work.
