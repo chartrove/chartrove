@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #382 and individual #88/#193 dispositions.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after382.json).
-The manual-encounter-rows task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #383 and the integrated #104 correction.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after383.json).
+The tslib-maintenance task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `4510e834d6ab977f169c7fd67e13c25683c6114e` (#382) |
-| Open issues | 165, including retained Renovate dashboard #222 |
+| Published application main | `32bf17c3def0d0526ee655a6c96e86ea18ee5eba` (#383) |
+| Open issues | 164, including retained Renovate dashboard #222 |
 | Open PRs | 31: 25 paused Renovate proposals and six historical drafts |
 | Origin heads | 40 |
-| Default branch | main tracks origin/main with equal OIDs; manual-encounter-rows branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; tslib-maintenance branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,17 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #383 fixes manual Encounter descriptions by falling back to serviceType
+while preserving provider type priority. Missing Period endpoints show Not
+provided; raw records and wizard conversion remain unchanged. Nine targeted
+failures become thirteen passing cases with identical test bytes; the full suite
+passes 500 tests with one existing skip. Production/Storybook, ten fresh native
+checks and all protected checks pass. Native UI shows the synthetic row and opens
+the same record, with both raw records unchanged. GitHub closed #104 on integration;
+the exact task head is integrated and retired. #69 remains open. Source-profile
+dark-theme title contrast remains a separate observation.
+[Evidence](maintenance/2026-11-03-manual-encounter-rows.md).
 
 Merged #382 supplies current local data/security guidance, an empty required-key
 example and corrected desktop/toolchain/PostgreSQL prose. #88 is closed as the
@@ -436,16 +447,8 @@ fork support alternatives and explicit production limitations. All three protect
 checks pass; its exact task head is integrated and retired.
 [Scope and disposition boundary](maintenance/2026-11-02-support-documentation.md).
 
-Current patient-profile display correction replaces a non-finite age with Not
-provided, while retaining the numeric getter and zero/adult results. Three actual
-rendering failures become passing with identical test bytes; the full suite passes
-479 tests with one existing skip. Production/Storybook pass, with unchanged Node
-checks strictly reused. Fresh native ZIP/signature and ten checks pass; the
-synthetic profile visibly shows Not provided with its raw DOB still absent.
-Original output metadata and all fixture records are preserved. The separate
-dashboard widget still shows 0 years for this missing-DOB fixture and remains
-actionable. Protected integration remains pending.
-[Scope](maintenance/2026-11-02-patient-age-display.md).
+The source-profile and dashboard missing-age corrections are integrated as
+#378 and #379, respectively, with validation and preservation evidence above.
 
 ## Preservation and branch retirement
 

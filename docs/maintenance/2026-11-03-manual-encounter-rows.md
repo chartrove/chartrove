@@ -40,5 +40,10 @@ Cua call follows close. Tab completed deferred sign-in rendering. Source cards
 and tabs required screenshot-based clicks because action roles were absent.
 The unchanged source-profile banner/title also shows poor dark-theme contrast;
 that separate observation remains a follow-up. No broader theme repair is claimed.
-Protected integration remains pending; #104 stays open.
+Protected PR #383 merged as 32bf17c3def0d0526ee655a6c96e86ea18ee5eba after
+all three required checks passed (Validation run 41587095217). GitHub closed
+#104 on integration; the subsequent disposition comment records the scope and
+limits. The integrated task branch was retired after exact-tip, ancestry and
+open-PR dependency checks. Fresh REST/GraphQL/Git counts are 164 issues, 31 PRs
+and 40 origin heads, with local main alone tracking equal origin/main.
 Raw evidence: `dist/validation/2026-11-01-consolidation/encounter-row-review/`.
