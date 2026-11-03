@@ -48,9 +48,13 @@ ten synthetic native checks. All 22,287 qualified frontend files remain identica
 binary metadata confirms the target x/exp revision. Original output content/stat
 fields and all xattrs restore exactly, with zero provenance changes.
 [Native receipt](native-48db0aba7-validation.json). Protected integration and
-individual #221 reconciliation remain pending. [Exact current and original intake recovery](exp-head-recovery.json).
+individual #221 reconciliation are complete: protected PR #376 merged at
+`9ce3494f9e0d0ff20ae6bbe950d1990ff90ac4c3` after all required checks passed
+in run 41566730282. Historical #221 is closed as implemented. [Exact current and original intake recovery](exp-head-recovery.json).
 The historical tip 88562f34117dbedac29a7df8283ed9f9878f7df5 has a verified
 checksum-recorded bundle with all four unique objects independently proved present
-in its original archive bytes. Its branch remains live pending integration.
+in its original archive bytes. Its exact archived head and the integrated task head were manually retired after
+fresh dependency, expected-tip, ancestry and bundle checks.
+[Retirement receipt](exp-retirement-1.json).
 Raw artifacts and private synthetic results remain under
 `dist/validation/2026-11-01-consolidation/exp-review/`.

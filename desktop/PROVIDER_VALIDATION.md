@@ -2,11 +2,34 @@
 
 This record includes historical Fasten Community artifacts and paths from before the Chartrove rebrand. Keep dated test results and hashes as historical evidence; current packages are named `Chartrove.zip` and `Chartrove.app`.
 
-# Provider connection validation
+## Current validation status
+
+This is a validation inventory for the development preview, not an endpoint
+uptime report or a list of providers authorized for production use.
+
+| Path | Qualified boundary |
+| --- | --- |
+| Local FHIR bundle import | Verified with disposable synthetic records and native file selection/import; individual FHIR and UI defects remain tracked. |
+| Epic sandbox through legacy Lighthouse | The dated isolated protocol check below passed on October 27; the complete normal Angular OAuth/bulk-sync flow is not qualified. |
+| Explicit direct SMART profiles | Opt-in configuration and local synthetic protocol tests; requires an owned registration and callback configuration before any provider use. |
+| Production EHR connections | No Chartrove-owned production provider registration or complete production connection is qualified by this repository's evidence. |
+
+The inherited `healthit.yaml` catalog is historical metadata, not a Chartrove
+production availability guarantee. Do not regenerate it during cleanup. The
+[production assessment](LIGHTHOUSE_REPLACEMENT.md) records the registration and
+service-ownership blockers; sandbox success does not resolve them.
+
+For maintained setup help, use [the desktop guide](README.md),
+[development instructions](../CONTRIBUTING.md), or
+[Chartrove issues](https://github.com/karamhouse/chartrove/issues). Chartrove does
+not maintain upstream's hosted FAQ or Discord invitations. Public reports must
+omit health records, tokens, credentials and identifying details.
+
+## Historical isolated sandbox protocol check
 
 Checked October 27, 2026 using a disposable database and Epic's published synthetic patient. Neither the purchased application's records nor `healthit.yaml` were used.
 
-## Results
+### Results
 
 | Boundary | Result |
 | --- | --- |

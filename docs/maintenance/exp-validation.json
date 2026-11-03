@@ -622,7 +622,14 @@
     },
     "binary_build_info_uses_target_exp": true
   },
-  "protected_integration": "pending required PR checks",
-  "historical_pr221": "live pending protected replacement integration and individual reconciliation",
+  "protected_integration": {
+    "pr": 376,
+    "merge": "9ce3494f9e0d0ff20ae6bbe950d1990ff90ac4c3",
+    "head": "9e0e6beeaa7bf33a325cc3424e6214f325929185",
+    "validation_run": 41566730282,
+    "required_checks": "Backend/Frontend/Desktop all successful, Actions app15368",
+    "historical_pr221": "closed as implemented; exact archived and integrated task heads retired"
+  },
+  "historical_pr221": "individually reconciled as implemented by protected replacement PR376",
   "real_health_records_accessed": false
 }

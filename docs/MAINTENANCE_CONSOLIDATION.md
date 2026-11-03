@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #375 and individual #272 reconciliation.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after375.json).
-The x/exp-maintenance branch is additional and unpublished at
+Snapshot: November 2, 2026, after #376 and individual #221 reconciliation.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after376.json).
+The support-documentation branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `0c55e3d2e349a9679b4bc05abd6e50ab0ca2b0cc` (#375) |
+| Published application main | `9ce3494f9e0d0ff20ae6bbe950d1990ff90ac4c3` (#376) |
 | Open issues | 168, including retained Renovate dashboard #222 |
-| Open PRs | 34: 28 paused Renovate proposals and six historical drafts |
-| Origin heads | 43 |
-| Default branch | main tracks origin/main with equal OIDs; x/exp-maintenance branch is additional |
+| Open PRs | 33: 27 paused Renovate proposals and six historical drafts |
+| Origin heads | 42 |
+| Default branch | main tracks origin/main with equal OIDs; support-documentation branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -368,15 +368,25 @@ original outputs/metadata remain identical. All required checks pass; #272 is
 individually reconciled and both exact reviewed heads are retired.
 [Scope and limits](maintenance/2026-11-02-viper-maintenance.md).
 
-Current x/exp #221 replacement retains the Go 1.26 minimum and database/provider
+Merged #376 implements the x/exp #221 replacement, retaining the Go 1.26 minimum and database/provider
 replacements. Seven query/summary checks pass before/after in both graphs; 116
 upstream used-package tests pass. All 57 isolated generator files and related
 metadata are identical, and both dashboard cache boundary suites pass. Module,
 vet, race, desktop and server checks pass; only x/exp changes in either production
 import closure. Fresh native packaging at 48db0aba7 passes ZIP/signature
 and ten synthetic checks, with all frontend files and original output metadata
-preserved. Protected integration remains pending.
+preserved. All three required checks pass; #221 is individually reconciled and
+both exact reviewed heads are retired.
 [Scope and provenance](maintenance/2026-11-02-exp-maintenance.md).
+
+Current documentation refresh corrects stale README toolchain/CI statements,
+documents the protected PR workflow and post-close native automation guard, and
+separates current provider qualification from dated sandbox protocol evidence.
+All 23 relative links/anchors pass; application/dependency source is unchanged.
+Historical #191 is reviewed for explicit upstream-site retirement with maintained
+fork support alternatives; no closure or production-provider implementation is
+claimed yet. Protected integration remains pending.
+[Scope and disposition boundary](maintenance/2026-11-02-support-documentation.md).
 
 ## Preservation and branch retirement
 
@@ -445,7 +455,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one JWT v5 head](maintenance/jwt-v5-retirement-1.json),
 [one GitHub SDK head](maintenance/github-client-retirement-1.json),
 [one slice-helper head](maintenance/samber-lo-retirement-1.json),
-[one Viper head](maintenance/viper-retirement-1.json).
+[one Viper head](maintenance/viper-retirement-1.json),
+[one experimental-helper head](maintenance/exp-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 Local artifact storage now has an ignored Go module boundary at
