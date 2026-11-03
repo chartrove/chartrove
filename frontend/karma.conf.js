@@ -67,7 +67,10 @@ module.exports = function(config) {
     customLaunchers: {
       ChromeHeadlessCI: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--disable-gpu', '--remote-debugging-port=9333']
+        // Test browsers are short-lived and may be terminated by Karma. Avoid
+        // leaving a macOS signed-app clone after every interrupted test run.
+        flags: ['--no-sandbox', '--disable-gpu', '--remote-debugging-port=9333',
+          '--disable-features=MacAppCodeSignClone']
       },
     },
   });

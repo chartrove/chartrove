@@ -50,3 +50,5 @@ frontend/documentation.json
 out/
 test.go
 vendor
+
+frontend/.chartrove-validation.lock/
