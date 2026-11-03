@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/ghcr.io-devcontainers-features-node-2.x",
+  "tip": "4e80ee0c0b607531397270a205aac7d5f7d9ae0e",
+  "bundle": "dist/validation/2026-11-01-consolidation/node-feature-head-20261103.bundle",
+  "sha256": "23cae80f4599edaaa4e7a4e08ea3819f57cf599e027296f3e5c6e6075544f653",
+  "bytes": 1285,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "1220f9208f8982bebb312e4ae78da31836d71103",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "0583d418d876ff005292449f3033a1afe3282303",
+    "232b00898c858c7113b9a832440934201492b8fe",
+    "375db59e84ae5d4c800ab329cf0766eb626762fd",
+    "4e80ee0c0b607531397270a205aac7d5f7d9ae0e"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/ghcr.io-devcontainers-features-node-2.x",
+      "9d18e902f8b2c4fe9e2ebe0f267ad936a3ccd12e"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

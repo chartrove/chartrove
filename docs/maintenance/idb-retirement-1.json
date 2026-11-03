@@ -1,0 +1,33 @@
+{
+  "time": "2026-11-03T12:49:25.762372+00:00",
+  "main": "42a11084261cc6c1f5cdd82a2295d7571742531e",
+  "branches": [
+    {
+      "name": "renovate/idb-8.x",
+      "sha": "1d528c93182757ade297d9c18e4fa9acf7f55972",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/idb-8.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/retire-unused-idb",
+      "sha": "0330298db96a2854f3a5b700e97fc885a7b70108",
+      "kind": "merged task",
+      "ref": "refs/heads/task/retire-unused-idb",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/idb-8.x\n - [deleted]             task/retire-unused-idb\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/idb-8.x\n - [deleted]             task/retire-unused-idb\n"
+    }
+  }
+}

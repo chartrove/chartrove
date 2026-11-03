@@ -39,3 +39,12 @@ and all ten synthetic native checks. Its 22,289 compiled/reused/native assets
 match exactly. Original output content, stat metadata and xattrs restore exactly.
 ZIP SHA-256 `0121a204e83e9c640379110613f532015edb02b2b1a075ed66b62efd5aec924b`.
 [Native receipt](native-4414fd36a-validation.json).
+
+Integration: #388 merged at `42a11084261cc6c1f5cdd82a2295d7571742531e`
+after all three required checks passed. #303 is individually retired with an
+explicit unimplemented-v8 explanation; its archived historical tip and merged
+task branch were retired after fresh PR dependencies, dry run and exact-tip
+leases. The initial disposition guard used the copied React intake path and
+failed without mutation; the corrected exact original #303 comparison passed.
+[Retirement](idb-retirement-1.json),
+[harness correction](idb-disposition-harness-correction.json).

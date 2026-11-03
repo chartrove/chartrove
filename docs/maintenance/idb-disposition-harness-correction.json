@@ -1,0 +1,6 @@
+{
+  "failure": "disposition preflight compared PR303 with React326 intake due copied helper path",
+  "mutation_executed": false,
+  "qualified_correction": "use idb-review/pr-before.json for PR303; compare exact full original fields before own comment/closure",
+  "original_failed_diagnostic": "preflight output retained; mistakenly written fresh PR303 copy remains in react19-review"
+}
