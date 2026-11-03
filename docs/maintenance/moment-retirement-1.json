@@ -1,0 +1,33 @@
+{
+  "time": "2026-11-03T04:19:25.639793+00:00",
+  "main": "27314645ee2efdeaf969c03d5c248bddf43c83ba",
+  "branches": [
+    {
+      "name": "renovate/moment-2.x-lockfile",
+      "sha": "82065e60dd9f044665fcb1e8e97ea0f6b96c7f7a",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/moment-2.x-lockfile",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/moment-maintenance",
+      "sha": "e5901aac92ff6bc1ab34c7324873ca142f56c85a",
+      "kind": "merged task",
+      "ref": "refs/heads/task/moment-maintenance",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/moment-2.x-lockfile\n - [deleted]             task/moment-maintenance\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]             renovate/moment-2.x-lockfile\n - [deleted]             task/moment-maintenance\n"
+    }
+  }
+}

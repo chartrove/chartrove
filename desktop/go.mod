@@ -11,7 +11,7 @@ require (
 require (
 	dario.cat/mergo v1.0.2 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
-	github.com/Masterminds/semver/v3 v3.4.0 // indirect
+	github.com/Masterminds/semver/v3 v3.5.0 // indirect
 	github.com/Masterminds/sprig/v3 v3.3.0 // indirect
 	github.com/ProtonMail/go-crypto v1.3.0 // indirect
 	github.com/TwiN/deepmerge v0.2.2 // indirect
@@ -29,8 +29,9 @@ require (
 	github.com/dave/jennifer v1.7.1 // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.1 // indirect
 	github.com/dlclark/regexp2 v1.11.5 // indirect
+	github.com/dlclark/regexp2/v2 v2.11.0 // indirect
 	github.com/dominikbraun/graph v0.23.0 // indirect
-	github.com/dop251/goja v0.0.0-20230605162241-28ee0ee714f3 // indirect
+	github.com/dop251/goja v0.0.0-20261031103838-cf2ff0ec0b31 // indirect
 	github.com/f-amaral/go-async v0.3.0 // indirect
 	github.com/fastenhealth/fasten-sources v0.6.25 // indirect
 	github.com/fastenhealth/gofhir-models v0.0.7 // indirect
