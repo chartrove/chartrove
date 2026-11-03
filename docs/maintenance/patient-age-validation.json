@@ -169,7 +169,98 @@
     "birth_date_absent": true,
     "provenance": "known synthetic picker fixture from native datatable acceptance; never a real record directory"
   },
-  "native_validation": "pending",
+  "native_validation": {
+    "source_revision": "3b9e3a55b37c4ada193714cb4279ed9acc53111f",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-3b9e3a55b-patient-age/Chartrove-3b9e3a55b.zip",
+      "sha256": "6bc76124305659d72bb5ec70e015ffdff7b8388fe47ace16a9104ac31aec1d4f",
+      "bytes": 336761194
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "committed_input_revision": "3b9e3a55b37c4ada193714cb4279ed9acc53111f",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/patient-age-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/patient-age-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "42aa6053532e1986c2190b46a5d0ef33c14c076e0e43d72cdcecbf41c3b0605c",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-3b9e3a55b-patient-age/receipt.json",
+    "full_local_receipt_sha256": "00c179ff14a23152768680ee3cf9f906ca3debc772a00e697fa1c18c5f031ecc",
+    "frontend_comparison": {
+      "files": 22287,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "previous_qualified_frontend_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+      "artifact_delta": {
+        "added": [
+          "main.0238dda93ea6baf4.js",
+          "main.0238dda93ea6baf4.js.map"
+        ],
+        "removed": [
+          "main.6d619463bef6f1b7.js",
+          "main.6d619463bef6f1b7.js.map"
+        ],
+        "changed_common": [
+          "index.html"
+        ]
+      }
+    },
+    "native_profile_ui": {
+      "time": "2026-11-03T03:28:01.023989+00:00",
+      "method": "cua-driver through cua_repl; exact task executable, sole PID and explicit private data/cache verified",
+      "pid": 842,
+      "source": "92ee5b7b-9e3a-4d92-bb3b-8c1a1e1b084f",
+      "patient": "chartrove-picker-patient",
+      "fixture_birth_date_absent": true,
+      "visible_profile_age": "Not provided",
+      "profile_has_no_nan_or_invented_zero": true,
+      "final_synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_encounter": 1,
+        "fhir_condition": 1
+      },
+      "seed_and_original_archive_files_unchanged": true,
+      "window_closed_using_fresh_full_ax_close_index": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_call_after_close": true,
+      "startup_diagnostic": {
+        "initial": "background window blank with no AX web content",
+        "log": "sandbox_extension_issue_file_to_process failed; main event loop idle in targeted sample",
+        "action": "title-bar activation produced normal sign-in without source/asset changes",
+        "causal_limit": "activation/render timing observed; sandbox log not established as cause; no application workaround added"
+      },
+      "remaining_dashboard_observation": {
+        "visible": "| 0 years | Unknown",
+        "same_patient_has_no_birth_date": true,
+        "status": "separate existing vitals-widget path remains to reproduce/correct; not fixed by profile formatter"
+      },
+      "real_records_accessed": false
+    }
+  },
   "protected_integration": "pending required PR checks",
   "real_health_records_accessed": false,
   "limits": "existing approximate numeric/calendar calculation, other age formatters, FHIR partial-date policy and persisted records unchanged",

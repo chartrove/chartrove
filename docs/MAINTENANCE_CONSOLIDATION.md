@@ -392,7 +392,11 @@ Current patient-profile display correction replaces a non-finite age with Not
 provided, while retaining the numeric getter and zero/adult results. Three actual
 rendering failures become passing with identical test bytes; the full suite passes
 479 tests with one existing skip. Production/Storybook pass, with unchanged Node
-checks strictly reused. Native UI and protected integration remain pending.
+checks strictly reused. Fresh native ZIP/signature and ten checks pass; the
+synthetic profile visibly shows Not provided with its raw DOB still absent.
+Original output metadata and all fixture records are preserved. The separate
+dashboard widget still shows 0 years for this missing-DOB fixture and remains
+actionable. Protected integration remains pending.
 [Scope](maintenance/2026-11-02-patient-age-display.md).
 
 ## Preservation and branch retirement
@@ -404,7 +408,7 @@ origin fetch stays main-only. Original Chartrove/FastenCommunity ZIP hashes,
 remains `f89ee0c67a049bb3e2b1d698ebd89b3b652c4dcac592547aafd9f1cdc91b50af`.
 Existing bundles, editor settings, Finder snapshots, archives and untracked work
 are retained. Native builds preserve/restore existing output trees before writing.
-Latest restoration (48db0aba7) matches contents, inodes, permissions, ownership,
+Latest restoration (3b9e3a55b) matches contents, inodes, permissions, ownership,
 birth times, mtimes, flags and all xattrs. The preceding 340d02293 build and earlier
 c957 build each recorded three OS-managed provenance attribute changes, with
 exact old/new values preserved; no security-attribute rewrite.
