@@ -44,5 +44,9 @@ and original seed files remain unchanged. The app closes and ps proves process
 absence, with no Cua call after close. Tab keyboard focus exposed WebView content
 at startup and after sign-in; intervening states are recorded without attributing
 a cause or adding an application workaround.
-Protected integration remains pending. #249 and its head stay open/live.
+[PR #380](https://github.com/karamhouse/chartrove/pull/380) merged after all three
+protected checks passed at e5901aac92ff6bc1ab34c7324873ca142f56c85a. #249 is
+individually closed as implemented. The archived exact historical head and
+integrated task head are retired after fresh dependency/reachability/lease checks.
+[Retirement receipt](moment-retirement-1.json).
 Raw evidence: `dist/validation/2026-11-01-consolidation/moment-review/`.

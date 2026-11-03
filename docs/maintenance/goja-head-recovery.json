@@ -1,0 +1,28 @@
+{
+  "branch": "renovate/github.com-dop251-goja-digest",
+  "tip": "3190b3ad9d208415e42446159b22904d75356293",
+  "bundle": "dist/validation/2026-11-01-consolidation/goja-head-20261102.bundle",
+  "sha256": "be06db3433f1910e5630cd3a42b0b7190cd36fff63b6b59372e89bf4d21af993",
+  "bytes": 1709,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "27314645ee2efdeaf969c03d5c248bddf43c83ba",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "3190b3ad9d208415e42446159b22904d75356293",
+    "558e3a7263f0c022d4d9a95814c0a0bdb0ce119a",
+    "70f4e2267c2c48b0bea3f81f1b57977f73283de9",
+    "aec5d2ce7feb0c5f55251cfea74d044f24a1ce35"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks",
+  "original_intake_reference": [
+    [
+      "refs/maintenance-archive/20261101/renovate/github.com-dop251-goja-digest",
+      "f128d3aaad06f50d05abe2c23a1c069abcfca5a0"
+    ]
+  ],
+  "original_intake_bundle": "dist/validation/2026-11-01-consolidation/history.bundle",
+  "original_intake_bundle_sha256": "9f0781f4c5858f7f3f9e9ea2d33f8eb377cd1f8331b0242f7c802b3b408966b1"
+}

@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #379; #191 was individually retired after #377.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after379.json).
-The moment-maintenance branch is additional and unpublished at
-this snapshot. Requery live counts after every integration.
+Snapshot: November 2, 2026, after #380 and individual #249 implementation closure.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after380.json).
+The goja-runtime task branch is additional to this snapshot.
+Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `37deaa9bdd440b0f40cf61799947f5e03129ef54` (#379) |
+| Published application main | `27314645ee2efdeaf969c03d5c248bddf43c83ba` (#380) |
 | Open issues | 167, including retained Renovate dashboard #222 |
-| Open PRs | 33: 27 paused Renovate proposals and six historical drafts |
-| Origin heads | 42 |
-| Default branch | main tracks origin/main with equal OIDs; moment-maintenance branch is additional |
+| Open PRs | 32: 26 paused Renovate proposals and six historical drafts |
+| Origin heads | 41 |
+| Default branch | main tracks origin/main with equal OIDs; goja-runtime branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,16 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #380 implements Moment 2.31.0, preserving unrelated lock bytes and 72
+other direct versions. Frozen install, ten Node checks, 487 browser tests (one
+existing skip), production/Storybook, 3,943 upstream tests/165,058 assertions
+(no skips/todos), actual formatter comparisons in two timezones and fresh native
+ten-check smoke pass. Native UI renders a valid age and dated vital; both raw
+synthetic records remain unchanged. All protected checks pass; #249 is closed as
+implemented and its archived exact head and integrated task head are retired.
+[Evidence](maintenance/2026-11-02-moment-maintenance.md),
+[retirement](maintenance/moment-retirement-1.json).
 
 Merged #378 corrects the source-profile missing-age display. Three DOM regressions
 fail before repair and pass unchanged afterward; valid zero/adult controls remain.
@@ -451,7 +461,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Sixty-four historical origin refs were retired by this agent after individual review,
+Sixty-five historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Ten more (#313, four utility heads, two UUID heads, two declaration heads and
 the parser head) were already absent after closure;
@@ -483,7 +493,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one GitHub SDK head](maintenance/github-client-retirement-1.json),
 [one slice-helper head](maintenance/samber-lo-retirement-1.json),
 [one Viper head](maintenance/viper-retirement-1.json),
-[one experimental-helper head](maintenance/exp-retirement-1.json).
+[one experimental-helper head](maintenance/exp-retirement-1.json),
+[one Moment head](maintenance/moment-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 Local artifact storage now has an ignored Go module boundary at
@@ -529,7 +540,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 27 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 26 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
