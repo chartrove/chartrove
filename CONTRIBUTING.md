@@ -148,6 +148,13 @@ SQLite. Check encrypted headers, wrong-key rejection and cold synthetic database
 reopen across the old/new graphs, as well as the opt-in PostgreSQL fixture.
 Do not use an existing personal database for these checks.
 
+For FHIR model updates, verify the provider SDK interfaces and actual typed JSON
+round-trips for both R4 and R4B, including the top-level resourceType, false/zero,
+Unicode and date offsets. Successful compilation alone is insufficient when JSON
+implementations or struct-tag semantics change. Exercise raw imports and encrypted
+reopen separately, using Number decoding in precision checks. Keep checked-in
+schema models and migrations stable during a dependency-only update.
+
 Choose checks appropriate to the change. Do not relax timeouts, encryption, or test assertions to make a failing check pass. Distinguish a source check from a successful build and a real native UI check.
 
 ## Server signing key

@@ -1,0 +1,20 @@
+{
+  "branch": "renovate/github.com-fastenhealth-gofhir-models-0.x",
+  "tip": "8fefb92c640012524c0f86aab34078f2afb66d0a",
+  "bundle": "dist/validation/2026-11-01-consolidation/gofhir-head-20261103.bundle",
+  "sha256": "a0e485586db360c300ad305cee55cd855156759979bf917ee7f2a51fe87c8539",
+  "bytes": 1427,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "0b6455253299b2f57804cdf6023317e624f30b28",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "0ddcb731a05f0af1633b7b70466cb8b899d1a7a2",
+    "60e4018797e986885e610ce75b84beb58981e4fe",
+    "8fefb92c640012524c0f86aab34078f2afb66d0a",
+    "b473cc073c08707c6180eb2450792c3a3d3c50a0"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks"
+}
