@@ -1,6 +1,8 @@
 import { Component, EmbeddedViewRef, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import {Source} from '../../models/fasten/source';
-import {Router} from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import {ResourceFhir} from '../../models/fasten/resource_fhir';
 import {forkJoin} from 'rxjs';
 import {FastenApiService} from '../../services/fasten-api.service';
@@ -8,8 +10,9 @@ import {LighthouseService} from '../../services/lighthouse.service';
 import { GridStack, GridStackOptions, GridStackWidget } from 'gridstack';
 import {GridstackComponent, NgGridStackOptions} from '../../components/gridstack/gridstack.component';
 import {DashboardConfig} from '../../models/widget/dashboard-config';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {Summary} from '../../models/fasten/summary';
+import {DirectivesModule} from '../../directives/directives.module';
 
 // unique ids sets for each item for correct ngFor updating
 //TODO: fix this
@@ -20,7 +23,8 @@ let ids = 1;
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [CommonModule, FormsModule, RouterModule, NgbModule, GridstackComponent, DirectivesModule],
+    standalone: true
 })
 export class DashboardComponent implements OnInit {
   loading: boolean = false

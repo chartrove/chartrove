@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromD
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MedicalSourcesComponent } from './pages/medical-sources/medical-sources.component';
 import {DirectSmartSourcesComponent} from './components/direct-smart-sources/direct-smart-sources.component';
 import { NgChartsModule } from 'ng2-charts';
@@ -30,7 +29,6 @@ import {PipesModule} from './pipes/pipes.module';
 import { ResourceCreatorComponent } from './pages/resource-creator/resource-creator.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {HTTP_CLIENT_TOKEN} from "./dependency-injection";
-import {WidgetsModule} from './widgets/widgets.module';
 import { ExploreComponent } from './pages/explore/explore.component';
 import {DirectivesModule} from './directives/directives.module';
 import { DesktopCallbackComponent } from './pages/desktop-callback/desktop-callback.component';
@@ -51,7 +49,6 @@ import { GetEncryptionKeyWizardComponent } from './pages/get-encryption-key-wiza
     SettingsComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent,
     MedicalSourcesComponent,
     DirectSmartSourcesComponent,
     ResourceDetailComponent,
@@ -86,7 +83,6 @@ import { GetEncryptionKeyWizardComponent } from './pages/get-encryption-key-wiza
     MomentModule,
     PipesModule,
     InfiniteScrollModule,
-    WidgetsModule,
     DirectivesModule,
     IconsModule,
   ],

@@ -14,8 +14,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [DashboardComponent],
-    imports: [RouterTestingModule, RouterModule, GridstackComponent],
+    imports: [DashboardComponent, RouterTestingModule, RouterModule, GridstackComponent],
     providers: [
         {
             provide: HTTP_CLIENT_TOKEN,
