@@ -110,7 +110,9 @@ export class DashboardComponent implements OnInit {
 
   public gridOptions: NgGridStackOptions = {
     margin: 5,
-    float: false,
+    mode: 'top',
+    // Preserve GridStack 8's implicit <=768px single-column dashboard behavior.
+    columnOpts: { breakpoints: [{ w: 768, c: 1 }] },
     minRow: 1,
     acceptWidgets: false,
     alwaysShowResizeHandle: true,

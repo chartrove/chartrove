@@ -8,19 +8,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #391.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after391.json).
-The chartjs-4-maintenance task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #392 and individual #238 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after392.json).
+The gridstack-14-compatibility task branch is additional to this historical snapshot.
 The separately owned artifact-retention branch/worktree remains preserved.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `66c7032cc0d34a104d613b76abf1fdfa7f2f3f48` (#391) |
+| Published application main | `d401de996a5d8cce5adc91829aedc046df539d08` (#392) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 23: 17 paused Renovate proposals and six historical drafts |
-| Origin heads | 30 |
-| Default branch | main tracks origin/main; current Chart.js task is additional |
+| Open PRs | 22: 16 paused Renovate proposals and six historical drafts |
+| Origin heads | 29 |
+| Default branch | main tracks origin/main; current GridStack task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -37,6 +37,32 @@ implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
 
+Merged #392 updates Chart.js to 4.6.1 and its color leaf to 0.3.4 with two erased
+widget type-parameter corrections. Identical real canvas consumers pass old/new;
+frozen install and published integrity checks pass. Protected Backend/Frontend/
+Desktop checks pass. The first Desktop job failed before tests on a Go proxy
+download timeout; its retained log qualifies the successful isolated retry.
+#238 is individually reconciled and its exact archived tip/task branch retired.
+No fresh local full production/Storybook/native package was built below the
+50 GiB reserve; CI provides full browser/production and native Go checks. Last
+locally packaged native source remains 33c64fbdb, before this runtime-library
+update, and must not be presented as a new Chart.js package.
+[Scope and limits](maintenance/2026-11-03-chartjs-4-maintenance.md).
+
+The overlapping GridStack #302/#243 proposals now have exact-tip recovery bundles
+and a corrected v14 candidate. Identical final adapter cases pass old/new,
+including rendered pixels, zero/false configuration, public edit state, callbacks
+and responsive restoration. Host free space is about 40 GiB; full local admission
+remains blocked. [Scope and retained failures](maintenance/2026-11-03-gridstack-14.md).
+
+Each historical feature draft now has a source-admission review, with concrete
+unmerged auth/data/service gaps and preserved capabilities. A strict verified
+bundle covers all 2,586 unique objects; exact base OIDs recover from preserved
+main even where they are not head ancestors. All six drafts remain open;
+no feature is falsely implemented or blanket-retired.
+[Individual review](maintenance/2026-11-03-historical-feature-admission.md),
+[recovery proof](maintenance/remaining-features-recovery.json).
+
 Merged #391 preserves patient detail missing-date/age display, the original
 artifact-retention commit and a tested cross-filesystem documentation preservation
 correction. Backend/Frontend/Desktop checks pass, including all 16 Node cases in
@@ -47,13 +73,9 @@ cleanup/adoption is complete and must not be repeated.
 [Patient evidence](maintenance/2026-11-03-patient-detail-age.md),
 [retention adoption](maintenance/2026-11-03-retention-adoption.md).
 
-The next bounded batch reviews Chart.js #238 separately from ng2-charts #307.
-Its direct update exposed stricter generic types; two erased bar/line type
-arguments restore compilation. Identical real chart consumers pass on old/new
-versions. Host space is about 42 GiB: full local workflows remain below admission,
-so protected CI must supply full browser/production/native Go checks; local
-focused checks do not bypass the 50 GiB reserve.
-[Scope, recovery and unverified native UI](maintenance/2026-11-03-chartjs-4-maintenance.md).
+The separate ng2-charts #307 major migration remains pending; #392 does not
+implement its new wrapper APIs. Local focused checks do not bypass full-run
+storage admission, and no storage cleanup or retention adoption is repeated.
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
@@ -682,7 +704,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 17 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 16 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
