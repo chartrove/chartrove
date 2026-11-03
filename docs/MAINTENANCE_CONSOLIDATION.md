@@ -9,20 +9,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #400 and individual #301/#241 dispositions.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after400.json).
-The lforms-44 task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #401 and individual #306/#248 dispositions.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after401.json).
+The dwv-036 task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `3fbaabd01fb1ebade6d72ed5003ceeb64773b893` (#400) |
+| Published application main | `7ed562fe4b4b98f720508a333cd2d111449072ba` (#401) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 9: three paused Renovate proposals and six historical drafts |
-| Origin heads | 17, including the held cache owner ref |
-| Default branch | main tracks origin/main; current LForms task is additional |
+| Open PRs | 7: one paused Renovate proposal and six historical drafts |
+| Origin heads | 15, including the held cache owner ref |
+| Default branch | main tracks origin/main; current DWV task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -179,17 +179,36 @@ native UI acceptance or below-reserve full build is claimed.
 [CI](maintenance/fhirpath-ci-validation.json),
 [retirement](maintenance/fhirpath-retirement.json).
 
-The LForms replacement reviews #306's44.2.0 against #248's34.4.0 overlap.
-Identical final15-case controls pass actual old/new widget assets in a private
-realm plus unchanged wizard lifecycle cases, covering zero/unit/Unicode, required
-fields, real input changes and isolated transaction references. Initial mixed
-real/mock host failures are qualified as insufficient product-defect evidence;
-no false bug fix is claimed. All43candidate packages/15,180files match verified
-published archives;307actual dependency edges satisfy ranges, frozen install is
-exact and all30retired version pairs are covered by119archived contexts. App
-Angular22/TypeScript6/Zone0.16/direct FHIRPath5 remain unchanged. Both originals
-stay open until protected integration and individual disposition. #186's unsafe
-lab raw replacement remains unresolved. [Scope](maintenance/2026-11-03-lforms-44.md).
+Merged #401 implements #306's LForms44.2.0 and supersedes #248's34.4.0;
+no34.4installation or lab raw-replacement fix is claimed. Identical final15-case
+controls pass byte-verified actual old/new widget assets and unchanged wizard
+lifecycle cases. Initial mixed real/mock host failures remain qualified, not
+presented as product fixes. All43candidate packages/15,180files and307actual
+required edges verify; frozen install is exact and all30retired version pairs
+are covered by119restore-verified original contexts. App Angular22/TypeScript6/
+Zone0.16/directFHIRPath5 stay unchanged. Final protected and independent main-push
+checks pass:556browser cases, one skip,16Node checks,6.05MB initial output.
+Both archived original tips and merged task ref are retired after exact content/
+consumer/ownership checks; both independent owners remain held. Historical manual
+retirements total89;13absent heads remain actor unknown. #186 stays unresolved.
+[Scope](maintenance/2026-11-03-lforms-44.md),
+[CI](maintenance/lforms-ci-validation.json),
+[retirement](maintenance/lforms-retirement.json).
+
+The #240 replacement reviews DWV0.31→0.36.4 with its Konva/JSZip/shim family;
+all205published files and16actual dependency edges verify, all other installed
+version pairs/lock blocks stay exact, and frozen installation is exact. Typed
+component APIs and build/test/Storybook worker asset mappings replace removed
+exports and the obsolete decoder layout. Independent old/new uncompressed/RLE
+exact-pixel and canvas controls pass after mapping the unchanged new workers.
+Focused macOS nonpersistent WebKit controls also pass both formats/module worker;
+no fresh packaged Wails application is claimed. Five initial old/new consumer
+cases retain their resize/metadata failure controls; final seven cases pass,
+including source preservation, orientation controls and malformed-input status.
+Initial metadata and Angular lifecycle adapter mistakes remain fully documented.
+No cross-record mixing or 3D clinical-accuracy fix is claimed. Original #240 stays
+open pending protected integration; both independent owners remain held.
+[Scope](maintenance/2026-11-03-dwv-036.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,

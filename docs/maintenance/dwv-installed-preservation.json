@@ -1,0 +1,15 @@
+{
+  "archive": "dist/validation/2026-11-01-consolidation/dwv-installed-before-20261103.tar",
+  "sha256": "f52273cb1cafe4f9989bbd2f3d2abcebda1802ee80f4a7a4ead53950fcd51b63",
+  "bytes": 7328256,
+  "entries": 481,
+  "all_extracted_payloads_exact": true,
+  "source_content_stat_xattrs_unchanged": true,
+  "metadata_differences": 0,
+  "extracted_xattrs_exact": false,
+  "xattr_differences_only_system_provenance": true,
+  "system_provenance_changes": 480,
+  "original_xattr_hex_manifest": "dist/validation/2026-11-01-consolidation/dwv-review/installed-original-xattrs.json",
+  "verification_scratch_disposed": true,
+  "scope": "Original DWV0.31 and every resolved dependency context including nested packages and Yarn metadata; no source/package/cache/dependency deleted by archive operation"
+}

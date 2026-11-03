@@ -1,0 +1,44 @@
+{
+  "pr": 401,
+  "head": "e08b55434cf3fca2eabe3d62f399fe03af17c2c5",
+  "merge": "7ed562fe4b4b98f720508a333cd2d111449072ba",
+  "run": 41737316811,
+  "Backend": "success",
+  "Frontend": "success",
+  "Desktop": "success",
+  "browser_pass": 556,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.05 MB",
+  "unchanged_budget": "10 MB",
+  "complete_job_logs": [
+    {
+      "name": "frontend",
+      "job": 126269722754,
+      "sha256": "371778c2bb2d7b86c7e107760d92ed75731376e8766da9f1138896c7ead405d6",
+      "bytes": 122065,
+      "download_exit": 0
+    },
+    {
+      "name": "desktop",
+      "job": 126269723151,
+      "sha256": "dd86d14d8ac868f78c8c321780fb202fa0837cb0189098d3ff0587568bcbeaca",
+      "bytes": 53955,
+      "download_exit": 0
+    },
+    {
+      "name": "backend",
+      "job": 126269723160,
+      "sha256": "abfb87ddf0e58b54f155d6797c67dd99f720414468315b2be2c0f7c86352f185",
+      "bytes": 37286,
+      "download_exit": 0
+    }
+  ],
+  "native": "No fresh packaged local wizard; original widget contract and existing wizard unit boundary qualified.",
+  "independent_main_push_checks": {
+    "Backend": "success",
+    "Frontend": "success",
+    "Desktop": "success",
+    "raw": "dist/validation/2026-11-01-consolidation/lforms-family-review/main-check-runs-after401.json"
+  }
+}

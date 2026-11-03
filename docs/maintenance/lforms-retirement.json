@@ -1,0 +1,42 @@
+{
+  "owner_angular_cache_retention_untouched": true,
+  "time": "2026-11-03T23:21:18.100050+00:00",
+  "main": "7ed562fe4b4b98f720508a333cd2d111449072ba",
+  "branches": [
+    {
+      "name": "renovate/lforms-44.x",
+      "sha": "a6074a8ef993a8170e24338fc03a1abf0251502c",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/lforms-44.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "renovate/lforms-34.x",
+      "sha": "babd57e6b3c64b79988750da8f89215287ef9f1d",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/lforms-34.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/lforms-44",
+      "sha": "e08b55434cf3fca2eabe3d62f399fe03af17c2c5",
+      "kind": "merged task",
+      "ref": "refs/heads/task/lforms-44",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/lforms-34.x\n - [deleted]               renovate/lforms-44.x\n - [deleted]               task/lforms-44\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/lforms-34.x\n - [deleted]               renovate/lforms-44.x\n - [deleted]               task/lforms-44\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true
+}

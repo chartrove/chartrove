@@ -1,0 +1,402 @@
+{
+  "original_pr": 240,
+  "adopted_target_pending_protected_integration": "0.36.4",
+  "dependency_scope": {
+    "changes": [
+      {
+        "old": "dwv@^0.31.0",
+        "new": "dwv@^0.36.0",
+        "version": "0.36.4"
+      },
+      {
+        "old": "konva@~8.3.0",
+        "new": "konva@~10.2.0",
+        "version": "10.2.5"
+      },
+      {
+        "old": "jszip@~3.7.0",
+        "new": "jszip@^3.10.1",
+        "version": "3.10.2"
+      },
+      {
+        "old": "set-immediate-shim@~1.0.1",
+        "new": "setimmediate@^1.0.5",
+        "version": "1.0.5"
+      }
+    ],
+    "all_other_lock_blocks_exact": true,
+    "other_direct_manifest_declarations_unchanged": true,
+    "no_install_hooks": true,
+    "orphan_shim_retired_after_only_consumer_changed": true,
+    "live_files_unchanged": true
+  },
+  "frozen_install": {
+    "command": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=corepack@0.35.0",
+      "--",
+      "corepack",
+      "yarn",
+      "install",
+      "--frozen-lockfile",
+      "--registry",
+      "https://registry.npmjs.org",
+      "--network-concurrency",
+      "4"
+    ],
+    "exit": 0,
+    "seconds": 75.36,
+    "manifest_lock_sha256_before": {
+      "package.json": "fa0eb81b5742a8a75cf079f2477e17a46bd123a450e08d7e24ca05d46d80aac6",
+      "yarn.lock": "31cdbdfd9627a16128bb596ffd0dc11452feca97ef81e79a6144203ed0a0dfde"
+    },
+    "manifest_lock_sha256_after": {
+      "package.json": "fa0eb81b5742a8a75cf079f2477e17a46bd123a450e08d7e24ca05d46d80aac6",
+      "yarn.lock": "31cdbdfd9627a16128bb596ffd0dc11452feca97ef81e79a6144203ed0a0dfde"
+    },
+    "unchanged": true
+  },
+  "installed_delta": {
+    "introduced": [
+      [
+        "dwv",
+        "0.36.4"
+      ],
+      [
+        "jszip",
+        "3.10.2"
+      ],
+      [
+        "konva",
+        "10.2.5"
+      ],
+      [
+        "setimmediate",
+        "1.0.5"
+      ]
+    ],
+    "retired": [
+      [
+        "dwv",
+        "0.31.0"
+      ],
+      [
+        "jszip",
+        "3.7.1"
+      ],
+      [
+        "konva",
+        "8.3.14"
+      ],
+      [
+        "set-immediate-shim",
+        "1.0.1"
+      ]
+    ],
+    "all_retired_pairs_in_verified_old_archive": true,
+    "other_installed_name_version_pairs_unchanged": true
+  },
+  "published_payloads": [
+    {
+      "name": "dwv",
+      "version": "0.36.4",
+      "locations": [
+        "dwv"
+      ],
+      "files": 20,
+      "all_match": true
+    },
+    {
+      "name": "konva",
+      "version": "10.2.5",
+      "locations": [
+        "konva"
+      ],
+      "files": 129,
+      "all_match": true
+    },
+    {
+      "name": "jszip",
+      "version": "3.10.2",
+      "locations": [
+        "jszip"
+      ],
+      "files": 53,
+      "all_match": true
+    },
+    {
+      "name": "setimmediate",
+      "version": "1.0.5",
+      "locations": [
+        "setimmediate"
+      ],
+      "files": 3,
+      "all_match": true
+    }
+  ],
+  "all_four_archive_sha1_sha512_reverified": true,
+  "actual_edge_admission": {
+    "contexts": 16,
+    "edges": 16,
+    "all_ranges_satisfied": true,
+    "node": "26.13.0"
+  },
+  "license": {
+    "original_sha256": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+    "candidate_sha256": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+    "exact": true,
+    "license": "GPL-3.0"
+  },
+  "old_five_case_consumer": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts"
+    ],
+    "versions": {
+      "dwv": "0.31.0",
+      "konva": "8.3.14",
+      "jszip": "3.7.1",
+      "lforms": "44.2.0"
+    },
+    "exit": 1,
+    "spec_sha256": {
+      "frontend/src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts": "27484465394a3b594a3e2f5936ae91639068b0b0be22701ec0a65f7965d3212a"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 24563359744,
+    "freeAfterCommandBytes": 24534151168,
+    "freeAfterCleanupBytes": 24564137984,
+    "freeDeltaBytes": 778240,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "old_five_case_result": "4pass/1fail: missing resize teardown. No cross-record mixing claim.",
+  "first_new_adapter": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts"
+    ],
+    "versions": {
+      "dwv": "0.36.4",
+      "konva": "10.2.5",
+      "jszip": "3.10.2",
+      "lforms": "44.2.0"
+    },
+    "exit": 1,
+    "spec_sha256": {
+      "frontend/src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts": "27484465394a3b594a3e2f5936ae91639068b0b0be22701ec0a65f7965d3212a"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 24544067584,
+    "freeAfterCommandBytes": 24503668736,
+    "freeAfterCleanupBytes": 24533909504,
+    "freeDeltaBytes": -10158080,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "first_new_adapter_result": "3pass/2metadata failures: primitive values incorrectly spread. Root asset warning and metadata mapping corrected.",
+  "corrected_five_case_consumer": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts"
+    ],
+    "versions": {
+      "dwv": "0.36.4",
+      "konva": "10.2.5",
+      "jszip": "3.10.2",
+      "lforms": "44.2.0"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts": "27484465394a3b594a3e2f5936ae91639068b0b0be22701ec0a65f7965d3212a"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 24541249536,
+    "freeAfterCommandBytes": 24504090624,
+    "freeAfterCleanupBytes": 24534282240,
+    "freeDeltaBytes": -6967296,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "final_seven_case_consumer": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts"
+    ],
+    "versions": {
+      "dwv": "0.36.4",
+      "konva": "10.2.5",
+      "jszip": "3.10.2",
+      "lforms": "44.2.0"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/components/fhir-card/datatypes/dicom/dicom.component.spec.ts": "41c0640c89e8c4e62d46e4306ea7bba0c972f1d0764c6d0c57dd988752a39f83"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 24501530624,
+    "freeAfterCommandBytes": 24476278784,
+    "freeAfterCleanupBytes": 24506728448,
+    "freeDeltaBytes": 5197824,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "additional_final_cases": "Three orientation cycles and malformed encoded-input safe status with source preserved. Initial6pass/1NG0100 fixed by publishing only synchronous init errors after first view check; completion-aware test waits normally.",
+  "qualifications": {
+    "unadapted_types": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.app.json",
+        "--noEmit"
+      ],
+      "exit": 2,
+      "seconds": 8.39,
+      "runtime_assertions_executed": false,
+      "coordination_note": "Prior attempt stopped before opening log or starting tsc because install receipt was not yet present; dependency admission waited for actual install completion."
+    },
+    "first_adapter": {
+      "new_control": "All5cases ran,2metadata failures; pixel/worker/unit/raw/tool/teardown cases otherwise pass.",
+      "root_cause": "getAsSimpleElements returns keyword-to-value primitives, not structured DataElement objects. Spreading strings split their characters; correction stores {name,value}.",
+      "layer_id": "Honor the library layerGroup prefix while keeping unique component IDs; initial arbitrary prefix emitted warnings.",
+      "spec_unchanged": true
+    },
+    "lifecycle": {
+      "stage": "final-component-consumer",
+      "executed": 7,
+      "passed": 6,
+      "failed": 1,
+      "error": "NG0100 from publishing a synchronous invalid-base64 error during AfterViewInit.",
+      "correction": "Queue only synchronous initialization-error UI publication after first view check, guarded against destruction. Test waits for normal stability before unchanged safe-error/disabled-tools/source assertions.",
+      "orientation": "Three orientation control cycles pass; no 3D clinical-accuracy claim."
+    },
+    "initial_worker_failure": {
+      "status": "unresolved new RLE worker in initial admission",
+      "evidence": "v0.36.4 new Worker(new URL(..., document.baseURI)) requests document-root assets/workers; old decoders mapping is removed. Uncompressed0.31/0.36 and RLE0.31 pass exact pixel/canvas controls.",
+      "next": "Serve actual candidate workers at the required app asset path and repeat unchanged fixture/pixel controls. No production source or installed DWV graph changed."
+    }
+  },
+  "independent_browser_renderer": {
+    "raw": "renderer-correct-worker-assets",
+    "all_four_combinations_pass": true,
+    "pixel_values_exact": true,
+    "canvas_contrast": true,
+    "scratch_disposed": true
+  },
+  "focused_macOS_webkit": {
+    "raw": "native-webkit-admission",
+    "environment": {
+      "macOS": "27.2",
+      "build": "26B123",
+      "machine": "arm64",
+      "clang": "Apple clang version 21.0.0 (clang-2100.4.1.1)",
+      "focused_source_sha256": "500b09ec2d7f66518d2870fa680dedd4d659b40e50120b25f2273195485ed34f",
+      "scope": "Source/runtime environment of completed focused test; no new build or runtime rerun."
+    },
+    "engine": "macOS system WKWebView with a nonpersistent website data store",
+    "scope": "Focused engine pixel/module-worker proof only; not a fresh packaged Wails UI or full build. No real record/profile/purchased application opened.",
+    "native_compile_exit": 0,
+    "test_count": 2,
+    "all_exit0_exact_pixels_and_visible_canvas": true,
+    "scratch_disposed": true,
+    "process_pool_qualification": "The harness sets a processPool, but current macOS headers explicitly deprecate it as having no effect. No dedicated-pool isolation is claimed; nonpersistent website data and separate harness process provide the intended profile boundary.",
+    "freeBeforeBytes": 24535891968,
+    "freeAfterCleanupBytes": 24534900736
+  },
+  "synthetic_fixtures": {
+    "no_real_records_or_public_patient_images": true,
+    "patient_name": "SYNTHETIC^CHARTROVE",
+    "fixtures": [
+      {
+        "path": "synthetic-explicit-le.dcm",
+        "bytes": 1370,
+        "sha256": "f38824781a0acf260ea0588ac04fb766428a0e8dfae2ce686683d446cf3624c7",
+        "transfer_syntax": "Explicit VR Little Endian",
+        "independently_encoded": true,
+        "rows": 16,
+        "columns": 16,
+        "pixel_values_repeating": [
+          0,
+          128,
+          512,
+          1023
+        ],
+        "pixel_spacing_mm": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "path": "synthetic-rle.dcm",
+        "bytes": 1466,
+        "sha256": "55b827e3256b0e3b8210827f22f6577388f59ff7c9aa5609cd52eed76a8615b1",
+        "transfer_syntax": "RLE Lossless",
+        "independently_encoded": true,
+        "rows": 16,
+        "columns": 16,
+        "pixel_values_repeating": [
+          0,
+          128,
+          512,
+          1023
+        ],
+        "pixel_spacing_mm": [
+          0.5,
+          0.5
+        ]
+      }
+    ]
+  },
+  "final_source_sha256": {
+    "frontend/angular.json": "7e858b3979fa5622ffb0dde8d2a21b681b11ca91d05b8eaf95566b9824f0b59b",
+    "frontend/src/app/components/fhir-card/datatypes/dicom/dicom.component.ts": "cf637a316be3c3794501c874dbaf67e08afcd7a34a1335536b3aa27bce49313b",
+    "frontend/src/app/components/fhir-card/datatypes/dicom/dicom.component.html": "7c8f07fca7b990aaafea6f0dbb29fdb6e22fbe2fd2023659980016e1eb9c3aa1",
+    "frontend/src/app/components/fhir-card/datatypes/dicom/dicom.component.scss": "0dfe7574088d54eb385e8088b25458e6de115f0ed4c44e1710ba272b16b4ef31"
+  },
+  "storage": "Cache=false; focused tests use own disposed scratch. No full local application build under50GiB, backup/cache/data pruning or original owner retirement.",
+  "native_full_package": "Last fully qualified local source33c64fbdb predates dependency work; focused WebKit proof does not replace a fresh packaged Wails UI qualification.",
+  "protected_checks": "Mandatory Backend/Frontend/Desktop on final published head, no bypass. Original #240 remains open until guarded integration/disposition.",
+  "final_app_types": {
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--project",
+      "tsconfig.app.json",
+      "--noEmit"
+    ],
+    "exit": 0,
+    "seconds": 8.88
+  },
+  "final_format_qualification": "A whitespace-only empty HTML line was trimmed after the final browser run; rendered markup and assertions are unchanged. Protected CI will cover committed source."
+}

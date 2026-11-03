@@ -1,0 +1,21 @@
+{
+  "branch": "renovate/dwv-0.x",
+  "tip": "bfa0fd568c63bcc4a21fb89bc35ff8fda071d347",
+  "bundle": "dist/validation/2026-11-01-consolidation/dwv-head-20261103.bundle",
+  "sha256": "92d861ef8cf205a2cba09b947e461543b0ae3104c0d4dceea78bf776848a1cd4",
+  "bytes": 1887,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "3fbaabd01fb1ebade6d72ed5003ceeb64773b893",
+  "strict_pack_validation": "passed with primary object alternates; all required unique objects independently proved present in original archive bytes by pack offsets",
+  "required_objects": [
+    "275993ac6679964e049211925053c183d4e0939e",
+    "4d9ac5ac1ff33e3f03250257c0b5d38ed98f565b",
+    "9b3d03285ec28524fd2bb1b9788a03e059826296",
+    "b6a126a7eed3514e1b12a5bd10651b24b5f293f5",
+    "bfa0fd568c63bcc4a21fb89bc35ff8fda071d347"
+  ],
+  "required_objects_included": true,
+  "intended_disposition": "review isolated dependency patch through protected-main replacement; historical branch stays live pending integration and fresh dependency checks"
+}
