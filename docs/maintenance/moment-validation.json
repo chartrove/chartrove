@@ -1,0 +1,473 @@
+{
+  "time": "2026-11-03T04:05:20.356073+00:00",
+  "scope": "Moment lock selection 2.29.4 to 2.31.0; package manifest and all unrelated lock bytes unchanged",
+  "historical_pr": 249,
+  "historical_head": "82065e60dd9f044665fcb1e8e97ea0f6b96c7f7a",
+  "base_main": "37deaa9bdd440b0f40cf61799947f5e03129ef54",
+  "lock_replacement": {
+    "only_block": "moment@^2.29.4",
+    "original_sha256": "9d802806e46bff9f0da704fbf2381f911d92839de59d96608a6160025af582e7",
+    "candidate_sha256": "4903db9082c42826c048f592253842fae2c79fd0d40b7adc637ba96d003f3b42",
+    "all_other_lock_bytes_retained": true,
+    "package_manifest_unchanged": true
+  },
+  "direct_versions": {
+    "before": {
+      "@angular-devkit/architect": "0.2202.5",
+      "@angular-devkit/build-angular": "22.2.5",
+      "@angular-devkit/core": "22.2.5",
+      "@angular/animations": "22.2.4",
+      "@angular/cdk": "22.2.5",
+      "@angular/cli": "22.2.5",
+      "@angular/common": "22.2.4",
+      "@angular/compiler": "22.2.4",
+      "@angular/compiler-cli": "22.2.4",
+      "@angular/core": "22.2.4",
+      "@angular/forms": "22.2.4",
+      "@angular/language-service": "22.2.4",
+      "@angular/localize": "22.2.4",
+      "@angular/platform-browser": "22.2.4",
+      "@angular/platform-browser-dynamic": "22.2.4",
+      "@angular/router": "22.2.4",
+      "@babel/core": "7.29.7",
+      "@compodoc/compodoc": "2.0.0",
+      "@fortawesome/angular-fontawesome": "5.1.0",
+      "@fortawesome/fontawesome-free": "7.3.1",
+      "@fortawesome/fontawesome-svg-core": "7.3.1",
+      "@fortawesome/free-regular-svg-icons": "7.3.1",
+      "@fortawesome/free-solid-svg-icons": "7.3.1",
+      "@microsoft/fetch-event-source": "2.0.1",
+      "@ng-bootstrap/ng-bootstrap": "21.0.0",
+      "@ng-select/ng-select": "23.11.0",
+      "@popperjs/core": "2.11.8",
+      "@storybook/addon-docs": "10.6.5",
+      "@storybook/addon-links": "10.6.5",
+      "@storybook/angular": "10.6.5",
+      "@swimlane/ngx-datatable": "20.1.0",
+      "@types/fhir": "0.0.44",
+      "@types/jasmine": "4.6.6",
+      "@types/node": "26.6.6",
+      "@types/qrcode": "1.5.6",
+      "@types/react": "18.3.31",
+      "@webcomponents/webcomponentsjs": "2.8.0",
+      "asmcrypto.js": "2.3.2",
+      "bootstrap": "5.3.8",
+      "chart.js": "4.4.2",
+      "dwv": "0.31.0",
+      "fhirpath": "3.3.1",
+      "fishery": "2.4.0",
+      "gridstack": "8.1.1",
+      "idb": "7.1.1",
+      "istanbul-lib-instrument": "6.0.3",
+      "jasmine-core": "4.6.0",
+      "jose": "4.11.2",
+      "karma": "6.4.4",
+      "karma-chrome-launcher": "3.2.0",
+      "karma-coverage": "2.2.1",
+      "karma-jasmine": "5.1.0",
+      "karma-jasmine-html-reporter": "2.3.0",
+      "karma-verbose-reporter": "0.0.8",
+      "lforms": "34.0.0",
+      "moment": "2.29.4",
+      "ng2-charts": "4.1.1",
+      "ngx-dropzone": "3.1.0",
+      "ngx-highlightjs": "7.0.1",
+      "ngx-infinite-scroll": "22.0.0",
+      "ngx-moment": "6.0.2",
+      "oauth4webapi": "1.2.1",
+      "parse-full-name": "1.2.7",
+      "qrcode": "1.5.4",
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "rtf.js": "3.0.9",
+      "rxjs": "7.8.2",
+      "storybook": "10.6.5",
+      "tslib": "2.4.1",
+      "typescript": "6.0.3",
+      "webcrypto-liner": "1.4.3",
+      "zone.js": "0.16.3"
+    },
+    "after": {
+      "@angular-devkit/architect": "0.2202.5",
+      "@angular-devkit/build-angular": "22.2.5",
+      "@angular-devkit/core": "22.2.5",
+      "@angular/animations": "22.2.4",
+      "@angular/cdk": "22.2.5",
+      "@angular/cli": "22.2.5",
+      "@angular/common": "22.2.4",
+      "@angular/compiler": "22.2.4",
+      "@angular/compiler-cli": "22.2.4",
+      "@angular/core": "22.2.4",
+      "@angular/forms": "22.2.4",
+      "@angular/language-service": "22.2.4",
+      "@angular/localize": "22.2.4",
+      "@angular/platform-browser": "22.2.4",
+      "@angular/platform-browser-dynamic": "22.2.4",
+      "@angular/router": "22.2.4",
+      "@babel/core": "7.29.7",
+      "@compodoc/compodoc": "2.0.0",
+      "@fortawesome/angular-fontawesome": "5.1.0",
+      "@fortawesome/fontawesome-free": "7.3.1",
+      "@fortawesome/fontawesome-svg-core": "7.3.1",
+      "@fortawesome/free-regular-svg-icons": "7.3.1",
+      "@fortawesome/free-solid-svg-icons": "7.3.1",
+      "@microsoft/fetch-event-source": "2.0.1",
+      "@ng-bootstrap/ng-bootstrap": "21.0.0",
+      "@ng-select/ng-select": "23.11.0",
+      "@popperjs/core": "2.11.8",
+      "@storybook/addon-docs": "10.6.5",
+      "@storybook/addon-links": "10.6.5",
+      "@storybook/angular": "10.6.5",
+      "@swimlane/ngx-datatable": "20.1.0",
+      "@types/fhir": "0.0.44",
+      "@types/jasmine": "4.6.6",
+      "@types/node": "26.6.6",
+      "@types/qrcode": "1.5.6",
+      "@types/react": "18.3.31",
+      "@webcomponents/webcomponentsjs": "2.8.0",
+      "asmcrypto.js": "2.3.2",
+      "bootstrap": "5.3.8",
+      "chart.js": "4.4.2",
+      "dwv": "0.31.0",
+      "fhirpath": "3.3.1",
+      "fishery": "2.4.0",
+      "gridstack": "8.1.1",
+      "idb": "7.1.1",
+      "istanbul-lib-instrument": "6.0.3",
+      "jasmine-core": "4.6.0",
+      "jose": "4.11.2",
+      "karma": "6.4.4",
+      "karma-chrome-launcher": "3.2.0",
+      "karma-coverage": "2.2.1",
+      "karma-jasmine": "5.1.0",
+      "karma-jasmine-html-reporter": "2.3.0",
+      "karma-verbose-reporter": "0.0.8",
+      "lforms": "34.0.0",
+      "moment": "2.31.0",
+      "ng2-charts": "4.1.1",
+      "ngx-dropzone": "3.1.0",
+      "ngx-highlightjs": "7.0.1",
+      "ngx-infinite-scroll": "22.0.0",
+      "ngx-moment": "6.0.2",
+      "oauth4webapi": "1.2.1",
+      "parse-full-name": "1.2.7",
+      "qrcode": "1.5.4",
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "rtf.js": "3.0.9",
+      "rxjs": "7.8.2",
+      "storybook": "10.6.5",
+      "tslib": "2.4.1",
+      "typescript": "6.0.3",
+      "webcrypto-liner": "1.4.3",
+      "zone.js": "0.16.3"
+    },
+    "changed": {
+      "moment": {
+        "before": "2.29.4",
+        "after": "2.31.0"
+      }
+    },
+    "unchanged_other_direct_versions": 72,
+    "installed_runtime_byte_identical_to_verified_published_package": true
+  },
+  "frozen_install": {
+    "command": [
+      "npm",
+      "exec",
+      "--yes",
+      "--package=corepack@0.35.0",
+      "--",
+      "corepack",
+      "yarn",
+      "install",
+      "--frozen-lockfile",
+      "--registry",
+      "https://registry.npmjs.org",
+      "--network-concurrency",
+      "4"
+    ],
+    "start": "2026-11-03T03:57:05.338513+00:00",
+    "end": "2026-11-03T03:57:10.470879+00:00",
+    "exit": 0
+  },
+  "upstream": {
+    "source": {
+      "revision": "15b45d48a176312e8f34143c5a800090abf4787f",
+      "archive_sha256": "6ac820f06b3bf571dabbb6f4dd3baaa6cd8c5c0b2423822ae2784b5a2f1e8e21",
+      "source": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/moment-review/upstream-source/moment-moment-15b45d4",
+      "source_git_repository": false,
+      "source_worktree": false,
+      "tag": "2.31.0"
+    },
+    "source_integrity": {
+      "all_original_archive_files_remain_byte_identical": true,
+      "regular_files": 822,
+      "extra_build_outputs": "generated by unmodified upstream scripts/test.js, retained separately inside source snapshot"
+    },
+    "published_runtime_equals_tagged_runtime": true,
+    "full_unmodified_test_command": [
+      {
+        "name": "upstream-test-deps",
+        "command": [
+          "npm",
+          "install",
+          "--ignore-scripts",
+          "--no-audit",
+          "--no-fund"
+        ],
+        "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/moment-review/upstream-test-deps",
+        "start": "2026-11-03T03:52:31.360018+00:00",
+        "end": "2026-11-03T03:52:33.912478+00:00",
+        "exit": 0
+      },
+      {
+        "name": "upstream-tests",
+        "command": [
+          "node",
+          "scripts/test.js"
+        ],
+        "cwd": "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/moment-review/upstream-source/moment-moment-15b45d4",
+        "start": "2026-11-03T03:52:33.912938+00:00",
+        "end": "2026-11-03T03:52:42.592977+00:00",
+        "exit": 0
+      }
+    ],
+    "explicit_counts": {
+      "testCounts": {
+        "passed": 3943,
+        "failed": 0,
+        "skipped": 0,
+        "todo": 0,
+        "total": 3943
+      },
+      "status": "passed",
+      "runtime": 1477
+    },
+    "assertions": 165058,
+    "counting_method": "external reporter delegates original reporter; entire compiled moment and locale test lists, no source/test changes",
+    "initial_preload_diagnostic": "test command passed but count file was absent; retained, excluded from no-skips evidence"
+  },
+  "consumer_compatibility": {
+    "source": "actual unchanged Chartrove utility module, TypeScript transpiled and executed with each pinned Moment module",
+    "qualified_cases": [
+      {
+        "timeZone": "UTC",
+        "date_cases": 16,
+        "period_cases": 5,
+        "consumer_source_sha256": "48d03dce1b84e88afe641d6e90df912f7a09b5ab79a56f8d4e236a8661ee7c50",
+        "old_new_outputs_identical": true
+      },
+      {
+        "timeZone": "America/New_York",
+        "date_cases": 16,
+        "period_cases": 5,
+        "consumer_source_sha256": "48d03dce1b84e88afe641d6e90df912f7a09b5ab79a56f8d4e236a8661ee7c50",
+        "old_new_outputs_identical": true
+      }
+    ],
+    "published_moment_js_byte_identical_to_tagged_source": true,
+    "partial_period_semantics": "observed existing behavior only, no corrected policy or migration implied"
+  },
+  "frontend_input_delta": {
+    "previous_qualified_source": "9518224f1b6bdf3bee1bf257878a17ad2df80cf2",
+    "delta": [
+      "frontend/yarn.lock"
+    ],
+    "all_other_tracked_frontend_bytes_unchanged": true
+  },
+  "frontend_checks": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T03:57:15.028024+00:00",
+      "end": "2026-11-03T03:57:15.315084+00:00",
+      "exit": 0
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:57:15.315424+00:00",
+      "end": "2026-11-03T03:59:22.494381+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/moment-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T03:59:22.495120+00:00",
+      "end": "2026-11-03T04:00:01.727209+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/moment-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T04:00:02.800718+00:00",
+      "end": "2026-11-03T04:00:43.606600+00:00",
+      "exit": 0
+    }
+  ],
+  "ordinary_browser_suite": {
+    "passed": 487,
+    "total": 488,
+    "existing_skipped": 1
+  },
+  "browser_shutdown": {
+    "time": "2026-11-03T04:00:49.038840+00:00",
+    "signal_sent": false,
+    "reason": "ps precondition reported PID 59378 already absent before any signal or lsof call; producer then recorded browser exit 0 and continued normally",
+    "actual_browser_receipt": "validation/receipts.json",
+    "retry_performed": false,
+    "known_warning": "Karma launcher could not reap Chrome promptly; retained original output and natural successful exit, no force-exit or timeout alteration"
+  },
+  "production_inputs": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23172,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "7415194d9888319e76ef63834a590632db67a9ef187ef89807e1dc1eff204a48",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "c7bb0a726602444c34b8eb33191d85c41290196164547a2c1347d9c265a95a8e",
+      "bytes": 5940727
+    },
+    "original_absence_restored": true
+  },
+  "upstream_advisory": {
+    "id": "GHSA-4p3w-j4w9-5jqw",
+    "cve": "CVE-2026-17495",
+    "patched_version": "2.31.0",
+    "primary_url": "https://github.com/moment/moment/security/advisories/GHSA-4p3w-j4w9-5jqw",
+    "scope": "upstream server-side moment.locale with non-string attacker-influenced input; no direct locale setter found in Chartrove source, no application exploit path established, not a clean frontend-security claim"
+  },
+  "native_validation": {
+    "source_revision": "c109657a66dea0de624487eb16a9af57e4f68516",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-c109657a6-moment/Chartrove-c109657a6.zip",
+      "sha256": "069d217e2e7e399594a0980bc6cdab447e247677dff464d2d1b54c554994ecee",
+      "bytes": 336773548
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+    "frontend_reuse": {
+      "committed_input_revision": "c109657a66dea0de624487eb16a9af57e4f68516",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/moment-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/moment-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "7415194d9888319e76ef63834a590632db67a9ef187ef89807e1dc1eff204a48",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-c109657a6-moment/receipt.json",
+    "full_local_receipt_sha256": "04f326e770f875c284751194a6dea2e2d700472ebef49b981da632853cc8d1f3",
+    "frontend_comparison": {
+      "files": 22287,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "previous_qualified_frontend_revision": "9518224f1b6bdf3bee1bf257878a17ad2df80cf2",
+      "artifact_delta": {
+        "added": [
+          "main.14113a69f43c422f.js",
+          "main.14113a69f43c422f.js.map"
+        ],
+        "removed": [
+          "main.b62c813500aad6aa.js",
+          "main.b62c813500aad6aa.js.map"
+        ],
+        "changed_common": [
+          "3rdpartylicenses.txt",
+          "index.html"
+        ]
+      }
+    },
+    "native_ui": {
+      "time": "2026-11-03T04:11:09.351695+00:00",
+      "method": "cua_repl exact task app after sole PID/private data/cache verification; actual synthetic account sign-in",
+      "pid": 79613,
+      "visible_patient_age": "Moment Synthetic | 26 years | Unknown",
+      "visible_vital": "Heart Rate: June 15, 2026; 72.0 beats/minute",
+      "synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_observation": 1
+      },
+      "all_raw_resources_byte_identical_to_seed": true,
+      "seed_files_unchanged": true,
+      "window_closed_using_fresh_full_ax_close_index": true,
+      "process_absence_verified_by_ps_only": true,
+      "no_cua_call_after_close": true,
+      "focus_observation": "Tab exposed content at initial background startup and again after sign-in; intervening screenshot remained on disabled sign-in state; no source/assets workaround, no causal claim",
+      "real_records_used": false
+    }
+  },
+  "boundaries": [
+    "no application source or Go changes",
+    "no data migration or clinical-date policy changes",
+    "synthetic fixtures only"
+  ],
+  "native_validation_receipt": "docs/maintenance/native-c109657a6-validation.json"
+}

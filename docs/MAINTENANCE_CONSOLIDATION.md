@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #378; #191 was individually retired after #377.
-[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after378.json).
-The dashboard-patient-age branch is additional and unpublished at
+Snapshot: November 2, 2026, after #379; #191 was individually retired after #377.
+[Machine-readable receipt](maintenance/2026-11-02-checkpoint-after379.json).
+The moment-maintenance branch is additional and unpublished at
 this snapshot. Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `8b060a484912a5cce196962c97dda7add4ee6864` (#378) |
+| Published application main | `37deaa9bdd440b0f40cf61799947f5e03129ef54` (#379) |
 | Open issues | 167, including retained Renovate dashboard #222 |
 | Open PRs | 33: 27 paused Renovate proposals and six historical drafts |
 | Origin heads | 42 |
-| Default branch | main tracks origin/main with equal OIDs; dashboard-patient-age branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; moment-maintenance branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -41,8 +41,14 @@ Storybook build, and a fresh native package passes all ten synthetic checks.
 Native UI shows Not provided while retaining all three synthetic records. All
 three protected checks pass; the integrated task head is retired.
 [Scope and native evidence](maintenance/2026-11-02-patient-age-display.md).
-The independently observed dashboard age defect is the next isolated correction;
-no broader calendar-date policy or persisted Patient change is implied.
+Merged #379 separately fixes the dashboard empty-array/invalid-date and stale-age
+paths. Six regressions fail before repair and all ten targeted cases pass with
+identical test bytes after it. The full suite passes 487 tests with one existing
+skip; production/Storybook, fresh ten-check native smoke and all protected checks
+pass. Native UI shows Age not provided; all three synthetic raw resources remain
+byte-identical. The integrated task head is retired. No broader calendar-date
+policy or persisted Patient change is implied.
+[Dashboard evidence](maintenance/2026-11-02-dashboard-age-display.md).
 
 Merged #356 aligns the two excluded Go generator tools. All 57 model outputs,
 related-version JSON and executable package inputs match; application verification,
@@ -517,7 +523,7 @@ decision. [Consolidation evidence](maintenance/date-period-duplicate-137.json). 
 Observation payloads, so preservation must be addressed before adding date
 editing. No lab correction or migration has been implemented. Optional missing/unparseable patient birth dates now show Not provided in Explore
 after #378, with the original numeric getter/calculation unchanged. A separate
-dashboard age path still invents zero for missing dates; a regression fix is in progress. [Retained boundaries](maintenance/2026-11-02-unresolved-acceptance.md).
+dashboard age path is corrected by #379, including refreshes. [Retained boundaries](maintenance/2026-11-02-unresolved-acceptance.md).
 
 ## Resume safely
 
