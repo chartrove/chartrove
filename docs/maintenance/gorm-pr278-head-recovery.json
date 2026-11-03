@@ -1,0 +1,17 @@
+{
+  "branch": "renovate/gorm.io-datatypes-1.x",
+  "tip": "47b14f984b3e93d6c81fc12e2e78c3cdfe86e4a6",
+  "bundle": "dist/validation/2026-11-01-consolidation/gorm-family-heads-20261103.bundle",
+  "sha256": "c588137f3bde424f8b84a3d9b9f9db8be9fcb6c3b6bf1064f72496667ef60943",
+  "bytes": 7852,
+  "prerequisites": [
+    "e1b9c3f18d9b67db894d4a85f387ed6f987abde1"
+  ],
+  "prerequisites_reachable_from": "cbe5954caa6e1722d02f025f65225e77102434a4",
+  "required_objects_included": true,
+  "strict_pack_validation": "passed with original-object offset proof",
+  "unique_commits": [
+    "47b14f984b3e93d6c81fc12e2e78c3cdfe86e4a6"
+  ],
+  "original_intake_reference": "35c9177dc7ccc71ba0108d59b06aaae0666e87ed refs/maintenance-archive/20261101/renovate/gorm.io-datatypes-1.x"
+}
