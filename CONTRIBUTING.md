@@ -74,6 +74,18 @@ pre-existing `frontend/documentation.json` is restored. A failed step stops the
 run and retains its log. macOS test Chrome launches disable `MacAppCodeSignClone`
 so interrupted browser tests do not leave another copy of the Chrome app.
 
+Persistent Angular disk caching is disabled in `frontend/angular.json`. This
+covers direct CLI builds/tests as well as the validation runner: changing output
+paths or `TMPDIR` alone does not redirect `.angular/cache`. Local rebuilds may
+take longer, but repeated maintenance checks cannot accumulate another cache
+tree. Once all local Angular processes have exited, remove old cache with
+`cd frontend && node node_modules/@angular/cli/bin/ng.js cache clean`.
+
+Validation receipts include host free bytes before/after each command and after
+scratch cleanup. Compare build and software-update measurements separately;
+these are host-wide readings, so concurrent jobs and APFS snapshots can affect
+the delta. Do not interpret generated-file totals as physical space reclaimed.
+
 Keep expanded frontend, Storybook and native ZIP extractions in one disposable
 task directory. Remove them after their processes exit and record that disposal
 alongside the receipts. Retain source changes, logs, screenshots, recovery bundles,

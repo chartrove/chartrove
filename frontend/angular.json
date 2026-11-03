@@ -376,6 +376,9 @@
   },
   "cli": {
     "analytics": false,
+    "cache": {
+      "enabled": false
+    },
     "packageManager": "yarn"
   },
   "schematics": {
