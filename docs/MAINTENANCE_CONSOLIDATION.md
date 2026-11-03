@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #387 and individual #326 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after387.json).
-The retire-unused-idb task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #388 and individual #303 retirement.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after388.json).
+The devcontainer-node-feature-2 task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `1220f9208f8982bebb312e4ae78da31836d71103` (#387) |
+| Published application main | `42a11084261cc6c1f5cdd82a2295d7571742531e` (#388) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 26: 20 paused Renovate proposals and six historical drafts |
-| Origin heads | 33 |
-| Default branch | main tracks origin/main with equal OIDs; retire-unused-idb branch is additional |
+| Open PRs | 25: 19 paused Renovate proposals and six historical drafts |
+| Origin heads | 32 |
+| Default branch | main tracks origin/main with equal OIDs; devcontainer-node-feature-2 branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,18 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #388 removes the unused direct idb declaration and sole leaf lock block.
+All 72 retained direct versions and remaining lock bytes stay unchanged. Frozen
+install, ten Node checks, 523 browser tests (one existing skip), production/
+Storybook, a fresh signed native ten-check smoke and all protected checks pass.
+Original installed metadata and the exact historical tip are archived. #303 is
+explicitly retired; idb 8, offline storage #19 and draft persistence #29 are not
+implemented. A first disposition guard used the React intake path and failed
+before mutation; the corrected full-content/head check passed before closure.
+[Scope](maintenance/2026-11-03-unused-idb-retirement.md),
+[retirement](maintenance/idb-retirement-1.json),
+[harness correction](maintenance/idb-disposition-harness-correction.json).
 
 Merged #386 updates ng-select to 24.2.1 and corrects the wizard lazy-loading
 boundary within the unchanged 10 MB production budget. Selection cases pass on
@@ -535,7 +547,7 @@ Recovery references (incremental bundles need retained main prerequisites):
   pass-two bundle `63e228d76a6148278ec38b948bc7fc5c23a1b7e2b83b018ae9cd268fcacdbd27`.
   Native verification and prerequisite ancestry are retained in local evidence.
 
-Seventy-one historical origin refs were retired by this agent after individual review,
+Seventy-two historical origin refs were retired by this agent after individual review,
 archive verification, open-PR dependency checks, atomic dry runs and exact-tip leases.
 Twelve more (#313, four utility heads, two UUID heads, two declaration heads,
 the parser head and two jose heads) were already absent after closure;
@@ -573,7 +585,8 @@ Receipts: [12 refs](maintenance/historical-retirement-12.json),
 [one tslib head](maintenance/tslib-retirement-1.json),
 [two jose heads observed absent](maintenance/jose-retirement-1.json),
 [ng-select plus two approved narrative heads](maintenance/ngselect-and-narrative-retirement.json),
-[React 19 tooling head](maintenance/react19-retirement-1.json).
+[React 19 tooling head](maintenance/react19-retirement-1.json),
+[unused idb head](maintenance/idb-retirement-1.json).
 Do not delete unknown refs, prune legacy reflogs, or broadly reset/clean.
 
 Local artifact storage now has an ignored Go module boundary at
@@ -624,7 +637,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 20 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 19 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

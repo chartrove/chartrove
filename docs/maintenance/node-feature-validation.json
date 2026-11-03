@@ -1,0 +1,103 @@
+{
+  "scope": "devcontainer Node feature key 1 to 2; Node26.13.0 and Go1.27.3 unchanged",
+  "configuration": {
+    "source_base": "42a11084261cc6c1f5cdd82a2295d7571742531e",
+    "path": ".devcontainer/devcontainer.json",
+    "only_change": "feature key node:1 to node:2",
+    "node_version": "26.13.0",
+    "go_version": "1.27.3",
+    "jsonc_parse_and_semantic_only_key_change": true,
+    "all_other_configuration_unchanged": true,
+    "sparse_pattern_sha256": "d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc",
+    "skip_worktree_before_after": "S .devcontainer/devcontainer.json",
+    "excluded_file_never_materialized": true,
+    "before_sha256": "41aeff8f520b367f72eda6f5a751814be89daf37a80eaa7618f6df942eee2ca3",
+    "after_sha256": "cb9cd07ef854194ddbd7668ec9e6ef3369952aa7443219dc2757738f3a4444c6",
+    "new_blob": "232b00898c858c7113b9a832440934201492b8fe"
+  },
+  "oci_integrity": {
+    "registry": "ghcr.io",
+    "repository": "devcontainers/features/node",
+    "tag": "2",
+    "manifest_digest": "sha256:2a19d3b0b3879437637cfd292eb29fee0afcfbe6364e33db9afc4f80c5c1f956",
+    "header_digest_verified": true,
+    "blobs": [
+      {
+        "path": "config.json",
+        "digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "bytes": 2,
+        "media_type": "application/vnd.devcontainers"
+      },
+      {
+        "path": "layer-0.tar.gz",
+        "digest": "sha256:22daaefe54111deb8be40cf43a92efeaf686ee2f2b5f7563ad47f54bd36f1249",
+        "bytes": 35328,
+        "media_type": "application/vnd.devcontainers.layer.v1+tar"
+      }
+    ],
+    "published_feature_version": "2.1.1",
+    "requested_node_version": "26.13.0",
+    "default_npm_option": "none",
+    "source_files": {
+      "install.sh": "32723ace3b54a225f022883a472fee7ad96772854e0366f74513f645b3308c2b",
+      "README.md": "256e3a64cca6c39aaa6963ee813ba7ccee9ed7a8f7f7b9336fa31251429a5621",
+      "NOTES.md": "cc62bad6c146715591740db234de03f32ecb31e44d95eee734f720491e8179e4",
+      "devcontainer-feature.json": "5249089f3cbff66f8a12da51635eb7186f5e8dce2049589000dab7f8d9d1a152"
+    }
+  },
+  "published_sources_match_official_Git_blobs": {
+    "install.sh": {
+      "expected_official_git_blob": "dfc1a096887092de0d2531fe976197509d32123b",
+      "published_git_blob": "dfc1a096887092de0d2531fe976197509d32123b",
+      "identical": true
+    },
+    "devcontainer-feature.json": {
+      "expected_official_git_blob": "5e0b8063ee5b1f257cf2e3b82f8aae179d9e3c6c",
+      "published_git_blob": "5e0b8063ee5b1f257cf2e3b82f8aae179d9e3c6c",
+      "identical": true
+    },
+    "README.md": {
+      "expected_official_git_blob": "028b47401904f7815c23f4f916d39972f3b3cde4",
+      "published_git_blob": "028b47401904f7815c23f4f916d39972f3b3cde4",
+      "identical": true
+    },
+    "NOTES.md": {
+      "expected_official_git_blob": "9f1c1d3bc4c9068a4739aa18e672e57f697c1b7c",
+      "published_git_blob": "9f1c1d3bc4c9068a4739aa18e672e57f697c1b7c",
+      "identical": true
+    }
+  },
+  "docker": {
+    "qualified_build_exit": 0,
+    "initial_build_exit": 1,
+    "initial_failure": "harness required global Corepack, unavailable with Node26; actual Makefile pinned npm exec/Corepack/Yarn command passes unchanged",
+    "image_id": "sha256:ccf1741e8b4a79fc8760a12929037203c5e11bbde271e53b90c654caffad3b47",
+    "image_repo_digests": [
+      "chartrove-maintenance-node-feature@sha256:ccf1741e8b4a79fc8760a12929037203c5e11bbde271e53b90c654caffad3b47"
+    ],
+    "platform": "linux/arm64",
+    "node": "26.13.0",
+    "npm": "11.20.0",
+    "pinned_corepack": "0.35.0",
+    "resolved_yarn": "1.22.22",
+    "base_image_digest": "sha256:71b6fe7c4e07ec747a94a72b2a17f2f8c286eaa7b1c59862888df764efb8b6c6",
+    "image_tag": "chartrove-maintenance-node-feature:20261103-0911",
+    "only_fixture_context": "published feature files, Dockerfile, current frontend manifest; no checkout, records, credentials or volumes mounted",
+    "base_user_feature_defaults": "published option defaults passed explicitly; _REMOTE_USER=vscode",
+    "full_project_devcontainer": "not rebuilt; Go and Chrome features unchanged and not qualified by this isolated Node-feature check",
+    "published": "local image only; no registry push",
+    "source_manifest_sha256": "e48526d510404ec38ce3ade55aca2c1db5f3ba0aecce23e1d6fa85f0ca8a4a92"
+  },
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/node-feature-review/",
+  "application_sources_and_assets": "unchanged; retain native source4414fd36a3987be7aa7617f09fdef3045bd5272e and all previous frontend test receipts",
+  "full_devcontainer": "not rebuilt; isolated Node feature only",
+  "protected_integration": "pending",
+  "application_validation_reuse": {
+    "qualified_frontend_input_manifest": "dist/validation/2026-11-01-consolidation/idb-review/validation/frontend-input-hashes.json",
+    "sha256": "8b221d529018484157100785209cb15e3b1e676785f66ac4fc27d765e46e9fb7",
+    "all_tracked_frontend_files_still_identical": 23176,
+    "native_receipt": "docs/maintenance/native-4414fd36a-validation.json",
+    "native_source": "4414fd36a3987be7aa7617f09fdef3045bd5272e",
+    "app_code_dependencies_assets_unchanged": true
+  }
+}
