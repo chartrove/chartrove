@@ -1,0 +1,165 @@
+{
+  "time": "2026-11-03T05:50:25.795712+00:00",
+  "base_main": "4510e834d6ab977f169c7fd67e13c25683c6114e",
+  "issue": 104,
+  "scope": "Encounter type fallback to serviceType and factual missing Period endpoints; presentation only, preserve wizard serialization and raw records",
+  "qualified_red": {
+    "start": "2026-11-03T05:40:43.597478+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter-manual.component.spec.ts"
+    ],
+    "spec_sha256": "cb841a7b748ba94657f4d136d433756511266e4f97bb4b29e1800d49b3b96e33",
+    "production_source_hashes": {
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter.component.ts": "b1758934fea00c2e7c52b01898dba43e51ff61f855d6f90b668d5970a21d58d5",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/utils.ts": "48d03dce1b84e88afe641d6e90df912f7a09b5ab79a56f8d4e236a8661ee7c50"
+    },
+    "exit": 1,
+    "end": "2026-11-03T05:40:53.954451+00:00"
+  },
+  "red_count": {
+    "entered": 13,
+    "failed": 9,
+    "passing_controls": 4
+  },
+  "green_same_test_bytes": {
+    "start": "2026-11-03T05:42:45.965551+00:00",
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter-manual.component.spec.ts"
+    ],
+    "spec_sha256": "cb841a7b748ba94657f4d136d433756511266e4f97bb4b29e1800d49b3b96e33",
+    "production_source_hashes": {
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter.component.ts": "fb536eab1f266a4d02859c3fd075365f4d94620f1d8534b4c211807d71d13e5e",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/utils.ts": "b82aea4a7895a002b877e29c8e80844745905efa29816052e98d4d9f0bdc93c9"
+    },
+    "exit": 0,
+    "end": "2026-11-03T05:43:08.378672+00:00"
+  },
+  "green_count": 13,
+  "initial_red": "13 entered/9 failed/4 passed; subsequent test setup resets captured modal result per case before qualified red, production unchanged",
+  "ordinary_browser_suite": {
+    "passed": 500,
+    "total": 501,
+    "existing_skipped": 1
+  },
+  "frontend_checks": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "frontend/desktop-tests/bridge.test.mjs",
+        "frontend/desktop-tests/compodoc-compat.test.mjs",
+        "frontend/desktop-tests/test-framework.test.mjs"
+      ],
+      "cwd": ".",
+      "start": "2026-11-03T03:57:15.028024+00:00",
+      "end": "2026-11-03T03:57:15.315084+00:00",
+      "exit": 0,
+      "reused_from": "dist/validation/2026-11-01-consolidation/moment-review/validation",
+      "node_check_inputs_unchanged": true
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "test",
+        "--watch=false",
+        "--progress=false",
+        "--browsers=ChromeHeadlessCI",
+        "--reporters=dots"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T05:44:52.103748+00:00",
+      "end": "2026-11-03T05:45:09.844294+00:00",
+      "exit": 0
+    },
+    {
+      "name": "production",
+      "command": [
+        "node",
+        "node_modules/@angular/cli/bin/ng.js",
+        "build",
+        "--configuration",
+        "desktop_prod",
+        "--output-path",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/encounter-row-review/validation/frontend"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T05:45:09.844883+00:00",
+      "end": "2026-11-03T05:45:46.939442+00:00",
+      "exit": 0
+    },
+    {
+      "name": "storybook",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=corepack@0.35.0",
+        "--",
+        "corepack",
+        "yarn",
+        "exec",
+        "ng",
+        "--",
+        "run",
+        "fastenhealth:build-storybook",
+        "--output-dir",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/encounter-row-review/validation/storybook"
+      ],
+      "cwd": "frontend",
+      "start": "2026-11-03T05:45:49.330028+00:00",
+      "end": "2026-11-03T05:46:29.199827+00:00",
+      "exit": 0
+    }
+  ],
+  "node_reuse_proof": {
+    "qualified_frontend": "c109657a66dea0de624487eb16a9af57e4f68516",
+    "entire_frontend_input_delta": [
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter-manual.component.spec.ts",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/datatable-encounter.component.ts",
+      "frontend/src/app/components/fhir-datatable/datatable-generic-resource/utils.ts"
+    ],
+    "node_check_and_dependency_inputs_unchanged": true
+  },
+  "production_inputs": {
+    "tracked_frontend_and_new_spec_inputs_unchanged_during_build": true,
+    "files": 23173,
+    "input_manifest": "frontend-input-hashes.json",
+    "input_manifest_sha256": "893528b29d1f89d75fa6bef0a99eba4a293daca94f43daca7fc5110100b7332b",
+    "command_receipt": "receipts.json",
+    "production_output": "frontend",
+    "frontend_coverage_absence_preserved": true
+  },
+  "storybook_metadata": {
+    "original_state": "absent",
+    "generated": {
+      "sha256": "13cac913856f42416a044357b574cf40197090ef7bab7349f2f252bfa574cc48",
+      "bytes": 5942261
+    },
+    "original_absence_restored": true
+  },
+  "boundaries": [
+    "provider type retains priority when supplied",
+    "no wizard, raw resource, source/selection identity or Go/database/Wails contract change",
+    "unrecorded reasons/practitioners are not fabricated",
+    "existing partial-date precision, invalid supplied date handling, database Period bounds/multiplicity/reindex decisions in #69 unchanged",
+    "no real or purchased data used"
+  ],
+  "native_validation": "pending fresh package/synthetic smoke/UI"
+}

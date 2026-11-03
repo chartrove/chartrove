@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 2, 2026, after #381 and individual #220 implementation closure.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after381.json).
-The local-data-guidance task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #382 and individual #88/#193 dispositions.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after382.json).
+The manual-encounter-rows task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `c0c44ce62d06c2948b187b23414b63cc29b0015b` (#381) |
-| Open issues | 167, including retained Renovate dashboard #222 |
+| Published application main | `4510e834d6ab977f169c7fd67e13c25683c6114e` (#382) |
+| Open issues | 165, including retained Renovate dashboard #222 |
 | Open PRs | 31: 25 paused Renovate proposals and six historical drafts |
 | Origin heads | 40 |
-| Default branch | main tracks origin/main with equal OIDs; local-data-guidance branch is additional |
+| Default branch | main tracks origin/main with equal OIDs; manual-encounter-rows branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,17 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #382 supplies current local data/security guidance, an empty required-key
+example and corrected desktop/toolchain/PostgreSQL prose. #88 is closed as the
+requested scoped guidance; #193 is explicitly retired as an attributed upstream
+deployment reference, without an integration/custom-certificate API claim.
+Eight corrected config observations and all protected checks pass. Its initial
+harness briefly entered locked standby and listened on *:8080; the owned process
+was stopped, no database files were open in the captured snapshot, and both
+initial runs remain failed diagnostics. Corrected positive controls never start
+a server. All incident/source/process evidence and limits remain documented.
+[Evidence](maintenance/2026-11-03-local-data-guidance.md).
 
 Merged #381 updates Goja and required semver/regexp2/v2 in both graphs, retaining
 Go minimum, original checksums and database/provider replacements. Actual graph

@@ -23,8 +23,11 @@ use an unsupported database type and explicitly disable encryption only inside
 the harness to prevent standby. The positive control never starts a server.
 Qualified outbound HTTP attempts are zero. Thirty-eight local links and four
 single-H1 guides pass. Application/Go/frontend inputs remain at qualified Goja
-source 4d1067a61; no additional native/UI check is claimed. Protected checks and
-individual issue disposition remain pending.
+source 4d1067a61; no additional native/UI check is claimed. [PR #382](https://github.com/karamhouse/chartrove/pull/382) merged after all three
+protected checks passed at 0b501cf0cccd632b28b2254cbc6904902813b40f.
+#88 is closed as completed guidance; #193 is retired as not planned/reference
+material, with its original discussion preserved. The integrated task head is
+retired after fresh dependency/ancestry/lease checks.
 [Validation](local-data-guidance-validation.json), [guide](../LOCAL_DATA_SAFETY.md).
 
 The initial positive control called server Start with encryption enabled but no
