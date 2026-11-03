@@ -8,19 +8,19 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #396 and individual #262 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after396.json).
-The ng2-charts task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #397 and individual #307 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after397.json).
+The datatable-25 task branch is additional to this historical snapshot.
 The separately owned artifact-retention branch/worktree remains preserved.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `bc5c271ceede89a29bfba14898626a5cc1d40d06` (#396) |
+| Published application main | `a4bf6b3ad9d724aa8e761ce630ccf20561d0fc95` (#397) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 13: seven paused Renovate proposals and six historical drafts |
-| Origin heads | 20 |
-| Default branch | main tracks origin/main; current chart-wrapper task is additional |
+| Open PRs | 12: six paused Renovate proposals and six historical drafts |
+| Origin heads | 19 |
+| Default branch | main tracks origin/main; current table task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; two authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -120,13 +120,27 @@ cleanup/adoption is complete and must not be repeated.
 [Patient evidence](maintenance/2026-11-03-patient-detail-age.md),
 [retention adoption](maintenance/2026-11-03-retention-adoption.md).
 
-The corrected ng2-charts #307 replacement targets version 11 and its standalone
-directive/provider APIs. All 11 identical old/new focused cases, app types and
-changed-story transitive types pass; full protected checks remain mandatory.
-Only the wrapper and its required es-toolkit/orphan lodash-es leaves change.
-Local focused checks do not bypass full-run storage admission, and no storage
+Merged #397 implements #307 with ng2-charts 11 standalone directive/provider
+wiring. All 11 identical old/new focused cases, app types and changed-story
+transitive types pass. Only the wrapper and required es-toolkit/orphan lodash-es
+leaves change. All protected checks pass: 542 browser passes, one existing skip,
+9.85 MB initial production output under the unchanged 10 MB budget. The original
+PR is individually reconciled as implemented. Its archived exact tip and merged
+task ref are retired after consumer, archive, incorporation and ownership checks;
+historical manual retirements now 84, unknown-actor prior absences remain 13.
+Broad Storybook type checking needs absent generated documentation.json; no full
+Storybook/native package is claimed below the unchanged 50 GiB reserve. No storage
 cleanup or retention adoption is repeated.
-[Scope and qualification](maintenance/2026-11-03-ng2charts-11.md).
+[Scope and qualifications](maintenance/2026-11-03-ng2charts-11.md),
+[protected checks](maintenance/ng2charts-ci-validation.json),
+[retirement](maintenance/ng2charts-retirement.json).
+
+The next #296 replacement targets ngx-datatable 25 with one leaf dependency change.
+All 31 identical old/new consumer cases pass after correcting pre-existing
+empty-selection/fallback-disabled defects, adapting repeated library page events
+without suppressing explicit Retry, and migrating both selection bindings.
+Intermediate old/new failures are retained; all protected checks remain mandatory.
+[Scope and controls](maintenance/2026-11-03-datatable-25.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
@@ -756,7 +770,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all seven remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all six remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.

@@ -84,6 +84,12 @@ export class DatatableGenericResourceComponent implements OnInit, OnDestroy, Res
     this.resourceRequest?.unsubscribe();
   }
 
+  onPage(page: PageInfo) {
+    // The table can repeat the current page while initializing its inputs.
+    // Explicit Retry still calls changePage directly, even on the same page.
+    if (page.offset !== this.currentPage.offset) this.changePage(page);
+  }
+
   changePage(page: PageInfo){
     this.resourceRequest?.unsubscribe();
     this.currentPage = page;
@@ -153,7 +159,9 @@ export class DatatableGenericResourceComponent implements OnInit, OnDestroy, Res
    * @param selected
    */
   onSelect({ selected }) {
-    this.selectionChanged.emit(selected[0])
+    // Disabled rows and cleared pages have no resource to open or associate.
+    const resource = selected?.[0];
+    if (resource) this.selectionChanged.emit(resource);
   }
 
   //check to see if this row should be selectable

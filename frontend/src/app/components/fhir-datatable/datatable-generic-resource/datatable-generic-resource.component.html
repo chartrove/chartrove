@@ -29,8 +29,8 @@
     [messages]="{emptyMessage: loading || loadError ? '' : 'No data to display', totalMessage: 'total', selectedMessage: 'selected'}"
     [selectCheck]="selectCheck()"
     [selectionType]="SelectionType.single"
-    (select)="onSelect($event)"
-    (page)="changePage($event)"
+    (selectedChange)="onSelect({selected: $event})"
+    (page)="onPage($event)"
   >
   </ngx-datatable>
 </div>

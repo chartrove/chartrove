@@ -1,0 +1,30 @@
+{
+  "run": 41714670645,
+  "head": "526b0a4b778f0bea83c0d5866c938cfc50918fcf",
+  "jobs": {
+    "backend": {
+      "job": 126191442087,
+      "file": "dist/validation/2026-11-01-consolidation/ng2charts-review/ci-backend.log",
+      "bytes": 35618,
+      "sha256": "1ff28298798f872c24ae3f266a29b73c6c4be758726b7e435ed076a47737b22f",
+      "download_exit": 0
+    },
+    "frontend": {
+      "job": 126191442548,
+      "file": "dist/validation/2026-11-01-consolidation/ng2charts-review/ci-frontend.log",
+      "bytes": 122726,
+      "sha256": "0f1298e0a4a05cc4dde64b8ca5ea9a5c1ee1ddb71bb44c614261f17b3546e72d",
+      "download_exit": 0
+    },
+    "desktop": {
+      "job": 126191442402,
+      "file": "dist/validation/2026-11-01-consolidation/ng2charts-review/ci-desktop.log",
+      "bytes": 54417,
+      "sha256": "a3112c987e60ab32f8ad78dde578cb78ab4f490a501a97ad75b3fde77c348a54",
+      "download_exit": 0
+    }
+  },
+  "all_required_success": true,
+  "frontend_browser": "542 passed, 1 skipped",
+  "frontend_initial_budget": "9.85 MB against unchanged 10 MB"
+}
