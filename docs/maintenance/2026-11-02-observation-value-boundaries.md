@@ -40,8 +40,10 @@ must match committed frontend bytes before reuse.
 The final ordinary browser suite passes 474 tests with the one existing skip.
 All ten Node checks, production and static Storybook builds pass. Compiler inputs
 remain unchanged, coverage uses private TMPDIR, and generated documentation is
-retained with its original absence restored. Native packaging and protected
-integration remain in progress. [Detailed validation](observation-values-validation.json). Raw logs, source-before
+retained with its original absence restored. Fresh native packaging at c8c6e4a9f passes ZIP/signature and ten synthetic
+native checks. All 22,287 compiled, reused and native frontend files match.
+Original output content/stat fields and all xattrs restore exactly. Protected
+integration remains in progress. [Detailed validation](observation-values-validation.json). Raw logs, source-before
 snapshots, test hashes and receipts are retained at
 `dist/validation/2026-11-01-consolidation/observation-values-review/`.
 
@@ -53,3 +55,23 @@ clinical interpretation or Wails contract. Existing unsupported Observation valu
 choices and blood-pressure component policy are outside this change. The broader
 DiagnosticReport/lab issue #158 remains open: its complete reported failure has
 not been independently reproduced or established resolved by these checks.
+
+## Native UI acceptance and tooling incident
+
+A fresh backend/API-generated fixture contains one patient and five Observations;
+raw zero and false survive the import, with all external HTTP blocked. The exact
+packaged executable, sole process, explicit data copy and private cache were
+verified before UI selection. Its table shows integer 0, boolean false and quantity
+0.00 1; the false card retains its Value and the registered pending card has no
+invented Value row or chart. All six fixture records and original seed files remain.
+
+After closing this verified synthetic process, calling Cua getAXState unexpectedly
+relaunched the same executable without test arguments. The reopened window was
+closed immediately; terminal process checks prove both PIDs absent. This post-close
+attempt did not remain isolated and is retained as an explicit incident. Source
+inspection establishes that no-argument startup enables encryption with an empty
+key and returns STANDBY before creating a database repository; no unlock/key was
+submitted. OpenStorage may nevertheless have read or created default FastenCommunity
+lock/signing metadata. No default-profile bytes were inspected or repaired. Do not
+make a blanket no-default-profile-access claim. Future close verification must use
+process inspection alone, without any Cua method on the closed binding.

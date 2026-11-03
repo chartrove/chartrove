@@ -1,0 +1,31 @@
+{
+  "path": ".kilo/",
+  "observed_during": "native validation; absent at source commit; creator unknown; files continued appearing independently",
+  "disposition": "held unchanged and untracked; no contents published; Git operations must have no incoming paths beneath .kilo",
+  "files_at_observation": {
+    ".kilo/.gitignore": {
+      "sha256": "1ff25b005585f501edf16194863ece8eef55d50d46eed6322095aabdf6eafb40",
+      "mode": 33188,
+      "size": 107,
+      "mtime_ns": 1793668887396756499
+    },
+    ".kilo/skills/angular-component/LICENSE": {
+      "sha256": "823b9518a5e96b93c06d37efc3932254415eb409698f5c9699858c5dd35bf533",
+      "mode": 33188,
+      "size": 1072,
+      "mtime_ns": 1790622291000000000
+    },
+    ".kilo/skills/angular-component/SKILL.md": {
+      "sha256": "6520fe28f2ed142877939629aa80952925553cf96e724749becf7420cdbf9a9a",
+      "mode": 33188,
+      "size": 6948,
+      "mtime_ns": 1790622291000000000
+    },
+    ".kilo/skills/angular-component/references/component-patterns.md": {
+      "sha256": "8d6b56975331f8c3fe568dd37bb2384099ae0a405a546b70a5ed973eed3ad12b",
+      "mode": 33188,
+      "size": 7381,
+      "mtime_ns": 1790622291000000000
+    }
+  }
+}

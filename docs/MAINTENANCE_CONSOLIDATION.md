@@ -333,6 +333,16 @@ All three required checks pass; #106 is individually closed with its evidence.
 The task head was retired after exact-tip, dependency and merge checks.
 [Scope and diagnostics](maintenance/2026-11-02-datatable-loading-feedback.md).
 
+Current Observation correction preserves zero/false/absent results and inclusive
+reference limits. The full browser suite passes 474 tests with one existing skip;
+Node, production/Storybook, native ZIP/signature and ten synthetic checks pass.
+Native synthetic table/false/pending-card acceptance passes; an unintended
+post-close Cua relaunch is explicitly documented with its standby boundary.
+[Scope and incident](maintenance/2026-11-02-observation-value-boundaries.md).
+Protected integration remains pending. Newly observed untracked `.kilo/` metadata
+has unknown provenance and is held in place; it is excluded from task commits.
+[Metadata receipt](maintenance/observation-held-metadata.json).
+
 ## Preservation and branch retirement
 
 Sparse settings remain SHA-256

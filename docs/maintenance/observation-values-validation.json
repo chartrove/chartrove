@@ -171,10 +171,104 @@
     },
     "original_absence_restored": true
   },
-  "native_validation": "pending",
+  "native_validation": {
+    "source_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+    "generated_zip": {
+      "path": "dist/validation/2026-11-01-consolidation/native-c8c6e4a9f-observation-values/Chartrove-c8c6e4a9f.zip",
+      "sha256": "0166227d035510626040e3d2bc4eb22368219688d85e6617eec60a701f33f29d",
+      "bytes": 336723845
+    },
+    "build_exit": 0,
+    "zip_crc_validation": "passed",
+    "signature_validation": "passed",
+    "native_smoke_exit": 0,
+    "native_smoke_report": {
+      "ok": true,
+      "checks": [
+        "native binding round trip",
+        "direct SMART disabled without registration",
+        "direct SMART rejects unconfigured provider",
+        "fresh database API",
+        "local account creation",
+        "local sign in",
+        "native URL validation",
+        "API errors stay separate from SPA",
+        "owned popup callback round trip",
+        "callback isolated from unrelated window"
+      ]
+    },
+    "original_content_and_stat_metadata_restored_exactly": true,
+    "original_xattrs_restored_exactly": true,
+    "original_xattrs_restored_except_os_provenance": true,
+    "os_managed_provenance_changes": {},
+    "status": "ZIP/signature and ten isolated native smoke checks pass; synthetic value UI verified; post-close Cua relaunch incident explicitly retained; original output preservation exact",
+    "frontend_reuse": {
+      "committed_input_revision": "c8c6e4a9f0e211b17e26a87fc819fc02b4a4c2a1",
+      "qualified_tree": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend",
+      "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/observation-values-review/validation/frontend-input-hashes.json",
+      "compiler_input_manifest_sha256": "fd7109f5b9b674161357dca6aacb29a544a139f4da93ac517e91da2c1b778155",
+      "compiler_inputs_match_committed_frontend": true,
+      "frontend_compiled_before_source_commit": true,
+      "build_mode": "desktop/build.sh --skip-frontend"
+    },
+    "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-c8c6e4a9f-observation-values/receipt.json",
+    "full_local_receipt_sha256": "4599ec168086ede4b70ebe7844acb392669d1567632f11f72ef7355e94828fdb",
+    "frontend_comparison": {
+      "files": 22287,
+      "compiled_reused_and_native_asset_trees_byte_identical": true,
+      "previous_qualified_frontend_revision": "2f0fd5bfc8eecdd90d068f0deaaf92ef0516b72e",
+      "artifact_delta": {
+        "added": [
+          "main.6d619463bef6f1b7.js",
+          "main.6d619463bef6f1b7.js.map"
+        ],
+        "removed": [
+          "main.1edb3f92016c6c0a.js",
+          "main.1edb3f92016c6c0a.js.map"
+        ],
+        "changed_common": [
+          "index.html"
+        ]
+      }
+    },
+    "native_observation_ui": {
+      "method": "cua-driver skill through cua_repl; explicit task executable/data/cache and sole PID13303 verified before selection",
+      "source_id": "405a0db7-e7d4-4453-b89d-bb58da8c7665",
+      "native_table": {
+        "integer_zero": "0",
+        "boolean_false": "false",
+        "quantity_zero": "0.00 1",
+        "pending": "empty cell; no invented reading",
+        "bounded_quantity": "10.00 1"
+      },
+      "native_boolean_card": "Value false",
+      "native_pending_card": "registered; Issued on/Subject/Coding rows; no Value row or chart",
+      "integer_card_and_chart_reference_bounds": "verified by real component browser regressions; not separately claimed observed in native UI",
+      "final_synthetic_counts": {
+        "fhir_patient": 1,
+        "fhir_observation": 5
+      },
+      "original_synthetic_seed_files_unchanged": true,
+      "task_process_and_unexpected_relaunch_both_closed": true,
+      "post_close_tooling_incident": {
+        "time": "2026-11-03T01:23:16.229651+00:00",
+        "trigger": "cua getAXState called after closing the last task window",
+        "synthetic_process_pid": 13303,
+        "unexpected_pid": 14284,
+        "unexpected_command": "same task executable, no arguments",
+        "action": "closed reopened window immediately; both PIDs independently absent; no further default-profile inspection or actions",
+        "qualification": "All value observations occurred before closing verified synthetic PID13303. Post-close isolation failed; no blanket isolated-UI claim.",
+        "source_analysis": {
+          "desktop_main": "omitted unencrypted flag enables encryption and explicitly empty key",
+          "initialize_database": "encrypted empty-key startup returns STANDBY before NewRepository; no unlock/key submission was performed",
+          "default_storage": "OpenStorage selects FastenCommunity and may read/create lock and signing-key metadata; no profile bytes inspected or modified by recovery actions"
+        },
+        "correction": "After closing a native test window verify process absence with ps only. Do not invoke any Cua method on the closed binding."
+      }
+    }
+  },
   "protected_integration": "pending required PR checks",
   "issue_158": "still open; broader reported failure not reproduced/resolved",
-  "real_records_accessed": false,
   "normative_contracts": {
     "verified_at": "2026-11-02T23:25:21.277256+00:00",
     "observation": {
@@ -216,5 +310,6 @@
   "known_ng01354_warning_count": {
     "previous_qualified_browser": 138,
     "current": 138
-  }
+  },
+  "data_boundary": "Explicit synthetic test operations only; post-close no-argument relaunch entered encrypted standby by source contract and was immediately closed. Default profile metadata may have been touched; no profile inspection/unlock/repair performed."
 }
