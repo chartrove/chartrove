@@ -1,0 +1,71 @@
+{
+  "source_revision": "50cabfe5696e7275a3c6b83c71fe62c9292d1e71",
+  "generated_zip": {
+    "path": "dist/validation/2026-11-01-consolidation/native-50cabfe56-jose/Chartrove-50cabfe56.zip",
+    "sha256": "b124cb72ea34bbe92422778eea02467e5a6d1fee567d6f6855b2445cbb7538cf",
+    "bytes": 337530271
+  },
+  "build_exit": 0,
+  "zip_crc_validation": "passed",
+  "signature_validation": "passed",
+  "native_smoke_exit": 0,
+  "native_smoke_report": {
+    "ok": true,
+    "checks": [
+      "native binding round trip",
+      "direct SMART disabled without registration",
+      "direct SMART rejects unconfigured provider",
+      "fresh database API",
+      "local account creation",
+      "local sign in",
+      "native URL validation",
+      "API errors stay separate from SPA",
+      "owned popup callback round trip",
+      "callback isolated from unrelated window"
+    ]
+  },
+  "original_content_and_stat_metadata_restored_exactly": true,
+  "original_xattrs_restored_exactly": true,
+  "original_xattrs_restored_except_os_provenance": true,
+  "os_managed_provenance_changes": {},
+  "status": "source-identified app build, ZIP CRC, strict extracted signature and ten synthetic native checks passed; original output preservation recorded",
+  "frontend_reuse": {
+    "committed_input_revision": "50cabfe5696e7275a3c6b83c71fe62c9292d1e71",
+    "qualified_tree": "dist/validation/2026-11-01-consolidation/jose-review/validation/frontend",
+    "compiler_input_manifest": "dist/validation/2026-11-01-consolidation/jose-review/validation/frontend-input-hashes.json",
+    "compiler_input_manifest_sha256": "4bcd05441503074d716027586a044c871c76390effb654470d24de94db6c9832",
+    "compiler_inputs_match_committed_frontend": true,
+    "frontend_compiled_before_source_commit": true,
+    "build_mode": "desktop/build.sh --skip-frontend"
+  },
+  "full_local_receipt": "dist/validation/2026-11-01-consolidation/native-50cabfe56-jose/receipt.json",
+  "full_local_receipt_sha256": "373b6439d91456bf9f607378cd94ef99bf51e143d46dd598b5d921923cf32dda",
+  "frontend_comparison": {
+    "files": 22287,
+    "compiled_reused_and_native_asset_trees_byte_identical": true
+  },
+  "native_auth_ui": {
+    "time": "2026-11-03T06:35:06.910010+00:00",
+    "source_revision": "50cabfe5696e7275a3c6b83c71fe62c9292d1e71",
+    "method": "cua_repl exact verified app; sole PID and explicit private data/cache verified before binding",
+    "pid": 72859,
+    "successful_normal_signin_route": "#/dashboard",
+    "profile_username": "desktop-smoke",
+    "profile_role": "Administrator",
+    "users_navigation_visible": true,
+    "dashboard_patient_label": "Table Synthetic | Age not provided | Unknown",
+    "signout_route": "#/auth/signin",
+    "signin_form_after_signout": "username/password empty, Sign In disabled",
+    "focus_observation": "Tab completed deferred initial and sign-in rendering; no source/asset workaround or cause claim",
+    "synthetic_raw_records_byte_identical_to_seed": true,
+    "original_seed_hashes_unchanged": true,
+    "synthetic_counts": {
+      "fhir_patient": 1,
+      "fhir_encounter": 1
+    },
+    "app_closed_using_fresh_full_ax_close_index": true,
+    "process_absence_verified_with_ps_only": true,
+    "no_cua_call_after_close": true,
+    "real_records_used": false
+  }
+}

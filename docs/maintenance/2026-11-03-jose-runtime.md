@@ -34,7 +34,18 @@ all four unique objects for #246 and five for #305 proved present in archive
 bytes. Prerequisites remain reachable from main; earlier intake tips are linked.
 [v4 recovery](jose4-head-recovery.json), [v6 recovery](jose6-head-recovery.json).
 Both proposals and branches stay live until protected integration and fresh
-dependency checks. Native packaging and UI acceptance remain pending.
+dependency checks.
+
+Fresh native packaging at 50cabfe5696e7275a3c6b83c71fe62c9292d1e71 passes
+ZIP CRC, strict signature and all ten synthetic smoke checks. All 22,287 frontend
+asset files match the qualified build; original output contents/stat/xattrs are
+restored exactly with zero provenance changes. The actual app signs in to the
+known synthetic profile, renders the dashboard and shows desktop-smoke with
+Administrator in its profile menu. Sign Out returns to the empty sign-in form.
+Both raw synthetic records and the original seed remain unchanged. Tab completed
+deferred initial/sign-in rendering; no source or asset workaround was applied.
+The app is closed and ps confirms absence; no Cua call follows closure.
+[Native receipt](native-50cabfe56-validation.json).
 
 This batch also records #384/#252 integration and the individually retired #56
 upstream FAQ follow-up. Stale pending markers for previously integrated
