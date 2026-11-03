@@ -174,5 +174,17 @@
     },
     "original_outputs_content_stat_xattrs_restored_exactly": true
   },
-  "protected_integration": "pending"
+  "protected_integration": {
+    "pr": 385,
+    "merge": "6419a63e029d592542c14e341b1468d294af6baf",
+    "run": 41590962910,
+    "required_checks": "Backend/Frontend/Desktop success from Actions app 15368",
+    "historical_prs": {
+      "246": "closed, superseded by v6; no v4 installation claim",
+      "305": "closed, implemented by current replacement"
+    },
+    "historical_branches": "both already absent when independently checked; actor unknown; archived tips preserved",
+    "task_branch": "integrated and exact tip deleted",
+    "retirement_receipt": "docs/maintenance/jose-retirement-1.json"
+  }
 }

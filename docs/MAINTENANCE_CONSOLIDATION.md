@@ -6,18 +6,18 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #384/#252 and the individual #56 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after384.json).
-The jose-runtime task branch is additional to this snapshot.
+Snapshot: November 3, 2026, after #385 and individual #246/#305 dispositions.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after385.json).
+The ng-select-attachments task branch is additional to this snapshot.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `ce751170ed9453747bbe2d44c372c51524660cf1` (#384) |
+| Published application main | `6419a63e029d592542c14e341b1468d294af6baf` (#385) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 30: 24 paused Renovate proposals and six historical drafts |
-| Origin heads | 39 |
-| Default branch | main tracks origin/main with equal OIDs; jose-runtime branch is additional |
+| Open PRs | 28: 22 paused Renovate proposals and six historical drafts |
+| Origin heads | 37 |
+| Default branch | main tracks origin/main with equal OIDs; ng-select-attachments branch is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; one existing checkout; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -33,6 +33,18 @@ implemented features or blanket retirement candidates. #284/#285/#286 are now
 implemented by #354; all remaining dependency PRs require individual review.
 
 ## Latest integrated safeguards and tooling
+
+Merged #385 adopts jose 6.2.15 for the two existing decodeJwt consumers. Thirteen
+real AuthService cases pass on old/new versions; the full suite passes 513 tests
+with one existing skip. Node checks, production/Storybook, signed native ten-check
+smoke and all protected checks pass. Native sign-in renders the synthetic user
+and Administrator; sign-out returns to the empty form. Both raw synthetic records
+and the seed remain unchanged. #305 is closed as implemented; #246 is superseded
+by v6, without claiming that v4 remains installed. Both historical branches were
+already absent at retirement checks, actor unknown; exact archived tips remain
+recoverable. The integrated task branch was deleted after guarded checks.
+[Evidence](maintenance/2026-11-03-jose-runtime.md),
+[retirement](maintenance/jose-retirement-1.json).
 
 Merged #384 updates tslib's historical direct selector to 2.9.1. Other lock
 bytes, package.json, separate selectors and 72 other direct versions remain
@@ -559,14 +571,18 @@ stays absent, protected from ordinary Karma writes by #344.
 [Recovery method and limits](maintenance/2026-11-02-primary-coverage-recovery.md),
 [compact receipt](maintenance/primary-coverage-recovery.json).
 
-Two product/data questions remain unanswered: archive-only retirement versus a
-corrected opt-in legacy narrative repair; and retirement versus retention of
-unimplemented upstream feature expansions. Keep live summary
+The maintainer authorized retirement of the legacy narrative repair prototypes
+while preserving archives and records. A verified bundle covers both exact tips,
+two unique commits and all 77 unique objects. Keep live summary
 `62a89d799969b1de8ac208543e89a7da85345a91` and text_field_extract
-`38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e` until that disposition is established.
+`38ea0562ea29cbcfaf2460e7fa04f28d0ec0d63e` until this disposition is published
+and fresh dependency/exact-tip retirement checks pass.
 The old repair saves the original temporary model rather than its recalculation;
 do not apply it or infer a safe real-data migration from archive verification.
-A continuation message is not an answer to those pending decisions.
+[Decision and recovery](maintenance/2026-11-03-legacy-narrative-retirement.md).
+The maintainer also selected retention of selected upstream expansions; the
+specific LDAP/OIDC, delegated-permissions, OCR and Typesense/RAG selections are
+pending clarification. Preserve every prototype while that choice is pending.
 
 Native #101/#168 acceptance now has observed chooser and synthetic persistence
 evidence above; earlier bridge failures remain retained as historical evidence.
@@ -582,7 +598,7 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all 24 remaining Renovate PRs paused with stop-updating. Creation approval,
+- Keep all 22 remaining Renovate PRs paused with stop-updating. Creation approval,
   two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
   candidate, review current heads and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
