@@ -71,3 +71,64 @@ each through the existing protected workflow. #209/#215 remain open until the
 corrected integration is accepted. OIDC, OCR and Typesense/RAG are separate future
 batches; neither their implementation nor any production data operation is part
 of this authorization work. Both independent retention worktrees remain held.
+
+## Authenticated API and UI
+
+Repository foundation accepted through #413 at
+`f98caab9aeefd8fb1d12fd7b1ae2a9f207eb6910`; all seven required checks passed at
+head `b7d60685ef16236b85794ff5fc6c984492d14f39`. #414 adds the following API/UI
+on that protected main baseline and requires its own protected acceptance.
+
+Settings links to **Source permissions** (`/source-permissions`). Owners select
+one source and an existing username, choose VIEW or EDIT, optionally set an
+expiration, and can explicitly revoke the grant. The owner sees retained grants
+and the latest 200 audit events. Shared sources have a separate browser with
+source-specific counts, paginated resources and details. Only server-confirmed
+editable local records expose the advanced JSON editor. Pending read requests
+are cancelled on selection changes; a denial clears the displayed record/editor.
+These controls supplement, rather than substitute for, repository authorization.
+
+All new routes are under the existing authenticated `/api/secure/source-access`:
+
+| Method/path | Capability |
+| --- | --- |
+| GET `/shared` | Active source grants for the actor; metadata only |
+| GET/POST `/:sourceId/grants` | Owner-only list or explicit grant/change/reactivation |
+| DELETE `/:sourceId/grants/:grantId` | Owner-only revocation, retaining history |
+| GET `/:sourceId/audit` | Owner-only latest 200 identifier-only events |
+| GET `/:sourceId/summary` | Authorized per-source resource counts |
+| GET `/:sourceId/resources/:resourceType?page=0` | Authorized list, 50 per page |
+| GET `/:sourceId/resources/:resourceType/:resourceId` | Authorized detail and edit eligibility |
+| POST `/:sourceId/resources` | Owner-only explicit creation of a new locally managed record in their Fasten source |
+| PATCH `/:sourceId/resources/:resourceType/:resourceId` | EDIT plus local provenance; fixed identity, atomic raw/derived/audit update |
+
+Request bodies reject unknown envelope fields and trailing JSON, and are limited
+to 1 MiB. Grants accept `delegate_username`, `access_level` and optional RFC3339
+`expires_at`; clinical writes accept `resource_raw`. Source/owner identities are
+resolved in the repository, never supplied through request-body ownership fields.
+Foreign, missing or unauthorized records all return 404 without revealing their
+existence. This also leaves valid sign-in sessions intact on permission denial.
+Invalid input returns 400; internal errors do not expose database details.
+Clinical details include the exact stored `resource_raw_text`. The browser displays
+and submits that text, using JSON parsing only for validation, so editing never
+round-trips clinical numbers through JavaScript's numeric representation.
+
+Focused HTTP tests cover owner/delegate/admin separation, successful reads and
+edits, denied writes/onward grants, revocation, changed identity, malformed
+envelopes and body limits. Browser regressions cover read-only rendering without
+HTML execution, stale-response cancellation, denied-write clearing, source-scoped
+grant/revoke requests, and owner credential projection. URL construction uses the
+existing endpoint helper for both web and desktop environments.
+
+## Remaining feature dependencies
+
+Historical/manual import records are deliberately not backfilled as local. Existing
+manual forms and graph/association editing can adopt the explicit provenance and
+source authorization boundaries in separately reviewed changes. They must not
+derive permissions from platform labels or widen account summaries. The new local
+creation API/UI already supports new eligible records without those migrations.
+
+OIDC must bind the authenticated actor to a durable local identity without role
+or medical-access escalation. OCR must preserve import provenance. Search/RAG must
+enforce current owner/source grants and revocation without exposing service keys
+or stale shared results. None of those features is enabled by this integration.
