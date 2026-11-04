@@ -1,0 +1,114 @@
+{
+  "base_main": "e3db324c51a1944b323d9f836f04a7c88d3e20ec",
+  "historical_pr": 217,
+  "historical_head": "bba5c43f954346ef170c2f6abbf57cc09abb59aa",
+  "policy": "Reserve exact service/system/product names after trim/case fold for creation only; allow admin and administrator; preserve literal accepted names and legacy accounts. Narrow maintainer-compatible policy selected autonomously after optional question; no maintainer reply is claimed.",
+  "source_sha256": {
+    "backend/pkg/models/user.go": "b683f81610add4064703836f1ddfc5cdfc3a679790b2891e927531ff3dbdfe2f",
+    "backend/pkg/database/gorm_common.go": "91ded3b63310523c944549242a351b8ed866457d9b5e71397e06e233655eeb62",
+    "backend/pkg/web/handler/auth.go": "2e7fb7d0d0523caf5ede80270072b59429c653a1522c0bb3fa33f83aff32061a",
+    "backend/pkg/web/handler/auth_input_validation_test.go": "5f7c65b1ec376dffdd5446cd94db26e4cc76b58a1f986e302f6135f75d6ec2e8",
+    "backend/pkg/web/handler/auth_test.go": "b96fb317d4708d2ddc3ed43292b4ad36fc47b59ad5f5698a7e40ec572c6400da",
+    "backend/pkg/database/gorm_reserved_username_test.go": "a02eace495fde3563484c15251cbf5c481f1f6a5fb706459de41fb4c2eae1955"
+  },
+  "logs": {
+    "reserved-before.jsonl": {
+      "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/reserved-usernames-217/reserved-before.jsonl",
+      "sha256": "da47ad7ab49bc0861b9ab73466546b4a04167a90aa9e1e6b89b95056b53070a1",
+      "leaf_outcomes": {
+        "pass": 14,
+        "fail": 3
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        },
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reserved-before-corrected.jsonl": {
+      "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/reserved-usernames-217/reserved-before-corrected.jsonl",
+      "sha256": "fe96b1da42c01daf2b792a73b6eb21b3b9105bdc494cec53a5ec5046f07981bc",
+      "leaf_outcomes": {
+        "fail": 20,
+        "pass": 19
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        },
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reserved-root.jsonl": {
+      "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/reserved-usernames-217/reserved-root.jsonl",
+      "sha256": "59b6b103b42393df41e73fb625c8118fd11ad87479dbee20af22d3a42eefcbc5",
+      "leaf_outcomes": {
+        "pass": 49
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        },
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reserved-desktop.jsonl": {
+      "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/reserved-usernames-217/reserved-desktop.jsonl",
+      "sha256": "56f81ffed7ff495ddc6af702a606a2dcd558ac79fe0a4b93038b0e42c519e28a",
+      "leaf_outcomes": {
+        "pass": 49
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        },
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reserved-root-signin.jsonl": {
+      "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/reserved-usernames-217/reserved-root-signin.jsonl",
+      "sha256": "abdf2d41a7fb47016136ae268efde7b9d7096009ec3f29e1296a506eec23a227",
+      "leaf_outcomes": {
+        "pass": 7
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reserved-desktop-signin.jsonl": {
+      "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/reserved-usernames-217/reserved-desktop-signin.jsonl",
+      "sha256": "d9e000ae0d0a6d48888bc6d5038d2aad14b39dbc07359d6ce6701599d1d05a93",
+      "leaf_outcomes": {
+        "pass": 7
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+          "Action": "pass"
+        }
+      ]
+    }
+  },
+  "qualification": "Initial test scaffold used the wrong UserSetting type; retained as build failure and excluded from red/green evidence. Corrected baseline has 20 leaf failures and 19 passes. Final root/desktop each pass 49 focused cases plus updated 7-case sign-in suite. No patient data, migration, local full build or provider operation.",
+  "protected_ci": "pending"
+}

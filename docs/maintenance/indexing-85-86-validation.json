@@ -1,0 +1,126 @@
+{
+  "base_main": "e3db324c51a1944b323d9f836f04a7c88d3e20ec",
+  "probe_sha256": "cc6eb1c2a03a88643e41c3baf34741db3abcdee88ce6e84744e2a217676315fc",
+  "source_sha256": {
+    "backend/pkg/models/database/fhir_observation.go": "44ab82856e0eb0892197f3f6dadf7ea9812d9349c35761f465b15520f1b055a8",
+    "backend/pkg/models/database/searchParameterExtractor.js": "061a1d29a666195b10b6826758c056fd5a28e050fd4d13d56ddbeb69d1c93048",
+    "backend/pkg/database/gorm_repository_query.go": "041158f774907aa5b2d634aad6dfce35b47055f92cc1b9002049014a71a53a61"
+  },
+  "logs": {
+    "indexing-final-root.log": {
+      "sha256": "238c19a5507eacf42cc8d78bab3a404ec87605a8b930cb0652773044a7c38037",
+      "result": {
+        "encrypted_cold_reopen": "pass",
+        "issues": [
+          85,
+          86
+        ],
+        "quantity_and_reference_extraction": "pass for both resources, including zero component quantity",
+        "quantity_queries": {
+          "comboValueQuantity": 2,
+          "valueQuantity": 2
+        },
+        "raw": "unchanged",
+        "reference_queries": {
+          "encounter": "search parameter type not yet implemented: reference",
+          "subject": "search parameter type not yet implemented: reference"
+        },
+        "source_changes": "none",
+        "version_queries": {
+          "synthetic-absent": 0,
+          "synthetic-v1": 1,
+          "synthetic-v2": 1
+        }
+      }
+    },
+    "indexing-final-desktop.log": {
+      "sha256": "5045be3480ca366c5d0494fab93eb2df1b4f56add72f97eb0e7632eff768657d",
+      "result": {
+        "encrypted_cold_reopen": "pass",
+        "issues": [
+          85,
+          86
+        ],
+        "quantity_and_reference_extraction": "pass for both resources, including zero component quantity",
+        "quantity_queries": {
+          "comboValueQuantity": 2,
+          "valueQuantity": 2
+        },
+        "raw": "unchanged",
+        "reference_queries": {
+          "encounter": "search parameter type not yet implemented: reference",
+          "subject": "search parameter type not yet implemented: reference"
+        },
+        "source_changes": "none",
+        "version_queries": {
+          "synthetic-absent": 0,
+          "synthetic-v1": 1,
+          "synthetic-v2": 1
+        }
+      }
+    }
+  },
+  "issue85": "already implemented: version derivation, persistence, exact/nonmatching filters and encrypted cold reopen verified in both module graphs",
+  "issue86": "partly implemented: quantity/reference extraction and quantity queries pass; subject and encounter reference queries explicitly unsupported; remains open",
+  "qualification": "Synthetic standalone consumer checks, no application source changes. No historical rows, global reference normalization or migration. Initial log checked extraction/version only; expanded logs add quantity/reference query boundaries and encrypted header.",
+  "accepted_main": "43fed3855683448176a0298c8976974f9a042fe3",
+  "accepted_main_logs": {
+    "indexing-accepted-root.log": {
+      "sha256": "b575347d7d536231f8bee51cd13f5d9a2158b86693d7c3628d291f0bac74ec08",
+      "result": {
+        "encrypted_cold_reopen": "pass",
+        "issues": [
+          85,
+          86
+        ],
+        "quantity_and_reference_extraction": "pass for both resources, including zero component quantity",
+        "quantity_queries": {
+          "comboValueQuantity": 2,
+          "valueQuantity": 2
+        },
+        "raw": "unchanged",
+        "reference_queries": {
+          "encounter": "search parameter type not yet implemented: reference",
+          "subject": "search parameter type not yet implemented: reference"
+        },
+        "source_changes": "none",
+        "version_queries": {
+          "synthetic-absent": 0,
+          "synthetic-v1": 1,
+          "synthetic-v2": 1
+        }
+      }
+    },
+    "indexing-accepted-desktop.log": {
+      "sha256": "2c84a5e9a616e47c19b6a741482cf3079986b29bfa55d8900a8efb6802ea4196",
+      "result": {
+        "encrypted_cold_reopen": "pass",
+        "issues": [
+          85,
+          86
+        ],
+        "quantity_and_reference_extraction": "pass for both resources, including zero component quantity",
+        "quantity_queries": {
+          "comboValueQuantity": 2,
+          "valueQuantity": 2
+        },
+        "raw": "unchanged",
+        "reference_queries": {
+          "encounter": "search parameter type not yet implemented: reference",
+          "subject": "search parameter type not yet implemented: reference"
+        },
+        "source_changes": "none",
+        "version_queries": {
+          "synthetic-absent": 0,
+          "synthetic-v1": 1,
+          "synthetic-v2": 1
+        }
+      }
+    }
+  },
+  "accepted_source_sha256": {
+    "backend/pkg/models/database/fhir_observation.go": "44ab82856e0eb0892197f3f6dadf7ea9812d9349c35761f465b15520f1b055a8",
+    "backend/pkg/models/database/searchParameterExtractor.js": "dbf693ca8e51902f8539bd41b6381650d3e3b5d1816aa2a0f8d97380385a1d87",
+    "backend/pkg/database/gorm_repository_query.go": "041158f774907aa5b2d634aad6dfce35b47055f92cc1b9002049014a71a53a61"
+  }
+}

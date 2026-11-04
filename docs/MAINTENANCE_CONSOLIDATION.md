@@ -10,7 +10,8 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 ## Verified state
 
 Snapshot: November 4, 2026, resumed from accepted main
-`e3db324c51a1944b323d9f836f04a7c88d3e20ec` (#409). The primary checkout was
+`e3db324c51a1944b323d9f836f04a7c88d3e20ec` (#409), then integrated #410 at
+`43fed3855683448176a0298c8976974f9a042fe3`. The primary checkout was
 independently clean on main with matching live origin/main; no stash, in-progress
 Git operation or lock was present. Four local branches remain: main, the two
 held retention owners, and the preserved unpublished text-only-concepts-135 task.
@@ -31,12 +32,25 @@ PR/conversation requirements, all seven trusted checks, and main deletion/force
 push protection. The legacy branch-protection endpoint returns 404 because this
 repository uses the verified ruleset; it is not proof of missing protection.
 
-There are 159 open issues including #222 and six historical feature PRs before
-publishing this candidate. Counts are a snapshot, not achieved target counts.
-The existing #135 branch retains both unpublished commits 20a82b097b and
-21bf2c5835; current main was merged without rewriting them. All three source
-hashes and nine saved logs match; fresh focused root and desktop tests pass.
-Protected CI and integration are pending.
+After #410, there are 156 open issues including #222 and six historical feature
+PRs before publishing the reserved-names candidate. #44 is implemented, #99 is
+explicitly superseded by the current source-page layout, #135 is implemented by
+#410, and #85 is verified already implemented. #86 remains open: extraction and
+quantity queries pass, but subject/encounter reference queries remain unsupported.
+#194 remains unresolved. These are individually recorded GitHub dispositions.
+
+#410 passed all seven required checks at exact head32f35ef438 in run41808845890.
+Its two original unpublished commits20a82b097b/21bf2c5835 are retained in accepted
+main. Fresh root/desktop focused cases and original source/log hashes passed.
+The automatic main-push run41810119151 is separate acceptance and remains running.
+The clean primary main was fast-forwarded; implementation continues on the existing
+primary checkout's actual task branch. No new worktree or subagent was created.
+
+The incorporated local text-only branch was retired after ancestry, owner and
+consumer checks. Its leased remote deletion was rejected by GitHub with
+`remote: fatal error in commit_refs`; the remote ref remains preserved rather
+than falsely reported retired. Sixteen live origin heads and four local branches
+remain at this checkpoint, including the published reserved-usernames task.
 
 Both independently owned retention worktrees are clean and remain held. The
 former Rex pane is at the Codex input screen; no prior test/build/merge process
@@ -51,7 +65,11 @@ The existing six-capability admission review remains applicable: #209 permission
 #211 Typesense/RAG, #212 OCR, #214 OIDC, #215 delegation and #217 reserved names
 are retained for corrected implementation, with their prototype gaps documented
 individually. No capability is declared incorporated or rejected merely for counts.
-The #217 naming-policy question is pending; other work continues independently.
+The #217 implementation uses a narrow service/system-name policy preserving
+admin/administrator and all existing accounts; the optional question had no
+maintainer response. Protected integration remains pending. See
+[implementation and compatibility](maintenance/2026-11-04-reserved-usernames-217.md)
+and [indexing reconciliation](maintenance/indexing-85-86-validation.json).
 
 ## Latest integrated safeguards and tooling
 
