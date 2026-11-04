@@ -1,0 +1,44 @@
+{
+  "pr": 402,
+  "head": "ffc4916403dea46ecd1c429bbf2c1e67f20a851d",
+  "merge": "ae11db3e8bb13d0142a98b77702c47f770fef6c5",
+  "run": 41741827166,
+  "Backend": "success",
+  "Frontend": "success",
+  "Desktop": "success",
+  "browser_pass": 562,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.12 MB",
+  "unchanged_budget": "10 MB",
+  "full_job_logs": [
+    {
+      "name": "frontend",
+      "job": 126284951235,
+      "bytes": 121949,
+      "sha256": "11163f1511cdc8c24c44eebd3f5ba549804855458b6ec4b4a77010e7714976c8",
+      "download_exit": 0
+    },
+    {
+      "name": "desktop",
+      "job": 126284951450,
+      "bytes": 54416,
+      "sha256": "dcd7ed40459aa4d24edf32b0f49db5cd2113cc0fbea7920d3af91160869d2a71",
+      "download_exit": 0
+    },
+    {
+      "name": "backend",
+      "job": 126284950863,
+      "bytes": 37280,
+      "sha256": "01a7c8424778ddfebbc3170c791cb91e5c954353a4018dbd3df29b6915dd23fc",
+      "download_exit": 0
+    }
+  ],
+  "native_scope": "Focused nonpersistent system WebKit passes exact-pixel/canvas and RLE module-worker tests; no fresh packaged Wails UI.",
+  "independent_main_push_checks": {
+    "Backend": "success",
+    "Frontend": "success",
+    "Desktop": "success",
+    "raw": "dist/validation/2026-11-01-consolidation/dwv-review/main-check-runs-after402.json"
+  }
+}

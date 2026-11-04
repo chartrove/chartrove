@@ -1,0 +1,154 @@
+{
+  "issue": 159,
+  "upstream_issue": 506,
+  "base_main": "ae11db3e8bb13d0142a98b77702c47f770fef6c5",
+  "working_counts": {
+    "live_issues": 163,
+    "live_prs": 6,
+    "origin_heads": 14,
+    "local_heads": 4,
+    "current_cache_enabled": false
+  },
+  "six_case_same_spec_sha256": "b80131ccc1c0d43843360cd880e9204cabb955fc93b0b9b63cfebcd9cd48442b",
+  "six_case_old": {
+    "exit": 1,
+    "pass": 1,
+    "fail": 5,
+    "qualification": "Unknown widgetConfig input, no configured HTTP POST, static demo markup."
+  },
+  "six_case_corrected": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/widgets/complex-line-widget/complex-line-widget.component.spec.ts"
+    ],
+    "versions": {
+      "fhirpath": "5.2.3",
+      "lforms": "44.2.0",
+      "@swimlane/ngx-datatable": "25.0.0"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/widgets/complex-line-widget/complex-line-widget.component.spec.ts": "b80131ccc1c0d43843360cd880e9204cabb955fc93b0b9b63cfebcd9cd48442b"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 24481460224,
+    "freeAfterCommandBytes": 24476196864,
+    "freeAfterCleanupBytes": 24506953728,
+    "freeDeltaBytes": 25493504,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "final_eleven_cases": {
+    "command": [
+      "node",
+      "node_modules/@angular/cli/bin/ng.js",
+      "test",
+      "--watch=false",
+      "--progress=false",
+      "--browsers=ChromeHeadlessCI",
+      "--reporters=dots",
+      "--include=src/app/widgets/complex-line-widget/complex-line-widget.component.spec.ts"
+    ],
+    "versions": {
+      "fhirpath": "5.2.3",
+      "lforms": "44.2.0",
+      "@swimlane/ngx-datatable": "25.0.0"
+    },
+    "exit": 0,
+    "spec_sha256": {
+      "frontend/src/app/widgets/complex-line-widget/complex-line-widget.component.spec.ts": "148fc0c99132adc682b057c6816746c60b818cc8d765bdbd8900acce94cb7a9f"
+    },
+    "spec_unchanged": true,
+    "private_scratch_disposed": true,
+    "live_workspace_cache_enabled": false,
+    "freeBeforeBytes": 24485531648,
+    "freeAfterCommandBytes": 24447172608,
+    "freeAfterCleanupBytes": 24477319168,
+    "freeDeltaBytes": -8212480,
+    "storage_qualification": "Host-wide measurements include concurrent swap/APFS/activity; no physical-space attribution from payload size. Focused browser invocation only, no full-workflow50GiB admission override."
+  },
+  "type_checks": {
+    "final-spec-types": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.spec.json",
+        "--noEmit"
+      ],
+      "exit": 0,
+      "seconds": 8.75
+    },
+    "final-app-types": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.app.json",
+        "--noEmit"
+      ],
+      "exit": 0,
+      "seconds": 10.04
+    },
+    "final-story-types": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        ".storybook/tsconfig.json",
+        "--noEmit"
+      ],
+      "exit": 2,
+      "seconds": 4.45
+    },
+    "final-story-explicit-root-types": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        ".storybook/tsconfig.json",
+        "--rootDir",
+        ".",
+        "--noEmit"
+      ],
+      "exit": 2,
+      "seconds": 17.65,
+      "qualification": "TypeScript 6 infers project-folder rootDir for standalone CLI invocation; supply actual frontend source root without changing tracked configuration or type checks."
+    },
+    "targeted-story-types": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "/var/folders/3x/74t3wk415llg_1pxfgfq6tpr0000gn/T/chartrove-resume-_5nn98gn/issue159-story-types.json",
+        "--noEmit"
+      ],
+      "exit": 0,
+      "seconds": 8.64,
+      "qualification": "Unchanged Storybook type policy, explicit actual frontend root, changed story only. Full preview depends on generated documentation.json and is not claimed by this targeted check. No full build below reserve."
+    }
+  },
+  "source_sha256": {
+    "frontend/src/app/widgets/complex-line-widget/complex-line-widget.component.html": "c21e2c868467e798c024add07675427a4cea2c5264343fc76d3be3b0a020408f",
+    "frontend/src/app/widgets/complex-line-widget/complex-line-widget.component.scss": "4a3383ac044ef1f7a8158819a542ebf425ee9463de5ac2e9db6589bb37b388b2",
+    "frontend/src/app/widgets/complex-line-widget/complex-line-widget.component.spec.ts": "148fc0c99132adc682b057c6816746c60b818cc8d765bdbd8900acce94cb7a9f",
+    "frontend/src/app/widgets/complex-line-widget/complex-line-widget.component.ts": "96a5d64a4799e2b2db8808740ba31e6d0ac6de1c537183bbd1f5ab82bb61a4b0",
+    "frontend/src/app/widgets/complex-line-widget/complex-line-widget.stories.ts": "47c9ca85b819cd61b4f43f3c9c43eea16d8650983be83a39808fc08fb9e1043c"
+  },
+  "initial_harness_failures_retained": [
+    "before-correction: TS2445 protected Chart.js getParsed access; no runtime assertions",
+    "qualified-before-correction: TS4111 bracket property required; no runtime assertions"
+  ],
+  "clinical_or_database_migration": false,
+  "real_health_records_used": false,
+  "full_local_build": false,
+  "full_workflow_50GiB_reserve_unchanged": true,
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue159"
+}

@@ -1,35 +1,34 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import {ComplexLineWidgetComponent} from "./complex-line-widget.component";
+import {applicationConfig, Meta, StoryObj} from '@storybook/angular';
+import {of} from 'rxjs';
+import {ComplexLineWidgetComponent} from './complex-line-widget.component';
+import {FastenApiService} from '../../services/fasten-api.service';
 
-// More on how to set up stories at: https://storybook.js.org/docs/angular/writing-stories/introduction
 const meta: Meta<ComplexLineWidgetComponent> = {
   title: 'Widget/ComplexLineWidget',
   component: ComplexLineWidgetComponent,
-  decorators: [
-    // moduleMetadata({
-    //   imports: [AppModule]
-    // })
-    // applicationConfig({
-    //   providers: [importProvidersFrom(AppModule)],
-    // }),
-  ],
+  decorators: [applicationConfig({providers: [{
+    provide: FastenApiService,
+    useValue: {queryResources: () => of({success: true, data: [0, 2.5].map((value, index) => ({
+      resource_raw: {resourceType: 'Observation', id: `synthetic-${index}`,
+        issued: `2000-01-0${index + 1}T00:00:00Z`, valueQuantity: {value, unit: 'kg'}},
+    }))})},
+  }]})],
   tags: ['autodocs'],
-  render: (args: ComplexLineWidgetComponent) => ({
-    props: {
-      backgroundColor: null,
-      ...args,
-    },
-  }),
-  argTypes: {
-  },
+  argTypes: {widgetConfig: {control: 'object'}},
 };
 
 export default meta;
 type Story = StoryObj<ComplexLineWidgetComponent>;
 
-// More on writing stories with args: https://storybook.js.org/docs/angular/writing-stories/args
 export const Example: Story = {
   args: {
-  }
+    widgetConfig: {
+      item_type: 'complex-line-widget', title_text: 'Synthetic readings',
+      description_text: 'Disposable example records, including zero.',
+      width: 8, height: 4,
+      queries: [{q: {from: 'Observation', select: ['issued as label', 'valueQuantity.value as data'],
+        where: {code: 'synthetic-quantity'}}, dataset_options: {label: 'Synthetic kg'}}],
+      parsing: {xAxisKey: 'label', yAxisKey: 'data'},
+    },
+  },
 };
-
