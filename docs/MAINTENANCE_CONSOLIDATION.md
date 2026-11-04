@@ -9,37 +9,49 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #408; its three original findings are fixed and one identifier/error-flow alert remains.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after408.json).
-The current aggregation-schema-identifiers branch and unpublished text-only-concepts-135
-branch are additional to this historical snapshot. The tested text task is preserved
-at20a82b097bfa2b8f7b815b4652a8f3c340723488 while the security follow-up completes.
-The separately owned artifact-retention and angular-cache-retention branches/
-worktrees remain preserved, explicitly held by the maintainer after #399.
-Requery live counts after every integration.
+Snapshot: November 4, 2026, resumed from accepted main
+`e3db324c51a1944b323d9f836f04a7c88d3e20ec` (#409). The primary checkout was
+independently clean on main with matching live origin/main; no stash, in-progress
+Git operation or lock was present. Four local branches remain: main, the two
+held retention owners, and the preserved unpublished text-only-concepts-135 task.
+All fourteen live origin heads match the prior feature/owner inventory. The six
+historical feature head/base pairs remain consumers; no retirement is admitted.
+Thirty tags and the cached legacy refs remain unchanged; their existing verified
+recovery evidence below is reused rather than re-created.
 
-| Item | Verified result |
-| --- | --- |
-| Published application main | `d50c0f6b39a430c9e29e67e56314f88b1d0c94e2` (#408) |
-| Open issues | 160, including retained Renovate dashboard #222 |
-| Open PRs | 6: six historical feature drafts; zero Renovate proposals |
-| Origin heads | 14, including the held cache owner ref |
-| Default branch | main tracks origin/main; two current maintenance task branches are additional |
-| Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
-| Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
-| Main protection | Active ruleset 26337029, no bypass actors |
-| Required checks | Backend/Frontend/Desktop and three CodeQL language jobs from app15368; native CodeQL app57789; strict up-to-date |
-| PR workflow | PR required, zero external approvals, conversations resolved |
-| Force push / deletion | Blocked on main |
-| Active Actions registrations | Validation only; inherited Development explicitly disabled again |
+Read-only Code Scanning API verification reports original alerts #1/#2/#3 fixed
+at 2026-11-04T02:29:06Z and follow-up #4 fixed at 2026-11-04T03:17:38Z; none is
+dismissed. Exact-main Go/JS/Actions analyses 2091593212/2091570715/2091562429 have
+zero results and no analysis errors. Full-main run 41765336572 passed all six
+jobs. #44 is closed as implemented, with explicit coverage limits. Merged #399,
+#407, #408 and #409 remain intact; no demonstrations or scans were repeated.
 
-The six remaining drafts are #209 (permissions),
-#211 (Typesense/RAG), #212 (OCR), #214 (OIDC), #215 (delegated access), and #217
-(reserved usernames). Their head/base dependencies remain live. These are not
-implemented features or blanket retirement candidates. The maintainer explicitly
-retained all six capabilities on November 3; corrected implementations and their
-individual data/authentication policies remain required. #284/#285/#286 are now
-implemented by #354; all inherited dependency proposals are now individually reconciled.
+Ruleset 26337029 is active with no bypass actors, strict current-base checking,
+PR/conversation requirements, all seven trusted checks, and main deletion/force
+push protection. The legacy branch-protection endpoint returns 404 because this
+repository uses the verified ruleset; it is not proof of missing protection.
+
+There are 159 open issues including #222 and six historical feature PRs before
+publishing this candidate. Counts are a snapshot, not achieved target counts.
+The existing #135 branch retains both unpublished commits 20a82b097b and
+21bf2c5835; current main was merged without rewriting them. All three source
+hashes and nine saved logs match; fresh focused root and desktop tests pass.
+Protected CI and integration are pending.
+
+Both independently owned retention worktrees are clean and remain held. The
+former Rex pane is at the Codex input screen; no prior test/build/merge process
+was found. Read-only MCP and computer-use helper processes remain untouched.
+Its scrollback confirms `plugin contents changed; hook approval required`.
+This session's native tools work, but plugin trust is not thereby certified.
+No approvals, trusted hashes, plugin files or agent configuration were changed.
+The 50 GiB full-workflow reserve remains; host free space is approximately16GiB,
+so no local full build or broad suite was repeated.
+
+The existing six-capability admission review remains applicable: #209 permissions,
+#211 Typesense/RAG, #212 OCR, #214 OIDC, #215 delegation and #217 reserved names
+are retained for corrected implementation, with their prototype gaps documented
+individually. No capability is declared incorporated or rejected merely for counts.
+The #217 naming-policy question is pending; other work continues independently.
 
 ## Latest integrated safeguards and tooling
 

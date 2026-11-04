@@ -1,0 +1,156 @@
+{
+  "base": "d50c0f6b39a430c9e29e67e56314f88b1d0c94e2",
+  "issue": 135,
+  "new_focused_leaf_cases": 19,
+  "old_focused_leaf_outcomes": {
+    "pass": 10,
+    "fail": 9
+  },
+  "new_focused_leaf_outcomes": {
+    "pass": 19,
+    "fail": 0
+  },
+  "module_graphs": {
+    "root": "54 full model test events plus 1 encrypted repository event pass",
+    "desktop": "54 full model test events plus 1 encrypted repository event pass"
+  },
+  "raw_record_fixture": "Only compact synthetic JSON; unknown large decimal, zero, false and Unicode survive byte-identical after encrypted cold reopen",
+  "existing_record_backfill": "not implemented or run; retired prototypes remain retired",
+  "old_failure_qualification": "Initial test wrongly prohibited the FHIRPath engine __path__ annotation on temporary maps. Corrected controls assert persisted raw bytes instead; initial failures are excluded.",
+  "source_files": {
+    "backend/pkg/models/database/searchParameterExtractor.js": "dbf693ca8e51902f8539bd41b6381650d3e3b5d1816aa2a0f8d97380385a1d87",
+    "backend/pkg/models/database/text_only_concept_test.go": "2b3ae8f6f6853bde12449c6c8197d21eb198c28c039eee38be5f424f733995b7",
+    "backend/pkg/database/gorm_text_only_concept_test.go": "7de28cc2d374ef71b1dd9645362b91d27479f7708941530f2f1feca08da2694e"
+  },
+  "logs": [
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/root-models.jsonl",
+      "package_outcome": "pass",
+      "pass_events": 50,
+      "leaf_outcomes": {
+        "pass": 46,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 67522,
+      "sha256": "1b962217e0eab2170a4a85dd6809d2a07f925eeac5dc083935c7560c2fd4d4d6"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/desktop-models.jsonl",
+      "package_outcome": "pass",
+      "pass_events": 50,
+      "leaf_outcomes": {
+        "pass": 46,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 67520,
+      "sha256": "61b858f8209afa2db880f2d7b8c65b1b6657f2101fb8434ec335a829232e20be"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/root-encrypted.jsonl",
+      "package_outcome": "pass",
+      "pass_events": 1,
+      "leaf_outcomes": {
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 4964,
+      "sha256": "099a04b53296b44af8fabdaadd4685581602c80cd0cc8eee88b0305eefcaaf68"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/desktop-encrypted.jsonl",
+      "package_outcome": "pass",
+      "pass_events": 1,
+      "leaf_outcomes": {
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 4964,
+      "sha256": "6e8728820f8f0baba930eaff2f1cd59d457003d3a51acac88bb223be66316fef"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/before-corrected-control.jsonl",
+      "package_outcome": "fail",
+      "pass_events": 7,
+      "leaf_outcomes": {
+        "pass": 7,
+        "fail": 8,
+        "skip": 0
+      },
+      "bytes": 31243,
+      "sha256": "49181bb664c567198da2240a3abe459b2358a6af0ba1f08060c69b585e236c83"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/before-encrypted.jsonl",
+      "package_outcome": "fail",
+      "pass_events": 0,
+      "leaf_outcomes": {
+        "pass": 0,
+        "fail": 1,
+        "skip": 0
+      },
+      "bytes": 5361,
+      "sha256": "9b18673a2afea5f4c54a4df99ec5bb4364c95631fa49b87ba578bbe835b4c762"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/root-models-with-dates.jsonl",
+      "package_outcome": "pass",
+      "pass_events": 54,
+      "leaf_outcomes": {
+        "pass": 49,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 71470,
+      "sha256": "7aa0c298bfb886f1f184a9a9ff9c8bd27206f83936fa2e5caffc726888691cc2"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/desktop-models-with-dates.jsonl",
+      "package_outcome": "pass",
+      "pass_events": 54,
+      "leaf_outcomes": {
+        "pass": 49,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 71486,
+      "sha256": "58c6fdddacd9eabe31d2ae7fb3e2f3090e1926ea2de8e67039ae0d8989a27656"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/before-date-controls.jsonl",
+      "package_outcome": "pass",
+      "pass_events": 4,
+      "leaf_outcomes": {
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 4682,
+      "sha256": "6c66c44c0272bf7eb5be70f29cd80cedc19ed73fa108e63ad5a88fe5d233f3ce"
+    }
+  ],
+  "protected_ci": "pending; all seven required validations retained",
+  "native_package": "no new local full build admitted below unchanged 50 GiB reserve",
+  "date_controls": "Three cases already pass before and after: supported R4 reaction.onset index, separate recordedDate, top-level onsetDateTime preserved raw; no date behavior change or migration.",
+  "resume_validation": {
+    "base_main": "e3db324c51a1944b323d9f836f04a7c88d3e20ec",
+    "candidate": "b545d44118d90f40ad0917487b25dee55032a2bd",
+    "saved_source_and_log_hashes": "All three source hashes and nine original logs independently match",
+    "focused_test_pattern": "Test(TokenExtractionPreservesTextOnlyConcepts|TextOnlyConceptsReachGeneratedModels|AllergyDateIndexUsesReactionOnset|TextOnlyConceptsPersistInEncryptedRepository)$",
+    "root": "pass",
+    "desktop": "pass",
+    "logs": {
+      "root135.log": {
+        "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/resume-20261104/root135.log",
+        "sha256": "8a8ed50b703403279d64c054499dd75f2288c8c506cbd29fa1c3b88843f4d5a1"
+      },
+      "desktop135.log": {
+        "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/resume-20261104/desktop135.log",
+        "sha256": "541a9d9afe35673ed2bc3407cbf85be22e25247511f6152be118cd7fa87176c4"
+      }
+    }
+  }
+}
