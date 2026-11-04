@@ -128,7 +128,22 @@ func TestSourceAccessIsolationAndLifecycle(t *testing.T) {
 	require.ErrorIs(t, r.UpdateSharedResource(delegate, otherSource.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
 	require.Error(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, json.RawMessage(`{"resourceType":"Patient","id":"changed"}`)))
 	require.ErrorIs(t, r.RevokeSourceGrant(delegate, source.ID, grant.ID), ErrSourceAccessDenied)
-	require.NoError(t, r.RevokeSourceGrant(owner, source.ID, grant.ID))
+	type revokeContentionKey struct{}
+	revokeCtx := context.WithValue(owner, revokeContentionKey{}, true)
+	const revokeCallback = "synthetic:revoke-contention"
+	var revokeWriterErr error
+	var revokeWriterInjected bool
+	require.NoError(t, r.GormClient.Callback().Update().Before("gorm:update").Register(revokeCallback, func(tx *gorm.DB) {
+		if tx.Statement.Context.Value(revokeContentionKey{}) == true && tx.Statement.Table == "source_grants" {
+			revokeWriterInjected = true
+			revokeWriterErr = r.GormClient.WithContext(context.Background()).Model(&models.User{}).Where("id = ?", users[2].ID).Update("role", pkg.UserRoleAdmin).Error
+		}
+	}))
+	err = r.RevokeSourceGrant(revokeCtx, source.ID, grant.ID)
+	require.NoError(t, r.GormClient.Callback().Update().Remove(revokeCallback))
+	require.True(t, revokeWriterInjected)
+	require.NoError(t, revokeWriterErr)
+	require.NoError(t, err, "revocation must tolerate an unrelated committed writer")
 	_, err = r.GetSharedResource(delegate, source.ID, "Observation", local.SourceResourceID)
 	require.ErrorIs(t, err, ErrSourceAccessDenied)
 	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
