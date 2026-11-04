@@ -51,8 +51,10 @@ raw bytes; its initial failures remain excluded from proof. Ordinary source test
 files are used; no undiscovered overlay tests or zero-test exits count as success.
 [Exact source/log hashes and outcomes](text-only-concepts-validation.json).
 
-Protected CI and full issue-content reconciliation remain pending at this source
-checkpoint. #135 remains open. No local full frontend/native build is admitted
+On November 4 the complete issue and discussion were reconciled, all saved
+source/log hashes independently matched, and the preserved branch was merged
+with accepted main #409. Fresh focused root and desktop checks pass. Protected
+CI and integration remain pending; #135 stays open until accepted. No local full frontend/native build is admitted
 below the unchanged50GiB reserve; no new packaged native qualification is claimed.
 Raw evidence: dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/.
 

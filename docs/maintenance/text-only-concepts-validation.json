@@ -134,5 +134,23 @@
   ],
   "protected_ci": "pending; all seven required validations retained",
   "native_package": "no new local full build admitted below unchanged 50 GiB reserve",
-  "date_controls": "Three cases already pass before and after: supported R4 reaction.onset index, separate recordedDate, top-level onsetDateTime preserved raw; no date behavior change or migration."
+  "date_controls": "Three cases already pass before and after: supported R4 reaction.onset index, separate recordedDate, top-level onsetDateTime preserved raw; no date behavior change or migration.",
+  "resume_validation": {
+    "base_main": "e3db324c51a1944b323d9f836f04a7c88d3e20ec",
+    "candidate": "b545d44118d90f40ad0917487b25dee55032a2bd",
+    "saved_source_and_log_hashes": "All three source hashes and nine original logs independently match",
+    "focused_test_pattern": "Test(TokenExtractionPreservesTextOnlyConcepts|TextOnlyConceptsReachGeneratedModels|AllergyDateIndexUsesReactionOnset|TextOnlyConceptsPersistInEncryptedRepository)$",
+    "root": "pass",
+    "desktop": "pass",
+    "logs": {
+      "root135.log": {
+        "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/resume-20261104/root135.log",
+        "sha256": "8a8ed50b703403279d64c054499dd75f2288c8c506cbd29fa1c3b88843f4d5a1"
+      },
+      "desktop135.log": {
+        "path": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/resume-20261104/desktop135.log",
+        "sha256": "541a9d9afe35673ed2bc3407cbf85be22e25247511f6152be118cd7fa87176c4"
+      }
+    }
+  }
 }
