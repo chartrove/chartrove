@@ -36,7 +36,7 @@ func TestObservationReferenceQueries(t *testing.T) {
 		ctx := context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, user.Username)
 		source := &models.SourceCredential{ModelBase: models.ModelBase{ID: uuid.New()}, UserID: user.ID}
 		for i := 1; i <= 2; i++ {
-			raw := []byte(fmt.Sprintf(`{"resourceType":"Observation","id":"synthetic-%d","status":"final","code":{"coding":[{"code":"synthetic"}]},"subject":{"reference":"Patient/synthetic-%d"},"encounter":{"reference":"Encounter/synthetic-common"},"focus":[{"reference":"Patient/synthetic-common"},{"reference":"Patient/synthetic-%d"}],"valueQuantity":{"value":12.5,"code":"mg","system":"http://unitsofmeasure.org"},"component":[{"code":{"text":"Synthetic"},"valueQuantity":{"value":0,"code":"mg","system":"http://unitsofmeasure.org"}}]}`, i, i, i))
+			raw := []byte(fmt.Sprintf(`{"resourceType":"Observation","id":"synthetic-%d","meta":{"profile":["https://synthetic.invalid/profile/common","https://synthetic.invalid/profile/specific-%d"]},"status":"final","code":{"coding":[{"code":"synthetic"}]},"subject":{"reference":"Patient/synthetic-%d"},"encounter":{"reference":"Encounter/synthetic-common"},"focus":[{"reference":"Patient/synthetic-common"},{"reference":"Patient/synthetic-%d"}],"valueQuantity":{"value":12.5,"code":"mg","system":"http://unitsofmeasure.org"},"component":[{"code":{"text":"Synthetic"},"valueQuantity":{"value":0,"code":"mg","system":"http://unitsofmeasure.org"}}]}`, i, i, i, i))
 			created, err := repo.UpsertRawResource(ctx, source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: fmt.Sprintf("synthetic-%d", i), ResourceRaw: raw})
 			require.NoError(t, err)
 			require.True(t, created)
@@ -56,6 +56,10 @@ func TestObservationReferenceQueries(t *testing.T) {
 		{"multiple fields", map[string]interface{}{"subject": "Patient/synthetic-2", "encounter": "Encounter/synthetic-common"}, []string{"synthetic-2"}},
 		{"array matches without duplicate rows", map[string]interface{}{"focus": "Patient/synthetic-common,Patient/synthetic-1"}, []string{"synthetic-1", "synthetic-2"}},
 		{"AND across array entries", map[string]interface{}{"focus": []string{"Patient/synthetic-common", "Patient/synthetic-1"}}, []string{"synthetic-1"}},
+		{"canonical profile", map[string]interface{}{"metaProfile": "https://synthetic.invalid/profile/common"}, []string{"synthetic-1", "synthetic-2"}},
+		{"canonical profile AND", map[string]interface{}{"metaProfile": []string{"https://synthetic.invalid/profile/common", "https://synthetic.invalid/profile/specific-1"}}, []string{"synthetic-1"}},
+		{"canonical no match", map[string]interface{}{"metaProfile": "https://synthetic.invalid/profile/absent"}, []string{}},
+		{"object and canonical references", map[string]interface{}{"subject": "Patient/synthetic-1", "metaProfile": "https://synthetic.invalid/profile/common"}, []string{"synthetic-1"}},
 		{"quantity subpath", map[string]interface{}{"subject": "Patient/synthetic-1", "valueQuantity": "12.5|http://unitsofmeasure.org|mg", "comboValueQuantity": "0|http://unitsofmeasure.org|mg"}, []string{"synthetic-1"}},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
@@ -95,5 +99,14 @@ func TestObservationReferenceQueries(t *testing.T) {
 		require.Len(t, observations, 1)
 		require.Equal(t, owner.ID, observations[0].UserID)
 		require.Equal(t, "synthetic-1", observations[0].SourceResourceID)
+		rows, err = reopened.QueryResources(ctx, models.QueryResource{From: "Observation", Where: map[string]interface{}{"metaProfile": "https://synthetic.invalid/profile/common"}})
+		require.NoError(t, err)
+		encoded, err = json.Marshal(rows)
+		require.NoError(t, err)
+		require.NoError(t, json.Unmarshal(encoded, &observations))
+		require.Len(t, observations, 2)
+		for _, row := range observations {
+			require.Equal(t, owner.ID, row.UserID)
+		}
 	})
 }

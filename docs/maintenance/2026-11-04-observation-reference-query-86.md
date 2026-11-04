@@ -31,7 +31,7 @@ synthetic, and each SQL pool closes before its private test directory is removed
 
 The identical corrected baseline has eight supported-query failures and three
 passing unsupported-query controls. Final root and desktop selections each pass
-38 leaf cases, including all 14 reference controls and existing query/aggregation
+42 leaf cases, including all 18 reference controls and existing query/aggregation
 regressions. An initial candidate test incorrectly assumed a concrete pointer
 slice; its decoding failures are retained and excluded from product proof. The
 corrected test consumes the same JSON representation as normal callers. Exact
@@ -48,3 +48,13 @@ instead of one. A correlated existence predicate per condition corrects it; the
 new regression passes in both graphs. The prior candidate's seven green checks
 are retained as historical evidence only. The source change requires fresh
 protected checks and is not accepted on the preceding head's results.
+
+The automated review also identified valid canonical-string references such as
+meta.profile. The current model advertises metaProfile as a reference and stores
+those entries as strings; treating them as objects raises SQLite malformed JSON.
+Five ordinary canonical controls reproduce that error on32cfadcd63. A CASE over
+json_each representation type now compares string entries directly and extracts
+reference only from object entries. Both graphs pass canonical matches, missing
+values, repeated AND, mixed object/canonical filters and encrypted cold reopen.
+This preserves all stored representations and adds no URL fetching. Both review
+threads require evidence-backed resolution after final protected acceptance.

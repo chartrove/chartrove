@@ -623,7 +623,7 @@ func SearchCodeToWhereClause(searchParam SearchParameter, searchParamValue Searc
 		return fmt.Sprintf("(%s = @%s)", searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	case SearchParameterTypeReference:
 		// Each repeated condition may match a different entry in the same array.
-		return fmt.Sprintf("EXISTS (SELECT 1 FROM json_each(%s.%s) AS referenceValues WHERE referenceValues.value ->> '$.reference' = @%s)", TABLE_ALIAS, searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
+		return fmt.Sprintf("EXISTS (SELECT 1 FROM json_each(%s.%s) AS referenceValues WHERE CASE referenceValues.type WHEN 'text' THEN referenceValues.value WHEN 'object' THEN referenceValues.value ->> '$.reference' END = @%s)", TABLE_ALIAS, searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	}
 	return "", searchClauseNamedParams, nil
 }
