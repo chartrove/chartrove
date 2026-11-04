@@ -10,8 +10,9 @@ retains those observations separately from the following new implementation.
 Actual subject/encounter queries failed because the query engine explicitly
 rejected every reference search parameter value and never expanded its JSON
 array. The correction adds exact matching against each stored `reference` member
-through the existing owner-scoped, bound-parameter query path. Existing grouping
-returns each resource once when multiple reference-array values match. Literal
+through the existing owner-scoped, bound-parameter query path. Each condition
+uses an independent existence predicate, allowing repeated AND conditions to
+match different entries in the same array without duplicating resource rows. Literal
 reference strings remain unchanged; there is no network resolution or fetch.
 
 Unsupported modifiers (including identifier/type qualification) and blank values
@@ -30,7 +31,7 @@ synthetic, and each SQL pool closes before its private test directory is removed
 
 The identical corrected baseline has eight supported-query failures and three
 passing unsupported-query controls. Final root and desktop selections each pass
-37 leaf cases, including all 13 reference controls and existing query/aggregation
+38 leaf cases, including all 14 reference controls and existing query/aggregation
 regressions. An initial candidate test incorrectly assumed a concrete pointer
 slice; its decoding failures are retained and excluded from product proof. The
 corrected test consumes the same JSON representation as normal callers. Exact
@@ -40,3 +41,10 @@ Protected CI and integration remain pending. #86 remains open until acceptance;
 no existing historical row is reprocessed. PostgreSQL query execution and a new
 packaged native UI are not claimed. No local full build was run below the
 unchanged 50 GiB reserve.
+
+Final review reproduced an additional array-AND defect in the first published
+candidate: requiring both common and specific references returned zero rows
+instead of one. A correlated existence predicate per condition corrects it; the
+new regression passes in both graphs. The prior candidate's seven green checks
+are retained as historical evidence only. The source change requires fresh
+protected checks and is not accepted on the preceding head's results.

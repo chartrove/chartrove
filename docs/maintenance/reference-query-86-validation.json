@@ -2,8 +2,8 @@
   "base_main": "43fed3855683448176a0298c8976974f9a042fe3",
   "issue": 86,
   "source_sha256": {
-    "backend/pkg/database/gorm_repository_query.go": "36c105d9c1682f523ceb15cb9403accd225404c048111787580c0980c10193de",
-    "backend/pkg/database/gorm_reference_query_test.go": "86eb74107d0484f2d0ddd69b412449a109e22f91de8b39d856f04a235c083763"
+    "backend/pkg/database/gorm_repository_query.go": "2a4c0916bc2bea24e90aeb7ed638a7bde55e9765fdc1cfa9ea601970b8470f61",
+    "backend/pkg/database/gorm_reference_query_test.go": "e4ba1f1a96bdbf60c5266331f0017b2f67de7d3848ae27b752966ddea9d7548c"
   },
   "logs": {
     "reference-before.jsonl": {
@@ -80,9 +80,47 @@
           "Action": "pass"
         }
       ]
+    },
+    "reference-array-and-before.jsonl": {
+      "sha256": "9182129815ccc92b33de1da24ebc24f586c438337d9cb7dac2af35024a4f8171",
+      "leaf_outcomes": {
+        "pass": 13,
+        "fail": 1
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-root-array-final.jsonl": {
+      "sha256": "2b5e7bca5b5be58364d638c62e15933b88c23e04c2943ccc85f5773158ed4872",
+      "leaf_outcomes": {
+        "pass": 38
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-desktop-array-final.jsonl": {
+      "sha256": "566802056c6bb3c86f47bde32b8a5ef55b5630c1d7bf4ab4cc8cd84a14b672b8",
+      "leaf_outcomes": {
+        "pass": 38
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
     }
   },
   "scope": "Exact stored-reference string equality in existing query engine, owner-scoped ordinary Observation fixtures; no reference normalization or resolution, no record rewrite, no FHIR server compliance claim. Unsupported modifiers and blank values fail explicitly.",
   "qualification": "First candidate test assumed a concrete pointer slice, whereas the repository returns its interface model slice. It failed in test decoding after successful queries; fixed to exercise normal JSON output. Corrected identical baseline again fails all 8 supported-query cases, with 3 unsupported controls passing. Final suite adds blank-value and encrypted cold-reopen controls.",
-  "protected_ci": "pending"
+  "protected_ci": "pending",
+  "array_and_correction": "Final review added an ordinary repeated-AND multi-reference case. Published candidate6829110d91 returned zero rows instead of one. Independent correlated existence predicates correct that actual failure and avoid cross-row alias coupling. Root and desktop final selections each pass38 leaf cases including14 reference controls. Earlier passed checks apply only to the preceding candidate; refreshed protected CI is mandatory."
 }

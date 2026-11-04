@@ -622,7 +622,8 @@ func SearchCodeToWhereClause(searchParam SearchParameter, searchParamValue Searc
 		//setup the clause
 		return fmt.Sprintf("(%s = @%s)", searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	case SearchParameterTypeReference:
-		return fmt.Sprintf("(%sJson.value ->> '$.reference' = @%s)", searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
+		// Each repeated condition may match a different entry in the same array.
+		return fmt.Sprintf("EXISTS (SELECT 1 FROM json_each(%s.%s) AS referenceValues WHERE referenceValues.value ->> '$.reference' = @%s)", TABLE_ALIAS, searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	}
 	return "", searchClauseNamedParams, nil
 }
@@ -634,7 +635,7 @@ func SearchCodeToFromClause(searchParam SearchParameter) (string, error) {
 	//COMPLEX SEARCH PARAMETERS
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	switch searchParam.Type {
-	case SearchParameterTypeQuantity, SearchParameterTypeToken, SearchParameterTypeString, SearchParameterTypeReference:
+	case SearchParameterTypeQuantity, SearchParameterTypeToken, SearchParameterTypeString:
 		//setup the clause
 		return fmt.Sprintf("json_each(%s.%s) as %sJson", TABLE_ALIAS, searchParam.Name, searchParam.Name), nil
 	}

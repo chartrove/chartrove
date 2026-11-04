@@ -55,6 +55,7 @@ func TestObservationReferenceQueries(t *testing.T) {
 		{"AND", map[string]interface{}{"subject": []string{"Patient/synthetic-1", "Patient/synthetic-2"}}, []string{}},
 		{"multiple fields", map[string]interface{}{"subject": "Patient/synthetic-2", "encounter": "Encounter/synthetic-common"}, []string{"synthetic-2"}},
 		{"array matches without duplicate rows", map[string]interface{}{"focus": "Patient/synthetic-common,Patient/synthetic-1"}, []string{"synthetic-1", "synthetic-2"}},
+		{"AND across array entries", map[string]interface{}{"focus": []string{"Patient/synthetic-common", "Patient/synthetic-1"}}, []string{"synthetic-1"}},
 		{"quantity subpath", map[string]interface{}{"subject": "Patient/synthetic-1", "valueQuantity": "12.5|http://unitsofmeasure.org|mg", "comboValueQuantity": "0|http://unitsofmeasure.org|mg"}, []string{"synthetic-1"}},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
