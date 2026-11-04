@@ -18,7 +18,7 @@
       <p role="status">Processing locally @if (pages) { · Page {{page}} of {{pages}} }</p>
       <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel processing</button>
     }
-    @if (text && file) {
+    @if (originalURL && file) {
       <p>{{file.name}} · {{pages}} page(s). Review and correct every page before importing.</p>
       <a [href]="originalURL" [download]="file.name">Download original for comparison</a>
       <div class="my-3">

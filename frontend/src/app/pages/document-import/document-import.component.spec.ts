@@ -60,6 +60,16 @@ describe('DocumentImportComponent local review', () => {
     area.value='Corrected synthetic text';area.dispatchEvent(new Event('input'));fixture.detectChanges();
     expect(component.reviewed).toBeFalse();expect(fixture.nativeElement.querySelector('img')).toBeNull();
   });
+  it('keeps the editor available after clearing its text, and requires a nonempty replacement before saving',async()=>{
+    await component.selected(selection());fixture.detectChanges();await fixture.whenStable();
+    const area=fixture.nativeElement.querySelector('#document-transcript') as HTMLTextAreaElement;
+    area.value='';area.dispatchEvent(new Event('input'));fixture.detectChanges();
+    expect(component.text).toBe('');expect(fixture.nativeElement.querySelector('#document-transcript')).toBe(area);
+    component.reviewed=true;await component.save();expect(api.save).not.toHaveBeenCalled();
+    area.value='Replacement synthetic transcript';area.dispatchEvent(new Event('input'));fixture.detectChanges();
+    expect(component.text).toBe('Replacement synthetic transcript');expect(component.reviewed).toBeFalse();
+    component.reviewed=true;await component.save();expect(api.save).toHaveBeenCalled();
+  });
   it('does not fetch sources or offer import in the existing desktop/cloud modes',async()=>{
     api.sources.calls.reset();component.supported=false;await component.ngOnInit();fixture.detectChanges();
     expect(api.sources).not.toHaveBeenCalled();expect(fixture.nativeElement.querySelector('#document-file')).toBeNull();
