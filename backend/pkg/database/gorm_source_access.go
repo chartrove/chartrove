@@ -69,6 +69,12 @@ func (gr *GormRepository) SetSourceGrant(ctx context.Context, source uuid.UUID, 
 	if expires != nil && !expires.After(time.Now()) {
 		return nil, fmt.Errorf("%w: expiration must be in the future", ErrSourceAccessInput)
 	}
+	if expires != nil {
+		// SQLite compares persisted timestamps lexically. Match the UTC clock
+		// used by authorization without mutating the caller's timestamp.
+		utcExpiration := expires.UTC()
+		expires = &utcExpiration
+	}
 	var delegate models.User
 	err = gr.GormClient.WithContext(ctx).Where("username = ? AND deleted_at IS NULL", username).First(&delegate).Error
 	if err != nil {

@@ -53,6 +53,10 @@ without a grant, two sources, malformed historical cross-owner rows, VIEW/EDIT,
 onward-grant denial, changed identity, revocation, expiration, import replacement,
 derived search fields, audit failure rollback and encrypted reopen. The additive
 migration has a frozen schema and does not rewrite clinical tables or credentials.
+Offset-bearing expirations are normalized to UTC without changing caller values.
+An orchestrated second SQLite writer reproduces and guards against ingestion's
+read-to-write snapshot contention. Failed imports retain provenance, while repeated
+association imports remain idempotent inside the replacement transaction.
 
 Delivery is split into a repository foundation and authenticated API/UI exposure,
 each through the existing protected workflow. #209/#215 remain open until the

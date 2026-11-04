@@ -295,28 +295,31 @@ func (gr *GormRepository) GetSummary(ctx context.Context) (*models.Summary, erro
 // It will also create associations between fhir resources
 // This function is called directly by fasten-sources
 func (gr *GormRepository) UpsertRawResource(ctx context.Context, sourceCredential sourceModel.SourceCredential, rawResource sourceModel.RawResourceFhir) (bool, error) {
+	actor, err := gr.GetCurrentUser(ctx)
+	if err != nil {
+		return false, err
+	}
 	var changed bool
-	err := gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+	err = gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		repo := *gr
 		repo.GormClient = tx
 		var err error
-		changed, err = repo.upsertRawResource(ctx, sourceCredential, rawResource)
+		changed, err = repo.upsertRawResource(ctx, sourceCredential, rawResource, actor.ID)
 		return err
 	})
 	return changed && err == nil, err
 }
 
-func (gr *GormRepository) upsertRawResource(ctx context.Context, sourceCredential sourceModel.SourceCredential, rawResource sourceModel.RawResourceFhir) (bool, error) {
+func (gr *GormRepository) upsertRawResource(ctx context.Context, sourceCredential sourceModel.SourceCredential, rawResource sourceModel.RawResourceFhir, actorID uuid.UUID) (bool, error) {
 
 	source := sourceCredential.(*models.SourceCredential)
 
 	// SDK ingestion must never retain local-edit provenance, even when an import
 	// replaces a record in the same Fasten source. Failure denies the import.
-	actor, err := gr.GetCurrentUser(ctx)
-	if err != nil {
-		return false, err
-	}
-	if err := gr.GormClient.WithContext(ctx).Where("owner_user_id = ? AND source_id = ? AND resource_type = ? AND resource_id = ?", actor.ID, source.ID, rawResource.SourceResourceType, rawResource.SourceResourceID).Delete(&models.LocalResource{}).Error; err != nil {
+	// This must be the first transactional statement. Even a no-match DELETE
+	// acquires SQLite's write reservation before subsequent authorization reads,
+	// avoiding a stale WAL read snapshot that cannot be upgraded to a writer.
+	if err := gr.GormClient.WithContext(ctx).Where("owner_user_id = ? AND source_id = ? AND resource_type = ? AND resource_id = ?", actorID, source.ID, rawResource.SourceResourceType, rawResource.SourceResourceID).Delete(&models.LocalResource{}).Error; err != nil {
 		return false, err
 	}
 
