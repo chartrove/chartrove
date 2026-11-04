@@ -73,6 +73,8 @@ const routes: Routes = [
 
   { path: 'settings', component: SettingsComponent, canActivate: [ IsAuthenticatedAuthGuard] },
 
+  { path: 'source-permissions', loadComponent: () => import('./pages/source-access/source-access.component').then(m => m.SourceAccessComponent), canActivate: [ IsAuthenticatedAuthGuard ] },
+
   // { path: 'general-pages', loadChildren: () => import('./general-pages/general-pages.module').then(m => m.GeneralPagesModule) },
   // { path: 'ui-elements', loadChildren: () => import('./ui-elements/ui-elements.module').then(m => m.UiElementsModule) },
   // { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
