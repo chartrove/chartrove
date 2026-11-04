@@ -55,3 +55,17 @@ remain pending. Raw evidence: dist/validation/2026-11-01-consolidation/
 post-dependency-issue-review/issue143/. [Compact validation](session-lifetime-143-validation.json) records the completed
 root/desktop consumer checks. The full upstream report and failed overlay remain
 preserved alongside ordinary controls.
+
+## Protected integration and issue disposition
+
+PR #405 merged at54a6ae8e9ec9df3f86d79c08c97a99749252d9b4 with all three
+required checks passing in run41749146033:572 browser cases, one existing skip,
+16Node checks and6.13 MB initial output under unchanged10 MB. Complete job logs
+and hashes remain. After a fresh full-content and incorporation check, #143 is
+closed as an implemented configuration request with comment6619462876. The
+historical ten-minute cause remains explicitly unproven, as do per-user/idle/
+refresh/revocation features. Only its incorporated task branch was retired; the
+exact tip remains reachable from main and both independent retention owners stay
+held. [CI](session-lifetime-143-ci-validation.json),
+[retirement](session-lifetime-143-retirement.json),
+[fresh checkpoint](2026-11-03-checkpoint-after405.json).

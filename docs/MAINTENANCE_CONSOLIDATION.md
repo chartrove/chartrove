@@ -9,20 +9,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #404 and the individual #76 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after404.json).
-The session-lifetime-143 task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #405 and the individual #143 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after405.json).
+The signup-input-validation task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `9bb23787e7b05012b51333c6aa024dc522bb661e` (#404) |
-| Open issues | 161, including retained Renovate dashboard #222 |
+| Published application main | `54a6ae8e9ec9df3f86d79c08c97a99749252d9b4` (#405) |
+| Open issues | 160, including retained Renovate dashboard #222 |
 | Open PRs | 6: six historical feature drafts; zero Renovate proposals |
 | Origin heads | 14, including the held cache owner ref |
-| Default branch | main tracks origin/main; current session-lifetime task is additional |
+| Default branch | main tracks origin/main; current signup-input task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -240,7 +240,7 @@ build or new native package is claimed.
 [CI](maintenance/startup-loading-76-ci-validation.json),
 [retirement](maintenance/startup-loading-76-retirement.json).
 
-The #143 candidate adds installation-configurable absolute session lifetime,
+Merged #405 adds installation-configurable absolute session lifetime,
 retaining the one-hour default and existing token-validation/wire contracts.
 The same seven ordinary HTTP consumer cases are old one-pass/six-fail and
 corrected seven-pass. Focused root and desktop checks each pass87 test/subtest
@@ -248,9 +248,21 @@ events, verifying configuration/env parsing,
 invalid-startup/account-creation denial, existing authentication denials and
 encrypted reopen with old-token acceptance and newly configured expiry.
 The initial virtual-file Go overlay discovered no tests and is explicitly
-excluded from usable validation. Protected checks remain required; no original ten-minute logout-cause, idle timeout, per-user setting,
+excluded from usable validation. All protected checks pass:572 browser cases,
+one existing skip,16Node checks and6.13MB initial output. #143 is individually
+closed as an implemented configuration request; only its incorporated task branch
+is retired and both independent owners remain held. No original ten-minute
+logout-cause, idle timeout, per-user setting,
 revocation or real-data migration fix is claimed.
 [Scope](maintenance/2026-11-03-session-lifetime-143.md).
+
+The sign-up input candidate rejects malformed/missing/blank credentials before
+account lookup or creation. It addresses the nil embedded User
+path without deciding #217's reserved-name policy. Identical ordinary14-case
+HTTP controls are old two-pass/twelve-fail and corrected14-pass. Valid literal
+credentials and the existing role policy remain intact; no existing account,
+password/key, sign-in, schema or provider behavior is changed. Protected checks
+remain required. [Scope](maintenance/2026-11-03-signup-input-validation.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
