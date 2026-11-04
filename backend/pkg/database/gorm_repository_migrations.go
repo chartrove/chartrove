@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	_20261104120000 "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20261104120000"
+	_20261104210000 "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20261104210000"
 	"log"
 
 	_20231017112246 "github.com/fastenhealth/fasten-onprem/backend/pkg/database/migrations/20231017112246"
@@ -245,6 +246,9 @@ func (gr *GormRepository) Migrate() error {
 		},
 		{ID: "20261104120000", Migrate: func(tx *gorm.DB) error {
 			return tx.AutoMigrate(&_20261104120000.SourceGrant{}, &_20261104120000.LocalResource{}, &_20261104120000.SourceAccessAudit{})
+		}},
+		{ID: "20261104210000", Migrate: func(tx *gorm.DB) error {
+			return tx.AutoMigrate(&_20261104210000.OIDCIdentity{}, &_20261104210000.OIDCSession{}, &_20261104210000.OIDCAudit{})
 		}},
 	})
 
