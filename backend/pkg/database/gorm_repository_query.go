@@ -445,8 +445,13 @@ func ProcessSearchParameterValue(searchParameter SearchParameter, searchValueWit
 			}
 		}
 	} else if searchParameter.Type == SearchParameterTypeReference {
-		//todo
-		return searchParameterValue, fmt.Errorf("search parameter type not yet implemented: %s", searchParameter.Type)
+		// Match the stored reference literally; normalization/resolution is separate.
+		if searchParameter.Modifier != "" {
+			return searchParameterValue, fmt.Errorf("reference search parameter %s does not support this modifier: %s", searchParameter.Name, searchParameter.Modifier)
+		}
+		if strings.TrimSpace(searchValueWithPrefix) == "" {
+			return searchParameterValue, fmt.Errorf("reference search parameter %s requires a value", searchParameter.Name)
+		}
 	}
 
 	//certain types (Quantity and Number) need to be converted to Float64
@@ -617,7 +622,7 @@ func SearchCodeToWhereClause(searchParam SearchParameter, searchParamValue Searc
 		//setup the clause
 		return fmt.Sprintf("(%s = @%s)", searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	case SearchParameterTypeReference:
-		return "", nil, fmt.Errorf("search parameter type %s not supported", searchParam.Type)
+		return fmt.Sprintf("(%sJson.value ->> '$.reference' = @%s)", searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	}
 	return "", searchClauseNamedParams, nil
 }
@@ -629,7 +634,7 @@ func SearchCodeToFromClause(searchParam SearchParameter) (string, error) {
 	//COMPLEX SEARCH PARAMETERS
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	switch searchParam.Type {
-	case SearchParameterTypeQuantity, SearchParameterTypeToken, SearchParameterTypeString:
+	case SearchParameterTypeQuantity, SearchParameterTypeToken, SearchParameterTypeString, SearchParameterTypeReference:
 		//setup the clause
 		return fmt.Sprintf("json_each(%s.%s) as %sJson", TABLE_ALIAS, searchParam.Name, searchParam.Name), nil
 	}

@@ -1,0 +1,88 @@
+{
+  "base_main": "43fed3855683448176a0298c8976974f9a042fe3",
+  "issue": 86,
+  "source_sha256": {
+    "backend/pkg/database/gorm_repository_query.go": "36c105d9c1682f523ceb15cb9403accd225404c048111787580c0980c10193de",
+    "backend/pkg/database/gorm_reference_query_test.go": "86eb74107d0484f2d0ddd69b412449a109e22f91de8b39d856f04a235c083763"
+  },
+  "logs": {
+    "reference-before.jsonl": {
+      "sha256": "d919bbd8a926e99bb56d56dfd6bd24b63e09f8961ffa0c636a5122181d9a5da8",
+      "leaf_outcomes": {
+        "fail": 8,
+        "pass": 3
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-root.jsonl": {
+      "sha256": "1a9f86109836b1700c15546e60bc43280a65a97a86bcddbbf303cab2d46d5d70",
+      "leaf_outcomes": {
+        "fail": 8,
+        "pass": 7
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-before-final.jsonl": {
+      "sha256": "43f71d627cb51437120c9b9151f96065ee9f62dd430043d2f9d6339f7a329a6a",
+      "leaf_outcomes": {
+        "fail": 8,
+        "pass": 3
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-root-final.jsonl": {
+      "sha256": "839db821d08cfbe84af6d5848b112b99f08397cca240058ded87642d14c60e0a",
+      "leaf_outcomes": {
+        "pass": 35
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-root-accepted.jsonl": {
+      "sha256": "64fbbb59eb81839c83dd7cfc52318b0d830ba1f18d6dd0f5fcc84c327c215c89",
+      "leaf_outcomes": {
+        "pass": 37
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-desktop.jsonl": {
+      "sha256": "ade226208c8da702d17b085c82fe6dec14fdcd52758c2bd6ad085ec2e64e4126",
+      "leaf_outcomes": {
+        "pass": 37
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    }
+  },
+  "scope": "Exact stored-reference string equality in existing query engine, owner-scoped ordinary Observation fixtures; no reference normalization or resolution, no record rewrite, no FHIR server compliance claim. Unsupported modifiers and blank values fail explicitly.",
+  "qualification": "First candidate test assumed a concrete pointer slice, whereas the repository returns its interface model slice. It failed in test decoding after successful queries; fixed to exercise normal JSON output. Corrected identical baseline again fails all 8 supported-query cases, with 3 unsupported controls passing. Final suite adds blank-value and encrypted cold-reopen controls.",
+  "protected_ci": "pending"
+}
