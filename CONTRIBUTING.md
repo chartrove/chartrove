@@ -171,6 +171,13 @@ Choose checks appropriate to the change. Do not relax timeouts, encryption, or t
 
 ## Server signing key
 
+New account registration reserves service/system names (case-insensitive, ignoring
+surrounding whitespace): api, contact, fasten, chartrove, help, info, login, mail,
+noreply, postmaster, root, security, support, system, webmaster and www. Local
+maintainer names `admin` and `administrator` remain available. Existing accounts
+can still sign in with their original names. Roles follow the existing account
+policy, independently of the username. See [the integration record](docs/maintenance/2026-11-04-reserved-usernames-217.md).
+
 See [local data and security settings](docs/LOCAL_DATA_SAFETY.md) for the different desktop/server defaults and explicit development options.
 
 Server startup rejects an empty key or the historical shared JWT signing key

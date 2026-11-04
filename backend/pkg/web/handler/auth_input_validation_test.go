@@ -36,6 +36,9 @@ func TestAuthSignupRequestValidation(t *testing.T) {
 		{name: "empty username", body: `{"username":"","password":"synthetic-password"}`, message: "Username and password are required"},
 		{name: "whitespace username", body: `{"username":"  ","password":"synthetic-password"}`, message: "Username and password are required"},
 		{name: "whitespace password", body: `{"username":"synthetic-user","password":"  "}`, message: "Username and password are required"},
+		{name: "service name", body: `{"username":"support","password":"synthetic-password"}`, message: "Username is reserved; choose another name"},
+		{name: "case and padding", body: `{"username":"  SyStEm  ","password":"synthetic-password"}`, message: "Username is reserved; choose another name"},
+		{name: "product name", body: `{"username":"chartrove","password":"synthetic-password"}`, message: "Username is reserved; choose another name"},
 		{name: "existing maintainer name remains available", body: `{"username":"admin","password":"synthetic-password","role":"admin"}`, username: "admin", password: "synthetic-password"},
 		{name: "nonblank literal credentials are preserved", body: `{"username":" Synthetic User ","password":" synthetic password "}`, username: " Synthetic User ", password: " synthetic password "},
 	} {
