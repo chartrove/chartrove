@@ -7,6 +7,7 @@ import (
 	dm "github.com/fastenhealth/fasten-onprem/backend/pkg/models/database"
 	"gorm.io/gorm"
 	"path/filepath"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -131,6 +132,21 @@ func TestSourceAccessIsolationAndLifecycle(t *testing.T) {
 	_, err = r.GetSharedResource(delegate, source.ID, "Observation", local.SourceResourceID)
 	require.ErrorIs(t, err, ErrSourceAccessDenied)
 	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
+	for _, offset := range []int{-5 * 60 * 60, 5 * 60 * 60} {
+		offsetExpiry := time.Now().Add(time.Hour).In(time.FixedZone("synthetic-offset", offset))
+		_, err = r.SetSourceGrant(owner, source.ID, users[1].Username, models.SourceAccessEdit, &offsetExpiry)
+		require.NoError(t, err)
+		_, err = r.GetSharedResource(delegate, source.ID, "Observation", local.SourceResourceID)
+		require.NoError(t, err, "future offset-bearing expirations must not deny access early")
+		storedGrants, err := r.ListSourceGrants(owner, source.ID)
+		require.NoError(t, err)
+		require.Len(t, storedGrants, 1)
+		_, storedOffset := storedGrants[0].ExpiresAt.Zone()
+		require.Zero(t, storedOffset, "SQLite comparisons require normalized UTC storage")
+		_, originalOffset := offsetExpiry.Zone()
+		require.Equal(t, offset, originalOffset, "the caller's timestamp must not be mutated")
+	}
+
 	expires := time.Now().Add(time.Hour)
 	_, err = r.SetSourceGrant(owner, source.ID, users[1].Username, models.SourceAccessEdit, &expires)
 	require.NoError(t, err)
@@ -155,14 +171,61 @@ func TestSourceAccessIsolationAndLifecycle(t *testing.T) {
 	require.NotContains(t, string(indexed.Code), "Synthetic changed")
 	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
 
+	// Force an unrelated connection to write at the first transactional user
+	// read. A deferred read-to-write upgrade fails with BUSY_SNAPSHOT; acquiring
+	// the write reservation first allows that writer to wait for the import.
+	type contentionKey struct{}
+	contentionCtx := context.WithValue(owner, contentionKey{}, true)
+	var reserved, injected atomic.Bool
+	writerDone := make(chan error, 1)
+	const queryCallback, deleteCallback = "synthetic:ingestion-reader", "synthetic:ingestion-writer"
+	require.NoError(t, r.GormClient.Callback().Delete().Before("gorm:delete").Register(deleteCallback, func(tx *gorm.DB) {
+		if tx.Statement.Context.Value(contentionKey{}) == true && tx.Statement.Table == "local_resources" {
+			reserved.Store(true)
+		}
+	}))
+	require.NoError(t, r.GormClient.Callback().Query().After("gorm:query").Register(queryCallback, func(tx *gorm.DB) {
+		if tx.Statement.Context.Value(contentionKey{}) != true || tx.Statement.Table != "users" {
+			return
+		}
+		if _, ok := tx.Statement.ConnPool.(gorm.TxCommitter); !ok || !injected.CompareAndSwap(false, true) {
+			return
+		}
+		write := func() {
+			writerDone <- r.GormClient.WithContext(context.Background()).Model(&models.User{}).Where("id = ?", users[2].ID).Update("role", pkg.UserRoleAdmin).Error
+		}
+		if reserved.Load() {
+			go write()
+		} else {
+			write()
+		}
+	}))
+	_, importErr := r.UpsertRawResource(contentionCtx, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: "synthetic-contention", ResourceRaw: json.RawMessage(`{"resourceType":"Observation","id":"synthetic-contention","status":"final"}`)})
+	require.NoError(t, r.GormClient.Callback().Query().Remove(queryCallback))
+	require.NoError(t, r.GormClient.Callback().Delete().Remove(deleteCallback))
+	require.True(t, injected.Load(), "the contention schedule must execute")
+	select {
+	case err := <-writerDone:
+		require.NoError(t, err)
+	case <-time.After(10 * time.Second):
+		t.Fatal("synthetic concurrent writer did not complete")
+	}
+	require.NoError(t, importErr, "unrelated writes must not invalidate an ingestion read snapshot")
+
 	// An SDK import replacing a formerly local resource must remove edit eligibility.
 	// A failed replacement must preserve both clinical contents and provenance.
 	_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated,
 		ReferencedResources: []string{"urn:fastenhealth-fhir:" + uuid.NewString() + ":Patient/synthetic-unavailable"}})
 	require.Error(t, err)
 	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
-	_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated})
+	for i := 0; i < 2; i++ {
+		_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated,
+			ReferencedResources: []string{"Patient/synthetic-linked", "Patient/synthetic-linked"}})
+		require.NoError(t, err, "repeated association ingestion must remain idempotent inside a transaction")
+	}
+	associations, err := r.FindResourceAssociationsByTypeAndId(owner, &source, "Observation", local.SourceResourceID)
 	require.NoError(t, err)
+	require.Len(t, associations, 1)
 	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
 	audit, err := r.ListSourceAccessAudit(owner, source.ID)
 	require.NoError(t, err)
