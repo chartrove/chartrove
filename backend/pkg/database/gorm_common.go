@@ -50,6 +50,9 @@ func (gr *GormRepository) Close() error {
 
 // <editor-fold desc="User">
 func (gr *GormRepository) CreateUser(ctx context.Context, user *models.User) error {
+	if models.IsReservedUsername(user.Username) {
+		return models.ErrReservedUsername
+	}
 	if err := user.HashPassword(user.Password); err != nil {
 		return err
 	}
@@ -57,11 +60,6 @@ func (gr *GormRepository) CreateUser(ctx context.Context, user *models.User) err
 	if record.Error != nil {
 		return record.Error
 	}
-
-	//SECURITY:
-	//TODO: we should disallow reserved usernames:
-	// https://github.com/forwardemail/reserved-email-addresses-list/blob/master/admin-list.json
-	// https://github.com/shouldbee/reserved-usernames/blob/master/reserved-usernames.txt
 
 	//create user settings
 	err := gr.PopulateDefaultUserSettings(ctx, user.ID)

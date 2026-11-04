@@ -28,7 +28,8 @@ Angular 22 officially supports Node 26 and TypeScript 6.0. Keep TypeScript withi
 ## Pull requests and automation
 
 Changes to protected `main` require a pull request with up-to-date successful
-Backend, Frontend and Desktop checks and resolved review conversations. No
+Backend, Frontend, Desktop, three language-specific CodeQL checks and the native
+CodeQL check, plus resolved review conversations. No
 reviewer approval minimum is configured for the single-maintainer workflow. Force pushes
 and branch deletion are blocked on `main`; do not bypass validation to merge.
 
@@ -168,6 +169,15 @@ reopen separately, using Number decoding in precision checks. Keep checked-in
 schema models and migrations stable during a dependency-only update.
 
 Choose checks appropriate to the change. Do not relax timeouts, encryption, or test assertions to make a failing check pass. Distinguish a source check from a successful build and a real native UI check.
+
+## Account registration
+
+New account registration reserves service/system names (case-insensitive, ignoring
+surrounding whitespace): api, contact, fasten, chartrove, help, info, login, mail,
+noreply, postmaster, root, security, support, system, webmaster and www. Local
+maintainer names `admin` and `administrator` remain available. Existing accounts
+can still sign in with their original names. Roles follow the existing account
+policy, independently of the username. See [the integration record](docs/maintenance/2026-11-04-reserved-usernames-217.md).
 
 ## Server signing key
 

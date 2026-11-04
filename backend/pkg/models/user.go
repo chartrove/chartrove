@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -8,6 +9,20 @@ import (
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 )
+
+var ErrReservedUsername = errors.New("Username is reserved; choose another name")
+
+// IsReservedUsername applies only to new account creation. Local maintainer
+// names admin/administrator remain available; existing accounts are not renamed.
+func IsReservedUsername(username string) bool {
+	switch strings.ToLower(strings.TrimSpace(username)) {
+	case "api", "contact", "fasten", "chartrove", "help", "info", "login", "mail",
+		"noreply", "postmaster", "root", "security", "support", "system", "webmaster", "www":
+		return true
+	default:
+		return false
+	}
+}
 
 type User struct {
 	ModelBase

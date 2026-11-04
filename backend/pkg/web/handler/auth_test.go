@@ -38,6 +38,7 @@ func TestAuthSignin(t *testing.T) {
 		message   string
 	}{
 		{"valid credentials", storedUser, nil, "synthetic-password", http.StatusOK, ""},
+		{"legacy reserved username", &models.User{Username: "system", Password: string(passwordHash), Role: pkg.UserRoleAdmin}, nil, "synthetic-password", http.StatusOK, ""},
 		{"unknown user", &models.User{}, gorm.ErrRecordNotFound, "synthetic-password", http.StatusUnauthorized, "username or password does not match"},
 		{"wrapped not found", nil, fmt.Errorf("lookup failed: %w", gorm.ErrRecordNotFound), "synthetic-password", http.StatusUnauthorized, "username or password does not match"},
 		{"nil user", nil, nil, "synthetic-password", http.StatusUnauthorized, "username or password does not match"},
@@ -45,15 +46,19 @@ func TestAuthSignin(t *testing.T) {
 		{"database failure", nil, errors.New("synthetic internal database failure"), "synthetic-password", http.StatusInternalServerError, "could not sign in"},
 	} {
 		t.Run(tt.name, func(t *testing.T) {
+			username := "synthetic-user"
+			if tt.user != nil && tt.user.Username != "" {
+				username = tt.user.Username
+			}
 			ctrl := gomock.NewController(t)
 			db := mock_database.NewMockDatabaseRepository(ctrl)
 			appConfig := mock_config.NewMockInterface(ctrl)
-			db.EXPECT().GetUserByUsername(gomock.Any(), "synthetic-user").Return(tt.user, tt.lookupErr)
+			db.EXPECT().GetUserByUsername(gomock.Any(), username).Return(tt.user, tt.lookupErr)
 			if tt.status == http.StatusOK {
 				appConfig.EXPECT().GetString("jwt.issuer.key").Return("synthetic-signing-key")
 				appConfig.EXPECT().GetString("jwt.session.duration").Return("1h")
 			}
-			body, err := json.Marshal(models.User{Username: "synthetic-user", Password: tt.password})
+			body, err := json.Marshal(models.User{Username: username, Password: tt.password})
 			require.NoError(t, err)
 			response := httptest.NewRecorder()
 			c, _ := gin.CreateTestContext(response)
@@ -79,7 +84,8 @@ func TestAuthSignin(t *testing.T) {
 			require.True(t, result.Success)
 			claims, err := auth.JwtValidateFastenToken("synthetic-signing-key", result.Token)
 			require.NoError(t, err)
-			require.Equal(t, storedUser.Username, claims.Subject)
+			require.Equal(t, username, claims.Subject)
+			require.Equal(t, tt.user.Role, claims.Role)
 		})
 	}
 }

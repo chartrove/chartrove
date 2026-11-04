@@ -46,6 +46,10 @@ func AuthSignup(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "Username and password are required"})
 		return
 	}
+	if models.IsReservedUsername(userWizard.Username) {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": models.ErrReservedUsername.Error()})
+		return
+	}
 
 	sessionDuration, err := config.UserSessionDuration(appConfig)
 	if err != nil {

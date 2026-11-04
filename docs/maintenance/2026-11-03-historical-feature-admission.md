@@ -38,3 +38,14 @@ head/base was retired. The original intake bundle remains intact as well.
 
 Raw original descriptions, complete fetched patch payloads and recovery proofs
 remain in the corresponding remaining-feature-review evidence directory.
+
+November4 continuation: live feature head/base OIDs still match this review and
+the existing recovery bundle independently verifies with the same hash. Current
+main has no integrated permission enforcement/delegation, OIDC, Typesense/RAG or
+OCR service implementation. #209/#211/#212/#214/#215 remain **implement and
+integrate**, each with its specific admission conditions above; none is closed
+or discarded. #217 now has a focused corrected implementation on
+`task/reserved-usernames`, preserving upstream attribution, allowing local
+admin/administrator names, and enforcing a creation-only service-name policy.
+Root/desktop creation, legacy encrypted-reopen and HTTP sign-in controls pass;
+protected CI and final disposition remain pending.
