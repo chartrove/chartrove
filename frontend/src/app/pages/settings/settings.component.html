@@ -5,6 +5,7 @@
 
       <p><a routerLink="/source-permissions">Manage source permissions and browse shared records</a></p>
       <p><a routerLink="/auth/oidc">Manage identity provider sign-in</a></p>
+      @if (localDocumentImport) { <p><a routerLink="/documents/import">Import a scanned document locally</a></p> }
 
       <!-- User Profile Section -->
       <section class="card card-dashboard-table mg-b-20">

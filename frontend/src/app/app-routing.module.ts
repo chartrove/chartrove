@@ -54,6 +54,7 @@ const routes: Routes = [
   { path: 'explore/:source_id/resource/:resource_type/:resource_id', component: ResourceDetailComponent, canActivate: [ IsAuthenticatedAuthGuard ] },
 
   { path: 'sources', component: MedicalSourcesComponent, canActivate: [ IsAuthenticatedAuthGuard ] },
+  { path: 'documents/import', loadComponent: () => import('./pages/document-import/document-import.component').then(module => module.DocumentImportComponent), canActivate: [ IsAuthenticatedAuthGuard ] },
   { path: 'sources/callback/:state', component: MedicalSourcesComponent, canActivate: [ IsAuthenticatedAuthGuard ] },
   { path: 'resource/create', component: ResourceCreatorComponent, canActivate: [ IsAuthenticatedAuthGuard ] },
 

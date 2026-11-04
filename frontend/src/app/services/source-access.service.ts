@@ -44,7 +44,7 @@ export class SourceAccessService {
   }
   revoke(source: string, grant: string): Observable<null> { return this.data(this.http.delete<AccessResponse<null>>(`${this.source(source)}/grants/${encodeURIComponent(grant)}`)); }
   summary(source: string): Observable<SharedSummary> { return this.data(this.http.get<AccessResponse<SharedSummary>>(`${this.source(source)}/summary`)); }
-  list(source: string, type: string, page: number): Observable<SharedResource[]> { return this.data(this.http.get<AccessResponse<SharedResource[]>>(`${this.resource(source, type)}?page=${page}`)); }
+  list(source: string, type: string, page: number): Observable<ResourceListItem[]> { return this.data(this.http.get<AccessResponse<ResourceListItem[]>>(`${this.source(source)}/metadata/${encodeURIComponent(type)}?page=${page}`)); }
   search(source: string, type: string, text: string, page: number): Observable<ResourceListItem[]> {
     return this.data(this.http.post<AccessResponse<ResourceListItem[]>>(`${this.source(source)}/search/${encodeURIComponent(type)}`, {text, page}));
   }

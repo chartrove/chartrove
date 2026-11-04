@@ -70,6 +70,61 @@
                 "glob": "**/*.png",
                 "input": "./node_modules/lforms/dist/lforms/webcomponent/",
                 "output": "/assets/css/lforms/"
+              },
+              {
+                "glob": "{worker.min.js,worker.min.js.LICENSE.txt}",
+                "input": "./node_modules/tesseract.js/dist/",
+                "output": "assets/ocr/tesseract/"
+              },
+              {
+                "glob": "*lstm*.wasm*",
+                "input": "./node_modules/tesseract.js-core/",
+                "output": "assets/ocr/core/"
+              },
+              {
+                "glob": "eng.traineddata.gz",
+                "input": "./node_modules/@tesseract.js-data/eng/4.0.0_best_int/",
+                "output": "assets/ocr/lang/"
+              },
+              {
+                "glob": "pdf.worker.min.mjs",
+                "input": "./node_modules/pdfjs-dist/build/",
+                "output": "assets/ocr/pdfjs/"
+              },
+              {
+                "glob": "{*.bcmap,LICENSE}",
+                "input": "./node_modules/pdfjs-dist/cmaps/",
+                "output": "assets/ocr/pdfjs/cmaps/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/standard_fonts/",
+                "output": "assets/ocr/pdfjs/fonts/"
+              },
+              {
+                "glob": "{openjpeg.wasm,openjpeg_nowasm_fallback.js,qcms_bg.wasm,jbig2.wasm,jbig2_nowasm_fallback.js,LICENSE*}",
+                "input": "./node_modules/pdfjs-dist/wasm/",
+                "output": "assets/ocr/pdfjs/wasm/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/iccs/",
+                "output": "assets/ocr/pdfjs/iccs/"
+              },
+              {
+                "glob": "LICENSE.md",
+                "input": "./node_modules/tesseract.js/",
+                "output": "assets/ocr/licenses/tesseract/"
+              },
+              {
+                "glob": "LICENSE",
+                "input": "./node_modules/tesseract.js-core/",
+                "output": "assets/ocr/licenses/core/"
+              },
+              {
+                "glob": "LICENSE",
+                "input": "./node_modules/pdfjs-dist/",
+                "output": "assets/ocr/licenses/pdfjs/"
               }
             ],
             "styles": [
@@ -327,6 +382,61 @@
                 "glob": "**/*",
                 "input": "./node_modules/dwv/dist/assets/",
                 "output": "/assets/"
+              },
+              {
+                "glob": "{worker.min.js,worker.min.js.LICENSE.txt}",
+                "input": "./node_modules/tesseract.js/dist/",
+                "output": "assets/ocr/tesseract/"
+              },
+              {
+                "glob": "*lstm*.wasm*",
+                "input": "./node_modules/tesseract.js-core/",
+                "output": "assets/ocr/core/"
+              },
+              {
+                "glob": "eng.traineddata.gz",
+                "input": "./node_modules/@tesseract.js-data/eng/4.0.0_best_int/",
+                "output": "assets/ocr/lang/"
+              },
+              {
+                "glob": "pdf.worker.min.mjs",
+                "input": "./node_modules/pdfjs-dist/build/",
+                "output": "assets/ocr/pdfjs/"
+              },
+              {
+                "glob": "{*.bcmap,LICENSE}",
+                "input": "./node_modules/pdfjs-dist/cmaps/",
+                "output": "assets/ocr/pdfjs/cmaps/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/standard_fonts/",
+                "output": "assets/ocr/pdfjs/fonts/"
+              },
+              {
+                "glob": "{openjpeg.wasm,openjpeg_nowasm_fallback.js,qcms_bg.wasm,jbig2.wasm,jbig2_nowasm_fallback.js,LICENSE*}",
+                "input": "./node_modules/pdfjs-dist/wasm/",
+                "output": "assets/ocr/pdfjs/wasm/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/iccs/",
+                "output": "assets/ocr/pdfjs/iccs/"
+              },
+              {
+                "glob": "LICENSE.md",
+                "input": "./node_modules/tesseract.js/",
+                "output": "assets/ocr/licenses/tesseract/"
+              },
+              {
+                "glob": "LICENSE",
+                "input": "./node_modules/tesseract.js-core/",
+                "output": "assets/ocr/licenses/core/"
+              },
+              {
+                "glob": "LICENSE",
+                "input": "./node_modules/pdfjs-dist/",
+                "output": "assets/ocr/licenses/pdfjs/"
               }
             ],
             "styles": [

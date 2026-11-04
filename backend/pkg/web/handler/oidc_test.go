@@ -85,6 +85,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	secure.GET("/resource/fhir/:sourceId/:resourceId", GetResourceFhir)
 	secure.POST("/users", CreateUser)
 	RegisterSourceAccessRoutes(secure)
+	RegisterDocumentImportRoutes(secure)
 	m := auth.NewOIDCManager(cfg)
 	m.Client = idp.Client()
 	RegisterOIDCRoutes(api, secure, m)
@@ -182,6 +183,9 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	sources, err := db.GetSources(ownerCtx)
 	require.NoError(t, err)
 	source := sources[0].ID
+	importSources := request("GET", "/secure/document-import/sources", oidcToken, nil, 200)
+	require.NotContains(t, string(importSources), source.String())
+	request("POST", "/secure/document-import/"+source.String(), oidcToken, nil, 404)
 	access := db.(database.SourceAccessRepository)
 	resource, err := access.CreateLocalResource(ownerCtx, source, json.RawMessage(`{"resourceType":"Observation","status":"final","code":{"text":"Synthetic private observation"}}`))
 	require.NoError(t, err)
@@ -214,6 +218,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	request("GET", path, oidcToken, nil, 404)
 	request("POST", "/secure/auth/oidc/logout", oidcToken, map[string]string{}, 200)
 	request("GET", "/secure/account/me", oidcToken, nil, 401)
+	request("GET", "/secure/document-import/sources", oidcToken, nil, 401)
 	oidcToken = complete(flow("", ""), 200)
 	var identities []models.OIDCIdentity
 	require.NoError(t, json.Unmarshal(request("GET", "/secure/auth/oidc/identities", oidcToken, nil, 200), &identities))

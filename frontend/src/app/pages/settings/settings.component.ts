@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import QRCode from 'qrcode';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-settings',
@@ -12,6 +13,7 @@ import QRCode from 'qrcode';
     standalone: false
 })
 export class SettingsComponent implements OnInit {
+  readonly localDocumentImport = !environment.environment_desktop && !environment.environment_cloud;
   tokens: any[] = [];
   qrCodeUrl: SafeUrl | null = null;
   qrCodeData: string = '';
