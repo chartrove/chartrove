@@ -102,6 +102,9 @@ resolved in the repository, never supplied through request-body ownership fields
 Foreign, missing or unauthorized records all return 404 without revealing their
 existence. This also leaves valid sign-in sessions intact on permission denial.
 Invalid input returns 400; internal errors do not expose database details.
+Clinical details include the exact stored `resource_raw_text`. The browser displays
+and submits that text, using JSON parsing only for validation, so editing never
+round-trips clinical numbers through JavaScript's numeric representation.
 
 Focused HTTP tests cover owner/delegate/admin separation, successful reads and
 edits, denied writes/onward grants, revocation, changed identity, malformed

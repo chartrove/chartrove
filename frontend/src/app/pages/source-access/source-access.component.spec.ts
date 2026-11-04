@@ -8,7 +8,8 @@ describe('SourceAccessComponent authorization UI', () => {
   let component: SourceAccessComponent;
   let api: jasmine.SpyObj<SourceAccessService>;
   const record: SharedResource = {source_resource_type: 'Observation', source_resource_id: 'synthetic-id',
-    resource_raw: {resourceType: 'Observation', id: 'synthetic-id', status: 'final'}, editable: false};
+    resource_raw: {resourceType: 'Observation', id: 'synthetic-id', status: 'final'},
+    resource_raw_text: '{"resourceType":"Observation","id":"synthetic-id","status":"final"}', editable: false};
 
   beforeEach(async () => {
     api = jasmine.createSpyObj('SourceAccessService', ['owned', 'shared', 'grants', 'audit', 'grant', 'revoke', 'summary', 'list', 'detail', 'edit', 'createLocal']);
@@ -24,7 +25,8 @@ describe('SourceAccessComponent authorization UI', () => {
   });
 
   it('renders VIEW or imported records as text without an editor or save action', () => {
-    api.detail.and.returnValue(of({...record, resource_raw: {...record.resource_raw, note: '<em>Synthetic clinical note</em>'}}));
+    const raw = {...record.resource_raw, note: '<em>Synthetic clinical note</em>'};
+    api.detail.and.returnValue(of({...record, resource_raw: raw, resource_raw_text: JSON.stringify(raw)}));
     component.open(record); fixture.detectChanges();
     const view = fixture.nativeElement as HTMLElement;
     expect(view.querySelector('#edit-record')).toBeNull();
@@ -38,7 +40,7 @@ describe('SourceAccessComponent authorization UI', () => {
     component.resources = [record];
     api.edit.and.returnValue(throwError(() => ({status: 404})));
     component.saveResource(); fixture.detectChanges();
-    expect(api.edit).toHaveBeenCalledOnceWith('synthetic-shared', 'Observation', 'synthetic-id', record.resource_raw);
+    expect(api.edit).toHaveBeenCalledOnceWith('synthetic-shared', 'Observation', 'synthetic-id', JSON.stringify(record.resource_raw));
     expect(component.selected).toBeNull(); expect(component.editRaw).toBe(''); expect(component.resources).toEqual([]);
     expect(fixture.nativeElement.querySelector('#edit-record')).toBeNull();
     expect(component.error).toContain('revoked');
@@ -69,6 +71,15 @@ describe('SourceAccessComponent authorization UI', () => {
     component.ownerSource = 'synthetic-shared'; component.createLocal(); expect(api.createLocal).not.toHaveBeenCalled();
     component.owned = [{id: 'synthetic-provider', display: 'External', platform_type: 'manual'}];
     component.ownerSource = 'synthetic-provider'; component.createLocal(); expect(api.createLocal).not.toHaveBeenCalled();
+  });
+
+  it('preserves clinical decimal literals through display and save', () => {
+    const exact = '{"resourceType":"Observation","id":"synthetic-id","status":"final","valueQuantity":{"value":0.1234567890123456789},"component":[{"valueQuantity":{"value":2.00}}]}';
+    api.detail.and.returnValue(of({...record, editable: true, resource_raw: JSON.parse(exact), resource_raw_text: exact}));
+    component.open(record);
+    expect(component.editRaw).toBe(exact);
+    component.saveResource();
+    expect(api.edit).toHaveBeenCalledOnceWith('synthetic-shared', 'Observation', 'synthetic-id', exact);
   });
 
   it('sends a source-specific grant with expiration and can explicitly revoke it', () => {

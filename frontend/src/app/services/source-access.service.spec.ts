@@ -22,9 +22,20 @@ describe('SourceAccessService boundaries', () => {
     const grant = http.expectOne(req => req.url.endsWith('/source-access/synthetic-source/grants'));
     expect(grant.request.body).toEqual({delegate_username: 'synthetic-delegate', access_level: 'VIEW', expires_at: null});
     grant.flush({success: true, data: {}});
-    const raw = {resourceType: 'Observation', id: 'synthetic-id'};
+    const raw = '{"resourceType":"Observation","id":"synthetic-id","valueQuantity":{"value":2.00}}';
     service.edit('synthetic-source', 'Observation', 'synthetic-id', raw).subscribe();
     const edit = http.expectOne(req => req.url.endsWith('/source-access/synthetic-source/resources/Observation/synthetic-id'));
-    expect(edit.request.body).toEqual({resource_raw: raw}); edit.flush({success: true, data: null});
+    expect(edit.request.body).toBe(`{"resource_raw":${raw}}`);
+    expect(edit.request.headers.get('Content-Type')).toBe('application/json');
+    edit.flush({success: true, data: null});
+  });
+
+  it('creates local records without converting clinical numbers to JavaScript numbers', () => {
+    const raw = '{"resourceType":"Observation","valueQuantity":{"value":0.1234567890123456789}}';
+    service.createLocal('synthetic-source', raw).subscribe();
+    const create = http.expectOne(req => req.url.endsWith('/source-access/synthetic-source/resources'));
+    expect(create.request.body).toBe(`{"resource_raw":${raw}}`);
+    expect(create.request.headers.get('Content-Type')).toBe('application/json');
+    create.flush({success: true, data: {}});
   });
 });

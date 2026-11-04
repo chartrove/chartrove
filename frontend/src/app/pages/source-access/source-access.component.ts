@@ -97,7 +97,10 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
     this.detailChanged.next(); this.selected = null; this.editRaw = ''; this.error = '';
     this.api.detail(this.viewingSource, resource.source_resource_type, resource.source_resource_id)
       .pipe(takeUntil(this.detailChanged), takeUntil(this.viewChanged), takeUntil(this.destroy)).subscribe({
-        next: data => { this.selected = data; this.editRaw = JSON.stringify(data.resource_raw, null, 2); },
+        next: data => {
+          if (typeof data.resource_raw_text !== 'string') { this.clearUnavailable(); return; }
+          this.selected = data; this.editRaw = data.resource_raw_text;
+        },
         error: () => this.clearUnavailable()
       });
   }
@@ -110,17 +113,18 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
       this.error = 'The resource type and ID cannot change.'; return;
     }
     this.busy = true; this.error = ''; this.notice = '';
-    this.api.edit(this.viewingSource, selected.source_resource_type, selected.source_resource_id, raw).pipe(takeUntil(this.destroy)).subscribe({
+    // Parse only to validate identity; transmit the original text so clinical
+    // decimals and their expressed precision never pass through JS numbers.
+    this.api.edit(this.viewingSource, selected.source_resource_type, selected.source_resource_id, this.editRaw).pipe(takeUntil(this.destroy)).subscribe({
       next: () => { this.busy = false; this.notice = 'Record saved.'; this.open(selected); },
       error: () => { this.busy = false; this.clearUnavailable(); }
     });
   }
   createLocal(): void {
     if (!this.canCreateLocal || this.busy) { return; }
-    let raw: Record<string, unknown>;
-    try { raw = this.parseRaw(this.newRaw); } catch { this.error = 'Enter a valid FHIR JSON object.'; return; }
+    try { this.parseRaw(this.newRaw); } catch { this.error = 'Enter a valid FHIR JSON object.'; return; }
     this.busy = true; this.error = ''; this.notice = '';
-    this.api.createLocal(this.ownerSource, raw).pipe(takeUntil(this.destroy)).subscribe({
+    this.api.createLocal(this.ownerSource, this.newRaw).pipe(takeUntil(this.destroy)).subscribe({
       next: () => { this.busy = false; this.selectOwner(); this.notice = 'New locally managed record created.'; },
       error: () => { this.busy = false; this.error = 'The local record could not be created.'; }
     });

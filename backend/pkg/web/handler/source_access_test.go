@@ -59,7 +59,7 @@ func TestSourceAccessHTTPAuthorization(t *testing.T) {
 		return response
 	}
 	base := "/" + source.ID.String()
-	created := request(http.MethodPost, base+"/resources", `{"resource_raw":{"resourceType":"Observation","status":"final","code":{"text":"Synthetic"}}}`, 200)
+	created := request(http.MethodPost, base+"/resources", `{"resource_raw":{"resourceType":"Observation","status":"final","code":{"text":"Synthetic"},"valueQuantity":{"value":0.1234567890123456789}}}`, 200)
 	id := created["data"].(map[string]interface{})["source_resource_id"].(string)
 	path := base + "/resources/Observation/" + id
 	payload := `{"resource_raw":{"resourceType":"Observation","id":"` + id + `","status":"amended"}}`
@@ -90,6 +90,7 @@ func TestSourceAccessHTTPAuthorization(t *testing.T) {
 	request(http.MethodGet, base+"/resources/Observation", "", 200)
 	detail := request(http.MethodGet, path, "", 200)
 	require.Equal(t, false, detail["data"].(map[string]interface{})["editable"])
+	require.Contains(t, detail["data"].(map[string]interface{})["resource_raw_text"], `"value":0.1234567890123456789`)
 	request(http.MethodPatch, path, payload, 404)
 	request(http.MethodPost, base+"/resources", `{"resource_raw":{"resourceType":"Observation"}}`, 404)
 	request(http.MethodDelete, base+"/grants/"+grantID, "", 404)

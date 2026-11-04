@@ -87,7 +87,7 @@
           <button type="button" class="btn btn-primary" (click)="saveResource()" [disabled]="busy">Save record</button>
         } @else {
           <p>This record is read-only with your current permissions.</p>
-          <pre class="text-wrap">{{ selected.resource_raw | json }}</pre>
+          <pre class="text-wrap">{{ selected.resource_raw_text }}</pre>
         }
       }
     }

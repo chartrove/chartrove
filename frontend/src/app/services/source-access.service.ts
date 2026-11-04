@@ -9,7 +9,7 @@ export type SourceAccessLevel = 'VIEW' | 'EDIT';
 export interface AccessSource { id: string; display: string; platform_type?: string; owner_user_id?: string; access_level?: SourceAccessLevel; }
 export interface SourceGrant { id: string; delegate_username: string; delegate_user_id: string; access_level: SourceAccessLevel; expires_at: string | null; revoked_at: string | null; }
 export interface SourceAudit { id: string; created_at: string; actor_user_id: string; action: string; grant_id?: string; access_level?: SourceAccessLevel; resource_type?: string; resource_id?: string; }
-export interface SharedResource { source_resource_type: string; source_resource_id: string; resource_raw: Record<string, unknown>; sort_title?: string; editable?: boolean; }
+export interface SharedResource { source_resource_type: string; source_resource_id: string; resource_raw: Record<string, unknown>; resource_raw_text?: string; sort_title?: string; editable?: boolean; }
 export interface SharedSummary { source: AccessSource; counts: Record<string, number>; }
 interface AccessResponse<T> { success: boolean; data: T; }
 
@@ -45,10 +45,10 @@ export class SourceAccessService {
   summary(source: string): Observable<SharedSummary> { return this.data(this.http.get<AccessResponse<SharedSummary>>(`${this.source(source)}/summary`)); }
   list(source: string, type: string, page: number): Observable<SharedResource[]> { return this.data(this.http.get<AccessResponse<SharedResource[]>>(`${this.resource(source, type)}?page=${page}`)); }
   detail(source: string, type: string, id: string): Observable<SharedResource> { return this.data(this.http.get<AccessResponse<SharedResource>>(this.resource(source, type, id))); }
-  edit(source: string, type: string, id: string, raw: Record<string, unknown>): Observable<null> {
-    return this.data(this.http.patch<AccessResponse<null>>(this.resource(source, type, id), {resource_raw: raw}));
+  edit(source: string, type: string, id: string, raw: string): Observable<null> {
+    return this.data(this.http.patch<AccessResponse<null>>(this.resource(source, type, id), `{"resource_raw":${raw}}`, {headers: {'Content-Type': 'application/json'}}));
   }
-  createLocal(source: string, raw: Record<string, unknown>): Observable<SharedResource> {
-    return this.data(this.http.post<AccessResponse<SharedResource>>(`${this.source(source)}/resources`, {resource_raw: raw}));
+  createLocal(source: string, raw: string): Observable<SharedResource> {
+    return this.data(this.http.post<AccessResponse<SharedResource>>(`${this.source(source)}/resources`, `{"resource_raw":${raw}}`, {headers: {'Content-Type': 'application/json'}}));
   }
 }
