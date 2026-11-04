@@ -48,9 +48,37 @@
     }
   </script>
   <!-- ! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
+  <style>
+    app-root > .chartrove-startup {
+      position: fixed;
+      inset: 0;
+      overflow: auto;
+      box-sizing: border-box;
+      display: grid;
+      align-content: safe center;
+      justify-content: center;
+      justify-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: #fff;
+      color: #24213b;
+      font: 1rem/1.5 system-ui, sans-serif;
+      text-align: center;
+    }
+    .chartrove-startup p { margin: 0; }
+  </style>
+  <noscript><style>.chartrove-startup [role="status"] { display: none; }</style></noscript>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="chartrove-startup">
+      <img src="./assets/branding/chartrove.svg" width="64" height="64" alt="">
+      <p role="status" aria-live="polite">Loading Chartrove…</p>
+      <noscript>
+        <p>Enable JavaScript to open Chartrove.</p>
+      </noscript>
+    </div>
+  </app-root>
   <script src="./assets/js/lforms/assets/lib/zone.min.js"></script>
   <script src="./assets/js/lforms/lhc-forms.js"></script>
   <script src="./assets/js/lforms/fhir/lformsFHIRAll.min.js"></script>

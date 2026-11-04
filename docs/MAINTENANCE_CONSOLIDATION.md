@@ -9,20 +9,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #402 and the individual #240 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after402.json).
-The query-line-widget-159 task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #403 and the individual #159 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after403.json).
+The startup-loading-76 task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `ae11db3e8bb13d0142a98b77702c47f770fef6c5` (#402) |
-| Open issues | 163, including retained Renovate dashboard #222 |
+| Published application main | `935504cc61c84e599a6e59abd318d7b1dfa8b423` (#403) |
+| Open issues | 162, including retained Renovate dashboard #222 |
 | Open PRs | 6: six historical feature drafts; zero Renovate proposals |
 | Origin heads | 14, including the held cache owner ref |
-| Default branch | main tracks origin/main; current query-line-widget task is additional |
+| Default branch | main tracks origin/main; current startup-loading task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -216,15 +216,24 @@ unknown. [Scope](maintenance/2026-11-03-dwv-036.md),
 [CI](maintenance/dwv-ci-validation.json),
 [retirement](maintenance/dwv-retirement.json).
 
-The #159 replacement connects complex-line-widget to its existing configured
+Merged #403 connects complex-line-widget to its existing configured
 query contract instead of static demonstration readings. Exact six-case old/new
 controls prove the prior missing input/query path and corrected zero/nonzero
 canvas values. Eleven final browser cases also cover empty/error/no-config states,
 pending cancellation, configuration refresh, missing-value gaps, ambiguous-value
 rejection, multiple series and actual dashboard GridStack query/save forwarding.
 Original records/configuration remain unchanged; no backend/database contract or
-provider integration changes. Protected integration and individual issue closure
-remain pending. [Scope and validation](maintenance/2026-11-03-query-line-widget-159.md).
+provider integration changes. All three protected checks pass:572 browser cases,
+one existing skip,16Node tests and6.13MB initial output. #159 is individually
+closed as implemented. Only its incorporated task branch is retired; both
+independent owners remain held. [Scope and validation](maintenance/2026-11-03-query-line-widget-159.md).
+
+The #76 candidate adds the existing logo and pre-bootstrap loading status to all
+three source entry templates, with JavaScript-disabled guidance. Exact static
+old/new browser controls pass24variant/viewport/script-state combinations; all
+existing script/link contracts are unchanged. Protected integration and individual
+issue disposition remain pending. No full local build or new native package is
+claimed. [Scope](maintenance/2026-11-03-startup-loading-76.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,

@@ -1,0 +1,57 @@
+{
+  "issue": 76,
+  "upstream_issue": 271,
+  "base_main": "935504cc61c84e599a6e59abd318d7b1dfa8b423",
+  "static_browser_cases": 24,
+  "before_controls": 12,
+  "corrected_controls": 12,
+  "variants": [
+    "web",
+    "desktop",
+    "cloud"
+  ],
+  "viewports": [
+    "1200x800",
+    "320x480"
+  ],
+  "javascript_states": [
+    "enabled",
+    "disabled"
+  ],
+  "scope": "Exact source index templates before Angular bootstrap; no CLI-injected bundles or full application/native startup is claimed. Inherited external CDN and native runtime URLs are blocked/unavailable on the private synthetic server; their source scripts are unchanged.",
+  "contracts": {
+    "index.html": {
+      "script_count": 7,
+      "all_scripts_and_order_unchanged": true,
+      "link_count": 3,
+      "all_link_contracts_unchanged": true,
+      "source_equals_byte_tested_candidate": true,
+      "sha256": "04828604e2fdad103c9e09ca922e4ce02b365c9ed9134fff2a52e2ef9c3c52b2"
+    },
+    "index-desktop.html": {
+      "script_count": 8,
+      "all_scripts_and_order_unchanged": true,
+      "link_count": 3,
+      "all_link_contracts_unchanged": true,
+      "source_equals_byte_tested_candidate": true,
+      "sha256": "df4f8b71ea7e2b90e51134cb04e99d0674d77914ef40d8fb67abf552811d07bb"
+    },
+    "index-cloud.html": {
+      "script_count": 2,
+      "all_scripts_and_order_unchanged": true,
+      "link_count": 3,
+      "all_link_contracts_unchanged": true,
+      "source_equals_byte_tested_candidate": true,
+      "sha256": "f425585cf0a7808813cbbd65c7a21b49e51c0a9ddf4df2e38fba1f359c175a59"
+    }
+  },
+  "scratch_disposed": true,
+  "free_before_bytes": 24407506944,
+  "free_after_cleanup_bytes": 24406372352,
+  "live_cache_enabled": false,
+  "full_local_build": false,
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue76",
+  "final_raw_stage": "final-static-browser-control",
+  "initial_24_case_control_also_passed": true,
+  "refinement": "Move the JavaScript-disabled style to head noscript for valid metadata placement; repeat identical24static cases on final exact template bytes."
+}
