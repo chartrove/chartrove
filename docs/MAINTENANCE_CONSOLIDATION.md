@@ -9,20 +9,22 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #407; #44 remains open while its three main-baseline findings are corrected.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after407.json).
-The aggregation-sql-boundaries task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #408; its three original findings are fixed and one identifier/error-flow alert remains.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after408.json).
+The current aggregation-schema-identifiers branch and unpublished text-only-concepts-135
+branch are additional to this historical snapshot. The tested text task is preserved
+at20a82b097bfa2b8f7b815b4652a8f3c340723488 while the security follow-up completes.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `07ea27fbdbcdc2596074596e9050e5c5243b64ab` (#407) |
+| Published application main | `d50c0f6b39a430c9e29e67e56314f88b1d0c94e2` (#408) |
 | Open issues | 160, including retained Renovate dashboard #222 |
 | Open PRs | 6: six historical feature drafts; zero Renovate proposals |
 | Origin heads | 14, including the held cache owner ref |
-| Default branch | main tracks origin/main; current aggregation-security task is additional |
+| Default branch | main tracks origin/main; two current maintenance task branches are additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -938,3 +940,13 @@ reopen coverage. Protected CI and a fresh complete main scan remain pending;
 no vulnerability is dismissed and #44 is not closed at this source checkpoint.
 [Correction and limits](maintenance/2026-11-03-aggregation-query-security.md),
 [validation](maintenance/aggregation-query-validation.json).
+
+Merged#408 passes all seven trusted PR checks and six independent main-push jobs.
+Original high alerts1/2/3 are automatically fixed. The full main Go baseline
+still reports one conservative identifier/error-state flow (#4); no result is
+suppressed and#44 remains open. A separate compiler-output correction passes
+56root and56desktop events with existing SQL/encryption coverage. It never
+places a requested identifier in output and returns empty output on every error.
+Protected validation/full main disposition remain pending for that follow-up.
+[Integrated CI](maintenance/aggregation-query-ci-validation.json),
+[follow-up scope](maintenance/2026-11-03-aggregation-schema-identifiers.md).

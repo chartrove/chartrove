@@ -52,10 +52,18 @@ and failed intermediate build/assertion attempts remain in raw evidence; they
 are excluded from acceptance. The final fixture suppresses only model ID hooks
 for explicit synthetic owner IDs; production hooks and schema remain unchanged.
 
-Protected CI and a fresh full main CodeQL baseline remain required. No alert is
-dismissed or query suppressed; #44 remains open at this source checkpoint. The
-existing seven required validations and strict main rules are unchanged. No
-local full frontend/native build is admitted below the50GiB reserve, and no
-current packaged macOS qualification is claimed.
+Protected#408 merged atd50c0f6b39a430c9e29e67e56314f88b1d0c94e2 after all
+seven trusted checks passed. Six independent main-push jobs pass; frontend
+reports572browser passes/one skip,16Node passes and6.13MBinitial output under the
+unchanged10MBbudget. GitHub automatically marks alerts1/2/3 fixed. The separate
+full main Go analysis reports one remaining canonical-identifier/error-state flow
+(#4), so#44 remains open; no clean whole-baseline claim is made.
+[CI, processed results and log hashes](aggregation-query-ci-validation.json),
+[guarded task retirement](aggregation-query-retirement.json),
+[separate identifier follow-up](2026-11-03-aggregation-schema-identifiers.md).
+No alert is dismissed or query suppressed. The existing seven required
+validations and strict main rules are unchanged. No local full frontend/native
+build is admitted below the50GiBreserve, and no current packaged macOS
+qualification is claimed.
 
 Raw evidence: dist/validation/2026-11-01-consolidation/post-dependency-issue-review/aggregation-security/.
