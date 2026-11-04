@@ -35,6 +35,15 @@ describe('SourceAccessComponent authorization UI', () => {
     expect(api.search).toHaveBeenCalledWith('synthetic-shared', 'Observation', 'Synthetic', 1);
   });
 
+  it('explains transcript search only for DocumentReference while keeping source-scoped metadata requests', () => {
+    component.resourceType='DocumentReference';fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).toContain('reviewed transcripts from new local document imports');
+    component.searchText='Synthetic transcript';component.searchResources();
+    expect(api.search).toHaveBeenCalledWith('synthetic-shared','DocumentReference','Synthetic transcript',0);
+    component.resourceType='Observation';fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).not.toContain('reviewed transcripts from new local document imports');
+  });
+
   it('clears search state and pending results when changing sources or losing access', () => {
     const pending = new Subject<any>(); api.search.and.returnValue(pending);
     component.searchText = 'Synthetic'; component.searchResources(); component.viewSource();

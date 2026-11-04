@@ -108,6 +108,14 @@ func (gr *GormRepository) ImportReviewedDocument(ctx context.Context, source uui
 		return nil, err
 	}
 	model.SetResourceRaw(datatypes.JSON(raw))
+	// The existing text-search column is a derived string array. Keep the
+	// reviewed UTF-8 transcript searchable without scanning binary attachments
+	// or promoting it to clinical assertions in the original FHIR payload.
+	transcriptIndex, err := json.Marshal([]string{input.Transcript})
+	if err != nil {
+		return nil, err
+	}
+	model.(*dm.FhirDocumentReference).Text = datatypes.JSON(transcriptIndex)
 	model.SetOriginBase(models.OriginBase{ModelBase: models.ModelBase{ID: uuid.New()}, UserID: s.UserID, SourceID: source, SourceResourceType: "DocumentReference", SourceResourceID: id})
 	model.SetSortTitle(&input.Title)
 	model.SetSortDate(&now)

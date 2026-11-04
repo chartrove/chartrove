@@ -199,6 +199,13 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	hits := request("POST", searchPath, oidcToken, map[string]interface{}{"text": resource.SourceResourceID, "page": 0}, 200)
 	require.Contains(t, string(hits), resource.SourceResourceID)
 	require.NotContains(t, string(hits), "resource_raw")
+	document, err := db.(database.DocumentImportRepository).ImportReviewedDocument(ownerCtx, source, models.ReviewedDocument{Filename: "synthetic.pdf", Title: "Synthetic document", Original: []byte("%PDF-1.7\n% Synthetic\n%%EOF"), Transcript: "Private synthetic transcript phrase", Reviewed: true})
+	require.NoError(t, err)
+	documentSearch := "/secure/source-access/" + source.String() + "/search/DocumentReference"
+	documentHits := request("POST", documentSearch, oidcToken, map[string]interface{}{"text": "transcript phrase", "page": 0}, 200)
+	require.Contains(t, string(documentHits), document.ResourceID)
+	require.NotContains(t, string(documentHits), "transcript phrase")
+	require.NotContains(t, string(documentHits), "resource_raw")
 	request("POST", searchPath, oidcToken, map[string]interface{}{"text": "Synthetic", "page": -1}, 400)
 	request("POST", searchPath, oidcToken, map[string]interface{}{"text": strings.Repeat("s", 5000), "page": 0}, 400)
 	request("POST", searchPath, oidcToken, map[string]interface{}{"text": "Synthetic", "page": 0, "owner_user_id": owner.ID}, 400)
@@ -214,6 +221,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 		require.Equal(t, delegate.ID, s.UserID)
 	}
 	require.NoError(t, access.RevokeSourceGrant(ownerCtx, source, grant.ID))
+	request("POST", documentSearch, oidcToken, map[string]interface{}{"text": "transcript phrase", "page": 0}, 404)
 	request("POST", searchPath, oidcToken, map[string]interface{}{"text": "Synthetic", "page": 0}, 404)
 	request("GET", path, oidcToken, nil, 404)
 	request("POST", "/secure/auth/oidc/logout", oidcToken, map[string]string{}, 200)

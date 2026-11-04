@@ -36,7 +36,7 @@ func TestDocumentImportPostgresOwnerRetryAndDelegation(t *testing.T) {
 	require.NoError(t, db.Create(&source).Error)
 	ctx := context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, owner.Username)
 	other := context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, delegate.Username)
-	input := models.ReviewedDocument{Filename: "synthetic.pdf", Title: "Synthetic import", Original: []byte("%PDF-1.7\n% synthetic original\n%%EOF"), Transcript: "Synthetic transcript", Reviewed: true}
+	input := models.ReviewedDocument{Filename: "synthetic.pdf", Title: "Synthetic import", Original: []byte("%PDF-1.7\n% synthetic original\n%%EOF"), Transcript: "Private reviewed transcript café 100% follow_up! quoted \"text\" and slash \\ العربية", Reviewed: true}
 	first, err := r.ImportReviewedDocument(ctx, source.ID, input)
 	require.NoError(t, err)
 	require.True(t, first.Created)
@@ -55,7 +55,36 @@ func TestDocumentImportPostgresOwnerRetryAndDelegation(t *testing.T) {
 	metadata, err := r.ListSourceMetadata(other, source.ID, "DocumentReference", 0)
 	require.NoError(t, err)
 	require.Len(t, metadata, 1)
+	var projection struct{ Value string }
+	require.NoError(t, db.Table("fhir_document_reference").Select("text AS value").Where("source_id = ? AND source_resource_id = ?", source.ID, first.ResourceID).Find(&projection).Error)
+	var projected []string
+	require.NoError(t, json.Unmarshal([]byte(projection.Value), &projected))
+	require.Equal(t, []string{input.Transcript}, projected)
+	for _, term := range []string{"reviewed transcript", "café", "100%", "follow_up!", `"text"`, `\`, "العربية"} {
+		hits, err := r.SearchSourceResources(other, source.ID, "DocumentReference", term, 0)
+		require.NoError(t, err)
+		require.Len(t, hits, 1, term)
+		require.Equal(t, first.ResourceID, hits[0].SourceResourceID)
+	}
+	hits, err := r.SearchSourceResources(other, source.ID, "DocumentReference", "100units", 0)
+	require.NoError(t, err)
+	require.Empty(t, hits)
+	// Native datatypes.JSON can migrate to jsonb; legacy schemas can keep text.
+	// The query must work with both without trying to parse an empty JSON literal.
+	require.NoError(t, db.Exec("ALTER TABLE fhir_document_reference ALTER COLUMN text TYPE text USING text::text").Error)
+	hits, err = r.SearchSourceResources(other, source.ID, "DocumentReference", "café", 0)
+	require.NoError(t, err)
+	require.Len(t, hits, 1)
+	require.NoError(t, db.Model(&dm.FhirDocumentReference{}).Where("source_id = ? AND source_resource_id = ?", source.ID, first.ResourceID).Update("text", nil).Error)
+	hits, err = r.SearchSourceResources(other, source.ID, "DocumentReference", "reviewed transcript", 0)
+	require.NoError(t, err)
+	require.Empty(t, hits)
+	hits, err = r.SearchSourceResources(other, source.ID, "DocumentReference", input.Title, 0)
+	require.NoError(t, err)
+	require.Len(t, hits, 1)
 	require.NoError(t, r.RevokeSourceGrant(ctx, source.ID, grant.ID))
 	_, err = r.ListSourceMetadata(other, source.ID, "DocumentReference", 0)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	_, err = r.SearchSourceResources(other, source.ID, "DocumentReference", "reviewed transcript", 0)
 	require.ErrorIs(t, err, ErrSourceAccessDenied)
 }

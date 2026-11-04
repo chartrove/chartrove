@@ -123,6 +123,12 @@ func TestDocumentImportHTTPAuthenticationAndReview(t *testing.T) {
 	require.Contains(t, w.Body.String(), result.Data.ResourceID)
 	require.NotContains(t, w.Body.String(), "resource_raw")
 	require.NotContains(t, w.Body.String(), fields[1][1])
+	search := base + "/search/DocumentReference"
+	w = request("POST", search, tokens[1], "application/json", strings.NewReader(`{"text":"private text","page":0}`), 200)
+	require.Contains(t, w.Body.String(), result.Data.ResourceID)
+	require.NotContains(t, w.Body.String(), "private text")
+	require.NotContains(t, w.Body.String(), "resource_raw")
+	request("POST", search, tokens[2], "application/json", strings.NewReader(`{"text":"private text","page":0}`), 404)
 	request("GET", metadata+"?page=-1", tokens[1], "", nil, 400)
 	request("GET", metadata, tokens[2], "", nil, 404)
 	detail := base + "/resources/DocumentReference/" + result.Data.ResourceID
@@ -133,4 +139,5 @@ func TestDocumentImportHTTPAuthenticationAndReview(t *testing.T) {
 	require.NoError(t, repo.RevokeSourceGrant(ctx, source, grant.ID))
 	request("GET", metadata, tokens[1], "", nil, 404)
 	request("GET", detail, tokens[1], "", nil, 404)
+	request("POST", search, tokens[1], "application/json", strings.NewReader(`{"text":"private text","page":0}`), 404)
 }
