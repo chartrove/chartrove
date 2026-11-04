@@ -107,15 +107,17 @@ func (gr *GormRepository) RevokeSourceGrant(ctx context.Context, source, id uuid
 		return err
 	}
 	return gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		now := time.Now().UTC()
+		// Update first so revocation cannot inherit a stale SQLite read snapshot.
+		result := tx.Model(&models.SourceGrant{}).Where("id = ? AND owner_user_id = ? AND source_id = ?", id, s.UserID, source).Updates(map[string]interface{}{"revoked_at": now, "updated_at": now})
+		if result.Error != nil {
+			return result.Error
+		}
+		if result.RowsAffected != 1 {
+			return ErrSourceAccessDenied
+		}
 		var grant models.SourceGrant
 		if err := tx.Where("id = ? AND owner_user_id = ? AND source_id = ?", id, s.UserID, source).First(&grant).Error; err != nil {
-			if errors.Is(err, gorm.ErrRecordNotFound) {
-				return ErrSourceAccessDenied
-			}
-			return err
-		}
-		now := time.Now().UTC()
-		if err := tx.Model(&models.SourceGrant{}).Where("id = ? AND owner_user_id = ? AND source_id = ?", id, s.UserID, source).Updates(map[string]interface{}{"revoked_at": now, "updated_at": now}).Error; err != nil {
 			return err
 		}
 		return appendSourceAudit(tx, source, s.UserID, s.UserID, "revoke", &grant, "", "")

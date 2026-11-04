@@ -59,6 +59,8 @@ read-to-write snapshot contention. Failed imports retain provenance, while repea
 association imports remain idempotent inside the replacement transaction.
 Delegated updates perform the fully authorized UPDATE as their first transaction
 statement, preserving identity/presentation columns without a preliminary read.
+Revocation likewise writes its scoped grant row before reading audit metadata;
+an unrelated concurrent writer cannot invalidate a prior read snapshot.
 Local creation changes only the top-level ID using raw JSON fields, preserving
 clinical numeric literals. Ambiguous identity aliases and duplicate top-level
 keys are rejected. Shared details also project the stored JSON as text so clients
