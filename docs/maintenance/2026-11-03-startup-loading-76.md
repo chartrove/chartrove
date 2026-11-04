@@ -40,3 +40,16 @@ integration. [Compact validation](startup-loading-76-validation.json).
 Raw evidence: dist/validation/2026-11-01-consolidation/
 post-dependency-issue-review/issue76/. Individual issue disposition remains
 pending protected integration and a fresh full-content check.
+
+## Protected integration and issue disposition
+
+PR #404 merged at9bb23787e7b05012b51333c6aa024dc522bb661e with all three
+required checks passing in run41747139248:572 browser cases, one existing skip,
+16 Node tests and6.13 MB initial output under unchanged10 MB. Independent
+main-push Backend/Frontend/Desktop also pass. After a fresh complete-content and
+protected-main incorporation match, #76 closed as implemented with comment
+6619241778. Only its incorporated task branch is retired; both independent
+retention branches/worktrees remain held. Exact task tip is reachable on main.
+[CI](startup-loading-76-ci-validation.json),
+[retirement](startup-loading-76-retirement.json),
+[fresh checkpoint](2026-11-03-checkpoint-after404.json).

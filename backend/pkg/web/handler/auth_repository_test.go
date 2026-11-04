@@ -52,6 +52,7 @@ func TestAuthSigninUsesExactUsername(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			appConfig := mock_config.NewMockInterface(ctrl)
 			appConfig.EXPECT().GetString("jwt.issuer.key").Return("synthetic-signing-key").AnyTimes()
+			appConfig.EXPECT().GetString("jwt.session.duration").Return("1h").AnyTimes()
 			body, err := json.Marshal(tt.body)
 			require.NoError(t, err)
 			response := httptest.NewRecorder()

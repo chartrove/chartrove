@@ -37,6 +37,9 @@ func NewEmbeddedApplication(cfg config.Interface, logger *logrus.Entry, bus even
 	if cfg == nil || logger == nil || bus == nil || frontend == nil {
 		return nil, errors.New("embedded application requires config, logger, event bus and frontend")
 	}
+	if _, err := config.UserSessionDuration(cfg); err != nil {
+		return nil, err
+	}
 	ctx, cancel := context.WithCancel(context.Background())
 	app := &EmbeddedApplication{frontend: frontend, apiBase: strings.TrimRight(cfg.GetString("web.listen.basepath"), "/") + "/api", ctx: ctx, cancel: cancel}
 	app.engine = &AppEngine{Config: cfg, Logger: logger, EventBus: bus, embedded: app}

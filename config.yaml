@@ -33,6 +33,11 @@ log:
   file: '' # absolute or relative paths allowed, eg. web.log
   level: INFO
 jwt:
+  session:
+    # Absolute lifetime for newly issued sign-in/sign-up tokens; default 1h.
+    # FASTEN_JWT_SESSION_DURATION overrides this value. Use units, e.g. 5m or 2h;
+    # durations below 1s and invalid values are rejected before storage setup.
+    duration: 1h
   issuer:
     # Required for standalone startup: supply a private per-installation value.
     # FASTEN_JWT_ISSUER_KEY overrides this example; retain existing private keys.

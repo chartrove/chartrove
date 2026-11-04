@@ -42,6 +42,12 @@ func AuthSignup(c *gin.Context) {
 		return
 	}
 
+	sessionDuration, err := config.UserSessionDuration(appConfig)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Invalid session duration configuration"})
+		return
+	}
+
 	// Check if this is the first user in the database
 	userCount, err := databaseRepo.GetUserCount(c)
 	if err != nil {
@@ -61,7 +67,7 @@ func AuthSignup(c *gin.Context) {
 	}
 
 	//TODO: we can derive the encryption key and the hash'ed user from the responseData sub. For now the Sub will be the user id prepended with hello.
-	userFastenToken, err := auth.JwtGenerateFastenTokenFromUser(*userWizard.User, appConfig.GetString("jwt.issuer.key"))
+	userFastenToken, err := auth.JwtGenerateFastenTokenWithLifetime(*userWizard.User, appConfig.GetString("jwt.issuer.key"), sessionDuration)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
 		return
@@ -102,8 +108,14 @@ func AuthSignin(c *gin.Context) {
 		return
 	}
 
+	sessionDuration, err := config.UserSessionDuration(appConfig)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Invalid session duration configuration"})
+		return
+	}
+
 	//TODO: we can derive the encryption key and the hash'ed user from the responseData sub. For now the Sub will be the user id prepended with hello.
-	userFastenToken, err := auth.JwtGenerateFastenTokenFromUser(*foundUser, appConfig.GetString("jwt.issuer.key"))
+	userFastenToken, err := auth.JwtGenerateFastenTokenWithLifetime(*foundUser, appConfig.GetString("jwt.issuer.key"), sessionDuration)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
 		return

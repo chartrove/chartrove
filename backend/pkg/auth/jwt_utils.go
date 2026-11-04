@@ -36,7 +36,16 @@ func generateToken(user models.User, issuerSigningKey string, expiresAt time.Tim
 
 // JwtGenerateFastenTokenFromUser generates a standard user token
 func JwtGenerateFastenTokenFromUser(user models.User, issuerSigningKey string) (string, error) {
-	return generateToken(user, issuerSigningKey, time.Now().Add(1*time.Hour), "", "")
+	return JwtGenerateFastenTokenWithLifetime(user, issuerSigningKey, time.Hour)
+}
+
+// JwtGenerateFastenTokenWithLifetime retains the standard user-token contract,
+// changing only the absolute expiry of this newly issued session.
+func JwtGenerateFastenTokenWithLifetime(user models.User, issuerSigningKey string, lifetime time.Duration) (string, error) {
+	if lifetime < time.Second {
+		return "", errors.New("session lifetime must be at least one second")
+	}
+	return generateToken(user, issuerSigningKey, time.Now().Add(lifetime), "", "")
 }
 
 func JwtValidateFastenToken(encryptionKey string, signedToken string) (*UserRegisteredClaims, error) {

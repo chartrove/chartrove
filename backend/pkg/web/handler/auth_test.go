@@ -51,6 +51,7 @@ func TestAuthSignin(t *testing.T) {
 			db.EXPECT().GetUserByUsername(gomock.Any(), "synthetic-user").Return(tt.user, tt.lookupErr)
 			if tt.status == http.StatusOK {
 				appConfig.EXPECT().GetString("jwt.issuer.key").Return("synthetic-signing-key")
+				appConfig.EXPECT().GetString("jwt.session.duration").Return("1h")
 			}
 			body, err := json.Marshal(models.User{Username: "synthetic-user", Password: tt.password})
 			require.NoError(t, err)
@@ -98,6 +99,7 @@ func TestAuthSignup(t *testing.T) {
 			assert.Equal(t, pkg.UserRoleAdmin, user.Role)
 		}).Return(nil)
 		mockConfig.EXPECT().GetString("jwt.issuer.key").Return("test_key")
+		mockConfig.EXPECT().GetString("jwt.session.duration").Return("1h")
 
 		w := httptest.NewRecorder()
 		c, _ := gin.CreateTestContext(w)
@@ -132,6 +134,7 @@ func TestAuthSignup(t *testing.T) {
 			assert.Equal(t, pkg.UserRoleUser, user.Role)
 		}).Return(nil)
 		mockConfig.EXPECT().GetString("jwt.issuer.key").Return("test_key")
+		mockConfig.EXPECT().GetString("jwt.session.duration").Return("1h")
 
 		w := httptest.NewRecorder()
 		c, _ := gin.CreateTestContext(w)

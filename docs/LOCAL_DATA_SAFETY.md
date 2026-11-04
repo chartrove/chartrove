@@ -62,6 +62,16 @@ show how to generate one. Preserve an existing private signing key; changing it
 invalidates existing sessions. Do not put keys or configuration dumps in reports.
 The desktop already manages its persistent installation signing key.
 
+Session lifetime is configured per installation with `jwt.session.duration` or
+`FASTEN_JWT_SESSION_DURATION`, for example `5m` or `2h`. The default remains one
+hour; an empty setting also uses that default. Values use Go duration units and
+must be at least `1s`. Invalid settings prevent standalone or embedded startup
+before storage initialization and cannot create an account through sign-up.
+This changes the absolute expiry of newly issued sign-in/sign-up tokens. Existing
+tokens keep their signed expiry, including after a restart or setting change.
+It does not add a per-user preference, idle timeout, sliding refresh or revocation
+mechanism, and does not change persistent signing/encryption keys or stored records.
+
 The existing FASTEN_WEB_LISTEN_HTTPS_ENABLED setting selects built-in HTTPS or
 HTTP. Enabled HTTPS uses the server's certificate generation/lookup path. HTTP
 behind a separately managed TLS terminator is an operator-managed deployment

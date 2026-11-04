@@ -9,20 +9,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #403 and the individual #159 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after403.json).
-The startup-loading-76 task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #404 and the individual #76 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after404.json).
+The session-lifetime-143 task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `935504cc61c84e599a6e59abd318d7b1dfa8b423` (#403) |
-| Open issues | 162, including retained Renovate dashboard #222 |
+| Published application main | `9bb23787e7b05012b51333c6aa024dc522bb661e` (#404) |
+| Open issues | 161, including retained Renovate dashboard #222 |
 | Open PRs | 6: six historical feature drafts; zero Renovate proposals |
 | Origin heads | 14, including the held cache owner ref |
-| Default branch | main tracks origin/main; current startup-loading task is additional |
+| Default branch | main tracks origin/main; current session-lifetime task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -228,12 +228,29 @@ one existing skip,16Node tests and6.13MB initial output. #159 is individually
 closed as implemented. Only its incorporated task branch is retired; both
 independent owners remain held. [Scope and validation](maintenance/2026-11-03-query-line-widget-159.md).
 
-The #76 candidate adds the existing logo and pre-bootstrap loading status to all
+Merged #404 adds the existing logo and pre-bootstrap loading status to all
 three source entry templates, with JavaScript-disabled guidance. Exact static
-old/new browser controls pass24variant/viewport/script-state combinations; all
-existing script/link contracts are unchanged. Protected integration and individual
-issue disposition remain pending. No full local build or new native package is
-claimed. [Scope](maintenance/2026-11-03-startup-loading-76.md).
+old/new browser controls pass 24 variant/viewport/script-state combinations; all
+existing script/link contracts are unchanged. All three protected and independent
+main-push checks pass:572 browser cases, one existing skip,16 Node checks and
+6.13 MB initial output. #76 is individually closed as implemented; only its
+incorporated task branch is retired and both owners remain held. No full local
+build or new native package is claimed.
+[Scope](maintenance/2026-11-03-startup-loading-76.md),
+[CI](maintenance/startup-loading-76-ci-validation.json),
+[retirement](maintenance/startup-loading-76-retirement.json).
+
+The #143 candidate adds installation-configurable absolute session lifetime,
+retaining the one-hour default and existing token-validation/wire contracts.
+The same seven ordinary HTTP consumer cases are old one-pass/six-fail and
+corrected seven-pass. Focused root and desktop checks each pass87 test/subtest
+events, verifying configuration/env parsing,
+invalid-startup/account-creation denial, existing authentication denials and
+encrypted reopen with old-token acceptance and newly configured expiry.
+The initial virtual-file Go overlay discovered no tests and is explicitly
+excluded from usable validation. Protected checks remain required; no original ten-minute logout-cause, idle timeout, per-user setting,
+revocation or real-data migration fix is claimed.
+[Scope](maintenance/2026-11-03-session-lifetime-143.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
