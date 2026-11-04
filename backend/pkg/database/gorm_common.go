@@ -294,6 +294,18 @@ func (gr *GormRepository) GetSummary(ctx context.Context) (*models.Summary, erro
 // It will also create associations between fhir resources
 // This function is called directly by fasten-sources
 func (gr *GormRepository) UpsertRawResource(ctx context.Context, sourceCredential sourceModel.SourceCredential, rawResource sourceModel.RawResourceFhir) (bool, error) {
+	var changed bool
+	err := gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		repo := *gr
+		repo.GormClient = tx
+		var err error
+		changed, err = repo.upsertRawResource(ctx, sourceCredential, rawResource)
+		return err
+	})
+	return changed && err == nil, err
+}
+
+func (gr *GormRepository) upsertRawResource(ctx context.Context, sourceCredential sourceModel.SourceCredential, rawResource sourceModel.RawResourceFhir) (bool, error) {
 
 	source := sourceCredential.(*models.SourceCredential)
 

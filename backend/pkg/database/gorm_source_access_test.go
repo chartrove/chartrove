@@ -156,6 +156,11 @@ func TestSourceAccessIsolationAndLifecycle(t *testing.T) {
 	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
 
 	// An SDK import replacing a formerly local resource must remove edit eligibility.
+	// A failed replacement must preserve both clinical contents and provenance.
+	_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated,
+		ReferencedResources: []string{"urn:fastenhealth-fhir:" + uuid.NewString() + ":Patient/synthetic-unavailable"}})
+	require.Error(t, err)
+	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
 	_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated})
 	require.NoError(t, err)
 	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
