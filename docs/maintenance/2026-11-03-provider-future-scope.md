@@ -19,5 +19,7 @@ statements do not prove current Chartrove interoperability. No provider contact,
 legal action, production credentials or integration cutover has been authorized.
 
 The one-open-issue acceptance target remains unmet while retained future work is
-unresolved. The selection among retained LDAP/OIDC, delegated permissions, OCR
-and Typesense/RAG expansions also remains unspecified; preserve all prototypes.
+unresolved. The maintainer subsequently selected all six historical expansions
+for implementation; their individual credential, indexing, provisioning, naming
+and migration policies still require corrected review. Preserve every prototype.
+See [feature admission](2026-11-03-historical-feature-admission.md).

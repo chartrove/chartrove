@@ -1,37 +1,23 @@
-<div class="card card-dashboard-one h-100" style="color: #856404;background-color: #fff3cd;">
+<div class="card card-dashboard-one h-100">
   <div class="card-header">
-    <div>
-      <h6 class="card-title">Diabetes Tracking</h6>
-      <p class="card-text">Track key metrics for your chronic disease (eg. Diabetes). The data within this widget is not reflective of your health record, and is only present for demonstrational purposes.</p>
-    </div>
-    <div class="btn-group">
-      <button class="btn active">Day</button>
-      <button class="btn">Week</button>
-      <button class="btn">Month</button>
-    </div>
-  </div><!-- card-header -->
-  <div class="card-body">
-    <div class="card-body-top">
-      <div>
-        <label class="mg-b-0">Blood Glucose PP</label>
-        <h2>140 mg/dl</h2>
+    <h6 class="card-title">{{widgetConfig?.title_text || 'Line chart'}}</h6>
+    @if (widgetConfig?.description_text) {
+      <p class="card-text">{{widgetConfig.description_text}}</p>
+    }
+  </div>
+  <div class="card-body d-flex flex-column">
+    @if (loading) {
+      <div role="status" aria-label="Loading chart"><loading-widget></loading-widget></div>
+    } @else if (loadError) {
+      <p role="alert">Unable to load chart data.</p>
+    } @else if (!widgetConfig?.queries?.length) {
+      <p>No queries configured for this chart.</p>
+    } @else if (isEmpty) {
+      <p>No matching records for this chart.</p>
+    } @else {
+      <div class="chart-area">
+        <canvas baseChart [type]="'line'" [datasets]="chartDatasets" [labels]="chartLabels" [options]="chartOptions"></canvas>
       </div>
-      <div>
-        <label class="mg-b-0">Blood Glucose Fasting</label>
-        <h2>140 mg/dl</h2>
-      </div>
-      <div>
-        <label class="mg-b-0">Calories Consumed</label>
-        <h2>1400 kCal</h2>
-      </div>
-      <div>
-        <label class="mg-b-0">Calories Burned</label>
-        <h2>840 kCal</h2>
-      </div>
-    </div><!-- card-body-top -->
-    <div class="page-view-chart-wrapper mt-auto mx-auto">
-      <canvas baseChart [type]="'line'" [datasets]="pageViewChartData" [labels]="pageViewChartLabels" [options]="pageViewChartOptions"></canvas>
-    </div>
-    <!-- flot-chart-wrapper -->
-  </div><!-- card-body -->
-</div><!-- card -->
+    }
+  </div>
+</div>

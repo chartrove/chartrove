@@ -1,0 +1,36 @@
+{
+  "time": "2026-11-03T23:54:08.640696+00:00",
+  "main": "ae11db3e8bb13d0142a98b77702c47f770fef6c5",
+  "branches": [
+    {
+      "name": "renovate/dwv-0.x",
+      "sha": "bfa0fd568c63bcc4a21fb89bc35ff8fda071d347",
+      "kind": "historical verified bundle",
+      "ref": "refs/heads/renovate/dwv-0.x",
+      "outcome": "deleted exact reviewed tip"
+    },
+    {
+      "name": "task/dwv-036",
+      "sha": "ffc4916403dea46ecd1c429bbf2c1e67f20a851d",
+      "kind": "merged task",
+      "ref": "refs/heads/task/dwv-036",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/dwv-0.x\n - [deleted]               task/dwv-036\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               renovate/dwv-0.x\n - [deleted]               task/dwv-036\n"
+    }
+  },
+  "owner_artifact_retention_untouched": true,
+  "owner_angular_cache_retention_untouched": true,
+  "disposition": "original #240 implemented by protected #402; exact historical archive and merged task verified"
+}

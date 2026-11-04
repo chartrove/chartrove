@@ -9,20 +9,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #401 and individual #306/#248 dispositions.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after401.json).
-The dwv-036 task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #402 and the individual #240 disposition.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after402.json).
+The query-line-widget-159 task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `7ed562fe4b4b98f720508a333cd2d111449072ba` (#401) |
+| Published application main | `ae11db3e8bb13d0142a98b77702c47f770fef6c5` (#402) |
 | Open issues | 163, including retained Renovate dashboard #222 |
-| Open PRs | 7: one paused Renovate proposal and six historical drafts |
-| Origin heads | 15, including the held cache owner ref |
-| Default branch | main tracks origin/main; current DWV task is additional |
+| Open PRs | 6: six historical feature drafts; zero Renovate proposals |
+| Origin heads | 14, including the held cache owner ref |
+| Default branch | main tracks origin/main; current query-line-widget task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -37,7 +37,7 @@ The six remaining drafts are #209 (permissions),
 implemented features or blanket retirement candidates. The maintainer explicitly
 retained all six capabilities on November 3; corrected implementations and their
 individual data/authentication policies remain required. #284/#285/#286 are now
-implemented by #354; all remaining dependency PRs require individual review.
+implemented by #354; all inherited dependency proposals are now individually reconciled.
 
 ## Latest integrated safeguards and tooling
 
@@ -195,7 +195,7 @@ retirements total89;13absent heads remain actor unknown. #186 stays unresolved.
 [CI](maintenance/lforms-ci-validation.json),
 [retirement](maintenance/lforms-retirement.json).
 
-The #240 replacement reviews DWV0.31→0.36.4 with its Konva/JSZip/shim family;
+Merged #402 implements #240 with DWV0.31→0.36.4 and its Konva/JSZip/shim family;
 all205published files and16actual dependency edges verify, all other installed
 version pairs/lock blocks stay exact, and frozen installation is exact. Typed
 component APIs and build/test/Storybook worker asset mappings replace removed
@@ -206,9 +206,25 @@ no fresh packaged Wails application is claimed. Five initial old/new consumer
 cases retain their resize/metadata failure controls; final seven cases pass,
 including source preservation, orientation controls and malformed-input status.
 Initial metadata and Angular lifecycle adapter mistakes remain fully documented.
-No cross-record mixing or 3D clinical-accuracy fix is claimed. Original #240 stays
-open pending protected integration; both independent owners remain held.
-[Scope](maintenance/2026-11-03-dwv-036.md).
+No cross-record mixing or 3D clinical-accuracy fix is claimed. All three protected
+checks and independent main-push checks pass:562 browser
+cases, one existing skip,16Node checks and6.12MB initial output. Original #240
+is individually closed as implemented. Its archived exact head and the merged
+task branch are retired with consumer/ownership checks; both independent owners
+remain held. Historical manual retirements total90;13absent heads remain actor
+unknown. [Scope](maintenance/2026-11-03-dwv-036.md),
+[CI](maintenance/dwv-ci-validation.json),
+[retirement](maintenance/dwv-retirement.json).
+
+The #159 replacement connects complex-line-widget to its existing configured
+query contract instead of static demonstration readings. Exact six-case old/new
+controls prove the prior missing input/query path and corrected zero/nonzero
+canvas values. Eleven final browser cases also cover empty/error/no-config states,
+pending cancellation, configuration refresh, missing-value gaps, ambiguous-value
+rejection, multiple series and actual dashboard GridStack query/save forwarding.
+Original records/configuration remain unchanged; no backend/database contract or
+provider integration changes. Protected integration and individual issue closure
+remain pending. [Scope and validation](maintenance/2026-11-03-query-line-widget-159.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,
@@ -838,9 +854,9 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 
 - Requery GitHub #222, issues/PRs, all origin heads, rules and Actions registrations;
   inspect local status/refs/worktrees before writing. Counts above are a snapshot.
-- Keep all five remaining Renovate PRs paused with stop-updating. Creation approval,
-  two concurrent PRs, one per hour and no automerge remain. Unpause only a selected
-  candidate, review current heads and require fresh checks. Earlier strict-main
+- All inherited Renovate proposals are reconciled. Dashboard creation approval,
+  two concurrent PRs, one per hour and no automerge remain the ongoing intake
+  policy; review one selected candidate and require fresh checks. Earlier strict-main
   automatic rebases caused 374 Validation runs; 66 scoped bot runs were canceled.
 - Review remaining bugs and compatible dependency proposals in small batches.
   Open work is not all blocked: do not use pending product decisions to falsely

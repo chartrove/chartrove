@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.chart-area {
+  position: relative;
+  flex: 1;
+  min-height: 180px;
+}
