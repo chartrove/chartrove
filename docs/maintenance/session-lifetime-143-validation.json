@@ -1,0 +1,170 @@
+{
+  "issue": 143,
+  "upstream_issue": 451,
+  "base_main": "9bb23787e7b05012b51333c6aa024dc522bb661e",
+  "default_lifetime": "1h",
+  "configuration_key": "jwt.session.duration",
+  "environment_key": "FASTEN_JWT_SESSION_DURATION",
+  "minimum_lifetime": "1s",
+  "same_seven_consumer_spec_sha256": "69c0b45135a0fd80fdfccd5e568938875a6bb8f3ff429940d9ddcb0f472b057c",
+  "ordinary_old_control": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-p",
+      "1",
+      "./backend/pkg/web/handler",
+      "-run",
+      "^TestAuthSessionConfiguredLifetime$",
+      "-count=1"
+    ],
+    "exit": 1,
+    "seconds": 13.26,
+    "scratch_disposed": true,
+    "spec_sha256": "69c0b45135a0fd80fdfccd5e568938875a6bb8f3ff429940d9ddcb0f472b057c",
+    "spec_unchanged": true,
+    "subtests_executed": 7,
+    "subtests_pass": 1,
+    "subtests_fail": 6
+  },
+  "root": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-p",
+      "1",
+      "./backend/pkg/config",
+      "./backend/pkg/auth",
+      "./backend/pkg/web/handler",
+      "./backend/pkg/web",
+      "-run",
+      "^(TestAuth|TestSignupConfiguredSessionLifetime|TestJwt|TestUserSessionDuration|TestStart|TestEmbedded)",
+      "-count=1",
+      "-timeout=120s"
+    ],
+    "exit": 0,
+    "seconds": 55.28,
+    "scratch_disposed": true,
+    "scratch_files_before_disposal": [],
+    "same_spec_sha256": "69c0b45135a0fd80fdfccd5e568938875a6bb8f3ff429940d9ddcb0f472b057c",
+    "spec_unchanged": true,
+    "same_seven_consumer_cases_executed": 7,
+    "same_seven_consumer_pass": 7,
+    "same_seven_consumer_fail": 0,
+    "pass_events": 87,
+    "fail_events": 0,
+    "package_results": [
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+        "Action": "pass",
+        "Elapsed": 0.175
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+        "Action": "pass",
+        "Elapsed": 0.172
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+        "Action": "pass",
+        "Elapsed": 1.728
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "Action": "pass",
+        "Elapsed": 32.673
+      }
+    ]
+  },
+  "desktop": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-p",
+      "1",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+      "-run",
+      "^(TestAuth|TestSignupConfiguredSessionLifetime|TestJwt|TestUserSessionDuration|TestStart|TestEmbedded)",
+      "-count=1",
+      "-timeout=120s"
+    ],
+    "cwd": "desktop",
+    "exit": 0,
+    "seconds": 38.8,
+    "scratch_disposed": true,
+    "scratch_files_before_disposal": [],
+    "free_before_bytes": 23778533376,
+    "free_after_cleanup_bytes": 23725400064,
+    "storage_qualification": "Host-wide free space includes swap/APFS/concurrent activity. Focused Go consumers only; no full local frontend/native workflow admission override.",
+    "same_spec_sha256": "69c0b45135a0fd80fdfccd5e568938875a6bb8f3ff429940d9ddcb0f472b057c",
+    "spec_unchanged": true,
+    "same_seven_consumer_cases_executed": 7,
+    "same_seven_consumer_pass": 7,
+    "same_seven_consumer_fail": 0,
+    "pass_events": 87,
+    "fail_events": 0,
+    "package_results": [
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+        "Action": "pass",
+        "Elapsed": 0.144
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+        "Action": "pass",
+        "Elapsed": 0.164
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+        "Action": "pass",
+        "Elapsed": 1.098
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "Action": "pass",
+        "Elapsed": 20.074
+      }
+    ]
+  },
+  "excluded_diagnostic": {
+    "usable_runtime_control": false,
+    "reason": "Go overlay added a nonexistent virtual test filename, but the test was not discovered. Ordinary output says no tests to run. Exit0 is not consumer validation.",
+    "next": "Run exact focused test as a normal package file on the next owned branch."
+  },
+  "unchanged_contract_file_sha256": {
+    "go.mod": "913ab818aa738d8e1a513ecc8e061a6e2a56bbc9de9bfc98b9fe773a56fed93a",
+    "go.sum": "ed045aa62c49685bfb886c59f6e746cf4a535e4124432889a65185982a0a934e",
+    "desktop/go.mod": "8a1821d1935d2a69190d3582ed73a417c4dbb0eb08951cc0b618a3f95be9de6a",
+    "desktop/go.sum": "dcce5591107aa7bbdf378c515b6c3f30c42ae77c09cbf6ea111e07878283869e",
+    "frontend/package.json": "fa0eb81b5742a8a75cf079f2477e17a46bd123a450e08d7e24ca05d46d80aac6",
+    "frontend/yarn.lock": "31cdbdfd9627a16128bb596ffd0dc11452feca97ef81e79a6144203ed0a0dfde",
+    "frontend/angular.json": "7e858b3979fa5622ffb0dde8d2a21b681b11ca91d05b8eaf95566b9824f0b59b"
+  },
+  "go_source_sha256": {
+    "backend/pkg/auth/jwt_utils.go": "05b58edff45f55c5e247555d3d62e01410c1a1c889e2e8640a7f700ccebb6366",
+    "backend/pkg/config/config.go": "2db12799e2805f66497ae9c47db2eab90face9b60c59e4cff2ad0303cee897f8",
+    "backend/pkg/config/session_duration.go": "511783d47d396b8899ea70c4d4ac8e73ac9109e674ff7528bd5989dcbcf78bfa",
+    "backend/pkg/config/session_duration_test.go": "e9a2aaa245bf3007d315f5e453eed47a2dcd63e726d89e868f237c3339f77df7",
+    "backend/pkg/web/embedded.go": "96a5e1f8e5f9a6f7e3bf18c892acc56f661a7804ab776cf3c21377d78daa5523",
+    "backend/pkg/web/handler/auth.go": "df9252d76c5cd05256ec868885559c6827e491c9a21ca6901c98f50a591f4ab4",
+    "backend/pkg/web/handler/auth_repository_test.go": "ee4d39bdf19fdd8ebb97e47bb0c16ca1c60e2b54c06d23dfd57936ebb20d84cf",
+    "backend/pkg/web/handler/auth_test.go": "e0b1bb19f87ca1660190861b80b94767ce058c419cf8fc611060f9a485ab9333",
+    "backend/pkg/web/handler/session_duration_signup_test.go": "cf0378784d4dbcdbc701ea29e52e53eab507865afdfebc3dc0649abcf043e781",
+    "backend/pkg/web/handler/session_lifetime_143_test.go": "69c0b45135a0fd80fdfccd5e568938875a6bb8f3ff429940d9ddcb0f472b057c",
+    "backend/pkg/web/server.go": "cb5e51a4a6a3cbf1da9e6d4acfb7caed2478421932fe0e0acb9dd041b8604732",
+    "backend/pkg/web/session_duration_startup_test.go": "d47cd1d0a7fe13a4159accdfdf7a7897ee6bfea9da4fb0d343103d1bcb6f9fde"
+  },
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue143",
+  "no_schema_or_dependency_change": true,
+  "real_health_records_used": false,
+  "new_packaged_native_ui": false,
+  "full_workflow_50GiB_reserve_unchanged": true,
+  "cache_enabled": false,
+  "protected_integration": "pending"
+}

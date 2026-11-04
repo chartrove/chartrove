@@ -379,6 +379,9 @@ func (ae *AppEngine) Start() error {
 	if err := config.ValidateJWTSigningKey(ae.Config); err != nil {
 		return err
 	}
+	if _, err := config.UserSessionDuration(ae.Config); err != nil {
+		return err
+	}
 
 	//set the gin mode
 	gin.SetMode(gin.ReleaseMode)

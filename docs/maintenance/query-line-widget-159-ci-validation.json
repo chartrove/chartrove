@@ -36,5 +36,10 @@
       "sha256": "e4af9bfb83f70191ae9894ce66e49e795df7be33dc931132f585e96b08ec8651",
       "download_exit": 0
     }
-  ]
+  ],
+  "independent_main_push_checks": {
+    "Backend": "success",
+    "Desktop": "success",
+    "Frontend": "success"
+  }
 }
