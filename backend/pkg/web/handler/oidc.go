@@ -5,6 +5,8 @@ import (
 	"errors"
 	"io"
 	"net/http"
+	"net/url"
+	"strings"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/auth"
@@ -18,6 +20,26 @@ import (
 func oidcJSON(c *gin.Context, status int, data interface{}) {
 	c.Header("Cache-Control", "no-store")
 	c.JSON(status, gin.H{"success": status == http.StatusOK, "data": data})
+}
+
+const oidcCookieName = "__Secure-chartrove_oidc"
+
+func oidcBrowserCookie(c *gin.Context, secret string, maxAge int) {
+	cfg := c.MustGet(pkg.ContextKeyTypeConfig).(config.Interface)
+	c.SetSameSite(http.SameSiteLaxMode)
+	c.SetCookie(oidcCookieName, secret, maxAge, strings.TrimRight(cfg.GetString("web.listen.basepath"), "/")+"/api/auth/oidc/complete", "", true, true)
+}
+
+func oidcOrigin(c *gin.Context) bool {
+	if origin := c.GetHeader("Origin"); origin != "" {
+		cfg := c.MustGet(pkg.ContextKeyTypeConfig).(config.Interface)
+		u, err := url.Parse(cfg.GetString("auth.oidc.redirect_uri"))
+		if err != nil || origin != u.Scheme+"://"+u.Host {
+			oidcJSON(c, 403, nil)
+			return false
+		}
+	}
+	return true
 }
 
 func oidcBody(c *gin.Context, dst interface{}) bool {
@@ -61,6 +83,9 @@ func oidcPasswordUser(c *gin.Context, r database.DatabaseRepository) (*models.Us
 func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 	api.GET("/auth/oidc", func(c *gin.Context) { oidcJSON(c, 200, gin.H{"enabled": mgr.Enabled()}) })
 	api.POST("/auth/oidc/start", func(c *gin.Context) {
+		if !oidcOrigin(c) {
+			return
+		}
 		if _, _, ok := oidcRepos(c); !ok {
 			return
 		}
@@ -69,9 +94,13 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 			oidcJSON(c, 503, nil)
 			return
 		}
+		oidcBrowserCookie(c, start.BrowserSecret, 300)
 		oidcJSON(c, 200, start)
 	})
 	secure.POST("/auth/oidc/link", func(c *gin.Context) {
+		if !oidcOrigin(c) {
+			return
+		}
 		r, _, ok := oidcRepos(c)
 		if !ok {
 			return
@@ -85,22 +114,31 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 			oidcJSON(c, 503, nil)
 			return
 		}
+		oidcBrowserCookie(c, start.BrowserSecret, 300)
 		oidcJSON(c, 200, start)
 	})
 	api.POST("/auth/oidc/complete", func(c *gin.Context) {
+		if !oidcOrigin(c) {
+			return
+		}
 		_, repo, ok := oidcRepos(c)
 		if !ok {
 			return
 		}
 		var body struct {
-			State  string `json:"state"`
-			Secret string `json:"browser_secret"`
-			Code   string `json:"code"`
+			State string `json:"state"`
+			Code  string `json:"code"`
 		}
 		if !oidcBody(c, &body) {
 			return
 		}
-		verified, err := mgr.Complete(c.Request.Context(), body.State, body.Secret, body.Code)
+		secret, err := c.Cookie(oidcCookieName)
+		if err != nil {
+			oidcJSON(c, 401, nil)
+			return
+		}
+		oidcBrowserCookie(c, "", -1)
+		verified, err := mgr.Complete(c.Request.Context(), body.State, secret, body.Code)
 		if err != nil {
 			oidcJSON(c, 401, nil)
 			return

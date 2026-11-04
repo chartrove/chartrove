@@ -9,11 +9,10 @@ import { AuthService } from './auth.service';
 export interface OIDCIdentity { id: string; issuer: string; revoked_at: string | null; created_at: string }
 export interface OIDCAudit { id: string; identity_id: string; action: string; created_at: string }
 interface Response<T> { success: boolean; data: T }
-interface Start { authorization_url: string; state: string; browser_secret: string }
+interface Start { authorization_url: string; state: string }
 
 @Injectable({ providedIn: 'root' })
 export class OIDCService {
-  readonly storageKey = 'chartrove.oidc.transaction';
   private get base() { return GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base) }
   constructor(@Inject(HTTP_CLIENT_TOKEN) private http: HttpClient, private auth: AuthService) {}
 
@@ -28,18 +27,13 @@ export class OIDCService {
     const response = await firstValueFrom(this.http.post<Response<Start>>(this.base + endpoint, password === undefined ? {} : {password}));
     const flow = response.data;
     const url = new URL(flow.authorization_url);
-    if (!response.success || url.protocol !== 'https:' || !flow.state || !flow.browser_secret) throw new Error('Invalid OIDC transaction');
-    sessionStorage.setItem(this.storageKey, JSON.stringify({ state: flow.state, browser_secret: flow.browser_secret, expires: Date.now() + 300000 }));
+    if (!response.success || url.protocol !== 'https:' || !flow.state) throw new Error('Invalid OIDC transaction');
     return url.href;
   }
 
   async complete(params: URLSearchParams): Promise<void> {
-    const saved = sessionStorage.getItem(this.storageKey);
-    sessionStorage.removeItem(this.storageKey);
-    if (!saved) throw new Error('Missing OIDC transaction');
-    const flow = JSON.parse(saved);
-    if (params.has('error') || params.getAll('state').length !== 1 || params.getAll('code').length !== 1 || params.get('state') !== flow.state || flow.expires <= Date.now()) throw new Error('Invalid OIDC callback');
-    const response = await firstValueFrom(this.http.post<Response<string>>(`${this.base}/auth/oidc/complete`, {state: flow.state, browser_secret: flow.browser_secret, code: params.get('code')}));
+    if (params.has('error') || params.getAll('state').length !== 1 || params.getAll('code').length !== 1 || !params.get('state') || !params.get('code')) throw new Error('Invalid OIDC callback');
+    const response = await firstValueFrom(this.http.post<Response<string>>(`${this.base}/auth/oidc/complete`, {state: params.get('state'), code: params.get('code')}));
     if (!response.success || typeof response.data !== 'string') throw new Error('OIDC sign-in failed');
     this.auth.setAuthToken(response.data);
   }

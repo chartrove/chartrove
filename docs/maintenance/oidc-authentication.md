@@ -27,11 +27,14 @@ Its dependency and container updates are superseded by current main.
   authorization-code exchange, S256 PKCE and signed ID-token validation. It checks
   exact issuer, audience, authorized party, expiry, issued-at and nonce. Only
   asymmetric signature algorithms are accepted. State and independent browser
-  proof bind the flow to the initiating tab. Both the browser and server consume
-  it once. Discovery, token and JWKS endpoints and the callback require HTTPS.
-- The browser stores transaction proof in sessionStorage for five minutes.
+  proof bind the flow to the initiating browser. The server consumes it once.
+  Discovery, token and JWKS endpoints and the callback require HTTPS.
+- Transaction proof lives in a five-minute, host-only, Secure, HttpOnly,
+  SameSite=Lax cookie scoped to the completion endpoint. JavaScript never receives
+  or persists it. Start/link/completion reject a supplied cross-origin Origin.
+  One pending sign-in is supported per browser; a newer start replaces its cookie.
   The IdP redirects only a code/state to the configured frontend callback. The
-  frontend removes the query before completion and submits the code/proof to the
+  frontend removes the query before completion and submits the code/state to the
   server; it never processes provider tokens. No native app token, password,
   provider secret or browser proof enters a redirect URL. The document sets
   `Referrer-Policy` through an early `no-referrer` meta element. Reverse proxies
@@ -45,6 +48,8 @@ Its dependency and container updates are superseded by current main.
   inherit a binding. Disabling OIDC or changing its issuer rejects OIDC sessions
   while leaving local authentication intact. Logout revokes the current native
   session. Password-confirmed unlink revokes the binding and all its sessions.
+  Revocation also rotates a database generation atomically: even an in-flight
+  PostgreSQL login committing after unlink cannot revive during re-link.
   A pending link started before a later revocation cannot undo it. Fresh
   re-linking never revives old sessions. The latest 200 account-scoped audit
   events retain link/login/logout/unlink identifiers and timestamps, without
@@ -72,7 +77,7 @@ auth:
 Supply `FASTEN_AUTH_OIDC_CLIENT_SECRET` from the deployment secret store for a
 confidential client; never commit a real secret. Standard PKCE public clients are
 also supported. Configure the exact redirect URI with query response mode in the
-provider. It must resolve to this Chartrove frontend in the same browser tab;
+provider. It must resolve to this Chartrove frontend on the API's HTTPS origin;
 include any reverse-proxy subpath. The server neither accepts arbitrary redirect
 destinations nor derives one from request headers. Use a stable, provider-specific
 subject and issuer. Do not change subject mappings to match an email address.
@@ -124,7 +129,7 @@ transaction service is outside this single-server milestone.
 | Local login and recovery with provider offline | Synthetic HTTP regression; native passwords unchanged |
 | OIDC discovery, code exchange, PKCE, nonce and token checks | Synthetic HTTPS issuer/signing-key regressions |
 | Duplicate email, conflicting bindings, roles and immutable UUIDs | Repository and HTTP multi-user regressions |
-| Session expiry, logout, unlink and re-link | Database/session middleware regressions |
+| Session expiry, logout, unlink and re-link | Database/session middleware regressions and a disposable PostgreSQL pre-commit/unlink interleaving |
 | Source access and private-record isolation | Existing delegation suite plus actual OIDC HTTP regression |
 | Browser state, duplicate/invalid callbacks and settings controls | Focused Angular browser regressions |
 | Desktop local authentication/encryption | Existing embedded tests and required Desktop CI |

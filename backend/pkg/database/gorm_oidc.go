@@ -22,7 +22,7 @@ func (gr *GormRepository) CompleteOIDC(ctx context.Context, issuer, subject stri
 	err := gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		if linkUser != uuid.Nil {
 			// First write reserves SQLite's writer before the authorization reads.
-			identity := models.OIDCIdentity{ID: uuid.New(), UserID: linkUser, Issuer: issuer, Subject: subject}
+			identity := models.OIDCIdentity{ID: uuid.New(), Generation: uuid.New(), UserID: linkUser, Issuer: issuer, Subject: subject}
 			result := tx.Clauses(clause.OnConflict{DoNothing: true}).Create(&identity)
 			if result.Error != nil {
 				return result.Error
@@ -46,11 +46,12 @@ func (gr *GormRepository) CompleteOIDC(ctx context.Context, issuer, subject stri
 			}
 		}
 		var identity models.OIDCIdentity
-		// INSERT SELECT repeats the active binding and native account predicates at
-		// the write itself, so revocation cannot race a stale read into a session.
+		// Repeat authorization at the write and copy the binding's generation.
+		// Revocation rotates it atomically; even a later-committing PostgreSQL
+		// login can never become valid again when that binding is re-linked.
 		session = models.OIDCSession{ID: uuid.New(), ExpiresAt: expires.UTC(), CreatedAt: time.Now().UTC()}
-		result := tx.Exec(`INSERT INTO oidc_sessions (id, user_id, identity_id, expires_at, created_at)
-			SELECT ?, i.user_id, i.id, ?, ? FROM oidc_identities i JOIN users u ON u.id = i.user_id
+		result := tx.Exec(`INSERT INTO oidc_sessions (id, user_id, identity_id, identity_generation, expires_at, created_at)
+			SELECT ?, i.user_id, i.id, i.generation, ?, ? FROM oidc_identities i JOIN users u ON u.id = i.user_id
 			WHERE i.issuer = ? AND i.subject = ? AND i.revoked_at IS NULL AND u.deleted_at IS NULL`, session.ID, session.ExpiresAt, session.CreatedAt, issuer, subject)
 		if result.Error != nil {
 			return result.Error
@@ -66,6 +67,9 @@ func (gr *GormRepository) CompleteOIDC(ctx context.Context, issuer, subject stri
 		}
 		session.UserID = user.ID
 		session.IdentityID = identity.ID
+		if err := tx.Where("id = ?", session.ID).First(&session).Error; err != nil {
+			return err
+		}
 		if linkUser != uuid.Nil {
 			if err := oidcAudit(tx, user.ID, identity.ID, "link"); err != nil {
 				return err
@@ -78,7 +82,7 @@ func (gr *GormRepository) CompleteOIDC(ctx context.Context, issuer, subject stri
 
 func (gr *GormRepository) ValidateOIDCSession(ctx context.Context, id, user uuid.UUID, issuer string) error {
 	var count int64
-	err := gr.GormClient.WithContext(ctx).Table("oidc_sessions s").Joins("JOIN oidc_identities i ON i.id = s.identity_id AND i.user_id = s.user_id").Joins("JOIN users u ON u.id = s.user_id").Where("s.id = ? AND s.user_id = ? AND s.revoked_at IS NULL AND s.expires_at > ? AND i.revoked_at IS NULL AND i.issuer = ? AND u.deleted_at IS NULL", id, user, time.Now().UTC(), issuer).Count(&count).Error
+	err := gr.GormClient.WithContext(ctx).Table("oidc_sessions s").Joins("JOIN oidc_identities i ON i.id = s.identity_id AND i.user_id = s.user_id AND i.generation = s.identity_generation").Joins("JOIN users u ON u.id = s.user_id").Where("s.id = ? AND s.user_id = ? AND s.revoked_at IS NULL AND s.expires_at > ? AND i.revoked_at IS NULL AND i.issuer = ? AND u.deleted_at IS NULL", id, user, time.Now().UTC(), issuer).Count(&count).Error
 	if err != nil {
 		return err
 	}
@@ -108,7 +112,7 @@ func (gr *GormRepository) RevokeOIDCSession(ctx context.Context, user, id uuid.U
 func (gr *GormRepository) RevokeOIDCIdentity(ctx context.Context, user, id uuid.UUID) error {
 	return gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		now := time.Now().UTC()
-		result := tx.Model(&models.OIDCIdentity{}).Where("id = ? AND user_id = ? AND revoked_at IS NULL", id, user).Update("revoked_at", now)
+		result := tx.Model(&models.OIDCIdentity{}).Where("id = ? AND user_id = ? AND revoked_at IS NULL", id, user).Updates(map[string]interface{}{"revoked_at": now, "generation": uuid.New()})
 		if result.Error != nil {
 			return result.Error
 		}

@@ -72,6 +72,12 @@ func TestOIDCNativeBindingRevocationAndSourceIsolation(t *testing.T) {
 	require.ErrorIs(t, r.ValidateOIDCSession(ctx, s.ID, b.ID, "https://issuer.example"), ErrOIDCDenied)
 	require.NoError(t, r.ValidateOIDCSession(ctx, login.ID, b.ID, "https://issuer.example"))
 	require.NoError(t, r.RevokeOIDCIdentity(ctx, b.ID, s.IdentityID))
+	// Model a READ COMMITTED login whose old-generation INSERT commits after
+	// unlink's session sweep. Re-link must never make that session valid.
+	stale := *login
+	stale.ID = uuid.New()
+	stale.RevokedAt = nil
+	require.NoError(t, r.GormClient.Create(&stale).Error)
 	_, _, err = r.CompleteOIDC(ctx, "https://issuer.example", "subject-b", b.ID, b.Password, time.Now().UTC().Add(-time.Minute), expires)
 	require.ErrorIs(t, err, ErrOIDCDenied) // A pending link cannot undo later revocation.
 	require.ErrorIs(t, r.ValidateOIDCSession(ctx, login.ID, b.ID, "https://issuer.example"), ErrOIDCDenied)
@@ -80,6 +86,7 @@ func TestOIDCNativeBindingRevocationAndSourceIsolation(t *testing.T) {
 	_, relinked, err := r.CompleteOIDC(ctx, "https://issuer.example", "subject-b", b.ID, b.Password, time.Now().UTC(), expires)
 	require.NoError(t, err)
 	require.NoError(t, r.ValidateOIDCSession(ctx, relinked.ID, b.ID, "https://issuer.example"))
+	require.ErrorIs(t, r.ValidateOIDCSession(ctx, stale.ID, b.ID, "https://issuer.example"), ErrOIDCDenied)
 	require.ErrorIs(t, r.ValidateOIDCSession(ctx, login.ID, b.ID, "https://issuer.example"), ErrOIDCDenied)
 	require.NoError(t, r.GormClient.Model(&models.OIDCSession{}).Where("id = ?", relinked.ID).Update("expires_at", time.Now().UTC().Add(-time.Minute)).Error)
 	require.ErrorIs(t, r.ValidateOIDCSession(ctx, relinked.ID, b.ID, "https://issuer.example"), ErrOIDCDenied)

@@ -36,7 +36,7 @@ type OIDCFlow struct {
 type OIDCStart struct {
 	AuthorizationURL string `json:"authorization_url"`
 	State            string `json:"state"`
-	BrowserSecret    string `json:"browser_secret"`
+	BrowserSecret    string `json:"-"`
 }
 
 type OIDCVerified struct {

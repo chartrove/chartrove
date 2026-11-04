@@ -87,17 +87,35 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	m := auth.NewOIDCManager(cfg)
 	m.Client = idp.Client()
 	RegisterOIDCRoutes(api, secure, m)
+	var browserCookie *http.Cookie
 	request := func(method, path, token string, body interface{}, status int) json.RawMessage {
 		t.Helper()
 		raw, err := json.Marshal(body)
 		require.NoError(t, err)
 		req := httptest.NewRequest(method, "/api"+path, bytes.NewReader(raw))
 		req.Header.Set("Content-Type", "application/json")
+		if path == "/auth/oidc/complete" && browserCookie != nil {
+			req.AddCookie(browserCookie)
+		}
 		if token != "" {
 			req.Header.Set("Authorization", "Bearer "+token)
 		}
 		w := httptest.NewRecorder()
 		r.ServeHTTP(w, req)
+		for _, cookie := range w.Result().Cookies() {
+			if cookie.Name == oidcCookieName {
+				require.True(t, cookie.HttpOnly)
+				require.True(t, cookie.Secure)
+				require.Equal(t, http.SameSiteLaxMode, cookie.SameSite)
+				require.Equal(t, "/api/auth/oidc/complete", cookie.Path)
+				if cookie.MaxAge < 0 {
+					browserCookie = nil
+				} else {
+					browserCookie = cookie
+					require.NotContains(t, w.Body.String(), cookie.Value)
+				}
+			}
+		}
 		require.Equal(t, status, w.Code, w.Body.String())
 		var result struct {
 			Data json.RawMessage `json:"data"`
@@ -111,6 +129,12 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 		return token
 	}
 	localOwner, localDelegate := login(owner.Username), login(delegate.Username)
+	crossSite := httptest.NewRequest("POST", "/api/auth/oidc/start", nil)
+	crossSite.Header.Set("Origin", "https://other.example")
+	denied := httptest.NewRecorder()
+	r.ServeHTTP(denied, crossSite)
+	require.Equal(t, 403, denied.Code)
+	require.Empty(t, denied.Result().Cookies())
 	flow := func(token, password string) auth.OIDCStart {
 		var s auth.OIDCStart
 		path := "/auth/oidc/start"
@@ -120,6 +144,8 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 			body["password"] = password
 		}
 		require.NoError(t, json.Unmarshal(request("POST", path, token, body, 200), &s))
+		require.Empty(t, s.BrowserSecret)
+		require.NotNil(t, browserCookie)
 		u, err := url.Parse(s.AuthorizationURL)
 		require.NoError(t, err)
 		nonce = u.Query().Get("nonce")
@@ -128,7 +154,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	}
 	complete := func(s auth.OIDCStart, status int) string {
 		var token string
-		data := request("POST", "/auth/oidc/complete", "", map[string]string{"state": s.State, "browser_secret": s.BrowserSecret, "code": "synthetic-code"}, status)
+		data := request("POST", "/auth/oidc/complete", "", map[string]string{"state": s.State, "code": "synthetic-code"}, status)
 		if status == 200 {
 			require.NoError(t, json.Unmarshal(data, &token))
 		}
@@ -137,6 +163,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	request("POST", "/secure/auth/oidc/link", localDelegate, map[string]string{"password": "wrong"}, 401)
 	complete(flow("", ""), 401) // Unknown issuer/subject never matches duplicate email.
 	oidcToken := complete(flow(localDelegate, "synthetic-password"), 200)
+	request("POST", "/auth/oidc/complete", "", map[string]string{"state": "replayed", "code": "synthetic-code"}, 401)
 	var profile struct {
 		ID   string `json:"id"`
 		Role string `json:"role"`

@@ -207,7 +207,10 @@ export class AuthService {
       const endpoint = GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)
       // Clear the browser even when offline. Expiry/unlink remains available to
       // terminate a session whose server-side logout could not be confirmed.
-      try { await this._httpClient.post(`${endpoint}/secure/auth/oidc/logout`, {}).toPromise() }
+      try {
+        const response = await this._httpClient.post<ResponseWrapper>(`${endpoint}/secure/auth/oidc/logout`, {}).toPromise()
+        if (response?.success !== true) throw new Error('Server session revocation was not confirmed')
+      }
       finally {
         this.publishAuthenticationState(false)
         localStorage.removeItem(this.FASTEN_JWT_LOCALSTORAGE_KEY)
