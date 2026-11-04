@@ -1,0 +1,98 @@
+{
+  "pr": 408,
+  "head": "367cf5541c43593b2a259fd7b5a481efd2171774",
+  "merge": "d50c0f6b39a430c9e29e67e56314f88b1d0c94e2",
+  "pr_run": 41758437314,
+  "main_run": 41759887741,
+  "all_seven_trusted_pr_checks": "success",
+  "independent_main_push_six_actions_jobs": "success",
+  "browser_pass": 572,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.13 MB",
+  "unchanged_budget": "10 MB",
+  "root_focused_pass_events": 49,
+  "desktop_focused_pass_events": 49,
+  "pr_codeql_results": {
+    "go": 0,
+    "javascript-typescript": 0,
+    "actions": 0
+  },
+  "pr_scope": "diff-filtered, not whole main baseline",
+  "main_codeql_analyses": {
+    "/language:actions": {
+      "id": 2091357674,
+      "results": 0,
+      "error": "",
+      "warning": "",
+      "cli": "2.27.4"
+    },
+    "/language:javascript-typescript": {
+      "id": 2091365324,
+      "results": 0,
+      "error": "",
+      "warning": "",
+      "cli": "2.27.4"
+    },
+    "/language:go": {
+      "id": 2091397150,
+      "results": 1,
+      "error": "",
+      "warning": "",
+      "cli": "2.27.4"
+    }
+  },
+  "original_alerts_automatically_fixed": [
+    1,
+    2,
+    3
+  ],
+  "remaining_open_alert": {
+    "number": 4,
+    "rule": "go/sql-injection",
+    "sink": "gorm_repository_query.go:244 Table",
+    "triage": "remaining flow starts with an untrusted identifier carried in error returns; runtime schema and error checks reject it. Follow-up constructs only canonical valid output and returns empty errors, without dismissal."
+  },
+  "full_job_logs": [
+    {
+      "name": "frontend-408.log",
+      "bytes": 122692,
+      "sha256": "cc5fecedf36e6095f0954706473cf6073db9952dec9fca107962c0a3e621c2a7"
+    },
+    {
+      "name": "backend-408.log",
+      "bytes": 35490,
+      "sha256": "58a3b7a64f59639b3292b47892a20abe3717398774f5535de4c2af51a50e4700"
+    },
+    {
+      "name": "desktop-408.log",
+      "bytes": 54430,
+      "sha256": "c29c7556abcb50081dc62b2da4c6cb64da39531e58893a1c26551e6b00536c36"
+    },
+    {
+      "name": "codeql-go-408.log",
+      "bytes": 125161,
+      "sha256": "15a196386374706aebc4deea7bf0a5f556a93a564dfb1518ab797822f4d3e56e"
+    },
+    {
+      "name": "codeql-javascript-typescript-408.log",
+      "bytes": 142233,
+      "sha256": "c4c2f7a542c25bdcc7bdcf9e605c726a57bbdabd80ab672e3f67b238393b8863"
+    },
+    {
+      "name": "codeql-actions-408.log",
+      "bytes": 68080,
+      "sha256": "1955f7b64f3e2754570ff8961b67d5afabce7d3100ed73066264f09521931bee"
+    },
+    {
+      "name": "main-codeql-go-408.log",
+      "bytes": 127736,
+      "sha256": "c6f0b25d2d99de8c55840345a3fcf6b0ca9a54da1376a732c526653d8ed73bdc"
+    },
+    {
+      "name": "main-2091397150.sarif.json",
+      "bytes": 230280,
+      "sha256": "4b8fd3bf7a24b45fecc1b3209b7cf63867f322e8dab89be32bec466dd5c35b6a"
+    }
+  ]
+}
