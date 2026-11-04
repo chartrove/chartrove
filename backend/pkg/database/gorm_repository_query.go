@@ -15,6 +15,7 @@ import (
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type SearchParameterType string
@@ -155,90 +156,72 @@ func (gr *GormRepository) sqlQueryResources(ctx context.Context, query models.Qu
 	whereNamedParameters["user_id"] = currentUser.ID.String()
 	whereClauses = append(whereClauses, "(user_id = @user_id)")
 
-	//defaults
+	// Defaults remain resource rows ordered by most recent date.
 	selectClauses := []string{fmt.Sprintf("%s.*", TABLE_ALIAS)}
-	groupClause := fmt.Sprintf("%s.id", TABLE_ALIAS)
-	orderClause := fmt.Sprintf("%s.sort_date DESC", TABLE_ALIAS)
+	var selectExpressions []clause.Expression
+	var groupExpression, orderExpression *clause.Expr
 	if query.Aggregations != nil {
-
-		//Handle Aggregations
-
-		if query.Aggregations.CountBy != nil {
-			//populate the group by and order by clause with the count by values
-			query.Aggregations.OrderBy = &models.QueryResourceAggregation{
-				Field:    "*",
-				Function: "count",
+		// Work on copies: count_by expansion must not rewrite the caller's saved query.
+		aggregations := *query.Aggregations
+		if aggregations.CountBy != nil {
+			group := *aggregations.CountBy
+			if group.Field == "*" {
+				group.Field = "source_resource_type"
 			}
-			query.Aggregations.GroupBy = query.Aggregations.CountBy
-
-			if query.Aggregations.GroupBy.Field == "*" {
-				//we need to get the count of all resources, so we need to remove the group by clause and replace it by
-				// `source_resource_type` which will be the same for all resources
-				query.Aggregations.GroupBy.Field = "source_resource_type"
-			}
+			aggregations.GroupBy = &group
+			aggregations.OrderBy = &models.QueryResourceAggregation{Field: "*", Function: "count"}
 		}
 
-		//process order by clause
-		if query.Aggregations.OrderBy != nil {
-			orderAsc := true //default to ascending, switch to desc if parameter is a date type.
-			if !(query.Aggregations.OrderBy.Field == "*") {
-				orderAggregationParam, err := ProcessAggregationParameter(*query.Aggregations.OrderBy, searchCodeToTypeLookup)
-				if err != nil {
-					return nil, err
+		compile := func(input models.QueryResourceAggregation) (AggregationParameter, clause.Expr, error) {
+			parameter, err := ProcessAggregationParameter(input, searchCodeToTypeLookup)
+			if err != nil {
+				return parameter, clause.Expr{}, err
+			}
+			from, err := SearchCodeToFromClause(parameter.SearchParameter)
+			if err != nil {
+				return parameter, clause.Expr{}, err
+			}
+			fromClauses = append(fromClauses, from)
+			return parameter, aggregationParameterToExpression(parameter), nil
+		}
+		var orderValue clause.Expr
+		if aggregations.OrderBy != nil {
+			if aggregations.OrderBy.Field == "*" {
+				function, err := aggregationFunction(aggregations.OrderBy.Function)
+				if err != nil || function != "count" {
+					return nil, fmt.Errorf("only count is supported for aggregation field *")
 				}
-				orderAggregationFromClause, err := SearchCodeToFromClause(orderAggregationParam.SearchParameter)
-				if err != nil {
-					return nil, err
-				}
-				fromClauses = append(fromClauses, orderAggregationFromClause)
-
-				//if the order by is a date type, we need to order by DESC (most recent first)
-				if orderAggregationParam.Type == SearchParameterTypeDate {
-					orderAsc = false
-				}
-
-				orderClause = AggregationParameterToClause(orderAggregationParam)
-				if orderAsc {
-					orderClause = fmt.Sprintf("%s ASC", orderClause)
-				} else {
-					orderClause = fmt.Sprintf("%s DESC", orderClause)
-				}
+				orderValue = clause.Expr{SQL: "count(*)"}
+				order := clause.Expr{SQL: "? DESC", Vars: []interface{}{orderValue}}
+				orderExpression = &order
 			} else {
-				orderClause = fmt.Sprintf("%s(%s) DESC", query.Aggregations.OrderBy.Function, query.Aggregations.OrderBy.Field)
+				parameter, value, err := compile(*aggregations.OrderBy)
+				if err != nil {
+					return nil, err
+				}
+				orderValue = value
+				order := clause.Expr{SQL: "? ASC", Vars: []interface{}{value}}
+				if parameter.Type == SearchParameterTypeDate {
+					order.SQL = "? DESC"
+				}
+				orderExpression = &order
 			}
 		}
-
-		//process group by clause
-		if query.Aggregations.GroupBy != nil {
-			groupAggregationParam, err := ProcessAggregationParameter(*query.Aggregations.GroupBy, searchCodeToTypeLookup)
+		if aggregations.GroupBy != nil {
+			_, value, err := compile(*aggregations.GroupBy)
 			if err != nil {
 				return nil, err
 			}
-			groupAggregationFromClause, err := SearchCodeToFromClause(groupAggregationParam.SearchParameter)
-			if err != nil {
-				return nil, err
+			groupExpression = &value
+			if aggregations.OrderBy == nil || aggregations.OrderBy.Field == "*" {
+				orderValue = clause.Expr{SQL: "count(*)"}
+				order := clause.Expr{SQL: "count(*) DESC"}
+				orderExpression = &order
 			}
-			fromClauses = append(fromClauses, groupAggregationFromClause)
-
-			groupClause = AggregationParameterToClause(groupAggregationParam)
-			selectClauses = []string{
-				fmt.Sprintf("%s as %s", groupClause, "label"),
+			selectExpressions = []clause.Expression{
+				clause.Expr{SQL: "? as label", Vars: []interface{}{value}},
+				clause.Expr{SQL: "? as value", Vars: []interface{}{orderValue}},
 			}
-
-			if query.Aggregations.OrderBy == nil || query.Aggregations.OrderBy.Field == "*" {
-				selectClauses = append(selectClauses, fmt.Sprintf("%s as %s", "count(*)", "value"))
-				orderClause = fmt.Sprintf("%s DESC", "count(*)")
-			} else {
-				//use the orderBy aggregation as the value
-				orderAggregationParam, err := ProcessAggregationParameter(*query.Aggregations.OrderBy, searchCodeToTypeLookup)
-				if err != nil {
-					return nil, err
-				}
-
-				orderSelectClause := AggregationParameterToClause(orderAggregationParam)
-				selectClauses = append(selectClauses, fmt.Sprintf("%s as %s", orderSelectClause, "value"))
-			}
-
 		}
 	}
 
@@ -258,9 +241,20 @@ func (gr *GormRepository) sqlQueryResources(ctx context.Context, query models.Qu
 	sqlQuery := gr.GormClient.WithContext(ctx).
 		Select(strings.Join(selectClauses, ", ")).
 		Where(strings.Join(whereClauses, " AND "), whereNamedParameters).
-		Group(groupClause).
-		Order(orderClause).
 		Table(strings.Join(fromClauses, ", "))
+	if len(selectExpressions) > 0 {
+		sqlQuery = sqlQuery.Clauses(clause.Select{Expression: clause.CommaExpression{Exprs: selectExpressions}})
+	}
+	if groupExpression != nil {
+		sqlQuery = sqlQuery.Clauses(aggregationGroupBy{Expression: *groupExpression})
+	} else {
+		sqlQuery = sqlQuery.Group("fhir.id")
+	}
+	if orderExpression != nil {
+		sqlQuery = sqlQuery.Clauses(clause.OrderBy{Expression: *orderExpression})
+	} else {
+		sqlQuery = sqlQuery.Order("fhir.sort_date DESC")
+	}
 
 	//add limit and offset clauses if present
 	if query.Limit != nil {
@@ -642,31 +636,65 @@ func SearchCodeToFromClause(searchParam SearchParameter) (string, error) {
 	return "", nil
 }
 
-func AggregationParameterToClause(aggParameter AggregationParameter) string {
-	var clause string
+// GROUP BY needs an expression builder so JSON paths remain bound values, just
+// as they are in SELECT and ORDER BY. GORM's Group(string) treats SQL as raw text.
+type aggregationGroupBy struct{ clause.Expression }
 
-	switch aggParameter.Type {
-	case SearchParameterTypeQuantity, SearchParameterTypeString:
-		//setup the clause
-		clause = fmt.Sprintf("(%sJson.value ->> '$.%s')", aggParameter.Name, aggParameter.Modifier)
-	case SearchParameterTypeToken:
-		//modifier is optional for token types.
-		if aggParameter.Modifier != "" {
-			clause = fmt.Sprintf("(%sJson.value ->> '$.%s')", aggParameter.Name, aggParameter.Modifier)
+func (aggregationGroupBy) Name() string                       { return "GROUP BY" }
+func (group aggregationGroupBy) MergeClause(c *clause.Clause) { c.Expression = group }
+
+func aggregationParameterToExpression(parameter AggregationParameter) clause.Expr {
+	column := clause.Column{Table: TABLE_ALIAS, Name: parameter.Name}
+	expression := clause.Expr{SQL: "?", Vars: []interface{}{column}}
+	switch parameter.Type {
+	case SearchParameterTypeQuantity, SearchParameterTypeString, SearchParameterTypeToken:
+		column = clause.Column{Table: parameter.Name + "Json", Name: "value"}
+		if parameter.Type == SearchParameterTypeToken && parameter.Modifier == "" {
+			expression = clause.Expr{SQL: "((? ->> '$.system') || '|' || (? ->> '$.code'))", Vars: []interface{}{column, column}}
 		} else {
-			//if no modifier is specified, use the system and code to generate the clause
-			//((codeJson.value ->> '$.system') || '|' || (codeJson.value ->> '$.code'))
-			clause = fmt.Sprintf("((%sJson.value ->> '$.system') || '|' || (%sJson.value ->> '$.code'))", aggParameter.Name, aggParameter.Name)
+			expression = clause.Expr{SQL: "(? ->> ?)", Vars: []interface{}{column, "$." + parameter.Modifier}}
 		}
+	}
+	if parameter.Function != "" {
+		// Function is compiled to a literal by aggregationFunction before reaching here.
+		expression = clause.Expr{SQL: parameter.Function + "(?)", Vars: []interface{}{expression}}
+	}
+	return expression
+}
 
+// Functions are SQL syntax, not values. Accept the supported one-argument
+// aggregates and date groupings, returning only application-owned literals.
+func aggregationFunction(input string) (string, error) {
+	switch strings.ToLower(input) {
+	case "":
+		return "", nil
+	case "count":
+		return "count", nil
+	case "min":
+		return "min", nil
+	case "max":
+		return "max", nil
+	case "sum":
+		return "sum", nil
+	case "avg":
+		return "avg", nil
+	case "total":
+		return "total", nil
+	case "group_concat":
+		return "group_concat", nil
+	case "date":
+		return "date", nil
+	case "datetime":
+		return "datetime", nil
+	case "time":
+		return "time", nil
+	case "julianday":
+		return "julianday", nil
+	case "unixepoch":
+		return "unixepoch", nil
 	default:
-		clause = fmt.Sprintf("%s.%s", TABLE_ALIAS, aggParameter.Name)
+		return "", fmt.Errorf("unsupported aggregation function")
 	}
-
-	if len(aggParameter.Function) > 0 {
-		clause = fmt.Sprintf("%s(%s)", aggParameter.Function, clause)
-	}
-	return clause
 }
 
 // ProcessAggregationParameter processes the aggregation parameters which are fields with optional properties:
@@ -678,10 +706,11 @@ func AggregationParameterToClause(aggParameter AggregationParameter) string {
 //
 // if the a property is specified, its set as the modifier, and used when generating the SQL query groupBy, orderBy, etc clause
 func ProcessAggregationParameter(aggregationFieldWithFn models.QueryResourceAggregation, searchParamTypeLookup map[string]string) (AggregationParameter, error) {
-	aggregationParameter := AggregationParameter{
-		SearchParameter: SearchParameter{},
-		Function:        aggregationFieldWithFn.Function,
+	function, err := aggregationFunction(aggregationFieldWithFn.Function)
+	if err != nil {
+		return AggregationParameter{}, err
 	}
+	aggregationParameter := AggregationParameter{Function: function}
 
 	//determine the searchCode searchCodeModifier
 	//TODO: this is only applicable to string, token, reference and uri type (however unknown names & modifiers are ignored)
@@ -693,12 +722,19 @@ func ProcessAggregationParameter(aggregationFieldWithFn models.QueryResourceAggr
 		aggregationParameter.Modifier = ""
 	}
 
-	//next, determine the searchCodeType for this Resource (or throw an error if it is unknown)
-	searchParamTypeStr, searchParamTypeOk := searchParamTypeLookup[aggregationParameter.Name]
-	if !searchParamTypeOk {
+	// Resolve the identifier from the server-generated schema, never from SQL
+	// supplied by the caller. Expression columns are quoted separately from paths.
+	found := false
+	for name, parameterType := range searchParamTypeLookup {
+		if name == aggregationParameter.Name {
+			aggregationParameter.Name = name
+			aggregationParameter.Type = SearchParameterType(parameterType)
+			found = true
+			break
+		}
+	}
+	if !found {
 		return aggregationParameter, fmt.Errorf("unknown search parameter in aggregation: %s", aggregationParameter.Name)
-	} else {
-		aggregationParameter.Type = SearchParameterType(searchParamTypeStr)
 	}
 
 	//primitive types should not have a modifier, we need to throw an error
@@ -716,4 +752,3 @@ func ProcessAggregationParameter(aggregationFieldWithFn models.QueryResourceAggr
 	}
 	return aggregationParameter, nil
 }
-

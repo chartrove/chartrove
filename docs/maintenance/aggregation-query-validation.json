@@ -1,0 +1,61 @@
+{
+  "base": "07ea27fbdbcdc2596074596e9050e5c5243b64ab",
+  "confirmed_alerts": [
+    1,
+    2,
+    3
+  ],
+  "rule": "go/sql-injection",
+  "original_cross_owner_read_controls": 5,
+  "source_files": {
+    "backend/pkg/database/gorm_repository_query.go": "130e61aa3fd52aaee6d4b3d7f7f19f8c3db410d9d14e4348c5f4f3700ed14c3c",
+    "backend/pkg/database/gorm_repository_query_sql_test.go": "6cb746fd66dd5953506c18f1f23f598e81d34337df42e1dca612ea6bdc7960a5",
+    "backend/pkg/database/gorm_aggregation_security_test.go": "46ac7cc76078ba21199214854159daf7da40afa8b87de30c00688fb02c816a29"
+  },
+  "logs": [
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/aggregation-security/root-qualified.jsonl",
+      "exit": 0,
+      "pass_events": 49,
+      "fail_events": 0,
+      "leaf_outcomes": {
+        "pass": 44,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 116351,
+      "sha256": "af6f65e8876057f27689e984b490566d1a99b3358765efe4923041c166e71d16"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/aggregation-security/desktop-qualified.jsonl",
+      "exit": 0,
+      "pass_events": 49,
+      "fail_events": 0,
+      "leaf_outcomes": {
+        "pass": 44,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 116371,
+      "sha256": "103d634528b9f6a3e38e7e29de3f0727820778da64f32d3ec4dd02bd3e4dcd9a"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/aggregation-security/before-final18.jsonl",
+      "exit": 1,
+      "pass_events": 10,
+      "fail_events": 11,
+      "leaf_outcomes": {
+        "pass": 9,
+        "fail": 9,
+        "skip": 0
+      },
+      "bytes": 52050,
+      "sha256": "dcf34c131f046c2603a73c836f3dced86958633d4cfe5565a5028cd7635361b3"
+    }
+  ],
+  "old_control_qualification": "Same 18 consumer cases; explicit SQL/variable assertions were strengthened afterward. Earlier final-fixture logs preserve five actual synthetic cross-owner reads. Initial broken fixture/build/assertion attempts are excluded.",
+  "no_dependency_or_schema_change": true,
+  "local_full_build": "blocked below unchanged 50 GiB reserve; no cleanup performed",
+  "protected_ci": "pending; seven original required checks retained",
+  "full_main_codeql": "pending; no alert dismissal or query suppression"
+}

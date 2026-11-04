@@ -175,7 +175,7 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithPrimitiveOrderBy
 			"FROM fhir_care_plan as fhir, json_each(fhir.activityCode) as activityCodeJson",
 			"WHERE ((activityCodeJson.value ->> '$.code' = ?)) AND (user_id = ?)",
 			"GROUP BY `fhir`.`id`",
-			"ORDER BY fhir.instantiatesUri ASC",
+			"ORDER BY `fhir`.`instantiatesUri` ASC",
 		}, " "), sqlString)
 	require.Equal(suite.T(), sqlParams, []interface{}{
 		"test_code", "00000000-0000-0000-0000-000000000000",
@@ -210,7 +210,7 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithKeywordOrderByAg
 			"FROM fhir_care_plan as fhir",
 			"WHERE (user_id = ?)",
 			"GROUP BY `fhir`.`id`",
-			"ORDER BY fhir.id ASC",
+			"ORDER BY `fhir`.`id` ASC",
 		}, " "), sqlString)
 	require.Equal(suite.T(), sqlParams, []interface{}{
 		"00000000-0000-0000-0000-000000000000",
@@ -247,10 +247,11 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithComplexOrderByAg
 			"FROM fhir_observation as fhir, json_each(fhir.code) as codeJson, json_each(fhir.valueString) as valueStringJson",
 			"WHERE ((codeJson.value ->> '$.code' = ?)) AND (user_id = ?)",
 			"GROUP BY `fhir`.`id`",
-			"ORDER BY (valueStringJson.value ->> '$.value') ASC",
+			"ORDER BY (`valueStringJson`.`value` ->> ?) ASC",
 		}, " "), sqlString)
 	require.Equal(suite.T(), sqlParams, []interface{}{
 		"test_code", "00000000-0000-0000-0000-000000000000",
+		"$.value",
 	})
 }
 
@@ -280,7 +281,7 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithPrimitiveCountBy
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT count(*) as value, fhir.instantiatesUri as label",
+			"SELECT `fhir`.`instantiatesUri` as label, count(*) as value",
 			"FROM fhir_care_plan as fhir, json_each(fhir.activityCode) as activityCodeJson",
 			"WHERE ((activityCodeJson.value ->> '$.code' = ?)) AND (user_id = ?)",
 			"GROUP BY `fhir`.`instantiatesUri`",
@@ -317,7 +318,7 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithKeywordCountByAg
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT count(*) as value, fhir.source_resource_type as label",
+			"SELECT `fhir`.`source_resource_type` as label, count(*) as value",
 			"FROM fhir_care_plan as fhir, json_each(fhir.activityCode) as activityCodeJson",
 			"WHERE ((activityCodeJson.value ->> '$.code' = ?)) AND (user_id = ?)",
 			"GROUP BY `fhir`.`source_resource_type`",
@@ -352,7 +353,7 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithWildcardCountByA
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT count(*) as value, fhir.source_resource_type as label",
+			"SELECT `fhir`.`source_resource_type` as label, count(*) as value",
 			"FROM fhir_care_plan as fhir",
 			"WHERE (user_id = ?)",
 			"GROUP BY `fhir`.`source_resource_type`",
@@ -389,14 +390,16 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithComplexCountByAg
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT (codeJson.value ->> '$.code') as label, count(*) as value",
+			"SELECT (`codeJson`.`value` ->> ?) as label, count(*) as value",
 			"FROM fhir_observation as fhir, json_each(fhir.code) as codeJson",
 			"WHERE ((codeJson.value ->> '$.code' = ?)) AND (user_id = ?)",
-			"GROUP BY (codeJson.value ->> '$.code')",
+			"GROUP BY (`codeJson`.`value` ->> ?)",
 			"ORDER BY count(*) DESC",
 		}, " "), sqlString)
 	require.Equal(suite.T(), sqlParams, []interface{}{
+		"$.code",
 		"test_code", "00000000-0000-0000-0000-000000000000",
+		"$.code",
 	})
 }
 
@@ -429,14 +432,16 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithComplexGroupByWi
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT (codeJson.value ->> '$.code') as label, max(fhir.sort_date) as value",
+			"SELECT (`codeJson`.`value` ->> ?) as label, max(`fhir`.`sort_date`) as value",
 			"FROM fhir_observation as fhir, json_each(fhir.code) as codeJson",
 			"WHERE ((codeJson.value ->> '$.code' = ?)) AND (user_id = ?)",
-			"GROUP BY (codeJson.value ->> '$.code')",
-			"ORDER BY max(fhir.sort_date) DESC",
+			"GROUP BY (`codeJson`.`value` ->> ?)",
+			"ORDER BY max(`fhir`.`sort_date`) DESC",
 		}, " "), sqlString)
 	require.Equal(suite.T(), sqlParams, []interface{}{
+		"$.code",
 		"test_code", "00000000-0000-0000-0000-000000000000",
+		"$.code",
 	})
 }
 
@@ -466,10 +471,10 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithTokenGroupByNoMo
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT ((codeJson.value ->> '$.system') || '|' || (codeJson.value ->> '$.code')) as label, count(*) as value",
+			"SELECT ((`codeJson`.`value` ->> '$.system') || '|' || (`codeJson`.`value` ->> '$.code')) as label, count(*) as value",
 			"FROM fhir_observation as fhir, json_each(fhir.code) as codeJson",
 			"WHERE (user_id = ?)",
-			"GROUP BY ((codeJson.value ->> '$.system') || '|' || (codeJson.value ->> '$.code'))",
+			"GROUP BY ((`codeJson`.`value` ->> '$.system') || '|' || (`codeJson`.`value` ->> '$.code'))",
 			"ORDER BY count(*) DESC",
 		}, " "), sqlString)
 	require.Equal(suite.T(), sqlParams, []interface{}{
@@ -505,10 +510,10 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_WithTokenGroupByNoMo
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT ((codeJson.value ->> '$.system') || '|' || (codeJson.value ->> '$.code')) as label, count(*) as value",
+			"SELECT ((`codeJson`.`value` ->> '$.system') || '|' || (`codeJson`.`value` ->> '$.code')) as label, count(*) as value",
 			"FROM fhir_observation as fhir, json_each(fhir.code) as codeJson",
 			"WHERE (user_id = ?)",
-			"GROUP BY ((codeJson.value ->> '$.system') || '|' || (codeJson.value ->> '$.code'))",
+			"GROUP BY ((`codeJson`.`value` ->> '$.system') || '|' || (`codeJson`.`value` ->> '$.code'))",
 			"ORDER BY count(*) DESC",
 			"LIMIT 10",
 		}, " "), sqlString)
@@ -733,14 +738,16 @@ func (suite *RepositorySqlTestSuite) TestQueryResources_SQL_SectionVitalSigns_Wi
 	require.NoError(suite.T(), err)
 	require.Equal(suite.T(),
 		strings.Join([]string{
-			"SELECT (codeJson.value ->> '$.code') as label, count(*) as value",
+			"SELECT (`codeJson`.`value` ->> ?) as label, count(*) as value",
 			"FROM fhir_observation as fhir, json_each(fhir.category) as categoryJson, json_each(fhir.code) as codeJson",
 			"WHERE ((categoryJson.value ->> '$.code' = ?)) AND (user_id = ?)",
-			"GROUP BY (codeJson.value ->> '$.code')",
+			"GROUP BY (`codeJson`.`value` ->> ?)",
 			"ORDER BY count(*) DESC",
 		}, " "), sqlString)
 	require.Equal(suite.T(), sqlParams, []interface{}{
+		"$.code",
 		"vital-signs",
 		"00000000-0000-0000-0000-000000000000",
+		"$.code",
 	})
 }

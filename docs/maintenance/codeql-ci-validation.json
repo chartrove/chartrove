@@ -1,0 +1,120 @@
+{
+  "pr": 407,
+  "head": "a0787d81629647de5e0f5b9498812321059b492d",
+  "merge": "07ea27fbdbcdc2596074596e9050e5c5243b64ab",
+  "pr_run": 41752998578,
+  "main_run": 41754979148,
+  "required_checks": {
+    "Backend": 15368,
+    "Frontend": 15368,
+    "Desktop": 15368,
+    "CodeQL (go)": 15368,
+    "CodeQL (javascript-typescript)": 15368,
+    "CodeQL (actions)": 15368,
+    "CodeQL": 57789
+  },
+  "all_seven_pr_checks": "success",
+  "independent_main_push_actions_jobs": "six success; native CodeQL aggregate is PR-specific",
+  "browser_pass": 572,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.13 MB",
+  "unchanged_budget": "10 MB",
+  "codeql_cli": "2.27.4",
+  "pr_analyses_scope": "diff-filtered, three zero-result analyses; not a whole-source clean baseline",
+  "main_analyses": {
+    "2091182535": {
+      "language": "actions",
+      "results": 0
+    },
+    "2091189275": {
+      "language": "javascript-typescript",
+      "results": 0
+    },
+    "2091216033": {
+      "language": "go",
+      "results": 3
+    }
+  },
+  "open_alerts": [
+    {
+      "number": 1,
+      "rule": "go/sql-injection",
+      "severity": "high"
+    },
+    {
+      "number": 2,
+      "rule": "go/sql-injection",
+      "severity": "high"
+    },
+    {
+      "number": 3,
+      "rule": "go/sql-injection",
+      "severity": "high"
+    }
+  ],
+  "typescript_coverage": {
+    "tracked_typescript_files": 532,
+    "extracted_tracked": 528,
+    "missing_from_extraction_log": [
+      "frontend/.storybook/compodoc-compat.ts",
+      "frontend/.storybook/main.ts",
+      "frontend/.storybook/preview.ts",
+      "frontend/.storybook/typings.d.ts"
+    ],
+    "go_log_bytes": 127358,
+    "go_log_sha256": "ab761206658cacdda78a2dda06c781770fae342b4e8847b0473116dfc88e9070"
+  },
+  "logs": [
+    {
+      "name": "frontend-407.log",
+      "bytes": 123651,
+      "sha256": "ed423dd8d705f561de06306bbebd6ea3cb4ae49a2616e19b2727bcfa17d1b40d"
+    },
+    {
+      "name": "backend-407.log",
+      "bytes": 37346,
+      "sha256": "e26b66245b956e58c6f2e5f1c0b4fbb25ff186b679529f66c66aba4876b2bfa6"
+    },
+    {
+      "name": "desktop-407.log",
+      "bytes": 53409,
+      "sha256": "751e5ddf1bf3526b59e3170bd4c82cb2897841c62fc0cce507fb9c72a5dbf066"
+    },
+    {
+      "name": "codeql-go-407.log",
+      "bytes": 124993,
+      "sha256": "3e9a14178381fbef330a5741d36ca6932758d3a3ed1e44a3b3e8635e57600d75"
+    },
+    {
+      "name": "codeql-javascript-407.log",
+      "bytes": 441325,
+      "sha256": "0b22e4d49094cc5269abe0a6694fbdd23666793b4a00ad31cf94cce9b5dd19fe"
+    },
+    {
+      "name": "codeql-actions-407.log",
+      "bytes": 67187,
+      "sha256": "2f7ec11854d49d05fd3e1e7ebe7579a15b4626d0fa596eb50543a5fa57f62a2e"
+    },
+    {
+      "name": "main-codeql-go.log",
+      "bytes": 127358,
+      "sha256": "ab761206658cacdda78a2dda06c781770fae342b4e8847b0473116dfc88e9070"
+    },
+    {
+      "name": "main-codeql-javascript.log",
+      "bytes": 442149,
+      "sha256": "4cf0f66303661820778024a23ee173b2818d4a4e5d5ecfd54d2d84cdcbd0bc1a"
+    },
+    {
+      "name": "main-codeql-actions.log",
+      "bytes": 68089,
+      "sha256": "9d68ed6c6ce0d8595fc380bf569e732a7901c3e5ff2a6d9dafe66eb11bfad736"
+    },
+    {
+      "name": "main-analysis-2091216033.sarif.json",
+      "bytes": 272016,
+      "sha256": "721b2f68e4d018ae4fb9dc46fec48056c74809f1b2275c69091af296ca6a6af3"
+    }
+  ]
+}
