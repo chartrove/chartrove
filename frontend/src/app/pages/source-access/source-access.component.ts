@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {forkJoin, Subject, takeUntil} from 'rxjs';
@@ -6,6 +6,7 @@ import {AccessSource, SharedResource, SourceAccessLevel, SourceAccessService, So
 
 @Component({
   selector: 'app-source-access', standalone: true, imports: [CommonModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './source-access.component.html'
 })
 export class SourceAccessComponent implements OnInit, OnDestroy {

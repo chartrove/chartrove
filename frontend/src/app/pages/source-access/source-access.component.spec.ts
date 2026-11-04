@@ -35,6 +35,22 @@ describe('SourceAccessComponent authorization UI', () => {
     component.saveResource(); expect(api.edit).not.toHaveBeenCalled();
   });
 
+  it('renders asynchronously received source metadata without a user action', async () => {
+    const pending = new Subject<any[]>();
+    api.owned.and.returnValue(pending);
+    component.owned = [];
+    fixture.detectChanges();
+    fixture.autoDetectChanges();
+    component.ngOnInit();
+    await new Promise<void>(resolve => fixture.ngZone!.run(() => setTimeout(() => {
+      pending.next([{id: 'synthetic-async', display: 'Asynchronous synthetic source'}]);
+      pending.complete(); resolve();
+    }, 0)));
+    await fixture.whenStable();
+    const view = fixture.nativeElement as HTMLElement;
+    expect(view.querySelector('#owner-source')?.textContent).toContain('Asynchronous synthetic source');
+  });
+
   it('clears stale medical content and editing authority after denial', () => {
     component.selected = {...record, editable: true}; component.editRaw = JSON.stringify(record.resource_raw);
     component.resources = [record];
