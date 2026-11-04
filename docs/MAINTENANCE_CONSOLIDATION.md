@@ -9,7 +9,7 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November4,2026, after protected #410 and #411. Accepted main is
+Snapshot: November 4, 2026, after protected #410 and #411. Accepted main is
 `fa2044a5127e6f15ef2d628a955260fd543a4300`. The primary main was cleanly
 fast-forwarded; the current primary-checkout task is observation-reference-query.
 No new worktree, clone, stash, subagent or cleanup framework was created.
@@ -22,9 +22,9 @@ all three worktrees were attached and clean. Cached legacy refs, tags, original
 archives and existing ignored artifacts remain preserved. Existing verified full
 inventories were reused; no full object/storage inventory was repeated.
 
-- #410 merged at43fed3855683448176a0298c8976974f9a042fe3. All seven required
-  checks passed at32f35ef438113bc6592b0590281e4b6afa6a2cc1 in41808845890;
-  independent main run41810119151 passed all six jobs. Original unpublished commits
+- #410 merged at 43fed3855683448176a0298c8976974f9a042fe3. All seven required
+  checks passed at 32f35ef438113bc6592b0590281e4b6afa6a2cc1 in41808845890;
+  independent main run 41810119151 passed all six jobs. Original unpublished commits
   20a82b097b and21bf2c5835 remain main ancestors. #135 is closed for its text-only
   concept correction; the author's date qualification and no-backfill boundary
   remain explicit. All saved source/log hashes match and fresh root/desktop
@@ -36,10 +36,10 @@ inventories were reused; no full object/storage inventory was repeated.
   creation, encrypted-reopen and sign-in controls pass. Its local task and three
   exact remote refs are retired after consumer, ancestry/archive, dry-run and
   atomic lease checks. [Receipt](maintenance/reserved-usernames-retirement.json).
-  Independent main run41812121283 is still running at this snapshot.
-- #44 is closed after read-only GitHub verification that original alerts1/2/3
+  Independent main run 41812121283 is still running at this snapshot.
+- #44 is closed after read-only GitHub verification that original alerts 1/2/3
   and follow-up4 are fixed, with no dismissals. Exact #409 main analyses have
-  zero results and no errors; fresh #410 main analyses2093466204/2093432496/
+  zero results and no errors; fresh #410 main analyses 2093466204/2093432496/
   2093425637 also have zero results/errors. Existing security corrections and
   synthetic regressions remain intact; no demonstration or scan was repeated.
 - #99 is individually superseded by the current source-page layout; #160 remains
@@ -48,9 +48,9 @@ inventories were reused; no full object/storage inventory was repeated.
   reference-query implementation awaits protected acceptance. #138 reference
   normalization/IPS and #194 notes/templates remain unresolved.
 
-Ruleset26337029 remains active with no bypass actors, strict current-base checks,
+Ruleset 26337029 remains active with no bypass actors, strict current-base checks,
 all seven trusted checks, PR/conversation requirements and main deletion/force-push
-protection. The legacy branch-protection API404 is qualified by this active ruleset.
+protection. The legacy branch-protection API 404 is qualified by this active ruleset.
 Validation alone is active; inherited Development remains disabled.
 
 The incorporated remote text-only branch remains held after GitHub rejected two
@@ -64,7 +64,7 @@ The former Rex pane is at the Codex input screen; no prior test/build/merge proc
 was found. Its scrollback confirms `plugin contents changed; hook approval required`.
 Native tools and read-only plugin listing work in this session; plugin content trust
 is not thereby certified. No approval, trusted hash or configuration was changed.
-The host remains about15GiB free, below the unchanged50GiB full-workflow reserve;
+The host remains about 15 GiB free, below the unchanged 50 GiB full-workflow reserve;
 no local full build, broad suite or new native package was run.
 
 #209 permissions, #211 Typesense/RAG, #212 OCR, #214 OIDC and #215 delegation remain
