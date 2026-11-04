@@ -62,7 +62,25 @@ func (gr *GormRepository) sourceMetadata(ctx context.Context, source uuid.UUID, 
 		Where("source_resource_type = ?", resourceType)
 	if text != nil {
 		pattern := "%" + strings.NewReplacer("!", "!!", "%", "!%", "_", "!_").Replace(*text) + "%"
-		query = query.Where("(LOWER(sort_title) LIKE LOWER(?) ESCAPE '!' OR LOWER(source_resource_id) LIKE LOWER(?) ESCAPE '!')", pattern, pattern)
+		condition := "(LOWER(sort_title) LIKE LOWER(?) ESCAPE '!' OR LOWER(source_resource_id) LIKE LOWER(?) ESCAPE '!')"
+		if resourceType == "DocumentReference" {
+			// Only this server's reviewed-document projection is searched. JSON
+			// expansion compares decoded strings, preserving literal quotes,
+			// Unicode and backslashes instead of matching JSON syntax/escapes.
+			var values string
+			switch gr.GormClient.Dialector.Name() {
+			case "sqlite":
+				values = "json_each(CASE WHEN source_uri = ? THEN COALESCE(NULLIF(text, ''), '[]') ELSE '[]' END) AS document_text"
+			case "postgres":
+				values = "jsonb_array_elements_text((CASE WHEN source_uri = ? THEN COALESCE(NULLIF(CAST(text AS TEXT), ''), '[]') ELSE '[]' END)::jsonb) AS document_text(value)"
+			default:
+				return nil, fmt.Errorf("document transcript search unavailable")
+			}
+			condition = "(" + condition + " OR EXISTS (SELECT 1 FROM " + values + " WHERE LOWER(document_text.value) LIKE LOWER(?) ESCAPE '!'))"
+			query = query.Where(condition, pattern, pattern, documentImportOrigin, pattern)
+		} else {
+			query = query.Where(condition, pattern, pattern)
+		}
 	}
 	err = query.Order("source_resource_id").Limit(50).Offset(page * 50).Find(&rows).Error
 	return rows, err

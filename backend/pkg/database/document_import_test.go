@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
@@ -45,9 +46,11 @@ func TestReviewedDocumentImportOwnershipProvenanceAndAtomicity(t *testing.T) {
 	sources, err := r.GetSources(contexts[0])
 	require.NoError(t, err)
 	source := sources[0].ID
-	input := models.ReviewedDocument{Filename: "synthetic-scan.pdf", Title: "Synthetic reviewed document", Original: []byte("%PDF-1.7\n% Synthetic original document bytes\n%%EOF"), Transcript: "Synthetic private reviewed transcript", Reviewed: true}
+	input := models.ReviewedDocument{Filename: "synthetic-scan.pdf", Title: "Synthetic reviewed document", Original: []byte("%PDF-1.7\n% Synthetic original document bytes\n%%EOF"), Transcript: "Synthetic private reviewed transcript café 100% follow_up! quoted \"text\" and slash \\ العربية", Reviewed: true}
 	for _, ctx := range contexts[1:] {
 		_, err = r.ImportReviewedDocument(ctx, source, input)
+		require.ErrorIs(t, err, ErrSourceAccessDenied)
+		_, err = r.SearchSourceResources(ctx, source, "DocumentReference", "reviewed transcript", 0)
 		require.ErrorIs(t, err, ErrSourceAccessDenied)
 	}
 	foreign := &models.SourceCredential{PlatformType: sp.PlatformType("synthetic-external"), Display: "Synthetic provider", Patient: "synthetic-external-patient"}
@@ -97,7 +100,7 @@ func TestReviewedDocumentImportOwnershipProvenanceAndAtomicity(t *testing.T) {
 	require.Equal(t, input.Transcript, string(text))
 	digest := sha256.Sum256(input.Original)
 	require.Equal(t, hex.EncodeToString(digest[:]), first.OriginalSHA256)
-	_, err = r.SetSourceGrant(contexts[0], source, users[1].Username, models.SourceAccessEdit, nil)
+	grant, err := r.SetSourceGrant(contexts[0], source, users[1].Username, models.SourceAccessEdit, nil)
 	require.NoError(t, err)
 	shared, err := r.GetSharedResource(contexts[1], source, "DocumentReference", first.ResourceID)
 	require.NoError(t, err)
@@ -112,6 +115,16 @@ func TestReviewedDocumentImportOwnershipProvenanceAndAtomicity(t *testing.T) {
 	require.NoError(t, err)
 	require.NotContains(t, string(metadata), "resource_raw")
 	require.NotContains(t, string(metadata), input.Transcript)
+	for _, term := range []string{"reviewed transcript", "café", "100%", "follow_up!", `"text"`, `\`, "العربية"} {
+		hits, err := r.SearchSourceResources(contexts[1], source, "DocumentReference", term, 0)
+		require.NoError(t, err)
+		require.Len(t, hits, 1, term)
+		require.Equal(t, first.ResourceID, hits[0].SourceResourceID)
+	}
+	hits, err := r.SearchSourceResources(contexts[1], source, "DocumentReference", "100units", 0)
+	require.NoError(t, err)
+	require.Empty(t, hits)
+	require.NotContains(t, trace.String(), "café")
 	audit, err := r.ListSourceAccessAudit(contexts[0], source)
 	require.NoError(t, err)
 	imports := 0
@@ -146,4 +159,19 @@ func TestReviewedDocumentImportOwnershipProvenanceAndAtomicity(t *testing.T) {
 	require.NoError(t, err)
 	require.NotContains(t, string(ciphertext), input.Transcript)
 	require.NotContains(t, string(ciphertext), string(input.Original))
+	// Earlier imports have no transcript projection. Keep title navigation
+	// working without silently rewriting/backfilling their clinical payload.
+	require.NoError(t, r.GormClient.Table("fhir_document_reference").Where("source_id = ? AND user_id = ? AND source_resource_id = ?", source, users[0].ID, first.ResourceID).Update("text", nil).Error)
+	hits, err = r.SearchSourceResources(contexts[1], source, "DocumentReference", "reviewed transcript", 0)
+	require.NoError(t, err)
+	require.Empty(t, hits)
+	hits, err = r.SearchSourceResources(contexts[1], source, "DocumentReference", input.Title, 0)
+	require.NoError(t, err)
+	require.Len(t, hits, 1)
+	require.NoError(t, r.GormClient.Model(&models.SourceGrant{}).Where("id = ?", grant.ID).Update("expires_at", time.Now().Add(-time.Minute)).Error)
+	_, err = r.SearchSourceResources(contexts[1], source, "DocumentReference", "reviewed transcript", 0)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	require.NoError(t, r.RevokeSourceGrant(contexts[0], source, grant.ID))
+	_, err = r.SearchSourceResources(contexts[1], source, "DocumentReference", "reviewed transcript", 0)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
 }

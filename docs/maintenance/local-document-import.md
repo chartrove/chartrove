@@ -69,6 +69,19 @@ active import without duplicating the record or audit. Conflicting/deleted ident
 fail rather than resurrecting a record. Changing reviewed content creates a distinct
 import; it does not overwrite history.
 
+New imports also populate the existing DocumentReference text search projection
+with the reviewed transcript as a JSON string array. Source permissions → browse
+the source → DocumentReference searches title/ID or that decoded transcript using
+literal substrings. Search returns only bounded navigation metadata, never the
+transcript or attachments; opening a hit rechecks current source permission. Quotes,
+backslashes, Unicode and SQL wildcard characters remain literal input. The query
+uses the database's existing case-folding behavior (SQLite's built-in LOWER is
+primarily ASCII), a five-second deadline and the existing 50-result pagination.
+It never scans the original binary data or submits a query to a model/service.
+Only this import path's provenance-marked projection is included; historical
+documents without that projection remain searchable by title/ID. No existing
+clinical rows are silently backfilled, regenerated or rewritten.
+
 ## Authorization and compatibility
 
 The server obtains the native account from existing authentication and repeats its

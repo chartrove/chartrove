@@ -74,6 +74,7 @@
       @if (resourceType) {
         <div class="mb-3">
           <label for="source-search">Find by record title or ID in this source and record type</label>
+          @if (resourceType === 'DocumentReference') { <p class="small">Also searches reviewed transcripts from new local document imports.</p> }
           <input id="source-search" class="form-control" type="search" [(ngModel)]="searchText" maxlength="128" (keydown.enter)="searchResources()" [disabled]="busy">
           <button type="button" class="btn btn-outline-primary btn-sm mt-2 me-2" (click)="searchResources()" [disabled]="busy">Search</button>
           <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="clearSearch()" [disabled]="busy">Clear search</button>
