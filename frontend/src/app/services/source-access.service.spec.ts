@@ -13,6 +13,15 @@ describe('SourceAccessService boundaries', () => {
   });
   afterEach(() => http.verify());
 
+  it('keeps search terms in the JSON body and supplies no owner identity', () => {
+    service.search('synthetic-source', 'Observation', '100% follow_up!', 1).subscribe(rows => expect(rows.length).toBe(1));
+    const request = http.expectOne(req => req.url.endsWith('/source-access/synthetic-source/search/Observation'));
+    expect(request.request.method).toBe('POST');
+    expect(request.request.params.keys()).toEqual([]);
+    expect(request.request.body).toEqual({text: '100% follow_up!', page: 1});
+    request.flush({success: true, data: [{source_resource_type: 'Observation', source_resource_id: 'synthetic-hit'}]});
+  });
+
   it('retains only source selection metadata from the owner API', () => {
     service.owned().subscribe(rows => expect(rows).toEqual([{id: 'synthetic', display: 'Source', platform_type: 'fasten'}]));
     http.expectOne(req => req.url.endsWith('/secure/source')).flush({success: true, data: [{id: 'synthetic', display: 'Source', platform_type: 'fasten', access_token: 'synthetic-secret', user: {password: 'synthetic-hash'}}]});

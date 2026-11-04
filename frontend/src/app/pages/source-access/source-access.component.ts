@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/co
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {forkJoin, Subject, takeUntil} from 'rxjs';
-import {AccessSource, SharedResource, SourceAccessLevel, SourceAccessService, SourceAudit, SourceGrant} from '../../services/source-access.service';
+import {AccessSource, SharedResource, ResourceListItem, SourceAccessLevel, SourceAccessService, SourceAudit, SourceGrant} from '../../services/source-access.service';
 
 @Component({
   selector: 'app-source-access', standalone: true, imports: [CommonModule, FormsModule],
@@ -22,7 +22,9 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
   viewingSource = '';
   counts: Record<string, number> = {};
   resourceType = '';
-  resources: SharedResource[] = [];
+  resources: ResourceListItem[] = [];
+  searchText = '';
+  appliedSearch = '';
   page = 0;
   selected: SharedResource | null = null;
   editRaw = '';
@@ -77,6 +79,7 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
     });
   }
   viewSource(): void {
+    this.searchText = ''; this.appliedSearch = '';
     this.viewChanged.next(); this.detailChanged.next(); this.resources = []; this.counts = {}; this.selected = null;
     this.editRaw = ''; this.resourceType = ''; this.page = 0; this.error = ''; this.notice = '';
     if (!this.viewingSource) { return; }
@@ -89,12 +92,18 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
     this.viewChanged.next(); this.detailChanged.next(); this.selected = null; this.editRaw = ''; this.resources = [];
     this.page = page; this.error = '';
     if (!this.viewingSource || !this.resourceType) { return; }
-    this.api.list(this.viewingSource, this.resourceType, page).pipe(takeUntil(this.viewChanged), takeUntil(this.destroy)).subscribe({
+    const request = this.appliedSearch ? this.api.search(this.viewingSource, this.resourceType, this.appliedSearch, page) : this.api.list(this.viewingSource, this.resourceType, page);
+    request.pipe(takeUntil(this.viewChanged), takeUntil(this.destroy)).subscribe({
       next: rows => this.resources = rows,
       error: () => this.clearUnavailable()
     });
   }
-  open(resource: SharedResource): void {
+  searchResources(): void {
+    if (this.searchText.length > 128) { this.error = 'Search text must be at most 128 characters.'; return; }
+    this.appliedSearch = this.searchText.trim(); this.loadResources();
+  }
+  clearSearch(): void { this.searchText = ''; this.searchResources(); }
+  open(resource: ResourceListItem): void {
     this.detailChanged.next(); this.selected = null; this.editRaw = ''; this.error = '';
     this.api.detail(this.viewingSource, resource.source_resource_type, resource.source_resource_id)
       .pipe(takeUntil(this.detailChanged), takeUntil(this.viewChanged), takeUntil(this.destroy)).subscribe({
@@ -136,6 +145,7 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
     return raw as Record<string, unknown>;
   }
   private clearUnavailable(): void {
+    this.searchText = ''; this.appliedSearch = '';
     this.viewChanged.next(); this.detailChanged.next(); this.selected = null; this.editRaw = ''; this.resources = []; this.counts = {};
     this.error = 'Source or record unavailable. Access may have expired or been revoked.';
   }

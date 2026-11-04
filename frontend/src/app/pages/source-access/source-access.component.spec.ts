@@ -12,16 +12,37 @@ describe('SourceAccessComponent authorization UI', () => {
     resource_raw_text: '{"resourceType":"Observation","id":"synthetic-id","status":"final"}', editable: false};
 
   beforeEach(async () => {
-    api = jasmine.createSpyObj('SourceAccessService', ['owned', 'shared', 'grants', 'audit', 'grant', 'revoke', 'summary', 'list', 'detail', 'edit', 'createLocal']);
+    api = jasmine.createSpyObj('SourceAccessService', ['owned', 'shared', 'grants', 'audit', 'grant', 'revoke', 'summary', 'list', 'search', 'detail', 'edit', 'createLocal']);
     api.owned.and.returnValue(of([{id: 'synthetic-owned', display: 'Local', platform_type: 'fasten'}]));
     api.shared.and.returnValue(of([{id: 'synthetic-shared', display: 'Shared', access_level: 'VIEW'}]));
     api.grants.and.returnValue(of([])); api.audit.and.returnValue(of([]));
     api.summary.and.returnValue(of({source: {id: 'synthetic-shared', display: 'Shared'}, counts: {Observation: 1}}));
     api.list.and.returnValue(of([record])); api.detail.and.returnValue(of(record));
+    api.search.and.returnValue(of([{source_resource_type:'Observation',source_resource_id:'synthetic-hit',sort_title:'Synthetic search match'}]));
     api.edit.and.returnValue(of(null));
     await TestBed.configureTestingModule({imports: [SourceAccessComponent], providers: [{provide: SourceAccessService, useValue: api}]}).compileComponents();
     fixture = TestBed.createComponent(SourceAccessComponent); component = fixture.componentInstance; fixture.detectChanges();
     component.viewingSource = 'synthetic-shared'; component.viewSource(); component.resourceType = 'Observation';
+  });
+
+  it('applies a source-scoped search and rechecks access when opening metadata hits', () => {
+    component.searchText = 'Synthetic'; component.searchResources(); fixture.detectChanges();
+    expect(api.search).toHaveBeenCalledWith('synthetic-shared', 'Observation', 'Synthetic', 0);
+    expect(component.resources.length).toBe(1);
+    component.open(component.resources[0]);
+    expect(api.detail).toHaveBeenCalledWith('synthetic-shared', 'Observation', 'synthetic-hit');
+    component.searchText = 'unapplied'; component.loadResources(1);
+    expect(api.search).toHaveBeenCalledWith('synthetic-shared', 'Observation', 'Synthetic', 1);
+  });
+
+  it('clears search state and pending results when changing sources or losing access', () => {
+    const pending = new Subject<any>(); api.search.and.returnValue(pending);
+    component.searchText = 'Synthetic'; component.searchResources(); component.viewSource();
+    pending.next([{source_resource_type:'Observation',source_resource_id:'stale'}]);
+    expect(component.resources).toEqual([]); expect(component.appliedSearch).toBe(''); expect(component.searchText).toBe('');
+    component.resourceType = 'Observation'; component.searchText = 'Synthetic';
+    api.search.and.returnValue(throwError(() => new Error('revoked'))); component.searchResources();
+    expect(component.resources).toEqual([]); expect(component.selected).toBeNull(); expect(component.editRaw).toBe('');
   });
 
   it('renders VIEW or imported records as text without an editor or save action', () => {

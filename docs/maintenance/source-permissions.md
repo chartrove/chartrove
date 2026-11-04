@@ -132,3 +132,47 @@ OIDC must bind the authenticated actor to a durable local identity without role
 or medical-access escalation. OCR must preserve import provenance. Search/RAG must
 enforce current owner/source grants and revocation without exposing service keys
 or stale shared results. None of those features is enabled by this integration.
+
+## Source-scoped metadata search
+
+The source browser can find records by their existing title or FHIR ID within
+one selected source and resource type. It queries the existing encrypted database;
+there is no external index, model, new credential, or copy of clinical records.
+This narrow retrieval step follows the useful pagination and source/type/resource
+identity concepts in groundmuffin's Fasten #594 / Chartrove #211 proposal. The
+historical branch, follow-on authorship and discussion remain preserved; its
+Typesense/browser-key and conversational paths are not integrated.
+
+`POST /api/secure/source-access/:sourceId/search/:resourceType` accepts only
+`{"text":"title or ID","page":0}`. Text stays out of the request URL and SQL
+trace parameters; query structure, timing and row counts remain available for
+diagnostics. Responses use `Cache-Control: no-store`. The body is
+limited to 4 KiB, text to 128 Unicode characters, and pages to 50 hits with a five-second
+database deadline and stable
+resource-ID order. Percent signs, underscores and the escape character match
+literally. Case matching uses the database's native lower-case rules. Only
+allowlisted FHIR table names enter SQL; text and permission values are parameters.
+
+Each query repeats the current native actor, actual source owner, active grant,
+expiration and deletion predicates in the clinical-table statement. Administrative
+roles do not grant access. Hits contain only source/type/record IDs, existing title
+and date. Raw clinical JSON is not searched or returned in hits. Some records have
+no derived title and can be found by ID. Opening a hit uses the existing detail
+API, which checks permissions again; a hit never carries an enduring permission.
+Search adds no write permission and changes none of the existing list, detail,
+summary or mutation contracts. Source changes and denials clear search results and
+record/editor state. The original source counts remain unfiltered.
+
+The common shared-resource predicate compares canonical owner values as text on
+both sides, supporting PostgreSQL's UUID source owners and legacy text FHIR owner
+columns without rewriting clinical tables. This preserves the same exact owner
+and grant checks for browsing, searching and editing, including native UUID FHIR
+owner columns. SQLite isolation remains unchanged.
+
+Focused regressions cover encrypted SQLite multi-user isolation, administrator
+denial, VIEW/EDIT reads, expiration, revocation before detail access, metadata-only
+responses, literal matching, Unicode, pagination and deleted records. A disposable
+PostgreSQL regression exercises the same source authorization and literal-match
+semantics. Browser tests cover request bodies, source scoping, pagination and stale
+response cancellation. Typesense, whole-record full-text retrieval and RAG remain
+separate unresolved features.

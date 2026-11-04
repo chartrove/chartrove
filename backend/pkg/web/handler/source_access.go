@@ -22,6 +22,22 @@ type sourceAccessOperation func(*gin.Context, database.SourceAccessRepository, u
 // group. These routes never substitute an owner identity into the auth context.
 func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 	const prefix = "/source-access"
+	secure.POST(prefix+"/:sourceId/search/:resourceType", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+		c.Header("Cache-Control", "no-store")
+		search, ok := repo.(database.SourceSearchRepository)
+		if !ok {
+			return nil, errors.New("source search unavailable")
+		}
+		var body struct {
+			Text string `json:"text"`
+			Page int    `json:"page"`
+		}
+		c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, 4096)
+		if err := decodeSourceAccessBody(c, &body); err != nil {
+			return nil, err
+		}
+		return search.SearchSourceResources(c, source, c.Param("resourceType"), body.Text, body.Page)
+	}))
 	secure.GET(prefix+"/shared", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, _ uuid.UUID) (interface{}, error) {
 		return repo.ListSharedSources(c)
 	}))

@@ -71,9 +71,18 @@
         <option value="">Choose a record type</option>
         @for (entry of counts | keyvalue; track entry.key) { <option [value]="entry.key">{{ entry.key }} ({{ entry.value }})</option> }
       </select>
+      @if (resourceType) {
+        <div class="mb-3">
+          <label for="source-search">Find by record title or ID in this source and record type</label>
+          <input id="source-search" class="form-control" type="search" [(ngModel)]="searchText" maxlength="128" (keydown.enter)="searchResources()" [disabled]="busy">
+          <button type="button" class="btn btn-outline-primary btn-sm mt-2 me-2" (click)="searchResources()" [disabled]="busy">Search</button>
+          <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="clearSearch()" [disabled]="busy">Clear search</button>
+          @if (appliedSearch) { <p class="mt-2">Results for “{{appliedSearch}}”. Open a result to view its current record.</p> }
+        </div>
+      }
       <ul class="list-group mb-3">@for (resource of resources; track resource.source_resource_id) {
         <li class="list-group-item"><button type="button" class="btn btn-link" (click)="open(resource)" [disabled]="busy">{{ resource.sort_title || resource.source_resource_id }}</button></li>
-      }</ul>
+      } @empty { @if (appliedSearch) { <li class="list-group-item">No matching records.</li> } }</ul>
       @if (resourceType) {
         <button type="button" class="btn btn-outline-secondary btn-sm me-2" (click)="loadResources(page - 1)" [disabled]="busy || page === 0">Previous</button>
         <span>Page {{ page + 1 }}</span>
