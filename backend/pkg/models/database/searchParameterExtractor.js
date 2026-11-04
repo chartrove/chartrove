@@ -80,7 +80,7 @@ function extractTokenSearchParameters(fhirResource, expression){
     let result = fhirpathEvaluate(fhirResource, expression)
 
     let processed = result.reduce((accumulator, currentValue) => {
-        if (currentValue.coding) {
+        if (Array.isArray(currentValue.coding) && currentValue.coding.length > 0) {
             //CodeableConcept
             currentValue.coding.map((coding) => {
                 accumulator.push({
@@ -103,6 +103,9 @@ function extractTokenSearchParameters(fhirResource, expression){
                 "system": currentValue.system,
                 "text": currentValue.display
             })
+        } else if (typeof currentValue.text === 'string' && currentValue.text.length > 0) {
+            // A text-only CodeableConcept has no code/system to invent.
+            accumulator.push({"text": currentValue.text})
         } else if ((typeof currentValue === 'string') || (typeof currentValue === 'boolean')) {
             //string, boolean
             accumulator.push({
