@@ -74,6 +74,11 @@ of this authorization work. Both independent retention worktrees remain held.
 
 ## Authenticated API and UI
 
+Repository foundation accepted through #413 at
+`f98caab9aeefd8fb1d12fd7b1ae2a9f207eb6910`; all seven required checks passed at
+head `b7d60685ef16236b85794ff5fc6c984492d14f39`. #414 adds the following API/UI
+on that protected main baseline and requires its own protected acceptance.
+
 Settings links to **Source permissions** (`/source-permissions`). Owners select
 one source and an existing username, choose VIEW or EDIT, optionally set an
 expiration, and can explicitly revoke the grant. The owner sees retained grants
