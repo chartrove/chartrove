@@ -297,6 +297,16 @@ func (gr *GormRepository) UpsertRawResource(ctx context.Context, sourceCredentia
 
 	source := sourceCredential.(*models.SourceCredential)
 
+	// SDK ingestion must never retain local-edit provenance, even when an import
+	// replaces a record in the same Fasten source. Failure denies the import.
+	actor, err := gr.GetCurrentUser(ctx)
+	if err != nil {
+		return false, err
+	}
+	if err := gr.GormClient.WithContext(ctx).Where("owner_user_id = ? AND source_id = ? AND resource_type = ? AND resource_id = ?", actor.ID, source.ID, rawResource.SourceResourceType, rawResource.SourceResourceID).Delete(&models.LocalResource{}).Error; err != nil {
+		return false, err
+	}
+
 	//convert from a raw resource (from fasten-sources) to a ResourceFhir (which matches the database models)
 	wrappedResourceModel := &models.ResourceBase{
 		OriginBase: models.OriginBase{
