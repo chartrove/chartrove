@@ -1,0 +1,28 @@
+{
+  "time": "2026-11-04T00:51:37.697836+00:00",
+  "main": "54a6ae8e9ec9df3f86d79c08c97a99749252d9b4",
+  "branches": [
+    {
+      "name": "task/session-lifetime-143",
+      "sha": "477d081ff12b627e65a2d96a0f9dbed609a9ea85",
+      "kind": "merged task",
+      "ref": "refs/heads/task/session-lifetime-143",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/session-lifetime-143\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/session-lifetime-143\n"
+    }
+  },
+  "owner_worktrees_and_branches_unchanged": true,
+  "task_tip_recoverable_from_protected_main": true
+}

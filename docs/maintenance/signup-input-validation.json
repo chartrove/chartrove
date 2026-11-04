@@ -1,0 +1,154 @@
+{
+  "base_main": "54a6ae8e9ec9df3f86d79c08c97a99749252d9b4",
+  "scope": "Public sign-up malformed/nil/blank input rejection only; #217 naming policy remains unimplemented/pending. No historical issue is closed for this correction.",
+  "ordinary_old_control": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-p",
+      "1",
+      "./backend/pkg/web/handler",
+      "-run",
+      "^TestAuthSignupRequestValidation$",
+      "-count=1"
+    ],
+    "exit": 1,
+    "seconds": 14.71,
+    "scratch_disposed": true,
+    "production_auth_sha256": "df9252d76c5cd05256ec868885559c6827e491c9a21ca6901c98f50a591f4ab4",
+    "spec_sha256": "ff0d6c049fd2d4a11291ca1ac52ca8c13e621fb32f10810d5641bf862ccb61d4",
+    "spec_unchanged": true,
+    "cases": 14,
+    "pass": 2,
+    "fail": 12
+  },
+  "root": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-p",
+      "1",
+      "./backend/pkg/config",
+      "./backend/pkg/auth",
+      "./backend/pkg/web/handler",
+      "./backend/pkg/web",
+      "-run",
+      "^(TestAuth|TestSignupConfiguredSessionLifetime|TestJwt|TestUserSessionDuration|TestStart|TestEmbedded)",
+      "-count=1",
+      "-timeout=120s"
+    ],
+    "exit": 0,
+    "seconds": 38.68,
+    "scratch_disposed": true,
+    "scratch_files_before_disposal": [],
+    "spec_sha256": "ff0d6c049fd2d4a11291ca1ac52ca8c13e621fb32f10810d5641bf862ccb61d4",
+    "spec_unchanged": true,
+    "cases": 14,
+    "pass": 14,
+    "fail": 0,
+    "pass_events": 102,
+    "fail_events": 0,
+    "packages": [
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+        "Action": "pass",
+        "Elapsed": 0.148
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+        "Action": "pass",
+        "Elapsed": 0.141
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+        "Action": "pass",
+        "Elapsed": 1.321
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "Action": "pass",
+        "Elapsed": 23.523
+      }
+    ]
+  },
+  "desktop": {
+    "command": [
+      "go",
+      "test",
+      "-json",
+      "-p",
+      "1",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+      "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+      "-run",
+      "^(TestAuth|TestSignupConfiguredSessionLifetime|TestJwt|TestUserSessionDuration|TestStart|TestEmbedded)",
+      "-count=1",
+      "-timeout=120s"
+    ],
+    "cwd": "desktop",
+    "exit": 0,
+    "seconds": 38.39,
+    "scratch_disposed": true,
+    "scratch_files_before_disposal": [],
+    "free_before_bytes": 23746416640,
+    "free_after_cleanup_bytes": 23731331072,
+    "spec_sha256": "ff0d6c049fd2d4a11291ca1ac52ca8c13e621fb32f10810d5641bf862ccb61d4",
+    "spec_unchanged": true,
+    "cases": 14,
+    "pass": 14,
+    "fail": 0,
+    "pass_events": 102,
+    "fail_events": 0,
+    "packages": [
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/config",
+        "Action": "pass",
+        "Elapsed": 0.178
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/auth",
+        "Action": "pass",
+        "Elapsed": 0.14
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web/handler",
+        "Action": "pass",
+        "Elapsed": 1.292
+      },
+      {
+        "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/web",
+        "Action": "pass",
+        "Elapsed": 23.031
+      }
+    ]
+  },
+  "excluded_diagnostic": {
+    "usable_runtime_control": false,
+    "reason": "Existing-file overlay invocation still discovered no test cases; explicit14case admission failed. Do not infer product behavior from exit0. Use ordinary package source files at the next owned branch checkpoint."
+  },
+  "source_sha256": {
+    "backend/pkg/web/handler/auth.go": "e0f530fadbc32fead11bc7777086f4a9195cf7af43e25efc4e2e58c3aac8a668",
+    "backend/pkg/web/handler/auth_input_validation_test.go": "ff0d6c049fd2d4a11291ca1ac52ca8c13e621fb32f10810d5641bf862ccb61d4"
+  },
+  "unchanged_contract_file_sha256": {
+    "go.mod": "913ab818aa738d8e1a513ecc8e061a6e2a56bbc9de9bfc98b9fe773a56fed93a",
+    "go.sum": "ed045aa62c49685bfb886c59f6e746cf4a535e4124432889a65185982a0a934e",
+    "desktop/go.mod": "8a1821d1935d2a69190d3582ed73a417c4dbb0eb08951cc0b618a3f95be9de6a",
+    "desktop/go.sum": "dcce5591107aa7bbdf378c515b6c3f30c42ae77c09cbf6ea111e07878283869e",
+    "frontend/package.json": "fa0eb81b5742a8a75cf079f2477e17a46bd123a450e08d7e24ca05d46d80aac6",
+    "frontend/yarn.lock": "31cdbdfd9627a16128bb596ffd0dc11452feca97ef81e79a6144203ed0a0dfde",
+    "frontend/angular.json": "7e858b3979fa5622ffb0dde8d2a21b681b11ca91d05b8eaf95566b9824f0b59b",
+    "config.yaml": "1fd2773cd47475d7b87bde1f1c7220d699122561fcec6ec9c27a271be7cd6c75"
+  },
+  "signin_function_bytes_unchanged": true,
+  "reserved_names_policy_added": false,
+  "real_records_used": false,
+  "full_local_frontend_or_native_build": false,
+  "full_workflow_50GiB_reserve_unchanged": true,
+  "cache_enabled": false,
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/signup-input-review"
+}

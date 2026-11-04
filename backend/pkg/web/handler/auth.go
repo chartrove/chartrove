@@ -3,6 +3,7 @@ package handler
 import (
 	"errors"
 	"net/http"
+	"strings"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/auth"
@@ -38,7 +39,11 @@ func AuthSignup(c *gin.Context) {
 
 	var userWizard UserWizard
 	if err := c.ShouldBindJSON(&userWizard); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "Invalid sign-up request"})
+		return
+	}
+	if userWizard.User == nil || strings.TrimSpace(userWizard.Username) == "" || strings.TrimSpace(userWizard.Password) == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "Username and password are required"})
 		return
 	}
 

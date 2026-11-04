@@ -1,0 +1,46 @@
+{
+  "pr": 405,
+  "head": "477d081ff12b627e65a2d96a0f9dbed609a9ea85",
+  "merge": "54a6ae8e9ec9df3f86d79c08c97a99749252d9b4",
+  "run": 41749146033,
+  "Backend": "success",
+  "Frontend": "success",
+  "Desktop": "success",
+  "browser_pass": 572,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.13 MB",
+  "unchanged_budget": "10 MB",
+  "focused_root_pass_events": 87,
+  "focused_desktop_pass_events": 87,
+  "issue143_disposition": "configuration request implemented; historical ten-minute cause not established",
+  "issue143_comment": 6619462876,
+  "full_job_logs": [
+    {
+      "name": "frontend",
+      "job": 126309577916,
+      "exit": 0,
+      "bytes": 122461,
+      "sha256": "34b19af8eeb7b1834480ab48157f3f1238b9f7b5e9acedbbdeff30e824238e1e"
+    },
+    {
+      "name": "desktop",
+      "job": 126309578334,
+      "exit": 0,
+      "bytes": 54366,
+      "sha256": "2984b1e0368f5a0e4f6c3464a71d5d05c1acda599c4e55d0788c112384b35511"
+    },
+    {
+      "name": "backend",
+      "job": 126309579293,
+      "exit": 0,
+      "bytes": 37215,
+      "sha256": "3b4517e3cbec4766feca34cebfd22e6e59303bf07a97febaff3e7f50e6ddfab6"
+    }
+  ],
+  "independent_main_push_checks": {
+    "Desktop": "success",
+    "Backend": "success",
+    "Frontend": "success"
+  }
+}
