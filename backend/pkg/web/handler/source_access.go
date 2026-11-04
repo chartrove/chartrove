@@ -20,15 +20,15 @@ type sourceAccessOperation func(*gin.Context, database.SourceAccessRepository, u
 
 // RegisterSourceAccessRoutes must receive the existing authenticated secure
 // group. These routes never substitute an owner identity into the auth context.
-func RegisterSourceAccessRoutes(secure *gin.RouterGroup) {
-	routes := secure.Group("/source-access")
-	routes.GET("/shared", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, _ uuid.UUID) (interface{}, error) {
+func RegisterSourceAccessRoutes(secure gin.IRoutes) {
+	const prefix = "/source-access"
+	secure.GET(prefix+"/shared", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, _ uuid.UUID) (interface{}, error) {
 		return repo.ListSharedSources(c)
 	}))
-	routes.GET("/:sourceId/grants", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.GET(prefix+"/:sourceId/grants", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		return repo.ListSourceGrants(c, source)
 	}))
-	routes.POST("/:sourceId/grants", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.POST(prefix+"/:sourceId/grants", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		var payload struct {
 			DelegateUsername string                   `json:"delegate_username"`
 			AccessLevel      models.SourceAccessLevel `json:"access_level"`
@@ -39,20 +39,20 @@ func RegisterSourceAccessRoutes(secure *gin.RouterGroup) {
 		}
 		return repo.SetSourceGrant(c, source, payload.DelegateUsername, payload.AccessLevel, payload.ExpiresAt)
 	}))
-	routes.DELETE("/:sourceId/grants/:grantId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.DELETE(prefix+"/:sourceId/grants/:grantId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		id, err := uuid.Parse(c.Param("grantId"))
 		if err != nil {
 			return nil, database.ErrSourceAccessInput
 		}
 		return nil, repo.RevokeSourceGrant(c, source, id)
 	}))
-	routes.GET("/:sourceId/audit", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.GET(prefix+"/:sourceId/audit", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		return repo.ListSourceAccessAudit(c, source)
 	}))
-	routes.GET("/:sourceId/summary", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.GET(prefix+"/:sourceId/summary", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		return repo.GetSharedSourceSummary(c, source)
 	}))
-	routes.GET("/:sourceId/resources/:resourceType", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.GET(prefix+"/:sourceId/resources/:resourceType", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		page := 0
 		if value, ok := c.GetQuery("page"); ok {
 			var err error
@@ -63,10 +63,10 @@ func RegisterSourceAccessRoutes(secure *gin.RouterGroup) {
 		}
 		return repo.ListSharedResources(c, source, c.Param("resourceType"), page)
 	}))
-	routes.GET("/:sourceId/resources/:resourceType/:resourceId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.GET(prefix+"/:sourceId/resources/:resourceType/:resourceId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		return repo.GetSharedResource(c, source, c.Param("resourceType"), c.Param("resourceId"))
 	}))
-	routes.POST("/:sourceId/resources", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.POST(prefix+"/:sourceId/resources", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		var payload struct {
 			ResourceRaw json.RawMessage `json:"resource_raw"`
 		}
@@ -75,7 +75,7 @@ func RegisterSourceAccessRoutes(secure *gin.RouterGroup) {
 		}
 		return repo.CreateLocalResource(c, source, payload.ResourceRaw)
 	}))
-	routes.PATCH("/:sourceId/resources/:resourceType/:resourceId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
+	secure.PATCH(prefix+"/:sourceId/resources/:resourceType/:resourceId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		var payload struct {
 			ResourceRaw json.RawMessage `json:"resource_raw"`
 		}

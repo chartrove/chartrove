@@ -41,7 +41,7 @@ func TestSourceAccessHTTPAuthorization(t *testing.T) {
 	source := sources[0]
 	actor := owner.Username
 	router := gin.New()
-	secure := router.Group("/api/secure", func(c *gin.Context) {
+	var secure gin.IRoutes = router.Group("/api/secure", func(c *gin.Context) {
 		// Production obtains this value from its existing authentication middleware.
 		c.Set(pkg.ContextKeyTypeAuthUsername, actor)
 		c.Set(pkg.ContextKeyTypeDatabase, db)
