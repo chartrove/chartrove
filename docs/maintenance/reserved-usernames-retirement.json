@@ -1,0 +1,18 @@
+{
+  "replacement_pr": 411,
+  "accepted_main": "fa2044a5127e6f15ef2d628a955260fd543a4300",
+  "historical_pr": 217,
+  "disposition": "implemented through corrected Chartrove naming policy, original discussion and authorship retained",
+  "retired_remote_refs": {
+    "migration/upstream-pr-636": "bba5c43f954346ef170c2f6abbf57cc09abb59aa",
+    "migration/upstream-pr-636-base": "36d92446884e9e20eda8d2b2a0a1115c9c57f7ef",
+    "task/reserved-usernames": "c777a1bd0f71a2c937f1ed9edb4fd5c3b3f3ad70"
+  },
+  "remote_absences_verified": true,
+  "open_pr_consumers": 0,
+  "method": "atomic native Git deletion with all three exact-tip leases after successful dry run",
+  "preservation": "historical exact head in previously strict-verified six-feature bundle, hash independently matches; base and replacement task head are accepted-main ancestors",
+  "bundle_sha256": "4d277cdab4ed2944f4e828d60f3cbb5204ae531178beca3344feb85e39bed8f0",
+  "local_task_branch": "retired after accepted ancestry; two independent retention owners unchanged",
+  "other_retirement_blocker": "task/text-only-concepts-135 remote still held after two earlier GitHub internal-error rejections; exact integrated tip32f35ef438113bc6592b0590281e4b6afa6a2cc1"
+}

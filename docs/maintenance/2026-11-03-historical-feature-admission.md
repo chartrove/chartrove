@@ -49,3 +49,11 @@ or discarded. #217 now has a focused corrected implementation on
 admin/administrator names, and enforcing a creation-only service-name policy.
 Root/desktop creation, legacy encrypted-reopen and HTTP sign-in controls pass;
 protected CI and final disposition remain pending.
+
+Acceptance: corrected #217 integrated through #411 at
+`fa2044a5127e6f15ef2d628a955260fd543a4300`, all seven protected checks passed.
+The historical draft is closed with attribution and a precise policy-variation
+explanation. The five other capabilities remain open for corrected integration.
+The next #209/#215 grant-scope decision is pending (per-source versus account-wide
+viewer/editor access); the current prototypes have different grant representations.
+No response or approval is inferred from the optional UI's preselected choice.

@@ -1,0 +1,168 @@
+{
+  "base_main": "43fed3855683448176a0298c8976974f9a042fe3",
+  "issue": 86,
+  "source_sha256": {
+    "backend/pkg/database/gorm_repository_query.go": "c87cd281dec7348b58799abee2c7f2dfbb0db6239a14f7538aea8ab23bfffb35",
+    "backend/pkg/database/gorm_reference_query_test.go": "a2f580a54d6a4d825e708d6568163c35a804de21ce853ababdac37fba8178f8a"
+  },
+  "logs": {
+    "reference-before.jsonl": {
+      "sha256": "d919bbd8a926e99bb56d56dfd6bd24b63e09f8961ffa0c636a5122181d9a5da8",
+      "leaf_outcomes": {
+        "fail": 8,
+        "pass": 3
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-root.jsonl": {
+      "sha256": "1a9f86109836b1700c15546e60bc43280a65a97a86bcddbbf303cab2d46d5d70",
+      "leaf_outcomes": {
+        "fail": 8,
+        "pass": 7
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-before-final.jsonl": {
+      "sha256": "43f71d627cb51437120c9b9151f96065ee9f62dd430043d2f9d6339f7a329a6a",
+      "leaf_outcomes": {
+        "fail": 8,
+        "pass": 3
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-root-final.jsonl": {
+      "sha256": "839db821d08cfbe84af6d5848b112b99f08397cca240058ded87642d14c60e0a",
+      "leaf_outcomes": {
+        "pass": 35
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-root-accepted.jsonl": {
+      "sha256": "64fbbb59eb81839c83dd7cfc52318b0d830ba1f18d6dd0f5fcc84c327c215c89",
+      "leaf_outcomes": {
+        "pass": 37
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-desktop.jsonl": {
+      "sha256": "ade226208c8da702d17b085c82fe6dec14fdcd52758c2bd6ad085ec2e64e4126",
+      "leaf_outcomes": {
+        "pass": 37
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-array-and-before.jsonl": {
+      "sha256": "9182129815ccc92b33de1da24ebc24f586c438337d9cb7dac2af35024a4f8171",
+      "leaf_outcomes": {
+        "pass": 13,
+        "fail": 1
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-root-array-final.jsonl": {
+      "sha256": "2b5e7bca5b5be58364d638c62e15933b88c23e04c2943ccc85f5773158ed4872",
+      "leaf_outcomes": {
+        "pass": 38
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-desktop-array-final.jsonl": {
+      "sha256": "566802056c6bb3c86f47bde32b8a5ef55b5630c1d7bf4ab4cc8cd84a14b672b8",
+      "leaf_outcomes": {
+        "pass": 38
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-canonical-before.jsonl": {
+      "sha256": "3e45c000a667153f1673be75781744e317d6d9e9ec0b1f0f36cd82e9617efba6",
+      "leaf_outcomes": {
+        "pass": 13,
+        "fail": 5
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "fail"
+        }
+      ]
+    },
+    "reference-root-canonical-final.jsonl": {
+      "sha256": "8e058793fb9d8b3bb9192d10c07a4a1c09febb829609074349899c60c7f82eab",
+      "leaf_outcomes": {
+        "pass": 42
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    },
+    "reference-desktop-canonical-final.jsonl": {
+      "sha256": "09fc61718f65275adc5e27ca6fbaaaa13e190289e9598eb0c7a5855f6861a7fd",
+      "leaf_outcomes": {
+        "pass": 42
+      },
+      "packages": [
+        {
+          "Package": "github.com/fastenhealth/fasten-onprem/backend/pkg/database",
+          "Action": "pass"
+        }
+      ]
+    }
+  },
+  "scope": "Exact stored-reference string equality in existing query engine, owner-scoped ordinary Observation fixtures; no reference normalization or resolution, no record rewrite, no FHIR server compliance claim. Unsupported modifiers and blank values fail explicitly.",
+  "qualification": "First candidate test assumed a concrete pointer slice, whereas the repository returns its interface model slice. It failed in test decoding after successful queries; fixed to exercise normal JSON output. Corrected identical baseline again fails all 8 supported-query cases, with 3 unsupported controls passing. Final suite adds blank-value and encrypted cold-reopen controls.",
+  "protected_ci": "pending",
+  "array_and_correction": "Final review added an ordinary repeated-AND multi-reference case. Published candidate6829110d91 returned zero rows instead of one. Independent correlated existence predicates correct that actual failure and avoid cross-row alias coupling. Root and desktop final selections each pass38 leaf cases including14 reference controls. Earlier passed checks apply only to the preceding candidate; refreshed protected CI is mandatory.",
+  "canonical_review_correction": "Automated review verified against actual metaProfile reference typing and meta.profile extraction: valid canonical URI strings triggered SQLite malformed JSON on head32cfadcd63. Five red controls reproduce it, including cold reopen; thirteen other reference controls pass. Representation-aware CASE handles text and object entries without rewriting data. Final root and desktop selections each pass42 leaf cases, including18 reference controls; earlier green heads are not acceptance for the changed source.",
+  "review_threads": [
+    "PRRT_kwDOVZP3fM6zi7k0",
+    "PRRT_kwDOVZP3fM6zi7k9"
+  ]
+}

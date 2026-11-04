@@ -445,8 +445,13 @@ func ProcessSearchParameterValue(searchParameter SearchParameter, searchValueWit
 			}
 		}
 	} else if searchParameter.Type == SearchParameterTypeReference {
-		//todo
-		return searchParameterValue, fmt.Errorf("search parameter type not yet implemented: %s", searchParameter.Type)
+		// Match the stored reference literally; normalization/resolution is separate.
+		if searchParameter.Modifier != "" {
+			return searchParameterValue, fmt.Errorf("reference search parameter %s does not support this modifier: %s", searchParameter.Name, searchParameter.Modifier)
+		}
+		if strings.TrimSpace(searchValueWithPrefix) == "" {
+			return searchParameterValue, fmt.Errorf("reference search parameter %s requires a value", searchParameter.Name)
+		}
 	}
 
 	//certain types (Quantity and Number) need to be converted to Float64
@@ -617,7 +622,8 @@ func SearchCodeToWhereClause(searchParam SearchParameter, searchParamValue Searc
 		//setup the clause
 		return fmt.Sprintf("(%s = @%s)", searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	case SearchParameterTypeReference:
-		return "", nil, fmt.Errorf("search parameter type %s not supported", searchParam.Type)
+		// Each repeated condition may match a different entry in the same array.
+		return fmt.Sprintf("EXISTS (SELECT 1 FROM json_each(%s.%s) AS referenceValues WHERE CASE referenceValues.type WHEN 'text' THEN referenceValues.value WHEN 'object' THEN referenceValues.value ->> '$.reference' END = @%s)", TABLE_ALIAS, searchParam.Name, NamedParameterWithSuffix(searchParam.Name, searchParam.Modifier, namedParameterSuffix)), searchClauseNamedParams, nil
 	}
 	return "", searchClauseNamedParams, nil
 }

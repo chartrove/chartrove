@@ -9,67 +9,69 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 4, 2026, resumed from accepted main
-`e3db324c51a1944b323d9f836f04a7c88d3e20ec` (#409), then integrated #410 at
-`43fed3855683448176a0298c8976974f9a042fe3`. The primary checkout was
-independently clean on main with matching live origin/main; no stash, in-progress
-Git operation or lock was present. Four local branches remain: main, the two
-held retention owners, and the preserved unpublished text-only-concepts-135 task.
-All fourteen live origin heads match the prior feature/owner inventory. The six
-historical feature head/base pairs remain consumers; no retirement is admitted.
-Thirty tags and the cached legacy refs remain unchanged; their existing verified
-recovery evidence below is reused rather than re-created.
+Snapshot: November 4, 2026, after protected #410 and #411. Accepted main is
+`fa2044a5127e6f15ef2d628a955260fd543a4300`. The primary main was cleanly
+fast-forwarded; the current primary-checkout task is observation-reference-query.
+No new worktree, clone, stash, subagent or cleanup framework was created.
 
-Read-only Code Scanning API verification reports original alerts #1/#2/#3 fixed
-at 2026-11-04T02:29:06Z and follow-up #4 fixed at 2026-11-04T03:17:38Z; none is
-dismissed. Exact-main Go/JS/Actions analyses 2091593212/2091570715/2091562429 have
-zero results and no analysis errors. Full-main run 41765336572 passed all six
-jobs. #44 is closed as implemented, with explicit coverage limits. Merged #399,
-#407, #408 and #409 remain intact; no demonstrations or scans were repeated.
+There are **156 open issues, five historical feature PRs, fourteen live origin
+heads and four local branches** before publishing the reference-query PR. Local
+branches are main, the two independently held retention tasks, and the current
+reference-query task. No stash or unfinished Git operation was present at resume;
+all three worktrees were attached and clean. Cached legacy refs, tags, original
+archives and existing ignored artifacts remain preserved. Existing verified full
+inventories were reused; no full object/storage inventory was repeated.
 
-Ruleset 26337029 is active with no bypass actors, strict current-base checking,
-PR/conversation requirements, all seven trusted checks, and main deletion/force
-push protection. The legacy branch-protection endpoint returns 404 because this
-repository uses the verified ruleset; it is not proof of missing protection.
+- #410 merged at 43fed3855683448176a0298c8976974f9a042fe3. All seven required
+  checks passed at 32f35ef438113bc6592b0590281e4b6afa6a2cc1 in41808845890;
+  independent main run 41810119151 passed all six jobs. Original unpublished commits
+  20a82b097b and21bf2c5835 remain main ancestors. #135 is closed for its text-only
+  concept correction; the author's date qualification and no-backfill boundary
+  remain explicit. All saved source/log hashes match and fresh root/desktop
+  focused cases passed. The local task branch is retired.
+- #411 merged atfa2044a5127e6f15ef2d628a955260fd543a4300, with all seven checks
+  passing atc777a1bd0f71a2c937f1ed9edb4fd5c3b3f3ad70 in41810661747. Historical
+  #217 is closed as integrated through the documented creation-only service-name
+  policy, retaining admin/administrator and all existing accounts. Root/desktop
+  creation, encrypted-reopen and sign-in controls pass. Its local task and three
+  exact remote refs are retired after consumer, ancestry/archive, dry-run and
+  atomic lease checks. [Receipt](maintenance/reserved-usernames-retirement.json).
+  Independent main run 41812121283 is still running at this snapshot.
+- #44 is closed after read-only GitHub verification that original alerts 1/2/3
+  and follow-up4 are fixed, with no dismissals. Exact #409 main analyses have
+  zero results and no errors; fresh #410 main analyses 2093466204/2093432496/
+  2093425637 also have zero results/errors. Existing security corrections and
+  synthetic regressions remain intact; no demonstration or scan was repeated.
+- #99 is individually superseded by the current source-page layout; #160 remains
+  the provider-search task. #85 is verified already implemented in actual
+  encrypted root/desktop query consumers. #86 remains open while its corrected
+  reference-query implementation awaits protected acceptance. #138 reference
+  normalization/IPS and #194 notes/templates remain unresolved.
 
-After #410, there are 156 open issues including #222 and six historical feature
-PRs before publishing the reserved-names candidate. #44 is implemented, #99 is
-explicitly superseded by the current source-page layout, #135 is implemented by
-#410, and #85 is verified already implemented. #86 remains open: extraction and
-quantity queries pass, but subject/encounter reference queries remain unsupported.
-#194 remains unresolved. These are individually recorded GitHub dispositions.
+Ruleset 26337029 remains active with no bypass actors, strict current-base checks,
+all seven trusted checks, PR/conversation requirements and main deletion/force-push
+protection. The legacy branch-protection API 404 is qualified by this active ruleset.
+Validation alone is active; inherited Development remains disabled.
 
-#410 passed all seven required checks at exact head32f35ef438 in run41808845890.
-Its two original unpublished commits20a82b097b/21bf2c5835 are retained in accepted
-main. Fresh root/desktop focused cases and original source/log hashes passed.
-The automatic main-push run41810119151 is separate acceptance and remains running.
-The clean primary main was fast-forwarded; implementation continues on the existing
-primary checkout's actual task branch. No new worktree or subagent was created.
+The incorporated remote text-only branch remains held after GitHub rejected two
+leased deletion attempts with internal errors; exact tip32f35ef438113bc6592b0590281e4b6afa6a2cc1
+is integrated in main. GitHub also transiently rejected GraphQL merge/PR creation
+and one reference-query push; supported REST PR operations and a verified native
+push retry recovered those operations without bypassing protection.
 
-The incorporated local text-only branch was retired after ancestry, owner and
-consumer checks. Its leased remote deletion was rejected by GitHub with
-`remote: fatal error in commit_refs`; the remote ref remains preserved rather
-than falsely reported retired. Sixteen live origin heads and four local branches
-remain at this checkpoint, including the published reserved-usernames task.
+Both independent retention owners remain explicitly held, clean and untouched.
+The former Rex pane is at the Codex input screen; no prior test/build/merge process
+was found. Its scrollback confirms `plugin contents changed; hook approval required`.
+Native tools and read-only plugin listing work in this session; plugin content trust
+is not thereby certified. No approval, trusted hash or configuration was changed.
+The host remains about 15 GiB free, below the unchanged 50 GiB full-workflow reserve;
+no local full build, broad suite or new native package was run.
 
-Both independently owned retention worktrees are clean and remain held. The
-former Rex pane is at the Codex input screen; no prior test/build/merge process
-was found. Read-only MCP and computer-use helper processes remain untouched.
-Its scrollback confirms `plugin contents changed; hook approval required`.
-This session's native tools work, but plugin trust is not thereby certified.
-No approvals, trusted hashes, plugin files or agent configuration were changed.
-The 50 GiB full-workflow reserve remains; host free space is approximately16GiB,
-so no local full build or broad suite was repeated.
-
-The existing six-capability admission review remains applicable: #209 permissions,
-#211 Typesense/RAG, #212 OCR, #214 OIDC, #215 delegation and #217 reserved names
-are retained for corrected implementation, with their prototype gaps documented
-individually. No capability is declared incorporated or rejected merely for counts.
-The #217 implementation uses a narrow service/system-name policy preserving
-admin/administrator and all existing accounts; the optional question had no
-maintainer response. Protected integration remains pending. See
-[implementation and compatibility](maintenance/2026-11-04-reserved-usernames-217.md)
-and [indexing reconciliation](maintenance/indexing-85-86-validation.json).
+#209 permissions, #211 Typesense/RAG, #212 OCR, #214 OIDC and #215 delegation remain
+**implement and integrate**, with individual admission conditions in the preserved
+[source review](maintenance/2026-11-03-historical-feature-admission.md). The next
+#209/#215 grant-scope decision is pending; no preselected UI choice is treated as
+an answer. No important capability or unique prototype is retired for a count.
 
 ## Latest integrated safeguards and tooling
 
