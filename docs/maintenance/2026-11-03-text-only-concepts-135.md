@@ -66,3 +66,11 @@ and leaves the onset index absent when no reaction onset is present. No zero dat
 is produced in those supported cases. These are baseline controls, not a date fix
 or a claim about the author's historical backup. No date implementation or
 migration is introduced; broader issue#69 remains open.
+
+Protected #410 merged at `43fed3855683448176a0298c8976974f9a042fe3` after all
+seven required checks passed for exact head `32f35ef438113bc6592b0590281e4b6afa6a2cc1`
+in run41808845890. #135 is individually closed as implemented, retaining the
+author's date qualification and the no-backfill boundary above. Both original
+commits remain main ancestors. The local task branch is retired; GitHub rejected
+its expected-tip remote retirement with `fatal error in commit_refs`, so the
+remote ref remains held. No accepted work was lost.
