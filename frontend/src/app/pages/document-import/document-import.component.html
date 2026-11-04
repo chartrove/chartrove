@@ -1,0 +1,48 @@
+<main class="container py-4">
+  <h1>Import a scanned document</h1>
+  <p>Extract English text locally, review it, then save the original and corrected transcript to your own source.</p>
+  @if (!supported) {
+    <p>This local processing workspace is available in the web application. Desktop sign-in and existing imports remain available.</p>
+  } @else {
+    <p>PNG, JPEG or PDF · Up to 8 MiB and 10 PDF pages · One document at a time.</p>
+    <p>Processing stays in your browser. The original and reviewed text are sent to Chartrove only when you save.</p>
+    @if (error) { <p class="alert alert-danger" role="alert">{{error}}</p> }
+    @if (notice) { <p class="alert alert-success" role="status">{{notice}}</p> }
+    <div class="mb-3">
+      <label for="document-file">Choose a document</label>
+      <input id="document-file" type="file" class="form-control" accept="image/png,image/jpeg,application/pdf" (change)="selected($event)" [disabled]="saving || processing">
+      <label for="document-camera" class="mt-2">Or take a photo on a supported device</label>
+      <input id="document-camera" type="file" class="form-control" accept="image/jpeg,image/png" capture="environment" (change)="selected($event)" [disabled]="saving || processing">
+    </div>
+    @if (processing) {
+      <p role="status">Processing locally @if (pages) { · Page {{page}} of {{pages}} }</p>
+      <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel processing</button>
+    }
+    @if (originalURL && file) {
+      <p>{{file.name}} · {{pages}} page(s). Review and correct every page before importing.</p>
+      <a [href]="originalURL" [download]="file.name">Download original for comparison</a>
+      <div class="my-3">
+        <label for="document-title">Document title</label>
+        <input id="document-title" class="form-control" [(ngModel)]="title" maxlength="256" (ngModelChange)="reviewed=false" [disabled]="saving">
+        <label for="document-transcript" class="mt-3">Reviewed transcript</label>
+        <textarea id="document-transcript" class="form-control" rows="18" [(ngModel)]="text" (ngModelChange)="reviewed=false" [disabled]="saving" spellcheck="false"></textarea>
+      </div>
+      <label for="document-source">Save to your source</label>
+      <select id="document-source" class="form-control mb-3" [(ngModel)]="source" (ngModelChange)="reviewed=false" [disabled]="saving">
+        <option value="">Choose your local source</option>
+        @for (item of sources; track item.id) { <option [value]="item.id">{{item.display || 'Locally managed records'}}</option> }
+      </select>
+      <p>The import retains the original file and its fingerprint. Imported documents and transcripts are read-only to delegates. No diagnosis or medication records are generated.</p>
+      <label><input type="checkbox" [(ngModel)]="reviewed" [disabled]="saving"> I reviewed this transcript and want to save it with the original to the selected source.</label>
+      <div class="my-3">
+        <button type="button" class="btn btn-primary me-2" (click)="save()" [disabled]="saving || !reviewed || !source || !title.trim() || !text.trim()">{{saving ? 'Saving…' : 'Save reviewed document'}}</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="clear()" [disabled]="saving">Start another document</button>
+      </div>
+      @if (receipt) {
+        <p><a [routerLink]="['/explore',receipt.source_id,'resource',receipt.source_resource_type,receipt.source_resource_id]">Open saved document</a></p>
+        <details><summary>Original document fingerprint</summary><code>{{receipt.original_sha256}}</code></details>
+      }
+    }
+  }
+  <p class="mt-4"><a routerLink="/settings">Settings</a></p>
+</main>

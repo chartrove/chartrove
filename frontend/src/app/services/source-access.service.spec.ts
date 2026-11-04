@@ -13,6 +13,13 @@ describe('SourceAccessService boundaries', () => {
   });
   afterEach(() => http.verify());
 
+  it('browses metadata without downloading raw attachments', () => {
+    service.list('synthetic-source','DocumentReference',0).subscribe(rows => expect(rows[0].source_resource_id).toBe('synthetic-document'));
+    const request = http.expectOne(req => req.url.endsWith('/source-access/synthetic-source/metadata/DocumentReference?page=0'));
+    expect(request.request.method).toBe('GET');
+    request.flush({success:true,data:[{source_resource_type:'DocumentReference',source_resource_id:'synthetic-document',sort_title:'Synthetic scan'}]});
+  });
+
   it('keeps search terms in the JSON body and supplies no owner identity', () => {
     service.search('synthetic-source', 'Observation', '100% follow_up!', 1).subscribe(rows => expect(rows.length).toBe(1));
     const request = http.expectOne(req => req.url.endsWith('/source-access/synthetic-source/search/Observation'));
