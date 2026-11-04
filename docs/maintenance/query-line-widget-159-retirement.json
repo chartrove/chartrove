@@ -1,0 +1,28 @@
+{
+  "time": "2026-11-04T00:25:24.874198+00:00",
+  "main": "935504cc61c84e599a6e59abd318d7b1dfa8b423",
+  "branches": [
+    {
+      "name": "task/query-line-widget-159",
+      "sha": "72b2bd59d0caa1351bc5aeccc1f5a51fe2d2d346",
+      "kind": "merged task",
+      "ref": "refs/heads/task/query-line-widget-159",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/query-line-widget-159\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/query-line-widget-159\n"
+    }
+  },
+  "owner_worktrees_and_branches_unchanged": true,
+  "task_tip_recoverable_from_protected_main": true
+}

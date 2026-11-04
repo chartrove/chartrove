@@ -62,3 +62,16 @@ Complete original source, issue/comments, harness failures, control logs and
 receipts remain in dist/validation/2026-11-01-consolidation/
 post-dependency-issue-review/issue159/. Issue closure remains pending protected
 integration and a fresh original-content check.
+
+## Protected integration and issue disposition
+
+PR #403 merged at935504cc61c84e599a6e59abd318d7b1dfa8b423 with all three
+required jobs passing in run41745782327:572 browser passes, one existing skip,
+16Node tests and6.13MB initial output under the unchanged10MB budget.
+Complete job logs and hashes are retained. After a fresh complete-content and
+protected-main incorporation check, #159 closed as implemented with comment
+6619050399. Only its incorporated task branch was retired; the exact task tip is
+reachable from main. Both independent retention owners remain held.
+[CI](query-line-widget-159-ci-validation.json),
+[retirement](query-line-widget-159-retirement.json),
+[fresh checkpoint](2026-11-03-checkpoint-after403.json).

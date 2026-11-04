@@ -1,0 +1,40 @@
+{
+  "pr": 403,
+  "head": "72b2bd59d0caa1351bc5aeccc1f5a51fe2d2d346",
+  "merge": "935504cc61c84e599a6e59abd318d7b1dfa8b423",
+  "run": 41745782327,
+  "Backend": "success",
+  "Frontend": "success",
+  "Desktop": "success",
+  "browser_pass": 572,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.13 MB",
+  "unchanged_budget": "10 MB",
+  "issue159_disposition": "implemented",
+  "issue159_comment": 6619050399,
+  "native_scope": "No new packaged Wails UI; prior qualified native source33c64fbdb remains the package checkpoint.",
+  "full_job_logs": [
+    {
+      "name": "frontend",
+      "job": 126298279419,
+      "bytes": 123649,
+      "sha256": "6c3b712f2708fbebda48a1db3b2bc3cdecf8560714f521adcc8fff646a8b83c8",
+      "download_exit": 0
+    },
+    {
+      "name": "desktop",
+      "job": 126298279587,
+      "bytes": 54731,
+      "sha256": "aeb7b15c62f65b9a2a523cd71012969cc472bee42cf758cb1b947556ab8483b2",
+      "download_exit": 0
+    },
+    {
+      "name": "backend",
+      "job": 126298279700,
+      "bytes": 37278,
+      "sha256": "e4af9bfb83f70191ae9894ce66e49e795df7be33dc931132f585e96b08ec8651",
+      "download_exit": 0
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "time": "2026-11-04T00:25:45.336478+00:00",
+  "main": "935504cc61c84e599a6e59abd318d7b1dfa8b423",
+  "open_issues": 162,
+  "open_prs": 6,
+  "paused_renovate_prs": 0,
+  "origin_heads": 14,
+  "local_heads": [
+    "refs/heads/main 935504cc61c84e599a6e59abd318d7b1dfa8b423 origin/main",
+    "refs/heads/task/angular-cache-retention 3eed5f762ad39c74218c3437fd2210dc85bbfc98 ",
+    "refs/heads/task/artifact-retention ed81d1bbede20c0618a01a859a9af887388ca26c"
+  ],
+  "tags": 30,
+  "tag_oids": [
+    "refs/tags/v0.0.1 94d26ad075847ee2cd67bede07d40bd383a20f25",
+    "refs/tags/v0.0.10 790a4e267ea8db77bdcaca3e850d872b376bab99",
+    "refs/tags/v0.0.11 917c858f8b703429cc57c487d133285a1f2e7636",
+    "refs/tags/v0.0.12 657e9b517485644b96004eeaceec2c197f72f3cf",
+    "refs/tags/v0.0.2 77c23e62f05359c604b78dc5055a9622052f6e1e",
+    "refs/tags/v0.0.3 0d7d64e089b2c248219f007f02a689107c4375c4",
+    "refs/tags/v0.0.4 139b48343591d232a37cf2e85dd64edc8665e1db",
+    "refs/tags/v0.0.5 8598a99860ea123d20ce56d25ca302c7b6d37587",
+    "refs/tags/v0.0.6 e3281baf989a0b5c27f68966b6b6ba9525a14d11",
+    "refs/tags/v0.0.8 b9ce651dbd4c59943a7da3795c13018ed076fd77",
+    "refs/tags/v0.0.9 e1fbd44e4d57bde832f970cdb18c3cf65f6c3814",
+    "refs/tags/v0.1.0 96c5ca10542867bdb4c5ee6322543c5409ea50c2",
+    "refs/tags/v0.1.1 b0538f4890873d25a8048fab2f739a77325c3dd2",
+    "refs/tags/v0.1.2 b6898a05e316a5af84a19b57b63ad384465c54f8",
+    "refs/tags/v0.1.3 c4b139525943d7e60c19d01e97d658319a6e8250",
+    "refs/tags/v0.1.4 81fc0878c42d8195f2e79ada14fcc8f37764f88a",
+    "refs/tags/v0.1.5 dd00a7d276867bdf4ec4ff5c4c2459ea06fdd0b9",
+    "refs/tags/v0.1.6 59a13b0e9c9e554325764ba89c615a425677f8df",
+    "refs/tags/v0.1.7 24ba2b12f96738962bd0868fe2d27b85fe8bc0c1",
+    "refs/tags/v0.1.8 11b8874a39d9996f014cf79b6f53ccc5ab3e5ecc",
+    "refs/tags/v0.2.0 2640f49a430587c410ed2ba5fac268ddf2a5bff8",
+    "refs/tags/v0.2.1 478cd7302ec69045e589773e1169ea9849b7f261",
+    "refs/tags/v0.2.2 c2a336bf8395d8971e4bde1a71a164f59b67c553",
+    "refs/tags/v1.0.0 d086e170cffbb0a07faa18737065424f10ac1ca2",
+    "refs/tags/v1.0.1 d384f72e32cfb2f44399655a0af05909d8a8ec09",
+    "refs/tags/v1.0.2 f6d6c84047fd54a5688b393ff313bf764949242a",
+    "refs/tags/v1.1.0 5273969d5cfe40461b0c9f761c7b9f55111da2dd",
+    "refs/tags/v1.1.1 371b64bd33706c73feca9b823e9a36102ede12f4",
+    "refs/tags/v1.1.2 f9023e7176af8efec8fd24601d9d25156516dfb5",
+    "refs/tags/v1.1.3 d2b18d9d73c112bc2b57b6d2e2d24085058a9964"
+  ],
+  "worktrees": "worktree /Users/osama/Code/karamhouse/chartrove\nHEAD 935504cc61c84e599a6e59abd318d7b1dfa8b423\nbranch refs/heads/main\n\nworktree /Users/osama/Code/_worktrees/karamhouse/chartrove/angular-cache-retention\nHEAD 3eed5f762ad39c74218c3437fd2210dc85bbfc98\nbranch refs/heads/task/angular-cache-retention\n\nworktree /Users/osama/Code/_worktrees/karamhouse/chartrove/artifact-retention\nHEAD ed81d1bbede20c0618a01a859a9af887388ca26c\nbranch refs/heads/task/artifact-retention",
+  "stashes": "",
+  "sparse_sha256": "d48de194029f797d33694f8387ee15180f1531af423402379ef199a9f2ca04bc",
+  "fetch": "+refs/heads/main:refs/remotes/origin/main",
+  "main_ruleset_active_no_bypass": true,
+  "workflow_states": [
+    [
+      "Validation",
+      "active"
+    ],
+    [
+      "Development",
+      "disabled_manually"
+    ]
+  ],
+  "historical_manual_ref_retirements": 90,
+  "additional_heads_observed_absent_actor_unknown": 13,
+  "native_source": "33c64fbdb6727d30a3fd5fc3794e789b915aee90",
+  "acceptance_complete": false,
+  "independent_graphql_inventory_counts_match": true,
+  "legacy_refs_equal_preserved_18": true,
+  "held_untracked_metadata": ""
+}
