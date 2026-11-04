@@ -10,6 +10,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -65,6 +66,23 @@ func RequireAuth() gin.HandlerFunc {
 			if err != nil || token == nil {
 				c.JSON(http.StatusUnauthorized, gin.H{"success": false, "error": "Invalid access token"})
 				c.Abort()
+				return
+			}
+		}
+		if claims.TokenType == "oidc" {
+			repo, ok := databaseRepo.(database.OIDCRepository)
+			id, parseErr := uuid.Parse(claims.ID)
+			if !ok || parseErr != nil || !appConfig.GetBool("auth.oidc.enabled") {
+				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"success": false, "error": "Invalid OIDC session"})
+				return
+			}
+			err := repo.ValidateOIDCSession(c, id, user.ID, appConfig.GetString("auth.oidc.issuer"))
+			if err != nil {
+				status := http.StatusInternalServerError
+				if errors.Is(err, database.ErrOIDCDenied) {
+					status = http.StatusUnauthorized
+				}
+				c.AbortWithStatusJSON(status, gin.H{"success": false, "error": "OIDC session unavailable"})
 				return
 			}
 		}

@@ -11,6 +11,7 @@ import {versionInfo} from '../../../environments/versions';
 import {Subscription} from 'rxjs';
 import {ToastNotification, ToastType} from '../../models/fasten/toast';
 import {ThemeService} from '../../theme.service';
+import {ToastService} from '../../services/toast.service';
 
 @Component({
     selector: 'app-header',
@@ -41,6 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private fastenApi: FastenApiService,
     private modalService: NgbModal,
+    private toastService: ToastService,
     private themeService: ThemeService) {
     }
 
@@ -96,6 +98,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   signOut(e) {
     this.authService.Logout()
+      .catch(() => {
+        const toast = new ToastNotification()
+        toast.type = ToastType.Error
+        toast.message = 'Signed out on this device. Server session revocation was not confirmed; use local sign-in to revoke the identity or wait for session expiry.'
+        this.toastService.show(toast)
+      })
       .then(() => this.router.navigate(['auth/signin']))
   }
 

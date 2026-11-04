@@ -12,6 +12,7 @@ require (
 	github.com/Masterminds/sprig/v3 v3.3.0
 	github.com/TwiN/deepmerge v0.2.2
 	github.com/analogj/go-util v0.0.0-20210417161720-39b497cca03b
+	github.com/coreos/go-oidc/v3 v3.21.0
 	github.com/dave/jennifer v1.7.1
 	github.com/dominikbraun/graph v0.23.0
 	github.com/dop251/goja v0.0.0-20261031103838-cf2ff0ec0b31
@@ -19,6 +20,7 @@ require (
 	github.com/fastenhealth/gofhir-models v0.0.9
 	github.com/gin-gonic/gin v1.12.0
 	github.com/go-gormigrate/gormigrate/v2 v2.1.7
+	github.com/go-jose/go-jose/v4 v4.1.4
 	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v93 v93.0.0
@@ -35,6 +37,7 @@ require (
 	golang.org/x/exp v0.0.0-20261014143641-f0251eb4aa3e
 	golang.org/x/mod v0.42.0
 	golang.org/x/net v0.62.0
+	golang.org/x/oauth2 v0.37.0
 	gorm.io/datatypes v1.2.7
 	gorm.io/driver/sqlite v1.6.0
 	gorm.io/gorm v1.31.2
@@ -140,7 +143,6 @@ require (
 	github.com/ugorji/go/codec v1.3.1 // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
 	golang.org/x/arch v0.22.0 // indirect
-	golang.org/x/oauth2 v0.37.0 // indirect
 	golang.org/x/sys v0.49.0 // indirect
 	golang.org/x/term v0.47.0 // indirect
 	golang.org/x/text v0.43.0 // indirect

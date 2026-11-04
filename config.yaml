@@ -32,6 +32,16 @@ database:
 log:
   file: '' # absolute or relative paths allowed, eg. web.log
   level: INFO
+# OIDC is opt-in. Configure a confidential web client, exact HTTPS issuer and
+# exact frontend callback URL. Keep client_secret in the deployment secret store
+# (FASTEN_AUTH_OIDC_CLIENT_SECRET), not in a committed file. No account auto-link.
+auth:
+  oidc:
+    enabled: false
+    issuer: ""
+    client_id: ""
+    redirect_uri: "" # https://chartrove.example/web/auth/oidc/callback
+
 jwt:
   session:
     # Absolute lifetime for newly issued sign-in/sign-up tokens; default 1h.

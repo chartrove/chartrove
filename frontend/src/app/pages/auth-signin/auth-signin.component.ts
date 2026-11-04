@@ -6,6 +6,7 @@ import {ToastNotification, ToastType} from '../../models/fasten/toast';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../services/auth.service';
 import {Location} from '@angular/common';
+import {OIDCService} from '../../services/oidc.service';
 
 @Component({
     selector: 'app-auth-signin',
@@ -21,6 +22,7 @@ export class AuthSigninComponent implements OnInit {
   existingUser: User = new User()
   errorMsg: string = ""
   showExternalIdP: boolean = environment.environment_cloud
+  oidcEnabled = false
 
   constructor(
     private authService: AuthService,
@@ -28,9 +30,11 @@ export class AuthSigninComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private toastService: ToastService,
+    private oidc: OIDCService,
   ) { }
 
   ngOnInit(): void {
+    this.oidc.enabled().then(enabled => this.oidcEnabled = enabled)
 
     let idpType = this.route.snapshot.paramMap.get('idp_type')
     if(idpType){

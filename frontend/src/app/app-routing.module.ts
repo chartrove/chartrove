@@ -7,6 +7,7 @@ import { IsAdminAuthGuard } from './auth-guards/is-admin-auth-guard';
 import { IsAuthenticatedAuthGuard } from './auth-guards/is-authenticated-auth-guard';
 import { EncryptionStatusGuard } from './auth-guards/encryption-status.guard';
 import { AuthSigninComponent } from './pages/auth-signin/auth-signin.component';
+import { OIDCComponent } from './pages/oidc/oidc.component';
 import { AuthSignupWizardComponent } from './pages/auth-signup-wizard/auth-signup-wizard.component';
 import { AuthSignupComponent } from './pages/auth-signup/auth-signup.component';
 import { BackgroundJobsComponent } from './pages/background-jobs/background-jobs.component';
@@ -34,6 +35,8 @@ const routes: Routes = [
   { path: 'auth/signup/wizard', component: AuthSignupWizardComponent },
 
   { path: 'auth/signin', component: AuthSigninComponent, canActivate: [ EncryptionStatusGuard ] },
+  { path: 'auth/oidc', component: OIDCComponent, canActivate: [ EncryptionStatusGuard ] },
+  { path: 'auth/oidc/callback', component: OIDCComponent },
   { path: 'auth/signin/callback/:idp_type', component: AuthSigninComponent },
   { path: 'auth/signup', component: AuthSignupComponent, canActivate: [ EncryptionStatusGuard ] },
   { path: 'auth/signup/callback/:idp_type', component: AuthSignupComponent },

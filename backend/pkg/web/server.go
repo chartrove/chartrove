@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/auth"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
@@ -166,6 +167,7 @@ func (ae *AppEngine) Setup() (*gin.RouterGroup, *gin.Engine) {
 				api.POST("/support/healthsystem", handler.HealthSystemRequest)
 
 				secure := api.Group("/secure").Use(middleware.RequireAuth())
+				handler.RegisterOIDCRoutes(api, secure, auth.NewOIDCManager(ae.Config))
 				{
 					secure.GET("/account/me", handler.GetCurrentUser)
 					secure.DELETE("/account/me", handler.DeleteAccount)

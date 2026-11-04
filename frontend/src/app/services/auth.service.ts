@@ -199,7 +199,21 @@ export class AuthService {
     return jwtClaims as UserRegisteredClaims
   }
 
-  public async Logout(): Promise<any> {
+  public async Logout(revokeSession = true): Promise<any> {
+    const token = this.GetAuthToken()
+    let oidcSession = false
+    try { oidcSession = !!token && jose.decodeJwt(token)['token_type'] === 'oidc' } catch { /* Clear malformed local storage below. */ }
+    if (revokeSession && oidcSession) {
+      const endpoint = GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)
+      // Clear the browser even when offline. Expiry/unlink remains available to
+      // terminate a session whose server-side logout could not be confirmed.
+      try { await this._httpClient.post(`${endpoint}/secure/auth/oidc/logout`, {}).toPromise() }
+      finally {
+        this.publishAuthenticationState(false)
+        localStorage.removeItem(this.FASTEN_JWT_LOCALSTORAGE_KEY)
+      }
+      return
+    }
     this.publishAuthenticationState(false)
     return localStorage.removeItem(this.FASTEN_JWT_LOCALSTORAGE_KEY)
     // // let remotePouchDb = new PouchDB(this.getRemoteUserDb(localStorage.getItem("current_user")), {skip_setup: true});
@@ -218,7 +232,7 @@ export class AuthService {
   //Private Methods
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
-  private setAuthToken(token: string) {
+  public setAuthToken(token: string) {
     this.publishAuthenticationState(true)
     localStorage.setItem(this.FASTEN_JWT_LOCALSTORAGE_KEY, token)
   }

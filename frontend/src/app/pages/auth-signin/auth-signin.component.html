@@ -78,6 +78,7 @@
     </div><!-- az-signin-header -->
     @if (!showExternalIdP) {
       <div class="az-signin-footer">
+        @if (oidcEnabled) { <p><a routerLink="/auth/oidc">Sign in with identity provider</a></p> }
         <p><a ngbTooltip="not yet implemented">Forgot password?</a></p>
         <p>Don't have an account? <a routerLink="/auth/signup">Create an Account</a></p>
       </div>
