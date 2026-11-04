@@ -9,24 +9,24 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #406; no historical issue was closed for its input guard.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after406.json).
-The automatic-security-scan-44 task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #407; #44 remains open while its three main-baseline findings are corrected.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after407.json).
+The aggregation-sql-boundaries task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `3e6e9a73eb50bc43f7e67988d42fbed254c3ed91` (#406) |
+| Published application main | `07ea27fbdbcdc2596074596e9050e5c5243b64ab` (#407) |
 | Open issues | 160, including retained Renovate dashboard #222 |
 | Open PRs | 6: six historical feature drafts; zero Renovate proposals |
 | Origin heads | 14, including the held cache owner ref |
-| Default branch | main tracks origin/main; current security-scan task is additional |
+| Default branch | main tracks origin/main; current aggregation-security task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
-| Required checks | Backend, Frontend, Desktop from Actions app 15368; strict up-to-date |
+| Required checks | Backend/Frontend/Desktop and three CodeQL language jobs from app15368; native CodeQL app57789; strict up-to-date |
 | PR workflow | PR required, zero external approvals, conversations resolved |
 | Force push / deletion | Blocked on main |
 | Active Actions registrations | Validation only; inherited Development explicitly disabled again |
@@ -918,3 +918,23 @@ dashboard age path is corrected by #379, including refreshes. [Retained boundari
 - At final acceptance, independently prove exactly issue #222, zero PRs, main only,
   protections, builds/tests and complete preservation. The count targets remain
   incomplete; the original-primary coverage recovery is verified above.
+
+Merged #407 establishes validation-only CodeQL, with all seven trusted PR checks
+now enforced and no bypass actors. Independent full main analysis finds three
+high SQL injection alerts in aggregation construction. Five disposable read-only
+payloads confirm cross-owner synthetic account-value reads. The findings are
+being corrected, not dismissed; #44 stays open at this checkpoint. Main JS and
+Actions analyses are clear within their qualified coverage; hidden Storybook
+coverage limits and the distinction between PR diff and main baseline scans are
+retained. No real records or local full build were used.
+[Scan execution and findings](maintenance/2026-11-03-automatic-security-scanning-44.md),
+[CI and hashes](maintenance/codeql-ci-validation.json).
+
+The next aggregation-security batch replaces raw aggregation SQL with quoted
+schema columns, bound JSON paths and literal supported functions. Eighteen
+synthetic cases expose nine old failures and all pass after correction; each
+root/desktop graph passes49events, including44leaf cases and existing encryption
+reopen coverage. Protected CI and a fresh complete main scan remain pending;
+no vulnerability is dismissed and #44 is not closed at this source checkpoint.
+[Correction and limits](maintenance/2026-11-03-aggregation-query-security.md),
+[validation](maintenance/aggregation-query-validation.json).

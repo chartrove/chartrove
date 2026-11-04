@@ -48,10 +48,32 @@ finds no critical/high/medium/low issues; its single informational note is the
 requested scanning gap. [Pre-application review](2026-11-03-codeql-workflow-hardening-review.md),
 [admission and exact source](codeql-admission.json).
 
-Live scanner execution, processed coverage/results and issue disposition remain
-pending. A successful analysis means scanning completed, not that vulnerabilities
-are absent or that dependency advisories are fixed. Existing required checks stay
-intact; new checks are only eligible for enforcement after functioning execution
-and verified check/app provenance. #44 remains open until protected integration
-and a fresh complete-content check. Raw evidence:
-dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue44/.
+## Protected execution and findings
+
+PR [#407](https://github.com/karamhouse/chartrove/pull/407) merged at
+07ea27fbdbcdc2596074596e9050e5c5243b64ab after all seven trusted checks passed.
+The original Backend/Frontend/Desktop checks and strict rules remain intact;
+three language jobs (Actions app15368) and the native CodeQL aggregate
+(GitHub Advanced Security app57789) now also protect PRs. No bypass actor exists.
+The independent main push completed six Actions jobs successfully; the native
+aggregate is PR-specific and is not claimed as a seventh main-push job.
+
+CLI2.27.4 processed three diff-filtered PR analyses with zero results. The first
+full main baseline, separately inspected, reports three high go/sql-injection
+alerts (#1/#2/#3), all in aggregation SELECT/GROUP/ORDER construction. These are
+not dismissed or hidden. A disposable two-owner SQLite control confirms that
+function/property interpolation can read another synthetic user's account value,
+despite the outer owner filter. A corrected parameterized builder is being
+prepared separately; #44 remains open while findings are reconciled.
+
+Main Actions and JavaScript/TypeScript analyses have zero results within reported
+coverage. JS logs report527/531TypeScript,107/107HTML,8/8JavaScript. Extraction
+log reconciliation covers528/532tracked .ts paths; four hidden Storybook paths
+are absent: compodoc-compat.ts, main.ts, preview.ts and typings.d.ts. These two
+metrics are retained separately; neither means every tracked file was analyzed.
+Go uses both explicit module builds and default queries without exclusions.
+Scanning is not comprehensive assurance of all runtime/data/dependency behavior.
+
+[Execution, exact log hashes and qualifications](codeql-ci-validation.json),
+[checkpoint after407](2026-11-03-checkpoint-after407.json).
+Raw evidence: dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue44/.
