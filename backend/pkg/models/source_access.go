@@ -70,4 +70,7 @@ type SharedSourceSummary struct {
 type SharedResource struct {
 	ResourceBase
 	Editable bool `json:"editable"`
+	// Browsers must not round clinical decimals by parsing/stringifying a JSON
+	// object before editing it. The text is the exact authorized stored payload.
+	ResourceRawText string `json:"resource_raw_text"`
 }

@@ -1,10 +1,13 @@
 package database
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
+	"strings"
 	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
@@ -236,7 +239,7 @@ func (gr *GormRepository) GetSharedResource(ctx context.Context, source uuid.UUI
 	if err != nil {
 		return nil, err
 	}
-	return &models.SharedResource{ResourceBase: row, Editable: localCount == 1 && s.AccessLevel == models.SourceAccessEdit}, nil
+	return &models.SharedResource{ResourceBase: row, Editable: localCount == 1 && s.AccessLevel == models.SourceAccessEdit, ResourceRawText: string(row.ResourceRaw)}, nil
 }
 
 func (gr *GormRepository) GetSharedSourceSummary(ctx context.Context, source uuid.UUID) (*models.SharedSourceSummary, error) {
@@ -265,15 +268,51 @@ func (gr *GormRepository) GetSharedSourceSummary(ctx context.Context, source uui
 	return result, nil
 }
 
+// Decode only the envelope into raw fields. This preserves clinical numeric
+// literals and rejects ambiguous identity aliases/duplicate top-level keys.
+func decodeLocalResource(raw json.RawMessage) (map[string]json.RawMessage, error) {
+	invalid := fmt.Errorf("%w: invalid FHIR JSON", ErrSourceAccessInput)
+	decoder := json.NewDecoder(bytes.NewReader(raw))
+	opening, err := decoder.Token()
+	if err != nil || opening != json.Delim('{') {
+		return nil, invalid
+	}
+	fields := map[string]json.RawMessage{}
+	for decoder.More() {
+		token, err := decoder.Token()
+		key, ok := token.(string)
+		if err != nil || !ok {
+			return nil, invalid
+		}
+		if _, duplicate := fields[key]; duplicate {
+			return nil, invalid
+		}
+		if (strings.EqualFold(key, "id") && key != "id") || (strings.EqualFold(key, "resourceType") && key != "resourceType") {
+			return nil, invalid
+		}
+		var value json.RawMessage
+		if err := decoder.Decode(&value); err != nil {
+			return nil, invalid
+		}
+		fields[key] = value
+	}
+	closing, err := decoder.Token()
+	if err != nil || closing != json.Delim('}') {
+		return nil, invalid
+	}
+	if err := decoder.Decode(new(interface{})); err != io.EOF {
+		return nil, invalid
+	}
+	return fields, nil
+}
+
 func parseLocalResource(raw json.RawMessage, resourceType, resourceID string) (dm.IFhirResourceModel, error) {
-	var identity struct {
-		ResourceType string `json:"resourceType"`
-		ID           string `json:"id"`
+	fields, err := decodeLocalResource(raw)
+	if err != nil {
+		return nil, err
 	}
-	if err := json.Unmarshal(raw, &identity); err != nil {
-		return nil, fmt.Errorf("%w: invalid FHIR JSON", ErrSourceAccessInput)
-	}
-	if identity.ResourceType != resourceType || identity.ID != resourceID {
+	var actualType, actualID string
+	if json.Unmarshal(fields["resourceType"], &actualType) != nil || json.Unmarshal(fields["id"], &actualID) != nil || actualType != resourceType || actualID != resourceID {
 		return nil, fmt.Errorf("%w: resource identity cannot change", ErrSourceAccessInput)
 	}
 	model, err := dm.NewFhirResourceModelByType(resourceType)
@@ -296,16 +335,16 @@ func (gr *GormRepository) CreateLocalResource(ctx context.Context, source uuid.U
 	if s.PlatformType != sp.PlatformTypeFasten {
 		return nil, ErrSourceAccessDenied
 	}
-	var payload map[string]interface{}
-	if err := json.Unmarshal(raw, &payload); err != nil || payload == nil {
-		return nil, fmt.Errorf("%w: invalid FHIR JSON", ErrSourceAccessInput)
+	payload, err := decodeLocalResource(raw)
+	if err != nil {
+		return nil, err
 	}
-	rt, ok := payload["resourceType"].(string)
-	if !ok {
+	var rt string
+	if json.Unmarshal(payload["resourceType"], &rt) != nil || rt == "" {
 		return nil, fmt.Errorf("%w: resourceType is required", ErrSourceAccessInput)
 	}
 	id := uuid.NewString()
-	payload["id"] = id
+	payload["id"], _ = json.Marshal(id)
 	raw, err = json.Marshal(payload)
 	if err != nil {
 		return nil, err
@@ -354,31 +393,19 @@ func (gr *GormRepository) UpdateSharedResource(ctx context.Context, source uuid.
 	return gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		r := *gr
 		r.GormClient = tx
-		var existing models.ResourceBase
-		authorized := func() *gorm.DB {
-			q := r.sourceResourceQuery(ctx, actor.ID, source, table, true).Where("source_resource_type = ? AND source_resource_id = ?", resourceType, resourceID)
-			// Provenance is not inferred from platform or supplied by the client.
-			return q.Where("EXISTS (?)", tx.Model(&models.LocalResource{}).Select("1").Where("owner_user_id = ? AND source_id = ? AND resource_type = ? AND resource_id = ?", s.OwnerUserID, source, resourceType, resourceID))
-		}
-		if err := authorized().First(&existing).Error; err != nil {
-			if errors.Is(err, gorm.ErrRecordNotFound) {
-				return ErrSourceAccessDenied
-			}
-			return err
-		}
-		model.SetOriginBase(existing.OriginBase)
-		model.SetSortTitle(existing.SortTitle)
-		model.SetSortDate(existing.SortDate)
-		model.SetSourceUri(existing.SourceUri)
+		q := r.sourceResourceQuery(ctx, actor.ID, source, table, true).Where("source_resource_type = ? AND source_resource_id = ?", resourceType, resourceID)
+		q = q.Where("EXISTS (?)", tx.Model(&models.LocalResource{}).Select("1").Where("owner_user_id = ? AND source_id = ? AND resource_type = ? AND resource_id = ?", s.OwnerUserID, source, resourceType, resourceID))
 		// Select all derived columns so removed values are cleared as well. Never
 		// Save/upsert: updates must affect exactly the authorized existing row.
-		res := authorized().Where("id = ?", existing.ID).Select("*").Omit("id", "user_id", "source_id", "source_resource_type", "source_resource_id", "created_at", clause.Associations).Updates(model)
+		// This is the first transactional statement: no stale SQLite read snapshot
+		// precedes the write. Identity and presentation metadata remain untouched.
+		res := q.Select("*").Omit("id", "user_id", "source_id", "source_resource_type", "source_resource_id", "created_at", "deleted_at", "sort_title", "sort_date", "source_uri", clause.Associations).Updates(model)
 		if res.Error != nil {
 			return res.Error
 		}
 		if res.RowsAffected != 1 {
 			return ErrSourceAccessDenied
 		}
-		return appendSourceAudit(tx, source, existing.UserID, actor.ID, "edit_local", nil, resourceType, resourceID)
+		return appendSourceAudit(tx, source, s.OwnerUserID, actor.ID, "edit_local", nil, resourceType, resourceID)
 	})
 }
