@@ -54,3 +54,11 @@ report: neither current `/sources` route renders the old filter component.
 #160's provider-search feature and #167's separate navigation report remain open.
 #194's private notes are not implemented by the existing unbound timeline input;
 its custom report/template requests also remain unresolved. No closure is claimed.
+
+Protected acceptance: #411 merged at
+`fa2044a5127e6f15ef2d628a955260fd543a4300` after all seven checks passed for
+`c777a1bd0f71a2c937f1ed9edb4fd5c3b3f3ad70` in run41810661747. Historical #217
+is individually closed as integrated through the documented policy variant.
+The original admin-name ban is not misrepresented as adopted. The integrated
+local task branch is retired; expected-tip atomic remote retirement is recorded
+separately. Both independent retention owners remain held.

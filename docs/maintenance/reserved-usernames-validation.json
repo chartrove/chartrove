@@ -110,5 +110,13 @@
     }
   },
   "qualification": "Initial test scaffold used the wrong UserSetting type; retained as build failure and excluded from red/green evidence. Corrected baseline has 20 leaf failures and 19 passes. Final root/desktop each pass 49 focused cases plus updated 7-case sign-in suite. No patient data, migration, local full build or provider operation.",
-  "protected_ci": "pending"
+  "protected_ci": {
+    "pr": 411,
+    "head": "c777a1bd0f71a2c937f1ed9edb4fd5c3b3f3ad70",
+    "run": 41810661747,
+    "required_checks": "all seven passed",
+    "merge": "fa2044a5127e6f15ef2d628a955260fd543a4300",
+    "main_push_run": 41812121283,
+    "main_push_status": "running at this snapshot"
+  }
 }
