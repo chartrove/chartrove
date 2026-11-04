@@ -65,6 +65,7 @@ func TestAggregationQueryIsolatesSQLSyntax(t *testing.T) {
 		{"star-function", models.QueryResourceAggregations{OrderBy: &models.QueryResourceAggregation{Field: "*", Function: "count(*)+(SELECT length(password) FROM users WHERE username='synthetic-other')--"}}},
 		{"extension-function", models.QueryResourceAggregations{OrderBy: &models.QueryResourceAggregation{Field: "id", Function: "load_extension"}}},
 		{"unknown-field", models.QueryResourceAggregations{GroupBy: &models.QueryResourceAggregation{Field: "unknown"}}},
+		{"schema-sql", models.QueryResourceAggregations{GroupBy: &models.QueryResourceAggregation{Field: "code);SELECT/**/password/**/FROM/**/users--"}}},
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			query, err := repo.sqlQueryResources(ctx, models.QueryResource{From: "Observation", Aggregations: &test.aggregations})
@@ -91,6 +92,26 @@ func TestAggregationQueryIsolatesSQLSyntax(t *testing.T) {
 			default:
 				require.Error(t, err, "SQL functions and identifiers must be validated before execution")
 			}
+		})
+	}
+}
+
+func TestInvalidAggregationParameterIsEmpty(t *testing.T) {
+	lookup := map[string]string{"id": "keyword", "sort_date": "date", "valueQuantity": "quantity"}
+	for _, test := range []struct {
+		name  string
+		input models.QueryResourceAggregation
+	}{
+		{"function", models.QueryResourceAggregation{Field: "id", Function: "max);SELECT"}},
+		{"unknown", models.QueryResourceAggregation{Field: "unknown"}},
+		{"primitive-property", models.QueryResourceAggregation{Field: "sort_date:value"}},
+		{"missing-property", models.QueryResourceAggregation{Field: "valueQuantity"}},
+		{"sql-identifier", models.QueryResourceAggregation{Field: "id);SELECT/**/password/**/FROM/**/users--"}},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			parameter, err := ProcessAggregationParameter(test.input, lookup)
+			require.Error(t, err)
+			require.Equal(t, AggregationParameter{}, parameter, "invalid input must not escape in a compiled SQL parameter")
 		})
 	}
 }

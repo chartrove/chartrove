@@ -77,3 +77,10 @@ Scanning is not comprehensive assurance of all runtime/data/dependency behavior.
 [Execution, exact log hashes and qualifications](codeql-ci-validation.json),
 [checkpoint after407](2026-11-03-checkpoint-after407.json).
 Raw evidence: dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue44/.
+
+Protected#408 fixes the three original exploitable aggregation alerts; all seven
+PR checks and six main-push jobs pass. Its complete main Go analysis still
+reports one identifier/error-state flow, unlike its zero-result diff-filtered
+PR analysis. This distinction remains explicit.#44 stays open; no dismissal or
+suppression occurs. [Exact post408 execution](aggregation-query-ci-validation.json),
+[separate structural follow-up](2026-11-03-aggregation-schema-identifiers.md).

@@ -1,0 +1,59 @@
+{
+  "base": "d50c0f6b39a430c9e29e67e56314f88b1d0c94e2",
+  "alert": 4,
+  "triage": "Schema/error checks already reject the reported raw identifier. The conservative analysis follows returned error-state fields; no additional cross-owner read was reproduced. Output is now constructed only from a server schema key and empty on every error.",
+  "five_invalid_output_cases": {
+    "old_pass": 1,
+    "old_fail": 4,
+    "new_pass": 5
+  },
+  "runtime_rejection_and_binding_cases": {
+    "old_pass": 9,
+    "new_pass": 9
+  },
+  "logs": [
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/aggregation-schema-identifiers/before.jsonl",
+      "outcome": "fail",
+      "pass_events": 11,
+      "leaf_outcomes": {
+        "pass": 10,
+        "fail": 4,
+        "skip": 0
+      },
+      "bytes": 39047,
+      "sha256": "217b8b2433a25f0644caef22476a19f202c6dfb299b6ba0fd9a326177e27445d"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/aggregation-schema-identifiers/root.jsonl",
+      "outcome": "pass",
+      "pass_events": 56,
+      "leaf_outcomes": {
+        "pass": 50,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 123148,
+      "sha256": "23beaf18ca3e18a5a4f317e3862b42ab1fd6d810047f5d818d65f214a30a5691"
+    },
+    {
+      "file": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/aggregation-schema-identifiers/desktop.jsonl",
+      "outcome": "pass",
+      "pass_events": 56,
+      "leaf_outcomes": {
+        "pass": 50,
+        "fail": 0,
+        "skip": 0
+      },
+      "bytes": 123166,
+      "sha256": "e3696412843b957503f4ac2047ee32f2d42d58cc825cd367bde8f486239175b9"
+    }
+  ],
+  "source_files": {
+    "backend/pkg/database/gorm_repository_query.go": "041158f774907aa5b2d634aad6dfce35b47055f92cc1b9002049014a71a53a61",
+    "backend/pkg/database/gorm_aggregation_security_test.go": "f8647f29c8c6139de19e087b6d1941acb874a28ae7a3551ed6242348eee1bbcf"
+  },
+  "protected_ci": "pending, all seven checks retained",
+  "main_codeql": "pending, no dismissal/suppression",
+  "held_unpublished_text_task": "task/text-only-concepts-135 at20a82b097bfa2b8f7b815b4652a8f3c340723488 preserved for subsequent integration"
+}

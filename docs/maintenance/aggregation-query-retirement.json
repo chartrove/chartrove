@@ -1,0 +1,31 @@
+{
+  "time": "2026-11-04T02:19:17.721221+00:00",
+  "main": "d50c0f6b39a430c9e29e67e56314f88b1d0c94e2",
+  "branches": [
+    {
+      "name": "task/aggregation-sql-boundaries",
+      "sha": "367cf5541c43593b2a259fd7b5a481efd2171774",
+      "kind": "merged task",
+      "ref": "refs/heads/task/aggregation-sql-boundaries",
+      "outcome": "deleted exact reviewed tip"
+    }
+  ],
+  "open_pr_dependencies": [],
+  "logs": {
+    "dry_run": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/aggregation-sql-boundaries\n"
+    },
+    "push": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/karamhouse/chartrove.git\n - [deleted]               task/aggregation-sql-boundaries\n"
+    }
+  },
+  "held_owner_tips": {
+    "task/artifact-retention": "ed81d1bbede20c0618a01a859a9af887388ca26c",
+    "task/angular-cache-retention": "3eed5f762ad39c74218c3437fd2210dc85bbfc98"
+  },
+  "worktrees_unchanged": true
+}

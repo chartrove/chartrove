@@ -710,44 +710,41 @@ func ProcessAggregationParameter(aggregationFieldWithFn models.QueryResourceAggr
 	if err != nil {
 		return AggregationParameter{}, err
 	}
-	aggregationParameter := AggregationParameter{Function: function}
-
-	//determine the searchCode searchCodeModifier
-	//TODO: this is only applicable to string, token, reference and uri type (however unknown names & modifiers are ignored)
-	if aggregationFieldParts := strings.SplitN(aggregationFieldWithFn.Field, ":", 2); len(aggregationFieldParts) == 2 {
-		aggregationParameter.Name = aggregationFieldParts[0]
-		aggregationParameter.Modifier = aggregationFieldParts[1]
-	} else {
-		aggregationParameter.Name = aggregationFieldParts[0]
-		aggregationParameter.Modifier = ""
+	parts := strings.SplitN(aggregationFieldWithFn.Field, ":", 2)
+	requestedName := parts[0]
+	modifier := ""
+	if len(parts) == 2 {
+		modifier = parts[1]
 	}
 
-	// Resolve the identifier from the server-generated schema, never from SQL
-	// supplied by the caller. Expression columns are quoted separately from paths.
+	// Construct the compiled parameter only from a server-owned schema key.
+	// Never place the requested identifier in the output, including error paths.
+	aggregationParameter := AggregationParameter{Function: function}
 	found := false
 	for name, parameterType := range searchParamTypeLookup {
-		if name == aggregationParameter.Name {
-			aggregationParameter.Name = name
-			aggregationParameter.Type = SearchParameterType(parameterType)
+		if name == requestedName {
+			aggregationParameter.SearchParameter = SearchParameter{
+				Name: name, Type: SearchParameterType(parameterType), Modifier: modifier,
+			}
 			found = true
 			break
 		}
 	}
 	if !found {
-		return aggregationParameter, fmt.Errorf("unknown search parameter in aggregation: %s", aggregationParameter.Name)
+		return AggregationParameter{}, fmt.Errorf("unknown search parameter in aggregation: %s", requestedName)
 	}
 
 	//primitive types should not have a modifier, we need to throw an error
 	if aggregationParameter.Type == SearchParameterTypeNumber || aggregationParameter.Type == SearchParameterTypeUri || aggregationParameter.Type == SearchParameterTypeKeyword || aggregationParameter.Type == SearchParameterTypeDate {
 		if len(aggregationParameter.Modifier) > 0 {
-			return aggregationParameter, fmt.Errorf("primitive aggregation parameter %s cannot have a property (%s)", aggregationParameter.Name, aggregationParameter.Modifier)
+			return AggregationParameter{}, fmt.Errorf("primitive aggregation parameter %s cannot have a property (%s)", aggregationParameter.Name, aggregationParameter.Modifier)
 		}
 	} else if aggregationParameter.Type == SearchParameterTypeToken {
 		//modifier is optional for token types
 	} else {
 		//complex types must have a modifier
 		if len(aggregationParameter.Modifier) == 0 {
-			return aggregationParameter, fmt.Errorf("complex aggregation parameter %s must have a property", aggregationParameter.Name)
+			return AggregationParameter{}, fmt.Errorf("complex aggregation parameter %s must have a property", aggregationParameter.Name)
 		}
 	}
 	return aggregationParameter, nil
