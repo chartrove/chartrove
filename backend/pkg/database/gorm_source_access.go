@@ -193,9 +193,12 @@ func (gr *GormRepository) ListSharedSources(ctx context.Context) ([]models.Share
 // earlier metadata check is for a consistent error, never the authorization proof.
 func (gr *GormRepository) sourceResourceQuery(ctx context.Context, actor uuid.UUID, source uuid.UUID, table string, edit bool) *gorm.DB {
 	db := gr.GormClient.WithContext(ctx)
-	sources := db.Table("source_credentials").Select("user_id").Where("id = ? AND deleted_at IS NULL", source).
+	// Legacy FHIR owner columns can be text while PostgreSQL source owners are
+	// UUIDs. Compare their canonical database values without changing identity,
+	// requiring a clinical-table migration, or relaxing the live grant predicate.
+	sources := db.Table("source_credentials").Select("CAST(user_id AS TEXT)").Where("id = ? AND deleted_at IS NULL", source).
 		Where("user_id = ? OR EXISTS (?)", actor, activeSourceGrant(db, actor, source, edit))
-	return db.Table(table).Where("source_id = ? AND user_id IN (?) AND deleted_at IS NULL", source, sources)
+	return db.Table(table).Where("source_id = ? AND CAST(user_id AS TEXT) IN (?) AND deleted_at IS NULL", source, sources)
 }
 
 func (gr *GormRepository) ListSharedResources(ctx context.Context, source uuid.UUID, resourceType string, page int) ([]models.ResourceBase, error) {

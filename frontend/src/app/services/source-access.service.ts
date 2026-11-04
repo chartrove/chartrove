@@ -10,6 +10,7 @@ export interface AccessSource { id: string; display: string; platform_type?: str
 export interface SourceGrant { id: string; delegate_username: string; delegate_user_id: string; access_level: SourceAccessLevel; expires_at: string | null; revoked_at: string | null; }
 export interface SourceAudit { id: string; created_at: string; actor_user_id: string; action: string; grant_id?: string; access_level?: SourceAccessLevel; resource_type?: string; resource_id?: string; }
 export interface SharedResource { source_resource_type: string; source_resource_id: string; resource_raw: Record<string, unknown>; resource_raw_text?: string; sort_title?: string; editable?: boolean; }
+export type ResourceListItem = Pick<SharedResource, 'source_resource_type' | 'source_resource_id' | 'sort_title'>;
 export interface SharedSummary { source: AccessSource; counts: Record<string, number>; }
 interface AccessResponse<T> { success: boolean; data: T; }
 
@@ -44,6 +45,9 @@ export class SourceAccessService {
   revoke(source: string, grant: string): Observable<null> { return this.data(this.http.delete<AccessResponse<null>>(`${this.source(source)}/grants/${encodeURIComponent(grant)}`)); }
   summary(source: string): Observable<SharedSummary> { return this.data(this.http.get<AccessResponse<SharedSummary>>(`${this.source(source)}/summary`)); }
   list(source: string, type: string, page: number): Observable<SharedResource[]> { return this.data(this.http.get<AccessResponse<SharedResource[]>>(`${this.resource(source, type)}?page=${page}`)); }
+  search(source: string, type: string, text: string, page: number): Observable<ResourceListItem[]> {
+    return this.data(this.http.post<AccessResponse<ResourceListItem[]>>(`${this.source(source)}/search/${encodeURIComponent(type)}`, {text, page}));
+  }
   detail(source: string, type: string, id: string): Observable<SharedResource> { return this.data(this.http.get<AccessResponse<SharedResource>>(this.resource(source, type, id))); }
   edit(source: string, type: string, id: string, raw: string): Observable<null> {
     return this.data(this.http.patch<AccessResponse<null>>(this.resource(source, type, id), `{"resource_raw":${raw}}`, {headers: {'Content-Type': 'application/json'}}));

@@ -12,6 +12,7 @@ import (
 	"net/http/httptest"
 	"net/url"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -102,6 +103,9 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 		}
 		w := httptest.NewRecorder()
 		r.ServeHTTP(w, req)
+		if strings.Contains(path, "/search/") {
+			require.Equal(t, "no-store", w.Header().Get("Cache-Control"))
+		}
 		for _, cookie := range w.Result().Cookies() {
 			if cookie.Name == oidcCookieName {
 				require.True(t, cookie.HttpOnly)
@@ -182,10 +186,18 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	resource, err := access.CreateLocalResource(ownerCtx, source, json.RawMessage(`{"resourceType":"Observation","status":"final","code":{"text":"Synthetic private observation"}}`))
 	require.NoError(t, err)
 	path := "/secure/source-access/" + source.String() + "/resources/Observation/" + resource.SourceResourceID
+	searchPath := "/secure/source-access/" + source.String() + "/search/Observation"
+	request("POST", searchPath, oidcToken, map[string]interface{}{"text": "Synthetic", "page": 0}, 404)
 	request("GET", path, oidcToken, nil, 404)
 	grant, err := access.SetSourceGrant(ownerCtx, source, delegate.Username, models.SourceAccessView, nil)
 	require.NoError(t, err)
 	request("GET", path, oidcToken, nil, 200)
+	hits := request("POST", searchPath, oidcToken, map[string]interface{}{"text": resource.SourceResourceID, "page": 0}, 200)
+	require.Contains(t, string(hits), resource.SourceResourceID)
+	require.NotContains(t, string(hits), "resource_raw")
+	request("POST", searchPath, oidcToken, map[string]interface{}{"text": "Synthetic", "page": -1}, 400)
+	request("POST", searchPath, oidcToken, map[string]interface{}{"text": strings.Repeat("s", 5000), "page": 0}, 400)
+	request("POST", searchPath, oidcToken, map[string]interface{}{"text": "Synthetic", "page": 0, "owner_user_id": owner.ID}, 400)
 	// Delegation never opens the existing owner-only detail API.
 	request("GET", "/secure/resource/fhir/"+source.String()+"/"+resource.SourceResourceID, oidcToken, nil, 500)
 	request("PATCH", path, oidcToken, map[string]interface{}{"resource_raw": map[string]string{"resourceType": "Observation", "id": resource.SourceResourceID}}, 404)
@@ -198,6 +210,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 		require.Equal(t, delegate.ID, s.UserID)
 	}
 	require.NoError(t, access.RevokeSourceGrant(ownerCtx, source, grant.ID))
+	request("POST", searchPath, oidcToken, map[string]interface{}{"text": "Synthetic", "page": 0}, 404)
 	request("GET", path, oidcToken, nil, 404)
 	request("POST", "/secure/auth/oidc/logout", oidcToken, map[string]string{}, 200)
 	request("GET", "/secure/account/me", oidcToken, nil, 401)
