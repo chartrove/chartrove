@@ -24,12 +24,12 @@ describe('SourceAccessComponent authorization UI', () => {
   });
 
   it('renders VIEW or imported records as text without an editor or save action', () => {
-    api.detail.and.returnValue(of({...record, resource_raw: {...record.resource_raw, note: '<img src=x onerror=alert(1)>'}}));
+    api.detail.and.returnValue(of({...record, resource_raw: {...record.resource_raw, note: '<em>Synthetic clinical note</em>'}}));
     component.open(record); fixture.detectChanges();
     const view = fixture.nativeElement as HTMLElement;
     expect(view.querySelector('#edit-record')).toBeNull();
-    expect(view.querySelector('img')).toBeNull();
-    expect(view.textContent).toContain('<img src=x onerror=alert(1)>');
+    expect(view.querySelector('em')).toBeNull();
+    expect(view.textContent).toContain('<em>Synthetic clinical note</em>');
     component.saveResource(); expect(api.edit).not.toHaveBeenCalled();
   });
 
