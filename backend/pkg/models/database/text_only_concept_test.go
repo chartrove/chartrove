@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 	"gorm.io/datatypes"
@@ -58,6 +59,47 @@ func TestTextOnlyConceptsReachGeneratedModels(t *testing.T) {
 				require.JSONEq(t, `[{"text":"Synthetic manifestation Ω"}]`, string(columns["manifestation"]))
 			}
 			require.Equal(t, raw, []byte(model.GetResourceRaw()), "derived columns must not rewrite raw records")
+		})
+	}
+}
+
+// FHIR R4 indexes reaction.onset; the separate top-level onset[x] value remains
+// in the original resource. See allergyintolerance.html#search in HL7 R4.
+func TestAllergyDateIndexUsesReactionOnset(t *testing.T) {
+	for _, test := range []struct {
+		name          string
+		top, reaction bool
+	}{
+		{"top-level-only", true, false},
+		{"reaction-only", false, true},
+		{"both-distinct", true, true},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			input := map[string]interface{}{
+				"resourceType": "AllergyIntolerance", "id": "synthetic-dates",
+				"recordedDate": "2026-01-03T04:05:06-05:00",
+			}
+			if test.top {
+				input["onsetDateTime"] = "2026-01-01T01:02:03+01:00"
+			}
+			if test.reaction {
+				input["reaction"] = []interface{}{map[string]interface{}{"onset": "2026-01-02T02:03:04-05:00"}}
+			}
+			raw, err := json.Marshal(input)
+			require.NoError(t, err)
+			model := FhirAllergyIntolerance{}
+			model.SetResourceRaw(datatypes.JSON(raw))
+			require.NoError(t, model.PopulateAndExtractSearchParameters(raw))
+			require.NotNil(t, model.Date)
+			require.Equal(t, "2026-01-03T04:05:06-05:00", model.Date.Format(time.RFC3339))
+			if test.reaction {
+				require.NotNil(t, model.Onset)
+				require.False(t, model.Onset.IsZero())
+				require.Equal(t, "2026-01-02T02:03:04-05:00", model.Onset.Format(time.RFC3339))
+			} else {
+				require.Nil(t, model.Onset)
+			}
+			require.Equal(t, raw, []byte(model.GetResourceRaw()))
 		})
 	}
 }

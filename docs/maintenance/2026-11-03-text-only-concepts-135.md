@@ -39,7 +39,7 @@ archives, their recoverable history and the maintainer's retirement remain intac
 The same15ordinary extractor/generated-model cases have seven old passes and
 eight old failures, then15corrected passes. A separate real encrypted repository
 insert/reopen case fails on the original script and passes after correction.
-Each module graph passes50full model-test events plus that encrypted case.
+Each module graph passes54full model-test events plus that encrypted case.
 The synthetic raw payload preserves an unknown large decimal, zero, false and
 Unicode byte-identically. All SQL pools close before t.TempDir removes fixtures;
 mock settings exclusively identify the disposable database and synthetic key.
@@ -55,3 +55,12 @@ Protected CI and full issue-content reconciliation remain pending at this source
 checkpoint. #135 remains open. No local full frontend/native build is admitted
 below the unchanged50GiB reserve; no new packaged native qualification is claimed.
 Raw evidence: dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue135/.
+
+Three additional date controls pass both on the original and corrected script.
+The [FHIR R4 search definition](https://hl7.org/fhir/R4/allergyintolerance.html#search)
+indexes reaction.onset and separately recordedDate. Current extraction preserves
+the reaction offset, keeps top-level onsetDateTime byte-identical in raw JSON,
+and leaves the onset index absent when no reaction onset is present. No zero date
+is produced in those supported cases. These are baseline controls, not a date fix
+or a claim about the author's historical backup. No date implementation or
+migration is introduced; broader issue#69 remains open.
