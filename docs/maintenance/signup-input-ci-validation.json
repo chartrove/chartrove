@@ -1,0 +1,45 @@
+{
+  "pr": 406,
+  "head": "71fe8e7a7a703c2e3447f00daf4b2ad8ff509d37",
+  "merge": "3e6e9a73eb50bc43f7e67988d42fbed254c3ed91",
+  "run": 41750895630,
+  "Backend": "success",
+  "Frontend": "success",
+  "Desktop": "success",
+  "browser_pass": 572,
+  "browser_skip": 1,
+  "node_pass": 16,
+  "initial_bundle": "6.13 MB",
+  "unchanged_budget": "10 MB",
+  "focused_root_pass_events": 102,
+  "focused_desktop_pass_events": 102,
+  "issue_disposition": "No historical issue closed; #217 policy remains pending/unimplemented.",
+  "full_job_logs": [
+    {
+      "name": "frontend",
+      "job": 126315445459,
+      "exit": 0,
+      "bytes": 123650,
+      "sha256": "c41f1e3b937fdac713c64eade96ff248159babf8e21016f60ef609ece019ed8e"
+    },
+    {
+      "name": "desktop",
+      "job": 126315445544,
+      "exit": 0,
+      "bytes": 54795,
+      "sha256": "57b2b1a88b21580ec266b695472c971f24e5a337ff62d26a8bbe2046492c7bef"
+    },
+    {
+      "name": "backend",
+      "job": 126315445350,
+      "exit": 0,
+      "bytes": 36127,
+      "sha256": "5938097617fb983b40130cc0e08256c8e9a4333875c52bab33b76de6afa5929a"
+    }
+  ],
+  "independent_main_push_checks": {
+    "Desktop": "success",
+    "Frontend": "success",
+    "Backend": "success"
+  }
+}
