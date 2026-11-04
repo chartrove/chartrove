@@ -1,0 +1,89 @@
+{
+  "issue": 44,
+  "upstream_issue": 124,
+  "base_main": "3e6e9a73eb50bc43f7e67988d42fbed254c3ed91",
+  "source": {
+    "base_main": "3e6e9a73eb50bc43f7e67988d42fbed254c3ed91",
+    "before_sha256": "6b06988c3ce46bd047dc0e93ad0abf9a53d8681db16a5c7b22cdebc771f07166",
+    "candidate_sha256": "08abe669c013731019c4d4c15696266d073bb9ad24dec35b4f1a9916226c5a27",
+    "working_file_exists": false,
+    "skip_worktree_before": "S .github/workflows/validation.yaml"
+  },
+  "structural_validation": {
+    "original_three_jobs_unchanged": true,
+    "triggers_permissions_concurrency_unchanged": true,
+    "only_added_job": "codeql",
+    "trusted_constant_matrix": true,
+    "full_sha_pins_only": true,
+    "no_expression_interpolation_in_shell": true,
+    "no_checkout_credentials_persisted": true,
+    "scanner_token_permissions": [
+      "contents:read",
+      "security-events:write"
+    ],
+    "database_upload": false,
+    "wait_for_sarif_processing": true,
+    "language_modes": [
+      {
+        "language": "go",
+        "os": "macos-14",
+        "build-mode": "manual"
+      },
+      {
+        "language": "javascript-typescript",
+        "os": "ubuntu-24.04",
+        "build-mode": "none"
+      },
+      {
+        "language": "actions",
+        "os": "ubuntu-24.04",
+        "build-mode": "none"
+      }
+    ]
+  },
+  "actionlint": {
+    "command": [
+      "actionlint",
+      "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue44/candidate-validation.yaml"
+    ],
+    "exit": 0,
+    "version": "1.7.12\ninstalled by building from source\nbuilt with go1.26.1 compiler for darwin/arm64"
+  },
+  "action_source": {
+    "action_tag": "v4.39.2",
+    "action_commit": "1fc58d04a4d4374f921bdac573c3811c240f9c26",
+    "files": {
+      "init/action.yml": {
+        "bytes": 8937,
+        "sha256": "04e0e7ab95dd63445d773be6a9bd042a34d028d7ddbe1d687568e1b21aa24264",
+        "git_blob_sha": "8d26999f7afe7bf513c8d5dbfe5cfac846b2ff1d"
+      },
+      "analyze/action.yml": {
+        "bytes": 5295,
+        "sha256": "46967f21b52b5f78ba49192d432bca6c6b8a1027b3d2eb8b29d33c3f3012ec78",
+        "git_blob_sha": "d70401c0a48ad4246c1ef34787e79f5cad4d8281"
+      },
+      "package.json": {
+        "bytes": 3217,
+        "sha256": "0ae15e69b4e53552b755212bd20cb9da8bddecb9d9af00775124874c13c63db1",
+        "git_blob_sha": "73d61b35d06e4cc33e120b3cadb8ae15c2ad587f"
+      },
+      "src/defaults.json": {
+        "bytes": 153,
+        "sha256": "a8a555de65460feb95b1438d4278714146bd6238bdccb083f7eca4fe3e9e203f",
+        "git_blob_sha": "cfa3f6c1c7b0eca88c27d85db4e4b43344423930"
+      }
+    }
+  },
+  "sparse_application": {
+    "branch": "task/automatic-security-scan-44",
+    "staged_workflow_git_blob": "165dc5f7448dd339c7e2cdc4b660e2b93f2fe526",
+    "workflow_sha256": "08abe669c013731019c4d4c15696266d073bb9ad24dec35b4f1a9916226c5a27",
+    "working_file_materialized": false,
+    "sparse_flag_preserved": true,
+    "sparse_patterns_unchanged": true
+  },
+  "live_analysis": "pending",
+  "new_status_enforcement": "pending verified execution; existing three checks unchanged",
+  "raw_evidence": "dist/validation/2026-11-01-consolidation/post-dependency-issue-review/issue44"
+}

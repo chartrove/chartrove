@@ -9,20 +9,20 @@ This is an incomplete consolidation, not a claim that target counts are achieved
 
 ## Verified state
 
-Snapshot: November 3, 2026, after #405 and the individual #143 disposition.
-[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after405.json).
-The signup-input-validation task branch is additional to this historical snapshot.
+Snapshot: November 3, 2026, after #406; no historical issue was closed for its input guard.
+[Machine-readable receipt](maintenance/2026-11-03-checkpoint-after406.json).
+The automatic-security-scan-44 task branch is additional to this historical snapshot.
 The separately owned artifact-retention and angular-cache-retention branches/
 worktrees remain preserved, explicitly held by the maintainer after #399.
 Requery live counts after every integration.
 
 | Item | Verified result |
 | --- | --- |
-| Published application main | `54a6ae8e9ec9df3f86d79c08c97a99749252d9b4` (#405) |
+| Published application main | `3e6e9a73eb50bc43f7e67988d42fbed254c3ed91` (#406) |
 | Open issues | 160, including retained Renovate dashboard #222 |
 | Open PRs | 6: six historical feature drafts; zero Renovate proposals |
 | Origin heads | 14, including the held cache owner ref |
-| Default branch | main tracks origin/main; current signup-input task is additional |
+| Default branch | main tracks origin/main; current security-scan task is additional |
 | Cached legacy refs | 17 nonsymbolic refs plus HEAD, preserved unchanged; not live origin heads |
 | Tags / worktrees / stashes | 30 unchanged tags; three authorized checkouts now; no stashes |
 | Main protection | Active ruleset 26337029, no bypass actors |
@@ -256,13 +256,23 @@ logout-cause, idle timeout, per-user setting,
 revocation or real-data migration fix is claimed.
 [Scope](maintenance/2026-11-03-session-lifetime-143.md).
 
-The sign-up input candidate rejects malformed/missing/blank credentials before
+Merged #406 rejects malformed/missing/blank sign-up credentials before
 account lookup or creation. It addresses the nil embedded User
 path without deciding #217's reserved-name policy. Identical ordinary14-case
 HTTP controls are old two-pass/twelve-fail and corrected14-pass. Valid literal
 credentials and the existing role policy remain intact; no existing account,
-password/key, sign-in, schema or provider behavior is changed. Protected checks
-remain required. [Scope](maintenance/2026-11-03-signup-input-validation.md).
+password/key, sign-in, schema or provider behavior is changed. All three protected
+and independent main-push checks pass:572 browser cases, one existing skip,16Node
+checks and6.13MB initial output. Root/desktop each pass102focused events. Only its
+incorporated task branch was retired; both independent owners remain held. [Scope](maintenance/2026-11-03-signup-input-validation.md).
+
+The #44 candidate adds pinned GitHub-native CodeQL source analysis to Validation
+for Go, JavaScript/TypeScript and workflow sources. Original jobs/triggers/token
+permissions/concurrency stay unchanged; only the scanner receives scoped result
+upload permission. Actionlint, source admission and targeted workflow hardening
+checks pass. No old publisher, external credential or SaaS account is enabled.
+Live analysis, new-check enforcement and issue disposition remain pending.
+[Scope](maintenance/2026-11-03-automatic-security-scanning-44.md).
 
 Merged #390 migrates ngx-highlightjs to the Angular 22 compatible API. Browser
 consumer cases, 529 full browser tests (one existing skip), production/Storybook,

@@ -41,3 +41,16 @@ request-handling correction. Raw evidence:
 dist/validation/2026-11-01-consolidation/post-dependency-issue-review/
 signup-input-review/. [Compact validation](signup-input-validation.json) records
 the completed root/desktop checks.
+
+## Protected integration
+
+PR #406 merged at3e6e9a73eb50bc43f7e67988d42fbed254c3ed91 with all three
+required checks passing in run41750895630:572 browser cases, one existing skip,
+16Node checks and6.13MB initial output under unchanged10MB. All complete job logs
+and hashes remain. Independent main-push checks also pass. No historical issue
+is closed for this correction; #217 remains open with its naming policy pending.
+Only the incorporated task branch was retired, its exact tip remains on main,
+and both independent retention owners remain held.
+[CI](signup-input-ci-validation.json),
+[retirement](signup-input-retirement.json),
+[fresh checkpoint](2026-11-03-checkpoint-after406.json).
