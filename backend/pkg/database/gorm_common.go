@@ -22,6 +22,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type GormRepository struct {
@@ -664,7 +665,10 @@ func (gr *GormRepository) AddResourceAssociation(ctx context.Context, source *mo
 		return err
 	}
 
-	err = gr.GormClient.WithContext(ctx).Table("related_resources").Create(map[string]interface{}{
+	// Use a conflict-safe insert instead of swallowing a constraint error. In
+	// PostgreSQL a swallowed duplicate error still aborts the surrounding import
+	// transaction, preventing its clinical replacement from committing.
+	err = gr.GormClient.WithContext(ctx).Clauses(clause.OnConflict{DoNothing: true}).Table("related_resources").Create(map[string]interface{}{
 		"resource_base_user_id":                 source.UserID,
 		"resource_base_source_id":               source.ID,
 		"resource_base_source_resource_type":    resourceType,

@@ -161,8 +161,14 @@ func TestSourceAccessIsolationAndLifecycle(t *testing.T) {
 		ReferencedResources: []string{"urn:fastenhealth-fhir:" + uuid.NewString() + ":Patient/synthetic-unavailable"}})
 	require.Error(t, err)
 	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
-	_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated})
+	for i := 0; i < 2; i++ {
+		_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated,
+			ReferencedResources: []string{"Patient/synthetic-linked", "Patient/synthetic-linked"}})
+		require.NoError(t, err, "repeated association ingestion must remain idempotent inside a transaction")
+	}
+	associations, err := r.FindResourceAssociationsByTypeAndId(owner, &source, "Observation", local.SourceResourceID)
 	require.NoError(t, err)
+	require.Len(t, associations, 1)
 	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
 	audit, err := r.ListSourceAccessAudit(owner, source.ID)
 	require.NoError(t, err)
