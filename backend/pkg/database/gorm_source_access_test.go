@@ -1,0 +1,268 @@
+package database
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	dm "github.com/fastenhealth/fasten-onprem/backend/pkg/models/database"
+	"gorm.io/gorm"
+	"path/filepath"
+	"sync/atomic"
+	"testing"
+	"time"
+
+	"github.com/fastenhealth/fasten-onprem/backend/pkg"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	sm "github.com/fastenhealth/fasten-sources/clients/models"
+	"github.com/google/uuid"
+	"github.com/sirupsen/logrus"
+	"github.com/stretchr/testify/require"
+)
+
+func TestSourceAccessIsolationAndLifecycle(t *testing.T) {
+	cfg, err := config.Create()
+	require.NoError(t, err)
+	cfg.Set("database.type", "sqlite")
+	cfg.Set("database.location", filepath.Join(t.TempDir(), "synthetic-grants.db"))
+	cfg.Set("database.encryption.enabled", true)
+	cfg.Set("database.encryption.key", "synthetic-source-access-key")
+	cfg.Set("database.validation_mode", false)
+	db, err := newTestRepository(t, cfg, logrus.New(), event_bus.NewNoopEventBusServer())
+	require.NoError(t, err)
+	r := db.(*GormRepository)
+	users := []*models.User{
+		{Username: "synthetic-owner", Password: "synthetic-password"},
+		{Username: "synthetic-delegate", Password: "synthetic-password"},
+		{Username: "synthetic-admin", Password: "synthetic-password", Role: pkg.UserRoleAdmin},
+	}
+	contexts := []context.Context{}
+	for _, u := range users {
+		require.NoError(t, r.CreateUser(context.Background(), u))
+		contexts = append(contexts, context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, u.Username))
+	}
+	owner, delegate, admin := contexts[0], contexts[1], contexts[2]
+	sources, err := r.GetSources(owner)
+	require.NoError(t, err)
+	source := sources[0]
+	otherSource := &models.SourceCredential{Patient: "synthetic-unshared-patient", Display: "Unshared synthetic source", AccessToken: "synthetic-secret"}
+	require.NoError(t, r.CreateSource(owner, otherSource))
+	local, err := r.CreateLocalResource(owner, source.ID, json.RawMessage(`{"resourceType":"Observation","status":"final","code":{"text":"Synthetic original"}}`))
+	require.NoError(t, err)
+	_, err = r.UpsertRawResource(owner, otherSource, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: json.RawMessage(`{"resourceType":"Observation","id":"other","status":"final"}`)})
+	require.NoError(t, err)
+	for _, ctx := range []context.Context{delegate, admin} {
+		_, err = r.GetSharedSourceSummary(ctx, source.ID)
+		require.ErrorIs(t, err, ErrSourceAccessDenied)
+		_, err = r.GetSharedResource(ctx, source.ID, "Observation", local.SourceResourceID)
+		require.ErrorIs(t, err, ErrSourceAccessDenied)
+		_, err = r.SetSourceGrant(ctx, source.ID, users[1].Username, models.SourceAccessEdit, nil)
+		require.ErrorIs(t, err, ErrSourceAccessDenied)
+	}
+	grant, err := r.SetSourceGrant(owner, source.ID, users[1].Username, models.SourceAccessView, nil)
+	require.NoError(t, err)
+	shared, err := r.ListSharedSources(delegate)
+	require.NoError(t, err)
+	require.Len(t, shared, 1)
+	require.Equal(t, source.ID, shared[0].ID)
+	safe, err := json.Marshal(shared)
+	require.NoError(t, err)
+	require.NotContains(t, string(safe), "access_token")
+	require.NotContains(t, string(safe), "password")
+	summary, err := r.GetSharedSourceSummary(delegate, source.ID)
+	require.NoError(t, err)
+	require.EqualValues(t, 1, summary.Counts["Observation"])
+	rows, err := r.ListSharedResources(delegate, source.ID, "Observation", 0)
+	require.NoError(t, err)
+	require.Len(t, rows, 1)
+	require.Equal(t, users[0].ID, rows[0].UserID)
+	_, err = r.ListSharedResources(delegate, otherSource.ID, "Observation", 0)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	// Even a historical malformed row bearing the shared source must not leak
+	// another owner's data through a source-only predicate.
+	malformed := &dm.FhirObservation{}
+	malformed.SetOriginBase(models.OriginBase{UserID: users[2].ID, SourceID: source.ID, SourceResourceType: "Observation", SourceResourceID: "synthetic-other-owner"})
+	require.NoError(t, malformed.PopulateAndExtractSearchParameters(json.RawMessage(`{"resourceType":"Observation","id":"synthetic-other-owner","status":"final"}`)))
+	require.NoError(t, r.GormClient.Create(malformed).Error)
+	rows, err = r.ListSharedResources(delegate, source.ID, "Observation", 0)
+	require.NoError(t, err)
+	require.Len(t, rows, 1)
+	_, err = r.GetSharedResource(delegate, source.ID, "Observation", "synthetic-other-owner")
+	require.Error(t, err)
+
+	// Existing APIs remain own-only, including administration and credential access.
+	for _, ctx := range []context.Context{delegate, admin} {
+		_, err = r.GetSource(ctx, source.ID.String())
+		require.Error(t, err)
+		_, err = r.GetResourceBySourceId(ctx, source.ID.String(), local.SourceResourceID)
+		require.Error(t, err)
+	}
+	updated := json.RawMessage(`{"resourceType":"Observation","id":"` + local.SourceResourceID + `","status":"amended","code":{"text":"Synthetic changed"}}`)
+	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
+	_, err = r.SetSourceGrant(delegate, source.ID, users[2].Username, models.SourceAccessEdit, nil)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	_, err = r.SetSourceGrant(owner, source.ID, users[1].Username, models.SourceAccessEdit, nil)
+	require.NoError(t, err)
+	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
+	stored, err := r.GetSharedResource(owner, source.ID, "Observation", local.SourceResourceID)
+	require.NoError(t, err)
+	require.JSONEq(t, string(updated), string(stored.ResourceRaw))
+	var indexed dm.FhirObservation
+	require.NoError(t, r.GormClient.Where("source_id = ? AND source_resource_id = ?", source.ID, local.SourceResourceID).First(&indexed).Error)
+	require.Contains(t, string(indexed.Code), "Synthetic changed")
+	require.NotContains(t, string(indexed.Code), "Synthetic original")
+	// An audit failure rolls the clinical edit back in the same transaction.
+	const callback = "synthetic:audit-failure"
+	require.NoError(t, r.GormClient.Callback().Create().Before("gorm:create").Register(callback, func(tx *gorm.DB) {
+		if tx.Statement.Schema != nil && tx.Statement.Schema.Table == "source_access_audits" {
+			tx.AddError(errors.New("synthetic audit failure"))
+		}
+	}))
+	require.Error(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, json.RawMessage(`{"resourceType":"Observation","id":"`+local.SourceResourceID+`","status":"final"}`)))
+	require.NoError(t, r.GormClient.Callback().Create().Remove(callback))
+	stored, err = r.GetSharedResource(owner, source.ID, "Observation", local.SourceResourceID)
+	require.NoError(t, err)
+	require.JSONEq(t, string(updated), string(stored.ResourceRaw))
+
+	require.ErrorIs(t, r.UpdateSharedResource(delegate, otherSource.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
+	require.Error(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, json.RawMessage(`{"resourceType":"Patient","id":"changed"}`)))
+	require.ErrorIs(t, r.RevokeSourceGrant(delegate, source.ID, grant.ID), ErrSourceAccessDenied)
+	type revokeContentionKey struct{}
+	revokeCtx := context.WithValue(owner, revokeContentionKey{}, true)
+	const revokeCallback = "synthetic:revoke-contention"
+	var revokeWriterErr error
+	var revokeWriterInjected bool
+	require.NoError(t, r.GormClient.Callback().Update().Before("gorm:update").Register(revokeCallback, func(tx *gorm.DB) {
+		if tx.Statement.Context.Value(revokeContentionKey{}) == true && tx.Statement.Table == "source_grants" {
+			revokeWriterInjected = true
+			revokeWriterErr = r.GormClient.WithContext(context.Background()).Model(&models.User{}).Where("id = ?", users[2].ID).Update("role", pkg.UserRoleAdmin).Error
+		}
+	}))
+	err = r.RevokeSourceGrant(revokeCtx, source.ID, grant.ID)
+	require.NoError(t, r.GormClient.Callback().Update().Remove(revokeCallback))
+	require.True(t, revokeWriterInjected)
+	require.NoError(t, revokeWriterErr)
+	require.NoError(t, err, "revocation must tolerate an unrelated committed writer")
+	_, err = r.GetSharedResource(delegate, source.ID, "Observation", local.SourceResourceID)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
+	for _, offset := range []int{-5 * 60 * 60, 5 * 60 * 60} {
+		offsetExpiry := time.Now().Add(time.Hour).In(time.FixedZone("synthetic-offset", offset))
+		_, err = r.SetSourceGrant(owner, source.ID, users[1].Username, models.SourceAccessEdit, &offsetExpiry)
+		require.NoError(t, err)
+		_, err = r.GetSharedResource(delegate, source.ID, "Observation", local.SourceResourceID)
+		require.NoError(t, err, "future offset-bearing expirations must not deny access early")
+		storedGrants, err := r.ListSourceGrants(owner, source.ID)
+		require.NoError(t, err)
+		require.Len(t, storedGrants, 1)
+		_, storedOffset := storedGrants[0].ExpiresAt.Zone()
+		require.Zero(t, storedOffset, "SQLite comparisons require normalized UTC storage")
+		_, originalOffset := offsetExpiry.Zone()
+		require.Equal(t, offset, originalOffset, "the caller's timestamp must not be mutated")
+	}
+
+	expires := time.Now().Add(time.Hour)
+	_, err = r.SetSourceGrant(owner, source.ID, users[1].Username, models.SourceAccessEdit, &expires)
+	require.NoError(t, err)
+	// Expire a once-valid grant to exercise enforcement, not only input validation.
+	require.NoError(t, r.GormClient.Model(&models.SourceGrant{}).Where("id = ?", grant.ID).Update("expires_at", time.Now().Add(-time.Hour)).Error)
+	_, err = r.ListSharedResources(delegate, source.ID, "Observation", 0)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	_, err = r.GetSharedSourceSummary(delegate, source.ID)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
+	_, err = r.SetSourceGrant(owner, source.ID, users[1].Username, "ADMIN", nil)
+	require.Error(t, err)
+	_, err = r.SetSourceGrant(owner, source.ID, users[0].Username, models.SourceAccessView, nil)
+	require.Error(t, err)
+	_, err = r.SetSourceGrant(owner, source.ID, users[1].Username, models.SourceAccessEdit, nil)
+	require.NoError(t, err)
+	// Removed clinical values must also be removed from derived indexes.
+	withoutCode := json.RawMessage(`{"resourceType":"Observation","id":"` + local.SourceResourceID + `","status":"final"}`)
+	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, withoutCode))
+	indexed = dm.FhirObservation{}
+	require.NoError(t, r.GormClient.Where("source_id = ? AND source_resource_id = ?", source.ID, local.SourceResourceID).First(&indexed).Error)
+	require.NotContains(t, string(indexed.Code), "Synthetic changed")
+	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
+
+	// Force an unrelated connection to write at the first transactional user
+	// read. A deferred read-to-write upgrade fails with BUSY_SNAPSHOT; acquiring
+	// the write reservation first allows that writer to wait for the import.
+	type contentionKey struct{}
+	contentionCtx := context.WithValue(owner, contentionKey{}, true)
+	var reserved, injected atomic.Bool
+	writerDone := make(chan error, 1)
+	const queryCallback, deleteCallback = "synthetic:ingestion-reader", "synthetic:ingestion-writer"
+	require.NoError(t, r.GormClient.Callback().Delete().Before("gorm:delete").Register(deleteCallback, func(tx *gorm.DB) {
+		if tx.Statement.Context.Value(contentionKey{}) == true && tx.Statement.Table == "local_resources" {
+			reserved.Store(true)
+		}
+	}))
+	require.NoError(t, r.GormClient.Callback().Query().After("gorm:query").Register(queryCallback, func(tx *gorm.DB) {
+		if tx.Statement.Context.Value(contentionKey{}) != true || tx.Statement.Table != "users" {
+			return
+		}
+		if _, ok := tx.Statement.ConnPool.(gorm.TxCommitter); !ok || !injected.CompareAndSwap(false, true) {
+			return
+		}
+		write := func() {
+			writerDone <- r.GormClient.WithContext(context.Background()).Model(&models.User{}).Where("id = ?", users[2].ID).Update("role", pkg.UserRoleAdmin).Error
+		}
+		if reserved.Load() {
+			go write()
+		} else {
+			write()
+		}
+	}))
+	_, importErr := r.UpsertRawResource(contentionCtx, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: "synthetic-contention", ResourceRaw: json.RawMessage(`{"resourceType":"Observation","id":"synthetic-contention","status":"final"}`)})
+	require.NoError(t, r.GormClient.Callback().Query().Remove(queryCallback))
+	require.NoError(t, r.GormClient.Callback().Delete().Remove(deleteCallback))
+	require.True(t, injected.Load(), "the contention schedule must execute")
+	select {
+	case err := <-writerDone:
+		require.NoError(t, err)
+	case <-time.After(10 * time.Second):
+		t.Fatal("synthetic concurrent writer did not complete")
+	}
+	require.NoError(t, importErr, "unrelated writes must not invalidate an ingestion read snapshot")
+
+	// An SDK import replacing a formerly local resource must remove edit eligibility.
+	// A failed replacement must preserve both clinical contents and provenance.
+	_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated,
+		ReferencedResources: []string{"urn:fastenhealth-fhir:" + uuid.NewString() + ":Patient/synthetic-unavailable"}})
+	require.Error(t, err)
+	require.NoError(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated))
+	for i := 0; i < 2; i++ {
+		_, err = r.UpsertRawResource(owner, &source, sm.RawResourceFhir{SourceResourceType: "Observation", SourceResourceID: local.SourceResourceID, ResourceRaw: updated,
+			ReferencedResources: []string{"Patient/synthetic-linked", "Patient/synthetic-linked"}})
+		require.NoError(t, err, "repeated association ingestion must remain idempotent inside a transaction")
+	}
+	associations, err := r.FindResourceAssociationsByTypeAndId(owner, &source, "Observation", local.SourceResourceID)
+	require.NoError(t, err)
+	require.Len(t, associations, 1)
+	require.ErrorIs(t, r.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
+	audit, err := r.ListSourceAccessAudit(owner, source.ID)
+	require.NoError(t, err)
+	require.GreaterOrEqual(t, len(audit), 6)
+	_, err = r.ListSourceAccessAudit(delegate, source.ID)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	_, err = r.CreateLocalResource(delegate, source.ID, updated)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	_, err = r.GetSharedResource(delegate, uuid.New(), "Observation", local.SourceResourceID)
+	require.ErrorIs(t, err, ErrSourceAccessDenied)
+	require.NoError(t, r.Close())
+	reopened, err := newTestRepository(t, cfg, logrus.New(), event_bus.NewNoopEventBusServer())
+	require.NoError(t, err)
+	rr := reopened.(*GormRepository)
+	grants, err := rr.ListSourceGrants(owner, source.ID)
+	require.NoError(t, err)
+	require.Len(t, grants, 1)
+	auditAfter, err := rr.ListSourceAccessAudit(owner, source.ID)
+	require.NoError(t, err)
+	require.Equal(t, len(audit), len(auditAfter))
+	_, err = rr.GetSharedResource(delegate, source.ID, "Observation", local.SourceResourceID)
+	require.NoError(t, err)
+	require.ErrorIs(t, rr.UpdateSharedResource(delegate, source.ID, "Observation", local.SourceResourceID, updated), ErrSourceAccessDenied)
+
+}
