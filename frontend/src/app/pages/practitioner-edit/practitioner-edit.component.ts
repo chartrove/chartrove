@@ -1,3 +1,4 @@
+import {combineLatest} from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,6 +29,7 @@ import { parseFullName } from 'parse-full-name';
 export class PractitionerEditPageComponent implements OnInit {
   practitioner: Practitioner | null = null;
   practitionerId: string = '';
+  practitionerSourceId: string = '';
   
   debugMode: boolean = false;
   isSubmitting: boolean = false;
@@ -46,17 +48,18 @@ export class PractitionerEditPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.practitionerId = params['id'];
-      
+    combineLatest([this.route.params, this.route.queryParams]).subscribe(([params, query]) => {
+      this.practitionerId = params['id'] || '';
+      const source = query['source_id'];
+      this.practitionerSourceId = source == null ? '' : typeof source === 'string' ? source : 'invalid-source';
       if (this.practitionerId) {
         this.loadPractitioner();
       } else {
+        this.practitioner = null;
         this.loadError = 'No practitioner ID provided';
         this.isLoading = false;
       }
     });
-
     this.setupFormSubscriptions();
   }
 
@@ -127,23 +130,23 @@ export class PractitionerEditPageComponent implements OnInit {
   loadPractitioner(): void {
     this.isLoading = true;
     this.loadError = '';
-
+    this.practitioner = null;
+    this.isSubmitting = false;
+    const id = this.practitionerId;
+    const source = this.practitionerSourceId;
     this.fastenApi.getAllPractitioners().subscribe({
       next: (practitioners: Practitioner[]) => {
-        this.practitioner = practitioners.find(p => 
-          p.source_resource_id === this.practitionerId
-        ) || null;
-
-        if (!this.practitioner) {
-          this.loadError = 'Practitioner not found';
-        } else {
-          this.populateForm();
-        }
-
+        if (id !== this.practitionerId || source !== this.practitionerSourceId) return;
+        const matches = practitioners.filter(p => p.source_resource_id === id && (!source || p.source_id === source));
+        this.practitioner = matches.length === 1 ? matches[0] : null;
+        this.loadError = matches.length > 1
+          ? 'Practitioner ID occurs in multiple sources. Select the record from the practitioner list.'
+          : this.practitioner ? '' : 'Practitioner not found';
+        if (this.practitioner) { this.populateForm(); }
         this.isLoading = false;
       },
-      error: (error) => {
-        console.error('Error loading practitioner:', error);
+      error: () => {
+        if (id !== this.practitionerId || source !== this.practitionerSourceId) return;
         this.loadError = 'Failed to load practitioner details';
         this.isLoading = false;
       }
@@ -209,12 +212,11 @@ export class PractitionerEditPageComponent implements OnInit {
       };
     }
   
-    console.log('Form data being set:', formData);
     this.newPractitionerForm.patchValue(formData);
   }
 
   get submitEnabled(): boolean {
-    return this.newPractitionerForm.valid && !this.isSubmitting;
+    return !!this.practitioner && !this.isLoading && this.newPractitionerForm.valid && !this.isSubmitting;
   }
 
   submit(): void {
@@ -223,23 +225,26 @@ export class PractitionerEditPageComponent implements OnInit {
     this.newPractitionerForm.markAllAsTouched();
     if (!this.newPractitionerForm.valid) return;
 
+    const record = this.practitioner;
     this.isSubmitting = true;
 
     // Convert form data to FHIR Practitioner format
     const updatedPractitioner = this.formToFhirPractitioner();
 
     // Use the updatePractitioner method you created earlier
-    this.fastenApi.updatePractitioner(this.practitionerId, updatedPractitioner).subscribe({
+    this.fastenApi.updatePractitioner(this.practitionerId, updatedPractitioner, record.source_id).subscribe({
       next: (response) => {
+        if (this.practitioner !== record) return;
         this.isSubmitting = false;
         if (response && response.success) {
           // Navigate back to view page or list
-          this.router.navigate(['/practitioners/view', this.practitionerId]);
+          this.router.navigate(['/practitioners/view', this.practitionerId], {queryParams: {source_id: this.practitioner?.source_id || this.practitionerSourceId || undefined}});
         } else {
           alert('Failed to update practitioner: ' + (response?.error || 'Unknown error'));
         }
       },
       error: (error) => {
+        if (this.practitioner !== record) return;
         this.isSubmitting = false;
         console.error('Error updating practitioner:', error);
         const errorMessage = error?.error?.error || error?.message || 'Unknown error';
@@ -314,7 +319,6 @@ export class PractitionerEditPageComponent implements OnInit {
       active: true
     };
   
-    console.log('Generated FHIR practitioner:', fhirPractitioner);
     return fhirPractitioner;
   }
   resetForm(): void {
@@ -325,6 +329,6 @@ export class PractitionerEditPageComponent implements OnInit {
 
   navigateBack(): void {
     // Navigate back to the view page
-    this.router.navigate(['/practitioners/view', this.practitionerId]);
+    this.router.navigate(['/practitioners/view', this.practitionerId], {queryParams: {source_id: this.practitioner?.source_id || this.practitionerSourceId || undefined}});
   }
 }

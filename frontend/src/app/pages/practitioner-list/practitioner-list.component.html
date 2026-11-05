@@ -290,7 +290,7 @@
                           <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-start dropdown-menu-sm"
-                          [class.show]="showPractitionerDropdown === practitioner.source_resource_id">
+                          [class.show]="showPractitionerDropdown === practitionerKey(practitioner)">
                           <li>
                             <button class="dropdown-item"
                               (click)="exportSinglePractitioner(practitioner); hidePractitionerDropdown()">

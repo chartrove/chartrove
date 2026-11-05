@@ -374,10 +374,11 @@ export class MedicalRecordWizardComponent implements OnInit {
     modalRef.componentInstance.encounter = encounter;
     modalRef.result.then(
       (result) => {
-        let encounter = EncounterToR4Encounter(result)
+        let fhirEncounter = EncounterToR4Encounter(result)
 
         this.fastenApi.updateResource(result.source_resource_type, result.source_resource_id, {
-          resource_raw: encounter,
+          resource_raw: fhirEncounter,
+          source_id: encounter.source_id,
           sort_title: result.sort_title,
           sort_date: result.period_start
         }).subscribe()
@@ -396,21 +397,24 @@ export class MedicalRecordWizardComponent implements OnInit {
     modalRef.componentInstance.practitioners = this.existingEncounter?.related_resources?.['Practitioner'];
 
     let medicationRequest = this.existingEncounter?.related_resources?.['MedicationRequest'].find((medicationRequest) => {
-      return (medicationRequest as MedicationRequestModel).medication_reference.reference === `Medication/${medication.source_resource_id}`
+      return medicationRequest.source_id === medication.source_id &&
+        (medicationRequest as MedicationRequestModel).medication_reference.reference === `Medication/${medication.source_resource_id}`
     })
     modalRef.componentInstance.medicationRequest = medicationRequest
     modalRef.result.then(
       (result) => {
-        let medication = UpdateMedicationToR4Medication(result.medication)
+        let fhirMedication = UpdateMedicationToR4Medication(result.medication)
         this.fastenApi.updateResource(result.medication.source_resource_type, result.medication.source_resource_id, {
-          resource_raw: medication,
+          resource_raw: fhirMedication,
+          source_id: medication.source_id,
           sort_title: result.medication.sort_title,
           sort_date: result.medication.sort_date
         }).subscribe()
 
-        let medicationRequest = UpdateMedicationRequestToR4MedicationRequest(result.medicationRequest, result.medication)
+        let fhirMedicationRequest = UpdateMedicationRequestToR4MedicationRequest(result.medicationRequest, result.medication)
         this.fastenApi.updateResource(result.medicationRequest.source_resource_type, result.medicationRequest.source_resource_id, {
-          resource_raw: medicationRequest,
+          resource_raw: fhirMedicationRequest,
+          source_id: medicationRequest?.source_id,
           sort_title: result.medicationRequest.sort_title,
           sort_date: result.medicationRequest.sort_date
         }).subscribe()
@@ -427,10 +431,11 @@ export class MedicalRecordWizardComponent implements OnInit {
     modalRef.componentInstance.practitioner = practitioner;
     modalRef.result.then(
       (result) => {
-        let practitioner = PractitionerToR4Practitioner(result)
+        let fhirPractitioner = PractitionerToR4Practitioner(result)
         
         this.fastenApi.updateResource(result.source_resource_type, result.source_resource_id, {
-          resource_raw: practitioner,
+          resource_raw: fhirPractitioner,
+          source_id: practitioner.source_id,
           sort_title: result.sort_title,
         }).subscribe()
       }
@@ -449,10 +454,11 @@ export class MedicalRecordWizardComponent implements OnInit {
     modalRef.componentInstance.organizations = this.existingEncounter?.related_resources?.['Organization']
     modalRef.result.then(
       (result) => {
-        let procedure = UpdateProcedureToR4Procedure(result)
+        let fhirProcedure = UpdateProcedureToR4Procedure(result)
 
         this.fastenApi.updateResource(result.source_resource_type, result.source_resource_id, {
-          resource_raw: procedure,
+          resource_raw: fhirProcedure,
+          source_id: procedure.source_id,
           sort_title: result.sort_title,
           sort_date: result.performed_datetime
         }).subscribe()
@@ -469,10 +475,11 @@ export class MedicalRecordWizardComponent implements OnInit {
     modalRef.componentInstance.organization = organization;
     modalRef.result.then(
       (result) => {
-        let organization = OrganizationToR4Organization(result)
+        let fhirOrganization = OrganizationToR4Organization(result)
         
         this.fastenApi.updateResource(result.source_resource_type, result.source_resource_id, {
-          resource_raw: organization,
+          resource_raw: fhirOrganization,
+          source_id: organization.source_id,
           sort_title: result.sort_title,
         }).subscribe()
       }
@@ -501,6 +508,7 @@ export class MedicalRecordWizardComponent implements OnInit {
             result.forEach((val) => {
               this.fastenApi.updateResource(val.observation.source_resource_type, val.observation.source_resource_id, {
                 resource_raw: val.resourceRaw,
+                source_id: val.observation.source_id,
               }).subscribe()
             })
         });

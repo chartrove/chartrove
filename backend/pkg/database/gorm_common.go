@@ -1546,75 +1546,12 @@ func (gr *GormRepository) getResourcesFromAllTables(queryBuilder *gorm.DB, query
 	return wrappedResourceModels, nil
 }
 
+// DeleteResourceByTypeAndId preserves the legacy unique-ID contract but never
+// selects arbitrarily when the owner has the same type/ID in multiple sources.
 func (gr *GormRepository) DeleteResourceByTypeAndId(ctx context.Context, sourceResourceType string, sourceResourceId string) error {
-	fmt.Printf("DeleteResourceByTypeAndId called with type: %s, id: %s\n", sourceResourceType, sourceResourceId)
-
-	queryOptions := models.ListResourceQueryOptions{
-		SourceResourceType: sourceResourceType,
-		SourceResourceID:   sourceResourceId,
-		Limit:              1,
-	}
-
-	resources, err := gr.ListResources(ctx, queryOptions)
+	resource, err := gr.ResolveOwnedResource(ctx, sourceResourceType, sourceResourceId, nil)
 	if err != nil {
-		fmt.Printf("ListResources failed: %v\n", err)
-		return fmt.Errorf("failed to find resource: %w", err)
+		return err
 	}
-
-	if len(resources) == 0 {
-		fmt.Printf("No resources found with type: %s, id: %s\n", sourceResourceType, sourceResourceId)
-		return fmt.Errorf("resource not found")
-	}
-
-	if len(resources) > 1 {
-		fmt.Printf("Warning: found %d resources, expected 1\n", len(resources))
-	}
-
-	resource := resources[0]
-	fmt.Printf("Found resource: ID=%s, Type=%s, SourceID=%s\n",
-		resource.ID.String(), resource.SourceResourceType, resource.SourceResourceID)
-
-	tableName, err := databaseModel.GetTableNameByResourceType(sourceResourceType)
-	if err != nil {
-		fmt.Printf("Failed to get table name for resource type %s: %v\n", sourceResourceType, err)
-		return fmt.Errorf("failed to get table name: %w", err)
-	}
-
-	fmt.Printf("Using table: %s\n", tableName)
-
-	tx := gr.GormClient.WithContext(ctx).Begin()
-	if tx.Error != nil {
-		fmt.Printf("Failed to begin transaction: %v\n", tx.Error)
-		return fmt.Errorf("failed to begin transaction: %w", tx.Error)
-	}
-
-	defer func() {
-		if r := recover(); r != nil {
-			fmt.Printf("Panic during delete, rolling back: %v\n", r)
-			tx.Rollback()
-		}
-	}()
-
-	deleteResult := tx.Table(tableName).Where("id = ?", resource.ID).Delete(&models.ResourceBase{})
-	if deleteResult.Error != nil {
-		fmt.Printf("Failed to delete resource from table %s: %v\n", tableName, deleteResult.Error)
-		tx.Rollback()
-		return fmt.Errorf("failed to delete resource: %w", deleteResult.Error)
-	}
-
-	fmt.Printf("Deleted %d resource(s) from table %s\n", deleteResult.RowsAffected, tableName)
-
-	if deleteResult.RowsAffected == 0 {
-		fmt.Printf("No rows affected during delete\n")
-		tx.Rollback()
-		return fmt.Errorf("resource not found or already deleted")
-	}
-
-	if err := tx.Commit().Error; err != nil {
-		fmt.Printf("Failed to commit transaction: %v\n", err)
-		return fmt.Errorf("failed to commit delete transaction: %w", err)
-	}
-
-	fmt.Printf("Successfully deleted resource: %s from table: %s\n", sourceResourceId, tableName)
-	return nil
+	return gr.DeleteOwnedResource(ctx, resource.SourceID, sourceResourceType, sourceResourceId)
 }

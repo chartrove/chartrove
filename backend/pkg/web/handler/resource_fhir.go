@@ -3,8 +3,9 @@ package handler
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
+	"io"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -14,6 +15,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 )
 
@@ -170,9 +172,10 @@ func UpdateResourceFhir(c *gin.Context) {
 		ResourceRaw json.RawMessage `json:"resource_raw"`
 		SortTitle   json.RawMessage `json:"sort_title"`
 		SortDate    json.RawMessage `json:"sort_date"`
+		SourceID    json.RawMessage `json:"source_id"`
 	}
 	var payload UpdatePayload
-	err := c.ShouldBindJSON(&payload)
+	err := decodeOwnedMutationJSON(c, &payload)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "invalid request payload"})
 		return
@@ -193,35 +196,27 @@ func UpdateResourceFhir(c *gin.Context) {
 		*field.target = &text // Explicit null/empty retains legacy clearing behavior.
 	}
 
-	resource, err := databaseRepo.GetResourceByResourceTypeAndId(c, resourceType, resourceId)
+	source, err := parseOwnedJSONSource(payload.SourceID)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not find resource"})
+		writeOwnedMutationError(c, err)
 		return
 	}
-
-	sourceCredential, err := databaseRepo.GetSource(c, resource.SourceID.String())
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not find Fasten source for resource"})
-		return
-	}
-
-	updates, ok := databaseRepo.(database.OwnedResourceUpdateRepository)
+	updates, ok := databaseRepo.(database.OwnedResourceMutationRepository)
 	if !ok {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "resource editing unavailable"})
+		writeOwnedMutationError(c, errors.New("resource editing unavailable"))
 		return
 	}
-	updateError := updates.UpdateOwnedResource(c, sourceCredential.ID, resourceType, resourceId, database.OwnedResourceUpdate{
+	resource, err := updates.ResolveOwnedResource(c, resourceType, resourceId, source)
+	if err != nil {
+		writeOwnedMutationError(c, err)
+		return
+	}
+	updateError := updates.UpdateOwnedResource(c, resource.SourceID, resourceType, resourceId, database.OwnedResourceUpdate{
 		ResourceRaw: payload.ResourceRaw, SortTitle: sortTitle,
 		SortDate: parseDateTimeWithFallback(sortDate), SetSortDate: sortDate != nil,
 	})
 	if updateError != nil {
-		status := http.StatusInternalServerError
-		if errors.Is(updateError, database.ErrSourceAccessDenied) {
-			status = http.StatusNotFound
-		} else if errors.Is(updateError, database.ErrSourceAccessInput) {
-			status = http.StatusBadRequest
-		}
-		c.JSON(status, gin.H{"success": false, "error": "failed to update resource"})
+		writeOwnedMutationError(c, updateError)
 		return
 	}
 
@@ -234,20 +229,84 @@ func DeleteResourceFhir(c *gin.Context) {
 	resourceType := strings.Trim(c.Param("resourceType"), "/")
 	resourceId := strings.Trim(c.Param("resourceId"), "/")
 
-	deleteError := databaseRepo.DeleteResourceByTypeAndId(c, resourceType, resourceId)
-	if deleteError != nil {
-		fmt.Printf("Delete operation failed: %v\n", deleteError)
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"success":       false,
-			"error":         "failed to delete resource",
-			"details":       deleteError.Error(),
-			"resource_type": resourceType,
-			"resource_id":   resourceId,
-		})
+	query, err := url.ParseQuery(c.Request.URL.RawQuery)
+	if err != nil {
+		writeOwnedMutationError(c, database.ErrSourceAccessInput)
+		return
+	}
+	var source *uuid.UUID
+	if values, present := query["source_id"]; present {
+		if len(values) != 1 {
+			writeOwnedMutationError(c, database.ErrSourceAccessInput)
+			return
+		}
+		var err error
+		source, err = parseOwnedMutationSource(values[0])
+		if err != nil {
+			writeOwnedMutationError(c, err)
+			return
+		}
+	}
+	mutations, ok := databaseRepo.(database.OwnedResourceMutationRepository)
+	if !ok {
+		writeOwnedMutationError(c, errors.New("resource deletion unavailable"))
+		return
+	}
+	resource, err := mutations.ResolveOwnedResource(c, resourceType, resourceId, source)
+	if err != nil {
+		writeOwnedMutationError(c, err)
+		return
+	}
+	if err := mutations.DeleteOwnedResource(c, resource.SourceID, resourceType, resourceId); err != nil {
+		writeOwnedMutationError(c, err)
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"success": true, "message": "resource deleted successfully"})
+}
+
+func parseOwnedMutationSource(text string) (*uuid.UUID, error) {
+	id, err := uuid.Parse(text)
+	if err != nil || id == uuid.Nil {
+		return nil, database.ErrSourceAccessInput
+	}
+	return &id, nil
+}
+
+func parseOwnedJSONSource(raw json.RawMessage) (*uuid.UUID, error) {
+	if raw == nil {
+		return nil, nil
+	}
+	var text string
+	if json.Unmarshal(raw, &text) != nil {
+		return nil, database.ErrSourceAccessInput
+	}
+	return parseOwnedMutationSource(text)
+}
+
+func decodeOwnedMutationJSON(c *gin.Context, payload interface{}) error {
+	decoder := json.NewDecoder(c.Request.Body)
+	if decoder.Decode(payload) != nil {
+		return database.ErrSourceAccessInput
+	}
+	var extra interface{}
+	if decoder.Decode(&extra) != io.EOF {
+		return database.ErrSourceAccessInput
+	}
+	return nil
+}
+
+func writeOwnedMutationError(c *gin.Context, err error) {
+	status, message := http.StatusInternalServerError, "Resource operation failed"
+	switch {
+	case errors.Is(err, database.ErrOwnedResourceAmbiguous):
+		status, message = http.StatusConflict, "Resource ID is ambiguous; select its source"
+	case errors.Is(err, database.ErrSourceAccessDenied):
+		status, message = http.StatusNotFound, "Resource unavailable"
+	case errors.Is(err, database.ErrSourceAccessInput):
+		status, message = http.StatusBadRequest, "Invalid resource request"
+	}
+	c.JSON(status, gin.H{"success": false, "error": message})
 }
 
 func parseDateTimeWithFallback(dateTime *string) *time.Time {

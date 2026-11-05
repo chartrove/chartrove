@@ -1,3 +1,4 @@
+import {combineLatest} from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,6 +26,7 @@ interface ContactDataItem {
 export class PractitionerViewComponent implements OnInit {
   practitioner: Practitioner | null = null;
   practitionerId: string = '';
+  practitionerSourceId: string = '';
   isLoading: boolean = true;
   loadError: string = '';
   isStarred: boolean = false;
@@ -38,19 +40,16 @@ export class PractitionerViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('PractitionerViewComponent initialized');
-    
-    this.route.params.subscribe(params => {
-      console.log('Route params received:', params);
-      this.practitionerId = params['id'];
-      console.log('Practitioner ID extracted:', this.practitionerId);
-      
+    combineLatest([this.route.params, this.route.queryParams]).subscribe(([params, query]) => {
+      this.practitionerId = params['id'] || '';
+      const source = query['source_id'];
+      this.practitionerSourceId = source == null ? '' : typeof source === 'string' ? source : 'invalid-source';
       if (this.practitionerId) {
         this.loadPractitioner();
       } else {
+        this.practitioner = null;
         this.loadError = 'No practitioner ID provided';
         this.isLoading = false;
-        console.error('No practitioner ID in route params');
       }
     });
   }
@@ -58,34 +57,23 @@ export class PractitionerViewComponent implements OnInit {
   loadPractitioner(): void {
     this.isLoading = true;
     this.loadError = '';
-    
-    console.log('Loading practitioner with ID:', this.practitionerId);
-    
+    this.practitioner = null;
+    this.deleteLoading = false;
+    const id = this.practitionerId;
+    const source = this.practitionerSourceId;
     this.fastenApi.getAllPractitioners().subscribe({
       next: (practitioners: Practitioner[]) => {
-        console.log('All practitioners loaded:', practitioners);
-        
-        this.practitioner = practitioners.find(p => 
-          p.source_resource_id === this.practitionerId
-        ) || null;
-        
-        console.log('Found practitioner:', this.practitioner);
-        
-        if (!this.practitioner) {
-          this.loadError = 'Practitioner not found';
-        } else {
-          // Debug the practitioner data
-          this.logPractitionerData();
-          
-          // Update contact data when practitioner is loaded
-          this.contactData = this.getContactData();
-          console.log('Contact data generated:', this.contactData);
-        }
-        
+        if (id !== this.practitionerId || source !== this.practitionerSourceId) return;
+        const matches = practitioners.filter(p => p.source_resource_id === id && (!source || p.source_id === source));
+        this.practitioner = matches.length === 1 ? matches[0] : null;
+        this.loadError = matches.length > 1
+          ? 'Practitioner ID occurs in multiple sources. Select the record from the practitioner list.'
+          : this.practitioner ? '' : 'Practitioner not found';
+        if (this.practitioner) { this.contactData = this.getContactData(); }
         this.isLoading = false;
       },
-      error: (error) => {
-        console.error('Error loading practitioner:', error);
+      error: () => {
+        if (id !== this.practitionerId || source !== this.practitionerSourceId) return;
         this.loadError = 'Failed to load practitioner details';
         this.isLoading = false;
       }
@@ -97,12 +85,13 @@ export class PractitionerViewComponent implements OnInit {
   }
 
   editPractitioner(): void {
-    this.router.navigate(['/practitioners/edit', this.practitionerId]);
+    this.router.navigate(['/practitioners/edit', this.practitionerId], {queryParams: {source_id: this.practitioner?.source_id}});
   }
 
   viewPractitionerHistory(): void {
     // Send practitioner data in state to avoid re-fetching
     this.router.navigate(['/practitioner-history', this.practitionerId], {
+      queryParams: {source_id: this.practitioner?.source_id},
       state: { practitioner: this.practitioner }
     });
   }
@@ -124,10 +113,12 @@ export class PractitionerViewComponent implements OnInit {
       return;
     }
 
+    const record = this.practitioner;
     this.deleteLoading = true;
 
-    this.fastenApi.deleteResourceFhir('Practitioner', this.practitioner.source_resource_id).subscribe({
+    this.fastenApi.deleteResourceFhir('Practitioner', record.source_resource_id!, record.source_id).subscribe({
       next: (response) => {
+        if (this.practitioner !== record) return;
         this.deleteLoading = false;
         if (response && response.success) {
           alert('Practitioner deleted successfully');
@@ -137,6 +128,7 @@ export class PractitionerViewComponent implements OnInit {
         }
       },
       error: (error) => {
+        if (this.practitioner !== record) return;
         this.deleteLoading = false;
         console.error('Error deleting practitioner:', error);
         const errorMessage = error?.error?.details || error?.error?.error || error?.message || 'Unknown error';

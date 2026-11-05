@@ -107,73 +107,52 @@ func GetPractitionerEncounterHistory(c *gin.Context) {
 }
 
 func UpdatePractitioner(c *gin.Context) {
-	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
-
 	practitionerId := c.Param("practitionerId")
 	if practitionerId == "" {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "practitioner ID is required"})
+		writeOwnedMutationError(c, database.ErrSourceAccessInput)
 		return
 	}
-
-	type UpdatePractitionerRequest struct {
-		Resource map[string]interface{} `json:"resource"`
+	var request struct {
+		Resource json.RawMessage `json:"resource"`
+		SourceID json.RawMessage `json:"source_id"`
 	}
-
-	var request UpdatePractitionerRequest
-	if err := c.ShouldBindJSON(&request); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "invalid request payload"})
+	if decodeOwnedMutationJSON(c, &request) != nil {
+		writeOwnedMutationError(c, database.ErrSourceAccessInput)
 		return
 	}
-
-	if resourceType, ok := request.Resource["resourceType"].(string); !ok || resourceType != "Practitioner" {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "resource must be of type Practitioner"})
+	var resource map[string]interface{}
+	if json.Unmarshal(request.Resource, &resource) != nil {
+		writeOwnedMutationError(c, database.ErrSourceAccessInput)
 		return
 	}
-
-	if resourceId, ok := request.Resource["id"].(string); !ok || resourceId != practitionerId {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "resource id must match URL parameter"})
+	if resource["resourceType"] != "Practitioner" || resource["id"] != practitionerId {
+		writeOwnedMutationError(c, database.ErrSourceAccessInput)
 		return
 	}
-
-	existingResource, err := databaseRepo.GetResourceByResourceTypeAndId(c, "Practitioner", practitionerId)
+	source, err := parseOwnedJSONSource(request.SourceID)
 	if err != nil {
-		logger.Errorln("Practitioner not found:", err)
-		c.JSON(http.StatusNotFound, gin.H{"success": false, "error": "practitioner not found"})
+		writeOwnedMutationError(c, err)
 		return
 	}
-
-	sourceCredential, err := databaseRepo.GetSource(c, existingResource.SourceID.String())
+	mutations, ok := databaseRepo.(database.OwnedResourceMutationRepository)
+	if !ok {
+		writeOwnedMutationError(c, database.ErrSourceAccessDenied)
+		return
+	}
+	existing, err := mutations.ResolveOwnedResource(c, "Practitioner", practitionerId, source)
 	if err != nil {
-		logger.Errorln("Error getting source credential:", err)
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not find source for practitioner"})
+		writeOwnedMutationError(c, err)
 		return
 	}
-
-	resourceRaw, err := json.Marshal(request.Resource)
+	sortTitle := extractPractitionerSortTitle(resource)
+	// Keep exact clinical bytes; decode only the fields needed for presentation.
+	err = mutations.UpdateOwnedResource(c, existing.SourceID, "Practitioner", practitionerId, database.OwnedResourceUpdate{ResourceRaw: request.Resource, SortTitle: &sortTitle})
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "failed to serialize resource"})
+		writeOwnedMutationError(c, err)
 		return
 	}
-
-	sortTitle := extractPractitionerSortTitle(request.Resource)
-
-	resourceToUpsert := sourceModels.RawResourceFhir{
-		SourceResourceType: "Practitioner",
-		SourceResourceID:   practitionerId,
-		ResourceRaw:        resourceRaw,
-		SortTitle:          &sortTitle,
-	}
-
-	updatedResource, updateError := databaseRepo.UpsertRawResource(c, sourceCredential, resourceToUpsert)
-	if updateError != nil {
-		logger.Errorln("Error updating practitioner:", updateError)
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "failed to update practitioner"})
-		return
-	}
-
-	logger.Infof("Successfully updated practitioner: %s with sort_title: %s", practitionerId, sortTitle)
-	c.JSON(http.StatusOK, gin.H{"success": true, "message": "practitioner updated successfully", "resource": updatedResource})
+	c.JSON(http.StatusOK, gin.H{"success": true, "message": "practitioner updated successfully", "resource": true})
 }
 
 func extractPractitionerSortTitle(resource map[string]interface{}) string {
