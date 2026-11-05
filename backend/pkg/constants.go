@@ -23,6 +23,7 @@ const (
 	ContextKeyTypeEventBusServer string = "EVENT_BUS_SERVER"
 
 	ContextKeyTypeAuthUsername    string = "AUTH_USERNAME"
+	ContextKeyTypeAuthUserID      string = "AUTH_USER_ID"
 	ContextKeyTypeAuthToken       string = "AUTH_TOKEN"
 	ContextKeyTypeBackgroundJobID string = "BACKGROUND_JOB_ID"
 

@@ -115,9 +115,18 @@ func (gr *GormRepository) GetCurrentUser(ctx context.Context) (*models.User, err
 		return nil, fmt.Errorf("could not convert username to string: %v", username)
 	}
 
-	result := gr.GormClient.
-		WithContext(ctx).
-		First(&currentUser, map[string]interface{}{"username": usernameStr})
+	query := gr.GormClient.WithContext(ctx).Where("username = ?", usernameStr)
+	// HTTP authentication always supplies the verified UUID. Keep it in the
+	// database predicate so deletion/recreation during a request cannot change
+	// the actor. Username-only contexts remain for trusted internal jobs.
+	if bound := ctx.Value(pkg.ContextKeyTypeAuthUserID); bound != nil {
+		id, ok := bound.(uuid.UUID)
+		if !ok || id == uuid.Nil {
+			return nil, fmt.Errorf("invalid authenticated native identity")
+		}
+		query = query.Where("id = ?", id)
+	}
+	result := query.First(&currentUser)
 
 	if result.Error != nil {
 		return nil, fmt.Errorf("could not retrieve current user: %v", result.Error)

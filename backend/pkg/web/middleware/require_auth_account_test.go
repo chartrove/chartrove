@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 
@@ -18,12 +19,14 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
+	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 	"gorm.io/gorm"
 )
 
 func TestRequireAuthChecksCurrentAccount(t *testing.T) {
 	gin.SetMode(gin.TestMode)
+	nativeUser := models.User{ModelBase: models.ModelBase{ID: uuid.New()}, Username: "synthetic-user"}
 	for _, tc := range []struct {
 		name     string
 		user     *models.User
@@ -33,16 +36,18 @@ func TestRequireAuthChecksCurrentAccount(t *testing.T) {
 		tokenErr error
 		status   int
 	}{
-		{"current session", &models.User{Username: "synthetic-user"}, nil, false, nil, nil, 204},
+		{"current session", &nativeUser, nil, false, nil, nil, 204},
 		{"deleted account", nil, gorm.ErrRecordNotFound, false, nil, nil, 401},
 		{"wrapped missing account", nil, fmt.Errorf("lookup: %w", gorm.ErrRecordNotFound), false, nil, nil, 401},
 		{"nil account", nil, nil, false, nil, nil, 401},
 		{"database unavailable", nil, errors.New("synthetic database failure"), false, nil, nil, 500},
-		{"current access token", &models.User{Username: "synthetic-user"}, nil, true, &models.AccessToken{}, nil, 204},
+		{"current access token", &nativeUser, nil, true, &models.AccessToken{}, nil, 204},
+		{"legacy current access token", &nativeUser, nil, true, &models.AccessToken{}, nil, 204},
+		{"legacy revoked access token", &nativeUser, nil, true, nil, gorm.ErrRecordNotFound, 401},
 		{"access token missing account", nil, gorm.ErrRecordNotFound, true, nil, nil, 401},
-		{"revoked access token", &models.User{Username: "synthetic-user"}, nil, true, nil, gorm.ErrRecordNotFound, 401},
-		{"nil access token", &models.User{Username: "synthetic-user"}, nil, true, nil, nil, 401},
-		{"access token database unavailable", &models.User{Username: "synthetic-user"}, nil, true, nil, errors.New("synthetic database failure"), 500},
+		{"revoked access token", &nativeUser, nil, true, nil, gorm.ErrRecordNotFound, 401},
+		{"nil access token", &nativeUser, nil, true, nil, nil, 401},
+		{"access token database unavailable", &nativeUser, nil, true, nil, errors.New("synthetic database failure"), 500},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			cfg, err := config.Create()
@@ -54,10 +59,14 @@ func TestRequireAuthChecksCurrentAccount(t *testing.T) {
 				repo.EXPECT().GetAccessTokenByTokenIDAndUsername(gomock.Any(), "synthetic-token", "synthetic-user").Return(tc.token, tc.tokenErr)
 			}
 			var token string
+			tokenUser := nativeUser
+			if strings.HasPrefix(tc.name, "legacy ") {
+				tokenUser.ID = uuid.Nil
+			}
 			if tc.access {
-				token, err = auth.JwtGenerateAccessToken(models.User{Username: "synthetic-user"}, "synthetic-signing-key", time.Now().Add(time.Hour), "synthetic-token")
+				token, err = auth.JwtGenerateAccessToken(tokenUser, "synthetic-signing-key", time.Now().Add(time.Hour), "synthetic-token")
 			} else {
-				token, err = auth.JwtGenerateFastenTokenFromUser(models.User{Username: "synthetic-user"}, "synthetic-signing-key")
+				token, err = auth.JwtGenerateFastenTokenFromUser(nativeUser, "synthetic-signing-key")
 			}
 			require.NoError(t, err)
 			called := false

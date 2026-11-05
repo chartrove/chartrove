@@ -122,6 +122,11 @@ which fails closed. Transactions are process-local; a multi-replica deployment
 needs sticky routing for the five-minute start/complete exchange. A shared
 transaction service is outside this single-server milestone.
 
+For the concrete staging fixture, approval boundaries and ordered live checks, use
+[the operational acceptance plan](oidc-operational-acceptance.md). Native password
+sessions now bind to immutable UUIDs; old username-only password JWTs require one
+fresh local login after upgrade. API/OIDC sessions retain their database checks.
+
 ## Acceptance boundaries
 
 | Check | Evidence/status |
