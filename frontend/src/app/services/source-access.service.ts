@@ -6,6 +6,7 @@ import {GetEndpointAbsolutePath} from '../../lib/utils/endpoint_absolute_path';
 import {environment} from '../../environments/environment';
 
 export type SourceAccessLevel = 'VIEW' | 'EDIT';
+export type SourceSearchMode = 'literal' | 'exact_id';
 export interface AccessSource { id: string; display: string; platform_type?: string; owner_user_id?: string; access_level?: SourceAccessLevel; }
 export interface SourceGrant { id: string; delegate_username: string; delegate_user_id: string; access_level: SourceAccessLevel; expires_at: string | null; revoked_at: string | null; }
 export interface SourceAudit { id: string; created_at: string; actor_user_id: string; action: string; grant_id?: string; access_level?: SourceAccessLevel; resource_type?: string; resource_id?: string; }
@@ -45,8 +46,9 @@ export class SourceAccessService {
   revoke(source: string, grant: string): Observable<null> { return this.data(this.http.delete<AccessResponse<null>>(`${this.source(source)}/grants/${encodeURIComponent(grant)}`)); }
   summary(source: string): Observable<SharedSummary> { return this.data(this.http.get<AccessResponse<SharedSummary>>(`${this.source(source)}/summary`)); }
   list(source: string, type: string, page: number): Observable<ResourceListItem[]> { return this.data(this.http.get<AccessResponse<ResourceListItem[]>>(`${this.source(source)}/metadata/${encodeURIComponent(type)}?page=${page}`)); }
-  search(source: string, type: string, text: string, page: number): Observable<ResourceListItem[]> {
-    return this.data(this.http.post<AccessResponse<ResourceListItem[]>>(`${this.source(source)}/search/${encodeURIComponent(type)}`, {text, page}));
+  search(source: string, type: string, text: string, page: number, mode: SourceSearchMode = 'literal'): Observable<ResourceListItem[]> {
+    const body = mode === 'literal' ? {text, page} : {text, page, mode};
+    return this.data(this.http.post<AccessResponse<ResourceListItem[]>>(`${this.source(source)}/search/${encodeURIComponent(type)}`, body));
   }
   detail(source: string, type: string, id: string): Observable<SharedResource> { return this.data(this.http.get<AccessResponse<SharedResource>>(this.resource(source, type, id))); }
   edit(source: string, type: string, id: string, raw: string): Observable<null> {

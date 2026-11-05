@@ -1,0 +1,973 @@
+{
+  "base_revision": "9ef8cad98bd7bde91e3a085161b7e1d4cea81cb4",
+  "corpus_sha256": "c9f944ad254390a4498216ef924c11fd37516db70a74c350760b041be4b156dc",
+  "implementation_sha256": "617237555d6ee83f198382be31b5046e4f30c9e1b7c831ebb55cd4ee230d2fbb",
+  "criteria": {
+    "family_p95_ratio_max": 1.25,
+    "per_case_p95_ms_max": 250,
+    "blocks": 3,
+    "measured_per_case_per_block": 25,
+    "warmups_per_case_per_block": 3,
+    "aggregation": "All three interleaved blocks; no best-run selection"
+  },
+  "scope": "Only new exact-ID production method versus existing unchanged literal method. Omitted/explicit literal HTTP requests call the original literal method, without a new mode wrapper.",
+  "families": [
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "abbreviation",
+      "control_p95_ms": 22.819,
+      "exact_id_p95_ms": 9.42,
+      "ratio": 0.41281388316753587,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "all_words",
+      "control_p95_ms": 20.382,
+      "exact_id_p95_ms": 9.439,
+      "ratio": 0.4631047002256893,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "contradiction",
+      "control_p95_ms": 26.475,
+      "exact_id_p95_ms": 10.621,
+      "ratio": 0.4011709159584514,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "identifier",
+      "control_p95_ms": 23.258,
+      "exact_id_p95_ms": 10.604,
+      "ratio": 0.45592914266058987,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "negation",
+      "control_p95_ms": 22.132,
+      "exact_id_p95_ms": 9.041,
+      "ratio": 0.4085035243086933,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "no_match",
+      "control_p95_ms": 29.467,
+      "exact_id_p95_ms": 9.229,
+      "ratio": 0.3131978145043608,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "phrase",
+      "control_p95_ms": 18.069,
+      "exact_id_p95_ms": 7.395,
+      "ratio": 0.4092644861364768,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "provenance",
+      "control_p95_ms": 21.958,
+      "exact_id_p95_ms": 8.626,
+      "ratio": 0.39284087803989437,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "punctuation",
+      "control_p95_ms": 18.961,
+      "exact_id_p95_ms": 7.22,
+      "ratio": 0.38078160434576236,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "family": "unicode",
+      "control_p95_ms": 22.405,
+      "exact_id_p95_ms": 9.423,
+      "ratio": 0.42057576433831734,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "abbreviation",
+      "control_p95_ms": 5.956,
+      "exact_id_p95_ms": 1.154,
+      "ratio": 0.1937541974479516,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "all_words",
+      "control_p95_ms": 5.033,
+      "exact_id_p95_ms": 1.015,
+      "ratio": 0.20166898470097355,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "contradiction",
+      "control_p95_ms": 5.285,
+      "exact_id_p95_ms": 0.821,
+      "ratio": 0.1553453169347209,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "identifier",
+      "control_p95_ms": 4.906,
+      "exact_id_p95_ms": 0.904,
+      "ratio": 0.18426416632694662,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "negation",
+      "control_p95_ms": 5.132,
+      "exact_id_p95_ms": 0.992,
+      "ratio": 0.19329696024941545,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "no_match",
+      "control_p95_ms": 5.783,
+      "exact_id_p95_ms": 0.986,
+      "ratio": 0.17049974061905585,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "phrase",
+      "control_p95_ms": 4.989,
+      "exact_id_p95_ms": 0.898,
+      "ratio": 0.1799959911805973,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "provenance",
+      "control_p95_ms": 5.362,
+      "exact_id_p95_ms": 0.997,
+      "ratio": 0.18593808280492352,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "punctuation",
+      "control_p95_ms": 5.224,
+      "exact_id_p95_ms": 0.962,
+      "ratio": 0.18415007656967838,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "family": "unicode",
+      "control_p95_ms": 5.142,
+      "exact_id_p95_ms": 0.904,
+      "ratio": 0.17580707895760403,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "abbreviation",
+      "control_p95_ms": 385.501,
+      "exact_id_p95_ms": 97.369,
+      "ratio": 0.25257781432473586,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "all_words",
+      "control_p95_ms": 84.404,
+      "exact_id_p95_ms": 9.687,
+      "ratio": 0.1147694422065305,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "contradiction",
+      "control_p95_ms": 114.465,
+      "exact_id_p95_ms": 14.486,
+      "ratio": 0.12655396846197528,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "identifier",
+      "control_p95_ms": 82.737,
+      "exact_id_p95_ms": 9.428,
+      "ratio": 0.11395143647944694,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "negation",
+      "control_p95_ms": 95.247,
+      "exact_id_p95_ms": 10.733,
+      "ratio": 0.11268596386237888,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "no_match",
+      "control_p95_ms": 909.249,
+      "exact_id_p95_ms": 72.005,
+      "ratio": 0.07919172855840369,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "phrase",
+      "control_p95_ms": 76.423,
+      "exact_id_p95_ms": 10.716,
+      "ratio": 0.14021956740771757,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "provenance",
+      "control_p95_ms": 214.106,
+      "exact_id_p95_ms": 25.701,
+      "ratio": 0.12003867243328072,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "punctuation",
+      "control_p95_ms": 121.061,
+      "exact_id_p95_ms": 29.304,
+      "ratio": 0.24205978804073977,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "family": "unicode",
+      "control_p95_ms": 100.333,
+      "exact_id_p95_ms": 15.087,
+      "ratio": 0.15036927032980177,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "abbreviation",
+      "control_p95_ms": 45.744,
+      "exact_id_p95_ms": 0.896,
+      "ratio": 0.019587268275620847,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "all_words",
+      "control_p95_ms": 85.654,
+      "exact_id_p95_ms": 1.553,
+      "ratio": 0.01813108553015621,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "contradiction",
+      "control_p95_ms": 81.989,
+      "exact_id_p95_ms": 3.234,
+      "ratio": 0.0394443157008867,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "identifier",
+      "control_p95_ms": 204.887,
+      "exact_id_p95_ms": 3.026,
+      "ratio": 0.014769116635023206,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "negation",
+      "control_p95_ms": 73.419,
+      "exact_id_p95_ms": 2.835,
+      "ratio": 0.038613982756507174,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "no_match",
+      "control_p95_ms": 44.437,
+      "exact_id_p95_ms": 1.025,
+      "ratio": 0.023066363615905663,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "phrase",
+      "control_p95_ms": 185.471,
+      "exact_id_p95_ms": 4.341,
+      "ratio": 0.023405276296563884,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "provenance",
+      "control_p95_ms": 46.635,
+      "exact_id_p95_ms": 0.935,
+      "ratio": 0.020049319180872736,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "punctuation",
+      "control_p95_ms": 45.051,
+      "exact_id_p95_ms": 1.005,
+      "ratio": 0.022308050875674234,
+      "samples_per_case": 75
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "family": "unicode",
+      "control_p95_ms": 61.662,
+      "exact_id_p95_ms": 1.808,
+      "ratio": 0.029321137815834713,
+      "samples_per_case": 75
+    }
+  ],
+  "raw_log_hashes": {
+    "short": "f229dc2cbe4da85be09bd17c5c44f7fd903012829acb78d8db0a8ab59fe5dd9f",
+    "long": "003a90ce3150091c683897593179a59042d3298d4d68119a95f9b2f0a5607733"
+  },
+  "stopped_phrase": "Correctness passed; SQLite family p95 ratios 1.529 to 3.086 failed 1.25 gate. Optimized candidate retained privately; not shipped.",
+  "stopped_generic_wrapper": "Unused generic Go literal wrapper showed long-run timing ratios 1.499 PostgreSQL and 1.539 SQLite; removed. HTTP literal route always remained on existing method. Both failed original runs retained.",
+  "cases": [
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "exact-resource-id",
+      "p95_ms": 9.919
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "exact-accession",
+      "p95_ms": 12.223
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "literal-prefix",
+      "p95_ms": 8.461
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "exact-absent",
+      "p95_ms": 7.987
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "phrase-spacing",
+      "p95_ms": 8.556
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "phrase-reordered",
+      "p95_ms": 6.15
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "and-reordered",
+      "p95_ms": 10.195
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "and-distant",
+      "p95_ms": 9.439
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "phrase-negative",
+      "p95_ms": 7.929
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "term-contradiction",
+      "p95_ms": 9.335
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "phrase-denial",
+      "p95_ms": 8.058
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "term-symptoms",
+      "p95_ms": 8.876
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "term-diabetes",
+      "p95_ms": 9.517
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "abbreviation-only",
+      "p95_ms": 9.959
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "expanded-only",
+      "p95_ms": 8.675
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "ambiguous-abbreviation",
+      "p95_ms": 7.632
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "unicode-case",
+      "p95_ms": 10.151
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "unicode-decomposed",
+      "p95_ms": 9.229
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "unicode-exact",
+      "p95_ms": 10.627
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "greek-case",
+      "p95_ms": 7.709
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "cjk-contiguous",
+      "p95_ms": 7.943
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "cjk-prefix",
+      "p95_ms": 10.706
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "literal-percent",
+      "p95_ms": 7.025
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "literal-underscore",
+      "p95_ms": 6.513
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "literal-backslash",
+      "p95_ms": 7.9
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "literal-quotes",
+      "p95_ms": 7.937
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "unreviewed-body",
+      "p95_ms": 10.171
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "external-title",
+      "p95_ms": 8.74
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "reviewed-body",
+      "p95_ms": 7.228
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "electrolyte-full",
+      "p95_ms": 9.942
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "electrolyte-short",
+      "p95_ms": 12.362
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "allergy-contradiction",
+      "p95_ms": 13.381
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "allergy-negative",
+      "p95_ms": 10.92
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "provenance-quoted",
+      "p95_ms": 8.626
+    },
+    {
+      "engine": "postgres",
+      "profile": "short",
+      "case": "missing-term",
+      "p95_ms": 9.229
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "exact-resource-id",
+      "p95_ms": 1.036
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "exact-accession",
+      "p95_ms": 0.873
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "literal-prefix",
+      "p95_ms": 1
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "exact-absent",
+      "p95_ms": 0.904
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "phrase-spacing",
+      "p95_ms": 0.848
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "phrase-reordered",
+      "p95_ms": 0.943
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "and-reordered",
+      "p95_ms": 0.785
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "and-distant",
+      "p95_ms": 1.19
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "phrase-negative",
+      "p95_ms": 1.029
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "term-contradiction",
+      "p95_ms": 0.777
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "phrase-denial",
+      "p95_ms": 1.05
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "term-symptoms",
+      "p95_ms": 0.914
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "term-diabetes",
+      "p95_ms": 0.82
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "abbreviation-only",
+      "p95_ms": 1.023
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "expanded-only",
+      "p95_ms": 0.96
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "ambiguous-abbreviation",
+      "p95_ms": 1.176
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "unicode-case",
+      "p95_ms": 0.893
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "unicode-decomposed",
+      "p95_ms": 1.058
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "unicode-exact",
+      "p95_ms": 0.776
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "greek-case",
+      "p95_ms": 0.808
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "cjk-contiguous",
+      "p95_ms": 0.916
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "cjk-prefix",
+      "p95_ms": 1.042
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "literal-percent",
+      "p95_ms": 0.962
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "literal-underscore",
+      "p95_ms": 0.845
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "literal-backslash",
+      "p95_ms": 1.113
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "literal-quotes",
+      "p95_ms": 0.991
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "unreviewed-body",
+      "p95_ms": 0.853
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "external-title",
+      "p95_ms": 0.777
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "reviewed-body",
+      "p95_ms": 1.849
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "electrolyte-full",
+      "p95_ms": 1.576
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "electrolyte-short",
+      "p95_ms": 1.098
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "allergy-contradiction",
+      "p95_ms": 0.799
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "allergy-negative",
+      "p95_ms": 0.834
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "provenance-quoted",
+      "p95_ms": 0.902
+    },
+    {
+      "engine": "sqlite",
+      "profile": "short",
+      "case": "missing-term",
+      "p95_ms": 0.986
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "exact-resource-id",
+      "p95_ms": 9.428
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "phrase-spacing",
+      "p95_ms": 10.716
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "and-distant",
+      "p95_ms": 9.687
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "term-contradiction",
+      "p95_ms": 14.486
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "phrase-denial",
+      "p95_ms": 10.733
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "unicode-case",
+      "p95_ms": 17.996
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "cjk-prefix",
+      "p95_ms": 11.556
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "literal-percent",
+      "p95_ms": 31.018
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "literal-quotes",
+      "p95_ms": 26.596
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "unreviewed-body",
+      "p95_ms": 21.444
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "external-title",
+      "p95_ms": 15.784
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "reviewed-body",
+      "p95_ms": 113.213
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "electrolyte-short",
+      "p95_ms": 97.369
+    },
+    {
+      "engine": "postgres",
+      "profile": "long",
+      "case": "missing-term",
+      "p95_ms": 72.005
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "exact-resource-id",
+      "p95_ms": 3.026
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "phrase-spacing",
+      "p95_ms": 4.341
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "and-distant",
+      "p95_ms": 1.553
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "term-contradiction",
+      "p95_ms": 3.234
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "phrase-denial",
+      "p95_ms": 2.835
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "unicode-case",
+      "p95_ms": 2.165
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "cjk-prefix",
+      "p95_ms": 1.482
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "literal-percent",
+      "p95_ms": 1.005
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "literal-quotes",
+      "p95_ms": 1.029
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "unreviewed-body",
+      "p95_ms": 0.827
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "external-title",
+      "p95_ms": 0.976
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "reviewed-body",
+      "p95_ms": 1.004
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "electrolyte-short",
+      "p95_ms": 0.896
+    },
+    {
+      "engine": "sqlite",
+      "profile": "long",
+      "case": "missing-term",
+      "p95_ms": 1.025
+    }
+  ],
+  "measurement_note": "Measured production source_search.go bytes are unchanged. Added Unicode and per-case percentile assertions after the timed run; exact measured harness retained privately by its recorded hash. Default HTTP literal branch uses original method directly; generic wrapper candidate is not shipped."
+}

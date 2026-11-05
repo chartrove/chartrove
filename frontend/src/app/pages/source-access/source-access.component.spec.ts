@@ -44,6 +44,30 @@ describe('SourceAccessComponent authorization UI', () => {
     expect(fixture.nativeElement.textContent).not.toContain('reviewed transcripts from new local document imports');
   });
 
+  it('labels exact-ID semantics, preserves case/spacing and resets mode on source changes', async () => {
+    component.resourceType='DocumentReference';component.searchText=' Mixed_ID% ';
+    fixture.detectChanges();await fixture.whenStable();
+    const select=fixture.nativeElement.querySelector('#search-mode') as HTMLSelectElement;
+    select.value='exact_id';select.dispatchEvent(new Event('change'));
+    fixture.detectChanges();await fixture.whenStable();
+    expect(api.search).toHaveBeenCalledWith('synthetic-shared','DocumentReference',' Mixed_ID% ',0,'exact_id');
+    expect(fixture.nativeElement.querySelector('#search-mode').value).toBe('exact_id');
+    expect(fixture.nativeElement.textContent).toContain('complete ID, including case and spacing');
+    expect(fixture.nativeElement.textContent).not.toContain('Also searches reviewed transcripts');
+    component.loadResources(1);
+    expect(api.search).toHaveBeenCalledWith('synthetic-shared','DocumentReference',' Mixed_ID% ',1,'exact_id');
+    component.viewSource();expect(component.searchMode).toBe('literal');
+  });
+
+  it('cancels old-mode results and clears detail when selecting exact ID', () => {
+    const old=new Subject<any>();api.search.and.returnValue(old);
+    component.searchText='Synthetic';component.searchResources();component.open(record);
+    api.search.and.returnValue(of([]));component.searchMode='exact_id';component.changeSearchMode();
+    old.next([{source_resource_id:'stale-literal',source_resource_type:'Observation'}]);
+    expect(component.resources).toEqual([]);expect(component.selected).toBeNull();expect(component.page).toBe(0);
+    component.searchText='';component.clearSearch();expect(api.list).toHaveBeenCalled();
+  });
+
   it('clears search state and pending results when changing sources or losing access', () => {
     const pending = new Subject<any>(); api.search.and.returnValue(pending);
     component.searchText = 'Synthetic'; component.searchResources(); component.viewSource();

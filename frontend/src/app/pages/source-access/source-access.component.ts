@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/co
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {forkJoin, Subject, takeUntil} from 'rxjs';
-import {AccessSource, SharedResource, ResourceListItem, SourceAccessLevel, SourceAccessService, SourceAudit, SourceGrant} from '../../services/source-access.service';
+import {AccessSource, SharedResource, ResourceListItem, SourceAccessLevel, SourceSearchMode, SourceAccessService, SourceAudit, SourceGrant} from '../../services/source-access.service';
 
 type DocumentTextPreview = {kind: 'ready'; title: string | null; text: string} | {kind: 'unavailable'};
 
@@ -31,6 +31,8 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
   resources: ResourceListItem[] = [];
   searchText = '';
   appliedSearch = '';
+  searchMode: SourceSearchMode = 'literal';
+  appliedSearchMode: SourceSearchMode = 'literal';
   page = 0;
   selected: SharedResource | null = null;
   documentText: DocumentTextPreview | null = null;
@@ -87,6 +89,7 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
   }
   viewSource(): void {
     this.searchText = ''; this.appliedSearch = '';
+    this.searchMode = 'literal'; this.appliedSearchMode = 'literal';
     this.viewChanged.next(); this.detailChanged.next(); this.resources = []; this.counts = {}; this.clearSelected();
     this.resourceType = ''; this.page = 0; this.error = ''; this.notice = '';
     if (!this.viewingSource) { return; }
@@ -99,7 +102,9 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
     this.viewChanged.next(); this.detailChanged.next(); this.clearSelected(); this.resources = [];
     this.page = page; this.error = '';
     if (!this.viewingSource || !this.resourceType) { return; }
-    const request = this.appliedSearch ? this.api.search(this.viewingSource, this.resourceType, this.appliedSearch, page) : this.api.list(this.viewingSource, this.resourceType, page);
+    const request = !this.appliedSearch ? this.api.list(this.viewingSource, this.resourceType, page)
+      : this.appliedSearchMode === 'exact_id' ? this.api.search(this.viewingSource, this.resourceType, this.appliedSearch, page, 'exact_id')
+      : this.api.search(this.viewingSource, this.resourceType, this.appliedSearch, page);
     request.pipe(takeUntil(this.viewChanged), takeUntil(this.destroy)).subscribe({
       next: rows => this.resources = rows,
       error: () => this.clearUnavailable()
@@ -107,7 +112,12 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
   }
   searchResources(): void {
     if (this.searchText.length > 128) { this.error = 'Search text must be at most 128 characters.'; return; }
-    this.appliedSearch = this.searchText.trim(); this.loadResources();
+    this.appliedSearch = this.searchText.trim() === '' ? '' : this.searchMode === 'exact_id' ? this.searchText : this.searchText.trim();
+    this.appliedSearchMode = this.searchMode; this.loadResources();
+  }
+  changeSearchMode(): void {
+    this.viewChanged.next(); this.detailChanged.next(); this.clearSelected(); this.resources = [];
+    this.appliedSearch = ''; this.page = 0; this.searchResources();
   }
   clearSearch(): void { this.searchText = ''; this.searchResources(); }
   open(resource: ResourceListItem): void {
@@ -185,6 +195,7 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
   private clearSelected(): void { this.selected = null; this.editRaw = ''; this.documentText = null; }
   private clearUnavailable(): void {
     this.searchText = ''; this.appliedSearch = '';
+    this.searchMode = 'literal'; this.appliedSearchMode = 'literal';
     this.viewChanged.next(); this.detailChanged.next(); this.clearSelected(); this.resources = []; this.counts = {};
     this.error = 'Source or record unavailable. Access may have expired or been revoked.';
   }
