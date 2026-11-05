@@ -102,3 +102,13 @@ Public [Chartrove reports](https://github.com/karamhouse/chartrove/issues) must
 omit health information, identifying details, passwords and keys. Use a synthetic
 reproduction. Fasten attribution, licenses and external service identities remain
 as recorded in [the project](../README.md#fasten-attribution-and-license).
+
+Repository constructors disable automatic GORM SQL output at every application
+log level, including DEBUG. SQL parameters, driver errors and slow-query traces
+can contain clinical text and credentials; selected parameter filters alone do
+not cover all query paths. Application lifecycle messages and errors returned to
+callers remain available. This does not certify every application, proxy, browser
+or identity-provider log. Use synthetic fixtures for database diagnostics; do not
+enable SQL tracing on health records. The
+[daily-use readiness assessment](maintenance/production-readiness-2026-11-05.md)
+separates the source correction from unverified backup and runtime acceptance.

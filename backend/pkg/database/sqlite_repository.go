@@ -12,6 +12,7 @@ import (
 	//"github.com/glebarez/sqlite"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 // uses github.com/mattn/go-sqlite3 driver (warning, uses CGO)
@@ -75,8 +76,10 @@ func newSqliteRepository(appConfig config.Interface, globalLogger logrus.FieldLo
 
 	dsn := "file:" + appConfig.GetString("database.location") + pragmaStr
 	database, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{
-		//TODO: figure out how to log database queries again.
-		//logger: logger
+		// SQL, driver errors and slow-query traces can contain clinical data
+		// and credentials. Keep automatic ORM output disabled at every app log
+		// level, including before migrations and in read-only validation mode.
+		Logger:                                   logger.Discard,
 		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 
@@ -86,9 +89,6 @@ func newSqliteRepository(appConfig config.Interface, globalLogger logrus.FieldLo
 		}
 
 		return nil, fmt.Errorf("failed to connect to database! - %w", err)
-	}
-	if strings.ToUpper(appConfig.GetString("log.level")) == "DEBUG" {
-		database = database.Debug() //set debug globally
 	}
 	globalLogger.Infof("Successfully connected to fasten sqlite db: %s\n", appConfig.GetString("database.location"))
 
