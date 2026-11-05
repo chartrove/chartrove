@@ -2,13 +2,13 @@ package database
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
 	"github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func newPostgresRepository(appConfig config.Interface, globalLogger logrus.FieldLogger, eventBus event_bus.Interface) (DatabaseRepository, error) {
@@ -21,14 +21,11 @@ func newPostgresRepository(appConfig config.Interface, globalLogger logrus.Field
 	dsn := appConfig.GetString("database.location")
 
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		//TODO: figure out how to log database queries again.
-		//logger: logger
+		// Do not emit SQL or driver-detail traces containing clinical data or
+		// credentials. Application lifecycle diagnostics remain independent.
+		Logger:                                   logger.Discard,
 		DisableForeignKeyConstraintWhenMigrating: true,
 	})
-
-	if strings.ToUpper(appConfig.GetString("log.level")) == "DEBUG" {
-		database = database.Debug() //set debug globally
-	}
 
 	if err != nil {
 		return nil, fmt.Errorf("Failed to connect to database! - %v", err)
