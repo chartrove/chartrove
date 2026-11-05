@@ -28,6 +28,29 @@ describe('FastenApiService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('carries explicit source selection while preserving legacy request shapes', () => {
+    const http = TestBed.inject(HttpTestingController);
+    const source = '22222222-2222-4222-8222-222222222222';
+    service.deleteResourceFhir('Practitioner', 'shared-id', source).subscribe();
+    const scopedDelete = http.expectOne(req => req.method === 'DELETE');
+    expect(scopedDelete.request.params.get('source_id')).toBe(source);
+    scopedDelete.flush({success: true});
+    service.deleteResourceFhir('Practitioner', 'unique-id').subscribe();
+    const legacyDelete = http.expectOne(req => req.method === 'DELETE');
+    expect(legacyDelete.request.params.has('source_id')).toBeFalse();
+    legacyDelete.flush({success: true});
+    const resource = {resourceType: 'Practitioner', id: 'shared-id'};
+    service.updatePractitioner('shared-id', resource, source).subscribe();
+    const scopedPut = http.expectOne(req => req.method === 'PUT');
+    expect(scopedPut.request.body).toEqual({resource, source_id: source});
+    scopedPut.flush({success: true});
+    service.updatePractitioner('shared-id', resource).subscribe();
+    const legacyPut = http.expectOne(req => req.method === 'PUT');
+    expect(legacyPut.request.body).toEqual({resource});
+    legacyPut.flush({success: true});
+    http.verify();
+  });
+
   it('preserves related attachments in a serialized multipart request for the native transport', async () => {
     const http = TestBed.inject(HttpTestingController);
     const resourceList = {

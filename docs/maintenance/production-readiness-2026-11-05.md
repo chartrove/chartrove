@@ -7,10 +7,10 @@ passed. These prove source validation, not a deployed release or recovery exerci
 This is a bounded assessment of the existing application, not a new architecture,
 provider registry, upstream-reuse assessment or exhaustive security audit.
 
-## Current production-first priorities after #433
+## Current production-first priorities after #434
 
-Current source baseline is `15f7f873ed750e84dd7733eb0ada290402374d8a`.
-Protected #432/#433 and their exact-main workflows passed all required checks;
+Current source baseline is `17a70f542f1f5b744584a2f3089388c9ce0dd98b`.
+Protected #432/#433/#434 and their exact-main workflows passed all required checks;
 the original assessment below is retained as the historical search checkpoint.
 The governing product direction uses [#425](https://github.com/karamhouse/chartrove/issues/425),
 [#430](https://github.com/karamhouse/chartrove/issues/430) and the separate,
@@ -30,8 +30,8 @@ This source lane does not adopt/merge that draft or duplicate its provider mappi
 2. **Clinical ingestion and editing do not yet have complete provenance acceptance.**
    A reproduced source defect makes the legacy owner PATCH use SDK ingestion:
    editing an explicitly local record removes its local-edit marker and disables
-   a family's existing delegated EDIT capability. **Source correction in this
-   change:** separate owner-only existing-row updates from ingestion, preserving
+   a family's existing delegated EDIT capability. **Integrated in #434:**
+   separate owner-only existing-row updates from ingestion, preserving
    local provenance and omitted presentation metadata, reindexing changed fields,
    auditing atomically and checking live native/source ownership at the write.
    SDK replacement still removes local eligibility; imported records are never
@@ -75,6 +75,56 @@ Only the Desktop and Go CodeQL image labels move to supported `macos-15`; all
 seven required checks, commands, toolchains, permissions and timeouts are retained.
 The exact-head replacement must pass full protected validation. Hosted macOS 15
 checks do not certify native UI compatibility on older macOS versions.
+
+## Source-qualified owner mutation contract
+
+A separate synthetic two-source reproduction found a data-integrity defect:
+legacy PATCH/DELETE selected an arbitrary source when the owner had the same
+resource type/ID in multiple sources. Both returned success while modifying or
+deleting the other record. Practitioner PUT had the same first-match lookup.
+This correction binds client actions to the selected source and rejects ambiguity.
+
+| Existing endpoint | Optional explicit selector |
+| --- | --- |
+| `PATCH /api/secure/resource/fhir/:resourceType/:resourceId` | JSON `source_id` beside the existing `resource_raw` / sort fields |
+| `PUT /api/secure/practitioners/:practitionerId` | JSON `source_id` beside the existing `resource` |
+| `DELETE /api/secure/resource/fhir/:resourceType/:resourceId` | One `source_id` query parameter |
+
+Omitting the selector preserves the legacy request/response shape when exactly
+one owned live record matches. Two candidates return **409 without a write**;
+missing/foreign/deleted targets return **404**. Explicit malformed/null/empty/nil
+UUIDs, duplicate DELETE selectors, malformed query escapes and trailing JSON return
+**400** rather than silently falling back. The source hint never proves access:
+resolution reads at most two metadata rows under native UUID/live-source ownership,
+then the update/delete rechecks native/source/record liveness at the write boundary.
+Admin roles and active source grants cannot authorize these owner-only operations.
+
+Deletion removes only the selected record and its local marker. Its `delete_owned`
+audit is atomic; an unavailable audit rolls back both, and notifications follow
+commit. The public legacy repository deletion method also rejects ambiguity.
+This retains the existing row-deletion contract; it does not add account-wide
+erasure, purge historical audit/provenance or certify a backup-retention policy.
+Practitioner PUT uses the existing owner-edit path, preserving local eligibility
+and exact raw clinical bytes instead of the SDK ingestion/JSON re-encoding path.
+Canonical value casts support legacy PostgreSQL text/UUID columns without a migration.
+
+The UI carries known source IDs through editing, practitioner routes and deletion.
+Equal resource IDs in different sources have distinct selection/row keys. Batch
+responses remove only actual successful tuples, even when failures arrive last;
+route/save responses remain bound to their original source context. Relative
+MedicationRequest references are matched within the selected medication's source.
+The touched practitioner-loading flow no longer automatically dumps the records
+to the console. Other legacy graph/history disambiguation, full-record lab-edit
+preservation and comprehensive browser/logging acceptance remain separate work.
+
+Regression evidence: [target resolver/delete](../../backend/pkg/database/owned_resource_mutation_test.go),
+[three owner transports](../../backend/pkg/web/handler/source_scoped_mutation_test.go)
+and [native encrypted transport](../../backend/pkg/web/embedded_source_scoped_mutation_test.go).
+Tests use generated accounts/records, encrypted SQLite and disposable pinned
+PostgreSQL. Client diagnostics evaluate the actual TypeScript methods; permanent
+browser regressions and complete protected checks remain required. No provider
+registry, production data, external converter, model/index service, dependency,
+database schema or live configuration changes are part of this correction.
 
 ## Original priorities before #433
 

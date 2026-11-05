@@ -646,14 +646,14 @@ export class FastenApiService {
             return practitioner;
           });
           
-          console.log('Fetched practitioners with job title, organization, and contact use properties:', practitioners);
           return practitioners as Practitioner[];
         })
       );
   }
 
-  deleteResourceFhir(resourceType: string, resourceId: string): Observable<any> {
-    return this._httpClient.delete<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/resource/fhir/${resourceType}/${resourceId}`)
+  deleteResourceFhir(resourceType: string, resourceId: string, sourceId?: string): Observable<any> {
+    const options = sourceId === undefined ? undefined : {params: {source_id: sourceId}};
+    return this._httpClient.delete<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/resource/fhir/${resourceType}/${resourceId}`, options)
       .pipe(
         map((response: ResponseWrapper) => {
           return response
@@ -661,8 +661,8 @@ export class FastenApiService {
       );
   }
   
-  deletePractitioner(practitionerId: string): Observable<any> {
-    return this.deleteResourceFhir('Practitioner', practitionerId);
+  deletePractitioner(practitionerId: string, sourceId?: string): Observable<any> {
+    return this.deleteResourceFhir('Practitioner', practitionerId, sourceId);
   }
 
   createPractitioner(practitionerResource: any): Observable<any> {
@@ -676,9 +676,10 @@ export class FastenApiService {
       );
   }
 
-  updatePractitioner(practitionerId: string, practitionerResource: any): Observable<any> {
+  updatePractitioner(practitionerId: string, practitionerResource: any, sourceId?: string): Observable<any> {
     return this._httpClient.put<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/practitioners/${practitionerId}`, {
-      resource: practitionerResource
+      resource: practitionerResource,
+      ...(sourceId === undefined ? {} : {source_id: sourceId})
     })
       .pipe(
         map((response: ResponseWrapper) => {

@@ -324,14 +324,14 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
   // Selection Management
   isSelected(practitioner: Practitioner): boolean {
     return this.selectedPractitioners.some(p => 
-      p.source_resource_id === practitioner.source_resource_id
+      this.practitionerKey(p) === this.practitionerKey(practitioner)
     );
   }
 
   toggleSelection(practitioner: Practitioner): void {
     if (this.isSelected(practitioner)) {
       this.selectedPractitioners = this.selectedPractitioners.filter(p => 
-        p.source_resource_id !== practitioner.source_resource_id
+        this.practitionerKey(p) !== this.practitionerKey(practitioner)
       );
     } else {
       this.selectedPractitioners.push(practitioner);
@@ -358,14 +358,9 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
 
   // Row Click Handler
   onRowClick(practitioner: Practitioner): void {
-    console.log('Row clicked, practitioner:', practitioner);
-    console.log('Source resource ID:', practitioner.source_resource_id);
-    
     if (practitioner.source_resource_id) {
-      console.log('Navigating to:', ['/practitioners/view', practitioner.source_resource_id]);
-      this.router.navigate(['/practitioners/view', practitioner.source_resource_id]);
+      this.router.navigate(['/practitioners/view', practitioner.source_resource_id], {queryParams: {source_id: practitioner.source_id}});
     } else {
-      console.error('No source_resource_id found for practitioner:', practitioner);
       alert('Cannot view practitioner: No ID available');
     }
   }
@@ -376,7 +371,7 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
     event.preventDefault();
     
     // For now, just open the view page - you can add edit functionality later
-    this.router.navigate(['/practitioners/view', practitioner.source_resource_id]);
+    this.router.navigate(['/practitioners/view', practitioner.source_resource_id], {queryParams: {source_id: practitioner.source_id}});
   }
 
   showMoreActions(event: MouseEvent, practitioner: Practitioner): void {
@@ -389,7 +384,11 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
 
   // Utility Methods
   trackByPractitioner(index: number, practitioner: Practitioner): string {
-    return practitioner.source_resource_id || index.toString();
+    return practitioner.source_resource_id ? this.practitionerKey(practitioner) : index.toString();
+  }
+
+  practitionerKey(practitioner: Practitioner): string {
+    return JSON.stringify([practitioner.source_id, practitioner.source_resource_id]);
   }
 
   // Navigate to add practitioner page
@@ -640,12 +639,14 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
     }
 
     // Create an array of delete operations
-    const deleteOperations = this.selectedPractitioners.map(practitioner => 
-      this.fastenApi.deleteResourceFhir('Practitioner', practitioner.source_resource_id!)
+    const selected = [...this.selectedPractitioners];
+    const deletedKeys = new Set<string>();
+    const deleteOperations = selected.map(practitioner =>
+      this.fastenApi.deleteResourceFhir('Practitioner', practitioner.source_resource_id!, practitioner.source_id)
     );
 
     // Show loading state (you might want to add a loading indicator)
-    let deletedCount = 0;
+    let completedCount = 0;
     let failedCount = 0;
 
     // Execute all delete operations
@@ -653,14 +654,15 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
       deleteOp.subscribe({
         next: (response) => {
           if (response && response.success) {
-            deletedCount++;
+            deletedKeys.add(this.practitionerKey(selected[index]));
           } else {
             failedCount++;
           }
 
           // Check if this is the last operation
-          if (deletedCount + failedCount === deleteOperations.length) {
-            this.handleBatchDeleteComplete(deletedCount, failedCount);
+          completedCount++;
+          if (completedCount === deleteOperations.length) {
+            this.handleBatchDeleteComplete(deletedKeys, failedCount);
           }
         },
         error: (error) => {
@@ -668,23 +670,21 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
           failedCount++;
 
           // Check if this is the last operation
-          if (deletedCount + failedCount === deleteOperations.length) {
-            this.handleBatchDeleteComplete(deletedCount, failedCount);
+          completedCount++;
+          if (completedCount === deleteOperations.length) {
+            this.handleBatchDeleteComplete(deletedKeys, failedCount);
           }
         }
       });
     });
   }
 
-  private handleBatchDeleteComplete(deletedCount: number, failedCount: number): void {
+  private handleBatchDeleteComplete(deletedKeys: ReadonlySet<string>, failedCount: number): void {
+    const deletedCount = deletedKeys.size;
     // Remove successfully deleted practitioners from the local arrays
     if (deletedCount > 0) {
-      const deletedIds = this.selectedPractitioners
-        .slice(0, deletedCount)
-        .map(p => p.source_resource_id);
-      
       this.practitioners = this.practitioners.filter(p => 
-        !deletedIds.includes(p.source_resource_id)
+        !deletedKeys.has(this.practitionerKey(p))
       );
       this.applyFilters(); // Refresh filtered list
     }
@@ -777,10 +777,10 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
       event.preventDefault();
       
       // Toggle dropdown for this specific practitioner
-      if (this.showPractitionerDropdown === practitioner.source_resource_id) {
+      if (this.showPractitionerDropdown === this.practitionerKey(practitioner)) {
         this.hidePractitionerDropdown();
       } else {
-        this.showPractitionerDropdown = practitioner.source_resource_id || null;
+        this.showPractitionerDropdown = this.practitionerKey(practitioner);
         // Add click listener to close on outside click
         setTimeout(() => this.addClickOutsideListener('practitioner'), 0);
       }
@@ -828,12 +828,12 @@ export class PractitionerListComponent implements OnInit, OnDestroy {
         return;
       }
   
-      this.fastenApi.deleteResourceFhir('Practitioner', practitioner.source_resource_id!).subscribe({
+      this.fastenApi.deleteResourceFhir('Practitioner', practitioner.source_resource_id!, practitioner.source_id).subscribe({
         next: (response) => {
           if (response && response.success) {
             // Remove from local arrays
             this.practitioners = this.practitioners.filter(p => 
-              p.source_resource_id !== practitioner.source_resource_id
+              this.practitionerKey(p) !== this.practitionerKey(practitioner)
             );
             this.applyFilters(); // Refresh filtered list
             
