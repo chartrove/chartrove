@@ -68,6 +68,14 @@ authoritative record system with Go/Gin, Angular, Wails, SQLCipher and optional
 PostgreSQL. Conversational AI remains outside it; future MCP needs separately
 approved read-only patient/source scope, live revocation and data-destination rules.
 
+The required Go CodeQL job exposed a separate validation prerequisite: GitHub
+cancelled it before setup with an unsupported macOS 14 runner configuration.
+[GitHub retired those hosted labels on November 2](https://github.blog/changelog/2026-10-01-github-actions-macos-14-runner-image-retirement/).
+Only the Desktop and Go CodeQL image labels move to supported `macos-15`; all
+seven required checks, commands, toolchains, permissions and timeouts are retained.
+The exact-head replacement must pass full protected validation. Hosted macOS 15
+checks do not certify native UI compatibility on older macOS versions.
+
 ## Original priorities before #433
 
 1. **Automatic database logs can expose clinical values and credentials.**
