@@ -43,7 +43,9 @@ func LoggerMiddleware(logger *logrus.Entry) gin.HandlerFunc {
 		statusCode := c.Writer.Status()
 		clientIP := c.ClientIP()
 		clientUserAgent := c.Request.UserAgent()
-		referer := c.Request.Referer()
+		// A browser's Referer can contain an OIDC callback code/state or other
+		// private URL data. Omit it from both fields and the formatted message;
+		// do not mutate the original header needed by downstream handlers.
 		respLength := c.Writer.Size()
 		if respLength < 0 {
 			respLength = 0
@@ -56,7 +58,6 @@ func LoggerMiddleware(logger *logrus.Entry) gin.HandlerFunc {
 			"clientIP":   clientIP,
 			"method":     c.Request.Method,
 			"path":       path,
-			"referer":    referer,
 			"respLength": respLength,
 			"userAgent":  clientUserAgent,
 		})
@@ -64,7 +65,7 @@ func LoggerMiddleware(logger *logrus.Entry) gin.HandlerFunc {
 		if len(c.Errors) > 0 {
 			entry.Error(c.Errors.ByType(gin.ErrorTypePrivate).String())
 		} else {
-			msg := fmt.Sprintf("%s - %s [%s] \"%s %s\" %d %d \"%s\" \"%s\" (%dms)", clientIP, hostname, time.Now().Format(timeFormat), c.Request.Method, path, statusCode, respLength, referer, clientUserAgent, latency)
+			msg := fmt.Sprintf("%s - %s [%s] \"%s %s\" %d %d \"%s\" (%dms)", clientIP, hostname, time.Now().Format(timeFormat), c.Request.Method, path, statusCode, respLength, clientUserAgent, latency)
 			if statusCode >= http.StatusInternalServerError {
 				entry.Error(msg)
 			} else if statusCode >= http.StatusBadRequest {
