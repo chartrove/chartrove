@@ -682,6 +682,20 @@ func (mr *MockDatabaseRepositoryMockRecorder) QueryResources(ctx, query interfac
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "QueryResources", reflect.TypeOf((*MockDatabaseRepository)(nil).QueryResources), ctx, query)
 }
 
+// RegisterUser mocks base method.
+func (m *MockDatabaseRepository) RegisterUser(arg0 context.Context, arg1 *models.User, arg2 bool) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "RegisterUser", arg0, arg1, arg2)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// RegisterUser indicates an expected call of RegisterUser.
+func (mr *MockDatabaseRepositoryMockRecorder) RegisterUser(arg0, arg1, arg2 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RegisterUser", reflect.TypeOf((*MockDatabaseRepository)(nil).RegisterUser), arg0, arg1, arg2)
+}
+
 // RemoveBulkResourceAssociations mocks base method.
 func (m *MockDatabaseRepository) RemoveBulkResourceAssociations(ctx context.Context, associationsToDelete []models.RelatedResource) (int64, error) {
 	m.ctrl.T.Helper()

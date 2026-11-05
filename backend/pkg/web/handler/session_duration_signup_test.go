@@ -35,9 +35,8 @@ func TestSignupConfiguredSessionLifetime(t *testing.T) {
 			db := mock_database.NewMockDatabaseRepository(ctrl)
 			if valid {
 				cfg.Set("jwt.session.duration", "5m")
-				db.EXPECT().GetUserCount(gomock.Any()).Return(1, nil)
-				db.EXPECT().CreateUser(gomock.Any(), gomock.Any()).DoAndReturn(func(_ interface{}, user *models.User) error {
-					require.Equal(t, pkg.UserRoleUser, user.Role)
+				db.EXPECT().RegisterUser(gomock.Any(), gomock.Any(), true).DoAndReturn(func(_ interface{}, user *models.User, _ bool) error {
+					user.Role = pkg.UserRoleUser
 					require.Equal(t, "synthetic-signup", user.Username)
 					return nil
 				})

@@ -49,14 +49,11 @@ func TestAuthSignupRequestValidation(t *testing.T) {
 			cfg.Set("jwt.session.duration", "1h")
 			ctrl := gomock.NewController(t)
 			db := mock_database.NewMockDatabaseRepository(ctrl)
-			countReads, creations := 0, 0
+			registrations := 0
 			var received *models.User
-			db.EXPECT().GetUserCount(gomock.Any()).DoAndReturn(func(_ interface{}) (int, error) {
-				countReads++
-				return 1, nil
-			}).AnyTimes()
-			db.EXPECT().CreateUser(gomock.Any(), gomock.Any()).DoAndReturn(func(_ interface{}, user *models.User) error {
-				creations++
+			db.EXPECT().RegisterUser(gomock.Any(), gomock.Any(), true).DoAndReturn(func(_ interface{}, user *models.User, _ bool) error {
+				registrations++
+				user.Role = pkg.UserRoleUser
 				copy := *user
 				received = &copy
 				return nil
@@ -79,14 +76,12 @@ func TestAuthSignupRequestValidation(t *testing.T) {
 				require.NoError(t, err)
 				require.JSONEq(t, string(expected), response.Body.String())
 				require.Empty(t, recovery.String(), "bad input must not rely on panic recovery")
-				require.Zero(t, countReads)
-				require.Zero(t, creations)
+				require.Zero(t, registrations)
 				return
 			}
 			require.Equal(t, http.StatusOK, response.Code)
 			require.Empty(t, recovery.String())
-			require.Equal(t, 1, countReads)
-			require.Equal(t, 1, creations)
+			require.Equal(t, 1, registrations)
 			require.Equal(t, tc.username, received.Username)
 			require.Equal(t, tc.password, received.Password)
 			require.Equal(t, pkg.UserRoleUser, received.Role, "role follows actual account policy, not supplied role or username")

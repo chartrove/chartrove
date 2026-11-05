@@ -96,16 +96,16 @@ func TestAuthSignup(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	t.Run("First user should be assigned admin role", func(t *testing.T) {
+	t.Run("Bootstrap signup uses the repository-assigned administrator role", func(t *testing.T) {
 		mockDB := mock_database.NewMockDatabaseRepository(mockCtrl)
 		mockConfig := mock_config.NewMockInterface(mockCtrl)
 
-		mockDB.EXPECT().GetUserCount(gomock.Any()).Return(0, nil)
-		mockDB.EXPECT().CreateUser(gomock.Any(), gomock.Any()).Do(func(_ interface{}, user *models.User) {
-			assert.Equal(t, pkg.UserRoleAdmin, user.Role)
+		mockDB.EXPECT().RegisterUser(gomock.Any(), gomock.Any(), true).Do(func(_ interface{}, user *models.User, _ bool) {
+			user.Role = pkg.UserRoleAdmin
 		}).Return(nil)
 		mockConfig.EXPECT().GetString("jwt.issuer.key").Return("test_key")
 		mockConfig.EXPECT().GetString("jwt.session.duration").Return("1h")
+		mockConfig.EXPECT().GetString("auth.registration.enabled").Return("true")
 
 		w := httptest.NewRecorder()
 		c, _ := gin.CreateTestContext(w)
@@ -131,16 +131,16 @@ func TestAuthSignup(t *testing.T) {
 		assert.True(t, response["success"].(bool))
 	})
 
-	t.Run("Subsequent user should be assigned user role", func(t *testing.T) {
+	t.Run("Subsequent signup uses the repository-assigned ordinary role", func(t *testing.T) {
 		mockDB := mock_database.NewMockDatabaseRepository(mockCtrl)
 		mockConfig := mock_config.NewMockInterface(mockCtrl)
 
-		mockDB.EXPECT().GetUserCount(gomock.Any()).Return(1, nil)
-		mockDB.EXPECT().CreateUser(gomock.Any(), gomock.Any()).Do(func(_ interface{}, user *models.User) {
-			assert.Equal(t, pkg.UserRoleUser, user.Role)
+		mockDB.EXPECT().RegisterUser(gomock.Any(), gomock.Any(), true).Do(func(_ interface{}, user *models.User, _ bool) {
+			user.Role = pkg.UserRoleUser
 		}).Return(nil)
 		mockConfig.EXPECT().GetString("jwt.issuer.key").Return("test_key")
 		mockConfig.EXPECT().GetString("jwt.session.duration").Return("1h")
+		mockConfig.EXPECT().GetString("auth.registration.enabled").Return("true")
 
 		w := httptest.NewRecorder()
 		c, _ := gin.CreateTestContext(w)

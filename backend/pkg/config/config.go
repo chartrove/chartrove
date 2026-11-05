@@ -43,6 +43,7 @@ func (c *configuration) Init() error {
 
 	c.SetDefault("jwt.issuer.key", defaultJWTIssuerKey)
 	c.SetDefault("jwt.session.duration", "1h")
+	c.SetDefault("auth.registration.enabled", true)
 
 	c.SetDefault("log.level", "INFO")
 	c.SetDefault("log.file", "")
@@ -97,7 +98,10 @@ func (c *configuration) ValidateConfig() error {
 			return errors.ConfigValidationError("database.encryption.key must be at least 10 characters")
 		}
 	}
-	_, err := UserSessionDuration(c)
+	if _, err := UserSessionDuration(c); err != nil {
+		return err
+	}
+	_, err := PublicRegistrationEnabled(c)
 	return err
 }
 

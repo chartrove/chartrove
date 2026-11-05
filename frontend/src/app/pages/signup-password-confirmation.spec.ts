@@ -21,7 +21,7 @@ for (const componentType of components) {
         declarations: [componentType],
         imports: [FormsModule],
         providers: [
-          { provide: AuthService, useValue: { Signup: signup } },
+          { provide: AuthService, useValue: { Signup: signup, RegistrationStatus: () => Promise.resolve({enabled:true,allowed:true,bootstrap:false}) } },
           { provide: Router, useValue: { navigateByUrl: jasmine.createSpy() } },
         ],
       }).compileComponents();
@@ -35,6 +35,7 @@ for (const componentType of components) {
       fixture.componentInstance.newUser.password = 'synthetic-password';
       fixture.detectChanges();
       await fixture.whenStable();
+      fixture.detectChanges();
     });
 
     it('renders a required masked confirmation field', () => {

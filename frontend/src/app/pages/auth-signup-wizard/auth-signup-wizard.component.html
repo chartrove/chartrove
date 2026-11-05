@@ -17,8 +17,13 @@
         <h1 class="az-logo">Chartrove</h1>
         <div class="az-signin-header">
           <h2>Let's Get Started!</h2>
-          <p>Create your Chartrove administrator account</p>
+          <p>{{registration?.bootstrap ? "Create your Chartrove administrator account" : "Create your Chartrove account"}}</p>
+          <p><a routerLink="/auth/signin">Sign in to an existing account</a></p>
 
+          @if (registrationLoading) { <p role="status">Checking registration availability…</p> }
+          @else if (registrationError) { <p class="alert alert-danger" role="alert">{{registrationError}}</p> }
+          @else if (!registration?.allowed) { <p class="alert alert-info" role="status">Public registration is disabled. Contact your administrator.</p> }
+          @if (registration?.allowed) {
           <form (ngSubmit)="signupSubmit()" #userForm="ngForm">
             <div class="mb-3">
               <input [(ngModel)]="newUser.full_name" name="full_name" #full_name="ngModel" required minlength="2" type="text" class="form-control" placeholder="Name">
@@ -128,6 +133,7 @@
               </div>
             }
           </form>
+          }
 
         </div><!-- az-signin-header -->
       </div><!-- az-card-signin -->

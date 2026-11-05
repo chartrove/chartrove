@@ -36,6 +36,10 @@ log:
 # exact frontend callback URL. Keep client_secret in the deployment secret store
 # (FASTEN_AUTH_OIDC_CLIENT_SECRET), not in a committed file. No account auto-link.
 auth:
+  registration:
+    # Disable subsequent public signups with FASTEN_AUTH_REGISTRATION_ENABLED=false.
+    # Initial empty-database administrator setup and existing local login remain available.
+    enabled: true
   oidc:
     enabled: false
     issuer: ""

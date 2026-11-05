@@ -16,6 +16,7 @@ type DatabaseRepository interface {
 	Migrate() error
 
 	CreateUser(context.Context, *models.User) error
+	RegisterUser(context.Context, *models.User, bool) error
 	GetUserCount(context.Context) (int, error)
 	GetUserByUsername(context.Context, string) (*models.User, error)
 	GetCurrentUser(ctx context.Context) (*models.User, error)

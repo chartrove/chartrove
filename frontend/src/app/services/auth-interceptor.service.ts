@@ -45,7 +45,13 @@ export class AuthInterceptorService implements HttpInterceptor {
     // Clone the request to add the new header.
     const authReq = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + this.authService.GetAuthToken())});
     // catch the error, make specific functions for catching specific errors and you can chain through them with more catch operators
-    return next.handle(authReq).pipe(catchError(x=> this.handleAuthError(x))); //here use an arrow function, otherwise you may get "Cannot read property 'navigate' of undefined" on angular 4.4.2/net core 2/webpack 2.70
+    return next.handle(authReq).pipe(catchError(x=> {
+      // A public signup policy denial is not invalidation of an existing
+      // native session. All protected-route 401/403 handling remains intact.
+      if (reqUrl.origin===apiUrl.origin && reqUrl.pathname===apiUrl.pathname+'/auth/signup' &&
+          x.status===403 && x.error?.code==='registration_closed') return throwError(()=>x);
+      return this.handleAuthError(x);
+    }));
 
 
     // let authToken = this.authService.GetAuthToken()

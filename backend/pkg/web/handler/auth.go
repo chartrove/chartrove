@@ -34,6 +34,7 @@ func IsAdmin(c *gin.Context) bool {
 }
 
 func AuthSignup(c *gin.Context) {
+	c.Header("Cache-Control", "no-store")
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 	appConfig := c.MustGet(pkg.ContextKeyTypeConfig).(config.Interface)
 
@@ -57,21 +58,18 @@ func AuthSignup(c *gin.Context) {
 		return
 	}
 
-	// Check if this is the first user in the database
-	userCount, err := databaseRepo.GetUserCount(c)
+	enabled, err := config.PublicRegistrationEnabled(appConfig)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to check user count"})
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Invalid registration configuration"})
 		return
 	}
-
-	if userCount == 0 {
-		userWizard.User.Role = pkg.UserRoleAdmin
-	} else {
-		userWizard.User.Role = pkg.UserRoleUser
+	err = databaseRepo.RegisterUser(c, userWizard.User, enabled)
+	if errors.Is(err, database.ErrRegistrationClosed) {
+		c.JSON(http.StatusForbidden, gin.H{"success": false, "code": "registration_closed", "error": "Public registration is disabled. Contact your administrator."})
+		return
 	}
-	err = databaseRepo.CreateUser(c, userWizard.User)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Could not create account"})
 		return
 	}
 
@@ -89,6 +87,23 @@ func AuthSignup(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"success": true, "data": userFastenToken})
+}
+
+// Availability is navigation metadata, never authorization for a later POST.
+func RegistrationStatus(c *gin.Context) {
+	c.Header("Cache-Control", "no-store")
+	cfg := c.MustGet(pkg.ContextKeyTypeConfig).(config.Interface)
+	enabled, err := config.PublicRegistrationEnabled(cfg)
+	if err != nil {
+		c.JSON(500, gin.H{"success": false, "error": "Registration availability is unavailable"})
+		return
+	}
+	count, err := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository).GetUserCount(c)
+	if err != nil {
+		c.JSON(500, gin.H{"success": false, "error": "Registration availability is unavailable"})
+		return
+	}
+	c.JSON(200, gin.H{"success": true, "data": gin.H{"enabled": enabled, "allowed": enabled || count == 0, "bootstrap": count == 0}})
 }
 
 func AuthSignin(c *gin.Context) {

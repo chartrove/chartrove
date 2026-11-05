@@ -88,7 +88,9 @@ func TestEmbeddedFreshDatabasePersistsAccountWithoutRegistration(t *testing.T) {
 func TestEmbeddedEncryptionUnlockIsSynchronousAndRejectsWrongKey(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "encrypted.db")
 	key := strings.Repeat("synthetic", 4)
-	app := openEmbedded(t, embeddedConfig(t, path, true))
+	cfg := embeddedConfig(t, path, true)
+	cfg.Set("auth.registration.enabled", false)
+	app := openEmbedded(t, cfg)
 	if _, err := os.Stat(path); !os.IsNotExist(err) {
 		t.Fatalf("locked startup created database: %v", err)
 	}
@@ -105,6 +107,14 @@ func TestEmbeddedEncryptionUnlockIsSynchronousAndRejectsWrongKey(t *testing.T) {
 	if !strings.Contains(w.Body.String(), `"standby_mode":false`) {
 		t.Fatal("unlock returned before new routes were ready", w.Body.String())
 	}
+	credentials := `{"username":"synthetic-encrypted-recovery","password":"synthetic-password"}`
+	if w = embeddedRequest(t, app, "POST", "/api/auth/signup", credentials); w.Code != 200 {
+		t.Fatalf("bootstrap with closed public registration: %d", w.Code)
+	}
+	w = embeddedRequest(t, app, "GET", "/api/auth/registration", "")
+	if !strings.Contains(w.Body.String(), `"allowed":false`) {
+		t.Fatal("unlock lost registration policy", w.Body.String())
+	}
 	if err := app.Close(); err != nil {
 		t.Fatal(err)
 	}
@@ -115,7 +125,9 @@ func TestEmbeddedEncryptionUnlockIsSynchronousAndRejectsWrongKey(t *testing.T) {
 	if bytes.HasPrefix(raw, []byte("SQLite format 3")) {
 		t.Fatal("database is not encrypted")
 	}
-	reopened := openEmbedded(t, embeddedConfig(t, path, true))
+	reopenConfig := embeddedConfig(t, path, true)
+	reopenConfig.Set("auth.registration.enabled", false)
+	reopened := openEmbedded(t, reopenConfig)
 	w = embeddedRequest(t, reopened, "POST", "/api/encryption-key", `{"encryption_key":"wrong-synthetic-key"}`)
 	if w.Code != 400 {
 		t.Fatalf("wrong key accepted: %d", w.Code)
@@ -126,6 +138,13 @@ func TestEmbeddedEncryptionUnlockIsSynchronousAndRejectsWrongKey(t *testing.T) {
 	}
 	if err := reopened.UnlockDatabase(key); err != nil {
 		t.Fatal("correct key after failure:", err)
+	}
+	if w = embeddedRequest(t, reopened, "POST", "/api/auth/signin", credentials); w.Code != 200 {
+		t.Fatalf("recovered local sign-in with public registration disabled: %d", w.Code)
+	}
+	w = embeddedRequest(t, reopened, "POST", "/api/auth/signup", `{"username":"synthetic-recovery-closed","password":"synthetic-password"}`)
+	if w.Code != 403 {
+		t.Fatalf("restored encryption lost registration policy: %d", w.Code)
 	}
 }
 
