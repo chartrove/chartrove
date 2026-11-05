@@ -63,6 +63,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	cfg.Set("database.location", filepath.Join(t.TempDir(), "synthetic-oidc-http.db"))
 	cfg.Set("database.encryption.enabled", false)
 	cfg.Set("auth.oidc.enabled", true)
+	cfg.Set("auth.registration.enabled", false)
 	cfg.Set("auth.oidc.issuer", issuer)
 	cfg.Set("auth.oidc.client_id", "synthetic")
 	cfg.Set("auth.oidc.redirect_uri", "https://chartrove.example/web/auth/oidc/callback")

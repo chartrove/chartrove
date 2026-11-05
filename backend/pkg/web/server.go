@@ -155,6 +155,7 @@ func (ae *AppEngine) Setup() (*gin.RouterGroup, *gin.Engine) {
 			if !standbyMode {
 				api.Use(middleware.CacheMiddleware())
 				api.POST("/auth/signup", handler.AuthSignup)
+				api.GET("/auth/registration", handler.RegistrationStatus)
 				api.POST("/auth/signin", handler.AuthSignin)
 
 				//whitelisted CORS PROXY

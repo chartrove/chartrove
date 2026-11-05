@@ -3,7 +3,7 @@ import {User} from '../../models/fasten/user';
 import {Router} from '@angular/router';
 import {ToastNotification, ToastType} from '../../models/fasten/toast';
 import {ToastService} from '../../services/toast.service';
-import {AuthService} from '../../services/auth.service';
+import {AuthService,RegistrationPolicy} from '../../services/auth.service';
 
 @Component({
     selector: 'app-auth-signup',
@@ -13,6 +13,9 @@ import {AuthService} from '../../services/auth.service';
     standalone: false
 })
 export class AuthSignupComponent implements OnInit {
+  registration: RegistrationPolicy | null = null;
+  registrationLoading = true;
+  registrationError = '';
   loading: boolean = false
 
   passwordConfirmation: string = ""
@@ -27,11 +30,14 @@ export class AuthSignupComponent implements OnInit {
     private toastService: ToastService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    try { this.registration=await this.authService.RegistrationStatus(); }
+    catch { this.registration=null;this.registrationError='Registration availability could not be checked. Try again later or sign in to an existing account.'; }
+    finally {this.registrationLoading=false;}
   }
 
   signupSubmit(){
-    if (this.loading) return;
+    if (this.loading || !this.registration?.allowed) return;
     this.submitted = true;
     if (!this.passwordConfirmation || this.passwordConfirmation !== this.newUser.password) {
       this.errorMsg = "Passwords do not match.";
@@ -46,8 +52,11 @@ export class AuthSignupComponent implements OnInit {
       },
       (err)=>{
         this.loading = false
-        console.error("an error occured while signup",err)
-        if(err.name === 'conflict') {
+        if(err?.error?.code === 'registration_closed') {
+          this.registration={enabled:false,allowed:false,bootstrap:false};
+          this.newUser.password='';this.passwordConfirmation='';
+          this.errorMsg='Public registration is disabled. Contact your administrator.';
+        } else if(err.name === 'conflict') {
           // "batman" already exists, choose another username
           this.errorMsg = "username already exists"
         } else if (err.name === 'forbidden') {

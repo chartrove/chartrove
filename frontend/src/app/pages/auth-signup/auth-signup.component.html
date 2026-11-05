@@ -18,7 +18,11 @@
       <h2>It's your health. Own it.</h2>
       <h4>Create an account, and get started.</h4>
 
-      <form (ngSubmit)="signupSubmit()" #userForm="ngForm">
+      @if (registrationLoading) { <p role="status">Checking registration availability…</p> }
+          @else if (registrationError) { <p class="alert alert-danger" role="alert">{{registrationError}}</p> }
+          @else if (!registration?.allowed) { <p class="alert alert-info" role="status">Public registration is disabled. Contact your administrator.</p> }
+          @if (registration?.allowed) {
+          <form (ngSubmit)="signupSubmit()" #userForm="ngForm">
 
         <div class="mb-3">
           <label>Your name</label>
@@ -95,6 +99,7 @@
           </div>
         }
       </form>
+          }
     </div><!-- az-signup-header -->
     <div class="az-signup-footer">
       <p>Already have an account? <a routerLink="/auth/signin">Sign In</a></p>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import * as Oauth from 'oauth4webapi';
 import * as jose from 'jose';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError, firstValueFrom } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { GetEndpointAbsolutePath } from '../../lib/utils/endpoint_absolute_path';
@@ -12,6 +12,8 @@ import { SourceState } from '../models/fasten/source-state';
 import { User } from '../models/fasten/user';
 import { UserRegisteredClaims } from '../models/fasten/user-registered-claims';
 import { ResponseWrapper } from '../models/response-wrapper';
+
+export interface RegistrationPolicy { enabled: boolean; allowed: boolean; bootstrap: boolean }
 
 @Injectable({
   providedIn: 'root'
@@ -115,8 +117,17 @@ export class AuthService {
     let fastenApiEndpointBase = GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)
     let resp = await this._httpClient.post<ResponseWrapper>(`${fastenApiEndpointBase}/auth/signup`, newUser).toPromise()
 
+    if (!resp?.success || typeof resp.data !== 'string' || !resp.data) throw new Error('Account creation was not confirmed');
     this.setAuthToken(resp.data)
 
+  }
+
+  public async RegistrationStatus(): Promise<RegistrationPolicy> {
+    const base=GetEndpointAbsolutePath(globalThis.location,environment.fasten_api_endpoint_base);
+    const response=await firstValueFrom(this._httpClient.get<ResponseWrapper>(`${base}/auth/registration`));
+    const policy=response?.data as RegistrationPolicy;
+    if (!response?.success || !policy || ['enabled','allowed','bootstrap'].some(key=>typeof policy[key as keyof RegistrationPolicy]!=='boolean')) throw new Error('Registration availability is unavailable');
+    return policy;
   }
 
   public async Signin(username: string, pass: string): Promise<any> {
