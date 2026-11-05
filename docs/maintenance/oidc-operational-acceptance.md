@@ -91,6 +91,15 @@ actual HTTP status and sanitized screenshots if useful. Never retain passwords,
 secrets, signed tokens, cookies, authorization codes, raw subjects or medical text.
 Do not include callback query strings in access logs or shared reports.
 
+The application request logger omits the `Referer` header entirely: a same-origin
+callback URL can contain code/state. Caller-supplied headers can also contain
+fragment or user-info data. Synthetic regressions
+cover request-query, Referer, Authorization and Cookie markers across log verbosity
+and response severities, preserving handler inputs and status/path metadata. This
+source control does not establish proxy/browser/IdP log confidentiality. Before
+live callbacks, verify every deployed hop with harmless staging-only canaries;
+do not inspect production logs or save raw HAR/cookies to establish acceptance.
+
 A failed identity/authorization check blocks live acceptance. An unavailable provider
 blocks provider acceptance only; native recovery must still pass. Missing deployment
 access or an unapproved action leaves that row UNVERIFIED, without altering accounts.
