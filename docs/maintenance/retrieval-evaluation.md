@@ -122,11 +122,12 @@ Reauthorize before sending context and before serving stored outputs; revocation
 cannot retract text already seen by a recipient, so minimize copies and define
 history/cache retention before adding them. Search must remain usable without chat.
 
-The next useful increment is a synthetic retrieval-quality corpus covering exact
-identifiers, phrases, Unicode, abbreviations and contradictory/negated statements,
-plus an agreed query mode, latency target and bounded result/excerpt contract.
-Only then select a native index/query shape if needed. #419 remains unresolved;
-this evaluation is not full-text/RAG implementation or model/data-destination approval.
+The follow-on [retrieval-quality corpus](retrieval-quality.md) measures exact
+identifiers, phrases, Unicode, abbreviations and contradictory/negated statements
+against explicit evaluation-only modes and relevance/latency criteria. It preserves
+the current literal default. Select a native index/query shape only for a demonstrated
+remaining need. #419 remains unresolved; these evaluations are not full-text/RAG
+implementation or model/data-destination approval.
 
 ## Reproduction and rollback
 

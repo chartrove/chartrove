@@ -1,0 +1,3575 @@
+{
+  "schema": 1,
+  "base_revision": "45c1a3901cdf108c41fa5f5a99b928fd62f1e6eb",
+  "corpus_sha256": "c9f944ad254390a4498216ef924c11fd37516db70a74c350760b041be4b156dc",
+  "test_source_sha256": {
+    "backend/pkg/database/retrieval_quality_postgres_integration_test.go": "b8cffa83a8b3834c0936ca4b4cb4816f811986de9714caac1cd6b8682ada6b6b",
+    "backend/pkg/database/retrieval_quality_test.go": "c3d61d25da5f2a90f50e5742552b34661e7fec60bc9049cd3ed8fb79e686209d"
+  },
+  "host": "macOS-27.3-arm64-arm-64bit-Mach-O",
+  "measurement": {
+    "argv": [
+      "go",
+      "test",
+      "-p",
+      "1",
+      "-tags",
+      "postgres_integration",
+      "./backend/pkg/database",
+      "-run",
+      "^TestRetrievalQuality",
+      "-count=1",
+      "-v"
+    ],
+    "optin": "CHARTROVE_RETRIEVAL_QUALITY=1",
+    "exit": 0,
+    "host": "macOS-27.3-arm64-arm-64bit-Mach-O",
+    "utc": "2026-11-05T11:00:56.154206+00:00"
+  },
+  "rows_per_owner": 1000,
+  "owners": 2,
+  "warmups_per_case_mode": 3,
+  "samples_per_case_mode": 25,
+  "runtime_changes": false,
+  "interpretation": "Selected modes are labeled per intent, not an automatic classifier. Reference scans are not runtime implementations. No single mode replaces literal search.",
+  "engines": {
+    "postgres": [
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [
+          "LAB-0042",
+          "LAB-00420",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0.3333333333333333,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 5.909,
+        "P95MS": 7.587
+      },
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [
+          "LAB-0042"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.309,
+        "P95MS": 10.346
+      },
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [
+          "LAB-0042",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 12.001,
+        "P95MS": 15.98
+      },
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [
+          "LAB-0042",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 9.749,
+        "P95MS": 14.852
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [
+          "LAB-0042",
+          "LAB-00420"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 5.672,
+        "P95MS": 6.295
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 6.03,
+        "P95MS": 9.324
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [
+          "LAB-0042"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 13.162,
+        "P95MS": 18.406
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [
+          "LAB-0042"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.017,
+        "P95MS": 13.205
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [
+          "LAB-0042",
+          "LAB-00420",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.288,
+        "P95MS": 6.081
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.736,
+        "P95MS": 8.962
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.083,
+        "P95MS": 14.05
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.299,
+        "P95MS": 13.18
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.439,
+        "P95MS": 5.999
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.332,
+        "P95MS": 8.52
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.033,
+        "P95MS": 14.605
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.901,
+        "P95MS": 12.574
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.449,
+        "P95MS": 6.107
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.426,
+        "P95MS": 7.721
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-07",
+          "doc-08"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.223,
+        "P95MS": 13.638
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-07",
+          "doc-08",
+          "doc-09"
+        ],
+        "Precision": 0.6666666666666666,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 9.16,
+        "P95MS": 13.405
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.59,
+        "P95MS": 6.036
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 6.505,
+        "P95MS": 12.269
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.546,
+        "P95MS": 15.88
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-07",
+          "doc-08",
+          "doc-09"
+        ],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 9.042,
+        "P95MS": 13.204
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.465,
+        "P95MS": 6.159
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.329,
+        "P95MS": 10.156
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 10.988,
+        "P95MS": 15.889
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-07",
+          "doc-08",
+          "doc-09"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.485,
+        "P95MS": 12.186
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.344,
+        "P95MS": 5.781
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.877,
+        "P95MS": 9.133
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 10.871,
+        "P95MS": 17.693
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-09"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.396,
+        "P95MS": 13.234
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-02"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.661,
+        "P95MS": 6.631
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.899,
+        "P95MS": 12.536
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-02"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 12.848,
+        "P95MS": 16.127
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-02"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.261,
+        "P95MS": 13.598
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-01",
+          "doc-02",
+          "doc-03"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.232,
+        "P95MS": 5.936
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.095,
+        "P95MS": 7.207
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-01",
+          "doc-02",
+          "doc-03"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.369,
+        "P95MS": 10.779
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-01",
+          "doc-02",
+          "doc-03"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.93,
+        "P95MS": 12.029
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-04"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.689,
+        "P95MS": 6.389
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.096,
+        "P95MS": 7.673
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-04"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.136,
+        "P95MS": 16.212
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-04",
+          "doc-06"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.572,
+        "P95MS": 12.392
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-04",
+          "doc-05",
+          "doc-06"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.344,
+        "P95MS": 6.712
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.254,
+        "P95MS": 8.674
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-04",
+          "doc-05",
+          "doc-06"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.274,
+        "P95MS": 14.393
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-04",
+          "doc-05",
+          "doc-06"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.097,
+        "P95MS": 13.087
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-10",
+          "doc-11"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.446,
+        "P95MS": 6.137
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.146,
+        "P95MS": 8.222
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-10",
+          "doc-11"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.041,
+        "P95MS": 14.612
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-10",
+          "doc-11"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.022,
+        "P95MS": 13.844
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-12"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.602,
+        "P95MS": 8.743
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.021,
+        "P95MS": 8.122
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-12"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.629,
+        "P95MS": 12.567
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-12"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.958,
+        "P95MS": 14.116
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-13"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 6.18,
+        "P95MS": 7.287
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.871,
+        "P95MS": 9.868
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-13"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 12.773,
+        "P95MS": 16.128
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-13"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.833,
+        "P95MS": 13.224
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-05",
+          "doc-14",
+          "doc-15"
+        ],
+        "Precision": 0.6666666666666666,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 5.371,
+        "P95MS": 6.071
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.213,
+        "P95MS": 8.351
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-14",
+          "doc-15"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.023,
+        "P95MS": 14.123
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-14",
+          "doc-15"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.595,
+        "P95MS": 14.86
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-16"
+        ],
+        "Precision": 1,
+        "Recall": 0.5,
+        "ExactSet": false,
+        "P50MS": 5.296,
+        "P95MS": 5.929
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.154,
+        "P95MS": 9.379
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.258,
+        "P95MS": 12.625
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.002,
+        "P95MS": 11.955
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 0.5,
+        "ExactSet": false,
+        "P50MS": 5.515,
+        "P95MS": 6.059
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.331,
+        "P95MS": 8.62
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.245,
+        "P95MS": 15.482
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.756,
+        "P95MS": 11.323
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-16"
+        ],
+        "Precision": 1,
+        "Recall": 0.5,
+        "ExactSet": false,
+        "P50MS": 5.456,
+        "P95MS": 5.934
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.01,
+        "P95MS": 8.351
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.549,
+        "P95MS": 13.318
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.874,
+        "P95MS": 10.632
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-18"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.333,
+        "P95MS": 5.866
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.773,
+        "P95MS": 8.638
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-18"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.323,
+        "P95MS": 14.79
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-18"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.646,
+        "P95MS": 10.527
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.054,
+        "P95MS": 5.671
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.483,
+        "P95MS": 8.615
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.915,
+        "P95MS": 13.945
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.194,
+        "P95MS": 13.299
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.138,
+        "P95MS": 5.555
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.251,
+        "P95MS": 9.121
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.08,
+        "P95MS": 10.472
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.712,
+        "P95MS": 13.694
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.355,
+        "P95MS": 5.919
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.224,
+        "P95MS": 7.734
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-20",
+          "doc-21"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.904,
+        "P95MS": 13.843
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-20",
+          "doc-21"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 9.416,
+        "P95MS": 10.992
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.354,
+        "P95MS": 6.253
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.378,
+        "P95MS": 8.444
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-02",
+          "doc-20"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 11.398,
+        "P95MS": 13.981
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-02",
+          "doc-20"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.944,
+        "P95MS": 13.213
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.542,
+        "P95MS": 5.889
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.811,
+        "P95MS": 7.096
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.358,
+        "P95MS": 14.655
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.407,
+        "P95MS": 12.387
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.237,
+        "P95MS": 5.846
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.378,
+        "P95MS": 7.293
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-20",
+          "doc-23"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.923,
+        "P95MS": 12.213
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-20",
+          "doc-23"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.841,
+        "P95MS": 11.301
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.792,
+        "P95MS": 6.188
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.18,
+        "P95MS": 8.38
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.975,
+        "P95MS": 14.367
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.649,
+        "P95MS": 12.546
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [
+          "doc-22"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.638,
+        "P95MS": 6.228
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.733,
+        "P95MS": 8.736
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-22"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.296,
+        "P95MS": 14.626
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-22"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.161,
+        "P95MS": 12.106
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [
+          "doc-23"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.343,
+        "P95MS": 5.823
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.4,
+        "P95MS": 8.685
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-23"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.476,
+        "P95MS": 10.561
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-23"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.556,
+        "P95MS": 11.675
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-24"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.186,
+        "P95MS": 5.816
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.521,
+        "P95MS": 7.913
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-24"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.221,
+        "P95MS": 10.403
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-24"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.824,
+        "P95MS": 12.584
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-05",
+          "doc-13",
+          "doc-25",
+          "doc-29",
+          "doc-30"
+        ],
+        "Precision": 0.2,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 5.265,
+        "P95MS": 5.75
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.885,
+        "P95MS": 7.296
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-25"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.28,
+        "P95MS": 11.415
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-25"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.483,
+        "P95MS": 11.087
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-27",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.722,
+        "P95MS": 6.661
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.448,
+        "P95MS": 7.861
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-27",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.587,
+        "P95MS": 15.221
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-27",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.557,
+        "P95MS": 13.685
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-26",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.643,
+        "P95MS": 6.243
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 5.27,
+        "P95MS": 8.454
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-26",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 12.029,
+        "P95MS": 15.477
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-26",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.528,
+        "P95MS": 12.668
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [
+          "doc-29"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.386,
+        "P95MS": 6.247
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.522,
+        "P95MS": 8.554
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-29"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.238,
+        "P95MS": 14.769
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-29"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.517,
+        "P95MS": 11.573
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 5.596,
+        "P95MS": 6.11
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.726,
+        "P95MS": 9.066
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.096,
+        "P95MS": 12.928
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.365,
+        "P95MS": 12.632
+      }
+    ],
+    "sqlite": [
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [
+          "LAB-0042",
+          "LAB-00420",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0.3333333333333333,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 1.442,
+        "P95MS": 1.787
+      },
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [
+          "LAB-0042"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.49,
+        "P95MS": 4.954
+      },
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [
+          "LAB-0042",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 10.48,
+        "P95MS": 11.378
+      },
+      {
+        "Case": "exact-resource-id",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [
+          "LAB-0042",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.067,
+        "P95MS": 8.672
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [
+          "LAB-0042",
+          "LAB-00420"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 1.423,
+        "P95MS": 1.674
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.331,
+        "P95MS": 5.211
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [
+          "LAB-0042"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.575,
+        "P95MS": 11.348
+      },
+      {
+        "Case": "exact-accession",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [
+          "LAB-0042"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.889,
+        "P95MS": 8.544
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [
+          "LAB-0042",
+          "LAB-00420",
+          "scan-LAB-0042-copy"
+        ],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 1.423,
+        "P95MS": 1.608
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.41,
+        "P95MS": 5.036
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.739,
+        "P95MS": 11.437
+      },
+      {
+        "Case": "literal-prefix",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.143,
+        "P95MS": 9.433
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.395,
+        "P95MS": 1.704
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.137,
+        "P95MS": 4.839
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.123,
+        "P95MS": 10.806
+      },
+      {
+        "Case": "exact-absent",
+        "Family": "identifier",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.933,
+        "P95MS": 8.699
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 1.348,
+        "P95MS": 1.585
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.203,
+        "P95MS": 4.604
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-07",
+          "doc-08"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.255,
+        "P95MS": 10.905
+      },
+      {
+        "Case": "phrase-spacing",
+        "Family": "phrase",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-07",
+          "doc-08",
+          "doc-09"
+        ],
+        "Precision": 0.6666666666666666,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.066,
+        "P95MS": 8.761
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.393,
+        "P95MS": 1.588
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.329,
+        "P95MS": 4.889
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.313,
+        "P95MS": 10.861
+      },
+      {
+        "Case": "phrase-reordered",
+        "Family": "phrase",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-07",
+          "doc-08",
+          "doc-09"
+        ],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 8.3,
+        "P95MS": 9.463
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 1.414,
+        "P95MS": 1.541
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.313,
+        "P95MS": 5.096
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 10.282,
+        "P95MS": 11.052
+      },
+      {
+        "Case": "and-reordered",
+        "Family": "all_words",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-07",
+          "doc-08",
+          "doc-09"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.029,
+        "P95MS": 8.619
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 1.384,
+        "P95MS": 1.582
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.232,
+        "P95MS": 4.803
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 9.885,
+        "P95MS": 10.535
+      },
+      {
+        "Case": "and-distant",
+        "Family": "all_words",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-09"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.155,
+        "P95MS": 8.902
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-02"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.575,
+        "P95MS": 1.902
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.342,
+        "P95MS": 4.934
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-02"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.281,
+        "P95MS": 12.621
+      },
+      {
+        "Case": "phrase-negative",
+        "Family": "negation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-02"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.094,
+        "P95MS": 8.776
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-01",
+          "doc-02",
+          "doc-03"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.359,
+        "P95MS": 1.524
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.272,
+        "P95MS": 4.861
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-01",
+          "doc-02",
+          "doc-03"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.746,
+        "P95MS": 8.266
+      },
+      {
+        "Case": "term-contradiction",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-01",
+          "doc-02",
+          "doc-03"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.031,
+        "P95MS": 8.817
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-04"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.387,
+        "P95MS": 1.632
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.281,
+        "P95MS": 4.752
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-04"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.388,
+        "P95MS": 11.859
+      },
+      {
+        "Case": "phrase-denial",
+        "Family": "negation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-04",
+          "doc-06"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.08,
+        "P95MS": 8.785
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-04",
+          "doc-05",
+          "doc-06"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.435,
+        "P95MS": 1.632
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.463,
+        "P95MS": 5.281
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-04",
+          "doc-05",
+          "doc-06"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.971,
+        "P95MS": 10.784
+      },
+      {
+        "Case": "term-symptoms",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-04",
+          "doc-05",
+          "doc-06"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.766,
+        "P95MS": 8.383
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-10",
+          "doc-11"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.387,
+        "P95MS": 1.649
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.242,
+        "P95MS": 4.846
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-10",
+          "doc-11"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 9.958,
+        "P95MS": 10.712
+      },
+      {
+        "Case": "term-diabetes",
+        "Family": "negation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-10",
+          "doc-11"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.951,
+        "P95MS": 8.472
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-12"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.388,
+        "P95MS": 1.579
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.274,
+        "P95MS": 4.61
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-12"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.678,
+        "P95MS": 8.316
+      },
+      {
+        "Case": "abbreviation-only",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-12"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.957,
+        "P95MS": 8.849
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-13"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.397,
+        "P95MS": 1.614
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.227,
+        "P95MS": 4.919
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-13"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.746,
+        "P95MS": 16.141
+      },
+      {
+        "Case": "expanded-only",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-13"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.245,
+        "P95MS": 9.595
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-05",
+          "doc-14",
+          "doc-15"
+        ],
+        "Precision": 0.6666666666666666,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 1.522,
+        "P95MS": 1.867
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.293,
+        "P95MS": 4.992
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-14",
+          "doc-15"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.558,
+        "P95MS": 8.524
+      },
+      {
+        "Case": "ambiguous-abbreviation",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-14",
+          "doc-15"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.102,
+        "P95MS": 8.722
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 1.392,
+        "P95MS": 1.516
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.397,
+        "P95MS": 4.962
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.678,
+        "P95MS": 8.304
+      },
+      {
+        "Case": "unicode-case",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.195,
+        "P95MS": 8.848
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 0.5,
+        "ExactSet": false,
+        "P50MS": 1.521,
+        "P95MS": 1.696
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.324,
+        "P95MS": 4.817
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.683,
+        "P95MS": 8.489
+      },
+      {
+        "Case": "unicode-decomposed",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.097,
+        "P95MS": 8.609
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-16"
+        ],
+        "Precision": 1,
+        "Recall": 0.5,
+        "ExactSet": false,
+        "P50MS": 1.429,
+        "P95MS": 1.583
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.419,
+        "P95MS": 4.806
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.592,
+        "P95MS": 8.459
+      },
+      {
+        "Case": "unicode-exact",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-16",
+          "doc-17"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.892,
+        "P95MS": 8.94
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 1.374,
+        "P95MS": 1.473
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.276,
+        "P95MS": 4.708
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-18"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.637,
+        "P95MS": 8.281
+      },
+      {
+        "Case": "greek-case",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-18"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.88,
+        "P95MS": 8.634
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.426,
+        "P95MS": 1.651
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.148,
+        "P95MS": 4.958
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.579,
+        "P95MS": 8.506
+      },
+      {
+        "Case": "cjk-contiguous",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.031,
+        "P95MS": 8.517
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "literal",
+        "IDs": [
+          "doc-19"
+        ],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 1.398,
+        "P95MS": 1.683
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.353,
+        "P95MS": 5.002
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.689,
+        "P95MS": 8.354
+      },
+      {
+        "Case": "cjk-prefix",
+        "Family": "unicode",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.873,
+        "P95MS": 8.567
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.36,
+        "P95MS": 1.606
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.388,
+        "P95MS": 4.762
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-20",
+          "doc-21"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 7.712,
+        "P95MS": 8.261
+      },
+      {
+        "Case": "literal-percent",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-20",
+          "doc-21"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 7.967,
+        "P95MS": 8.313
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.367,
+        "P95MS": 1.548
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.241,
+        "P95MS": 4.804
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-02",
+          "doc-20"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 10.239,
+        "P95MS": 10.907
+      },
+      {
+        "Case": "literal-underscore",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-02",
+          "doc-20"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.101,
+        "P95MS": 8.744
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.431,
+        "P95MS": 1.794
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.328,
+        "P95MS": 5.097
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.728,
+        "P95MS": 11.568
+      },
+      {
+        "Case": "literal-backslash",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.093,
+        "P95MS": 8.809
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-20"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.314,
+        "P95MS": 1.4
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.463,
+        "P95MS": 5.006
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-20",
+          "doc-23"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 7.72,
+        "P95MS": 8.485
+      },
+      {
+        "Case": "literal-quotes",
+        "Family": "punctuation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-20",
+          "doc-23"
+        ],
+        "Precision": 0.5,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 8.137,
+        "P95MS": 8.704
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.371,
+        "P95MS": 1.541
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.296,
+        "P95MS": 4.736
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.376,
+        "P95MS": 10.972
+      },
+      {
+        "Case": "unreviewed-body",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.835,
+        "P95MS": 8.463
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [
+          "doc-22"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.359,
+        "P95MS": 1.493
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.292,
+        "P95MS": 4.73
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-22"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.475,
+        "P95MS": 11.281
+      },
+      {
+        "Case": "external-title",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-22"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.014,
+        "P95MS": 8.498
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [
+          "doc-23"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.381,
+        "P95MS": 1.688
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.252,
+        "P95MS": 4.994
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-23"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.468,
+        "P95MS": 8.102
+      },
+      {
+        "Case": "reviewed-body",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-23"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.994,
+        "P95MS": 8.869
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-24"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.419,
+        "P95MS": 1.575
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.424,
+        "P95MS": 4.771
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-24"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.733,
+        "P95MS": 8.43
+      },
+      {
+        "Case": "electrolyte-full",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-24"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.182,
+        "P95MS": 8.826
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "literal",
+        "IDs": [
+          "doc-05",
+          "doc-13",
+          "doc-25",
+          "doc-29",
+          "doc-30"
+        ],
+        "Precision": 0.2,
+        "Recall": 1,
+        "ExactSet": false,
+        "P50MS": 1.547,
+        "P95MS": 1.795
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.352,
+        "P95MS": 5.028
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-25"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.737,
+        "P95MS": 8.501
+      },
+      {
+        "Case": "electrolyte-short",
+        "Family": "abbreviation",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-25"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.062,
+        "P95MS": 8.658
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-27",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.432,
+        "P95MS": 1.514
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.28,
+        "P95MS": 5.081
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-27",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.547,
+        "P95MS": 11.588
+      },
+      {
+        "Case": "allergy-contradiction",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-27",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.913,
+        "P95MS": 8.77
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "literal",
+        "IDs": [
+          "doc-26",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.519,
+        "P95MS": 1.608
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.336,
+        "P95MS": 5.079
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-26",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 11.003,
+        "P95MS": 11.683
+      },
+      {
+        "Case": "allergy-negative",
+        "Family": "contradiction",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-26",
+          "doc-28"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.923,
+        "P95MS": 8.516
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "literal",
+        "IDs": [
+          "doc-29"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.366,
+        "P95MS": 1.578
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 0,
+        "Recall": 0,
+        "ExactSet": false,
+        "P50MS": 4.236,
+        "P95MS": 4.709
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "token_phrase",
+        "IDs": [
+          "doc-29"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 10.097,
+        "P95MS": 10.808
+      },
+      {
+        "Case": "provenance-quoted",
+        "Family": "provenance",
+        "Mode": "all_tokens",
+        "IDs": [
+          "doc-29"
+        ],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.079,
+        "P95MS": 8.853
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "literal",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 1.504,
+        "P95MS": 1.957
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "exact_id",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 4.312,
+        "P95MS": 4.716
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "token_phrase",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 7.702,
+        "P95MS": 8.232
+      },
+      {
+        "Case": "missing-term",
+        "Family": "no_match",
+        "Mode": "all_tokens",
+        "IDs": [],
+        "Precision": 1,
+        "Recall": 1,
+        "ExactSet": true,
+        "P50MS": 8.096,
+        "P95MS": 8.69
+      }
+    ]
+  },
+  "raw_measurement_log_sha256": "26ee172615feede99159b8c424c060d9f2906ffa1af06c569f899c4ee7ad7ea4",
+  "raw_samples": "All 25 unsorted samples per case/mode are retained in the hashed synthetic raw log; this public summary retains result IDs and computed percentiles."
+}
