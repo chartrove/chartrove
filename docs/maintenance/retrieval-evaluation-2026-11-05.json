@@ -1,13 +1,14 @@
 {
   "status": "PASS; synthetic source evaluation only; no deployment or clinical relevance acceptance",
-  "completed_utc": "2026-11-05T04:18:22.633736+00:00",
-  "source_base_commit": "296d1f760ab41bf6d88f4f33538c6bee69838c01",
+  "completed_utc": "2026-11-05T04:31:29.822376+00:00",
+  "source_base_commit": "e3fc9cf96d059b41e97d30fceb841ed9f42ff193",
   "fixture_git_blobs": {
-    "backend/pkg/database/retrieval_evaluation_test.go": "53fcfc90882fd569e17bea2dc6df2ad7d0092508",
+    "backend/pkg/database/retrieval_evaluation_test.go": "720fef7f275fe74c7ec950879c2baff2eefb8d51",
     "backend/pkg/database/retrieval_evaluation_postgres_integration_test.go": "a158b6382c37be92e158b1de59089b8359b5e78e"
   },
   "production_search_git_blob": "30d939a4e62785e98f2678ef2a4a67af1cc5dfcc",
-  "raw_receipt_sha256": "69127adea916a55287adaf51ca3712d0275ca2dbf975fb73901aa779ed55dd4f",
+  "review_correction": "Source deletion and actor deletion have independent successful preconditions; source restored before actor deletion; deleted/recreated actor must produce the specific current-user lookup error, not merely a source denial",
+  "raw_receipt_sha256": "21e650e1759a3e36b63e173606fcd84724e25ec977dcee67c81c83181a2afa68",
   "command": "CHARTROVE_RETRIEVAL_EVALUATION=1 go test -p 1 -tags postgres_integration ./backend/pkg/database -run ^TestRetrievalEvaluation -count=1 -v",
   "environment": {
     "host": "Apple M2 / Mac14,2 / 24 GiB RAM; host load not controlled",
@@ -40,16 +41,16 @@
     "no_models_or_external_processing": true
   },
   "index_cost_lines": [
-    "index method=postgres_gin total_relation_bytes=2752512",
-    "build method=postgres_gin indexed_rows=2000 elapsed_ms=72.820",
-    "index method=postgres_gin total_relation_bytes=26681344",
-    "build method=postgres_gin indexed_rows=20000 elapsed_ms=709.317",
+    "index method=postgres_gin total_relation_bytes=2744320",
+    "build method=postgres_gin indexed_rows=2000 elapsed_ms=99.878",
+    "index method=postgres_gin total_relation_bytes=26656768",
+    "build method=postgres_gin indexed_rows=20000 elapsed_ms=1096.442",
     "index method=fts4 allocated_bytes_delta=1213440",
-    "build method=fts4 indexed_rows=2000 elapsed_ms=42.558",
-    "SQLite final file bytes=4002816 (includes clinical schema, corpus and all available indexes)",
+    "build method=fts4 indexed_rows=2000 elapsed_ms=505.558",
+    "SQLite final file bytes=4004864 (includes clinical schema, corpus and all available indexes)",
     "index method=fts4 allocated_bytes_delta=12134400",
-    "build method=fts4 indexed_rows=20000 elapsed_ms=439.687",
-    "SQLite final file bytes=36345856 (includes clinical schema, corpus and all available indexes)"
+    "build method=fts4 indexed_rows=20000 elapsed_ms=914.506",
+    "SQLite final file bytes=36366336 (includes clinical schema, corpus and all available indexes)"
   ],
   "plans": [
     "plan method=postgres_gin term=amberrare steps=[Limit index=<nil> rows=10 loops=1 Index Scan index=source_delegate rows=0 loops=0 Index Scan index=source_credentials_pkey rows=0 loops=0 Nested Loop index=<nil> rows=10 loops=1 Nested Loop index=<nil> rows=10 loops=1 Index Scan index=idx_fhir_document_reference_source_resource_id rows=10 loops=1 Function Scan index=<nil> rows=0 loops=1000 Index Scan index=source_credentials_pkey rows=1 loops=10 Index Scan index=retrieval_eval_gin_pkey rows=1 loops=10]",
@@ -87,8 +88,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 6.295,
-      "p95_ms": 6.99
+      "p50_ms": 8.547,
+      "p95_ms": 9.314
     },
     {
       "engine": "postgres",
@@ -98,8 +99,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 1.928,
-      "p95_ms": 4.161
+      "p50_ms": 2.243,
+      "p95_ms": 2.615
     },
     {
       "engine": "postgres",
@@ -109,8 +110,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 6.851,
-      "p95_ms": 7.883
+      "p50_ms": 8.973,
+      "p95_ms": 9.837
     },
     {
       "engine": "postgres",
@@ -120,8 +121,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 1.92,
-      "p95_ms": 3.372
+      "p50_ms": 2.695,
+      "p95_ms": 3.342
     },
     {
       "engine": "postgres",
@@ -131,8 +132,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 5.498,
-      "p95_ms": 6.336
+      "p50_ms": 7.545,
+      "p95_ms": 9.007
     },
     {
       "engine": "postgres",
@@ -142,8 +143,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 1.742,
-      "p95_ms": 2.539
+      "p50_ms": 2.325,
+      "p95_ms": 2.763
     },
     {
       "engine": "postgres",
@@ -153,8 +154,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 6.1,
-      "p95_ms": 8.216
+      "p50_ms": 8.575,
+      "p95_ms": 11.61
     },
     {
       "engine": "postgres",
@@ -164,8 +165,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 2.026,
-      "p95_ms": 2.556
+      "p50_ms": 3.337,
+      "p95_ms": 7.73
     },
     {
       "engine": "postgres",
@@ -175,8 +176,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 5.476,
-      "p95_ms": 6.086
+      "p50_ms": 10.316,
+      "p95_ms": 14.06
     },
     {
       "engine": "postgres",
@@ -186,8 +187,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 1.809,
-      "p95_ms": 2.83
+      "p50_ms": 3.674,
+      "p95_ms": 7.299
     },
     {
       "engine": "postgres",
@@ -197,8 +198,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 5.915,
-      "p95_ms": 10.154
+      "p50_ms": 11.659,
+      "p95_ms": 15.389
     },
     {
       "engine": "postgres",
@@ -208,8 +209,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 1.936,
-      "p95_ms": 2.254
+      "p50_ms": 4.808,
+      "p95_ms": 11.57
     },
     {
       "engine": "postgres",
@@ -219,8 +220,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 27.088,
-      "p95_ms": 29.571
+      "p50_ms": 34.84,
+      "p95_ms": 39.18
     },
     {
       "engine": "postgres",
@@ -230,8 +231,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 1.556,
-      "p95_ms": 3.051
+      "p50_ms": 2.011,
+      "p95_ms": 2.758
     },
     {
       "engine": "postgres",
@@ -241,8 +242,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 28.041,
-      "p95_ms": 34.37
+      "p50_ms": 46.153,
+      "p95_ms": 50.133
     },
     {
       "engine": "postgres",
@@ -252,8 +253,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 2.308,
-      "p95_ms": 3.173
+      "p50_ms": 3.797,
+      "p95_ms": 8.508
     },
     {
       "engine": "postgres",
@@ -263,8 +264,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 26.193,
-      "p95_ms": 34.723
+      "p50_ms": 37.799,
+      "p95_ms": 43.336
     },
     {
       "engine": "postgres",
@@ -274,8 +275,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 2.212,
-      "p95_ms": 5.216
+      "p50_ms": 2.535,
+      "p95_ms": 3.578
     },
     {
       "engine": "postgres",
@@ -285,8 +286,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 24.058,
-      "p95_ms": 27.154
+      "p50_ms": 34.219,
+      "p95_ms": 37.589
     },
     {
       "engine": "postgres",
@@ -296,8 +297,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 2.186,
-      "p95_ms": 3.788
+      "p50_ms": 2.738,
+      "p95_ms": 3.52
     },
     {
       "engine": "postgres",
@@ -307,8 +308,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 22.832,
-      "p95_ms": 25.125
+      "p50_ms": 30.104,
+      "p95_ms": 32.801
     },
     {
       "engine": "postgres",
@@ -318,8 +319,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 3.429,
-      "p95_ms": 5.181
+      "p50_ms": 3.52,
+      "p95_ms": 5.488
     },
     {
       "engine": "postgres",
@@ -329,8 +330,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 24.037,
-      "p95_ms": 28.396
+      "p50_ms": 30.592,
+      "p95_ms": 32.016
     },
     {
       "engine": "postgres",
@@ -340,8 +341,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 2.913,
-      "p95_ms": 5.448
+      "p50_ms": 4.452,
+      "p95_ms": 6.453
     },
     {
       "engine": "sqlite",
@@ -351,8 +352,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 1.735,
-      "p95_ms": 2.305
+      "p50_ms": 6.099,
+      "p95_ms": 73.098
     },
     {
       "engine": "sqlite",
@@ -362,8 +363,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 0.376,
-      "p95_ms": 0.924
+      "p50_ms": 1.121,
+      "p95_ms": 8.278
     },
     {
       "engine": "sqlite",
@@ -373,8 +374,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 2.717,
-      "p95_ms": 6.541
+      "p50_ms": 4.537,
+      "p95_ms": 7.584
     },
     {
       "engine": "sqlite",
@@ -384,8 +385,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 0.386,
-      "p95_ms": 1.387
+      "p50_ms": 0.884,
+      "p95_ms": 1.595
     },
     {
       "engine": "sqlite",
@@ -395,8 +396,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 0.524,
-      "p95_ms": 0.952
+      "p50_ms": 1.248,
+      "p95_ms": 2.762
     },
     {
       "engine": "sqlite",
@@ -406,8 +407,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 1.875,
-      "p95_ms": 3.584
+      "p50_ms": 4.094,
+      "p95_ms": 5.209
     },
     {
       "engine": "sqlite",
@@ -417,8 +418,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 10,
-      "p50_ms": 0.653,
-      "p95_ms": 1.415
+      "p50_ms": 1.192,
+      "p95_ms": 1.984
     },
     {
       "engine": "sqlite",
@@ -428,8 +429,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 2.038,
-      "p95_ms": 7.642
+      "p50_ms": 5.43,
+      "p95_ms": 7.183
     },
     {
       "engine": "sqlite",
@@ -439,8 +440,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 32.566,
-      "p95_ms": 37.092
+      "p50_ms": 79.59,
+      "p95_ms": 96.827
     },
     {
       "engine": "sqlite",
@@ -450,8 +451,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 0.377,
-      "p95_ms": 0.49
+      "p50_ms": 0.712,
+      "p95_ms": 1.536
     },
     {
       "engine": "sqlite",
@@ -461,8 +462,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 32.384,
-      "p95_ms": 36.178
+      "p50_ms": 85.688,
+      "p95_ms": 148.622
     },
     {
       "engine": "sqlite",
@@ -472,8 +473,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 0.399,
-      "p95_ms": 0.465
+      "p50_ms": 1.36,
+      "p95_ms": 6.488
     },
     {
       "engine": "sqlite",
@@ -483,8 +484,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 28.648,
-      "p95_ms": 30.981
+      "p50_ms": 85.019,
+      "p95_ms": 134.661
     },
     {
       "engine": "sqlite",
@@ -494,8 +495,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 63.178,
-      "p95_ms": 66.358
+      "p50_ms": 128.489,
+      "p95_ms": 154.618
     },
     {
       "engine": "sqlite",
@@ -505,8 +506,8 @@
       "term": "amberrare",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 28.252,
-      "p95_ms": 30.272
+      "p50_ms": 57.96,
+      "p95_ms": 64.352
     },
     {
       "engine": "sqlite",
@@ -516,8 +517,8 @@
       "term": "commonword",
       "samples": 25,
       "hits": 50,
-      "p50_ms": 62.672,
-      "p95_ms": 64.913
+      "p50_ms": 129.423,
+      "p95_ms": 145.45
     }
   ]
 }

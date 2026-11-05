@@ -324,6 +324,12 @@ func checkRetrievalEvaluationLifecycle(t *testing.T, f *retrievalEvalFixture, me
 			}
 		}
 	}
+	// Source deletion has its own live actor and successful precondition.
+	for _, method := range methods {
+		hits, err := f.query(f.owner, method, "amberrare", true)
+		require.NoError(t, err)
+		require.NotEmpty(t, hits)
+	}
 	require.NoError(t, f.r.GormClient.Model(&models.SourceCredential{}).Where("id = ?", f.source).Update("deleted_at", time.Now().UTC()).Error)
 	for _, method := range methods {
 		_, err := f.query(f.owner, method, "amberrare", true)
@@ -334,13 +340,34 @@ func checkRetrievalEvaluationLifecycle(t *testing.T, f *retrievalEvalFixture, me
 			require.Empty(t, hits)
 		}
 	}
-	// A deleted native actor cannot retrieve through a still-indexed corpus.
+	// Restore only this synthetic source so its deletion cannot mask the actor
+	// check. Every method must succeed immediately before actor deletion.
+	require.NoError(t, f.r.GormClient.Model(&models.SourceCredential{}).Where("id = ?", f.source).Update("deleted_at", nil).Error)
+	for _, method := range methods {
+		hits, err := f.query(f.owner, method, "amberrare", true)
+		require.NoError(t, err)
+		require.NotEmpty(t, hits)
+	}
+	// A deleted native actor cannot retrieve through a live, indexed source.
 	var actor models.User
 	require.NoError(t, f.r.GormClient.Where("username = ?", "synthetic-retrieval-owner").First(&actor).Error)
 	require.NoError(t, f.r.GormClient.Delete(&actor).Error)
 	for _, method := range methods {
 		_, err := f.query(f.owner, method, "amberrare", true)
-		require.Error(t, err)
+		require.EqualError(t, err, "could not retrieve current user: "+gorm.ErrRecordNotFound.Error())
+	}
+	// Reusing the name still cannot resolve a different native UUID. An
+	// authorization denial alone would mask a broken actor lookup here.
+	replacement := models.User{Username: actor.Username}
+	require.NoError(t, f.r.GormClient.Create(&replacement).Error)
+	require.NotEqual(t, actor.ID, replacement.ID)
+	for _, method := range methods {
+		_, err := f.query(f.owner, method, "amberrare", true)
+		require.EqualError(t, err, "could not retrieve current user: "+gorm.ErrRecordNotFound.Error())
+		if method != "baseline" {
+			_, err = f.query(f.owner, method, "amberrare", false)
+			require.EqualError(t, err, "could not retrieve current user: "+gorm.ErrRecordNotFound.Error())
+		}
 	}
 	t.Log("lifecycle PASS: other owner/admin denied; current text/provenance rechecked; stale index deletion, expired/revoked grants, source deletion and native actor deletion denied")
 }

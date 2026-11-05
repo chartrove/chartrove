@@ -41,17 +41,17 @@ Delegated query timings at 10,000 documents per owner, milliseconds:
 
 | Engine / method | Rare p50 / p95 | Common p50 / p95 |
 | --- | --- | --- |
-| Encrypted SQLite, existing query | 32.384 / 36.178 | 0.399 / 0.465 |
-| Encrypted SQLite, FTS4 candidates + live recheck | 28.252 / 30.272 | 62.672 / 64.913 |
-| PostgreSQL, existing query | 28.041 / 34.370 | 2.308 / 3.173 |
-| PostgreSQL, GIN projection candidates + live recheck | 24.058 / 27.154 | 2.186 / 3.788 |
-| PostgreSQL, materialized GIN candidates + live recheck | 24.037 / 28.396 | 2.913 / 5.448 |
+| Encrypted SQLite, existing query | 85.688 / 148.622 | 1.360 / 6.488 |
+| Encrypted SQLite, FTS4 candidates + live recheck | 57.960 / 64.352 | 129.423 / 145.450 |
+| PostgreSQL, existing query | 46.153 / 50.133 | 3.797 / 8.508 |
+| PostgreSQL, GIN projection candidates + live recheck | 34.219 / 37.589 | 2.738 / 3.520 |
+| PostgreSQL, materialized GIN candidates + live recheck | 30.592 / 32.016 | 4.452 / 6.453 |
 
 At 20,000 total indexed rows, FTS4 allocated about 12.1 MB of additional database
-pages; insertion took 440 ms, excluding initial virtual-table creation and corpus
+pages; insertion took 915 ms, excluding initial virtual-table creation and corpus
 seeding. The final encrypted SQLite file including schema/corpus/index was about
 36.4 MB. The PostgreSQL projection, stored body/vector, primary key and GIN together
-occupied about 26.7 MB; creation/population/vector/index/ANALYZE took 709 ms. These
+occupied about 26.7 MB; creation/population/vector/index/ANALYZE took 1,096 ms. These
 are different storage representations and timing scopes, not interchangeable
 claims about index-only size or production ingest throughput.
 
@@ -62,6 +62,11 @@ FTS virtual table while common-term candidate expansion was slower than the earl
 50-row baseline. An index's existence does not prove the planner or end-to-end
 query benefits. No optimizer settings, grant checks or current-content checks
 were disabled. Earlier draft runs and their changed query shapes remain retained.
+
+Observed whole-evaluation durations ranged from 21.7 to 44.4 seconds with the same
+query shapes; the earlier actor-deletion assertion was superseded by independent
+preconditions in the current receipt. This variability is a reason to avoid a
+precise capacity or relative-performance promise.
 
 These are observations, not an optimal-query or capacity claim: host load was not
 controlled, warm data is not cold-cache behavior, PostgreSQL is resource-capped,
@@ -81,6 +86,9 @@ provide the underlying engine contracts.
 Both engines and corpus sizes pass synthetic checks for duplicate FHIR-ID isolation;
 ungranted administrator/unrelated-owner denial; expired and revoked grants; deleted
 records/sources/actors; and stale indexes after text or reviewed-origin changes.
+Source deletion and actor deletion have independent successful retrieval
+preconditions: the synthetic source is restored before deleting/recreating its actor,
+and the old UUID must fail current-user lookup specifically, not merely source access.
 The candidate statement also denies access when called after revocation without
 repeating the earlier metadata precheck. Returned source/type/resource IDs retain
 provenance; transcript and owner fields do not enter result metadata. Existing
