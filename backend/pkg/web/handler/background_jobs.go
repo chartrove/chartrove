@@ -10,6 +10,7 @@ import (
 	"github.com/fastenhealth/fasten-sources/clients/factory"
 	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
@@ -282,7 +283,13 @@ func CreateBackgroundJobError(c *gin.Context) {
 // Utilities
 
 func GetBackgroundContext(ginContext *gin.Context) context.Context {
-	return context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, ginContext.Value(pkg.ContextKeyTypeAuthUsername).(string))
+	ctx := context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, ginContext.GetString(pkg.ContextKeyTypeAuthUsername))
+	// Detached work inherits the verified identity, not just a reusable name.
+	// A missing/invalid UUID deliberately becomes uuid.Nil so repository access
+	// fails closed instead of taking the trusted username-only internal path.
+	bound, _ := ginContext.Get(pkg.ContextKeyTypeAuthUserID)
+	id, _ := bound.(uuid.UUID)
+	return context.WithValue(ctx, pkg.ContextKeyTypeAuthUserID, id)
 }
 
 func CreateBackgroundJobContext(parentContext context.Context, backgroundJobId string) context.Context {
