@@ -66,18 +66,18 @@ clinical numeric literals. Ambiguous identity aliases and duplicate top-level
 keys are rejected. Shared details also project the stored JSON as text so clients
 can preserve decimal precision when displaying and editing it.
 
-Delivery is split into a repository foundation and authenticated API/UI exposure,
-each through the existing protected workflow. #209/#215 remain open until the
-corrected integration is accepted. OIDC, OCR and Typesense/RAG are separate future
-batches; neither their implementation nor any production data operation is part
-of this authorization work. Both independent retention worktrees remain held.
+Delivery was split into repository foundation #413 and authenticated API/UI #414,
+each accepted through the protected workflow. Historical #209/#215 were closed
+after that corrected integration. Later OIDC, browser OCR and retrieval milestones
+retain this source-level authorization model. No production data operation is
+implied by source acceptance. Both independent retention worktrees remain held.
 
 ## Authenticated API and UI
 
 Repository foundation accepted through #413 at
 `f98caab9aeefd8fb1d12fd7b1ae2a9f207eb6910`; all seven required checks passed at
-head `b7d60685ef16236b85794ff5fc6c984492d14f39`. #414 adds the following API/UI
-on that protected main baseline and requires its own protected acceptance.
+head `b7d60685ef16236b85794ff5fc6c984492d14f39`. #414 subsequently delivered the
+following API/UI through its own protected acceptance on that main baseline.
 
 Settings links to **Source permissions** (`/source-permissions`). Owners select
 one source and an existing username, choose VIEW or EDIT, optionally set an
@@ -128,16 +128,18 @@ source authorization boundaries in separately reviewed changes. They must not
 derive permissions from platform labels or widen account summaries. The new local
 creation API/UI already supports new eligible records without those migrations.
 
-OIDC must bind the authenticated actor to a durable local identity without role
-or medical-access escalation. OCR must preserve import provenance. Search/RAG must
-enforce current owner/source grants and revocation without exposing service keys
-or stale shared results. None of those features is enabled by this integration.
+OIDC #415 binds authentication to native identities; browser OCR #418 preserves
+import provenance; #416/#420 add source-authorized metadata/reviewed-transcript
+search. Native session identity was hardened separately in #423. Full-text/RAG
+remains unresolved in #419, and operational Authentik/recovery acceptance remains
+approval-gated in #425. These capabilities preserve current owner/source grants,
+revocation and the separation between administrative and medical access.
 
 ## Source-scoped metadata search
 
 The source browser can find records by their existing title or FHIR ID within
 one selected source and resource type. It queries the existing encrypted database;
-there is no external index, model, new credential, or copy of clinical records.
+there is no external index, model, new credential or external clinical-record store.
 This narrow retrieval step follows the useful pagination and source/type/resource
 identity concepts in groundmuffin's Fasten #594 / Chartrove #211 proposal. The
 historical branch, follow-on authorship and discussion remain preserved; its
@@ -156,7 +158,9 @@ allowlisted FHIR table names enter SQL; text and permission values are parameter
 Each query repeats the current native actor, actual source owner, active grant,
 expiration and deletion predicates in the clinical-table statement. Administrative
 roles do not grant access. Hits contain only source/type/record IDs, existing title
-and date. Raw clinical JSON is not searched or returned in hits. Some records have
+and date. For DocumentReference, #420 also searches the decoded reviewed-transcript
+projection from new local document imports. Arbitrary raw clinical JSON and binary
+attachments are not searched or returned in hits. Some records have
 no derived title and can be found by ID. Opening a hit uses the existing detail
 API, which checks permissions again; a hit never carries an enduring permission.
 Search adds no write permission and changes none of the existing list, detail,
@@ -176,3 +180,28 @@ PostgreSQL regression exercises the same source authorization and literal-match
 semantics. Browser tests cover request bodies, source scoping, pagination and stale
 response cancellation. Typesense, whole-record full-text retrieval and RAG remain
 separate unresolved features.
+
+## Inline document text
+
+Read-only DocumentReference details can preview a single inline `text/plain`
+attachment as UTF-8, including reviewed transcripts from local document imports.
+The attachment title and text render literally with line breaks, without HTML
+execution or automatic URL fetching. The exact stored FHIR text remains available
+under **FHIR record as JSON**. This display does not certify review/provenance,
+interpret clinical statements, or change eligibility for editing.
+
+Preview work is bounded to eight content entries, one plain-text attachment,
+128 KiB decoded bytes and the corresponding base64 input bound. Unsupported
+charsets, multiple text attachments, missing inline data, oversized or malformed
+encoding fall back to the original FHIR record; no partial transcript is silently
+selected or truncated. No additional API, model, destination, dependency or
+persistent browser storage is introduced. The existing authenticated detail
+request and live source permissions remain authoritative. Preview state clears
+with source/type/page/detail changes, denied access and component teardown; late
+responses remain cancelled by the existing source/detail lifecycle.
+
+Focused browser coverage includes UTF-8/literal markup, byte limits, remote and
+malformed attachments, raw-record preservation, denied-write behavior and stale
+response/permission clearing. Backend/Desktop and all security checks remain
+required through the protected workflow. No live clinical acceptance is inferred
+from these synthetic fixtures.

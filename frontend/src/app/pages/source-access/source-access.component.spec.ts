@@ -128,6 +128,76 @@ describe('SourceAccessComponent authorization UI', () => {
     expect(api.edit).toHaveBeenCalledOnceWith('synthetic-shared', 'Observation', 'synthetic-id', exact);
   });
 
+  function document(attachments: readonly Record<string, unknown>[]): SharedResource {
+    const raw = {resourceType: 'DocumentReference', id: 'synthetic-document', content: attachments.map(attachment => ({attachment}))};
+    return {source_resource_type: 'DocumentReference', source_resource_id: raw.id, resource_raw: raw, resource_raw_text: JSON.stringify(raw), editable: false};
+  }
+
+  function encoded(text: string): string {
+    return btoa(Array.from(new TextEncoder().encode(text), byte => String.fromCharCode(byte)).join(''));
+  }
+
+  it('previews authorized inline UTF-8 document text literally and retains the exact raw record', () => {
+    const text = 'Synthetic résumé · μg\n<em>Literal attachment text</em>';
+    const doc = document([{contentType: 'application/pdf', data: 'synthetic-original'}, {contentType: 'text/plain', title: 'Synthetic <em>title</em>', data: encoded(text)}]);
+    api.detail.and.returnValue(of(doc)); component.resourceType = 'DocumentReference';
+    component.open(doc); fixture.detectChanges();
+    const view = fixture.nativeElement as HTMLElement;
+    expect(view.querySelector('#document-text-body')?.textContent).toBe(text);
+    expect(view.querySelector('#document-text')?.textContent).toContain('Synthetic <em>title</em>');
+    expect(view.querySelector('em')).toBeNull();
+    expect(view.querySelector('#edit-record')).toBeNull();
+    expect(view.textContent).toContain(doc.resource_raw_text!);
+    expect(component.editRaw).toBe(doc.resource_raw_text!);
+    component.saveResource(); expect(api.edit).not.toHaveBeenCalled();
+  });
+
+  it('keeps remote, ambiguous, invalid, oversized and non-UTF-8 document data in the raw record without fetching', () => {
+    const fetch = spyOn(globalThis, 'fetch').and.rejectWith(new Error('Synthetic remote fetch must not happen'));
+    const valid = {contentType: 'text/plain', data: encoded('Synthetic valid text')};
+    const cases: Record<string, unknown>[][] = [
+      [{contentType: 'text/plain', url: 'https://example.invalid/synthetic.txt'}],
+      [{contentType: 'text/html', data: encoded('<em>Synthetic HTML document</em>')}],
+      [valid, valid],
+      [{contentType: 'text/plain', data: 'invalid-base64'}],
+      [{contentType: 'text/plain', data: btoa(String.fromCharCode(255))}],
+      [{contentType: 'text/plain; charset=iso-8859-1', data: btoa('Synthetic text')}],
+      [{contentType: 'text/plain', data: btoa('x'.repeat(128 * 1024 + 1))}],
+      [{contentType: 'text/plain', data: encoded('é'.repeat(64 * 1024 + 1))}],
+      [...Array.from({length: 8}, () => ({contentType: 'image/png', data: 'synthetic-image'})), valid],
+    ];
+    for (const attachments of cases) {
+      const doc = document(attachments); api.detail.and.returnValue(of(doc));
+      component.resourceType = 'DocumentReference'; component.open(doc); fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('#document-text-body')).toBeNull();
+      expect(fixture.nativeElement.textContent).toContain(doc.resource_raw_text!);
+      expect(component.editRaw).toBe(doc.resource_raw_text!);
+    }
+    expect(fetch).not.toHaveBeenCalled(); expect(api.edit).not.toHaveBeenCalled();
+  });
+
+  it('accepts the document preview byte limit and clears text on selection changes, stale responses and access denial', () => {
+    const doc = document([{contentType: 'text/plain; charset="UTF-8"', data: btoa('x'.repeat(128 * 1024))}]);
+    api.detail.and.returnValue(of(doc)); component.resourceType = 'DocumentReference';
+    component.open(doc); fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#document-text-body')?.textContent.length).toBe(128 * 1024);
+    component.loadResources(1); fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#document-text-body')).toBeNull();
+    const pending = new Subject<SharedResource>(); api.detail.and.returnValue(pending);
+    component.open(doc); fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#document-text-body')).toBeNull();
+    component.viewingSource = 'synthetic-owned'; component.viewSource(); pending.next(doc); fixture.detectChanges();
+    expect(component.selected).toBeNull(); expect(fixture.nativeElement.querySelector('#document-text-body')).toBeNull();
+    api.detail.and.returnValue(of(doc)); component.resourceType = 'DocumentReference'; component.open(doc); fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#document-text-body')).not.toBeNull();
+    api.detail.and.returnValue(throwError(() => ({status: 404}))); component.open(doc); fixture.detectChanges();
+    expect(component.selected).toBeNull(); expect(component.editRaw).toBe('');
+    expect(fixture.nativeElement.querySelector('#document-text-body')).toBeNull();
+    api.detail.and.returnValue(of(doc)); component.open(doc); fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#document-text-body')).not.toBeNull();
+    fixture.destroy(); expect(component.documentText).toBeNull(); expect(component.selected).toBeNull();
+  });
+
   it('sends a source-specific grant with expiration and can explicitly revoke it', () => {
     component.ownerSource = 'synthetic-owned'; component.username = 'synthetic-delegate'; component.level = 'EDIT';
     component.expiration = '2099-01-01T12:00';

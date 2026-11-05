@@ -97,7 +97,20 @@
           <button type="button" class="btn btn-primary" (click)="saveResource()" [disabled]="busy">Save record</button>
         } @else {
           <p>This record is read-only with your current permissions.</p>
-          <pre class="text-wrap">{{ selected.resource_raw_text }}</pre>
+          @if (documentText; as preview) {
+            @if (preview.kind === 'ready') {
+              <section id="document-text" aria-labelledby="document-text-title" class="mt-3">
+                <h5 id="document-text-title" class="h6">Document text</h5>
+                @if (preview.title) { <p class="text-break">{{ preview.title }}</p> }
+                <pre id="document-text-body" style="white-space: pre-wrap; overflow-wrap: anywhere">{{ preview.text }}</pre>
+              </section>
+            } @else {
+              <p role="status">Text attachment preview is unavailable. The original FHIR record is available below.</p>
+            }
+            <details><summary>FHIR record as JSON</summary><pre class="text-wrap">{{ selected.resource_raw_text }}</pre></details>
+          } @else {
+            <pre class="text-wrap">{{ selected.resource_raw_text }}</pre>
+          }
         }
       }
     }
