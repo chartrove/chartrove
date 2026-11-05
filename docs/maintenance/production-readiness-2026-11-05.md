@@ -7,7 +7,76 @@ passed. These prove source validation, not a deployed release or recovery exerci
 This is a bounded assessment of the existing application, not a new architecture,
 provider registry, upstream-reuse assessment or exhaustive security audit.
 
-## Three highest-priority blockers
+## Current production-first priorities after #433
+
+Current source baseline is `15f7f873ed750e84dd7733eb0ada290402374d8a`.
+Protected #432/#433 and their exact-main workflows passed all required checks;
+the original assessment below is retained as the historical search checkpoint.
+The governing product direction uses [#425](https://github.com/karamhouse/chartrove/issues/425),
+[#430](https://github.com/karamhouse/chartrove/issues/430) and the separate,
+unmerged [roadmap proposal #431](https://github.com/karamhouse/chartrove/pull/431).
+This source lane does not adopt/merge that draft or duplicate its provider mapping.
+
+1. **No accepted, recoverable daily-use deployment.** No source-bound deployed
+   digest, effective ingress/TLS configuration, all-hop callback-log acceptance or
+   independently held native administrator password/key custody is established.
+   Encrypted reopen tests do not prove a consistent backup restored without the
+   original installation or Authentik. This blocks dependable recovery from device,
+   storage or IdP failure. **Operational:** approve the isolated synthetic staging
+   artifact, owners/custody, backup method, restore and cleanup allowlist, then run
+   the existing #425 native/OIDC/family-permission/recovery matrix. No live action
+   is authorized by this assessment.
+
+2. **Clinical ingestion and editing do not yet have complete provenance acceptance.**
+   A reproduced source defect makes the legacy owner PATCH use SDK ingestion:
+   editing an explicitly local record removes its local-edit marker and disables
+   a family's existing delegated EDIT capability. **Source correction in this
+   change:** separate owner-only existing-row updates from ingestion, preserving
+   local provenance and omitted presentation metadata, reindexing changed fields,
+   auditing atomically and checking live native/source ownership at the write.
+   SDK replacement still removes local eligibility; imported records are never
+   promoted. The complete-resource replacement body remains the owner API contract;
+   this is not a field-merging fix for the legacy lab editor or historical #186.
+   **Still unverified:** end-to-end FHIR/C-CDA and household-specific provider/payer
+   import, storage, retrieval and attribution. Legacy external C-CDA conversion is
+   warned and unvalidated; no local replacement is adopted here. The private P0
+   household list, current registrations and evidence belong to #430/#431, not
+   historical platform-name availability. No real-record/provider test is performed.
+
+3. **Confidentiality and lifecycle recovery remain operationally unproven.**
+   #428 removed application callback Referer output and #433 disabled automatic
+   ORM traces. Gateway/proxy/IdP/browser logs, artifact/backup access and retention,
+   deletion and recovery require acceptance at the chosen runtime. Native logout
+   removes the browser token; copied password JWTs retain their bounded expiry.
+   OIDC native logout/unlink revoke sessions, while provider-side revocation follows
+   its documented expiry window. **Operational:** explicitly accept the session
+   window, prove harmless canary redaction at every hop, and verify synthetic grant
+   revocation, source/account deletion and restoration without broadening access.
+   Source tests and green CodeQL do not establish these deployed controls.
+
+The owner-edit defect is the highest-priority reproduced source correction that
+can proceed independently of those approvals. Validation uses synthetic accounts
+and encrypted SQLite/disposable PostgreSQL, plus native-authenticated embedded
+Desktop HTTP flows. The [owner-update implementation](../../backend/pkg/database/owned_resource_update.go),
+[two-engine regressions](../../backend/pkg/database/owned_resource_update_test.go),
+[legacy HTTP regression](../../backend/pkg/web/handler/owner_edit_provenance_test.go)
+and [embedded native flow](../../backend/pkg/web/embedded_owned_update_test.go)
+retain the exact storage identity and current authorization boundaries.
+No second database, service, dependency, schema migration,
+provider connection or AI data destination is introduced. Chartrove remains the
+authoritative record system with Go/Gin, Angular, Wails, SQLCipher and optional
+PostgreSQL. Conversational AI remains outside it; future MCP needs separately
+approved read-only patient/source scope, live revocation and data-destination rules.
+
+The required Go CodeQL job exposed a separate validation prerequisite: GitHub
+cancelled it before setup with an unsupported macOS 14 runner configuration.
+[GitHub retired those hosted labels on November 2](https://github.blog/changelog/2026-10-01-github-actions-macos-14-runner-image-retirement/).
+Only the Desktop and Go CodeQL image labels move to supported `macos-15`; all
+seven required checks, commands, toolchains, permissions and timeouts are retained.
+The exact-head replacement must pass full protected validation. Hosted macOS 15
+checks do not certify native UI compatibility on older macOS versions.
+
+## Original priorities before #433
 
 1. **Automatic database logs can expose clinical values and credentials.**
    Both repository constructors inherited GORM's process-wide logger and enabled

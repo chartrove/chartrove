@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -12,7 +13,6 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils"
-	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
@@ -168,14 +168,29 @@ func UpdateResourceFhir(c *gin.Context) {
 
 	type UpdatePayload struct {
 		ResourceRaw json.RawMessage `json:"resource_raw"`
-		SortTitle   string          `json:"sort_title"`
-		SortDate    string          `json:"sort_date"`
+		SortTitle   json.RawMessage `json:"sort_title"`
+		SortDate    json.RawMessage `json:"sort_date"`
 	}
 	var payload UpdatePayload
 	err := c.ShouldBindJSON(&payload)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "invalid request payload"})
 		return
+	}
+	var sortTitle, sortDate *string
+	for _, field := range []struct {
+		raw    json.RawMessage
+		target **string
+	}{{payload.SortTitle, &sortTitle}, {payload.SortDate, &sortDate}} {
+		if field.raw == nil {
+			continue
+		}
+		var text string
+		if json.Unmarshal(field.raw, &text) != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "invalid request payload"})
+			return
+		}
+		*field.target = &text // Explicit null/empty retains legacy clearing behavior.
 	}
 
 	resource, err := databaseRepo.GetResourceByResourceTypeAndId(c, resourceType, resourceId)
@@ -190,17 +205,23 @@ func UpdateResourceFhir(c *gin.Context) {
 		return
 	}
 
-	resourceToUpsert := sourceModels.RawResourceFhir{
-		SourceResourceType: resourceType,
-		SourceResourceID:   resourceId,
-		ResourceRaw:        payload.ResourceRaw,
-		SortTitle:          &payload.SortTitle,
-		SortDate:           parseDateTimeWithFallback(&payload.SortDate),
+	updates, ok := databaseRepo.(database.OwnedResourceUpdateRepository)
+	if !ok {
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "resource editing unavailable"})
+		return
 	}
-
-	_, updateError := databaseRepo.UpsertRawResource(c, sourceCredential, resourceToUpsert)
+	updateError := updates.UpdateOwnedResource(c, sourceCredential.ID, resourceType, resourceId, database.OwnedResourceUpdate{
+		ResourceRaw: payload.ResourceRaw, SortTitle: sortTitle,
+		SortDate: parseDateTimeWithFallback(sortDate), SetSortDate: sortDate != nil,
+	})
 	if updateError != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "failed to update resource"})
+		status := http.StatusInternalServerError
+		if errors.Is(updateError, database.ErrSourceAccessDenied) {
+			status = http.StatusNotFound
+		} else if errors.Is(updateError, database.ErrSourceAccessInput) {
+			status = http.StatusBadRequest
+		}
+		c.JSON(status, gin.H{"success": false, "error": "failed to update resource"})
 		return
 	}
 
