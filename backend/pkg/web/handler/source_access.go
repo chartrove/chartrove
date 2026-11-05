@@ -45,14 +45,34 @@ func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 			return nil, errors.New("source search unavailable")
 		}
 		var body struct {
-			Text string `json:"text"`
-			Page int    `json:"page"`
+			Text string          `json:"text"`
+			Page int             `json:"page"`
+			Mode json.RawMessage `json:"mode"`
 		}
 		c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, 4096)
 		if err := decodeSourceAccessBody(c, &body); err != nil {
 			return nil, err
 		}
-		return search.SearchSourceResources(c, source, c.Param("resourceType"), body.Text, body.Page)
+		mode := "literal"
+		if body.Mode != nil {
+			var selected *string
+			if err := json.Unmarshal(body.Mode, &selected); err != nil || selected == nil {
+				return nil, database.ErrSourceAccessInput
+			}
+			mode = *selected
+		}
+		switch mode {
+		case "literal":
+			return search.SearchSourceResources(c, source, c.Param("resourceType"), body.Text, body.Page)
+		case "exact_id":
+			modes, ok := repo.(database.SourceExactIDSearchRepository)
+			if !ok {
+				return nil, errors.New("source search mode unavailable")
+			}
+			return modes.SearchSourceResourceID(c, source, c.Param("resourceType"), body.Text, body.Page)
+		default:
+			return nil, database.ErrSourceAccessInput
+		}
 	}))
 	secure.GET(prefix+"/shared", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, _ uuid.UUID) (interface{}, error) {
 		return repo.ListSharedSources(c)

@@ -33,6 +33,14 @@ describe('SourceAccessService boundaries', () => {
     service.owned().subscribe(rows => expect(rows).toEqual([{id: 'synthetic', display: 'Source', platform_type: 'fasten'}]));
     http.expectOne(req => req.url.endsWith('/secure/source')).flush({success: true, data: [{id: 'synthetic', display: 'Source', platform_type: 'fasten', access_token: 'synthetic-secret', user: {password: 'synthetic-hash'}}]});
   });
+
+  it('sends explicit exact IDs unchanged in the body, with no owner identity', () => {
+    service.search('synthetic-source','Observation',' Mixed_ID% ',0,'exact_id').subscribe();
+    const request=http.expectOne(req=>req.url.endsWith('/source-access/synthetic-source/search/Observation'));
+    expect(request.request.params.keys()).toEqual([]);
+    expect(request.request.body).toEqual({text:' Mixed_ID% ',page:0,mode:'exact_id'});
+    request.flush({success:true,data:[]});
+  });
   it('never supplies an owner identity in grant or edit requests', () => {
     service.grant('synthetic-source', 'synthetic-delegate', 'VIEW', null).subscribe();
     const grant = http.expectOne(req => req.url.endsWith('/source-access/synthetic-source/grants'));

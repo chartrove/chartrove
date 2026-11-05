@@ -18,25 +18,38 @@ type SourceSearchRepository interface {
 	SearchSourceResources(context.Context, uuid.UUID, string, string, int) ([]models.SourceSearchHit, error)
 }
 
+// Optional exact-ID capability keeps existing literal clients on their original API.
+type SourceExactIDSearchRepository interface {
+	SearchSourceResourceID(context.Context, uuid.UUID, string, string, int) ([]models.SourceSearchHit, error)
+}
+
 type SourceMetadataRepository interface {
 	ListSourceMetadata(context.Context, uuid.UUID, string, int) ([]models.SourceSearchHit, error)
 }
 
 var _ SourceSearchRepository = (*GormRepository)(nil)
+var _ SourceExactIDSearchRepository = (*GormRepository)(nil)
 
 func (gr *GormRepository) SearchSourceResources(ctx context.Context, source uuid.UUID, resourceType, text string, page int) ([]models.SourceSearchHit, error) {
 	text = strings.TrimSpace(text)
 	if !utf8.ValidString(text) || text == "" || utf8.RuneCountInString(text) > 128 {
 		return nil, fmt.Errorf("%w: invalid search text or page", ErrSourceAccessInput)
 	}
-	return gr.sourceMetadata(ctx, source, resourceType, page, &text)
+	return gr.sourceMetadata(ctx, source, resourceType, page, &text, false)
+}
+
+func (gr *GormRepository) SearchSourceResourceID(ctx context.Context, source uuid.UUID, resourceType, text string, page int) ([]models.SourceSearchHit, error) {
+	if !utf8.ValidString(text) || strings.TrimSpace(text) == "" || utf8.RuneCountInString(text) > 128 || strings.ContainsRune(text, 0) {
+		return nil, fmt.Errorf("%w: invalid resource ID", ErrSourceAccessInput)
+	}
+	return gr.sourceMetadata(ctx, source, resourceType, page, &text, true)
 }
 
 func (gr *GormRepository) ListSourceMetadata(ctx context.Context, source uuid.UUID, resourceType string, page int) ([]models.SourceSearchHit, error) {
-	return gr.sourceMetadata(ctx, source, resourceType, page, nil)
+	return gr.sourceMetadata(ctx, source, resourceType, page, nil, false)
 }
 
-func (gr *GormRepository) sourceMetadata(ctx context.Context, source uuid.UUID, resourceType string, page int, text *string) ([]models.SourceSearchHit, error) {
+func (gr *GormRepository) sourceMetadata(ctx context.Context, source uuid.UUID, resourceType string, page int, text *string, exactID bool) ([]models.SourceSearchHit, error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 	if page < 0 || page > 100000 {
@@ -60,7 +73,19 @@ func (gr *GormRepository) sourceMetadata(ctx context.Context, source uuid.UUID, 
 		Session(&gorm.Session{Logger: privateSQLLogger{gr.GormClient.Logger}}).
 		Select("source_id, source_resource_type, source_resource_id, sort_title, sort_date").
 		Where("source_resource_type = ?", resourceType)
-	if text != nil {
+	if text != nil && exactID {
+		// Keep ordinary equality for the existing composite index, then compare
+		// bytes so a legacy/custom case-insensitive collation cannot merge IDs.
+		query = query.Where("source_resource_id = ?", *text)
+		switch gr.GormClient.Dialector.Name() {
+		case "sqlite":
+			query = query.Where("CAST(source_resource_id AS BLOB) = CAST(? AS BLOB)", *text)
+		case "postgres":
+			query = query.Where("convert_to(source_resource_id, 'UTF8') = convert_to(?, 'UTF8')", *text)
+		default:
+			return nil, fmt.Errorf("exact resource ID search unavailable")
+		}
+	} else if text != nil {
 		pattern := "%" + strings.NewReplacer("!", "!!", "%", "!%", "_", "!_").Replace(*text) + "%"
 		condition := "(LOWER(sort_title) LIKE LOWER(?) ESCAPE '!' OR LOWER(source_resource_id) LIKE LOWER(?) ESCAPE '!')"
 		if resourceType == "DocumentReference" {

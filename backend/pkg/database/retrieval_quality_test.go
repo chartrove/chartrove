@@ -327,21 +327,7 @@ func runRetrievalQuality(t *testing.T, r *GormRepository) {
 		filler = 1000 - len(corpus.Records)
 	}
 	if profile == "long" {
-		// Keep every authored wording/gold judgment. Add only inert ASCII context,
-		// alternating head/tail placement, with decoded UTF-8 byte sizes up to the
-		// existing reviewed-transcript limit. This is not an OCR accuracy model.
-		for i := range corpus.Records {
-			original := corpus.Records[i].Text
-			size := []int{4 * 1024, 16 * 1024, models.DocumentMaxTranscriptBytes}[i%3]
-			require.Less(t, len(original), size)
-			const paddingText = "Dummy filler entry. "
-			padding := strings.Repeat(paddingText, size/len(paddingText)+1)[:size-len(original)-1]
-			if i%2 == 0 {
-				corpus.Records[i].Text = original + "\n" + padding
-			} else {
-				corpus.Records[i].Text = padding + "\n" + original
-			}
-		}
+		corpus = longQualityCorpus(t, corpus)
 	}
 	f := seedQualityCorpus(t, r, corpus, filler)
 	if profile == "long" {
@@ -498,4 +484,25 @@ func (f *qualityFixture) checkLifecycle(t *testing.T) {
 		require.EqualError(t, err, "could not retrieve current user: "+gorm.ErrRecordNotFound.Error())
 	}
 	t.Log("quality lifecycle PASS: native UUID/source/owner isolation, administrator denial, expiry/revocation, current text/provenance, record/source deletion and actor replacement")
+}
+
+// Shared accepted size/position profile; corpus JSON and judgments stay unchanged.
+func longQualityCorpus(t *testing.T, corpus qualityCorpus) qualityCorpus {
+	t.Helper()
+	// Keep every authored wording/gold judgment. Add only inert ASCII context,
+	// alternating head/tail placement, with decoded UTF-8 byte sizes up to the
+	// existing reviewed-transcript limit. This is not an OCR accuracy model.
+	for i := range corpus.Records {
+		original := corpus.Records[i].Text
+		size := []int{4 * 1024, 16 * 1024, models.DocumentMaxTranscriptBytes}[i%3]
+		require.Less(t, len(original), size)
+		const paddingText = "Dummy filler entry. "
+		padding := strings.Repeat(paddingText, size/len(paddingText)+1)[:size-len(original)-1]
+		if i%2 == 0 {
+			corpus.Records[i].Text = original + "\n" + padding
+		} else {
+			corpus.Records[i].Text = padding + "\n" + original
+		}
+	}
+	return corpus
 }

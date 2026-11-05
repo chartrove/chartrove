@@ -73,12 +73,21 @@
       </select>
       @if (resourceType) {
         <div class="mb-3">
-          <label for="source-search">Find by record title or ID in this source and record type</label>
-          @if (resourceType === 'DocumentReference') { <p class="small">Also searches reviewed transcripts from new local document imports.</p> }
-          <input id="source-search" class="form-control" type="search" [(ngModel)]="searchText" maxlength="128" (keydown.enter)="searchResources()" [disabled]="busy">
+          <label for="search-mode">Search mode</label>
+          <select id="search-mode" class="form-control mb-2" [(ngModel)]="searchMode" (ngModelChange)="changeSearchMode()" [disabled]="busy">
+            <option value="literal">Literal text</option>
+            <option value="exact_id">Exact resource ID</option>
+          </select>
+          <label for="source-search">Find records in this source and record type</label>
+          <p id="source-search-help" class="small">
+            @if (searchMode === 'exact_id') { Matches the complete ID, including case and spacing. Titles and transcripts are not searched. }
+            @else { Finds literal text in record titles and IDs. Spaces and punctuation are literal; a match is not a clinical interpretation. }
+          </p>
+          @if (resourceType === 'DocumentReference' && searchMode === 'literal') { <p class="small">Also searches reviewed transcripts from new local document imports.</p> }
+          <input id="source-search" class="form-control" type="search" [(ngModel)]="searchText" maxlength="128" aria-describedby="source-search-help" (keydown.enter)="searchResources()" [disabled]="busy">
           <button type="button" class="btn btn-outline-primary btn-sm mt-2 me-2" (click)="searchResources()" [disabled]="busy">Search</button>
           <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="clearSearch()" [disabled]="busy">Clear search</button>
-          @if (appliedSearch) { <p class="mt-2">Results for “{{appliedSearch}}”. Open a result to view its current record.</p> }
+          @if (appliedSearch) { <p class="mt-2">{{appliedSearchMode === 'exact_id' ? 'Exact resource ID' : 'Literal text'}} results for “{{appliedSearch}}”. Open a result to view its current record.</p> }
         </div>
       }
       <ul class="list-group mb-3">@for (resource of resources; track resource.source_resource_id) {
