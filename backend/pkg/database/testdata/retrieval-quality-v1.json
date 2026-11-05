@@ -1,0 +1,772 @@
+{
+  "version": 1,
+  "notice": "All records and relevance judgments are authored synthetic fixtures, not patient data or clinical ground truth. Preserve contrary statements and document provenance.",
+  "records": [
+    {
+      "id": "LAB-0042",
+      "title": "Synthetic laboratory report",
+      "text": "Haemoglobin HbA1c 6.4%; specimen accession SYN-2026-0042.",
+      "reviewed": true
+    },
+    {
+      "id": "LAB-00420",
+      "title": "Synthetic laboratory repeat",
+      "text": "A different specimen accession SYN-2026-00420.",
+      "reviewed": true
+    },
+    {
+      "id": "scan-LAB-0042-copy",
+      "title": "Synthetic scanned copy",
+      "text": "A duplicate copy label, not the exact resource identifier.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-01",
+      "title": "Synthetic chest radiograph",
+      "text": "Chest radiograph: pneumonia is present.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-02",
+      "title": "Synthetic chest radiograph follow-up",
+      "text": "Chest radiograph: no evidence of pneumonia.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-03",
+      "title": "Synthetic history",
+      "text": "Prior pneumonia resolved. Current lungs clear.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-04",
+      "title": "Synthetic clinic note",
+      "text": "Patient denies chest pain.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-05",
+      "title": "Synthetic exertional symptoms",
+      "text": "Patient reports chest pain on exertion.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-06",
+      "title": "Synthetic symptom discussion",
+      "text": "Chest pain discussed; patient denies shortness of breath.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-07",
+      "title": "Synthetic vital signs",
+      "text": "Blood  pressure measured after rest: 120/80 mmHg.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-08",
+      "title": "Synthetic blood-pressure review",
+      "text": "Blood-pressure measured: 118/78 mmHg.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-09",
+      "title": "Synthetic reordered words",
+      "text": "Pressure cuff checked; blood sample obtained separately.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-10",
+      "title": "Synthetic problem list",
+      "text": "Type 2 diabetes mellitus appears in the problem list.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-11",
+      "title": "Synthetic negative history",
+      "text": "No diabetes mellitus is recorded in this history.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-12",
+      "title": "Synthetic abbreviated note",
+      "text": "COPD mentioned in this note; status requires source review.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-13",
+      "title": "Synthetic expanded terminology",
+      "text": "Chronic obstructive pulmonary disease mentioned in this note.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-14",
+      "title": "Synthetic neurology note",
+      "text": "Multiple sclerosis (MS) discussed.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-15",
+      "title": "Synthetic cardiology note",
+      "text": "Mitral stenosis (MS) discussed.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-16",
+      "title": "Synthetic French report",
+      "text": "Échographie: examen sans anomalie.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-17",
+      "title": "Synthetic decomposed French report",
+      "text": "Échographie: examen de contrôle.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-18",
+      "title": "Synthetic Greek report",
+      "text": "ΚΑΡΔΙΑ: συνθετική καταγραφή.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-19",
+      "title": "Synthetic Japanese report",
+      "text": "血圧測定の記録。",
+      "reviewed": true
+    },
+    {
+      "id": "doc-20",
+      "title": "Synthetic punctuation sample",
+      "text": "Literal 100% follow_up! C:\\reports\\scan says \"reviewed\".",
+      "reviewed": true
+    },
+    {
+      "id": "doc-21",
+      "title": "Synthetic punctuation contrast",
+      "text": "A 100 units followXup entry.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-22",
+      "title": "Outside clinic summary",
+      "text": "hidden-external-canary: unreviewed external text is not searchable.",
+      "reviewed": false
+    },
+    {
+      "id": "doc-23",
+      "title": "Synthetic local reviewed scan",
+      "text": "Ultrasound: gallstones reported. Reviewed transcript of synthetic scan.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-24",
+      "title": "Synthetic electrolyte report",
+      "text": "Laboratory sodium 140 mmol/L.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-25",
+      "title": "Synthetic abbreviated electrolyte report",
+      "text": "Na 140 mmol/L.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-26",
+      "title": "Synthetic allergy note",
+      "text": "No known drug allergies.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-27",
+      "title": "Synthetic later allergy note",
+      "text": "Penicillin allergy recorded.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-28",
+      "title": "Synthetic contradictory allergy notes",
+      "text": "Earlier note: no known drug allergies. Later note: penicillin allergy recorded.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-29",
+      "title": "Synthetic attribution note",
+      "text": "Quoted text from a synthetic clinic letter; document provenance must remain distinct.",
+      "reviewed": true
+    },
+    {
+      "id": "doc-30",
+      "title": "Synthetic nasal care note",
+      "text": "Nasal saline mentioned.",
+      "reviewed": true
+    }
+  ],
+  "queries": [
+    {
+      "id": "exact-resource-id",
+      "family": "identifier",
+      "text": "LAB-0042",
+      "preferred_mode": "exact_id",
+      "relevant": [
+        "LAB-0042"
+      ],
+      "literal_sqlite": [
+        "LAB-0042",
+        "LAB-00420",
+        "scan-LAB-0042-copy"
+      ],
+      "literal_postgres": [
+        "LAB-0042",
+        "LAB-00420",
+        "scan-LAB-0042-copy"
+      ],
+      "rationale": "Exact resource ID excludes prefixes and copy labels; substring hits are not identity equality."
+    },
+    {
+      "id": "exact-accession",
+      "family": "identifier",
+      "text": "SYN-2026-0042",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "LAB-0042"
+      ],
+      "literal_sqlite": [
+        "LAB-0042",
+        "LAB-00420"
+      ],
+      "literal_postgres": [
+        "LAB-0042",
+        "LAB-00420"
+      ],
+      "rationale": "Whole identifier components distinguish the longer accession."
+    },
+    {
+      "id": "literal-prefix",
+      "family": "identifier",
+      "text": "LAB-004",
+      "preferred_mode": "token_phrase",
+      "relevant": [],
+      "literal_sqlite": [
+        "LAB-0042",
+        "LAB-00420",
+        "scan-LAB-0042-copy"
+      ],
+      "literal_postgres": [
+        "LAB-0042",
+        "LAB-00420",
+        "scan-LAB-0042-copy"
+      ],
+      "rationale": "Prefix completion is a separate contract; token phrase does not implement it."
+    },
+    {
+      "id": "exact-absent",
+      "family": "identifier",
+      "text": "LAB-9999",
+      "preferred_mode": "exact_id",
+      "relevant": [],
+      "literal_sqlite": [],
+      "literal_postgres": [],
+      "rationale": "Missing ID must not match a nearby identifier."
+    },
+    {
+      "id": "phrase-spacing",
+      "family": "phrase",
+      "text": "blood pressure",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-07",
+        "doc-08"
+      ],
+      "literal_sqlite": [],
+      "literal_postgres": [],
+      "rationale": "Normalize whitespace and punctuation between whole words, preserving their order."
+    },
+    {
+      "id": "phrase-reordered",
+      "family": "phrase",
+      "text": "pressure blood",
+      "preferred_mode": "token_phrase",
+      "relevant": [],
+      "literal_sqlite": [],
+      "literal_postgres": [],
+      "rationale": "Words in a different order are not an adjacent phrase."
+    },
+    {
+      "id": "and-reordered",
+      "family": "all_words",
+      "text": "pressure blood",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-07",
+        "doc-08",
+        "doc-09"
+      ],
+      "literal_sqlite": [],
+      "literal_postgres": [],
+      "rationale": "Explicit AND mode allows different order and separated words in one field."
+    },
+    {
+      "id": "and-distant",
+      "family": "all_words",
+      "text": "sample cuff",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-09"
+      ],
+      "literal_sqlite": [],
+      "literal_postgres": [],
+      "rationale": "Find both words in one document field without requiring adjacency."
+    },
+    {
+      "id": "phrase-negative",
+      "family": "negation",
+      "text": "no evidence of pneumonia",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-02"
+      ],
+      "literal_sqlite": [
+        "doc-02"
+      ],
+      "literal_postgres": [
+        "doc-02"
+      ],
+      "rationale": "Retrieve an explicit negative statement as evidence, not a positive diagnosis."
+    },
+    {
+      "id": "term-contradiction",
+      "family": "contradiction",
+      "text": "pneumonia",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-01",
+        "doc-02",
+        "doc-03"
+      ],
+      "literal_sqlite": [
+        "doc-01",
+        "doc-02",
+        "doc-03"
+      ],
+      "literal_postgres": [
+        "doc-01",
+        "doc-02",
+        "doc-03"
+      ],
+      "rationale": "Term retrieval includes present, absent and historical statements; it cannot infer current disease."
+    },
+    {
+      "id": "phrase-denial",
+      "family": "negation",
+      "text": "denies chest pain",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-04"
+      ],
+      "literal_sqlite": [
+        "doc-04"
+      ],
+      "literal_postgres": [
+        "doc-04"
+      ],
+      "rationale": "All-words mode also finds a note denying a different symptom; phrase preserves this wording."
+    },
+    {
+      "id": "term-symptoms",
+      "family": "contradiction",
+      "text": "chest pain",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-04",
+        "doc-05",
+        "doc-06"
+      ],
+      "literal_sqlite": [
+        "doc-04",
+        "doc-05",
+        "doc-06"
+      ],
+      "literal_postgres": [
+        "doc-04",
+        "doc-05",
+        "doc-06"
+      ],
+      "rationale": "Denial and positive symptom reports must retain separate document IDs."
+    },
+    {
+      "id": "term-diabetes",
+      "family": "negation",
+      "text": "diabetes mellitus",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-10",
+        "doc-11"
+      ],
+      "literal_sqlite": [
+        "doc-10",
+        "doc-11"
+      ],
+      "literal_postgres": [
+        "doc-10",
+        "doc-11"
+      ],
+      "rationale": "Matching a term does not assert the condition."
+    },
+    {
+      "id": "abbreviation-only",
+      "family": "abbreviation",
+      "text": "COPD",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-12"
+      ],
+      "literal_sqlite": [
+        "doc-12"
+      ],
+      "literal_postgres": [
+        "doc-12"
+      ],
+      "rationale": "No automatic expansion; the expanded disease label is a separate lexical query."
+    },
+    {
+      "id": "expanded-only",
+      "family": "abbreviation",
+      "text": "chronic obstructive pulmonary disease",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-13"
+      ],
+      "literal_sqlite": [
+        "doc-13"
+      ],
+      "literal_postgres": [
+        "doc-13"
+      ],
+      "rationale": "No acronym inference or new terminology calls."
+    },
+    {
+      "id": "ambiguous-abbreviation",
+      "family": "abbreviation",
+      "text": "MS",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-14",
+        "doc-15"
+      ],
+      "literal_sqlite": [
+        "doc-05",
+        "doc-14",
+        "doc-15"
+      ],
+      "literal_postgres": [
+        "doc-05",
+        "doc-14",
+        "doc-15"
+      ],
+      "rationale": "Ambiguous abbreviation must not select one clinical meaning automatically."
+    },
+    {
+      "id": "unicode-case",
+      "family": "unicode",
+      "text": "échographie",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-16",
+        "doc-17"
+      ],
+      "literal_sqlite": [],
+      "literal_postgres": [
+        "doc-16"
+      ],
+      "rationale": "NFC plus Unicode lowercase in the reference mode joins composed/decomposed spellings; database LOWER differs."
+    },
+    {
+      "id": "unicode-decomposed",
+      "family": "unicode",
+      "text": "Échographie",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-16",
+        "doc-17"
+      ],
+      "literal_sqlite": [
+        "doc-17"
+      ],
+      "literal_postgres": [
+        "doc-17"
+      ],
+      "rationale": "Canonical equivalence is explicit in the reference mode, not promised by literal SQL."
+    },
+    {
+      "id": "unicode-exact",
+      "family": "unicode",
+      "text": "Échographie",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-16",
+        "doc-17"
+      ],
+      "literal_sqlite": [
+        "doc-16"
+      ],
+      "literal_postgres": [
+        "doc-16"
+      ],
+      "rationale": "An exact accent spelling remains searchable with the literal baseline."
+    },
+    {
+      "id": "greek-case",
+      "family": "unicode",
+      "text": "καρδια",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-18"
+      ],
+      "literal_sqlite": [],
+      "literal_postgres": [
+        "doc-18"
+      ],
+      "rationale": "Unicode lowercase is not ASCII-only lowercase; no transliteration or accent removal."
+    },
+    {
+      "id": "cjk-contiguous",
+      "family": "unicode",
+      "text": "血圧測定の記録",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-19"
+      ],
+      "literal_sqlite": [
+        "doc-19"
+      ],
+      "literal_postgres": [
+        "doc-19"
+      ],
+      "rationale": "Reference tokens retain contiguous CJK letters; no language segmentation is claimed."
+    },
+    {
+      "id": "cjk-prefix",
+      "family": "unicode",
+      "text": "血圧",
+      "preferred_mode": "token_phrase",
+      "relevant": [],
+      "literal_sqlite": [
+        "doc-19"
+      ],
+      "literal_postgres": [
+        "doc-19"
+      ],
+      "rationale": "Whole-token semantics can lose useful CJK substrings; baseline remains valuable."
+    },
+    {
+      "id": "literal-percent",
+      "family": "punctuation",
+      "text": "100%",
+      "preferred_mode": "literal",
+      "relevant": [
+        "doc-20"
+      ],
+      "literal_sqlite": [
+        "doc-20"
+      ],
+      "literal_postgres": [
+        "doc-20"
+      ],
+      "rationale": "Tokenization drops percent; this is intentional candidate imprecision versus literal punctuation intent."
+    },
+    {
+      "id": "literal-underscore",
+      "family": "punctuation",
+      "text": "follow_up!",
+      "preferred_mode": "literal",
+      "relevant": [
+        "doc-20"
+      ],
+      "literal_sqlite": [
+        "doc-20"
+      ],
+      "literal_postgres": [
+        "doc-20"
+      ],
+      "rationale": "Literal percent/underscore/exclamation are data, never SQL wildcard syntax."
+    },
+    {
+      "id": "literal-backslash",
+      "family": "punctuation",
+      "text": "C:\\reports\\scan",
+      "preferred_mode": "literal",
+      "relevant": [
+        "doc-20"
+      ],
+      "literal_sqlite": [
+        "doc-20"
+      ],
+      "literal_postgres": [
+        "doc-20"
+      ],
+      "rationale": "Match decoded transcript text, not JSON escaping."
+    },
+    {
+      "id": "literal-quotes",
+      "family": "punctuation",
+      "text": "\"reviewed\"",
+      "preferred_mode": "literal",
+      "relevant": [
+        "doc-20"
+      ],
+      "literal_sqlite": [
+        "doc-20"
+      ],
+      "literal_postgres": [
+        "doc-20"
+      ],
+      "rationale": "Quotes do not introduce a runtime query language."
+    },
+    {
+      "id": "unreviewed-body",
+      "family": "provenance",
+      "text": "hidden-external-canary",
+      "preferred_mode": "all_tokens",
+      "relevant": [],
+      "literal_sqlite": [],
+      "literal_postgres": [],
+      "rationale": "External-origin text projection is excluded even if the same SQL column contains text."
+    },
+    {
+      "id": "external-title",
+      "family": "provenance",
+      "text": "Outside clinic summary",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-22"
+      ],
+      "literal_sqlite": [
+        "doc-22"
+      ],
+      "literal_postgres": [
+        "doc-22"
+      ],
+      "rationale": "Existing metadata search includes external titles without exposing unreviewed body text."
+    },
+    {
+      "id": "reviewed-body",
+      "family": "provenance",
+      "text": "gallstones",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-23"
+      ],
+      "literal_sqlite": [
+        "doc-23"
+      ],
+      "literal_postgres": [
+        "doc-23"
+      ],
+      "rationale": "Only the explicitly reviewed local import body is searchable."
+    },
+    {
+      "id": "electrolyte-full",
+      "family": "abbreviation",
+      "text": "sodium",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-24"
+      ],
+      "literal_sqlite": [
+        "doc-24"
+      ],
+      "literal_postgres": [
+        "doc-24"
+      ],
+      "rationale": "Do not infer Na equals sodium in a lexical search."
+    },
+    {
+      "id": "electrolyte-short",
+      "family": "abbreviation",
+      "text": "Na",
+      "preferred_mode": "all_tokens",
+      "relevant": [
+        "doc-25"
+      ],
+      "literal_sqlite": [
+        "doc-05",
+        "doc-13",
+        "doc-25",
+        "doc-29",
+        "doc-30"
+      ],
+      "literal_postgres": [
+        "doc-05",
+        "doc-13",
+        "doc-25",
+        "doc-29",
+        "doc-30"
+      ],
+      "rationale": "Whole-word reference excludes substrings in exertional, pulmonary, provenance and nasal; Na is not automatically expanded to sodium."
+    },
+    {
+      "id": "allergy-contradiction",
+      "family": "contradiction",
+      "text": "penicillin allergy recorded",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-27",
+        "doc-28"
+      ],
+      "literal_sqlite": [
+        "doc-27",
+        "doc-28"
+      ],
+      "literal_postgres": [
+        "doc-27",
+        "doc-28"
+      ],
+      "rationale": "A later statement and a mixed-history note remain separate evidence, without reconciling truth."
+    },
+    {
+      "id": "allergy-negative",
+      "family": "contradiction",
+      "text": "no known drug allergies",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-26",
+        "doc-28"
+      ],
+      "literal_sqlite": [
+        "doc-26",
+        "doc-28"
+      ],
+      "literal_postgres": [
+        "doc-26",
+        "doc-28"
+      ],
+      "rationale": "Conflicting statements are not deduplicated into a fabricated current clinical conclusion."
+    },
+    {
+      "id": "provenance-quoted",
+      "family": "provenance",
+      "text": "clinic letter",
+      "preferred_mode": "token_phrase",
+      "relevant": [
+        "doc-29"
+      ],
+      "literal_sqlite": [
+        "doc-29"
+      ],
+      "literal_postgres": [
+        "doc-29"
+      ],
+      "rationale": "Return exact source/type/resource provenance for an attributed document."
+    },
+    {
+      "id": "missing-term",
+      "family": "no_match",
+      "text": "nonexistentlexeme",
+      "preferred_mode": "all_tokens",
+      "relevant": [],
+      "literal_sqlite": [],
+      "literal_postgres": [],
+      "rationale": "No fuzzy or semantic fallback."
+    }
+  ]
+}
