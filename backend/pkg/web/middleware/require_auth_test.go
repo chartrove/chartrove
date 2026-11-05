@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/auth"
 	mock_config "github.com/fastenhealth/fasten-onprem/backend/pkg/config/mock"
 	mock_database "github.com/fastenhealth/fasten-onprem/backend/pkg/database/mock"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
@@ -14,11 +15,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/golang/mock/gomock"
+	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )
 
 func TestRequireAuthRejectsInvalidTokenBeforeProtectedHandler(t *testing.T) {
 	gin.SetMode(gin.TestMode)
+	nativeID := uuid.New()
 	for _, tt := range []struct {
 		name   string
 		key    string
@@ -35,11 +38,11 @@ func TestRequireAuthRejectsInvalidTokenBeforeProtectedHandler(t *testing.T) {
 			config.EXPECT().GetString("jwt.issuer.key").Return(tt.key)
 			repo := mock_database.NewMockDatabaseRepository(gomock.NewController(t))
 			if tt.status == http.StatusNoContent {
-				repo.EXPECT().GetUserByUsername(gomock.Any(), "synthetic-user").Return(&models.User{Username: "synthetic-user"}, nil)
+				repo.EXPECT().GetUserByUsername(gomock.Any(), "synthetic-user").Return(&models.User{ModelBase: models.ModelBase{ID: nativeID}, Username: "synthetic-user"}, nil)
 			}
-			token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+			token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, auth.UserRegisteredClaims{NativeUserID: nativeID.String(), RegisteredClaims: jwt.RegisteredClaims{
 				Subject: "synthetic-user", ExpiresAt: tt.expiry,
-			}).SignedString([]byte(tt.key))
+			}}).SignedString([]byte(tt.key))
 			require.NoError(t, err)
 
 			called := false
@@ -48,6 +51,7 @@ func TestRequireAuthRejectsInvalidTokenBeforeProtectedHandler(t *testing.T) {
 			router.GET("/protected", func(c *gin.Context) {
 				called = true
 				require.Equal(t, "synthetic-user", c.GetString(pkg.ContextKeyTypeAuthUsername))
+				require.Equal(t, nativeID, c.MustGet(pkg.ContextKeyTypeAuthUserID))
 				c.Status(http.StatusNoContent)
 			})
 			request := httptest.NewRequest(http.MethodGet, "/protected", nil)

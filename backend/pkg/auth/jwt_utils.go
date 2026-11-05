@@ -8,6 +8,7 @@ import (
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/google/uuid"
 )
 
 // generateToken is a helper to generate JWT tokens with flexible claims
@@ -29,6 +30,9 @@ func generateToken(user models.User, issuerSigningKey string, expiresAt time.Tim
 			Role:     user.Role,
 		},
 		TokenType: tokenType,
+	}
+	if user.ID != uuid.Nil {
+		claims.NativeUserID = user.ID.String()
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(issuerSigningKey))

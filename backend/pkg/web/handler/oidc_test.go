@@ -169,6 +169,13 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	request("POST", "/secure/auth/oidc/link", localDelegate, map[string]string{"password": "wrong"}, 401)
 	complete(flow("", ""), 401) // Unknown issuer/subject never matches duplicate email.
 	oidcToken := complete(flow(localDelegate, "synthetic-password"), 200)
+	// Pre-UUID-claim OIDC sessions remain bound by their database session row.
+	legacyClaims, err := auth.JwtValidateFastenToken(cfg.GetString("jwt.issuer.key"), oidcToken)
+	require.NoError(t, err)
+	legacyClaims.NativeUserID = ""
+	legacyOIDC, err := jwt.NewWithClaims(jwt.SigningMethodHS256, legacyClaims).SignedString([]byte(cfg.GetString("jwt.issuer.key")))
+	require.NoError(t, err)
+	request("GET", "/secure/account/me", legacyOIDC, nil, 200)
 	request("POST", "/auth/oidc/complete", "", map[string]string{"state": "replayed", "code": "synthetic-code"}, 401)
 	var profile struct {
 		ID   string `json:"id"`
@@ -227,6 +234,7 @@ func TestOIDCHTTPNativeAuthorizationAndLocalRecovery(t *testing.T) {
 	request("GET", path, oidcToken, nil, 404)
 	request("POST", "/secure/auth/oidc/logout", oidcToken, map[string]string{}, 200)
 	request("GET", "/secure/account/me", oidcToken, nil, 401)
+	request("GET", "/secure/account/me", legacyOIDC, nil, 401)
 	request("GET", "/secure/document-import/sources", oidcToken, nil, 401)
 	oidcToken = complete(flow("", ""), 200)
 	var identities []models.OIDCIdentity

@@ -56,6 +56,21 @@ func RequireAuth() gin.HandlerFunc {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"success": false, "error": "Invalid account"})
 			return
 		}
+		// Bind sessions to an immutable account, never to a reusable username.
+		// Old ordinary JWTs have no immutable identity and require a fresh local
+		// login. Account timestamps cannot prove continuity: historical creation
+		// requests could supply them. Legacy API/OIDC tokens have independent
+		// UUID-bound database checks below and retain those revocation contracts.
+		invalidIdentity := user.ID == uuid.Nil
+		if claims.NativeUserID != "" {
+			invalidIdentity = invalidIdentity || claims.NativeUserID != user.ID.String()
+		} else if claims.TokenType == "" {
+			invalidIdentity = true
+		}
+		if invalidIdentity {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"success": false, "error": "Invalid account session"})
+			return
+		}
 
 		if claims.TokenType == "access" {
 			token, err := databaseRepo.GetAccessTokenByTokenIDAndUsername(c, claims.ID, claims.Subject)
@@ -90,6 +105,7 @@ func RequireAuth() gin.HandlerFunc {
 		// Set context for both regular and access tokens
 		c.Set(pkg.ContextKeyTypeAuthToken, tokenString)
 		c.Set(pkg.ContextKeyTypeAuthUsername, claims.Subject)
+		c.Set(pkg.ContextKeyTypeAuthUserID, user.ID)
 		c.Next()
 	}
 }
