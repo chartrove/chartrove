@@ -320,15 +320,59 @@ func qualityScore(got, want []string) (float64, float64) {
 func runRetrievalQuality(t *testing.T, r *GormRepository) {
 	t.Helper()
 	corpus := loadQualityCorpus(t)
-	filler, repeats := 0, 1
-	measure := os.Getenv("CHARTROVE_RETRIEVAL_QUALITY") == "1"
+	filler := 0
+	profile := os.Getenv("CHARTROVE_RETRIEVAL_QUALITY")
+	measure := profile == "1" || profile == "long"
 	if measure {
-		filler, repeats = 1000-len(corpus.Records), 28 // 3 warmups, 25 measured per query/mode
+		filler = 1000 - len(corpus.Records)
+	}
+	if profile == "long" {
+		// Keep every authored wording/gold judgment. Add only inert ASCII context,
+		// alternating head/tail placement, with decoded UTF-8 byte sizes up to the
+		// existing reviewed-transcript limit. This is not an OCR accuracy model.
+		for i := range corpus.Records {
+			original := corpus.Records[i].Text
+			size := []int{4 * 1024, 16 * 1024, models.DocumentMaxTranscriptBytes}[i%3]
+			require.Less(t, len(original), size)
+			const paddingText = "Dummy filler entry. "
+			padding := strings.Repeat(paddingText, size/len(paddingText)+1)[:size-len(original)-1]
+			if i%2 == 0 {
+				corpus.Records[i].Text = original + "\n" + padding
+			} else {
+				corpus.Records[i].Text = padding + "\n" + original
+			}
+		}
 	}
 	f := seedQualityCorpus(t, r, corpus, filler)
+	if profile == "long" {
+		// Observe stored, decoded sizes rather than reporting the generator's
+		// requested sizes as if they proved the database workload.
+		var stored []retrievalEvalRecord
+		require.NoError(t, r.GormClient.Table(f.table).Select("text").Where("source_id = ? AND user_id = ?", f.source, f.users[0].ID).Find(&stored).Error)
+		histogram := map[int]int{}
+		for _, row := range stored {
+			var fields []string
+			require.NoError(t, json.Unmarshal(row.Text, &fields))
+			require.Len(t, fields, 1)
+			require.LessOrEqual(t, len(fields[0]), models.DocumentMaxTranscriptBytes)
+			histogram[len(fields[0])]++
+		}
+		require.Equal(t, 1000, len(stored))
+		require.Equal(t, 11, histogram[128*1024], "maximum-size records must actually be stored")
+		raw, err := json.Marshal(histogram)
+		require.NoError(t, err)
+		t.Logf("long-profile stored_decoded_text_bytes_histogram=%s head_tail_alternating=true", raw)
+	}
+	// Fixed before measurement: one or more cases from every intent family.
+	longTimed := map[string]bool{"exact-resource-id": true, "phrase-spacing": true, "and-distant": true, "unicode-case": true, "cjk-prefix": true, "literal-percent": true, "literal-quotes": true, "phrase-denial": true, "term-contradiction": true, "unreviewed-body": true, "external-title": true, "reviewed-body": true, "electrolyte-short": true, "missing-term": true}
 	measurements := []qualityMeasurement{}
 	for _, q := range corpus.Queries {
 		t.Run(q.ID, func(t *testing.T) {
+			timed := measure && (profile != "long" || longTimed[q.ID])
+			repeats := 1
+			if timed {
+				repeats = 28 // three warmups, 25 measured samples
+			}
 			for _, mode := range qualityModes {
 				var ids []string
 				timings := []float64{}
@@ -342,7 +386,7 @@ func runRetrievalQuality(t *testing.T, r *GormRepository) {
 						require.Equal(t, ids, current, "nondeterministic IDs")
 					}
 					ids = current
-					if measure && i >= 3 {
+					if timed && i >= 3 {
 						timings = append(timings, elapsed)
 					}
 				}
@@ -358,7 +402,7 @@ func runRetrievalQuality(t *testing.T, r *GormRepository) {
 				}
 				precision, recall := qualityScore(ids, q.Relevant)
 				m := qualityMeasurement{Case: q.ID, Family: q.Family, Mode: mode, IDs: ids, Precision: precision, Recall: recall, ExactSet: strings.Join(ids, "\x00") == strings.Join(q.Relevant, "\x00")}
-				if measure {
+				if timed {
 					m.SamplesMS = append([]float64{}, timings...)
 					sort.Float64s(timings)
 					m.P50MS, m.P95MS = timings[12], timings[23]
@@ -369,7 +413,7 @@ func runRetrievalQuality(t *testing.T, r *GormRepository) {
 	}
 	raw, err := json.Marshal(measurements)
 	require.NoError(t, err)
-	t.Logf("quality-results engine=%s rows_per_owner=%d measured=%t samples=%d data=%s", r.GormClient.Dialector.Name(), len(corpus.Records)+filler, measure, max(0, repeats-3), raw)
+	t.Logf("quality-results engine=%s rows_per_owner=%d profile=%q measured=%t data=%s", r.GormClient.Dialector.Name(), len(corpus.Records)+filler, profile, measure, raw)
 	f.checkLifecycle(t)
 }
 

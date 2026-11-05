@@ -144,3 +144,57 @@ semantics and bounded current-source retrieval, using these gold sets. Any produ
 implementation still needs frontend/desktop consistency and HTTP authorization and
 pagination acceptance. More realistic long-document/concurrent/cold-cache workloads
 are required before an index or a performance promise. #419 remains open.
+
+## Bounded long-document size sensitivity
+
+Before proposing a query-mode/index replacement, run the same authored gold sets
+with an opt-in `long` profile. Preserve the 33 original texts and judgments; add
+inert ASCII context to produce eleven 4 KiB, eleven 16 KiB and eleven 128 KiB
+decoded texts per owner, alternating original wording at the beginning/end. The
+largest size is the existing reviewed-transcript byte limit. Keep 967 short
+administrative distractors per owner and the independent misowned-row canary.
+Observe the stored decoded-size histogram before timing, rather than reporting
+generator inputs as if they proved the workload. No raw fixture/import limit changes.
+
+All 35 cases and lifecycle checks must still pass. Fix the timed subset before
+measurement: exact-resource-id, phrase-spacing, and-distant, unicode-case, cjk-prefix,
+literal-percent, literal-quotes, phrase-denial, term-contradiction, unreviewed-body,
+external-title, reviewed-body, electrolyte-short and missing-term. This covers every
+intent family while bounding CPU work. Four modes, 14 cases, 25 measured samples
+and two engines yield 2,800 timed requests plus warmups and untimed correctness
+checks. Untimed rows have no sample array; zero percentile fields are not timings.
+Retain unsorted samples and the original short-profile receipt; compare only the
+same cases/modes. Keep the previously stated 250 ms exploratory budget and
+replacement non-regression criteria; do not change criteria to fit results.
+
+```sh
+CHARTROVE_RETRIEVAL_QUALITY=long go test -p 1 -tags postgres_integration ./backend/pkg/database -run '^TestRetrievalQuality' -count=1 -v
+```
+
+Padding measures size/position sensitivity, not realistic clinical-language density,
+OCR errors, throughput, concurrency, cold caches or a universal 128 KiB workload.
+Ordinary CI still uses the small corpus; no runtime configuration or defaults change.
+
+The [long-profile receipt](retrieval-quality-long-2026-11-05.json) records the
+observed histogram on both engines: 967 decoded 336-byte distractors and eleven
+documents at each of 4,096, 16,384 and 131,072 bytes per source, plus the independent
+misowned canary. All 35 gold cases/lifecycle checks pass; all four modes' result IDs
+are identical to the original short receipt. The 2,800 timed requests completed in
+a 105.476-second full evaluation. Per-case p95 ranges over the 14 timed cases:
+
+| Mode | Encrypted SQLite, ms | PostgreSQL, ms |
+| --- | --- | --- |
+| Actual literal baseline | 15.961–18.107 | 24.605–28.920 |
+| Exact-ID reference scan | 19.028–21.372 | 17.715–21.990 |
+| Token phrase reference scan | 38.555–58.796 | 36.294–60.848 |
+| All-token reference scan | 40.938–45.975 | 37.429–44.478 |
+
+Every measured case remains within the predeclared 250 ms exploratory budget.
+Larger projections materially increase observed latency; these are warm serial
+results under uncontrolled host load, not a controlled causal speedup/slowdown or
+production capacity promise. Reference phrase/all-token scans still regress versus
+literal queries. The PostgreSQL exact-ID reference happens to be faster here, but
+it cannot replace non-ID queries and still scans projected text unnecessarily.
+There is no demonstrated index or default-replacement need from this bounded
+workload. Keep the literal default and require explicit query semantics plus
+representative concurrent/ingest/cold-cache acceptance before a runtime proposal.
