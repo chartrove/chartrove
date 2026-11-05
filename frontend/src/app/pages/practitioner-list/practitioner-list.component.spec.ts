@@ -75,8 +75,8 @@ describe('PractitionerListComponent', () => {
     expect(component.selectedPractitioners).toEqual([]);
     http.expectOne(req => req.urlWithParams.endsWith('/api/secure/resource/fhir?sourceResourceType=Practitioner'))
       .flush({success: true, data: [rows[0]]});
-    http.expectOne(req => req.urlWithParams.endsWith('/api/secure/user/favorites?resource_type=Practitioner'))
-      .flush({success: true, data: []});
+    // Reloading records reuses the already loaded favorites; it does not fetch them again.
+    http.expectNone(req => req.urlWithParams.endsWith('/api/secure/user/favorites?resource_type=Practitioner'));
     expect(component.practitioners.map(p => p.source_id)).toEqual([sourceA]);
   });
 });
