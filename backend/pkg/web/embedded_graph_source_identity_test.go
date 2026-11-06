@@ -56,9 +56,9 @@ func TestEmbeddedGraphKeepsSameBusinessIDsInTheirNativeSources(t *testing.T) {
 		// Same report/result IDs in two genuinely different source namespaces.
 		// Bundle alias UUIDs also differ from each resource's business ID.
 		bundle := fmt.Sprintf(`{"resourceType":"Bundle","type":"collection","entry":[{"fullUrl":"urn:uuid:11111111-1111-4111-8111-111111111111","resource":{"resourceType":"Patient","id":%q,"name":[{"family":"Synthetic"}],"gender":"unknown"}},{"fullUrl":"urn:uuid:22222222-2222-4222-8222-222222222222","resource":{"resourceType":"DiagnosticReport","id":"synthetic-shared-report","status":"final","code":{"text":"Synthetic report"},"subject":{"reference":"urn:uuid:11111111-1111-4111-8111-111111111111"},"result":[{"reference":"urn:uuid:33333333-3333-4333-8333-333333333333"}]}},{"fullUrl":"urn:uuid:33333333-3333-4333-8333-333333333333","resource":{"resourceType":"Observation","id":"synthetic-shared-result","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"SYNTHETIC-%d"}]},"subject":{"reference":"urn:uuid:11111111-1111-4111-8111-111111111111"},"derivedFrom":[{"reference":"urn:uuid:44444444-4444-4444-8444-444444444444"}],"valueInteger":%d}}]}`, patient, i, i)
-		// A derived-from input is nested, and a second Observation sharing only
-		// the Patient is unrelated. Neither is a direct report result.
-		bundle = strings.TrimSuffix(bundle, "]}") + `,{"fullUrl":"urn:uuid:44444444-4444-4444-8444-444444444444","resource":{"resourceType":"Observation","id":"synthetic-derived-input","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"SYNTHETIC-INPUT"}]},"subject":{"reference":"urn:uuid:11111111-1111-4111-8111-111111111111"},"valueInteger":99}},{"fullUrl":"urn:uuid:55555555-5555-4555-8555-555555555555","resource":{"resourceType":"Observation","id":"synthetic-unrelated-result","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"SYNTHETIC-DECOY"}]},"subject":{"reference":"urn:uuid:11111111-1111-4111-8111-111111111111"},"valueInteger":100}}]}`
+		// Preserve the generic graph contract, including reciprocal focus links.
+		// Adjacency is deliberately not a claim of DiagnosticReport.result membership.
+		bundle = strings.TrimSuffix(bundle, "]}") + `,{"fullUrl":"urn:uuid:44444444-4444-4444-8444-444444444444","resource":{"resourceType":"Observation","id":"synthetic-derived-input","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"SYNTHETIC-INPUT"}]},"subject":{"reference":"urn:uuid:11111111-1111-4111-8111-111111111111"},"valueInteger":99}},{"fullUrl":"urn:uuid:55555555-5555-4555-8555-555555555555","resource":{"resourceType":"Observation","id":"synthetic-focus-result","status":"final","focus":[{"reference":"urn:uuid:22222222-2222-4222-8222-222222222222"}],"code":{"coding":[{"system":"http://loinc.org","code":"SYNTHETIC-FOCUS"}]},"subject":{"reference":"urn:uuid:11111111-1111-4111-8111-111111111111"},"valueInteger":100}}]}`
 
 		var body bytes.Buffer
 		form := multipart.NewWriter(&body)
@@ -110,10 +110,11 @@ func TestEmbeddedGraphKeepsSameBusinessIDsInTheirNativeSources(t *testing.T) {
 			}
 			found++
 			require.Equal(t, source, child.SourceID, "graph expansion must retain the selected native source")
-			require.Equal(t, "synthetic-shared-result", child.ID)
-			require.Equal(t, i, child.Raw.Value)
+			expected := map[string]int{"synthetic-shared-result": i, "synthetic-focus-result": 100}
+			require.Contains(t, expected, child.ID)
+			require.Equal(t, expected[child.ID], child.Raw.Value)
 		}
-		require.Equal(t, 1, found)
+		require.Equal(t, 2, found, "preserve incoming reciprocal focus links as generic relationships")
 		var denied struct{ Results map[string]json.RawMessage }
 		require.NoError(t, json.Unmarshal(request("POST", "/api/secure/resource/graph/MedicalHistory", other, query, 200), &denied))
 		require.NotContains(t, denied.Results, "DiagnosticReport")

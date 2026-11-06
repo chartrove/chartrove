@@ -5,7 +5,7 @@
       <!-- Header Row -->
       <report-header [reportHeaderTitle]="'Labs'" [reportHeaderSubTitle]="'The Lab report turns data into meaningful information'" ></report-header>
 
-      <ng-container [ngTemplateOutlet]="loading ? isLoadingTemplate : loadError ? reportError : isEmptyReport ? emptyReport : report"></ng-container>
+      <ng-container [ngTemplateOutlet]="loading ? isLoadingTemplate : isEmptyReport ? emptyReport : report"></ng-container>
 
       <ng-template #report>
 
@@ -97,13 +97,6 @@
         </div>
       </ng-template>
 
-
-      <ng-template #reportError>
-        <div role="alert" class="alert alert-warning">
-          Unable to load this lab report. Its records or references may be unavailable.
-          <a routerLink="/labs">Return to all labs</a> or reload to try again.
-        </div>
-      </ng-template>
 
       <ng-template #emptyReport>
         <div class="d-flex align-items-center" style="height:100%">
