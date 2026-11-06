@@ -9,6 +9,16 @@ import {LabresultsQuestionnaire} from '../../models/fasten/labresults-questionna
 import {fhirModelFactory} from '../../../lib/models/factory';
 import {LoadingSpinnerComponent} from '../loading-spinner/loading-spinner.component';
 
+// A manually asserted calendar day, not a JS Date/instant. Never infer a
+// collection time, timezone or date from the enclosing encounter or today.
+function validCollectionDate(value: unknown): boolean {
+  if (value === '') return true;
+  if (typeof value !== 'string' || !/^(?!0000)\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(value)) return false;
+  const [year, month, day] = value.split('-').map(Number);
+  const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  return day <= [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1];
+}
+
 @Component({
     imports: [
     NlmTypeaheadComponent,
@@ -29,6 +39,7 @@ export class MedicalRecordWizardAddLabResultsComponent implements OnInit {
   format: 'R4' | 'STU3' = 'R4';
 
   newLabPanelTypeaheadForm: FormGroup
+  collectionDate = new FormControl('', {nonNullable:true, validators:control => validCollectionDate(control.value) ? null : {collectionDate:true}});
 
   options = {
     displayScoreWithAnswerText: false
@@ -60,11 +71,11 @@ export class MedicalRecordWizardAddLabResultsComponent implements OnInit {
   }
 
   submit() {
-    if (!this.formReady || this.loading || !this.wcForm) {
+    if (!this.formReady || this.loading || !this.wcForm || this.collectionDate.invalid) {
       return;
     }
 
-    // LForms 34 searches inside the container, not the custom-element host itself.
+    // LForms searches inside the container, not the custom-element host itself.
     const formContainer = this.wcForm.nativeElement.parentElement;
     try {
       if(LForms.Util.checkValidity(formContainer) != null){
@@ -77,6 +88,17 @@ export class MedicalRecordWizardAddLabResultsComponent implements OnInit {
         formContainer,
         {bundleType: "transaction"}
       )
+
+      const date = this.collectionDate.value;
+      if (date) {
+        formData = {...formData, entry:formData.entry.map(entry => {
+          const resource = entry.resource;
+          // Retain any existing effective choice, including primitive metadata.
+          // Only undated, newly created lab resources receive the asserted day.
+          if (!['Observation','DiagnosticReport'].includes(resource?.resourceType) || Object.keys(resource).some(k => /^_?effective[A-Z]/.test(k))) return entry;
+          return {...entry, resource:{...resource, effectiveDateTime:date}};
+        })};
+      }
 
       this.activeModal.close({
         action: 'create',
