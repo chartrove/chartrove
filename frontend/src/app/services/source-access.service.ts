@@ -10,7 +10,7 @@ export type SourceSearchMode = 'literal' | 'exact_id';
 export interface AccessSource { id: string; display: string; platform_type?: string; owner_user_id?: string; access_level?: SourceAccessLevel; }
 export interface SourceGrant { id: string; delegate_username: string; delegate_user_id: string; access_level: SourceAccessLevel; expires_at: string | null; revoked_at: string | null; }
 export interface SourceAudit { id: string; created_at: string; actor_user_id: string; action: string; grant_id?: string; access_level?: SourceAccessLevel; resource_type?: string; resource_id?: string; }
-export interface SharedResource { source_resource_type: string; source_resource_id: string; resource_raw: Record<string, unknown>; resource_raw_text?: string; sort_title?: string; editable?: boolean; }
+export interface SharedResource { source_id?: string; source_resource_type: string; source_resource_id: string; resource_raw: Record<string, unknown>; resource_raw_text?: string; sort_title?: string; editable?: boolean; }
 export type ResourceListItem = Pick<SharedResource, 'source_resource_type' | 'source_resource_id' | 'sort_title'>;
 export interface SharedSummary { source: AccessSource; counts: Record<string, number>; }
 interface AccessResponse<T> { success: boolean; data: T; }

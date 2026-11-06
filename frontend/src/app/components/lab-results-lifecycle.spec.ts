@@ -5,6 +5,7 @@ import {MedicalRecordWizardAddLabResultsComponent} from './medical-record-wizard
 import {MedicalRecordWizardEditLabResultsComponent} from './medical-record-wizard-edit-lab-results/medical-record-wizard-edit-lab-results.component';
 import {NlmClinicalTableSearchService} from '../services/nlm-clinical-table-search.service';
 import {FastenApiService} from '../services/fasten-api.service';
+import {SourceAccessService} from '../services/source-access.service';
 import {LabresultsQuestionnaire} from '../models/fasten/labresults-questionnaire';
 
 const variants = [
@@ -24,7 +25,7 @@ for (const variant of variants) {
     function questionnaire(): LabresultsQuestionnaire {
       return {
         type: 'LOINC', code: 'synthetic-panel', name: 'Synthetic panel',
-        codingInstructions: null, copyrightNotice: null, items: [],
+        codingInstructions: null, copyrightNotice: null, items: [{question:'Synthetic',questionCode:'synthetic-code',questionCodeSystem:'http://loinc.org',dataType:'REAL'}],
         lformsVersion: '34.0.0', codeSystem: 'http://loinc.org',
       };
     }
@@ -34,7 +35,8 @@ for (const variant of variants) {
     }
 
     function readyWidget(): HTMLElement {
-      component.questionnaire = questionnaire();
+      fixture.componentInstance[variant.form].get('data').setValue({id:'synthetic-panel'});
+      formResponse.next(questionnaire());
       fixture.detectChanges();
       const widget: HTMLElement = fixture.nativeElement.querySelector('wc-lhc-form');
       expect(button().disabled).toBeTrue();
@@ -60,6 +62,7 @@ for (const variant of variants) {
         providers: [
           {provide: NgbActiveModal, useValue: modal},
           {provide: FastenApiService, useValue: {}},
+          {provide: SourceAccessService, useValue: {detail:()=>of({source_id:'synthetic-source',source_resource_type:'Observation',source_resource_id:'synthetic-observation',resource_raw_text:'{"resourceType":"Observation","id":"synthetic-observation","code":{"coding":[{"system":"http://loinc.org","code":"synthetic-code"}]},"valueQuantity":{"value":0}}'})}},
           {provide: NlmClinicalTableSearchService, useValue: {
             searchLabPanels: () => of([]),
             searchLabPanelQuestionnaire: () => formResponse,
@@ -69,7 +72,9 @@ for (const variant of variants) {
       fixture = TestBed.createComponent<any>(variant.component);
       component = fixture.componentInstance;
       if (component instanceof MedicalRecordWizardEditLabResultsComponent) {
-        component.observations = [];
+        component.diagnosticReport={source_id:'synthetic-source'} as any;
+        component.observations = [{source_id:'synthetic-source',source_resource_type:'Observation',source_resource_id:'synthetic-observation'}] as any;
+        util.getFormFHIRData.and.returnValue({entry:[{resource:{resourceType:'Observation',code:{coding:[{system:'http://loinc.org',code:'synthetic-code'}]},valueQuantity:{value:0}}}]});
       }
       fixture.detectChanges();
     });
@@ -102,6 +107,7 @@ for (const variant of variants) {
 
     it('keeps an invalid form open without exporting it', () => {
       readyWidget();
+      util.getFormFHIRData.calls.reset();
       util.checkValidity.and.returnValue(['Synthetic validation error']);
       button().click();
       expect(util.getFormFHIRData).not.toHaveBeenCalled();

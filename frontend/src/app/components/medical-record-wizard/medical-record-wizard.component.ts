@@ -1,3 +1,4 @@
+import {forkJoin} from 'rxjs';
 import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {HighlightModule} from 'ngx-highlightjs';
 import {
@@ -487,33 +488,43 @@ export class MedicalRecordWizardComponent implements OnInit {
   }
 
   openEditLabResultsModal(diagnosticReport: DiagnosticReportModel) {
+    const selected = {source_id:diagnosticReport.source_id,source_resource_type:diagnosticReport.source_resource_type,source_resource_id:diagnosticReport.source_resource_id};
     this.fastenApi.getResourceGraph(null, [{
-      source_resource_type: diagnosticReport.source_resource_type,
-      source_resource_id: diagnosticReport.source_resource_id,
-      source_id: diagnosticReport.source_id,
+      source_resource_type: selected.source_resource_type,
+      source_resource_id: selected.source_resource_id,
+      source_id: selected.source_id,
     }]).subscribe((graphResponse) => {
-      if (graphResponse.results["DiagnosticReport"]?.[0]) {
-        let parsed = RecResourceRelatedDisplayModel(graphResponse.results["DiagnosticReport"]?.[0])
-        let observations = (parsed.displayModel as DiagnosticReportModel).related_resources?.["Observation"] as ObservationModel[]
+      const reports = (graphResponse?.results?.['DiagnosticReport'] || []).filter(r => r.source_id === selected.source_id && r.source_resource_type === selected.source_resource_type && r.source_resource_id === selected.source_resource_id);
+      if (reports.length !== 1) { alert('Lab report unavailable or ambiguous. No changes were saved.'); return; }
+      if (reports[0]) {
+        let parsed = RecResourceRelatedDisplayModel(reports[0])
+        let observations = ((parsed.displayModel as DiagnosticReportModel)?.related_resources?.["Observation"] || []).filter(o => o.source_id === selected.source_id) as ObservationModel[]
 
+        const allowed = new Set(observations.map(o => JSON.stringify([o.source_id,o.source_resource_type,o.source_resource_id])));
         let modalRef = this.modalService.open(MedicalRecordWizardEditLabResultsComponent, {
           ariaLabelledBy: 'modal-edit-lab-results',
           size: 'lg',
         })
         modalRef.componentInstance.debugMode = this.debugMode;
-        modalRef.componentInstance.diagnosticReport = diagnosticReport;
+        modalRef.componentInstance.diagnosticReport = parsed.displayModel as DiagnosticReportModel;
         modalRef.componentInstance.observations = observations
         modalRef.result.then(
           (result) => {
-            result.forEach((val) => {
-              this.fastenApi.updateResource(val.observation.source_resource_type, val.observation.source_resource_id, {
-                resource_raw: val.resourceRaw,
-                source_id: val.observation.source_id,
-              }).subscribe()
-            })
-        });
+            if (!Array.isArray(result) || !result.length) return;
+            const seen = new Set<string>();
+            if (result.some(val => {
+              const o = val.observation;
+              const id = JSON.stringify([o?.source_id,o?.source_resource_type,o?.source_resource_id]);
+              if (!o || typeof val.resourceRawText !== 'string' || seen.has(id) || !allowed.has(id)) return true;
+              seen.add(id); return false;
+            })) { alert('Lab changes could not be matched safely. No changes were saved.'); return; }
+            forkJoin(result.map(val => this.fastenApi.updateResourceText('Observation',val.observation.source_resource_id,val.observation.source_id,val.resourceRawText))).subscribe({
+              next:responses => { if (responses.some(r => !r?.success)) alert('Not all lab changes were saved. Reload before retrying.'); },
+              error:() => alert('Not all lab changes were saved. Reload before retrying.'),
+            });
+        }, () => {});
       }
-    })
+    }, () => alert('Lab report unavailable. No changes were saved.'))
   }
 
 

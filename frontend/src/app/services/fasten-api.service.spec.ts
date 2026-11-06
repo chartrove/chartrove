@@ -28,6 +28,19 @@ describe('FastenApiService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('sends exact lab JSON text and an explicit native source without rounding unrelated fields',()=>{
+    const http=TestBed.inject(HttpTestingController);
+    const raw='{"resourceType":"Observation","id":"same-id","valueQuantity":{"value":3.5},"extension":[{"url":"urn:synthetic:exact","valueDecimal":0.1234567890123456789}]}';
+    const source='22222222-2222-4222-8222-222222222222';
+    service.updateResourceText('Observation','same-id',source,raw).subscribe();
+    const req=http.expectOne(r=>r.method==='PATCH');
+    expect(req.request.url).toContain('/secure/resource/fhir/Observation/same-id');
+    expect(req.request.headers.get('Content-Type')).toBe('application/json');
+    expect(req.request.body).toBe(`{"source_id":"${source}","resource_raw":${raw}}`);
+    expect(req.request.body).toContain('0.1234567890123456789');
+    req.flush({success:true});http.verify();
+  });
+
   it('carries explicit source selection while preserving legacy request shapes', () => {
     const http = TestBed.inject(HttpTestingController);
     const source = '22222222-2222-4222-8222-222222222222';
