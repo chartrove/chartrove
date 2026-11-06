@@ -28,6 +28,11 @@ paths; the fork does not migrate or rename existing databases. Read the
 [provider validation status](../desktop/PROVIDER_VALIDATION.md#current-validation-status)
 before selecting a data directory or attempting a provider connection.
 
+For the explicit operator-only encrypted SQLite backup command and isolated
+synthetic restore contract, read the [backup guide](maintenance/encrypted-sqlite-backup.md).
+It captures committed WAL state into a new encrypted artifact; it does not back up
+keys/configuration, restore an installation automatically or authorize live data use.
+
 Use the ordinary account-creation/sign-in flow. A public synthetic test account
 used by validation is not a default account for a normal installation. Current
 startup instructions do not publish a shared beta username/password.

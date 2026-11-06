@@ -31,6 +31,13 @@ jobs:
       - run: go vet ./...
       - run: go test -p 1 ./backend/... -count=1
       - run: go build -o "$RUNNER_TEMP/fasten" ./backend/cmd/fasten
+      - run: go build -o "$RUNNER_TEMP/fasten-backup" ./backend/cmd/fasten-backup
+      - name: Verify CGO-free PostgreSQL-only build compatibility
+        env:
+          CGO_ENABLED: '0'
+        run: |
+          go test ./backend/pkg/database ./backend/cmd/fasten-backup -run '^TestEncryptedSQLiteBackupWithoutCGO$' -count=1
+          go build -o "$RUNNER_TEMP/fasten-postgres-only" ./backend/cmd/fasten
   frontend:
     name: Frontend
     runs-on: ubuntu-24.04
@@ -127,6 +134,9 @@ jobs:
       - name: Trace backend build
         if: matrix.language == 'go'
         run: go build -a -o "$RUNNER_TEMP/codeql-backend" ./backend/cmd/fasten
+      - name: Trace backup command
+        if: matrix.language == 'go'
+        run: go build -o "$RUNNER_TEMP/codeql-backup" ./backend/cmd/fasten-backup
       - name: Trace desktop build
         if: matrix.language == 'go'
         working-directory: desktop
