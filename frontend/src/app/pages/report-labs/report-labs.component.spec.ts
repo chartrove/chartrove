@@ -38,4 +38,13 @@ describe('ReportLabsComponent', () => {
     expect(component.allObservationGroups).toEqual([]);
     expect(fixture.nativeElement.textContent).toContain('No Lab Data Found!');
   });
+  it('renders a failed request as an error, independently of empty data', () => {
+    component.loadError = true;
+    component.isEmptyReport = false;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('[role="alert"]').textContent).toContain('Unable to load this lab report');
+    expect(fixture.nativeElement.textContent).not.toContain('No Lab Data Found!');
+    expect(fixture.nativeElement.querySelector('app-loading-spinner')).toBeNull();
+  });
+
 });

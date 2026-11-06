@@ -11,7 +11,9 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	databaseModel "github.com/fastenhealth/fasten-onprem/backend/pkg/models/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils"
+	"github.com/google/uuid"
 	"golang.org/x/exp/slices"
+	"gorm.io/gorm"
 )
 
 type VertexResourcePlaceholder struct {
@@ -20,6 +22,32 @@ type VertexResourcePlaceholder struct {
 	ResourceID                 string
 	ResourceType               string
 	RelatedResourcePlaceholder []*VertexResourcePlaceholder
+}
+
+// Graph identities include the native owner and source, not only FHIR business
+// IDs. Keep live ownership/deletion predicates in the content query itself.
+func graphOwnedRows(db *gorm.DB, actor *models.User, table string) *gorm.DB {
+	ownedSources := db.Model(&models.SourceCredential{}).Select("CAST(id AS TEXT)").Where("user_id = ? AND deleted_at IS NULL", actor.ID)
+	liveActor := db.Model(&models.User{}).Select("1").Where("id = ? AND username = ? AND deleted_at IS NULL", actor.ID, actor.Username)
+	return db.Table(table).
+		Where("CAST(user_id AS TEXT) = ? AND deleted_at IS NULL", actor.ID.String()).
+		Where("CAST(source_id AS TEXT) IN (?) AND EXISTS (?)", ownedSources, liveActor)
+}
+
+func (gr *GormRepository) graphResource(ctx context.Context, actor *models.User, vertex *VertexResourcePlaceholder) (*models.ResourceBase, error) {
+	source, err := uuid.Parse(vertex.SourceID)
+	if err != nil || source == uuid.Nil || vertex.UserID != actor.ID.String() {
+		return nil, ErrSourceAccessDenied
+	}
+	table, err := databaseModel.GetTableNameByResourceType(vertex.ResourceType)
+	if err != nil {
+		return nil, err
+	}
+	var row models.ResourceBase
+	err = graphOwnedRows(gr.GormClient.WithContext(ctx), actor, table).
+		Where("source_id = ? AND source_resource_type = ? AND source_resource_id = ?", source, vertex.ResourceType, vertex.ResourceID).
+		First(&row).Error
+	return &row, err
 }
 
 func (rp *VertexResourcePlaceholder) ID() string {
@@ -221,7 +249,7 @@ func (gr *GormRepository) GetFlattenedResourceGraph(ctx context.Context, graphTy
 			//skip any "visted" nodes
 			//also skip the current resourcePlaceholder if its a Binary resourcePlaceholder (which is a special case)
 			if _, hasVisited := visited[resourceVertexId(relatedResourcePlaceholder)]; !hasVisited && relatedResourcePlaceholder.ResourceType != "Binary" {
-				relatedResource, err := gr.GetResourceByResourceTypeAndId(ctx, relatedResourcePlaceholder.ResourceType, relatedResourcePlaceholder.ResourceID)
+				relatedResource, err := gr.graphResource(ctx, currentUser, relatedResourcePlaceholder)
 				if err != nil {
 					gr.Logger.Warnf("ignoring, cannot safely handle error which occurred while getting related resource (%s/%s): %v", relatedResourcePlaceholder.ResourceType, relatedResourcePlaceholder.ResourceID, err)
 					return false
@@ -264,7 +292,7 @@ func (gr *GormRepository) GetFlattenedResourceGraph(ctx context.Context, graphTy
 				vertexId := resourceKeysVertexId(currentResource.SourceID.String(), currentResource.SourceResourceType, currentResource.SourceResourceID)
 				for relatedVertexId, _ := range adjacencyMap[vertexId] {
 					relatedResourcePlaceholder, _ := g.Vertex(relatedVertexId)
-					relatedResourceFhir, err := gr.GetResourceByResourceTypeAndId(ctx, relatedResourcePlaceholder.ResourceType, relatedResourcePlaceholder.ResourceID)
+					relatedResourceFhir, err := gr.graphResource(ctx, currentUser, relatedResourcePlaceholder)
 					if err != nil {
 						gr.Logger.Warnf("ignoring, cannot safely handle error which occurred while getting related resource (flatten=false): %v", err)
 						continue
@@ -329,10 +357,12 @@ func (gr *GormRepository) InflateSelectedResourcesInResourceGraph(currentUser *m
 			return nil, err
 		}
 		var tableWrappedResourceModels []models.ResourceBase
-		gr.GormClient.
+		err = graphOwnedRows(gr.GormClient, currentUser, tableName).
 			Where("(user_id, source_id, source_resource_type, source_resource_id) IN ?", selectList).
-			Table(tableName).
-			Find(&tableWrappedResourceModels)
+			Find(&tableWrappedResourceModels).Error
+		if err != nil {
+			return nil, err
+		}
 
 		//append these resources to the rootWrappedResourceModels list
 		rootWrappedResourceModels = append(rootWrappedResourceModels, tableWrappedResourceModels...)
