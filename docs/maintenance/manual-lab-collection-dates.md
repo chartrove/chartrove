@@ -16,6 +16,9 @@ to `effectiveDateTime` only on new Observation/DiagnosticReport entries lacking
 any effective choice or associated primitive metadata. Invalid calendar days,
 ambiguous formats and timestamps cannot be saved through this field. Changing
 the date does not reload the selected panel or discard answers.
+An unfinished native date entry is distinct from an explicitly blank field:
+browser validity is checked in both Save enablement and the submit handler, even
+when the native control exposes an empty string to Angular.
 
 [FHIR R4 dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) supports day
 precision without a time or timezone; [Observation.effective[x]](https://hl7.org/fhir/R4/observation-definitions.html#Observation.effective_x_)

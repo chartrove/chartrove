@@ -36,10 +36,17 @@ export class MedicalRecordWizardAddLabResultsComponent implements OnInit {
   @Input() debugMode: boolean = false;
 
   @ViewChild('lhcForm', {read: ElementRef}) wcForm: ElementRef;
+  @ViewChild('collectionDateInput', {read: ElementRef}) collectionDateInput?: ElementRef<HTMLInputElement>;
   format: 'R4' | 'STU3' = 'R4';
 
   newLabPanelTypeaheadForm: FormGroup
   collectionDate = new FormControl('', {nonNullable:true, validators:control => validCollectionDate(control.value) ? null : {collectionDate:true}});
+
+  get collectionDateInvalid(): boolean {
+    // A partially edited native date can have value '' and badInput=true even
+    // though Angular's optional string control considers its model valid.
+    return this.collectionDate.invalid || this.collectionDateInput?.nativeElement.validity.valid === false;
+  }
 
   options = {
     displayScoreWithAnswerText: false
@@ -71,7 +78,7 @@ export class MedicalRecordWizardAddLabResultsComponent implements OnInit {
   }
 
   submit() {
-    if (!this.formReady || this.loading || !this.wcForm || this.collectionDate.invalid) {
+    if (!this.formReady || this.loading || !this.wcForm || this.collectionDateInvalid) {
       return;
     }
 

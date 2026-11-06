@@ -51,6 +51,21 @@ describe('Explicit dates for newly entered lab results (Fasten #617 / Chartrove 
     const table=new ObservationTableComponent();table.observations=[new ObservationModel(original.entry[1].resource)];table.ngOnInit();expect(table.rows[0][0]).toBe('Unknown date');
   });
 
+  it('rejects a native-invalid empty input and allows an explicitly cleared optional date',async()=>{
+    const fixture=await ready(),input=fixture.nativeElement.querySelector('input[type="date"]') as HTMLInputElement;
+    // Exercise the browser validity boundary independently of Angular's empty
+    // model. Trusted partial-keyboard acceptance is retained with the PR evidence.
+    input.setCustomValidity('Synthetic incomplete native date');input.dispatchEvent(new Event('input'));fixture.detectChanges();
+    expect(input.value).toBe('');expect(input.validity.valid).toBeFalse();expect(fixture.componentInstance.collectionDate.valid).toBeTrue();
+    expect(fixture.nativeElement.querySelector('.modal-footer button').disabled).toBeTrue();
+    expect(input.getAttribute('aria-invalid')).toBe('true');
+    fixture.componentInstance.submit();expect(close).not.toHaveBeenCalled();
+    input.setCustomValidity('');input.value='';input.dispatchEvent(new Event('input'));fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.modal-footer button').disabled).toBeFalse();
+    fixture.componentInstance.submit();expect(close).toHaveBeenCalledTimes(1);
+    expect(close.calls.mostRecent().args[0].data).toEqual(bundle());
+  });
+
   it('refuses impossible or ambiguous dates before export or save',async()=>{
     const fixture=await ready(),component=fixture.componentInstance;
     for(const date of ['2023-02-29','1900-02-29','2020-04-31','0000-01-01','2020-13-01','2020-01-00','2020-2-01','02/01/2020','2020-02','2020-02-29T00:00:00Z',' 2020-02-29','10000-01-01']) {
