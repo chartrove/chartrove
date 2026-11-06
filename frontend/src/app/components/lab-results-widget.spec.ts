@@ -1,8 +1,9 @@
+import {LabEditSession} from './medical-record-wizard-edit-lab-results/lab-edit-session';
+
 describe('Published LForms lab export contract', () => {
   let frame: HTMLIFrameElement;
   let page: Document;
   let realm: any;
-
   function loadScript(src: string): Promise<void> {
     return new Promise((resolve, reject) => {
       const script = page.createElement('script');
@@ -30,6 +31,34 @@ describe('Published LForms lab export contract', () => {
   }, 20000);
 
   afterAll(() => frame?.remove());
+
+  it('preserves the original resource when a real widget exports a changed value with a generated ID',async()=>{
+    const original='{"resourceType":"Observation","id":"synthetic-original","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"2345-7"}]},"effectiveDateTime":"2020-01-02T03:04:05+05:30","subject":{"reference":"Patient/synthetic"},"extension":[{"url":"urn:synthetic:precision","valueDecimal":0.1234567890123456789}],"valueQuantity":{"value":2.000,"unit":"mg/dL","code":"mg/dL","system":"http://unitsofmeasure.org","extension":[{"url":"urn:synthetic:original","valueString":"keep"}]}}';
+    const observation={source_id:'22222222-2222-4222-8222-222222222222',source_resource_type:'Observation',source_resource_id:'synthetic-original'} as any;
+    const session=new LabEditSession(observation.source_id,[{observation,raw:original}]);
+    const model=session.prepare({lformsVersion:'34.0.0',code:'synthetic-edit-panel',codeSystem:'http://loinc.org',name:'Synthetic value edit',type:'LOINC',items:[{linkId:'/2345-7',questionCode:'2345-7',questionCodeSystem:'http://loinc.org',question:'Synthetic value',dataType:'REAL',units:[{name:'wrong-default'}],questionCardinality:{min:'1',max:'1'},answerCardinality:{min:'1',max:'1'}}]} as any);
+    (realm as any).syntheticEditModel=JSON.parse(JSON.stringify(model));
+    const result=await realm.eval(String.raw`(async()=>{
+      const container=document.createElement('div');document.body.append(container);
+      try {
+        const widget=document.createElement('wc-lhc-form');
+        const ready=new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Synthetic editor not ready')),10000);widget.addEventListener('onFormReady',()=>{clearTimeout(timer);resolve();},{once:true});widget.addEventListener('onError',()=>{clearTimeout(timer);reject(Error('Synthetic widget failed'));},{once:true});});
+        widget.questionnaire=syntheticEditModel;widget.fhirVersion='R4';container.append(widget);await ready;
+        const before=LForms.Util.getFormFHIRData('DiagnosticReport','R4',container,{bundleType:'transaction'});
+        const input=container.querySelector('input');input.value='3.5';for(const type of ['input','change','blur'])input.dispatchEvent(new Event(type,{bubbles:true}));await new Promise(r=>setTimeout(r,50));
+        return {before,after:LForms.Util.getFormFHIRData('DiagnosticReport','R4',container,{bundleType:'transaction'}),validity:LForms.Util.checkValidity(container),text:container.innerText};
+      } finally {container.remove();}
+    })()`);
+    expect(result.text).toContain('Synthetic value');expect(result.validity).toBeNull();
+    session.capture(result.before);
+    expect(session.plan(result.before)).toEqual([]);
+    const edits=session.plan(result.after);expect(edits.length).toBe(1);
+    expect(edits[0].resourceRawText).toContain('0.1234567890123456789');
+    const json=JSON.parse(edits[0].resourceRawText);
+    expect(json.id).toBe('synthetic-original');expect(json.valueQuantity.value).toBe(3.5);
+    expect(json.valueQuantity.unit).toBe('mg/dL');expect(json.valueQuantity.extension[0].valueString).toBe('keep');
+    expect(json.subject.reference).toBe('Patient/synthetic');expect(json.effectiveDateTime).toBe('2020-01-02T03:04:05+05:30');
+  });
 
   it('preserves zero, units, Unicode and references across validation and actual input changes', async () => {
     // Create input objects/events inside the widget realm, matching normal browser

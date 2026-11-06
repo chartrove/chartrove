@@ -3,6 +3,7 @@
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
 </div>
 <div class="modal-body">
+  <p>Changes result values only. Dates, units, references and other fields from the loaded record are preserved. Reload after changes in another window. This panel cannot edit repeated, coded, complex or precision-sensitive results. Inspect those in the source-specific record view.</p>
 
   @if (debugMode) {
     <div class="alert alert-warning">

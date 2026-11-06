@@ -355,6 +355,13 @@ export class FastenApiService {
       );
   }
 
+  // Preserve exact unrelated JSON numbers/fields; the server still enforces
+  // current native ownership and source identity on its existing owner route.
+  updateResourceText(resourceType: string, resourceId: string, sourceId: string, raw: string): Observable<ResponseWrapper> {
+    return this._httpClient.patch<ResponseWrapper>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/resource/fhir/${encodeURIComponent(resourceType)}/${encodeURIComponent(resourceId)}`,
+      `{"source_id":${JSON.stringify(sourceId)},"resource_raw":${raw}}`, {headers:{'Content-Type':'application/json'}});
+  }
+
   addDashboardLocation(location: string): Observable<ResponseWrapper> {
     return this._httpClient.post<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/dashboards`, {
       "location": location

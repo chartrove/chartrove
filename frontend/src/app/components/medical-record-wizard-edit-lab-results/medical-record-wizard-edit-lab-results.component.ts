@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, OnInit, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NlmTypeaheadComponent } from '../nlm-typeahead/nlm-typeahead.component';
@@ -9,7 +9,9 @@ import { LabresultsQuestionnaire } from '../../models/fasten/labresults-question
 import { fhirModelFactory } from '../../../lib/models/factory';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 import { DiagnosticReportModel, ObservationModel, ObservationValue } from 'src/lib/public-api';
-import { FastenApiService } from 'src/app/services/fasten-api.service';
+import {SourceAccessService} from '../../services/source-access.service';
+import {forkJoin, Subscription, take} from 'rxjs';
+import {LabEditSession} from './lab-edit-session';
 import { RecResourceRelatedDisplayModel } from 'src/lib/utils/resource_related_display_model';
 import { Bundle, FhirResource } from 'fhir/r4';
 import { QuantityModel } from 'src/lib/models/datatypes/quantity-model';
@@ -31,7 +33,7 @@ import { DataAbsentReasonModel } from 'src/lib/models/datatypes/data-absent-reas
     changeDetection: ChangeDetectionStrategy.Eager,
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
+export class MedicalRecordWizardEditLabResultsComponent implements OnInit, OnDestroy {
   @Input() debugMode: boolean = false;
   @Input() diagnosticReport: DiagnosticReportModel
   @Input() observations: ObservationModel[]
@@ -53,16 +55,26 @@ export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     public nlmClinicalTableSearchService: NlmClinicalTableSearchService,
-    private fastenApi: FastenApiService,
+    private sourceAccess: SourceAccessService,
   ) { }
+
+  private session: LabEditSession | null = null;
+  private pending?: Subscription;
+  private changes?: Subscription;
+  private generation = 0;
+
+  ngOnDestroy(): void { this.generation++; this.pending?.unsubscribe(); this.changes?.unsubscribe(); }
 
   ngOnInit(): void {
     this.initLabPanelForm()
   }
 
   onFormReady(): void {
-    this.formReady = !!this.questionnaire;
-    this.formError = '';
+    if (!this.session || !this.questionnaire) { this.onError(); return; }
+    try {
+      this.session.capture(LForms.Util.getFormFHIRData('DiagnosticReport',this.format,this.wcForm.nativeElement.parentElement,{bundleType:'transaction'}));
+      this.formReady = true; this.formError = '';
+    } catch { this.matchError(); }
   }
 
   onError(): void {
@@ -76,7 +88,7 @@ export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
       return;
     }
 
-    // LForms 34 searches inside the container, not the custom-element host itself.
+    // LForms searches inside the container, not the custom-element host itself.
     const formContainer = this.wcForm.nativeElement.parentElement;
     try {
       if (LForms.Util.checkValidity(formContainer) != null) {
@@ -90,25 +102,7 @@ export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
         { bundleType: "transaction" }
       ) as Bundle<FhirResource>
 
-      let returnData = []
-      formData.entry.forEach((entry) => {
-        if (entry.resource.resourceType !== 'Observation') return
-
-        let code = entry.resource.code
-        if (entry?.resource?.valueString) {
-          entry.resource.valueString = entry.resource.valueString.toString()
-        }
-
-        this.observations.forEach((observation) => {
-          if (observation.code.text != code.text) return
-
-          returnData.push({
-            observation: observation,
-            resourceRaw: entry.resource
-          })
-        })
-      })
-      this.activeModal.close(returnData)
+      this.activeModal.close(this.session.plan(formData))
     } catch {
       this.onError();
     }
@@ -118,7 +112,10 @@ export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
     this.labPanelTypeaheadForm = new FormGroup({
       data: new FormControl({ value: null, disabled: true }, Validators.required),
     })
-    this.labPanelTypeaheadForm.valueChanges.subscribe(form => {
+    this.changes = this.labPanelTypeaheadForm.valueChanges.subscribe(form => {
+      this.pending?.unsubscribe();
+      const generation = ++this.generation;
+      this.session = null;
       this.formReady = false;
       this.formError = '';
       this.questionnaire = null;
@@ -126,11 +123,24 @@ export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
       let val = form.data
       if (val && val.id) {
         this.loading = true
-        this.nlmClinicalTableSearchService.searchLabPanelQuestionnaire(val.id)
-          .subscribe((res: LabresultsQuestionnaire) => {
-            this.loading = false
-            this.preFillAnswers(res)
-          }, () => this.onError())
+        const source = this.diagnosticReport?.source_id;
+        const observations = (this.observations || []).filter(o => o.source_id === source);
+        if (!source || !observations.length || observations.length > 200) { this.matchError(); return; }
+        this.pending = forkJoin({
+          questionnaire:this.nlmClinicalTableSearchService.searchLabPanelQuestionnaire(val.id).pipe(take(1)),
+          originals:forkJoin(observations.map(observation => this.sourceAccess.detail(source,'Observation',observation.source_resource_id).pipe(take(1)))),
+        }).subscribe({next:({questionnaire,originals}) => {
+          if (generation !== this.generation) return;
+          try {
+            const records = originals.map((r,i) => {
+              if (r.source_id !== source || r.source_resource_type !== 'Observation' || r.source_resource_id !== observations[i].source_resource_id || typeof r.resource_raw_text !== 'string') throw new Error('unavailable');
+              return {observation:observations[i],raw:r.resource_raw_text};
+            });
+            this.session = new LabEditSession(source,records);
+            this.questionnaire = this.session.prepare(questionnaire);
+            this.loading = false;
+          } catch { this.matchError(); }
+        },error:() => { if (generation === this.generation) this.onError(); }});
       } else {
         this.questionnaire = null
       }
@@ -146,15 +156,8 @@ export class MedicalRecordWizardEditLabResultsComponent implements OnInit {
     }
   }
 
-  private preFillAnswers(questionnaire: LabresultsQuestionnaire): void {
-    questionnaire.items.forEach((item) => {
-      let observation = this.observations.find(obs => obs.code_text == item.question)
-      if (!observation) return
-
-      item.defaultAnswer = observation.value_model.valueObject().value
-    })
-
-    this.questionnaire = questionnaire
+  private matchError(): void {
+    this.loading = false; this.formReady = false;
+    this.formError = 'This panel cannot be matched or edited safely. No changes were saved. Inspect the source-specific record.';
   }
-
 }
