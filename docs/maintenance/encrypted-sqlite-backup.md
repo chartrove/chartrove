@@ -37,6 +37,11 @@ Build the command from the accepted revision with the existing Go/CGO toolchain:
 go build -o /absolute/private/bin/fasten-backup ./backend/cmd/fasten-backup
 ```
 
+Encrypted SQLite backup requires CGO. CGO-free PostgreSQL-only builds remain
+compilable; this command returns an explicit unsupported-build error before
+opening files in such a build. That compatibility check is not PostgreSQL
+backup/restore verification.
+
 An operator must approve the exact source, fresh output directory, key-file custody
 and artifact before any persistent-data use. For the approved synthetic exercise:
 

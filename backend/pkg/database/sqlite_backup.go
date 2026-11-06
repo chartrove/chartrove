@@ -14,8 +14,6 @@ import (
 	"strings"
 	"time"
 	"unicode/utf8"
-
-	sqlite3 "github.com/mattn/go-sqlite3"
 )
 
 type SQLiteBackupReceipt struct {
@@ -37,6 +35,9 @@ func BackupEncryptedSQLite(ctx context.Context, source, output, key string) (_ *
 	defer cancel()
 	if err := ctx.Err(); err != nil {
 		return nil, err
+	}
+	if !sqliteBackupEnabled {
+		return nil, errors.New("encrypted SQLite backup requires a CGO-enabled build")
 	}
 	if !filepath.IsAbs(source) || !filepath.IsAbs(output) || key == "" || len(key) > 4096 || !utf8.ValidString(key) || strings.ContainsRune(key, 0) {
 		return nil, errors.New("backup requires absolute paths and a nonempty valid encryption key")
@@ -196,42 +197,6 @@ func openSQLiteBackupConnection(path, key string, readOnly bool) (*sql.DB, error
 		db.SetMaxOpenConns(1)
 	}
 	return db, err
-}
-
-func copySQLiteBackup(ctx context.Context, src, dst *sql.DB) error {
-	s, err := src.Conn(ctx)
-	if err != nil {
-		return err
-	}
-	defer s.Close()
-	d, err := dst.Conn(ctx)
-	if err != nil {
-		return err
-	}
-	defer d.Close()
-	return d.Raw(func(dest interface{}) error {
-		return s.Raw(func(source interface{}) (err error) {
-			b, err := dest.(*sqlite3.SQLiteConn).Backup("main", source.(*sqlite3.SQLiteConn), "main")
-			if err != nil {
-				return err
-			}
-			defer func() { err = errors.Join(err, b.Finish()) }()
-			for {
-				if err := ctx.Err(); err != nil {
-					return err
-				}
-				done, err := b.Step(128)
-				if err != nil || done {
-					return err
-				}
-				select {
-				case <-ctx.Done():
-					return ctx.Err()
-				case <-time.After(time.Millisecond):
-				}
-			}
-		})
-	})
 }
 
 type backupContextReader struct {
