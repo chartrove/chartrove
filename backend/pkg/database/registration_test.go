@@ -97,6 +97,11 @@ func TestRegistrationInitializationRollbackAndCancellation(t *testing.T) {
 	count, err := r.GetUserCount(context.Background())
 	require.NoError(t, err)
 	require.Zero(t, count)
+	var settings, sources int64
+	require.NoError(t, r.GormClient.Model(&models.UserSettingEntry{}).Count(&settings).Error)
+	require.NoError(t, r.GormClient.Model(&models.SourceCredential{}).Count(&sources).Error)
+	require.Zero(t, settings)
+	require.Zero(t, sources)
 	require.NoError(t, r.GormClient.Callback().Create().Remove("synthetic_registration_source_failure"))
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
