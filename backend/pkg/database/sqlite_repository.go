@@ -64,12 +64,9 @@ func newSqliteRepository(appConfig config.Interface, globalLogger logrus.FieldLo
 		}
 
 		// Configure sqlcipher
-		pragmaOpts["_cipher"] = "sqlcipher"
-		pragmaOpts["_legacy"] = "3"
-		pragmaOpts["_hmac_use"] = "off"
-		pragmaOpts["_kdf_iter"] = "4000"
-		pragmaOpts["_legacy_page_size"] = "1024"
-		pragmaOpts["_key"] = encryptionKey
+		for option, value := range sqliteCipherPragmas(encryptionKey) {
+			pragmaOpts[option] = value
+		}
 	}
 
 	pragmaStr := sqlitePragmaString(pragmaOpts)
@@ -124,6 +121,15 @@ func newSqliteRepository(appConfig config.Interface, globalLogger logrus.FieldLo
 	}
 
 	return &fastenRepo, nil
+}
+
+// Keep application and recovery connections on the same existing file format.
+// This does not rekey or upgrade existing databases.
+func sqliteCipherPragmas(key string) map[string]string {
+	return map[string]string{
+		"_cipher": "sqlcipher", "_legacy": "3", "_hmac_use": "off",
+		"_kdf_iter": "4000", "_legacy_page_size": "1024", "_key": key,
+	}
 }
 
 func sqlitePragmaString(pragmas map[string]string) string {
