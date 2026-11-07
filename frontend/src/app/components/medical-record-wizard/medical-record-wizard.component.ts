@@ -1,4 +1,4 @@
-import {forkJoin} from 'rxjs';
+import {finalize, forkJoin} from 'rxjs';
 import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {HighlightModule} from 'ngx-highlightjs';
 import {
@@ -603,6 +603,28 @@ export class MedicalRecordWizardComponent implements OnInit {
   //</editor-fold>
 
   handleUnlinkRequested(model: FastenDisplayModel) {
+    if (this.submitWizardLoading) return;
+
+    const encounter = this.existingEncounter;
+    const encounterId = encounter?.source_resource_id;
+    const encounterSourceId = encounter?.source_id;
+    const resourceId = model.source_resource_id;
+    const resourceType = model.source_resource_type;
+    const sourceId = model.source_id;
+    const rows = encounter?.related_resources?.[resourceType];
+    if (!encounterId || !encounterSourceId || !resourceId || !resourceType || !sourceId || !Array.isArray(rows)) return;
+
+    // Display models can be copies: business IDs alone and indexOf(model) are insufficient.
+    const matches = (row: FastenDisplayModel) => row.source_id === sourceId &&
+      row.source_resource_type === resourceType && row.source_resource_id === resourceId;
+    const matchingRows = rows.filter(matches);
+    if (matchingRows.length !== 1) return;
+    const selectedRow = matchingRows[0];
+    const selectionIsCurrent = () => this.existingEncounter === encounter &&
+      encounter.source_id === encounterSourceId && encounter.source_resource_id === encounterId &&
+      encounter.related_resources?.[resourceType] === rows && rows.includes(selectedRow) &&
+      matches(selectedRow) && rows.filter(matches).length === 1;
+
     const modalRef = this.modalService.open(ConfirmationModalComponent, {
       ariaLabelledBy: 'modal-confirmation',
       size: 'sm'
@@ -612,24 +634,18 @@ export class MedicalRecordWizardComponent implements OnInit {
     modalRef.componentInstance.title = 'Delete Resource';
 
     modalRef.result.then((result) => {
-      if (result == true) {
+      if (result === true && !this.submitWizardLoading && selectionIsCurrent()) {
         this.submitWizardLoading = true;
-        const encounterId = this.existingEncounter.source_resource_id
-        const resourceId = model.source_resource_id
-        const resourceType = model.source_resource_type
 
-        const indexOf = this.existingEncounter.related_resources[resourceType].indexOf(model)
-        this.existingEncounter.related_resources[resourceType].splice(indexOf, 1)
-
-        this.fastenApi.removeEncounterRelatedResource(encounterId, resourceId, resourceType).subscribe(
-          (resp) => {
-            this.submitWizardLoading = false;
+        this.fastenApi.removeEncounterRelatedResource(encounterId, resourceId, resourceType).pipe(
+          finalize(() => this.submitWizardLoading = false)
+        ).subscribe({
+          next: () => {
+            if (selectionIsCurrent()) rows.splice(rows.indexOf(selectedRow), 1);
           },
-          (err) => {
-            this.submitWizardLoading = false;
-          }
-        )
+          error: () => window.alert('Could not confirm unlink. Reload before retrying.'),
+        });
       }
-    })
+    }, () => { /* Dismissing confirmation leaves the record unchanged. */ });
   }
 }
