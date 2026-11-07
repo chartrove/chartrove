@@ -5,3 +5,17 @@
 /frontend/node_modules
 /frontend/.angular
 /dist
+
+# Local credentials, catalogs and record stores are never build inputs.
+/.env
+/.env.*
+/.direnv
+/.couchdb
+/config.dev.yaml
+/healthit.yaml
+/certs
+/db
+/cache
+/.cache
+**/fasten.db*
+**/fasten-*.db*
