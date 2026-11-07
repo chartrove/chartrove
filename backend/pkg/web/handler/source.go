@@ -464,8 +464,19 @@ func storeFileLocally(c *gin.Context) (*os.File, error) {
 		return nil, fmt.Errorf("could not create temp file")
 	}
 
-	// Upload the file to specific bundleFile.
-	err = c.SaveUploadedFile(file, bundleFile.Name())
+	// Copy into the already-open 0600 file. SaveUploadedFile also chmods its
+	// parent directory, which may be a shared or privately managed temp root.
+	source, err := file.Open()
+	if err == nil {
+		_, err = io.Copy(bundleFile, source)
+		closeErr := source.Close()
+		if err == nil {
+			err = closeErr
+		}
+	}
+	if err == nil {
+		_, err = bundleFile.Seek(0, io.SeekStart)
+	}
 	if err != nil {
 		bundleFile.Close()
 		os.Remove(bundleFile.Name())
