@@ -3,7 +3,6 @@ package database
 import (
 	"context"
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/dominikbraun/graph"
@@ -75,7 +74,6 @@ func (gr *GormRepository) GetFlattenedResourceGraph(ctx context.Context, graphTy
 	if result.Error != nil {
 		return nil, result.Error
 	}
-	log.Printf("found %d related resources", len(relatedResourceRelationships))
 
 	//Generate Graph
 	// TODO optimization: eventually cache the graph in a database/storage, and update when new resources are added.
@@ -116,7 +114,6 @@ func (gr *GormRepository) GetFlattenedResourceGraph(ctx context.Context, graphTy
 
 	for ndx, _ := range resourcePlaceholders {
 		resourcePlaceholder := resourcePlaceholders[ndx]
-		log.Printf("Adding vertex: %v", resourcePlaceholder.ID())
 		err := g.AddVertex(
 			&resourcePlaceholder,
 		)
@@ -186,7 +183,6 @@ func (gr *GormRepository) GetFlattenedResourceGraph(ctx context.Context, graphTy
 		resourcePlaceholder, err := g.Vertex(vertexId)
 		if err != nil {
 			//could not find this vertex in graph, ignoring
-			log.Printf("could not find vertex in graph: %v", err)
 			continue
 		}
 
@@ -194,7 +190,6 @@ func (gr *GormRepository) GetFlattenedResourceGraph(ctx context.Context, graphTy
 		foundSourceType := ""
 		foundSourceLevel := -1
 		for ndx, sourceResourceTypes := range sources {
-			log.Printf("testing resourceType: %s", resourcePlaceholder.ResourceType)
 
 			if slices.Contains(sourceResourceTypes, strings.ToLower(resourcePlaceholder.ResourceType)) {
 				foundSourceType = resourcePlaceholder.ResourceType
