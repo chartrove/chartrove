@@ -57,6 +57,13 @@ func (gr *GormRepository) CreateUser(ctx context.Context, user *models.User) err
 	if err := user.HashPassword(user.Password); err != nil {
 		return err
 	}
+	return gr.createUserRecords(ctx, user)
+}
+
+// createUserRecords is private to the validated, password-hashing entry points.
+// Registration calls it on its transaction after the authoritative policy and
+// role decision; administrator-managed CreateUser retains its independent path.
+func (gr *GormRepository) createUserRecords(ctx context.Context, user *models.User) error {
 	record := gr.GormClient.Create(user)
 	if record.Error != nil {
 		return record.Error
