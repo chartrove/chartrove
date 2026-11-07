@@ -27,6 +27,26 @@ func (gr *GormRepository) RegisterUser(ctx context.Context, user *models.User, e
 	}
 	ctx, cancel := context.WithTimeout(ctx, 15*time.Second)
 	defer cancel()
+	if err := ctx.Err(); err != nil {
+		return err
+	}
+	if !enabled {
+		// This read only avoids password work for an already-closed policy.
+		// Bootstrap races are decided again inside the serialized transaction.
+		count, err := gr.GetUserCount(ctx)
+		if err != nil {
+			return err
+		}
+		if count > 0 {
+			return ErrRegistrationClosed
+		}
+	}
+	if err := user.HashPassword(user.Password); err != nil {
+		return err
+	}
+	if err := ctx.Err(); err != nil {
+		return err
+	}
 	options := &sql.TxOptions{}
 	if gr.GormClient.Dialector.Name() == "postgres" {
 		// The count after a waited advisory lock needs a fresh statement
@@ -63,6 +83,6 @@ func (gr *GormRepository) RegisterUser(ctx context.Context, user *models.User, e
 		}
 		repo := *gr
 		repo.GormClient = tx
-		return repo.CreateUser(ctx, user)
+		return repo.createUserRecords(ctx, user)
 	}, options)
 }
