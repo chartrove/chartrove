@@ -19,6 +19,10 @@ The result is `dist/Chartrove.zip`, containing `Chartrove.app` for macOS Apple S
 
 The app includes the unchanged repository `LICENSE.md` alongside its existing Fasten attribution. The Desktop CI job also builds this ZIP, extracts it privately, verifies its arm64 executable, ad hoc signature and exact license bytes, and runs `--help` with an explicit unused data path. It asserts that the path was not created: help exits before opening configuration or health-record storage. It does not upload the ZIP, notarize it, launch the WebView, or publish a release. Downloadable distribution and real operational acceptance remain separate gates.
 
+The same bundle contains the independent arm64 operator utility `Contents/MacOS/fasten-backup`, separately ad hoc signed before bundle signing. It is never run automatically by the app. See the [encrypted SQLite backup and isolated recovery contract](../docs/maintenance/encrypted-sqlite-backup.md) for explicit database/output/key-file inputs and custody requirements; it does not load app configuration or connect to an identity provider. It is a full-instance backup tool, not a patient export or administrator API, and it does not support PostgreSQL recovery.
+
+Desktop CI qualifies this exact extracted utility using only a fresh synthetic encrypted database with committed WAL state: correct-key backup, ciphertext receipt/hash, standalone recovery and integrity, reopening, wrong-key rejection, and ignored configuration tripwires. The tagged qualification fails if the binary or selected test is absent; no skipped case counts as acceptance. This artifact check does not repeat or replace the broader source recovery regressions, verify production custody/restore, install or publish the app, or accept #425.
+
 After a successful frontend build, `sh desktop/build.sh --skip-frontend` can rebuild only the native package when frontend inputs have not changed. It uses the existing `dist/frontend` output. A normal build regenerates frontend output and synchronizes the embedded assets to remove stale files.
 
 ## Data and startup

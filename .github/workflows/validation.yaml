@@ -106,6 +106,23 @@ jobs:
           cmp LICENSE.md "$package_root/Chartrove.app/Contents/Resources/LICENSE.md"
           "$binary" --data-dir "$package_root/help-data" --help
           test ! -e "$package_root/help-data"
+          backup="$package_root/Chartrove.app/Contents/MacOS/fasten-backup"
+          test -x "$backup" || { echo 'Extracted native package lacks the independent backup utility.' >&2; exit 1; }
+          test "$(lipo -archs "$backup")" = arm64
+          codesign --verify --strict "$backup"
+          "$backup" --help
+          set -o pipefail
+          (
+            cd desktop
+            CHARTROVE_PACKAGED_BACKUP="$backup" go test -tags=packaged_backup_integration github.com/fastenhealth/fasten-onprem/backend/cmd/fasten-backup -run '^TestPackagedBackupBinaryRestoresSyntheticWAL$' -count=1 -timeout=60s -json
+          ) | tee "$package_root/backup-test.json"
+          python3 - "$package_root/backup-test.json" <<'PY'
+          import json, sys
+          events = [json.loads(line) for line in open(sys.argv[1])]
+          selected = "TestPackagedBackupBinaryRestoresSyntheticWAL"
+          assert any(e.get("Test") == selected and e.get("Action") == "pass" for e in events), "packaged backup test did not pass"
+          assert not any(e.get("Action") in ("fail", "skip") for e in events), "packaged backup qualification failed or skipped"
+          PY
   codeql:
     name: CodeQL (${{ matrix.language }})
     runs-on: ${{ matrix.os }}
