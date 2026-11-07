@@ -1,6 +1,10 @@
 #!/bin/sh
 set -eu
-desktop_root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+case "$(uname -s):$(uname -m):${GOOS:-darwin}:${GOARCH:-arm64}" in
+  Darwin:arm64:darwin:arm64) ;;
+  *) echo 'Desktop packaging requires native macOS Apple Silicon and a darwin/arm64 Go target.' >&2; exit 2 ;;
+esac
+desktop_root=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 repo_root=$(dirname "$desktop_root")
 build_root=$(mktemp -d "${TMPDIR:-/tmp}/chartrove-build.XXXXXX")
 trap 'rm -rf "$build_root"' EXIT HUP INT TERM
@@ -29,8 +33,9 @@ cp "$desktop_root/Info.plist" "$bundle/Contents/Info.plist"
 swift "$desktop_root/build-icon.swift" "$build_root/Chartrove.iconset"
 iconutil -c icns "$build_root/Chartrove.iconset" -o "$bundle/Contents/Resources/Chartrove.icns"
 cd "$desktop_root"
-CGO_ENABLED=1 CGO_CFLAGS="${CGO_CFLAGS:-} -mmacosx-version-min=13.0" CGO_CXXFLAGS="${CGO_CXXFLAGS:-} -mmacosx-version-min=13.0" \
+GOOS=darwin GOARCH=arm64 CGO_ENABLED=1 CGO_CFLAGS="${CGO_CFLAGS:-} -mmacosx-version-min=13.0" CGO_CXXFLAGS="${CGO_CXXFLAGS:-} -mmacosx-version-min=13.0" \
   go build -tags production -ldflags '-extldflags=-mmacosx-version-min=13.0' -o "$bundle/Contents/MacOS/chartrove" ./cmd/fasten-desktop
+test "$(lipo -archs "$bundle/Contents/MacOS/chartrove")" = arm64
 # Sign outside File Provider managed folders, which can attach Finder metadata
 # to .app directories during signing. The retained ZIP preserves the signature.
 codesign --force --sign - "$bundle"
