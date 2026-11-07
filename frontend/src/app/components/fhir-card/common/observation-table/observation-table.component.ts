@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ObservationModel } from '../../../../../lib/models/resources/observation-model';
-import { formatDate } from '@angular/common';
+import {formatObservationDate} from '../../../../../lib/utils/observation_date';
 
 @Component({
     selector: 'observation-table',
@@ -42,10 +42,6 @@ export class ObservationTableComponent implements OnInit {
   }
 
   private formatDate(date: string | number | Date): string {
-    if (date) {
-      return formatDate(date, "mediumDate", "en-US", undefined);
-    } else {
-      return 'Unknown date';
-    }
+    return formatObservationDate(date);
   }
 }

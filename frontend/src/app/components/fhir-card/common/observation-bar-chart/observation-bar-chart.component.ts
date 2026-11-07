@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { formatDate } from '@angular/common';
+import {formatObservationDate} from '../../../../../lib/utils/observation_date';
 import { ObservationModel } from '../../../../../lib/models/resources/observation-model';
 import { ChartConfiguration } from 'chart.js';
 import { ChartroveChartsModule } from '../../../chartrove-charts.module';
@@ -169,11 +169,7 @@ export class ObservationBarChartComponent implements OnInit {
   }
 
   private formatDate(date: string | number | Date): string {
-    if (date) {
-      return formatDate(date, "mediumDate", "en-US", undefined);
-    } else {
-      return 'Unknown date';
-    }
+    return formatObservationDate(date);
   }
 
   private formatTooltip(context) {
