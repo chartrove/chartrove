@@ -41,3 +41,22 @@ func TestSearchExtractionRejectsInvalidJSON(t *testing.T) {
 	require.NoError(t, json.Unmarshal(patient.Gender, &gender))
 	require.Equal(t, SearchParameterTokenType{{Code: "male"}}, gender)
 }
+
+// A runtime refresh must preserve supplied Unicode names without normalization
+// or leaking the preceding resource through the shared program/runtime pool.
+func TestSearchExtractionPreservesUnicodeNames(t *testing.T) {
+	for _, family := range []string{"Synthetic Café", "Synthetic Cafe\u0301", "Synthetic 零", "Synthetic صفر"} {
+		t.Run(family, func(t *testing.T) {
+			raw, err := json.Marshal(map[string]interface{}{
+				"resourceType": "Patient", "id": "synthetic-unicode-name",
+				"name": []map[string]string{{"family": family}},
+			})
+			require.NoError(t, err)
+			patient := &FhirPatient{}
+			require.NoError(t, patient.PopulateAndExtractSearchParameters(raw))
+			var names []string
+			require.NoError(t, json.Unmarshal(patient.Name, &names))
+			require.Equal(t, []string{family}, names)
+		})
+	}
+}

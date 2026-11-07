@@ -15,7 +15,7 @@ require (
 	github.com/coreos/go-oidc/v3 v3.21.0
 	github.com/dave/jennifer v1.7.1
 	github.com/dominikbraun/graph v0.23.0
-	github.com/dop251/goja v0.0.0-20261031103838-cf2ff0ec0b31
+	github.com/dop251/goja v0.0.0-20261107161106-d6eaa50db8bc
 	github.com/fastenhealth/fasten-sources v0.6.25
 	github.com/fastenhealth/gofhir-models v0.0.9
 	github.com/gin-gonic/gin v1.12.0
