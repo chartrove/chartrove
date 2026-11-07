@@ -219,7 +219,42 @@ func CreateManualSource(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
 		return
 	}
+	if origin == nil {
+		// Keep SDK format/version validation, but not its lossy Patient-ID cutset.
+		patientId, err = manualPatientID(bundleFile)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+			return
+		}
+	}
 	manualSourceCredential.Patient = patientId
+	if origin == nil {
+		// A canonical ID must not reuse a legacy key that contains another
+		// Patient (or no proven Patient). Refuse new writes, never relabel data.
+		sources, err := databaseRepo.GetSources(c)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "unable to check manual import identity"})
+			return
+		}
+		for _, source := range sources {
+			if source.EndpointID != manualSourceCredential.EndpointID || source.Patient != patientId {
+				continue
+			}
+			if source.ID == uuid.Nil || source.PlatformType != sourcePkg.PlatformTypeManual {
+				c.JSON(http.StatusConflict, gin.H{"success": false, "error": "existing source identity requires review before import"})
+				return
+			}
+			patients, err := databaseRepo.ListResources(c, models.ListResourceQueryOptions{SourceID: source.ID.String(), SourceResourceType: "Patient", Limit: 2})
+			if err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "unable to check manual import identity"})
+				return
+			}
+			if len(patients) != 1 || patients[0].SourceResourceID != patientId {
+				c.JSON(http.StatusConflict, gin.H{"success": false, "error": "existing source identity requires review before import"})
+				return
+			}
+		}
+	}
 	if origin != nil {
 		// The legacy manual importer trims a character cutset from Patient IDs.
 		// Direct snapshots keep the verified FHIR ID so distinct IDs cannot merge.
@@ -414,6 +449,65 @@ func directSMARTOriginFromForm(c *gin.Context) (*directSMARTOrigin, error) {
 	}
 	origin.FHIRBaseURL = strings.TrimRight(base.String(), "/")
 	return &origin, nil
+}
+
+// manualPatientID decodes identity fields before the unchanged SDK import. A manual
+// source has one patient identity: distinct Patient IDs must not share its grants
+// or resource upsert keys. The SDK still validates the input and selects its FHIR
+// version before this check; its import pipeline receives the untouched file.
+func manualPatientID(file *os.File) (id string, err error) {
+	invalid := fmt.Errorf("manual import must contain one distinct Patient with a valid FHIR ID")
+	if _, seekErr := file.Seek(0, io.SeekStart); seekErr != nil {
+		return "", invalid
+	}
+	defer func() {
+		if _, seekErr := file.Seek(0, io.SeekStart); seekErr != nil {
+			id, err = "", invalid
+		}
+	}()
+	check := func(resourceType, candidate string) error {
+		if resourceType != "Patient" {
+			return nil
+		}
+		if !directSMARTPatientIDPattern.MatchString(candidate) || (id != "" && id != candidate) {
+			return invalid
+		}
+		id = candidate
+		return nil
+	}
+	decoder := json.NewDecoder(file)
+	for {
+		var document struct {
+			ResourceType string `json:"resourceType"`
+			ID           string `json:"id"`
+			Entry        []struct {
+				Resource struct {
+					ResourceType string `json:"resourceType"`
+					ID           string `json:"id"`
+				} `json:"resource"`
+			} `json:"entry"`
+		}
+		decodeErr := decoder.Decode(&document)
+		if decodeErr == io.EOF {
+			break
+		}
+		if decodeErr != nil {
+			return "", invalid
+		}
+		if document.ResourceType == "Bundle" {
+			for _, entry := range document.Entry {
+				if check(entry.Resource.ResourceType, entry.Resource.ID) != nil {
+					return "", invalid
+				}
+			}
+		} else if check(document.ResourceType, document.ID) != nil {
+			return "", invalid
+		}
+	}
+	if id == "" {
+		return "", invalid
+	}
+	return id, nil
 }
 
 func directSMARTPatientID(file *os.File) (string, error) {

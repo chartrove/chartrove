@@ -142,7 +142,7 @@ func TestSMARTImportProvenanceAndCompletedSnapshotDedup(t *testing.T) {
 	plain := readSMARTImportResponse(t, h.post(t, nil, smartPatientBundle("erXu", "Plain manual")))
 	require.Equal(t, uuid.Nil, plain.Source.EndpointID)
 	require.Empty(t, plain.Source.Display)
-	require.Equal(t, "rXu", plain.Source.Patient, "legacy importer behavior stays unchanged")
+	require.Equal(t, "erXu", plain.Source.Patient, "manual imports retain the original FHIR Patient ID")
 	require.False(t, plain.AlreadyImported)
 	require.NotEqual(t, first.Source.ID, plain.Source.ID)
 	plainRepeat := readSMARTImportResponse(t, h.post(t, nil, smartPatientBundle("erXu", "Plain manual update")))
