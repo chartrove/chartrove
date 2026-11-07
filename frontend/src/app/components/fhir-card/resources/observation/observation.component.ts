@@ -6,6 +6,7 @@ import {TableComponent} from '../../common/table/table.component';
 import {Router, RouterModule} from '@angular/router';
 import {TableRowItem, TableRowItemDataType} from '../../common/table/table-row-item';
 import {ObservationModel} from '../../../../../lib/models/resources/observation-model';
+import {CodableConceptModel} from '../../../../../lib/models/datatypes/codable-concept-model';
 import { ObservationVisualizationComponent } from '../../common/observation-visualization/observation-visualization.component';
 
 @Component({
@@ -22,6 +23,7 @@ export class ObservationComponent implements OnInit {
   @Input() isCollapsed: boolean = false
 
   tableData: TableRowItem[] = []
+  componentTableData: TableRowItem[][] = []
   displayVisualization: boolean = true
 
   constructor(public changeRef: ChangeDetectorRef, public router: Router) { }
@@ -70,6 +72,20 @@ export class ObservationComponent implements OnInit {
         enabled: !!this.displayModel?.reference_range.hasValue(),
       }
     )
+
+    const components = this.displayModel.fhirResource?.component;
+    this.componentTableData = (Array.isArray(components) ? components : []).map(raw => {
+      // Reuse scalar formatting without changing the parent or original resource.
+      // Components keep their own code, value and reference range in source order.
+      const component = new ObservationModel(raw);
+      const codedValue = raw?.valueCodeableConcept ? new CodableConceptModel(raw.valueCodeableConcept) : undefined;
+      return [
+        {label: 'Component', data: component.code, data_type: TableRowItemDataType.CodableConcept, enabled: true},
+        {label: 'Value', data: codedValue ?? component.value_model?.display() ?? 'Value unavailable',
+          data_type: codedValue ? TableRowItemDataType.CodableConcept : TableRowItemDataType.String, enabled: true},
+        {label: 'Reference', data: component.reference_range.display(), enabled: component.reference_range.hasValue()},
+      ];
+    });
   }
 
   markForCheck(){
