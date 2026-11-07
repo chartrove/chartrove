@@ -17,9 +17,5 @@
 /db
 /cache
 /.cache
-**/fasten.db
-**/fasten.db-shm
-**/fasten.db-wal
-**/fasten-*.db
-**/fasten-*.db-shm
-**/fasten-*.db-wal
+**/fasten.db*
+**/fasten-*.db*

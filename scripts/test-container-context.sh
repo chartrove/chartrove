@@ -20,7 +20,7 @@ trap 'exit 130' HUP INT TERM
 mkdir -p "$test_root/context/backend" "$test_root/context/frontend"
 printf 'FROM scratch\nCOPY . /snapshot/\n' > "$test_root/context/Dockerfile"
 public_paths='backend/source.go frontend/package.json config.yaml'
-private_paths='.env .env.local .direnv/state .couchdb/state config.dev.yaml healthit.yaml certs/private.key db/attachment.bin cache/record.bin .cache/record.bin fasten.db fasten.db-shm fasten.db-wal fasten-household.db fasten-household.db-shm fasten-household.db-wal nested/fasten.db nested/fasten-family.db-wal'
+private_paths='.env .env.local .direnv/state .couchdb/state config.dev.yaml healthit.yaml certs/private.key db/attachment.bin cache/record.bin .cache/record.bin fasten.db fasten.db-shm fasten.db-wal fasten-household.db fasten-household.db-shm fasten-household.db-wal nested/fasten.db nested/fasten-family.db-wal fasten.db-journal fasten-household.db-journal fasten.db.manifest.json'
 for path in $public_paths $private_paths; do
   mkdir -p "$test_root/context/$(dirname "$path")"
   printf 'synthetic build-context marker\n' > "$test_root/context/$path"
