@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ObservationModel } from '../../../../../lib/models/resources/observation-model';
+import { QuantityModel } from '../../../../../lib/models/datatypes/quantity-model';
 
 import { ObservationBarChartComponent } from '../observation-bar-chart/observation-bar-chart.component';
 import { ObservationTableComponent } from '../observation-table/observation-table.component';
@@ -31,7 +32,13 @@ export class ObservationVisualizationComponent implements OnInit {
   // because an earlier reading permits a chart. The table preserves all rows.
   private pickVisualizationType(preferredType: string, observations: ObservationModel[]): string {
     const supported = observations[0]?.value_model?.visualizationTypes() ?? [];
-    const shared = supported.filter(type => observations.every(observation => observation.value_model?.visualizationTypes().includes(type)));
+    // A common numeric axis must not imply conversion between reported units.
+    // Compare supplied metadata exactly; the table retains each literal value.
+    const units = observations.map(observation => observation?.value_model instanceof QuantityModel
+      ? JSON.stringify([observation.value_model.system ?? null, observation.value_model.code ?? null, observation.value_model.unit ?? null]) : null);
+    const sameUnits = units.every(unit => unit === units[0]);
+    const shared = supported.filter(type => (type !== 'bar' || sameUnits)
+      && observations.every(observation => observation.value_model?.visualizationTypes().includes(type)));
     return shared.includes(preferredType) ? preferredType : shared[0] ?? 'table';
   }
 }
