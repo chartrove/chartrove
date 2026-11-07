@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -135,6 +136,10 @@ func EncounterUnlinkResource(c *gin.Context) {
 	rowsAffected, err := databaseRepo.UnlinkResourceWithSharedNeighbors(c, "Encounter", encounterId, resourceType, resourceId)
 
 	if err != nil {
+		if errors.Is(err, database.ErrOwnedResourceAmbiguous) {
+			c.JSON(http.StatusConflict, gin.H{"success": false, "error": "Resource ID is ambiguous across sources; unlink was not performed"})
+			return
+		}
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
 		return
 	}
