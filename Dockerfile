@@ -1,13 +1,7 @@
 #########################################################################################################
 # Frontend Build
 #########################################################################################################
-# Note, when running on Github, we cannot use standard Github Action runners, as ARM support is only via QEMU emulation
-# (until https://github.com/actions/runner-images/issues/2187)
-# QEMU emulation has a bunch of performance issues, as described in the links below.
-# https://blog.thesparktree.com/docker-multi-arch-github-actions#q-i-enabled-multi-arch-builds-and-my-builds-take-1h-what-gives
-# https://github.com/fastenhealth/fasten-onprem/issues/43
-#
-# instead, we use https://depot.dev/ to do our multi-arch builds on native ARM and AMD nodes.
+# Container qualification builds on native GitHub amd64 and arm64 runners.
 
 FROM node:26.13.0 AS frontend-build
 ARG FASTEN_ENV=sandbox
@@ -35,7 +29,8 @@ RUN --mount=type=cache,target=/tmp/lock,sharing=locked \
     && go generate ./... \
     && go vet ./... \
     && go test -timeout=20m ./... \
-    && go build -ldflags "-extldflags=-static" -tags "static" -o /go/bin/fasten ./backend/cmd/fasten/
+    && go build -ldflags "-extldflags=-static" -tags "static" -o /go/bin/fasten ./backend/cmd/fasten/ \
+    && go build -ldflags "-extldflags=-static" -tags "static" -o /go/bin/fasten-backup ./backend/cmd/fasten-backup/
 
 # create folder structure
 RUN mkdir -p /opt/fasten/db \
@@ -52,7 +47,9 @@ WORKDIR /opt/fasten/
 COPY --from=backend-build  /opt/fasten/ /opt/fasten/
 COPY --from=frontend-build /usr/src/fastenhealth/dist /opt/fasten/web
 COPY --from=backend-build /go/bin/fasten /opt/fasten/fasten
+COPY --from=backend-build /go/bin/fasten-backup /opt/fasten/fasten-backup
 COPY LICENSE.md /opt/fasten/LICENSE.md
 COPY config.yaml /opt/fasten/config/config.yaml
 RUN ["/opt/fasten/fasten", "--help"]
+RUN ["/opt/fasten/fasten-backup", "--help"]
 CMD ["/opt/fasten/fasten", "start", "--config", "/opt/fasten/config/config.yaml"]

@@ -1,0 +1,56 @@
+name: Container qualification
+on:
+  pull_request:
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - .github/workflows/container-validation.yaml
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - .github/workflows/container-validation.yaml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: container-qualification-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  container:
+    name: Container (${{ matrix.platform }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            platform: linux/amd64
+          - runner: ubuntu-24.04-arm
+            platform: linux/arm64
+    env:
+      TARGET_PLATFORM: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Require the native target architecture
+        run: |
+          case "$(uname -m)" in
+            x86_64) native=linux/amd64 ;;
+            aarch64|arm64) native=linux/arm64 ;;
+            *) exit 1 ;;
+          esac
+          test "$native" = "$TARGET_PLATFORM"
+      - name: Build both operator tools for the native platform
+        run: |
+          docker build --platform "$TARGET_PLATFORM" --progress=plain \
+            --iidfile "$RUNNER_TEMP/chartrove-image-id" .
+      - name: Verify the built platform without publication
+        run: |
+          image_id=$(cat "$RUNNER_TEMP/chartrove-image-id")
+          actual=$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "$image_id")
+          test "$actual" = "$TARGET_PLATFORM"
+          printf 'Qualified %s image %s\n' "$actual" "$image_id"
