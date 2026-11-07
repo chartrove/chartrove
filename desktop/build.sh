@@ -30,6 +30,7 @@ rsync -a --delete --exclude .gitkeep --exclude .DS_Store "$repo_root/dist/fronte
 bundle="$build_root/Chartrove.app"
 mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "$desktop_root/Info.plist" "$bundle/Contents/Info.plist"
+cp "$repo_root/LICENSE.md" "$bundle/Contents/Resources/LICENSE.md"
 swift "$desktop_root/build-icon.swift" "$build_root/Chartrove.iconset"
 iconutil -c icns "$build_root/Chartrove.iconset" -o "$bundle/Contents/Resources/Chartrove.icns"
 cd "$desktop_root"

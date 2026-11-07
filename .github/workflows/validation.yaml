@@ -103,6 +103,7 @@ jobs:
           binary="$package_root/Chartrove.app/Contents/MacOS/chartrove"
           test "$(lipo -archs "$binary")" = arm64
           codesign --verify --strict "$package_root/Chartrove.app"
+          cmp LICENSE.md "$package_root/Chartrove.app/Contents/Resources/LICENSE.md"
           "$binary" --help
   codeql:
     name: CodeQL (${{ matrix.language }})
