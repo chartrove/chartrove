@@ -125,6 +125,19 @@ func (suite *ResourceRelatedHandlerTestSuite) TestResourceRelatedHandlerTestSuit
 
 }
 func (suite *ResourceRelatedHandlerTestSuite) TestEncounterUnlinkResource() {
+	suite.T().Run("rejects wrapped source ambiguity", func(t *testing.T) {
+		ctx, w, mockDB := suite.setupTestContextWithMocks(t)
+		ctx.Params = gin.Params{
+			{Key: "encounterId", Value: "synthetic-encounter"},
+			{Key: "resourceId", Value: "synthetic-observation"},
+			{Key: "resourceType", Value: "Observation"},
+		}
+		mockDB.EXPECT().UnlinkResourceWithSharedNeighbors(gomock.Any(), "Encounter", "synthetic-encounter", "Observation", "synthetic-observation").
+			Return(int64(0), fmt.Errorf("could not find Encounter: %w", database.ErrOwnedResourceAmbiguous)).Times(1)
+		EncounterUnlinkResource(ctx)
+		assert.Equal(t, http.StatusConflict, w.Code)
+		assert.JSONEq(t, `{"success":false,"error":"Resource ID is ambiguous across sources; unlink was not performed"}`, w.Body.String())
+	})
 	suite.T().Run("should successfully unlink resource", func(t *testing.T) {
 		ctx, w, mockDB := suite.setupTestContextWithMocks(t)
 

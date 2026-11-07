@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	mock_config "github.com/fastenhealth/fasten-onprem/backend/pkg/config/mock"
@@ -78,7 +79,8 @@ func (suite *RepositoryRelatedTestSuite) createTestUserAndContext(usernameSuffix
 
 func (suite *RepositoryRelatedTestSuite) createTestSourceCredential(ctx context.Context, user *models.User, credIdentifier string) *models.SourceCredential {
 	sourceCred := &models.SourceCredential{
-		UserID: user.ID,
+		UserID:  user.ID,
+		Patient: credIdentifier,
 	}
 	err := suite.DBRepo.CreateSource(ctx, sourceCred)
 	require.NoError(suite.T(), err, "Failed to create source credential for user %s (identifier: %s)", user.Username, credIdentifier)
@@ -108,6 +110,7 @@ func (suite *RepositoryRelatedTestSuite) TestUnlink_DirectAssociationsOnly() {
 
 	sourceCredP := suite.createTestSourceCredential(ctx, user, "credP_direct")
 	sourceCredS := suite.createTestSourceCredential(ctx, user, "credS_direct")
+	require.NotEqual(suite.T(), sourceCredP.ID, sourceCredS.ID, "fixture sources must be distinct")
 
 	primaryResourceType := "Encounter"
 	primaryResourceID := "P1_direct"
@@ -374,4 +377,77 @@ func (suite *RepositoryRelatedTestSuite) TestUnlink_ResourceFromItself() {
 
 	assocsA, _ := suite.DBRepo.FindAllResourceAssociations(ctx, sourceCredA, aType, aID)
 	require.Empty(suite.T(), assocsA, "Resource A should have no associations left")
+}
+
+func (suite *RepositoryRelatedTestSuite) TestUnlink_RejectsAmbiguousSourceIdentity() {
+	ctx, user := suite.createTestUserAndContext("ambiguous")
+	for _, duplicateType := range []string{"Encounter", "Observation"} {
+		suite.Run(duplicateType, func() {
+			t := suite.T()
+			primary := suite.createTestSourceCredential(ctx, user, "primary")
+			duplicate := suite.createTestSourceCredential(ctx, user, "duplicate")
+			require.NotEqual(t, primary.ID, duplicate.ID, "ambiguity requires distinct source identities")
+			encounterID, observationID := "enc-"+duplicateType, "obs-"+duplicateType
+			suite.createTestResource(ctx, primary, "Encounter", encounterID, nil)
+			suite.createTestResource(ctx, primary, "Observation", observationID, nil)
+			id := encounterID
+			if duplicateType == "Observation" {
+				id = observationID
+			}
+			suite.createTestResource(ctx, duplicate, duplicateType, id, nil)
+			suite.createTestAssociation(ctx, primary, "Encounter", encounterID, primary, "Observation", observationID)
+			var before, after []models.RelatedResource
+			require.NoError(t, suite.DBRepo.GormClient.Order("resource_base_source_id").Find(&before).Error)
+			rows, err := suite.DBRepo.UnlinkResourceWithSharedNeighbors(ctx, "Encounter", encounterID, "Observation", observationID)
+			require.ErrorIs(t, err, ErrOwnedResourceAmbiguous)
+			require.Zero(t, rows)
+			require.NoError(t, suite.DBRepo.GormClient.Order("resource_base_source_id").Find(&after).Error)
+			require.Equal(t, before, after, "neither ambiguous endpoint may mutate relationships")
+		})
+	}
+}
+
+func (suite *RepositoryRelatedTestSuite) TestUnlink_IgnoresOtherOwnersAndDeletedSources() {
+	ctx, owner := suite.createTestUserAndContext("live_owner")
+	otherCtx, other := suite.createTestUserAndContext("other_owner")
+	live := suite.createTestSourceCredential(ctx, owner, "live")
+	deleted := suite.createTestSourceCredential(ctx, owner, "deleted")
+	require.NotEqual(suite.T(), live.ID, deleted.ID, "deleting the duplicate must not delete the live fixture source")
+	foreign := suite.createTestSourceCredential(otherCtx, other, "foreign")
+	for _, item := range []struct {
+		ctx    context.Context
+		source *models.SourceCredential
+	}{{ctx, live}, {ctx, deleted}, {otherCtx, foreign}} {
+		suite.createTestResource(item.ctx, item.source, "Encounter", "synthetic-encounter", nil)
+		suite.createTestResource(item.ctx, item.source, "Observation", "synthetic-observation", nil)
+		suite.createTestAssociation(item.ctx, item.source, "Encounter", "synthetic-encounter", item.source, "Observation", "synthetic-observation")
+	}
+	require.NoError(suite.T(), suite.DBRepo.GormClient.Model(&models.SourceCredential{}).Where("id = ?", deleted.ID).Update("deleted_at", time.Now().UTC()).Error)
+	foreignBefore, err := suite.DBRepo.FindAllResourceAssociations(otherCtx, foreign, "Encounter", "synthetic-encounter")
+	require.NoError(suite.T(), err)
+	rows, err := suite.DBRepo.UnlinkResourceWithSharedNeighbors(ctx, "Encounter", "synthetic-encounter", "Observation", "synthetic-observation")
+	require.NoError(suite.T(), err)
+	require.Equal(suite.T(), int64(1), rows, "live owner's unique link must still unlink")
+	foreignAfter, err := suite.DBRepo.FindAllResourceAssociations(otherCtx, foreign, "Encounter", "synthetic-encounter")
+	require.NoError(suite.T(), err)
+	require.Equal(suite.T(), foreignBefore, foreignAfter)
+}
+
+func (suite *RepositoryRelatedTestSuite) TestUnlink_DelegationDoesNotImplyOwnership() {
+	ctx, owner := suite.createTestUserAndContext("grant_owner")
+	delegateCtx, delegate := suite.createTestUserAndContext("grant_delegate")
+	source := suite.createTestSourceCredential(ctx, owner, "granted")
+	suite.createTestResource(ctx, source, "Encounter", "synthetic-granted-encounter", nil)
+	suite.createTestResource(ctx, source, "Observation", "synthetic-granted-observation", nil)
+	suite.createTestAssociation(ctx, source, "Encounter", "synthetic-granted-encounter", source, "Observation", "synthetic-granted-observation")
+	_, err := suite.DBRepo.SetSourceGrant(ctx, source.ID, delegate.Username, models.SourceAccessEdit, nil)
+	require.NoError(suite.T(), err)
+	before, err := suite.DBRepo.FindAllResourceAssociations(ctx, source, "Encounter", "synthetic-granted-encounter")
+	require.NoError(suite.T(), err)
+	rows, err := suite.DBRepo.UnlinkResourceWithSharedNeighbors(delegateCtx, "Encounter", "synthetic-granted-encounter", "Observation", "synthetic-granted-observation")
+	require.ErrorIs(suite.T(), err, ErrSourceAccessDenied)
+	require.Zero(suite.T(), rows)
+	after, err := suite.DBRepo.FindAllResourceAssociations(ctx, source, "Encounter", "synthetic-granted-encounter")
+	require.NoError(suite.T(), err)
+	require.Equal(suite.T(), before, after)
 }

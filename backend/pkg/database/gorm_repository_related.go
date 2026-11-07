@@ -27,13 +27,15 @@ func (gr *GormRepository) UnlinkResourceWithSharedNeighbors(
 	relatedResourceId string,
 ) (int64, error) {
 	// get resource models
-	resource, err := gr.GetResourceByResourceTypeAndId(ctx, resourceType, resourceId)
+	// This legacy route has no source selector. Never choose an arbitrary source
+	// when independently imported records reuse the same FHIR business ID.
+	resource, err := gr.ResolveOwnedResource(ctx, resourceType, resourceId, nil)
 	if err != nil {
-		return 0, fmt.Errorf("could not find %s", resourceType)
+		return 0, fmt.Errorf("could not find %s: %w", resourceType, err)
 	}
-	relatedResource, err := gr.GetResourceByResourceTypeAndId(ctx, relatedResourceType, relatedResourceId)
+	relatedResource, err := gr.ResolveOwnedResource(ctx, relatedResourceType, relatedResourceId, nil)
 	if err != nil {
-		return 0, fmt.Errorf("could not find %s", relatedResourceType)
+		return 0, fmt.Errorf("could not find %s: %w", relatedResourceType, err)
 	}
 
 	// get source credential models
