@@ -20,20 +20,18 @@ export class ObservationVisualizationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(!this.observations || !this.observations[0] || !this.observations[0].value_model) {
+    if(!this.observations || !this.observations.length) {
       return;
     }
 
     this.visualizationType = this.pickVisualizationType(this.preferredVisualizationType, this.observations)
   }
 
-  // Right now this is just looking at the first observation's visualization types. If the preferred type is one of the
-  // accepted types, then use it. Otherwise just use the first observation's first visualization type.
+  // A categorical or missing reading must never become a numeric endpoint just
+  // because an earlier reading permits a chart. The table preserves all rows.
   private pickVisualizationType(preferredType: string, observations: ObservationModel[]): string {
-    if (preferredType && observations[0].value_model.visualizationTypes().includes(preferredType)) {
-      return preferredType;
-    } else {
-      return observations[0].value_model.visualizationTypes()[0];
-    }
+    const supported = observations[0]?.value_model?.visualizationTypes() ?? [];
+    const shared = supported.filter(type => observations.every(observation => observation.value_model?.visualizationTypes().includes(type)));
+    return shared.includes(preferredType) ? preferredType : shared[0] ?? 'table';
   }
 }
