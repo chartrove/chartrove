@@ -33,6 +33,6 @@ The current importer resolves Bundle fullUrl aliases into generic relationships,
 
 ## Limits and rollback
 
-The existing graph still constructs the owner's relationship graph before root selection. Traversal is not an atomic database snapshot: each content read rechecks current ownership/deletion, but no new multi-query serializability guarantee is made. Accepted #438 optimistic-snapshot and non-atomic multi-record-save limits remain unchanged. PR #443's independent diagnostic-privacy correction is not incorporated here.
+The existing graph still constructs the owner's relationship graph before root selection. Traversal is not an atomic database snapshot: each content read rechecks current ownership/deletion, but no new multi-query serializability guarantee is made. Accepted #438 optimistic-snapshot and non-atomic multi-record-save limits remain unchanged. The accepted main integration retains PR #443's independent diagnostic-privacy correction.
 
 Source-only rollback uses a normal protected revert and must not change databases, native identities, grants, credentials or retained raw records. Both independent retention worktrees and all unique historical refs remain held. No real clinical data, provider connection, live recovery, deployment or Authentik operation is performed. [#425](https://github.com/karamhouse/chartrove/issues/425) remains a separately authorized operational acceptance gate.
