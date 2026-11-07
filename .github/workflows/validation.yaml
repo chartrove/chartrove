@@ -64,6 +64,8 @@ jobs:
     name: Desktop
     runs-on: macos-15
     timeout-minutes: 30
+    env:
+      NG_CLI_ANALYTICS: 'false'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -72,6 +74,10 @@ jobs:
         with:
           go-version: '1.27.3'
           cache: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '26.13.0'
+          package-manager-cache: false
       - name: Private synthetic fixture directory
         run: |
           test_tmp=$(mktemp -d "$RUNNER_TEMP/chartrove-tests.XXXXXX")
@@ -87,6 +93,19 @@ jobs:
         run: go test github.com/fastenhealth/fasten-onprem/backend/pkg/web -run TestEmbedded -count=1 -timeout=120s
       - working-directory: desktop
         run: go build -o "$RUNNER_TEMP/chartrove" ./cmd/fasten-desktop
+      - name: Package the native Apple Silicon app without publication
+        run: |
+          make dep-frontend
+          sh desktop/build.sh
+          package_root=$(mktemp -d "$RUNNER_TEMP/chartrove-package.XXXXXX")
+          trap 'rm -rf "$package_root"' EXIT
+          ditto -x -k dist/Chartrove.zip "$package_root"
+          binary="$package_root/Chartrove.app/Contents/MacOS/chartrove"
+          test "$(lipo -archs "$binary")" = arm64
+          codesign --verify --strict "$package_root/Chartrove.app"
+          cmp LICENSE.md "$package_root/Chartrove.app/Contents/Resources/LICENSE.md"
+          "$binary" --data-dir "$package_root/help-data" --help
+          test ! -e "$package_root/help-data"
   codeql:
     name: CodeQL (${{ matrix.language }})
     runs-on: ${{ matrix.os }}

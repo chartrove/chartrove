@@ -4,7 +4,7 @@ Chartrove is an independent fork of Fasten Onprem, with a revived macOS Wails v3
 
 ## Build
 
-Use Go 1.26 or newer, macOS with Xcode Command Line Tools, and Mise Node 26.13.0. The separate desktop Go module pins Wails to v3.0.0. The frontend is on Angular 22 with the committed lockfile. See [the contributor toolchain instructions](../CONTRIBUTING.md) for the pinned Yarn launcher and current validation limits.
+Use Go 1.26 or newer, an Apple Silicon Mac with Xcode Command Line Tools, and Mise Node 26.13.0. The separate desktop Go module pins Wails to v3.0.0. The frontend is on Angular 22 with the committed lockfile. See [the contributor toolchain instructions](../CONTRIBUTING.md) for the pinned Yarn launcher and current validation limits.
 
 With Node 26.13.0 selected in your shell:
 
@@ -15,7 +15,9 @@ cd ..
 sh desktop/build.sh
 ```
 
-The result is `dist/Chartrove.zip`, containing `Chartrove.app` for the build machine's architecture. Signing takes place in an OS temporary directory because macOS File Provider can attach metadata to `.app` directories inside Documents that prevents signing. The ZIP preserves the signed bundle. The build does not install the app or change system trust settings. App menus, window titles, package name, and monogram icon use Chartrove; Fasten attribution remains in the app footer and project documentation.
+The result is `dist/Chartrove.zip`, containing `Chartrove.app` for macOS Apple Silicon only. The script rejects other hosts and conflicting Go targets before starting a build, explicitly enables CGO for darwin/arm64, and verifies the executable's architecture before signing. Signing takes place in an OS temporary directory because macOS File Provider can attach metadata to `.app` directories inside Documents that prevents signing. The ZIP preserves the signed bundle. The build does not install the app or change system trust settings. App menus, window titles, package name, and monogram icon use Chartrove; Fasten attribution remains in the app footer and project documentation.
+
+The app includes the unchanged repository `LICENSE.md` alongside its existing Fasten attribution. The Desktop CI job also builds this ZIP, extracts it privately, verifies its arm64 executable, ad hoc signature and exact license bytes, and runs `--help` with an explicit unused data path. It asserts that the path was not created: help exits before opening configuration or health-record storage. It does not upload the ZIP, notarize it, launch the WebView, or publish a release. Downloadable distribution and real operational acceptance remain separate gates.
 
 After a successful frontend build, `sh desktop/build.sh --skip-frontend` can rebuild only the native package when frontend inputs have not changed. It uses the existing `dist/frontend` output. A normal build regenerates frontend output and synchronizes the embedded assets to remove stale files.
 
