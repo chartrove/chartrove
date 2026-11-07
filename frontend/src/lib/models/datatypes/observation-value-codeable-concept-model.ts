@@ -30,6 +30,6 @@ export class ObservationValueCodeableConceptModel implements ObservationValue {
       return { value: null }
     }
 
-    return { value: this.coding[0].display }
+    return { value: this.coding[0]?.display ?? this.coding[0]?.code ?? null }
   }
 }
