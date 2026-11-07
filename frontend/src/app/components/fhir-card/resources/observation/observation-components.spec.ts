@@ -85,4 +85,11 @@ describe('Observation component values in the clinical card', () => {
     const values = Array.from(element.querySelectorAll('tr')).filter(row => row.cells[0].textContent.trim() === 'Value').map(row => row.cells[1].textContent.trim());
     expect(values).toEqual(['9']);
   });
+
+  it('retains a supplied coded value when optional Coding.display is absent', () => {
+    const {element} = render([{code: {text: 'Synthetic coded result'},
+      valueCodeableConcept: {coding: [{system: 'https://example.invalid/codes', code: 'synthetic-value'}]}}]);
+    expect(element.textContent).toContain('Synthetic coded result');
+    expect(element.textContent).toContain('synthetic-value');
+  });
 });
