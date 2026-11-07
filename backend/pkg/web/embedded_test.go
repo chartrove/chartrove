@@ -275,8 +275,8 @@ func TestEmbeddedFreshDatabaseImportsSyntheticFHIRWithoutNetworkOrTempFileResidu
 	if err := json.Unmarshal(w.Body.Bytes(), &imported); err != nil {
 		t.Fatal(err)
 	}
-	if imported.Source.Patient != "rXuFYUfucBZaryVksYEcMg3" {
-		t.Fatalf("unexpected pinned importer patient key: %q", imported.Source.Patient)
+	if imported.Source.Patient != "erXuFYUfucBZaryVksYEcMg3" {
+		t.Fatalf("import changed the original FHIR Patient identity: %q", imported.Source.Patient)
 	}
 	req = httptest.NewRequest("GET", "/api/secure/resource/fhir?sourceResourceType=Patient", nil)
 	req.Header.Set("Authorization", "Bearer "+auth.Data)
