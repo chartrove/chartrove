@@ -7,7 +7,9 @@ Repeated component codes remain separate. Each component uses its own supplied
 reference range, never the parent's range.
 
 The card reuses existing Quantity, integer, boolean, string, CodeableConcept and
-data-absence formatters. Zero, false and explicit empty strings remain present.
+data-absence formatters. Component CodeableConcept values use the coded-concept
+table renderer, retaining a supplied code even when optional `Coding.display` is
+absent. Zero, false and explicit empty strings remain present.
 Angular text bindings escape supplied labels and values. A missing or unsupported
 value displays “Value unavailable”; it is not replaced with a numeric reading.
 
@@ -23,6 +25,11 @@ and units, parent/provenance preservation, and scalar-only behavior. The frozen
 tests first demonstrated six missing-component failures against the unchanged
 card, with the scalar-only control passing. Existing unrelated skipped tests are
 not component acceptance evidence.
+
+An additional code-only regression independently demonstrated a blank component
+result in the initial candidate. Its separate RED is retained alongside the
+original six failures; the component-specific renderer correction leaves scalar
+Observation formatting unchanged. The original seven cases remain intact.
 
 No import, persistence, schema, authorization, encryption or provider connection
 changes are included. This does not establish Epic clinical import/repeat-update
