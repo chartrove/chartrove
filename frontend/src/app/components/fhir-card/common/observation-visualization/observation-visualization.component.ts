@@ -34,8 +34,8 @@ export class ObservationVisualizationComponent implements OnInit {
     const supported = observations[0]?.value_model?.visualizationTypes() ?? [];
     // A common numeric axis must not imply conversion between reported units.
     // Compare supplied metadata exactly; the table retains each literal value.
-    const units = observations.map(({value_model}) => value_model instanceof QuantityModel
-      ? JSON.stringify([value_model.system ?? null, value_model.code ?? null, value_model.unit ?? null]) : null);
+    const units = observations.map(observation => observation?.value_model instanceof QuantityModel
+      ? JSON.stringify([observation.value_model.system ?? null, observation.value_model.code ?? null, observation.value_model.unit ?? null]) : null);
     const sameUnits = units.every(unit => unit === units[0]);
     const shared = supported.filter(type => (type !== 'bar' || sameUnits)
       && observations.every(observation => observation.value_model?.visualizationTypes().includes(type)));
