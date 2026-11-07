@@ -50,8 +50,8 @@ describe('ObservationVisualizationComponent', () => {
       tableOnly = new ObservationModel(observationR4Factory.valueCodeableConcept().build(), fhirVersions.R4)
     });
 
-    it('returns the preferredVisualization if the first observation supports that visualization type', () => {
-      expect(component['pickVisualizationType']('bar', [barAndTable, tableOnly])).toEqual('bar');
+    it('falls back to table when a later observation does not support the preferred visualization', () => {
+      expect(component['pickVisualizationType']('bar', [barAndTable, tableOnly])).toEqual('table');
     });
 
     it('returns the first supported type for the first observation if the preferred visualization is not supported', () => {
