@@ -26,6 +26,8 @@ jobs:
         run: |
           test_tmp=$(mktemp -d "$RUNNER_TEMP/chartrove-tests.XXXXXX")
           printf 'TMPDIR=%s\n' "$test_tmp" >> "$GITHUB_ENV"
+      - name: Synthetic container build-context privacy
+        run: sh scripts/test-container-context.sh
       - run: make prepare-backend
       - run: go mod verify
       - run: go vet ./...
