@@ -17,13 +17,37 @@ sh desktop/build.sh
 
 The result is `dist/Chartrove.zip`, containing `Chartrove.app` for macOS Apple Silicon only. The script rejects other hosts and conflicting Go targets before starting a build, explicitly enables CGO for darwin/arm64, and verifies the executable's architecture before signing. Signing takes place in an OS temporary directory because macOS File Provider can attach metadata to `.app` directories inside Documents that prevents signing. The ZIP preserves the signed bundle. The build does not install the app or change system trust settings. App menus, window titles, package name, and monogram icon use Chartrove; Fasten attribution remains in the app footer and project documentation.
 
-The app includes the unchanged repository `LICENSE.md` alongside its existing Fasten attribution. The Desktop CI job also builds this ZIP, extracts it privately, verifies its arm64 executable, ad hoc signature and exact license bytes, and runs `--help` with an explicit unused data path. It asserts that the path was not created: help exits before opening configuration or health-record storage. It does not upload the ZIP, notarize it, launch the WebView, or publish a release. Downloadable distribution and real operational acceptance remain separate gates.
+The app includes the unchanged repository `LICENSE.md` alongside its existing Fasten attribution. The Desktop CI job also builds this ZIP, extracts it privately, verifies its arm64 executable, ad hoc signature and exact license bytes, and runs `--help` with an explicit unused data path. It asserts that the path was not created: help exits before opening configuration or health-record storage. ZIP export is optional as described below. CI does not notarize the app, launch its WebView, or publish a release. Downloadable distribution and real operational acceptance remain separate gates.
 
 The same bundle contains the independent arm64 operator utility `Contents/MacOS/fasten-backup`, separately ad hoc signed before bundle signing. It is never run automatically by the app. See the [encrypted SQLite backup and isolated recovery contract](../docs/maintenance/encrypted-sqlite-backup.md) for explicit database/output/key-file inputs and custody requirements; it does not load app configuration or connect to an identity provider. It is a full-instance backup tool, not a patient export or administrator API, and it does not support PostgreSQL recovery.
 
 Desktop CI qualifies this exact extracted utility using only a fresh synthetic encrypted database with committed WAL state: correct-key backup, ciphertext receipt/hash, standalone recovery and integrity, reopening, wrong-key rejection, and ignored configuration tripwires. The tagged qualification fails if the binary or selected test is absent; no skipped case counts as acceptance. This artifact check does not repeat or replace the broader source recovery regressions, verify production custody/restore, install or publish the app, or accept #425.
 
 After a successful frontend build, `sh desktop/build.sh --skip-frontend` can rebuild only the native package when frontend inputs have not changed. It uses the existing `dist/frontend` output. A normal build regenerates frontend output and synchronizes the embedded assets to remove stale files.
+
+### Version-bound inspection packages
+
+Validation records the qualified ZIP's source SHA, archive SHA256, byte count and
+workflow reference after the existing native packaging/backup checks. Ordinary
+PRs, main pushes and manual runs with default inputs export nothing.
+
+A separately authorized operator can request a seven-day GitHub Actions artifact
+through manual Validation on `main`: `export_desktop=true` and
+`artifact_source_sha` equal to the exact accepted main revision. The first run
+attempt is required; mismatched refs/revisions and reruns are rejected before
+building. The input binds the request and does not itself confer authorization.
+Actual artifact export remains a separate owner decision after source acceptance.
+
+The allowlist is `Chartrove.zip`, `Chartrove.zip.sha256` and `Chartrove.build.json`.
+Extraction directories, test databases, recovery-key files and logs are not upload
+inputs.
+Artifact names include source/run identities, replacement is disabled, and access
+uses GitHub's repository artifact permissions. Verify the source, complete workflow
+outcome and archive checksum before an authorized operational exercise. The build
+retains ad hoc signing. Developer ID/notarization, installation, provider access,
+recovery exercises, release publication and deployment have separate acceptance
+and authorization requirements.
+
 
 ## Data and startup
 

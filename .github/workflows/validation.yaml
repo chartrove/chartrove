@@ -4,6 +4,17 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      export_desktop:
+        description: Export a native inspection package after separate owner authorization
+        type: boolean
+        required: false
+        default: false
+      artifact_source_sha:
+        description: Exact accepted main SHA for the optional export
+        type: string
+        required: false
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -70,6 +81,11 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Bind the optional artifact request before building
+        if: ${{ inputs.export_desktop == true }}
+        env:
+          CHARTROVE_ARTIFACT_SOURCE_SHA: ${{ inputs.artifact_source_sha }}
+        run: sh scripts/validate-desktop-artifact-request.sh
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version: '1.27.3'
@@ -123,6 +139,41 @@ jobs:
           assert any(e.get("Test") == selected and e.get("Action") == "pass" for e in events), "packaged backup test did not pass"
           assert not any(e.get("Action") in ("fail", "skip") for e in events), "packaged backup qualification failed or skipped"
           PY
+      - name: Record the qualified native inspection package
+        run: |
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -s dist/Chartrove.zip
+          test ! -L dist/Chartrove.zip
+          archive_sha=$(shasum -a 256 dist/Chartrove.zip | awk '{print $1}')
+          archive_bytes=$(wc -c < dist/Chartrove.zip | tr -d '[:space:]')
+          (cd dist && shasum -a 256 Chartrove.zip > Chartrove.zip.sha256)
+          jq -n --arg source "$GITHUB_SHA" --arg sha "$archive_sha" \
+            --argjson bytes "$archive_bytes" --arg run_id "$GITHUB_RUN_ID" \
+            --arg attempt "$GITHUB_RUN_ATTEMPT" \
+            --arg run_url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            '{source_sha:$source,target:"darwin/arm64",signing:"ad-hoc",
+              archive:{name:"Chartrove.zip",sha256:$sha,bytes:$bytes},
+              workflow:{run_id:$run_id,attempt:$attempt,url:$run_url},
+              qualification:"Native packaging and synthetic backup checks passed; inspect full workflow outcome and operational acceptance separately"}' \
+            > dist/Chartrove.build.json
+          printf 'Qualified native source %s archive SHA256 %s bytes %s\n' "$GITHUB_SHA" "$archive_sha" "$archive_bytes"
+      - name: Export the requested native inspection package
+        if: >-
+          ${{ github.event_name == 'workflow_dispatch' &&
+              github.ref == 'refs/heads/main' && github.run_attempt == 1 &&
+              inputs.export_desktop == true && inputs.artifact_source_sha == github.sha }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: chartrove-macos-arm64-${{ github.sha }}-${{ github.run_id }}
+          path: |
+            dist/Chartrove.zip
+            dist/Chartrove.zip.sha256
+            dist/Chartrove.build.json
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+          overwrite: false
+          include-hidden-files: false
   codeql:
     name: CodeQL (${{ matrix.language }})
     runs-on: ${{ matrix.os }}
