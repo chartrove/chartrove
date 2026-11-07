@@ -37,6 +37,10 @@ cd "$desktop_root"
 GOOS=darwin GOARCH=arm64 CGO_ENABLED=1 CGO_CFLAGS="${CGO_CFLAGS:-} -mmacosx-version-min=13.0" CGO_CXXFLAGS="${CGO_CXXFLAGS:-} -mmacosx-version-min=13.0" \
   go build -tags production -ldflags '-extldflags=-mmacosx-version-min=13.0' -o "$bundle/Contents/MacOS/chartrove" ./cmd/fasten-desktop
 test "$(lipo -archs "$bundle/Contents/MacOS/chartrove")" = arm64
+GOOS=darwin GOARCH=arm64 CGO_ENABLED=1 CGO_CFLAGS="${CGO_CFLAGS:-} -mmacosx-version-min=13.0" CGO_CXXFLAGS="${CGO_CXXFLAGS:-} -mmacosx-version-min=13.0" \
+  go build -tags production -ldflags '-extldflags=-mmacosx-version-min=13.0' -o "$bundle/Contents/MacOS/fasten-backup" github.com/fastenhealth/fasten-onprem/backend/cmd/fasten-backup
+test "$(lipo -archs "$bundle/Contents/MacOS/fasten-backup")" = arm64
+codesign --force --sign - "$bundle/Contents/MacOS/fasten-backup"
 # Sign outside File Provider managed folders, which can attach Finder metadata
 # to .app directories during signing. The retained ZIP preserves the signature.
 codesign --force --sign - "$bundle"
