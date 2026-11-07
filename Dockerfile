@@ -11,7 +11,7 @@ COPY frontend/package.json frontend/yarn.lock ./
 RUN npm exec --yes --package=corepack@0.35.0 -- corepack yarn install --frozen-lockfile --registry https://registry.npmjs.org --network-concurrency 4
 COPY frontend/ ./
 RUN --mount=type=cache,target=/tmp/lock,sharing=locked \
-    node node_modules/@angular/cli/bin/ng.js build --configuration ${FASTEN_ENV} --output-path=../dist
+    node node_modules/@angular/cli/bin/ng.js build --configuration "${FASTEN_ENV}" --optimization=true --build-optimizer=true --output-path=../dist
 
 #########################################################################################################
 # Backend Build
