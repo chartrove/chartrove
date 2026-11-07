@@ -28,6 +28,7 @@ export interface ObservationValue {
 export class ObservationModel extends FastenDisplayModel {
   code: CodableConceptModel | undefined
   effective_date: string
+  issued: string | undefined
   code_coding_display: string
   code_text: string
   status: string
@@ -42,6 +43,7 @@ export class ObservationModel extends FastenDisplayModel {
     this.fhirResource = fhirResource
     this.source_resource_type = ResourceType.Observation
     this.effective_date = _.get(fhirResource, 'effectiveDateTime');
+    this.issued = _.get(fhirResource, 'issued');
     this.code = new CodableConceptModel(_.get(fhirResource, 'code'));
     this.code_coding_display = _.get(fhirResource, 'code.coding.0.display');
     this.code_text = _.get(fhirResource, 'code.text', '');
