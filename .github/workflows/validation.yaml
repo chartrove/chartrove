@@ -104,7 +104,8 @@ jobs:
           test "$(lipo -archs "$binary")" = arm64
           codesign --verify --strict "$package_root/Chartrove.app"
           cmp LICENSE.md "$package_root/Chartrove.app/Contents/Resources/LICENSE.md"
-          "$binary" --help
+          "$binary" --data-dir "$package_root/help-data" --help
+          test ! -e "$package_root/help-data"
   codeql:
     name: CodeQL (${{ matrix.language }})
     runs-on: ${{ matrix.os }}
