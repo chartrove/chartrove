@@ -14,6 +14,10 @@
   <p class="az-content-text mg-b-20">Observations are a central element in healthcare, used to support diagnosis, monitor progress, determine baselines and patterns and even capture demographic characteristics.</p>
   <fhir-ui-table [displayModel]="displayModel" [tableData]="tableData"></fhir-ui-table>
 
+  @for (component of componentTableData; track component) {
+    <fhir-ui-table [displayModel]="displayModel" [tableData]="component"></fhir-ui-table>
+  }
+
   @if (displayVisualization) {
     <observation-visualization [observations]="[displayModel]"></observation-visualization>
   }
