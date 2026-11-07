@@ -6,9 +6,11 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	databaseModel "github.com/fastenhealth/fasten-onprem/backend/pkg/models/database"
 	sourcePkg "github.com/fastenhealth/fasten-sources/pkg"
 	"github.com/stretchr/testify/require"
 )
@@ -85,6 +87,24 @@ func TestManualImportRefusesUnprovenLegacySourceReuse(t *testing.T) {
 	sourcesAfter, err := h.repo.GetSources(h.ctx)
 	require.NoError(t, err)
 	require.Equal(t, sourcesBefore, sourcesAfter, "a legacy conflict must be rejected before credential writes")
+
+	// These fields are *time.Time, not GORM's automatic soft-delete type.
+	// Explicitly marked sources/Patients must remain refused and marked.
+	deletedAt := time.Now().UTC()
+	require.NoError(t, db.GormClient.Model(&models.SourceCredential{}).Where("id = ?", first.Source.ID).
+		Updates(map[string]interface{}{"patient": "aa001", "deleted_at": deletedAt}).Error)
+	require.Equal(t, 409, h.post(t, nil, smartPatientBundle("aa001", "Deleted source")).Code)
+	var markedSource models.SourceCredential
+	require.NoError(t, db.GormClient.Where("id = ?", first.Source.ID).First(&markedSource).Error)
+	require.NotNil(t, markedSource.DeletedAt)
+	require.NoError(t, db.GormClient.Model(&models.SourceCredential{}).Where("id = ?", first.Source.ID).Update("deleted_at", nil).Error)
+	patientTable, err := databaseModel.GetTableNameByResourceType("Patient")
+	require.NoError(t, err)
+	require.NoError(t, db.GormClient.Table(patientTable).Where("user_id = ? AND source_id = ? AND source_resource_id = ?", first.Source.UserID, first.Source.ID, "aa001").Update("deleted_at", deletedAt).Error)
+	require.Equal(t, 409, h.post(t, nil, smartPatientBundle("aa001", "Deleted Patient")).Code)
+	var markedPatient models.ResourceBase
+	require.NoError(t, db.GormClient.Table(patientTable).Where("user_id = ? AND source_id = ? AND source_resource_id = ?", first.Source.UserID, first.Source.ID, "aa001").First(&markedPatient).Error)
+	require.NotNil(t, markedPatient.DeletedAt)
 
 	unproven := models.SourceCredential{PlatformType: sourcePkg.PlatformTypeManual, Patient: "synthetic-incomplete"}
 	require.NoError(t, h.repo.CreateSource(h.ctx, &unproven))

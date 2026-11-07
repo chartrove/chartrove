@@ -240,7 +240,7 @@ func CreateManualSource(c *gin.Context) {
 			if source.EndpointID != manualSourceCredential.EndpointID || source.Patient != patientId {
 				continue
 			}
-			if source.ID == uuid.Nil || source.PlatformType != sourcePkg.PlatformTypeManual {
+			if source.ID == uuid.Nil || source.DeletedAt != nil || source.PlatformType != sourcePkg.PlatformTypeManual {
 				c.JSON(http.StatusConflict, gin.H{"success": false, "error": "existing source identity requires review before import"})
 				return
 			}
@@ -249,7 +249,7 @@ func CreateManualSource(c *gin.Context) {
 				c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "unable to check manual import identity"})
 				return
 			}
-			if len(patients) != 1 || patients[0].SourceResourceID != patientId {
+			if len(patients) != 1 || patients[0].DeletedAt != nil || patients[0].SourceResourceID != patientId {
 				c.JSON(http.StatusConflict, gin.H{"success": false, "error": "existing source identity requires review before import"})
 				return
 			}

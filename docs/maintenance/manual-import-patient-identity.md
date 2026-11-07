@@ -33,7 +33,9 @@ SDK; no constant-memory or large-document performance acceptance is claimed.
 
 Reuse an existing manual source only when its live stored Patient identity
 matches. A different platform, missing Patient, multiple Patients or mismatched
-Patient produces a generic conflict before credential/resource writes. This
+Patient or an explicit source/Patient deletion marker produces a generic
+conflict before credential/resource writes. Repository models use `*time.Time`
+deletion fields, so this consumer checks those markers explicitly. This
 also prevents a new canonical `001` import from appending to a legacy source
 whose key is `001` but whose stored Patient is `aa001`.
 
