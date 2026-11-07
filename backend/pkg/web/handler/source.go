@@ -455,7 +455,6 @@ func storeFileLocally(c *gin.Context) (*os.File, error) {
 		//c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not extract file from form"})
 		return nil, fmt.Errorf("could not extract file from form")
 	}
-	fmt.Printf("Uploaded filename: %s", file.Filename)
 
 	// create a temporary file to store this uploaded file
 	bundleFile, err := ioutil.TempFile("", file.Filename)
