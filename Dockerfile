@@ -29,8 +29,8 @@ RUN --mount=type=cache,target=/tmp/lock,sharing=locked \
     && go generate ./... \
     && go vet ./... \
     && go test -timeout=20m ./... \
-    && go build -ldflags "-extldflags=-static" -tags "static" -o /go/bin/fasten ./backend/cmd/fasten/ \
-    && go build -ldflags "-extldflags=-static" -tags "static" -o /go/bin/fasten-backup ./backend/cmd/fasten-backup/
+    && CGO_ENABLED=1 go build -ldflags "-extldflags=-static" -tags "static" -o /go/bin/fasten ./backend/cmd/fasten/ \
+    && CGO_ENABLED=1 go build -ldflags "-extldflags=-static" -tags "static" -o /go/bin/fasten-backup ./backend/cmd/fasten-backup/
 
 # create folder structure
 RUN mkdir -p /opt/fasten/db \
