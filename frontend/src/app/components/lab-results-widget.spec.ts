@@ -1,4 +1,5 @@
 import {LabEditSession} from './medical-record-wizard-edit-lab-results/lab-edit-session';
+import {MedicalRecordWizardAddLabResultsComponent} from './medical-record-wizard-add-lab-results/medical-record-wizard-add-lab-results.component';
 
 describe('Published LForms lab export contract', () => {
   let frame: HTMLIFrameElement;
@@ -31,6 +32,37 @@ describe('Published LForms lab export contract', () => {
   }, 20000);
 
   afterAll(() => frame?.remove());
+
+  it('carries an explicit collection day through the real widget creation export without adding a time',async()=>{
+    const previous=Object.getOwnPropertyDescriptor(globalThis,'LForms');
+    let container:HTMLElement;
+    try {
+      container=await realm.eval(String.raw`(async()=>{
+        const container=document.createElement('div');document.body.append(container);
+        const widget=document.createElement('wc-lhc-form');
+        const ready=new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Synthetic date widget not ready')),10000);widget.addEventListener('onFormReady',()=>{clearTimeout(timer);resolve();},{once:true});widget.addEventListener('onError',()=>{clearTimeout(timer);reject(Error('Synthetic date widget failed'));},{once:true});});
+        widget.questionnaire={lformsVersion:'34.0.0',code:'synthetic-date-panel',codeSystem:'http://loinc.org',name:'Synthetic date panel',type:'LOINC',items:[{linkId:'/2345-7',questionCode:'2345-7',questionCodeSystem:'http://loinc.org',question:'Synthetic zero value',dataType:'REAL',value:0,unit:{name:'mg/dL'},units:[{name:'mg/dL'}],questionCardinality:{min:'1',max:'1'},answerCardinality:{min:'1',max:'1'}}]};
+        widget.fhirVersion='R4';container.append(widget);await ready;return container;
+      })()`);
+      const before=realm.LForms.Util.getFormFHIRData('DiagnosticReport','R4',container,{bundleType:'transaction'});
+      const beforeObservation=before.entry.find(e=>e.resource.resourceType==='Observation').resource;
+      expect(beforeObservation.effectiveDateTime).toBeUndefined();
+      Object.defineProperty(globalThis,'LForms',{configurable:true,value:realm.LForms});
+      const close=jasmine.createSpy('close');
+      const component=new MedicalRecordWizardAddLabResultsComponent({close} as any,{} as any);
+      component.collectionDate.setValue('2020-02-29');component.formReady=true;
+      component.wcForm={nativeElement:container.querySelector('wc-lhc-form')} as any;
+      component.submit();expect(close).toHaveBeenCalledTimes(1);
+      const result=close.calls.mostRecent().args[0].data;
+      const observation=result.entry.find(e=>e.resource.resourceType==='Observation').resource;
+      const report=result.entry.find(e=>e.resource.resourceType==='DiagnosticReport').resource;
+      expect(observation.effectiveDateTime).toBe('2020-02-29');expect(report.effectiveDateTime).toBe('2020-02-29');
+      expect(observation.valueQuantity.value).toBe(0);expect(observation.code).toEqual(beforeObservation.code);
+      expect(report.result[0].reference).toContain(observation.id);
+    } finally {
+      container?.remove();if(previous)Object.defineProperty(globalThis,'LForms',previous);else delete (globalThis as any).LForms;
+    }
+  });
 
   it('preserves the original resource when a real widget exports a changed value with a generated ID',async()=>{
     const original='{"resourceType":"Observation","id":"synthetic-original","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"2345-7"}]},"effectiveDateTime":"2020-01-02T03:04:05+05:30","subject":{"reference":"Patient/synthetic"},"extension":[{"url":"urn:synthetic:precision","valueDecimal":0.1234567890123456789}],"valueQuantity":{"value":2.000,"unit":"mg/dL","code":"mg/dL","system":"http://unitsofmeasure.org","extension":[{"url":"urn:synthetic:original","valueString":"keep"}]}}';

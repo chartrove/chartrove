@@ -38,9 +38,14 @@ export class ObservationComponent implements OnInit {
 
     this.tableData.push(
       {
-        label: 'Issued on',
+        label: 'Observed on',
         data: this.displayModel?.effective_date,
         enabled: !!this.displayModel?.effective_date,
+      },
+      {
+        label: 'Issued on',
+        data: this.displayModel?.issued,
+        enabled: !!this.displayModel?.issued,
       },
       {
         label: 'Subject',
