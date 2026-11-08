@@ -31,8 +31,17 @@ bundle="$build_root/Chartrove.app"
 mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "$desktop_root/Info.plist" "$bundle/Contents/Info.plist"
 cp "$repo_root/LICENSE.md" "$bundle/Contents/Resources/LICENSE.md"
-swift "$desktop_root/build-icon.swift" "$build_root/Chartrove.iconset"
-iconutil -c icns "$build_root/Chartrove.iconset" -o "$bundle/Contents/Resources/Chartrove.icns"
+icon_source="$repo_root/frontend/src/assets/branding/chartrove.svg"
+iconset="$build_root/Chartrove.iconset"
+mkdir "$iconset"
+for size in 16 32 128 256 512; do
+  sips -s format png -z "$size" "$size" "$icon_source" \
+    --out "$iconset/icon_${size}x${size}.png" >/dev/null
+  pixels=$((size * 2))
+  sips -s format png -z "$pixels" "$pixels" "$icon_source" \
+    --out "$iconset/icon_${size}x${size}@2x.png" >/dev/null
+done
+iconutil -c icns "$iconset" -o "$bundle/Contents/Resources/Chartrove.icns"
 cd "$desktop_root"
 GOOS=darwin GOARCH=arm64 CGO_ENABLED=1 CGO_CFLAGS="${CGO_CFLAGS:-} -mmacosx-version-min=13.0" CGO_CXXFLAGS="${CGO_CXXFLAGS:-} -mmacosx-version-min=13.0" \
   go build -tags production -ldflags '-extldflags=-mmacosx-version-min=13.0' -o "$bundle/Contents/MacOS/chartrove" ./cmd/fasten-desktop

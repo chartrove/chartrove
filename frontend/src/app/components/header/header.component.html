@@ -1,12 +1,12 @@
 <div class="az-header">
   <div class="container">
     <div class="az-header-left">
-      <a routerLink="/" class="az-logo"><span></span> Chartrove</a>
+      <a routerLink="/" class="az-logo"><img class="chartrove-logo" src="assets/branding/chartrove-logo.svg" width="156" height="38" alt="Chartrove"></a>
       <a href="#" id="azMenuShow" (click)="toggleHeaderMenu($event)" class="az-header-menu-icon d-lg-none"><span></span></a>
     </div><!-- az-header-left -->
     <div class="az-header-menu">
       <div class="az-header-menu-header">
-        <a routerLink="/" class="az-logo"><span></span> Chartrove</a>
+        <a routerLink="/" class="az-logo"><img class="chartrove-logo" src="assets/branding/chartrove-logo.svg" width="156" height="38" alt="Chartrove"></a>
         <a href="#" (click)="toggleHeaderMenu($event)" class="close">&times;</a>
       </div><!-- az-header-menu-header -->
       <ul class="nav">
@@ -75,14 +75,14 @@
           </a>
         </div>
         <div class="dropdown az-profile-menu" ngbDropdown>
-          <a class="az-img-user" id="profileDropdown" ngbDropdownToggle><span class="chartrove-avatar" aria-label="Chartrove profile">C</span></a>
+          <a class="az-img-user" id="profileDropdown" ngbDropdownToggle><img class="chartrove-avatar" src="assets/branding/chartrove.svg" alt="Chartrove profile"></a>
           <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="profileDropdown">
             <div class="az-dropdown-header d-sm-none">
               <a class="az-header-arrow" (click)="closeMenu($event)"><i class="icon ion-md-arrow-back"></i></a>
             </div>
             <div [routerLink]="'/patient-profile'" class="az-header-profile cursor-pointer">
               <div class="az-img-user">
-                <span class="chartrove-avatar" aria-hidden="true">C</span>
+                <img class="chartrove-avatar" src="assets/branding/chartrove.svg" alt="">
               </div><!-- az-img-user -->
               <h6>{{current_user_claims.full_name || current_user_claims.sub || current_user_claims.email }}</h6>
               @if (isAdmin) {

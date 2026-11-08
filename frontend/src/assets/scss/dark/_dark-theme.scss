@@ -9,6 +9,11 @@
 @mixin dark-theme-styles {
     background-color: var(--background);
 
+    .chartrove-logo {
+        background-color: #fff;
+        border-radius: 4px;
+    }
+
     .bg-fasten-purple {
         background-color: var(--primary);
     }
