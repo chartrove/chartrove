@@ -26,6 +26,7 @@ type fixture struct {
 	server          *httptest.Server
 	profile         Profile
 	tokenCalls      atomic.Int32
+	patientCalls    atomic.Int32
 	challenge       string
 	redirect        string
 	tokenStatus     int
@@ -35,6 +36,7 @@ type fixture struct {
 	discoveredToken string
 	patientRedirect string
 	resourceID      string
+	observation     http.Handler
 }
 
 func newFixture(t *testing.T) *fixture {
@@ -77,6 +79,7 @@ func newFixture(t *testing.T) *fixture {
 			}
 			json.NewEncoder(w).Encode(map[string]any{"access_token": "synthetic-access-value", "refresh_token": "synthetic-discard-value", "token_type": "Bearer", "expires_in": f.expires, "patient": f.patientID, "scope": f.scope})
 		case "/fhir/Patient/synthetic-patient":
+			f.patientCalls.Add(1)
 			if r.Header.Get("Authorization") != "Bearer synthetic-access-value" {
 				t.Error("missing FHIR bearer")
 			}
@@ -89,6 +92,12 @@ func newFixture(t *testing.T) *fixture {
 				id = f.resourceID
 			}
 			json.NewEncoder(w).Encode(map[string]any{"resourceType": "Patient", "id": id, "name": []map[string]string{{"family": "López"}}})
+		case "/fhir/Observation":
+			if f.observation != nil {
+				f.observation.ServeHTTP(w, r)
+				return
+			}
+			http.NotFound(w, r)
 		default:
 			http.NotFound(w, r)
 		}
