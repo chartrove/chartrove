@@ -76,7 +76,7 @@
             }
 
             &.disabled .page-link {
-                color: #9B87F5;
+                color: var(--dark-pagination-color);
                 background-color: var(--dark-pagination-bg);
                 border-color: var(--dark-pagination-border-color);
             }

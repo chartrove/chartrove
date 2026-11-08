@@ -545,13 +545,13 @@
   }
 
   .email-link, .phone-link {
-    color: #6f42c1;
+    color: var(--chartrove-accent);
     text-decoration: none;
     white-space: nowrap; /* Prevent text wrapping */
     
     &:hover {
       text-decoration: underline;
-      color: #5a359a;
+      color: var(--chartrove-accent-hover);
     }
   }
 }
