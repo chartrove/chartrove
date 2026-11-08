@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title"><title id="title">Chartrove</title><rect width="64" height="64" rx="14" fill="#5b47fb"/><text x="32" y="34" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="system-ui, sans-serif" font-size="46" font-weight="700">C</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">Chartrove symbol</title>
+  <g>
+    <path fill="#5986AF" d="M33 11H63Q69 11 73 15L82 24Q86 28 86 34V66Q86 74 78 74H75V46Q75 40 71 36L58 23Q54 18 47 18H23Q26 11 33 11Z"/>
+    <path fill="#204B78" fill-rule="evenodd" d="M22 23H47Q51 23 54 26L67 39Q70 42 70 46V75Q70 85 60 85H22Q12 85 12 75V33Q12 23 22 23ZM37 43H45V53H55V61H45V71H37V61H27V53H37Z"/>
+  </g>
+</svg>

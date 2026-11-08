@@ -8,7 +8,7 @@ Chartrove is an independent fork of Fasten Onprem. The repository is [karamhouse
 - macOS package: `Chartrove.app`, distributed as `Chartrove.zip`.
 - Executable: `Chartrove.app/Contents/MacOS/chartrove`.
 - Header, authentication pages, browser title, support links, and generated practitioner CSV branding use Chartrove.
-- The purple C monogram is generated from type; original Fasten image assets are retained in history and are not presented as the Chartrove logo.
+- Chartrove uses the Atlantic blue stacked-records logo. The standalone mark in `frontend/src/assets/branding/chartrove.svg` is the source for the web favicons and the macOS bundle icon.
 - Chartrove support belongs in this repository. The UI does not present Fasten's commercial support, mailing list, or legal policies as Chartrove services.
 
 ## Names retained for compatibility
