@@ -1,6 +1,13 @@
 @import 'assets/scss/dark/_dark-theme.scss';
 @import "assets/scss/dark/_variables-dark.scss";
 
+:root {
+  --chartrove-accent: #{$primary};
+  --chartrove-accent-hover: #{$chartrove-ink};
+  --chartrove-fill: #{$primary};
+  --chartrove-fill-hover: #{$chartrove-ink};
+  --chartrove-blue-muted: #{$chartrove-blue-muted};
+}
 
 //Custom
 

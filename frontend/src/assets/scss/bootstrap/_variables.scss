@@ -12,11 +12,16 @@ $gray-900:                      #1c273c;
 $body-color:                    #031b4e;
 
 // Color
-$blue:                          #3366ff;
+$primary:                       #204b78;
+$blue:                          #426c96;
+$chartrove-blue-muted:          #5986af;
+$chartrove-ink:                 #1a2c43;
 $green:                         #3bb001;
 $teal:                          #00cccc;
 $pink:                          #f10075;
-$indigo:                        #5b47fb;
+// Legacy Azia accent classes follow the application palette.
+$indigo:                        $primary;
+$purple:                        $primary;
 
 // Border
 $border-radius:                 3px;

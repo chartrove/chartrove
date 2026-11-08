@@ -49,7 +49,7 @@
       }
   
       .btn-edit {
-        background-color: #6f42c1;
+        background-color: var(--chartrove-fill);
         border: none;
         border-radius: 20px;
         padding: 8px 16px;
@@ -58,7 +58,7 @@
         margin-right: 8px !important;
   
         &:hover {
-          background-color: #5a359a;
+          background-color: var(--chartrove-fill-hover);
         }
       }
     }
@@ -82,7 +82,7 @@
         width: 120px;
         height: 120px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+        background: linear-gradient(135deg, var(--chartrove-fill) 0%, var(--chartrove-blue-muted) 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -172,8 +172,8 @@
   
         // Specific colors for different actions using Fasten theme
         &:nth-child(1) .action-icon { 
-          background-color: rgba(111, 66, 193, 0.12); 
-          color: #6f42c1; 
+          background-color: rgba(var(--bs-primary-rgb), 0.12);
+          color: var(--chartrove-accent);
         }
         &:nth-child(2) .action-icon { 
           background-color: rgba(32, 201, 151, 0.12); 
@@ -209,8 +209,8 @@
   
         &:hover {
           background-color: rgba(108, 117, 125, 0.04);
-          border-color: #6f42c1;
-          color: #6f42c1;
+          border-color: var(--chartrove-accent);
+          color: var(--chartrove-accent);
         }
   
         i {
@@ -251,7 +251,7 @@
   
         .contact-icon {
           width: 24px;
-          color: #6f42c1;
+          color: var(--chartrove-accent);
           margin-right: 16px;
           margin-top: 2px;
           flex-shrink: 0;
@@ -261,14 +261,14 @@
           flex: 1;
           
           .contact-link {
-            color: #6f42c1;
+            color: var(--chartrove-accent);
             text-decoration: none;
             font-size: 14px;
             line-height: 1.4;
   
             &:hover {
               text-decoration: underline;
-              color: #5a359a;
+              color: var(--chartrove-accent-hover);
             }
           }
   

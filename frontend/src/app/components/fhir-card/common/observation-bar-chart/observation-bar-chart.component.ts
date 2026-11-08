@@ -26,8 +26,8 @@ export class ObservationBarChartComponent implements OnInit {
       label: "Reference",
       data: [],
       dataLabels: [],
-      backgroundColor: "rgba(91, 71, 251,0.6)",
-      hoverBackgroundColor: "rgba(91, 71, 251,0.2)",
+      backgroundColor: "rgba(32, 75, 120,0.6)",
+      hoverBackgroundColor: "rgba(32, 75, 120,0.2)",
       parsing: {
         xAxisKey: 'range'
       },

@@ -95,11 +95,11 @@
 .wizard > .steps .disabled a:active {
   color: #97a3b9; }
 .wizard > .steps .current a, .wizard > .steps .current a:hover, .wizard > .steps .current a:active {
-  color: #5b47fb; }
+  color: var(--chartrove-accent); }
 .wizard > .steps .current a .title, .wizard > .steps .current a:hover .title, .wizard > .steps .current a:active .title {
   display: inline-block; }
 .wizard > .steps .current a .number, .wizard > .steps .current a:hover .number, .wizard > .steps .current a:active .number {
-  background-color: #5b47fb; }
+  background-color: var(--chartrove-fill); }
 .wizard > .steps .done a, .wizard > .steps .done a:hover, .wizard > .steps .done a:active {
   color: #00cccc; }
 .wizard > .steps .done a .title, .wizard > .steps .done a:hover .title, .wizard > .steps .done a:active .title {
@@ -157,7 +157,7 @@
 .wizard > .actions a:hover,
 .wizard > .actions a:active {
   display: block;
-  background-color: #5b47fb;
+  background-color: var(--chartrove-fill);
   padding: 9px 25px;
   line-height: 1.573;
   color: #fff; }
@@ -276,11 +276,11 @@
   margin-left: 20px; }
 
 .wizard-style-1 > .steps > ul .current a .number, .wizard-style-1 > .steps > ul .current a:hover .number, .wizard-style-1 > .steps > ul .current a:active .number {
-  background-color: #452efa;
+  background-color: var(--chartrove-fill);
   color: #fff; }
 
 .wizard-style-1 > .steps > ul .done a .number, .wizard-style-1 > .steps > ul .done a:hover .number, .wizard-style-1 > .steps > ul .done a:active .number {
-  background-color: #643ab0;
+  background-color: var(--chartrove-fill-hover);
   color: #fff; }
 
 .wizard-style-2 > .steps > ul a, .wizard-style-2 > .steps > ul a:hover, .wizard-style-2 > .steps > ul a:active {
@@ -299,9 +299,9 @@
   margin-right: 20px; }
 
 .wizard-style-2 > .steps > ul .current a .number, .wizard-style-2 > .steps > ul .current a:hover .number, .wizard-style-2 > .steps > ul .current a:active .number {
-  border-color: #5b47fb;
-  color: #5b47fb; }
+  border-color: var(--chartrove-accent);
+  color: var(--chartrove-accent); }
 
 .wizard-style-2 > .steps > ul .done a .number, .wizard-style-2 > .steps > ul .done a:hover .number, .wizard-style-2 > .steps > ul .done a:active .number {
-  border-color: #6f42c1;
-  color: #6f42c1; }
+  border-color: var(--chartrove-accent-hover);
+  color: var(--chartrove-accent-hover); }
