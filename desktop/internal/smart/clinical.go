@@ -47,7 +47,7 @@ func (m *Manager) ReadClinicalSnapshot(parent context.Context, id string) (strin
 	m.mu.Unlock()
 	defer m.active.Done()
 	endpoint, err := url.Parse(p.FHIRBaseURL + "/Observation")
-	if err != nil || len(p.FHIRBaseURL) > 2048 || !httpsURL(p.FHIRBaseURL) || endpoint.ForceQuery {
+	if err != nil || len(p.FHIRBaseURL) > 2048 || !httpsURL(p.FHIRBaseURL) || strings.ContainsAny(p.FHIRBaseURL, "?#") || endpoint.ForceQuery {
 		return "", errClinicalRead
 	}
 	deadline := time.Now().Add(2 * time.Minute)

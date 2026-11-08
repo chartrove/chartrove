@@ -63,7 +63,7 @@ func TestClinicalReadFailureBoundsAndNoPartialSuccess(t *testing.T) {
 }
 
 func TestClinicalReadUnavailableConnectionMakesNoRequests(t *testing.T) {
-	for _, scenario := range []string{"disconnect", "expiry", "cancellation", "close"} {
+	for _, scenario := range []string{"disconnect", "expiry", "cancellation", "close", "invalid base"} {
 		t.Run(scenario, func(t *testing.T) {
 			var calls atomic.Int32
 			f, m, c := connectClinical(t, "patient/Observation.rs", "", http.HandlerFunc(func(http.ResponseWriter, *http.Request) { calls.Add(1) }))
@@ -82,6 +82,12 @@ func TestClinicalReadUnavailableConnectionMakesNoRequests(t *testing.T) {
 				cancel()
 			case "close":
 				m.Close()
+			case "invalid base":
+				m.mu.Lock()
+				profile := m.profiles[c.ProviderID]
+				profile.FHIRBaseURL += "#"
+				m.profiles[c.ProviderID] = profile
+				m.mu.Unlock()
 			}
 			if raw, err := m.ReadClinicalSnapshot(ctx, c.ID); err == nil || raw != "" || calls.Load() != 0 || f.patientCalls.Load() != 0 {
 				t.Fatal("unavailable connection made clinical requests")
