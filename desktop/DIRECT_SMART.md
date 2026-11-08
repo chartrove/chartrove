@@ -68,6 +68,15 @@ All methods require the trusted main application window. Authentication windows 
 
 ## Validation and remaining work
 
+The first clinical qualification target is the packaged native Apple Silicon
+desktop app; container qualification follows separately. The internal
+[bounded Observation reader](../docs/maintenance/direct-smart-observation-reader.md)
+is a source foundation, not an exposed host API or persisted clinical import.
+Owner-authorized clinical persistence and repeat updates remain source work.
+Patient-only preview/import is not clinical acceptance, and Authentik acceptance
+in issue #425 is a separate authentication/recovery exercise. No live provider
+registration, account access, consent, installation or deployment is implied.
+
 For interactive native UI testing without a provider account, use `--smart-ui-test --unencrypted --data-dir <fresh-empty-directory>`. This mode refuses an omitted or nonempty data directory, a provider configuration, or simultaneous smoke mode before opening storage. It supplies three clearly labeled synthetic providers with a private local TLS trust root and a controlled authorization driver. Two providers deliberately share a Patient ID; the third delays authorization for cancellation testing. The driver can contact only that fixture and its exact minted callback URLs. This mode does not open the system browser or validate a live Epic registration. Normal startup does not enable these providers or change system trust settings.
 
 `go test -race ./internal/smart ./internal/shell ./internal/host -count=1` exercises a real local TLS synthetic provider, including the PKCE challenge/verifier, registration binding, callback validation/replay, token exchange, Patient identity, redirects, denial, cancellation, timeout, expiry, and window restrictions. No real Epic account or existing database is used by those tests. Native `--smoke-test` adds Wails service registration and disabled-provider checks and requires a fresh database and no direct provider profiles.

@@ -29,6 +29,7 @@ type credential struct {
 	access  string
 	ctx     context.Context
 	cancel  context.CancelFunc
+	scopes  []string
 }
 
 type Manager struct {
@@ -193,7 +194,7 @@ func (m *Manager) Connect(parent context.Context, providerID string) (Connection
 		return Connection{}, errors.New("SMART authorization cancelled or timed out")
 	}
 	connectionCtx, connectionCancel := context.WithCancel(m.ctx)
-	m.connections[summary.ID] = credential{summary, tokens.AccessToken, connectionCtx, connectionCancel}
+	m.connections[summary.ID] = credential{summary: summary, access: tokens.AccessToken, ctx: connectionCtx, cancel: connectionCancel, scopes: slices.Clone(granted)}
 	return summary, nil
 }
 
