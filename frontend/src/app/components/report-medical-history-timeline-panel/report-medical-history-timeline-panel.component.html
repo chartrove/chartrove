@@ -171,14 +171,10 @@
   </div>
   <div class="timeline-comment-box">
     <div class="input">
-      <form action="">
-        <div ngbTooltip="not yet implemented" class="input-group">
-          <span class="input-group-btn p-l-10">
-            <button (click)="openMedicalRecordWizard()" class="btn f-s-12 text-muted rounded-corner" type="button"><i class="cursor-pointer fas fa-lg fa-paperclip"></i></button>
-          </span>
-          <input type="text" class="form-control rounded-corner" placeholder="Write a private note...">
-        </div>
-      </form>
+      <div class="d-flex align-items-center">
+        <button (click)="openMedicalRecordWizard()" class="btn f-s-12 text-muted rounded-corner" type="button" aria-label="Add attachment or document"><i class="cursor-pointer fas fa-lg fa-paperclip" aria-hidden="true"></i></button>
+        <span class="text-muted ms-2">Private notes are not available yet.</span>
+      </div>
     </div>
   </div>
 </div>
