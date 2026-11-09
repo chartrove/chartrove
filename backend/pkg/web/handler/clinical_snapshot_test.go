@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -43,6 +44,10 @@ type clinicalAPIEvents struct {
 	event_bus.Interface
 	count atomic.Int32
 	check func() error
+}
+
+func (b *clinicalAPIEvents) TryPublishMessage(msg models.EventInterface) error {
+	return b.PublishMessage(msg)
 }
 
 func (b *clinicalAPIEvents) PublishMessage(models.EventInterface) error {
@@ -145,6 +150,79 @@ func clinicalAPIResult(t *testing.T, response *httptest.ResponseRecorder) models
 	require.NoError(t, json.Unmarshal(response.Body.Bytes(), &wrapper))
 	require.True(t, wrapper.Success)
 	return wrapper.Data
+}
+
+type clinicalAPILegacyBus struct {
+	event_bus.Interface
+	calls atomic.Int32
+}
+
+func (b *clinicalAPILegacyBus) PublishMessage(models.EventInterface) error {
+	b.calls.Add(1)
+	return errors.New("synthetic-private-legacy-publisher-error")
+}
+
+func TestClinicalSnapshotHTTPDoesNotFallbackToBlockingPublisher(t *testing.T) {
+	h := newClinicalAPIHarness(t)
+	legacy := &clinicalAPILegacyBus{Interface: event_bus.NewNoopEventBusServer()}
+	logger := logrus.New()
+	logger.SetOutput(h.logs)
+	h.router = clinicalAPIRouter(h.cfg, h.repo, logger, legacy)
+	result := clinicalAPIResult(t, h.request(http.MethodPost, clinicalAPIPost, h.tokens[0], h.body(t, clinicalAPIRaw)))
+	require.Equal(t, 2, result.Created)
+	require.Zero(t, legacy.calls.Load(), "unsupported best-effort delivery must never fall back to potentially blocking publication")
+	require.Contains(t, h.logs.String(), "clinical snapshot committed; refresh notification unavailable")
+	require.NotContains(t, h.logs.String(), "synthetic-private-legacy-publisher-error")
+}
+
+func TestClinicalSnapshotHTTPStalledRefresh(t *testing.T) {
+	h := newClinicalAPIHarness(t)
+	logger := logrus.New()
+	logger.SetOutput(io.Discard)
+	bus := event_bus.NewEventBusServer(logger)
+	done := make(chan struct{})
+	var release sync.Once
+	unblock := func() { release.Do(func() { close(done) }) }
+	defer unblock()
+	bus.AddListener(&event_bus.EventBusListener{UserID: h.users[0].ID.String(), ResponseChan: make(chan string), Done: done})
+	// The real bus accepts this first event, then stalls forwarding it to the
+	// unconsumed client's unbuffered channel. Keep the client connected.
+	require.NoError(t, bus.PublishMessage(models.NewEventKeepAlive(h.users[0].ID.String())))
+	h.router = clinicalAPIRouter(h.cfg, h.repo, logger, bus)
+	post := func(raw string) *httptest.ResponseRecorder {
+		body := h.body(t, raw)
+		finished := make(chan *httptest.ResponseRecorder, 1)
+		go func() { finished <- h.request(http.MethodPost, clinicalAPIPost, h.tokens[0], body) }()
+		select {
+		case response := <-finished:
+			return response
+		case <-time.After(2 * time.Second):
+			// Release the test's deliberate stall and join the request before
+			// failing, so the regression cannot leak an admission slot/test DB.
+			unblock()
+			select {
+			case <-finished:
+			case <-time.After(10 * time.Second):
+				t.Fatal("stalled clinical request did not release after client cancellation")
+			}
+			t.Fatal("committed clinical import must not await a stalled notification client")
+			return nil
+		}
+	}
+	first := clinicalAPIResult(t, post(clinicalAPIRaw))
+	changed := strings.Replace(clinicalAPIRaw, "1.234567890123456789", "2.345678901234567891", 1)
+	second := clinicalAPIResult(t, post(changed))
+	require.Equal(t, first.SourceID, second.SourceID)
+	require.Equal(t, 1, second.Updated)
+	require.NotEqual(t, first.SnapshotID, second.SnapshotID)
+	for _, item := range []struct {
+		id  uuid.UUID
+		raw string
+	}{{first.SnapshotID, clinicalAPIRaw}, {second.SnapshotID, changed}} {
+		original, err := h.repo.GetClinicalSnapshotOriginal(h.owner, first.SourceID, item.id)
+		require.NoError(t, err)
+		require.Equal(t, []byte(item.raw), original)
+	}
 }
 
 func TestClinicalSnapshotHTTPFlow(t *testing.T) {
