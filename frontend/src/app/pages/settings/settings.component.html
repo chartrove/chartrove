@@ -2,6 +2,7 @@
   <div class="container">
     <div class="az-content-body">
       <h2 class="az-content-title">Settings</h2>
+      @if (hasError) { <p class="alert alert-warning" role="alert">{{ errorMessage }}</p> }
 
       <p><a routerLink="/source-permissions">Manage source permissions and browse shared records</a></p>
       <p><a routerLink="/auth/oidc">Manage identity provider sign-in</a></p>
@@ -39,7 +40,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
           <h4 class="card-title mb-0"><i class="fas fa-key me-3"></i>Connected Devices</h4>
           <div>
-            <button class="btn btn-az-primary btn-sm" (click)="generateAndShowQR(qrModal)" [disabled]="isLoading">
+            <button class="btn btn-az-primary btn-sm" (click)="generateAndShowQR(qrModal)" [disabled]="isLoading || !currentUser">
               <i class="fas fa-qrcode me-2"></i>Connect New Device
             </button>
           </div>
@@ -54,7 +55,7 @@
             </div>
           }
 
-          @if (tokens.length === 0 && !isLoading) {
+          @if (tokens.length === 0 && !isLoading && !hasError) {
             <div class="text-muted text-center py-4">
               <i class="fas fa-qrcode fa-3x text-muted mb-3"></i>
               <p class="text-muted mb-0">No devices connected yet. Click "Connect New Device" to get started.</p>
@@ -99,6 +100,9 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
+    @if (hasError) { <p class="alert alert-warning" role="alert">{{ errorMessage }}</p> }
+    @if (currentUser) { <p>Receiving profile: <strong>{{ currentUser.username }}</strong></p> }
+    <p class="text-muted">This creates an access credential for the active profile. Closing this dialog clears this display, not an already created device token. Review saved devices before retrying an uncertain request.</p>
     @if (step === 'askDetails') {
       <div class="text-start">
         <p class="text-muted">Give your new device a name so you can recognize it in the list of connected devices.</p>
@@ -122,19 +126,19 @@
         <p class="text-muted">Scan this QR code with your companion mobile app to connect your device and sync your medical records.</p>
         @if (qrCodeUrl) {
           <div class="qr-code-container mb-4 p-3 border rounded d-inline-block">
-            <img [src]="qrCodeUrl" alt="QR Code" class="img-fluid qr-code-image">
+            <img [src]="qrCodeUrl" alt="Device connection credential QR code" class="img-fluid qr-code-image">
           </div>
         }
-        <!-- Development: Raw QR Code Data -->
+        <!-- Explicit manual handoff: the raw value contains a private access credential. -->
         <div class="mt-4 text-start">
           <h6 class="mb-0">
-            <a href="javascript:void(0);" (click)="isRawQrCodeCollapsed = !isRawQrCodeCollapsed"
+            <button type="button" (click)="isRawQrCodeCollapsed = !isRawQrCodeCollapsed"
               [attr.aria-expanded]="!isRawQrCodeCollapsed" aria-controls="rawQrCodeDataCollapse"
-              class="d-flex align-items-center text-dark text-decoration-none">
-              Development: Raw QR Code Data
+              class="btn btn-link d-flex align-items-center text-dark text-decoration-none p-0">
+              Connection credential (sensitive)
               <i class="fas ms-2" [class.fa-chevron-down]="isRawQrCodeCollapsed"
               [class.fa-chevron-up]="!isRawQrCodeCollapsed"></i>
-            </a>
+            </button>
           </h6>
           <div id="rawQrCodeDataCollapse" [ngbCollapse]="isRawQrCodeCollapsed">
             <div class="input-group mt-3">
@@ -143,7 +147,7 @@
                 <i class="fas fa-copy"></i> Copy
               </button>
             </div>
-            <small class="text-muted">You can copy and paste this data manually if needed.</small>
+            <small class="text-muted">Contains an access token. Share only with a trusted companion device; do not paste it into logs, chats or support requests.</small>
           </div>
         </div>
       </div>
