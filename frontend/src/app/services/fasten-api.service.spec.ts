@@ -28,6 +28,33 @@ describe('FastenApiService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('carries exact clinical JSON text and the confirmed receiving identity without numeric reserialization', async () => {
+    const http = TestBed.inject(HttpTestingController);
+    const raw = '{"resourceType":"Bundle","type":"collection","entry":[{"resource":{"resourceType":"Patient","id":"synthetic-patient","extension":[{"url":"urn:synthetic:exact","valueDecimal":1.234567890123456789}]}}]}';
+    const owner = '11111111-1111-4111-8111-111111111111';
+    const origin = {fhir_base_url: 'https://example.invalid/fhir', display: 'Synthetic clinic'};
+    const pending = service.importClinicalSnapshot(raw, origin, owner, true).toPromise();
+    const request = http.expectOne(r => r.url.endsWith('/secure/source/clinical-snapshot'));
+    expect(request.request.body).toEqual({expected_owner_id: owner, confirmed: true, origin, snapshot_json: raw});
+    expect(request.request.body.snapshot_json).toContain('1.234567890123456789');
+    const result = {source_id: owner, snapshot_id: '22222222-2222-4222-8222-222222222222', sha256: 'a'.repeat(64), patient_id: 'synthetic-patient', created: 1, updated: 0, unchanged: 0, already_imported: false};
+    request.flush({success: true, data: result});
+    expect(await pending).toEqual(result);
+    http.verify();
+  });
+
+  it('refuses absent clinical confirmation and malformed completion contracts without echoing payloads', async () => {
+    const http = TestBed.inject(HttpTestingController);
+    const origin = {fhir_base_url: 'https://example.invalid/fhir', display: 'Synthetic clinic'};
+    await expectAsync(service.importClinicalSnapshot('synthetic-private-body', origin, 'owner', false).toPromise()).toBeRejected();
+    http.expectNone(r => r.method === 'POST');
+    const pending = service.importClinicalSnapshot('synthetic-private-body', origin, 'owner', true).toPromise();
+    const request = http.expectOne(r => r.method === 'POST');
+    request.flush({success: false, error: 'synthetic-private-decoder-error'});
+    await expectAsync(pending).toBeRejectedWithError('Clinical import completion was not confirmed.');
+    http.verify();
+  });
+
   it('sends exact lab JSON text and an explicit native source without rounding unrelated fields',()=>{
     const http=TestBed.inject(HttpTestingController);
     const raw='{"resourceType":"Observation","id":"same-id","valueQuantity":{"value":3.5},"extension":[{"url":"urn:synthetic:exact","valueDecimal":0.1234567890123456789}]}';

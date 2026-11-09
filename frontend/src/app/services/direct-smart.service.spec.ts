@@ -30,6 +30,30 @@ describe('DirectSmartService', () => {
     expect(Object.keys(result.connection).sort()).toEqual(['expires_at', 'id', 'owner', 'patient_id', 'provider_id']);
   });
 
+  it('keeps the exact clinical string and uses the verified owning local session', async () => {
+    const raw = '{"resourceType":"Bundle","type":"collection","value":1.234567890123456789}';
+    bridge.readClinicalSnapshot.and.resolveTo(raw);
+    expect(await service.readClinicalSnapshot(connection, new AbortController().signal)).toBe(raw);
+    expect(bridge.readClinicalSnapshot).toHaveBeenCalledWith(connection.id, 'synthetic-local-session');
+    session = {token: 'synthetic-other-session', ownerID: '00000000-0000-4000-8000-000000000002'};
+    await expectAsync(service.readClinicalSnapshot(connection, new AbortController().signal)).toBeRejected();
+    expect(bridge.readClinicalSnapshot).toHaveBeenCalledTimes(1);
+  });
+
+  it('releases a cancelled clinical read and does not expose a late raw collection', async () => {
+    let finish: (raw: string) => void;
+    let started: () => void;
+    const reading = new Promise<void>(resolve => started = resolve);
+    bridge.readClinicalSnapshot.and.callFake(() => {started(); return new Promise(resolve => finish = resolve);});
+    const controller = new AbortController();
+    const pending = service.readClinicalSnapshot(connection, controller.signal);
+    await reading;
+    controller.abort();
+    finish('synthetic-private-clinical-response');
+    await expectAsync(pending).toBeRejectedWithError('Clinical retrieval cancelled.');
+    expect(bridge.disconnect).toHaveBeenCalledWith(connection.id);
+  });
+
   it('rejects unauthenticated or foreign-owner native connections before data retrieval', async () => {
     session = {token: '', ownerID: ''};
     await expectAsync(service.connect('epic-one', new AbortController().signal)).toBeRejected();
