@@ -42,7 +42,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API/UI, active JWT receiver checks and bounded post-commit refresh integrated; household/provider consent still open |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
 | Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Pending #487: 788 browser passes/one skip and exact-c9 twelve-check hidden native success; later native races/signup and exact-eed runtime fail; visual GUI still permission-gated |
-| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Source-bound ad-hoc packages/restores retained; latest exact-eed candidate is unaccepted, not current-main/published/notarized |
+| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Source-bound ad-hoc packages/restores retained; latest exact-7f candidate is unaccepted, not current-main/published/notarized |
 | Operations | Documented deployment, health, monitoring, retention, recovery objectives and rollback rehearsal | Not reassessed |
 
 ## Accepted source and current work
@@ -99,6 +99,12 @@ remain evidence, not current acceptance or authorization. Only this repository i
   initial Desktop failed hosted runner acquisition before steps, not product execution. Protected
   matching-head merge `1b7a2b243fa78734638cc79d80089255cbb7d9cd` and separate exact-main
   42638457680 passed. Failed-job-only rerun did not re-execute all earlier jobs.
+- OIDC account-actor follow-up #489 replaces four remaining aliased Gin lookups across five secure
+  routes. Genuine helper/registered-route reds, focused lifetime races and ordinary owned-TLS local
+  recovery pass; the instrumented bcrypt timeout stays incomplete evidence. Exact head
+  `0f54002f7408f0d7eac7fd6ebaa33daf6e8cca67` passed seven hosted checks (42663352354), then
+  protected matching-head merged at `6054e7bb50cf7b972bf21d8440410190378c4bea`.
+  Separate exact-main validation is pending; #474 final inventory is not closed.
 - Current Pi #487 pins legacy file receiving UUID across confirmation/conversion/import, enforces
   optional unambiguous server receiver assertions before SDK/persistent source/job work, and preserves
   absent-field clients/detached jobs. Its actual native gate exposed raw FormData failure missed by
@@ -108,7 +114,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
   now preserves partial timeout evidence without extending budgets. A server-guard-bypass negative
   timed out and is not yet calibrated. See the [manual receiver receipt](manual-import-receiver.md).
   This slice is not accepted or overall ready; hosted/current runtime qualification remains.
-- The latest ZIP is exact `eed8536adf8685757289dad30796e07ae6a00e42`, not a later docs commit,
+- The latest ZIP is exact `7f44f3839131ce03aaf110cc95c13d1c2e9f4805`, not a later docs commit,
   accepted native runtime, published/notarized/current-main release, older-macOS or independently
   operated key-custody qualification. Earlier c9 (twelve checks), b916/68e (ten checks), a594/e442
   and negative/diagnostic archives remain distinct and privately retained; positive ZIPs were

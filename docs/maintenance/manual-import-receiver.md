@@ -118,8 +118,15 @@ Its first actual native run timed out after the first **three** checks, before a
 a same-package retry later timed out after **six** checks. The latter receiver lookup/count/preparation/
 submission substage is not established; neither is an all-12 eed success. Subsequent test-only progress
 posts are awaited sequentially with a 500 ms per-post abort bound inside the same 45-second deadline,
-not sent concurrently. This observability change is not a claimed production transport/root-cause fix. The latest ZIP is this exact
-eed inspection candidate, not current-main, published/deployed, notarized or accepted runtime.
+not sent concurrently. This observability change is not a claimed production transport/root-cause fix. The later clean `7f44f3839131ce03aaf110cc95c13d1c2e9f4805` ordinary package also verifies strict
+signature and packaged encrypted restore, with unchanged c9 frontend inputs. Its actual serial-progress
+run times out after three checks. A separate read-only owned-PID run observed almost frozen CPU time
+while runnable and no receipt by the outer observation bound; scheduling causation is not established.
+A private macOS finite own-process activity-hint overlay also times out after three checks and is **not**
+adopted. It allowed idle sleep, excluded latency-critical activity, released/deferred within 45 seconds,
+and changed no global settings, nice/taskpolicy, foreground or permissions. The exact 7f ZIP was restored
+and byte verified; experiment archives remain distinct. The latest ZIP is this exact **7f unaccepted
+inspection candidate**, not current-main, published/deployed, notarized or accepted runtime.
 
 Raw logs, profiles, keys, overlay sources, archives, hashes and receipt files remain private. Named
 Cua lifecycles ended; receipts do not independently prove process exit. Direct capture still requires

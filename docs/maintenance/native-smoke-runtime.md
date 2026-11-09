@@ -95,8 +95,8 @@ multipart requests and the same bounded encoder as the Angular interceptor. Raw 
 failed in the native host despite Go/browser green. Exact-c9 subsequently passed all twelve checks;
 later exact-eed timed out after three checks before account creation completed, then after six
 checks on a same-package retry (the latter substage is unknown). Bounded fixed-label
-progress now makes such timeout stages observable, never success. Its guard-bypass negative is not
-yet calibrated. See the [manual receiver receipt](manual-import-receiver.md) for exact source,
+progress now makes such timeout stages observable, never success. The later exact-7f serial-progress package times out after three checks too; its private finite
+activity-hint experiment also fails and is not adopted. Its guard-bypass negative is not yet calibrated. See the [manual receiver receipt](manual-import-receiver.md) for exact source,
 failed attempts, archive status and outstanding native-race/runtime gates. Historical ten-check
 acceptance above does not qualify that later file path or candidate.
 
