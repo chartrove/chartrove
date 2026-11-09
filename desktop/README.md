@@ -90,7 +90,7 @@ From `desktop/`, run `go test ./...` for host tests. To exercise the embedded ba
 go test github.com/fastenhealth/fasten-onprem/backend/pkg/web -run TestEmbedded -count=1 -timeout=120s
 ```
 
-The native executable supports `--smoke-test --unencrypted --data-dir <fresh-private-directory>`. Smoke mode refuses an existing database, an omitted data directory, or configured direct SMART providers. It tests the real WebView/Go binding, disabled direct SMART service, unconfigured-provider rejection, fresh database API, synthetic signup/sign-in, URL rejection, JSON API errors, popup callback delivery, and isolation from an unrelated window. It prints a `DESKTOP_SMOKE` JSON result, quits automatically, and exits nonzero on failure. Its local test routes do not exist in normal mode.
+The native executable supports `--smoke-test --unencrypted --data-dir <fresh-private-directory>`. Smoke mode refuses a nonempty or final-component symlink data directory, an omitted explicit data directory, or configured direct SMART providers. It tests the real WebView/Go binding, disabled direct SMART service, unconfigured-provider rejection, fresh database API, synthetic signup/sign-in, URL rejection, JSON API errors, popup callback delivery, and isolation from an unrelated window. It prints a `DESKTOP_SMOKE` JSON result, quits automatically, and exits nonzero on failure. Its local test routes do not exist in normal mode.
 
 Native completion also publishes `desktop-smoke-report.json` in that selected private directory.
 The bounded (8 KiB), owner-only receipt is published only after its temporary file is written,

@@ -78,8 +78,8 @@ func run() error {
 		if *directory == "" || !*unencrypted {
 			return fmt.Errorf("smoke test requires explicit --data-dir and --unencrypted")
 		}
-		if _, err := os.Stat(filepath.Join(*directory, "fasten.db")); !os.IsNotExist(err) {
-			return fmt.Errorf("smoke test requires a fresh database directory")
+		if err := validateSmokeDirectory(*directory); err != nil {
+			return err
 		}
 	}
 	storage, err := host.OpenStorage(*directory)
@@ -189,6 +189,23 @@ func run() error {
 	app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "main", Title: shell.ApplicationName, Width: 1280, Height: 900, MinWidth: 900, MinHeight: 650, URL: url, Hidden: *smokeBackground})
 	fmt.Printf("%s %s; data directory: %s\n", shell.ApplicationName, shell.Version, storage.Directory)
 	return app.Run()
+}
+
+func validateSmokeDirectory(directory string) error {
+	if directory == "" {
+		return fmt.Errorf("smoke test requires an explicit fresh directory")
+	}
+	if info, err := os.Lstat(directory); err == nil && info.Mode()&os.ModeSymlink != 0 {
+		return fmt.Errorf("smoke test refuses a symlink directory")
+	}
+	entries, err := os.ReadDir(directory)
+	if err != nil && !os.IsNotExist(err) {
+		return fmt.Errorf("cannot validate smoke data directory")
+	}
+	if len(entries) != 0 {
+		return fmt.Errorf("smoke test requires an empty fresh directory")
+	}
+	return nil
 }
 
 func validateSmokeBackground(smoke, background bool) error {
