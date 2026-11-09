@@ -81,3 +81,9 @@ introduced; exact original/provenance/authorization and detached-job controls re
 After normally integrating accepted clinical UI #477, the complete desktop internal race suites also pass
 serialized: host 23.460s, composed encrypted shell flow 27.289s, SMART 5.982s, fixture 1.230s. The ordinary
 macOS linker warnings remain visible; this does not qualify a fresh native GUI/package or older OS.
+
+These backend race receipts precede the normal accepted-#477 parent merge; the final desktop graph
+receipt follows it. All seven hosted checks qualified exact follow-up head
+`f094d12f3fbe230f320306191a5131c710682a84` (42592715042), with no unresolved review threads.
+Protected matching-head #478 merged at `dc48128ad8691513ae9c2e8607567482849f6c8f`;
+exact-main validation 42594974931 passed. #474 remains open for the unassessed callers above.
