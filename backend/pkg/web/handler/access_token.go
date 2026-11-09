@@ -28,6 +28,7 @@ type DeleteTokenPayload struct {
 
 // CreateAccessToken generates a new access token for mobile app authentication
 func CreateAccessToken(c *gin.Context) {
+	c.Header("Cache-Control", "no-store")
 	log := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 	appConfig := c.MustGet(pkg.ContextKeyTypeConfig).(config.Interface)
@@ -52,8 +53,9 @@ func CreateAccessToken(c *gin.Context) {
 
 	err = databaseRepo.CreateAccessToken(middleware.AuthenticatedRequestContext(c), tokenModel)
 	if err != nil {
-		log.Errorf("failed to store access token: %v", err)
-		// Still return the token even if storage fails
+		log.Error("failed to store access token")
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to store access token"})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
