@@ -25,7 +25,12 @@ operator's explicitly mounted loopback configuration. The producer refuses missi
 ambiguous source markers and existing output; it does not edit the input or user config.
 Other YAML bytes, HTTPS/encryption choices and empty key placeholders stay unchanged.
 The final stage copies this derived build output instead of overwriting it with the
-standalone sample. A new public-script marker extends the existing synthetic Docker
+standalone sample. The existing nonpublishing container workflow now also triggers on
+`config.yaml` and `scripts/container-config.sh` changes for PRs and main; permissions,
+pinned checkout, matrix, no-publication steps and 30-minute budget are unchanged.
+This narrow dependency-filter change passes installed `actionlint`; it is not a full
+workflow security audit. Both affected platform jobs are required alongside the seven
+usual checks for this task's publication qualification. A new public-script marker extends the existing synthetic Docker
 context regression; private context exclusions are unchanged.
 
 Both Compose examples default **host-side publication** to
