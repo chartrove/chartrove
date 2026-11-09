@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import { Practitioner } from 'src/app/models/fasten/practitioner';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import { Router } from '@angular/router';
 import {concatMap, map} from 'rxjs/operators';
 import {ResponseWrapper} from '../models/response-wrapper';
@@ -32,7 +32,7 @@ import {
 import {FormRequestHealthSystem} from '../models/fasten/form-request-health-system';
 import { UpdateResourcePayload } from '../models/fasten/resource_update';
 import { Favorite } from '../pages/practitioner-list/practitioner-list.component';
-import {SmartImportOrigin} from '../models/direct-smart';
+import {SmartImportOrigin, SmartSnapshotImportResult, isSmartSnapshotImportResult} from '../models/direct-smart';
 
 @Injectable({
   providedIn: 'root'
@@ -175,6 +175,21 @@ export class FastenApiService {
     // The backend scopes identity to FHIR origin plus raw Patient ID, and is
     // authoritative for completed imports and safe retries of failed snapshots.
     return this.postPatientSnapshot(patient, origin);
+  }
+
+  importClinicalSnapshot(snapshotJSON: string, origin: SmartImportOrigin, receivingOwnerID: string, confirmed: boolean): Observable<SmartSnapshotImportResult> {
+    if (!confirmed || !snapshotJSON || new TextEncoder().encode(snapshotJSON).byteLength > 16 * 1024 * 1024 || !receivingOwnerID) {
+      return throwError(() => new Error('Confirm the receiving identity and a complete snapshot before importing.'));
+    }
+    // Keep the JSON text a string. Serializing a parsed numeric FHIR object here
+    // would lose original decimal lexemes before the atomic store ever sees it.
+    const body = {expected_owner_id: receivingOwnerID, confirmed: true, origin, snapshot_json: snapshotJSON};
+    return this._httpClient.post<unknown>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/source/clinical-snapshot`, body)
+      .pipe(map(response => {
+        if (!response || typeof response !== 'object' || !('success' in response) || response.success !== true ||
+          !('data' in response) || !isSmartSnapshotImportResult(response.data)) throw new Error('Clinical import completion was not confirmed.');
+        return response.data;
+      }));
   }
 
   private postPatientSnapshot(patient: Patient, origin?: SmartImportOrigin): Observable<{source: Source, alreadyImported: boolean}> {

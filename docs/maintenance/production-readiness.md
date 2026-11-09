@@ -112,6 +112,17 @@ Cleanup must still release in-memory provider credentials after local logout/exp
 signatures and preserve Patient-only operation, with cross-identity/window/session-change negative tests.
 The clinical import UI and its explicit receiving-profile confirmation remain a subsequent slice.
 
+## Next slice: explicit clinical import in the Sources UI
+
+Pi owns `task/clinical-import-ui`, stacked on the scoped native bridge. Preserve raw Patient text and
+collection text rather than reserializing parsed numeric FHIR. Keep Patient-only import usable, add an
+explicit bounded Patient/Observation retrieval/preview, name the receiving backend-verified local profile
+and require authority confirmation before the owner-bound API write. Guard read/import/disconnect work,
+discard stale identity results, keep transport-uncertain outcomes honest and do not infer provider-side
+deletions or newer data from a previously seen digest. Exercise real handlers in controlled asynchronous
+browser tests, plus synthetic native end-to-end repeated/changed import and encrypted restart/restore.
+This plan does not authorize real providers, production identities, deployment or external record uploads.
+
 ## Current execution checkpoint
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
