@@ -8,6 +8,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -22,7 +23,7 @@ func RegisterDocumentImportRoutes(secure gin.IRoutes) {
 			c.Status(503)
 			return
 		}
-		data, err := repo.ListDocumentImportSources(c)
+		data, err := repo.ListDocumentImportSources(middleware.AuthenticatedRequestContext(c))
 		sourceAccessResponse(c, data, err)
 	})
 	secure.POST("/document-import/:sourceId", func(c *gin.Context) {
@@ -37,7 +38,7 @@ func RegisterDocumentImportRoutes(secure gin.IRoutes) {
 			sourceAccessResponse(c, nil, database.ErrSourceAccessInput)
 			return
 		}
-		if err = repo.AuthorizeDocumentImportSource(c, source); err != nil {
+		if err = repo.AuthorizeDocumentImportSource(middleware.AuthenticatedRequestContext(c), source); err != nil {
 			sourceAccessResponse(c, nil, err)
 			return
 		}
@@ -109,7 +110,7 @@ func RegisterDocumentImportRoutes(secure gin.IRoutes) {
 				return
 			}
 		}
-		data, err := repo.ImportReviewedDocument(c, source, input)
+		data, err := repo.ImportReviewedDocument(middleware.AuthenticatedRequestContext(c), source, input)
 		sourceAccessResponse(c, data, err)
 	})
 }

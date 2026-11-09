@@ -41,6 +41,7 @@ type ResourceFhirHandlerTestSuite struct {
 }
 
 func setupGinContext(ctx *gin.Context, suite *ResourceFhirHandlerTestSuite) {
+	ctx.Request = httptest.NewRequest(http.MethodGet, fhirResourcePath, nil)
 	ctx.Set(pkg.ContextKeyTypeLogger, logrus.WithField("test", suite.T().Name()))
 	ctx.Set(pkg.ContextKeyTypeDatabase, suite.AppRepository)
 	ctx.Set(pkg.ContextKeyTypeConfig, suite.AppConfig)

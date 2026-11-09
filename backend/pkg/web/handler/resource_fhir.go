@@ -14,6 +14,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
@@ -30,7 +31,7 @@ func QueryResourceFhir(c *gin.Context) {
 		return
 	}
 
-	queryResults, err := databaseRepo.QueryResources(c, query)
+	queryResults, err := databaseRepo.QueryResources(middleware.AuthenticatedRequestContext(c), query)
 	if err != nil {
 		logger.Errorln("An error occurred while querying resources", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
@@ -66,7 +67,7 @@ func ListResourceFhir(c *gin.Context) {
 		}
 		listResourceQueryOptions.Offset = pageNumb * listResourceQueryOptions.Limit
 	}
-	wrappedResourceModels, err := databaseRepo.ListResources(c, listResourceQueryOptions)
+	wrappedResourceModels, err := databaseRepo.ListResources(middleware.AuthenticatedRequestContext(c), listResourceQueryOptions)
 
 	if c.Query("sortBy") == "title" {
 		wrappedResourceModels = utils.SortResourceListByTitle(wrappedResourceModels)
@@ -90,7 +91,7 @@ func GetResourceFhir(c *gin.Context) {
 
 	resourceId := strings.Trim(c.Param("resourceId"), "/")
 	sourceId := strings.Trim(c.Param("sourceId"), "/")
-	wrappedResourceModel, err := databaseRepo.GetResourceBySourceId(c, sourceId, resourceId)
+	wrappedResourceModel, err := databaseRepo.GetResourceBySourceId(middleware.AuthenticatedRequestContext(c), sourceId, resourceId)
 
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving resource", err)
@@ -117,7 +118,7 @@ func CreateResourceComposition(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"success": false})
 		return
 	}
-	err := databaseRepo.AddResourceComposition(c, payload.Title, payload.Resources)
+	err := databaseRepo.AddResourceComposition(middleware.AuthenticatedRequestContext(c), payload.Title, payload.Resources)
 	if err != nil {
 		logger.Errorln("An error occurred while creating resource group (composition)", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
@@ -150,7 +151,7 @@ func GetResourceFhirGraph(c *gin.Context) {
 		return
 	}
 
-	resourceListDictionary, err := databaseRepo.GetFlattenedResourceGraph(c, pkg.ResourceGraphType(graphType), graphOptions)
+	resourceListDictionary, err := databaseRepo.GetFlattenedResourceGraph(middleware.AuthenticatedRequestContext(c), pkg.ResourceGraphType(graphType), graphOptions)
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving list of resources", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
@@ -206,12 +207,12 @@ func UpdateResourceFhir(c *gin.Context) {
 		writeOwnedMutationError(c, errors.New("resource editing unavailable"))
 		return
 	}
-	resource, err := updates.ResolveOwnedResource(c, resourceType, resourceId, source)
+	resource, err := updates.ResolveOwnedResource(middleware.AuthenticatedRequestContext(c), resourceType, resourceId, source)
 	if err != nil {
 		writeOwnedMutationError(c, err)
 		return
 	}
-	updateError := updates.UpdateOwnedResource(c, resource.SourceID, resourceType, resourceId, database.OwnedResourceUpdate{
+	updateError := updates.UpdateOwnedResource(middleware.AuthenticatedRequestContext(c), resource.SourceID, resourceType, resourceId, database.OwnedResourceUpdate{
 		ResourceRaw: payload.ResourceRaw, SortTitle: sortTitle,
 		SortDate: parseDateTimeWithFallback(sortDate), SetSortDate: sortDate != nil,
 	})
@@ -252,12 +253,12 @@ func DeleteResourceFhir(c *gin.Context) {
 		writeOwnedMutationError(c, errors.New("resource deletion unavailable"))
 		return
 	}
-	resource, err := mutations.ResolveOwnedResource(c, resourceType, resourceId, source)
+	resource, err := mutations.ResolveOwnedResource(middleware.AuthenticatedRequestContext(c), resourceType, resourceId, source)
 	if err != nil {
 		writeOwnedMutationError(c, err)
 		return
 	}
-	if err := mutations.DeleteOwnedResource(c, resource.SourceID, resourceType, resourceId); err != nil {
+	if err := mutations.DeleteOwnedResource(middleware.AuthenticatedRequestContext(c), resource.SourceID, resourceType, resourceId); err != nil {
 		writeOwnedMutationError(c, err)
 		return
 	}
