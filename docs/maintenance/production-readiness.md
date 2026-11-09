@@ -41,7 +41,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API/UI, active JWT receiver checks and bounded post-commit refresh integrated; household/provider consent still open |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
-| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Corrected UI: 741 browser passes/one skip; composed encrypted native flow passes; actual GUI blocked by normal Cua permission gate |
+| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Corrected UI: 741 browser passes/one skip; composed encrypted flow and ten hidden native runtime checks pass; visual/interactive GUI still permission-gated |
 | Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Ad-hoc packages and packaged restore checks exist; newest package predates final UI/context corrections and is not current |
 | Operations | Documented deployment, health, monitoring, retention, recovery objectives and rollback rehearsal | Not reassessed |
 
@@ -68,20 +68,26 @@ remain evidence, not current acceptance or authorization. Only this repository i
   failed hosted macOS runner acquisition before any CodeQL Go step (runner ID 0); application jobs
   passed. Failed-job-only attempt 2 subsequently passed at the same exact merged SHA; the initial
   infrastructure failure remains recorded.
-- Current Pi #474 work explicitly scopes opt-in diagnostics: pin the named active owner's immutable
-  UUID without manufacturing Gin/JWT authentication; use stable request lifetime for SQL/SDK and
-  separately bounded same-owner credential finalization after caller abort. Genuine source-handler
-  Gin-retention and graph-owner failures are corrected; an added actual encrypted HTTP graph
-  reproduces accepted-source 500 versus expected 200 and passes after correction, with foreign
-  non-disclosure/flag-off controls. Complete web/handler/middleware and native races pass. This
-  fourth bounded repair awaits protected publication; unsafe mode
-  remains disabled by default and is not production-approved.
-- A clean exact-a594 inspection ZIP now includes final UI/#478/#480/#481 changes. The prior e442
-  ZIP was privately preserved/byte-hash verified. Extracted strict ad-hoc signature and actual
-  packaged separate-process synthetic encrypted WAL recovery passed (3.80s test / 4.426s package).
-  This candidate predates the current diagnostic changes, is not notarized, and is not independent
-  key-custody/older-macOS/release acceptance.
-- The normal Cua route now launched that exact app in the background with a fresh synthetic,
+- Diagnostic #482 qualified exact head `ca1672ac68aebb4c1f81748b4db0bffbb1438eab`
+  (42618587011), then protected matching-head merged at
+  `92c31890c5ef34f462241d2961186d3b09a45730`; exact-main 42622419523 is pending. The
+  explicitly opt-in, unauthenticated query scope pins the selected owner's UUID without Gin/JWT
+  authentication claims. Actual encrypted graph/boundary and complete race controls pass.
+  Unsafe mode remains default-off/not production-approved; #474 inventory/review remains open.
+- Current Pi #483 adds a private create-once bounded smoke receipt and separately gated hidden
+  native test windows, corrects the stale SMART smoke argument/identity false-positive control,
+  and refuses nonfresh synthetic directories before storage. Clean exact-68e checkpoint
+  `68e3c9732e6438c8dbf8ba4dbeda276c3207144a` includes accepted #482: full packaging,
+  strict extracted ad-hoc signature, actual packaged encrypted WAL restore (3.82s / 4.19s),
+  pre-GUI invalid-flag refusal and all ten actual hidden native WebView/service checks pass.
+  A separate private invalid-token overlay at the earlier unchanged smoke-page checkpoint correctly
+  fails that control instead of counting any exception as success. See the
+  [native runtime receipt](native-smoke-runtime.md); this slice awaits protected publication.
+- The latest ZIP remains an exact-68e inspection candidate, not a later docs commit or a published,
+  notarized/current-main release, older-macOS or independently operated key-custody qualification.
+  Prior e442/a594/1dcd archives were privately preserved and byte/hash verified, including restoring
+  the positive ZIP after the explicitly negative-only overlay experiment.
+- Earlier, the normal Cua route launched the exact-a594 clinical inspection app with a fresh synthetic,
   explicitly **unencrypted** SMART-UI-test directory; no record/profile/consent input occurred.
   Exact-window capture instead refuses `direct_capture_consent_required`; TCC booleans do not
   prove direct-capture consent. Two bounded AX reads showed only window/menu chrome. No screenshot,
