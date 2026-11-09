@@ -28,11 +28,12 @@ func UnsafeRequestSource(c *gin.Context) {
 		return
 	}
 
-	//!!!!!!INSECURE!!!!!!S
-	//We're setting the username to a user provided value, this is insecure, but required for calling databaseRepo fns
-	c.Set("AUTH_USERNAME", c.Param("username"))
+	requestContext, ok := unsafeOwnerForRequest(c, databaseRepo)
+	if !ok {
+		return
+	}
 
-	foundSource, err := databaseRepo.GetSource(c, c.Param("sourceId"))
+	foundSource, err := databaseRepo.GetSource(requestContext, c.Param("sourceId"))
 	if err != nil {
 		logger.Errorf("An error occurred while finding source credential: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
@@ -45,7 +46,7 @@ func UnsafeRequestSource(c *gin.Context) {
 		return
 	}
 
-	client, err := factory.GetSourceClient("", c, logger, foundSource)
+	client, err := factory.GetSourceClient("", requestContext, logger, foundSource)
 	if err != nil {
 		logger.Errorf("Could not initialize source client %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
@@ -72,7 +73,9 @@ func UnsafeRequestSource(c *gin.Context) {
 			logger.Errorln("An error occurred while updating source credential, source credential is not of type *models.SourceCredential")
 			return
 		}
-		err = databaseRepo.UpdateSource(c, sourceCredentialConcrete)
+		cleanupContext, cancel := unsafeCredentialCleanupContext(requestContext)
+		defer cancel()
+		err = databaseRepo.UpdateSource(cleanupContext, sourceCredentialConcrete)
 		if err != nil {
 			logger.Errorf("An error occurred while updating source credential: %v", err)
 			return
@@ -98,11 +101,12 @@ func UnsafeResourceGraph(c *gin.Context) {
 		return
 	}
 
-	//!!!!!!INSECURE!!!!!!S
-	//We're setting the username to a user provided value, this is insecure, but required for calling databaseRepo fns
-	c.Set(pkg.ContextKeyTypeAuthUsername, c.Param("username"))
-
-	GetResourceFhirGraph(c)
+	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
+	requestContext, ok := unsafeOwnerForRequest(c, databaseRepo)
+	if !ok {
+		return
+	}
+	getResourceFhirGraph(c, requestContext)
 }
 
 func UnsafeSyncResourceNames(c *gin.Context) {
@@ -122,11 +126,12 @@ func UnsafeSyncResourceNames(c *gin.Context) {
 		return
 	}
 
-	//!!!!!!INSECURE!!!!!!S
-	//We're setting the username to a user provided value, this is insecure, but required for calling databaseRepo fns
-	c.Set(pkg.ContextKeyTypeAuthUsername, c.Param("username"))
+	requestContext, ok := unsafeOwnerForRequest(c, databaseRepo)
+	if !ok {
+		return
+	}
 
-	foundSource, err := databaseRepo.GetSource(c, c.Param("sourceId"))
+	foundSource, err := databaseRepo.GetSource(requestContext, c.Param("sourceId"))
 	if err != nil {
 		logger.Errorf("An error occurred while finding source credential: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
@@ -139,7 +144,7 @@ func UnsafeSyncResourceNames(c *gin.Context) {
 		return
 	}
 
-	client, err := factory.GetSourceClient("", c, logger, foundSource)
+	client, err := factory.GetSourceClient("", requestContext, logger, foundSource)
 	if err != nil {
 		logger.Errorf("Could not initialize source client %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
@@ -164,7 +169,9 @@ func UnsafeSyncResourceNames(c *gin.Context) {
 			logger.Errorln("An error occurred while updating source credential, source credential is not of type *models.SourceCredential")
 			return
 		}
-		err = databaseRepo.UpdateSource(c, sourceCredentialConcrete)
+		cleanupContext, cancel := unsafeCredentialCleanupContext(requestContext)
+		defer cancel()
+		err = databaseRepo.UpdateSource(cleanupContext, sourceCredentialConcrete)
 		if err != nil {
 			logger.Errorf("An error occurred while updating source credential: %v", err)
 			return
