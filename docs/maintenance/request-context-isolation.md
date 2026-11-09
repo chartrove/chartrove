@@ -78,3 +78,6 @@ production adapter. Complete handler/middleware race passes (576.873s / 1.642s),
 passes (652.820s). Other remaining legacy contexts, such as practitioner/settings/token/summary/diagnostic
 callers, are not certified by this bounded follow-up. No global Gin fallback or core-database coupling was
 introduced; exact original/provenance/authorization and detached-job controls remain in the normal suites.
+After normally integrating accepted clinical UI #477, the complete desktop internal race suites also pass
+serialized: host 23.460s, composed encrypted shell flow 27.289s, SMART 5.982s, fixture 1.230s. The ordinary
+macOS linker warnings remain visible; this does not qualify a fresh native GUI/package or older OS.
