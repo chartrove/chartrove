@@ -90,6 +90,15 @@ checks (42624220876) and no unresolved threads, then protected matching-head #48
 `0252c677ffd3c56900eacf60d7c214401a7effe3`. Separate exact-main 42627751541 attempt 1
 passed. This is source acceptance, not publication/deployment of a candidate archive.
 
+Subsequent pending #487 expands the custom smoke page to twelve checks using real authenticated
+multipart requests and the same bounded encoder as the Angular interceptor. Raw FormData actually
+failed in the native host despite Go/browser green. Exact-c9 subsequently passed all twelve checks;
+later exact-eed timed out after three checks before account creation completed. Bounded fixed-label
+progress now makes such timeout stages observable, never success. Its guard-bypass negative is not
+yet calibrated. See the [manual receiver receipt](manual-import-receiver.md) for exact source,
+failed attempts, archive status and outstanding native-race/runtime gates. Historical ten-check
+acceptance above does not qualify that later file path or candidate.
+
 Actual visual receiving-profile/authority/clinical import/repeat-change/export/profile-switch/logout
 and restart workflows remain unqualified. The earlier exact-a594 clinical inspection app was left
 running in its own synthetic unencrypted directory; this run did not interact with it or infer

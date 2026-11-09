@@ -41,8 +41,8 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API/UI, active JWT receiver checks and bounded post-commit refresh integrated; household/provider consent still open |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
-| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Corrected UI: 741 browser passes/one skip; composed encrypted flow and ten hidden native runtime checks pass; visual/interactive GUI still permission-gated |
-| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Ad-hoc packages and packaged restore checks exist; newest package predates final UI/context corrections and is not current |
+| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Pending #487: 788 browser passes/one skip and exact-c9 twelve-check hidden native success; later native races/signup and exact-eed runtime fail; visual GUI still permission-gated |
+| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Source-bound ad-hoc packages/restores retained; latest exact-eed candidate is unaccepted, not current-main/published/notarized |
 | Operations | Documented deployment, health, monitoring, retention, recovery objectives and rollback rehearsal | Not reassessed |
 
 ## Accepted source and current work
@@ -86,7 +86,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
   `2a03fea8a4932f5d57ac42e06a5a8c6246eea732` passed seven checks (42624220876), protected
   matching-head merged at `0252c677ffd3c56900eacf60d7c214401a7effe3`; exact-main
   42627751541 passed. This is hidden native runtime, not interactive visual acceptance.
-- Current Pi #485 confines automatic application JWT insertion/local auth-error handling to the
+- Accepted #485/#486 confines automatic application JWT insertion/local auth-error handling to the
   configured API's scheme/host/path namespace, not external Lighthouse or prefix siblings. Synthetic
   opaque-native URL and registered-provider controls correct invalid null-origin bases without
   trusting equal null origins. Genuine five accepted-classifier/four native-base reds and a newly
@@ -94,11 +94,25 @@ remain evidence, not current acceptance or authorization. Only this repository i
   (772 passes/one skip, Node/production/Storybook), full native race, clean exact-b916 package,
   strict signature, actual packaged encrypted restore and ten hidden native checks pass. The custom
   smoke page does not exercise the normal Angular interceptor. See the
-  [application token receipt](application-token-boundary.md); this slice awaits protected publication.
-- The latest ZIP is the exact-b916 inspection candidate, not a later docs commit, published,
-  notarized/current-main release, older-macOS or independently operated key-custody qualification.
-  Prior e442/a594/1dcd/68e archives were privately preserved and byte/hash verified, including
-  restoring the positive ZIP after the explicitly negative-only overlay experiment.
+  [application token receipt](application-token-boundary.md). Exact head
+  `323aaf278892b740263628735658eaf8c18311eb` passed seven checks at 42630052659 attempt 2;
+  initial Desktop failed hosted runner acquisition before steps, not product execution. Protected
+  matching-head merge `1b7a2b243fa78734638cc79d80089255cbb7d9cd` and separate exact-main
+  42638457680 passed. Failed-job-only rerun did not re-execute all earlier jobs.
+- Current Pi #487 pins legacy file receiving UUID across confirmation/conversion/import, enforces
+  optional unambiguous server receiver assertions before SDK/persistent source/job work, and preserves
+  absent-field clients/detached jobs. Its actual native gate exposed raw FormData failure missed by
+  Go/browser tests. A shared bounded native-only byte adapter has 788 browser passes/one skip and
+  exact-c9 actual twelve-check native success. Later full local native races fail signup fixtures;
+  exact-eed native runtime times out before signup completion, not at multipart. Fixed-label progress
+  now preserves partial timeout evidence without extending budgets. A server-guard-bypass negative
+  timed out and is not yet calibrated. See the [manual receiver receipt](manual-import-receiver.md).
+  This slice is not accepted or overall ready; hosted/current runtime qualification remains.
+- The latest ZIP is exact `eed8536adf8685757289dad30796e07ae6a00e42`, not a later docs commit,
+  accepted native runtime, published/notarized/current-main release, older-macOS or independently
+  operated key-custody qualification. Earlier c9 (twelve checks), b916/68e (ten checks), a594/e442
+  and negative/diagnostic archives remain distinct and privately retained; positive ZIPs were
+  restored/byte-verified after overlay builds.
 - Earlier, the normal Cua route launched the exact-a594 clinical inspection app with a fresh synthetic,
   explicitly **unencrypted** SMART-UI-test directory; no record/profile/consent input occurred.
   Exact-window capture instead refuses `direct_capture_consent_required`; TCC booleans do not
