@@ -81,6 +81,17 @@ the latter and a partial date are shown; malicious-looking unit text remains esc
 zeros, exponent spellings, wide quantity numbers, duplicate fields, complex/invalid values, oversized/deep
 inputs, allow-listed navigation and clearing private preview state are covered. Frontend structural/compiler
 validation passed. Existing test-template/form/browserslist warnings remain recorded. These newly developed
-presentation controls are not a pre-existing test-first regression or native GUI qualification. Exact original export and precision-preserving Observation display still
+presentation controls are not a pre-existing test-first regression or native GUI qualification.
+
+After integrating the current scoped native bridge normally, a **new matched local candidate** built at
+clean source `de437c482c0b5f435b5fb6a81fc32624bdb556b3`, including the original-write deadline and safe native
+account-context adapter. The previous `1958ae0598` ZIP was preserved and byte/hash-verified before
+replacement. The current ZIP hash/source/build log remain private. Extracted ad-hoc signature verification
+passed; its actual packaged backup executable passed the separate-process WAL integration test again
+(4.225s package / 3.83s test). All native internal race packages, including composed encrypted clinical
+restart, passed at that source (host 25.709s, shell 31.443s, SMART 7.125s, fixture 1.281s).
+The matched app is not launched or GUI-qualified; the existing permission-gated route is not bypassed.
+Broad legacy pooled-context failures remain explicitly tracked in #474 and cannot be treated as a pass
+merely because this local candidate builds or the clinical scope tests succeed. Exact original export and precision-preserving Observation display still
 need user-facing operational verification. No live provider, production identity or deployment is authorized
 by this checkpoint.
