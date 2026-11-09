@@ -206,6 +206,7 @@ func (ae *AppEngine) Setup() (*gin.RouterGroup, *gin.Engine) {
 					secure.POST("/users", handler.CreateUser)
 					handler.RegisterSourceAccessRoutes(secure)
 					handler.RegisterDocumentImportRoutes(secure)
+					handler.RegisterClinicalSnapshotRoutes(secure)
 
 					secure.POST("/practitioners", handler.CreatePractitioner)
 					secure.PUT("/practitioners/:practitionerId", handler.UpdatePractitioner)

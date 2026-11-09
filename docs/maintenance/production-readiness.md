@@ -39,8 +39,8 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Internal reader integrated; [atomic store](clinical-snapshot-persistence.md) locally qualified, hosted validation pending; no clinical action yet |
 | Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Not reassessed |
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
-| Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Not reassessed |
-| Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | Not reassessed |
+| Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API, fresh JWT receiver check and post-commit notifications locally tested; household/provider consent still open |
+| Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
 | Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Not reassessed |
 | Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Not reassessed |
 | Operations | Documented deployment, health, monitoring, retention, recovery objectives and rollback rehearsal | Not reassessed |
@@ -86,6 +86,21 @@ internal-only development; host/API/UI exposure comes after repository acceptanc
 5. Require accepted migrations, source review and protected validation before integration. Then add the
    explicit owner-confirmed native bridge/API/UI action and synthetic end-to-end flow as its own slice.
 
+## Current slice: explicit owner-confirmed import API
+
+Pi owns `task/clinical-snapshot-api`, stacked on the atomic store in #472. Add only authenticated owner
+routes: explicit confirmation plus the expected receiving UUID, a bounded raw **string** collection that
+never round-trips numeric values through JavaScript numbers, payload-free errors, owner-only metadata
+and an attachment-only exact-original download. Publish refresh events only after a successful new commit.
+Exercise real encrypted HTTP persistence/restore boundaries and negative/stale-recipient/parser cases.
+
+Native/UI exposure follows separately. In particular, review the current main-window SMART bridge's
+local-identity binding before adding clinical retrieval; main-window authorization alone is not evidence
+of which local identity owns a provider connection. The UI must confirm the receiving local identity,
+clear stale previews on identity change and never label owner-declared origins as provider attestation.
+Legacy account/import writer coordination, numeric display precision and narrative/network egress also
+remain application-wide acceptance items, not claims supplied by the internal store.
+
 ## Current execution checkpoint
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
@@ -99,7 +114,30 @@ internal-only development; host/API/UI exposure comes after repository acceptanc
   locally qualified and merged with accepted parent/main history without rewriting it. Exact originals,
   5,000-Observation acceptance, distinct scopes, replay/updates, encrypted restore, rollback/cancellation
   and deletion races have concrete synthetic evidence. The final-metadata focused race suite passed
-  (25.102s) and maximum collection passed (32.018s). Hosted qualification and API/native/UI work remain.
+  (25.102s) and maximum collection passed (32.018s). #472's initial seven green checks were insufficient:
+  source review reproduced an entry-URL-only stale provenance defect; tests failed before correction,
+  then both resource types and the full focused store suite passed under race (15.861s). The review thread
+  was resolved with that evidence. All seven checks then qualified `b5a097f37d` (run 42560019280);
+  #472 merged at `af644a006a8b5bc1bc857be0b8aad743b30f7b15`. Exact-main run 42561759380 passed.
+- The [explicit owner-confirmed API](clinical-snapshot-api.md) is locally implemented on its own task
+  branch. Real JWT middleware, encrypted HTTP originals/history, stale-recipient refusal, rollback/event
+  ordering, strict/bounded intake and immutable backup-copy restore passed focused race tests (11.707s).
+  Complete web/handler suites passed (63.519s / 51.416s). Native local-identity binding and the clinical UI
+  are not implemented by this API slice.
+- #473 source review found synchronous refresh delivery could hold the sole import slot indefinitely.
+  A real-bus, unconsumed-client HTTP regression reproduced the committed-response stall. The bus now offers
+  optional nonblocking best-effort publication; the API never falls back to blocking delivery or creates
+  per-import sender goroutines. The unchanged stalled-client test and a second changed import pass with
+  both exact originals retained, while legacy-only notification is skipped with a fixed warning. Fresh
+  focused HTTP race (12.949s), event-bus race (1.195s), full web/handler (62.819s / 52.351s), desktop graph
+  controls (1.386s) and changed-package vet passed. All seven checks qualified `1b633bd28f` (42565808793),
+  but protected merging was refused by a second unresolved source-review thread, not bypassed.
+- #473's second review found both original-download slots could be retained by connected non-reading TCP
+  clients. A real-socket test with two stalled 8 MiB originals reproduced failure to recover admission
+  within 35 seconds. A separate 30-second response write deadline fixes it without altering global server
+  timeouts; a subsequent caller retrieves exact original bytes while the first clients stay connected.
+  Focused HTTP race passed (47.132s), full web/handler passed (62.264s / 82.430s), and the same real-socket
+  test under the desktop graph passed (32.028s). Corrected-head hosted qualification/review is pending.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,

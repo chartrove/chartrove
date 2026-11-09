@@ -2,6 +2,7 @@ package event_bus
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/sirupsen/logrus"
 	"log"
@@ -97,6 +98,24 @@ func (bus *eventBus) PublishMessage(eventMsg models.EventInterface) error {
 		Message: string(payload),
 	}
 	return nil
+}
+
+var ErrNotificationUnavailable = errors.New("refresh notification unavailable")
+
+// TryPublishMessage does not wait for the dispatcher or its clients. Unlike a
+// timeout wrapper around PublishMessage, this cannot strand a sender goroutine
+// for each import while an SSE writer holds the dispatcher indefinitely.
+func (bus *eventBus) TryPublishMessage(eventMsg models.EventInterface) error {
+	payload, err := json.Marshal(eventMsg)
+	if err != nil {
+		return err
+	}
+	select {
+	case bus.message <- EventBusMessage{UserID: eventMsg.GetUserID(), Message: string(payload)}:
+		return nil
+	default:
+		return ErrNotificationUnavailable
+	}
 }
 
 func (bus *eventBus) AddListener(listener *EventBusListener) {

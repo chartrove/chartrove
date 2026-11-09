@@ -2,6 +2,14 @@ package event_bus
 
 import "github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 
+// BestEffortPublisher is an optional, nonblocking notification capability.
+// It admits a bounded event immediately or reports unavailable; callers must
+// not fall back to synchronous publication after a durable commit.
+// Legacy Interface implementations need not implement this capability.
+type BestEffortPublisher interface {
+	TryPublishMessage(eventMsg models.EventInterface) error
+}
+
 //go:generate mockgen -source=interface.go -destination=mock/mock_event_bus.go
 type Interface interface {
 	PublishMessage(eventMsg models.EventInterface) error
