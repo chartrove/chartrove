@@ -36,9 +36,9 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Gate | Evidence required | State |
 | --- | --- | --- |
 | Repository custody | [Reclamation receipt](repository-reclamation-2026-11-09.md), one checkout, canonical remote | Verified; Pi launch-path anchor pending session restart |
-| Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Not reassessed |
+| Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Internal reader integrated; [atomic store](clinical-snapshot-persistence.md) locally qualified, hosted validation pending; no clinical action yet |
 | Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Not reassessed |
-| Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request correction](provider-log-privacy.md) integrated; [dynamic response correction](provider-response-privacy.md) in progress |
+| Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Not reassessed |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | Not reassessed |
 | Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Not reassessed |
@@ -65,15 +65,41 @@ remain evidence, not current acceptance or authorization. Only this repository i
   The only checkout is canonical. Rex reports the new path. Pi's captured launch-path limitation is explicitly
   documented there, with a labelled nonrepository anchor rather than a duplicate clone or symlink.
 
+## Next implementation slice: atomic clinical persistence
+
+Exclusive Pi ownership continues in the primary checkout, task branch `task/clinical-snapshot-persistence`,
+initially stacked on the qualified #466 reader and accepted #470 source-log correction. This is synthetic,
+internal-only development; host/API/UI exposure comes after repository acceptance.
+
+1. Revalidate the bounded raw collection at the database boundary, derive source identity from the exact
+   FHIR base and Patient ID, and require the authenticated local owner. Never promote imported records to
+   editable local provenance or infer grants/native authorization from origin metadata.
+2. Commit source creation/reuse, all Patient/Observation upserts, ownership checks, associations, immutable
+   original snapshot and payload-free audit together. Retain raw lexical values and unknown extensions;
+   indexed projections are not a substitute for originals. No pre-commit success events.
+3. Exact historical replay is a no-new-clinical-write acknowledgement, not permission to roll newer records back.
+   Changed snapshots update current records while preserving originals and avoiding deletion of absent
+   Observations (a bounded snapshot is not evidence of provider-side deletion).
+4. Exercise encrypted reopen, distinct owners/endpoints/Patients, raw fidelity, repeated/changed import,
+   injected final-write failure and rollback, concurrent import, cancellation, source/account deletion and
+   backup/restore. Existing Fasten/manual import and grants must remain unchanged.
+5. Require accepted migrations, source review and protected validation before integration. Then add the
+   explicit owner-confirmed native bridge/API/UI action and synthetic end-to-end flow as its own slice.
+
 ## Current execution checkpoint
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
   `add1a4ad2cc6c95545c2fb7ead4eff50095df7c4`, after all seven required checks succeeded on
   `5ef82eb0c9f17e0daecb81d5eb358ef862a7524f` (Validation run 42547082306). Exact-main validation is
   separate and must be checked; this is not a product release.
-- Draft #466 shared parser tests and the native SMART race suite were freshly executed on its preserved
-  head and passed. Its implementation remains unexposed, Patient/Observation-only, bounded and in memory;
-  persistence and repeat updates are not implemented. Current-main qualification and review disposition remain.
+- Resumed #466 merged at `dea9101b4b8959ba5f359fc9ce5d5bb57bdd71ca` after all seven checks passed
+  exact head `469f06c16febdc50c501862f21d07a1f518ab9b0` (run 42556131799). Its implementation remains
+  an unexposed in-memory reader, not a clinical-import action or end-to-end persistence acceptance.
+- The [atomic persistence slice](clinical-snapshot-persistence.md), source checkpoint `626c6db23c`, is
+  locally qualified and merged with accepted parent/main history without rewriting it. Exact originals,
+  5,000-Observation acceptance, distinct scopes, replay/updates, encrypted restore, rollback/cancellation
+  and deletion races have concrete synthetic evidence. The final-metadata focused race suite passed
+  (25.102s) and maximum collection passed (32.018s). Hosted qualification and API/native/UI work remain.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,
@@ -86,7 +112,9 @@ remain evidence, not current acceptance or authorization. Only this repository i
 - Legacy dynamic registration/token response-body logging was also reproduced using an intercepting
   in-memory HTTP transport. The [focused correction](provider-response-privacy.md) closes rejected replies
   without reading their potentially unbounded bodies. Both real success paths retain positive regression
-  controls; the complete models race suite passed. Hosted validation and integration remain pending.
+  controls; the complete models race suite passed. PR #471 merged at
+  `0c175f744099c5b10479f27571eec5c8347ce9bb` after all seven checks qualified its exact head;
+  exact-main run 42553276768 also succeeded.
 - Standalone factory fallbacks still permit unencrypted SQLite and wildcard HTTP listening. Deployment
   configuration and secure-default acceptance require reassessment; the desktop already uses private
   encrypted storage and no application API TCP listener.
