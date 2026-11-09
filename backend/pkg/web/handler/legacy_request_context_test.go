@@ -93,6 +93,11 @@ func TestLegacyHandlersPreserveRepositoryRequestLifetime(t *testing.T) {
 		{"summary", GetSummary, "", false, http.StatusOK},
 		{"dashboard settings", GetDashboard, "", false, http.StatusOK},
 		{"access tokens", GetAccessTokens, "", false, http.StatusOK},
+		{"OIDC link password lookup", func(c *gin.Context) {
+			// Empty fixture hash refuses proof after the real helper's repository lookup.
+			// This checks request lifetime, not successful password/JWT authentication.
+			oidcPasswordUser(c, c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository))
+		}, `{"password":"synthetic-password"}`, false, http.StatusUnauthorized},
 		{"practitioner favorites", GetUserFavoritePractitioners, "", false, http.StatusOK},
 		{"background job list", ListBackgroundJobs, "", false, http.StatusOK},
 		{"client failure record", CreateBackgroundJobError, `{}`, false, http.StatusOK},
