@@ -4,12 +4,16 @@ on:
     paths:
       - Dockerfile
       - .dockerignore
+      - config.yaml
+      - scripts/container-config.sh
       - .github/workflows/container-validation.yaml
   push:
     branches: [main]
     paths:
       - Dockerfile
       - .dockerignore
+      - config.yaml
+      - scripts/container-config.sh
       - .github/workflows/container-validation.yaml
   workflow_dispatch:
 permissions:

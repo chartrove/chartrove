@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"runtime"
 	"strings"
@@ -428,13 +429,21 @@ func (ae *AppEngine) Start() error {
 	select {}
 }
 
-func (ae *AppEngine) startServer(r *gin.Engine) {
+func (ae *AppEngine) listenAddress() string {
 	host := ae.Config.GetString("web.listen.host")
-	port := ae.Config.GetString("web.listen.port")
-	listenAddr := fmt.Sprintf("%s:%s", host, port)
+	// Preserve existing bracketed IPv6 settings as well as ordinary host values.
+	if strings.HasPrefix(host, "[") && strings.HasSuffix(host, "]") {
+		host = host[1 : len(host)-1]
+	}
+	if strings.TrimSpace(host) == "" {
+		host = "127.0.0.1"
+	}
+	return net.JoinHostPort(host, ae.Config.GetString("web.listen.port"))
+}
 
+func (ae *AppEngine) startServer(r *gin.Engine) {
 	ae.Srv = &http.Server{
-		Addr:    listenAddr,
+		Addr:    ae.listenAddress(),
 		Handler: r,
 	}
 

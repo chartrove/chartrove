@@ -52,12 +52,32 @@ them for records. The desktop explicitly forces the setting off.
 ## Inherited standalone server settings
 
 The standalone backend has a different startup/configuration path. The factory
-fallbacks bind 0.0.0.0, disable HTTPS and disable SQLite encryption. The repository
-[config.yaml](../config.yaml) explicitly enables HTTPS and SQLite encryption.
-Neither is evidence that an arbitrary deployment is ready for health records.
-Review the effective network and data settings before running a standalone server.
-PostgreSQL transport/storage protection is configured separately; SQLite's
-application encryption option does not establish PostgreSQL encryption.
+fallback and repository [config.yaml](../config.yaml) now select IPv4 loopback
+`127.0.0.1`. Empty/blank host settings also resolve to loopback rather than an
+implicit wildcard. Explicit `web.listen.host`/`FASTEN_WEB_LISTEN_HOST` addresses,
+including deliberate wildcard/IPv6 settings, remain operator choices. Existing
+private configuration files are not rewritten. Other local users, proxies,
+forwarders and explicit external publication are separate boundaries.
+
+Factory HTTPS and SQLite encryption fallbacks remain disabled; the repository
+sample explicitly enables both. With a valid private signing key but no configured
+encryption key, standalone startup enters its existing STANDBY setup flow before
+opening the repository, rather than proving that an encrypted database is usable.
+Neither configuration is evidence of production readiness. Review effective network,
+key custody and data settings before running a server. PostgreSQL transport/storage
+protection is separate; SQLite's encryption option does not protect PostgreSQL.
+
+The image build derives an explicit container-side wildcard bind from the single
+public standalone sample using [the guarded producer](../scripts/container-config.sh).
+No image environment default overrides an operator-mounted configuration. Both
+Compose examples publish only `127.0.0.1:${PORT:-9090}:8080` by default; intentional
+remote publication uses `FASTEN_BIND_HOST` (an IPv6 value in short port syntax needs
+brackets, for example `[::1]`). This host-publication choice is distinct from the
+container's `FASTEN_WEB_LISTEN_HOST`. Remote companion pairing needs deliberate
+network/proxy configuration, not merely a QR code. The legacy production Compose
+file still selects an upstream image: this change does not advertise, build, deploy
+or certify a Chartrove production image, migrate records, or configure TLS/firewalls.
+See [the scoped defaults receipt](maintenance/standalone-loopback.md).
 
 Standalone startup rejects an empty JWT signing key and the historical shared
 example before opening storage. The example configuration leaves the key empty.

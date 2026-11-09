@@ -63,4 +63,9 @@ connection credential, not development output.
 Raw logs, token fixtures and browser data remain private. This is source/browser validation, not
 normal rendered Wails/interactive mobile QR scanning, renderer partitioning, production identity,
 older-OS, independently operated recovery or overall production readiness. The separate #487
-native multipart runtime/negative-calibration gates remain open. Protected publication is pending.
+native multipart runtime/negative-calibration gates remain open.
+
+Exact `5391dca276443d1384278d72c667f7cc83ba4eea` passed all seven42693108010.
+Fresh head/CLEAN/no-unresolved-thread/ready verification preceded protected #493 merge
+`921f42adc2cba7d80e016cd0ecb901dd26c0f014` at 2026-11-09T21:00:43Z. Separate exact-main
+42698388769 is pending at this checkpoint; protected acceptance is not a claimed main-run result.
