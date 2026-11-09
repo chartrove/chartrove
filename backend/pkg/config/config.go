@@ -24,7 +24,7 @@ func (c *configuration) Init() error {
 	c.Viper = viper.New()
 	//set defaults
 	c.SetDefault("web.listen.port", "8080")
-	c.SetDefault("web.listen.host", "0.0.0.0")
+	c.SetDefault("web.listen.host", "127.0.0.1")
 	c.SetDefault("web.listen.basepath", "")
 	c.SetDefault("web.listen.https.enabled", false)
 	c.SetDefault("web.listen.https.certDir", "certs")

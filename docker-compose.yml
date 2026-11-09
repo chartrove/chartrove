@@ -15,7 +15,8 @@ services:
       - HOST_IP=${IP}
       - HOST_PORT=${PORT}
     ports:
-      - "${PORT:-9090}:8080"
+      # Explicit FASTEN_BIND_HOST is required to publish beyond this host's loopback.
+      - "${FASTEN_BIND_HOST:-127.0.0.1}:${PORT:-9090}:8080"
     volumes:
       - ./db:/opt/fasten/db
       - ./certs:/opt/fasten/certs/shared
