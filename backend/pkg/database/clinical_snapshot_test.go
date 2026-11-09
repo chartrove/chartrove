@@ -50,7 +50,11 @@ func clinicalTestConfig(t *testing.T, path string) config.Interface {
 
 func clinicalTestFixture(t *testing.T) (*GormRepository, config.Interface, []context.Context, []*models.User, *clinicalTestEvents) {
 	t.Helper()
-	cfg := clinicalTestConfig(t, filepath.Join(t.TempDir(), "synthetic-clinical.db"))
+	return clinicalConfiguredTestFixture(t, clinicalTestConfig(t, filepath.Join(t.TempDir(), "synthetic-clinical.db")))
+}
+
+func clinicalConfiguredTestFixture(t *testing.T, cfg config.Interface) (*GormRepository, config.Interface, []context.Context, []*models.User, *clinicalTestEvents) {
+	t.Helper()
 	events := &clinicalTestEvents{Interface: event_bus.NewNoopEventBusServer()}
 	appLog := logrus.New()
 	appLog.SetOutput(&bytes.Buffer{})
@@ -136,8 +140,8 @@ func TestClinicalSnapshotEntryProvenance(t *testing.T) {
 
 // Keep the declared maximum reproducible, rather than inferring whole-import
 // feasibility from a parser test or a per-record timing extrapolation.
-func TestClinicalSnapshotMaximumCollection(t *testing.T) {
-	r, _, contexts, _, _ := clinicalTestFixture(t)
+func clinicalMaximumTestPayload(t *testing.T) []byte {
+	t.Helper()
 	entries := []json.RawMessage{json.RawMessage(`{"resource":{"resourceType":"Patient","id":"synthetic-patient"}}`)}
 	for i := range clinicalsnapshot.MaxObservations {
 		entries = append(entries, json.RawMessage(fmt.Sprintf(`{"resource":{"resourceType":"Observation","id":"synthetic-%d","status":"final","code":{"text":"Synthetic maximum collection"},"subject":{"reference":"Patient/synthetic-patient"},%s}}`, i, clinicalQuantity)))
@@ -148,6 +152,12 @@ func TestClinicalSnapshotMaximumCollection(t *testing.T) {
 		Entry        []json.RawMessage `json:"entry"`
 	}{"Bundle", "collection", entries})
 	require.NoError(t, err)
+	return raw
+}
+
+func TestClinicalSnapshotMaximumCollection(t *testing.T) {
+	r, _, contexts, _, _ := clinicalTestFixture(t)
+	raw := clinicalMaximumTestPayload(t)
 	result, err := r.ImportClinicalSnapshot(contexts[0], clinicalTestBase, "Synthetic maximum collection", raw)
 	require.NoError(t, err)
 	require.Equal(t, clinicalsnapshot.MaxObservations+1, result.Created)
