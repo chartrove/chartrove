@@ -1,12 +1,10 @@
 package web
 
 import (
-	"bytes"
 	"context"
 	"embed"
-	"encoding/json"
+	"errors"
 	"fmt"
-	"io"
 	"net"
 	"net/http"
 	"runtime"
@@ -307,81 +305,6 @@ func (ae *AppEngine) SetupEmbeddedFrontendRouting(embeddedAssetsFS embed.FS, bas
 	return router
 }
 
-func (ae *AppEngine) SetupInstallationRegistration() error {
-	//check if installation is already registered
-	systemSettings, err := ae.deviceRepo.LoadSystemSettings(context.Background())
-	if err != nil {
-		return fmt.Errorf("an error occurred while loading system settings: %s", err)
-	}
-
-	if systemSettings.InstallationID != "" && systemSettings.InstallationSecret != "" {
-		//already setup, exit
-		//TODO: future, update fasten-onprem, fasten-sources version
-		return nil
-	}
-
-	//setup the installation registration payload
-	registrationData := &models.InstallationRegistrationRequest{
-		SoftwareArchitecture: runtime.GOARCH,
-		SoftwareOS:           runtime.GOOS,
-	}
-
-	if ae.RelatedVersions != nil {
-		if fastenSourcesVersion, fastenSourcesVersionOk := ae.RelatedVersions["sources"]; fastenSourcesVersionOk {
-			registrationData.FastenSourcesVersion = fastenSourcesVersion
-		}
-		if fastenOnpremVersion, fastenOnpremVersionOk := ae.RelatedVersions["onprem"]; fastenOnpremVersionOk {
-			registrationData.FastenOnpremVersion = fastenOnpremVersion
-		}
-		if fastenDesktopVersion, fastenDesktopVersionOk := ae.RelatedVersions["desktop"]; fastenDesktopVersionOk {
-			registrationData.FastenDesktopVersion = fastenDesktopVersion
-		}
-	}
-
-	//setup the http request
-	registrationDataJson, err := json.Marshal(registrationData)
-	if err != nil {
-		return fmt.Errorf("an error occurred while serializing installation registration data: %s", err)
-	}
-
-	//send the registration request
-	resp, err := http.Post(
-		"https://api.platform.fastenhealth.com/v1/installation/register",
-		"application/json",
-		bytes.NewBuffer(registrationDataJson),
-	)
-	if err != nil {
-		return fmt.Errorf("an error occurred while sending installation registration request: %s", err)
-	} else if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("an error occurred while sending installation registration request: %s", resp.Status)
-	}
-	defer resp.Body.Close()
-
-	//unmarshal the registration response
-	bodyBytes, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return fmt.Errorf("an error occurred while reading installation registration response: %s", err)
-	}
-	var registrationResponse models.ResponseWrapperTyped[models.InstallationRegistrationResponse]
-	err = json.Unmarshal(bodyBytes, &registrationResponse)
-	if err != nil {
-		return fmt.Errorf("an error occurred while unmarshalling installation registration response: %s", err)
-	}
-
-	//now that we have the registration response, store the registration data in the system settings
-	systemSettings.InstallationID = registrationResponse.Data.InstallationID
-	systemSettings.InstallationSecret = registrationResponse.Data.InstallationSecret
-
-	ae.Logger.Infof("Saving installation id to settings table: %s", systemSettings.InstallationID)
-
-	//save the system settings
-	err = ae.deviceRepo.SaveSystemSettings(context.Background(), systemSettings)
-	if err != nil {
-		return fmt.Errorf("an error occurred while saving system settings: %s", err)
-	}
-	return nil
-}
-
 func (ae *AppEngine) Start() error {
 	if err := config.ValidateJWTSigningKey(ae.Config); err != nil {
 		return err
@@ -406,7 +329,12 @@ func (ae *AppEngine) Start() error {
 	if !ae.StandbyMode {
 		err := ae.SetupInstallationRegistration()
 		if err != nil {
-			ae.Logger.Panicf("panic occurred:%v", err)
+			var settingsFailure *installationSettingsError
+			if errors.As(err, &settingsFailure) || !errors.Is(err, errOptionalInstallationRegistration) {
+				// Local settings/storage failures are not optional-service outages.
+				return err
+			}
+			ae.Logger.Warn("Optional installation registration unavailable; local service continues")
 		}
 	} else {
 		ae.Logger.Warn("Skipping SetupInstallationRegistration because in StandbyMode")

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 // LoadSystemSettings will retrieve settings from the database, and return a SystemSettings struct
@@ -32,46 +33,46 @@ func (gr *GormRepository) LoadSystemSettings(ctx context.Context) (*models.Syste
 // SaveSystemSettings will update save the settings to the database.
 func (gr *GormRepository) SaveSystemSettings(ctx context.Context, newSettings *models.SystemSettings) error {
 
-	//retrieve current settings from the database
-	currentSettingsEntries := []models.SystemSettingEntry{}
-
-	if err := gr.GormClient.
-		WithContext(ctx).
-		Find(&currentSettingsEntries).Error; err != nil {
-		return fmt.Errorf("Could not get settings from DB: %v", err)
-	}
-
-	//update settingsEntries
-
-	newSettingsEntries, err := newSettings.ToSystemSettingsEntry(currentSettingsEntries)
-	if err != nil {
-		return fmt.Errorf("merge new settings with DB: %v", err)
-	}
-
-	for ndx, settingsEntry := range newSettingsEntries {
-
-		var upsertErr error
-		if settingsEntry.ID == uuid.Nil {
-			//create new entry
-			upsertErr = gr.GormClient.
-				WithContext(ctx).
-				Model(&models.SystemSettingEntry{}).
-				Create(&settingsEntry).Error
-		} else {
-			// store in database.
-			upsertErr = gr.GormClient.
-				WithContext(ctx).
-				Model(&models.SystemSettingEntry{}).
-				Where([]uuid.UUID{settingsEntry.ID}).
-				Select("setting_value_numeric", "setting_value_string", "setting_value_bool", "setting_value_array").
-				Updates(newSettingsEntries[ndx]).Error
+	// Installation ID and secret are one credential pair. A later row failure
+	// must roll back earlier writes and propagate the actual storage error.
+	return gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		currentSettingsEntries := []models.SystemSettingEntry{}
+		if err := tx.Where("setting_key_name IN ?", []string{"installation_id", "installation_secret"}).Find(&currentSettingsEntries).Error; err != nil {
+			return fmt.Errorf("could not get system settings from DB: %w", err)
 		}
-
-		if upsertErr != nil {
-			return err
+		if len(currentSettingsEntries) != 2 {
+			return fmt.Errorf("system settings credential rows unavailable")
 		}
-	}
-	return nil
+		seen := make(map[string]bool, 2)
+		for _, entry := range currentSettingsEntries {
+			if entry.SettingDataType != "string" || seen[entry.SettingKeyName] {
+				return fmt.Errorf("system settings credential rows invalid")
+			}
+			seen[entry.SettingKeyName] = true
+		}
+		newSettingsEntries, err := newSettings.ToSystemSettingsEntry(currentSettingsEntries)
+		if err != nil {
+			return fmt.Errorf("merge new system settings with DB: %w", err)
+		}
+		for ndx, settingsEntry := range newSettingsEntries {
+			var result *gorm.DB
+			if settingsEntry.ID == uuid.Nil {
+				result = tx.Model(&models.SystemSettingEntry{}).Create(&settingsEntry)
+			} else {
+				result = tx.Model(&models.SystemSettingEntry{}).
+					Where([]uuid.UUID{settingsEntry.ID}).
+					Select("setting_value_numeric", "setting_value_string", "setting_value_bool", "setting_value_array").
+					Updates(newSettingsEntries[ndx])
+			}
+			if result.Error != nil {
+				return fmt.Errorf("could not save system settings: %w", result.Error)
+			}
+			if result.RowsAffected != 1 {
+				return fmt.Errorf("system settings credential row update incomplete")
+			}
+		}
+		return nil
+	})
 }
 
 // LoadSettings will retrieve settings from the database, store them in the AppConfig object, and return a Settings struct
