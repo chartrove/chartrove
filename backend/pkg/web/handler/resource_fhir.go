@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"io"
@@ -133,6 +134,10 @@ func CreateResourceComposition(c *gin.Context) {
 // find the PredecessorMap
 // - filter to only vertices that are "Condition" or "Encounter" and are "root" nodes (have no edges directed to this node)
 func GetResourceFhirGraph(c *gin.Context) {
+	getResourceFhirGraph(c, middleware.AuthenticatedRequestContext(c))
+}
+
+func getResourceFhirGraph(c *gin.Context, requestContext context.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
@@ -151,7 +156,7 @@ func GetResourceFhirGraph(c *gin.Context) {
 		return
 	}
 
-	resourceListDictionary, err := databaseRepo.GetFlattenedResourceGraph(middleware.AuthenticatedRequestContext(c), pkg.ResourceGraphType(graphType), graphOptions)
+	resourceListDictionary, err := databaseRepo.GetFlattenedResourceGraph(requestContext, pkg.ResourceGraphType(graphType), graphOptions)
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving list of resources", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})

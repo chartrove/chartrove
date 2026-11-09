@@ -130,3 +130,61 @@ verified authenticated requests: those opt-in diagnostics select a username from
 native authentication. Changing that authority/lifetime requires explicit analysis of the unsafe-mode
 contract, not blindly supplying a nil authenticated UUID or blessing an unverified name. #474 remains
 open for this producer and further evidence; a grep result or passing suite is not a global audit.
+
+This third repair subsequently qualified exact head `a594cd5e8ab32b126a7e707727efc3672e69c476`
+with seven checks (42608933755), no unresolved threads, and protected matching-head #481 merge
+`1e8dbc74c72fdac7e51b3a5c68c7b288b0da95b5`. Exact-main 42611382211 attempt 1 could not
+acquire its hosted macOS Go-CodeQL runner (ID 0, no steps); application jobs passed. Its infrastructure
+annotation and failed-job-only rerun are retained separately. Attempt 2 passed at the same exact
+merged SHA; this does not erase the initial infrastructure failure or imply all jobs were rerun.
+
+## Explicit opt-in diagnostic owner scope
+
+The next real-producer inspection found two source handlers still lending Gin to SQL/SDK, while
+`UnsafeResourceGraph` delegated its route-selected username to the authenticated adapter without a
+UUID. New actual-handler boundary tests genuinely failed both pooled-context assertions and graph
+HTTP 200 versus actual 500 (1.273s). These are deliberately boundary fakes, stopping source requests
+before SDK/network creation; the graph fake enforces the store's immutable-owner predicate. They are
+not real provider/credential-refresh/graph-database acceptance. The unit graph fixture was later
+tightened to a valid `MedicalHistory` type and supplemented with the real-store control below.
+
+The flag-off guard remains first and independently refuses all three entry points. With unsafe mode
+explicitly enabled, a request-scoped active-user lookup resolves the selected name once. A deliberately
+named **diagnostic owner query scope, not caller authentication**, copies its immutable UUID/name,
+masks inherited account/token values for lookup, and suppresses token propagation. It never sets Gin
+claims, grants a native login, links an identity or treats a route name as authenticated. Later
+same-name recreation cannot rewrite the copied UUID. The graph implementation accepts this explicit
+scope through a private helper; its normal public handler still uses authenticated middleware values.
+Source SQL and SDK constructors receive the stable request context, not Gin or a timed Gin child.
+
+The old deferred source-credential persistence intent matters if a provider rotates a refresh token
+before HTTP abort. Its context now deliberately survives request cancellation but has an independent
+10-second bound and the same immutable selected owner. This is synchronous finalization, not an
+untracked sender/worker or changed tracked-job cancellation policy. New helper controls verify that
+bound, own cancellation, identity copying and no local JWT; they do **not** exercise a real provider's
+rotation through the handler. Missing/deleted/nil-UUID/already-canceled selections fail closed before
+source work. Flag-off, selected-context/reuse, negative-owner and cleanup controls pass under race
+(2.010s). An initial post-fix compile mistake used `.Valid` on the model's `*time.Time` deletion field;
+it was corrected to a nil check, preserving the failed compile output separately from the genuine red.
+
+At source checkpoint `88a0cb1107f56f6e905bf1c30cf1ceda2cf81164`, fresh complete web/handler/
+middleware races passed (632.976s / 549.296s / 1.649s). Complete serialized native internal races
+passed: host 22.831s, composed encrypted shell 27.765s, SMART 5.895s, fixture 1.266s. Existing
+macOS target warnings remain. Changed-web vet/diff passed. No deadline/hash relaxation, dependency
+change, global fallback, production data/identity/provider or enabling of production unsafe mode occurred.
+
+An additional real encrypted SQLite graph test imports the strict synthetic Patient/Observation via
+the real-JWT clinical HTTP route, then registers the explicitly opted-in diagnostic graph route with
+no JWT. A compiler overlay of accepted `1e8dbc74c7`'s `unsafe.go` genuinely returns HTTP 500 instead
+of 200 (5.224s package); the corrected unchanged real graph and expanded boundary/helper selection
+pass under race (6.802s). The owner's Patient is present, another selected owner's response does not
+disclose it, and disabling the flag restores 503. Fixture user insertion bypasses password hashing,
+not a password/OIDC acceptance test. No external provider/refresh is involved. After adding this
+stronger control, fresh complete handler/middleware races passed (558.990s / 1.556s); production
+implementation remains the same as the earlier full-web/native checkpoint.
+
+This preserves explicitly opt-in diagnostic capability while constraining owner/lifetime reuse; it
+is not a security endorsement of unauthenticated provider proxying/name sync. Existing unsafe
+provider error/body/log policy, credential failure recovery, request-path authority and production
+configuration remain separate. #474 stays open pending final inventory/review; zero direct grep
+matches or a passing suite alone are not a complete caller/security audit.

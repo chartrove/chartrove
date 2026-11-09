@@ -62,16 +62,33 @@ remain evidence, not current acceptance or authorization. Only this repository i
   rollback/reopen and concurrent deletion have real runtime controls. The
   [PostgreSQL receipt](clinical-snapshot-postgres.md) retains #479's instrumented maximum-load
   limit; this is not production PostgreSQL security/operations or independent recovery acceptance.
-- Current Pi work resumes #474 on `task/request-context-isolation`: clinical route timers/imports
-  and further request-bound SQL producers now preserve original HTTP lifetime and immutable actor.
-  Genuine deadline/abort and seven additional producer regressions failed before correction;
-  post-parent complete web/handler/middleware and native race suites pass. This third bounded
-  repair awaits protected publication. Opt-in unsafe username-selected diagnostics remain separate
-  and are not silently authenticated or disabled by a blanket context substitution.
-- Actual GUI launch remains refused by the normal installed Cua daemon's `permissions_pending`
-  gate; Chartrove was not launched. Do not bypass it or infer permission from helper booleans.
-  Safe source/runtime work continues. The e442 inspection ZIP predates final UI review corrections
-  and subsequent context changes; no current GUI/release/recovery claim attaches to that artifact.
+- Clinical/remaining request-bound #481 qualified exact head
+  `a594cd5e8ab32b126a7e707727efc3672e69c476` (42608933755), then protected matching-head
+  merged at `1e8dbc74c72fdac7e51b3a5c68c7b288b0da95b5`. Exact-main 42611382211 attempt 1
+  failed hosted macOS runner acquisition before any CodeQL Go step (runner ID 0); application jobs
+  passed. Failed-job-only attempt 2 subsequently passed at the same exact merged SHA; the initial
+  infrastructure failure remains recorded.
+- Current Pi #474 work explicitly scopes opt-in diagnostics: pin the named active owner's immutable
+  UUID without manufacturing Gin/JWT authentication; use stable request lifetime for SQL/SDK and
+  separately bounded same-owner credential finalization after caller abort. Genuine source-handler
+  Gin-retention and graph-owner failures are corrected; an added actual encrypted HTTP graph
+  reproduces accepted-source 500 versus expected 200 and passes after correction, with foreign
+  non-disclosure/flag-off controls. Complete web/handler/middleware and native races pass. This
+  fourth bounded repair awaits protected publication; unsafe mode
+  remains disabled by default and is not production-approved.
+- A clean exact-a594 inspection ZIP now includes final UI/#478/#480/#481 changes. The prior e442
+  ZIP was privately preserved/byte-hash verified. Extracted strict ad-hoc signature and actual
+  packaged separate-process synthetic encrypted WAL recovery passed (3.80s test / 4.426s package).
+  This candidate predates the current diagnostic changes, is not notarized, and is not independent
+  key-custody/older-macOS/release acceptance.
+- The normal Cua route now launched that exact app in the background with a fresh synthetic,
+  explicitly **unencrypted** SMART-UI-test directory; no record/profile/consent input occurred.
+  Exact-window capture instead refuses `direct_capture_consent_required`; TCC booleans do not
+  prove direct-capture consent. Two bounded AX reads showed only window/menu chrome. No screenshot,
+  blind/foreground input, permission bypass or update occurred. The named lifecycle ended; the
+  task-owned synthetic app remains running. Legitimate owner approval via
+  `cua-driver permissions grant` is needed for visual QA, not an inferred grant or overall blocker
+  while safe independent work remains.
 
 The following slice plans are historical implementation intent. Current acceptance is above and in
 exact-source receipts, not the earlier future-tense wording.
