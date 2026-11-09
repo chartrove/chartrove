@@ -15,10 +15,11 @@ remain unchanged. This does not change provider registration, successful request
 credential persistence, source ownership, grants or synchronization. Existing API credentials are not
 rotated, and historic logs are not inspected or deleted.
 
-This is a focused correction, not an assurance that every log path is safe. In particular, legacy dynamic
-client registration/token error-body logging in `backend/pkg/models/source_credential.go` remains a
-separate source-hardening item. Ingress, proxy, SDK, browser and identity-provider logs require their own
-acceptance. No real provider request, real token or medical record was used.
+This is a focused correction, not an assurance that every log path is safe. Legacy dynamic-client
+registration/token error-body logging in `backend/pkg/models/source_credential.go` is addressed by the
+[separate response correction](provider-response-privacy.md); its acceptance is recorded there rather
+than inferred from this handler fix. Ingress, proxy, SDK, browser and identity-provider logs require their
+own acceptance. No real provider request, real token or medical record was used.
 
 ## Synthetic regression evidence
 
