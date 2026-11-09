@@ -3,6 +3,7 @@ package handler
 import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"net/http"
@@ -13,7 +14,7 @@ func GetCurrentUser(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorf("Failed to get current user: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to get current user"})

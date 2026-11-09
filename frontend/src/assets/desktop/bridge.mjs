@@ -6,8 +6,9 @@ export function createDesktopBridge(runtime) {
   return Object.freeze({
     smart: Object.freeze({
       providers: () => runtime.Call.ByName(`${smartService}.Providers`),
-      connect: providerID => runtime.Call.ByName(`${smartService}.Connect`, providerID),
-      readPatient: connectionID => runtime.Call.ByName(`${smartService}.ReadPatient`, connectionID),
+      connect: (providerID, localToken) => runtime.Call.ByName(`${smartService}.Connect`, providerID, localToken),
+      readPatient: (connectionID, localToken) => runtime.Call.ByName(`${smartService}.ReadPatient`, connectionID, localToken),
+      readClinicalSnapshot: (connectionID, localToken) => runtime.Call.ByName(`${smartService}.ReadClinicalSnapshot`, connectionID, localToken),
       cancel: providerID => runtime.Call.ByName(`${smartService}.Cancel`, providerID),
       disconnect: connectionID => runtime.Call.ByName(`${smartService}.Disconnect`, connectionID),
     }),

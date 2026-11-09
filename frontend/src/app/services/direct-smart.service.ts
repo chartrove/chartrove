@@ -1,7 +1,8 @@
-import {Inject, Injectable, InjectionToken} from '@angular/core';
+import {Inject, Injectable, InjectionToken, inject} from '@angular/core';
 import {Patient} from 'fhir/r4';
 import {DesktopBridge, GetDesktopBridge} from '../../lib/utils/desktop_bridge';
 import {SmartBridge, SmartConnection, SmartProvider} from '../models/direct-smart';
+import {AuthService} from './auth.service';
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
@@ -14,9 +15,29 @@ export class DirectSmartCleanupError extends Error {
 export const SMART_DESKTOP_BRIDGE = new InjectionToken<() => Promise<Pick<DesktopBridge, 'smart'>>>(
   'SMART_DESKTOP_BRIDGE', {providedIn: 'root', factory: () => GetDesktopBridge});
 
+export interface SmartLocalSession {readonly token: string; readonly ownerID: string}
+export const SMART_LOCAL_SESSION = new InjectionToken<() => SmartLocalSession>('SMART_LOCAL_SESSION', {
+  providedIn: 'root', factory: () => {
+    const auth = inject(AuthService);
+    return () => ({token: auth.GetAuthToken(), ownerID: auth.GetCurrentUser().native_user_id || ''});
+  }
+});
+
 @Injectable({providedIn: 'root'})
 export class DirectSmartService {
-  constructor(@Inject(SMART_DESKTOP_BRIDGE) private getDesktopBridge: () => Promise<Pick<DesktopBridge, 'smart'>>) {}
+  constructor(@Inject(SMART_DESKTOP_BRIDGE) private getDesktopBridge: () => Promise<Pick<DesktopBridge, 'smart'>>,
+    @Inject(SMART_LOCAL_SESSION) private getLocalSession: () => SmartLocalSession) {}
+
+  private localSession(): SmartLocalSession | undefined {
+    try {
+      const session = this.getLocalSession();
+      return session.token && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(session.ownerID) ? session : undefined;
+    } catch { return undefined; }
+  }
+
+  isCurrentIdentity(connection: SmartConnection): boolean {
+    return !!connection.owner?.id && this.localSession()?.ownerID === connection.owner.id;
+  }
 
   private async native(): Promise<SmartBridge> {
     try {
@@ -42,6 +63,8 @@ export class DirectSmartService {
   }
 
   async connect(providerID: string, signal: AbortSignal): Promise<{connection: SmartConnection, patient: Patient}> {
+    const session = this.localSession();
+    if (!session) throw new Error('Sign in again before opening a direct provider connection.');
     const smart = await this.native();
     let connectionID: string | undefined;
     let keep = false;
@@ -53,15 +76,19 @@ export class DirectSmartService {
     signal.addEventListener('abort', abort, {once: true});
     try {
       if (signal.aborted) throw new Error();
-      const received = await smart.connect(providerID);
+      const received = await smart.connect(providerID, session.token);
       connectionID = typeof received?.id === 'string' ? received.id : undefined;
       if (signal.aborted || !connectionID || received.provider_id !== providerID ||
         typeof received.patient_id !== 'string' || !/^[A-Za-z0-9.-]{1,64}$/.test(received.patient_id) ||
-        !Number.isFinite(received.expires_at) || received.expires_at <= Date.now() / 1000) throw new Error();
+        !Number.isFinite(received.expires_at) || received.expires_at <= Date.now() / 1000 ||
+        !received.owner || received.owner.id !== session.ownerID || typeof received.owner.username !== 'string' ||
+        !received.owner.username || received.owner.username.length > 256) throw new Error();
       const connection: SmartConnection = {id: connectionID, provider_id: providerID,
-        patient_id: received.patient_id, expires_at: received.expires_at};
-      const parsed: unknown = JSON.parse(await smart.readPatient(connectionID));
-      if (signal.aborted || !isRecord(parsed) || parsed['resourceType'] !== 'Patient' || parsed['id'] !== connection.patient_id) throw new Error();
+        patient_id: received.patient_id, expires_at: received.expires_at,
+        owner: {id: received.owner.id, username: received.owner.username}};
+      if (!this.isCurrentIdentity(connection)) throw new Error();
+      const parsed: unknown = JSON.parse(await smart.readPatient(connectionID, session.token));
+      if (signal.aborted || !this.isCurrentIdentity(connection) || !isRecord(parsed) || parsed['resourceType'] !== 'Patient' || parsed['id'] !== connection.patient_id) throw new Error();
       // The Go host verifies the same identity. Only the FHIR Patient crosses
       // this boundary; no provider credentials or arbitrary request URLs do.
       const patient = parsed as unknown as Patient;

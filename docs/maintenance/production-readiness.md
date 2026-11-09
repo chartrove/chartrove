@@ -37,7 +37,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | --- | --- | --- |
 | Repository custody | [Reclamation receipt](repository-reclamation-2026-11-09.md), one checkout, canonical remote | Verified; Pi launch-path anchor pending session restart |
 | Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Internal reader integrated; [atomic store](clinical-snapshot-persistence.md) locally qualified, hosted validation pending; no clinical action yet |
-| Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Not reassessed |
+| Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Native bridge UUID/session binding locally qualified; full household/recovery/Authentik remain |
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API, fresh JWT receiver check and post-commit notifications locally tested; household/provider consent still open |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
@@ -101,6 +101,17 @@ clear stale previews on identity change and never label owner-declared origins a
 Legacy account/import writer coordination, numeric display precision and narrative/network egress also
 remain application-wide acceptance items, not claims supplied by the internal store.
 
+## Next slice: scope the native SMART bridge
+
+Pi owns `task/scoped-smart-bridge`, initially stacked on the locally tested API. Before exposing clinical
+retrieval, bind each new native provider connection to a real authenticated local UUID resolved through
+the embedded backend, not browser-decoded claims or a caller-supplied identity. Recheck active identity
+before and after Patient/clinical reads and connection completion. Keep the existing main-window boundary,
+provider credentials in Go and constant errors; do not add arbitrary URL fetching or an external auth service.
+Cleanup must still release in-memory provider credentials after local logout/expiry. Match native/asset
+signatures and preserve Patient-only operation, with cross-identity/window/session-change negative tests.
+The clinical import UI and its explicit receiving-profile confirmation remain a subsequent slice.
+
 ## Current execution checkpoint
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
@@ -124,6 +135,14 @@ remain application-wide acceptance items, not claims supplied by the internal st
   ordering, strict/bounded intake and immutable backup-copy restore passed focused race tests (11.707s).
   Complete web/handler suites passed (63.519s / 51.416s). Native local-identity binding and the clinical UI
   are not implemented by this API slice.
+- The [scoped native bridge](scoped-smart-bridge.md) now resolves local identity via the actual embedded
+  JWT/account stack and guards connection/Patient/clinical reads before and after I/O. Real encrypted
+  signup/delete/username-recreation tests and all native internal race suites passed. A separate
+  soft-deleted-account middleware regression failed before correction (204 vs expected 401); the unchanged
+  active-account positive control and complete middleware race suite passed afterward. Full Angular
+  acceptance passed 724 tests with one skip and retained existing test-template console diagnostics.
+  Native package vet/build and frontend structural/compiler validation passed; matching packaged GUI
+  and clinical import/receiving-profile confirmation are not yet qualified.
 - #473 source review found synchronous refresh delivery could hold the sole import slot indefinitely.
   A real-bus, unconsumed-client HTTP regression reproduced the committed-response stall. The bus now offers
   optional nonblocking best-effort publication; the API never falls back to blocking delivery or creates
@@ -137,7 +156,10 @@ remain application-wide acceptance items, not claims supplied by the internal st
   within 35 seconds. A separate 30-second response write deadline fixes it without altering global server
   timeouts; a subsequent caller retrieves exact original bytes while the first clients stay connected.
   Focused HTTP race passed (47.132s), full web/handler passed (62.264s / 82.430s), and the same real-socket
-  test under the desktop graph passed (32.028s). Corrected-head hosted qualification/review is pending.
+  test under the desktop graph passed (32.028s). All seven corrected-head checks passed on
+  `14eded02f5ebc5518cccbb0963a6c5a37f9926aa` (42568249499), with both review threads resolved.
+  Matching-head protected merge succeeded at `3fa5d8e993d1f4bb0d8d2b212eae4690a78a2e8d`; exact-main
+  validation 42570752698 passed. This qualifies the scoped API slice, not overall production readiness.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,
@@ -153,6 +175,15 @@ remain application-wide acceptance items, not claims supplied by the internal st
   controls; the complete models race suite passed. PR #471 merged at
   `0c175f744099c5b10479f27571eec5c8347ce9bb` after all seven checks qualified its exact head;
   exact-main run 42553276768 also succeeded.
+- Final bridge integration found that raw Gin contexts do not provide request lifetime by default,
+  while globally enabling fallback is unsafe when SQL retains pooled request objects. That global trial
+  was rejected after a native encrypted identity test reported a race. Native authentication/account calls
+  now use stable request contexts and a copied server-authenticated UUID/username, preserving cancellation
+  without pooled Gin lifetime. Native race/vet, snapshot-context tests, full non-race web/handler/middleware,
+  desktop Node and full Angular tests passed. Broader race attempts were incomplete and found legacy manual
+  import pool races; an exact-main compiler overlay independently reproduces them (56.714s). Pi owns
+  [#474](https://github.com/chartrove/chartrove/issues/474) for that next bounded repair; it remains a
+  production-readiness gap rather than being hidden behind green non-race CI.
 - Standalone factory fallbacks still permit unencrypted SQLite and wildcard HTTP listening. Deployment
   configuration and secure-default acceptance require reassessment; the desktop already uses private
   encrypted storage and no application API TCP listener.
