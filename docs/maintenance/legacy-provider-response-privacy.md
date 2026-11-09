@@ -1,11 +1,11 @@
 # Legacy provider HTTP rejection-body privacy
 
-## Draft scope and ownership
+## Scope and ownership
 
 Pi owns #496 in the sole checkout, branch `task/legacy-provider-response-privacy`,
 from accepted `5bf2ca0ff56806f26e28f8429b688bdc18ed12a6`. Validated local product
-checkpoint: `65d7b54fa2e60c549d3db9d344c14756faebd684`; protected publication remains
-pending at this checkpoint.
+checkpoint: `65d7b54fa2e60c549d3db9d344c14756faebd684`. Subsequent protected acceptance
+and separate exact-main qualification are recorded below.
 The preserved `task/provider-response-privacy` name belongs to historical #471, not
 this task; a failed branch-name collision changed no source or branch ownership.
 
@@ -70,7 +70,17 @@ latency policies remain; no new global deadline or scheduler policy was adopted.
 - Native cmd/host/shell/SMART/smoke compiled 0.706/2.148/1.615/0.210/0.158s with
   explicitly no tests run. Existing macOS object/deployment-target warning scope is
   retained, not an older-OS/runtime certificate. No full handler/web race, native
-  runtime, hosted publication or actual provider acceptance is claimed yet.
+  runtime or actual provider acceptance is claimed by these local checks.
+
+## Protected acceptance and independent main qualification
+
+Exact `dc74540f80dd597d12867c7f068abed313794cde` passed all seven42711274175:
+Backend8m11s, Frontend4m01s, Desktop8m31s, actions49s, Go16m14s, JS2m32s and
+aggregate5s. Go was actual tracing, not failed infrastructure or a rerun. Fresh matching
+head/CLEAN/no unresolved threads/ready verification preceded protected #497 merge
+`5128397733d2a693f916e6ae59b1678ffa3a4a28` at 2026-11-09T22:39:58Z. Separate
+exact-main42713900458 passed; #496 is closed boundedly. These source/main checks do
+not expand the privacy boundary or supply live provider/native GUI/recovery acceptance.
 
 ## Explicit residual scope
 

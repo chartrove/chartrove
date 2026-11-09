@@ -97,3 +97,23 @@ and arm64 `sha256:e456a7bcc44248393e02f2b44fa67748982244f1d2e0e05b13b7f0c418e226
 These are actual source-bound built-image identities, not registry/release publication,
 bit-for-bit reproducibility, a running app/network test or deployment evidence. Superseded
 e624 runs were not relabeled as new-head passes after the substantive trigger-filter fix.
+
+## Additional actual CLI setup-listener runtime
+
+A clean exact `dc74540f80dd597d12867c7f068abed313794cde` CLI build reports
+vcs.modified=false; all ten accepted listener/config/producer source hashes match.
+This is that later #497 source, not an exact5bf2 binary or a running container image.
+Three owned private empty-STANDBY profiles show one PID-bound TCP listener each:
+omitted and whitespace hosts bind127.0.0.1, explicitIPv6 binds[::1], all with port0.
+Proxy-free local health returns200/first-runtrue/standbytrue and no database file is
+created. Signing keys/configs/logs/receipt stay private, with no key in argv/output,
+no setup/key POST, actual records, installed configuration or browser interaction.
+Inherited FASTEN/DEBUG/proxy/profile environment was excluded.
+
+Owned children were SIGTERM-terminated and waited; all returned-15, which proves
+observed exit, not graceful shutdown. Source/log branch evidence skips the known
+installation registration path, not an enforced whole-binary egress or sandbox
+certificate. HTTP-only setup profiles do not qualify TLS, normal encrypted-record
+startup, actual registration, native GUI, container forwarding or deployment.
+The separately discovered ordinary startup dependency is tracked in #498, not hidden
+by these STANDBY results.

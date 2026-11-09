@@ -133,17 +133,30 @@ remain evidence, not current acceptance or authorization. Only this repository i
   passed seven42701210530 PLUS actual native amd64/arm64 image builds42701211447;
   protected #495 merged `5bf2ca0ff56806f26e28f8429b688bdc18ed12a6`. Separate exact-main
   42703989021 and both container42703989082 jobs passed; #494 closed boundedly. No
-  registry/release publication, bitwise reproducibility, app-network or deployment certificate.
-- [Legacy provider rejection bodies #496](legacy-provider-response-privacy.md) is an
-  local checkpoint `65d7b54fa2e60c549d3db9d344c14756faebd684` from accepted5bf2ca0f.
+  registry/release publication, bitwise reproducibility, container-network or deployment certificate.
+  Additional exact-dc7454 clean CLI runtime shows actual omitted/blank/explicitIPv6 loopback
+  listeners with empty STANDBY profiles/health200/no database. Owned SIGTERM/wait observed,
+  not graceful shutdown, ordinary encrypted records, TLS or enforced whole-binary egress.
+- [Legacy provider rejection bodies #496](legacy-provider-response-privacy.md), product
+  checkpoint `65d7b54fa2e60c549d3db9d344c14756faebd684` from accepted5bf2ca0f.
   Three actual-SDK OAuth description canary reds
   0.586s precede a last client-option boundary: failed-body own reads bounded4096+1/close,
   exact safe JSON/form OAuth classifications, canonical status reason, success bytes untouched.
   Six factory sites adopt it. Full models race79.803s, handler logging race7.480s, compile/vet
   pass; complete ordinary models/handler/web4.630/226.193/103.613s/captured Go-test0,
   eight source hashes unchanged. Native cmd/host/shell/SMART/smoke compile explicitly
-  ran no tests. Protected publication is pending; headers/URLs/2xx OAuth errors/SDK
+  ran no tests. Exact `dc74540f80dd597d12867c7f068abed313794cde` passed seven42711274175,
+  protected #497 merged `5128397733d2a693f916e6ae59b1678ffa3a4a28`; separate exact-main
+  42713900458 passed and #496 closed boundedly. Headers/URLs/2xx OAuth errors/SDK
   request cancellation/global privacy are not certified.
+- [Optional platform startup #498](optional-platform-startup.md) has validated local product
+  `7ebfac7493121cd362f5c53713b3557abf514527`, not hosted acceptance. Actual synthetic
+  encrypted engine startup503/panic baseline and real settings nil-error/mixed-pair reds
+  precede typed remote-outage-only continuation, bounded registration and atomic ID/secret
+  storage. Actual owned non-STANDBY startup, SQLite/PG fault controls, focused races/vet,
+  full ordinary database/web161.040/63.327s/captured Go-test0 and full native core races pass.
+  Existing automatic healthy registration policy remains, not a telemetry/egress opt-out.
+  No live registration, deployment, graceful shutdown or global offline/recovery certificate.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
