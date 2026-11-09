@@ -68,7 +68,7 @@ func GlossarySearchByCode(c *gin.Context) {
 	}
 
 	//Check if the code is in the DB cache
-	foundGlossaryEntry, err := databaseRepo.GetGlossaryEntry(c, c.Query("code"), codeSystemId)
+	foundGlossaryEntry, err := databaseRepo.GetGlossaryEntry(c.Request.Context(), c.Query("code"), codeSystemId)
 	if err == nil {
 		//found in DB cache
 		logger.Debugf("Found code (%s %s) in DB cache", c.Query("code"), codeSystemId)
@@ -140,7 +140,7 @@ func GlossarySearchByCode(c *gin.Context) {
 		}
 
 		//store in DB cache (ignore errors)
-		databaseRepo.CreateGlossaryEntry(c, &models.Glossary{
+		databaseRepo.CreateGlossaryEntry(c.Request.Context(), &models.Glossary{
 			ModelBase: models.ModelBase{
 				CreatedAt: foundEntry.Updated.Value,
 				UpdatedAt: foundEntry.Updated.Value,

@@ -17,6 +17,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils/clinicalsnapshot"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
@@ -36,7 +37,8 @@ func RegisterClinicalSnapshotRoutes(secure gin.IRoutes) {
 			c.JSON(http.StatusServiceUnavailable, gin.H{"success": false, "error": "clinical snapshot import unavailable"})
 			return
 		}
-		actor, err := db.GetCurrentUser(c)
+		requestContext := middleware.AuthenticatedRequestContext(c)
+		actor, err := db.GetCurrentUser(requestContext)
 		if err != nil || actor == nil || actor.ID == uuid.Nil || actor.DeletedAt != nil {
 			clinicalSnapshotResponse(c, nil, database.ErrSourceAccessDenied)
 			return
@@ -82,7 +84,7 @@ func RegisterClinicalSnapshotRoutes(secure gin.IRoutes) {
 			clinicalSnapshotResponse(c, nil, database.ErrSourceAccessInput)
 			return
 		}
-		result, err := repo.ImportClinicalSnapshot(c, base, display, []byte(raw))
+		result, err := repo.ImportClinicalSnapshot(requestContext, base, display, []byte(raw))
 		if err != nil {
 			clinicalSnapshotResponse(c, nil, err)
 			return
@@ -117,7 +119,7 @@ func RegisterClinicalSnapshotRoutes(secure gin.IRoutes) {
 			clinicalSnapshotResponse(c, nil, database.ErrSourceAccessInput)
 			return
 		}
-		ctx, cancel := context.WithTimeout(c, 30*time.Second)
+		ctx, cancel := context.WithTimeout(middleware.AuthenticatedRequestContext(c), 30*time.Second)
 		defer cancel()
 		rows, err := repo.ListClinicalSnapshots(ctx, source, limit, offset)
 		clinicalSnapshotResponse(c, rows, err)
@@ -140,7 +142,7 @@ func RegisterClinicalSnapshotRoutes(secure gin.IRoutes) {
 			c.JSON(http.StatusServiceUnavailable, gin.H{"success": false, "error": "clinical original download busy; retry later"})
 			return
 		}
-		ctx, cancel := context.WithTimeout(c, 30*time.Second)
+		ctx, cancel := context.WithTimeout(middleware.AuthenticatedRequestContext(c), 30*time.Second)
 		defer cancel()
 		raw, err := repo.GetClinicalSnapshotOriginal(ctx, source, snapshot)
 		if err != nil {

@@ -5,6 +5,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"io"
 )
@@ -22,7 +23,7 @@ func SSEEventBusServerHandler(eventBus event_bus.Interface) gin.HandlerFunc {
 		//get a reference to the current user
 		databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-		foundUser, err := databaseRepo.GetCurrentUser(c)
+		foundUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 		if err != nil || foundUser == nil {
 			c.Error(fmt.Errorf("could not find user"))
 			return

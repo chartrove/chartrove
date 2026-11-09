@@ -7,6 +7,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/fastenhealth/fasten-sources/clients/factory"
 	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	"github.com/gin-gonic/gin"
@@ -229,7 +230,7 @@ func ListBackgroundJobs(c *gin.Context) {
 		}
 		backgroundJobQueryOptions.Offset = pageNumb * backgroundJobQueryOptions.Limit
 	}
-	backgroundJobs, err := databaseRepo.ListBackgroundJobs(c, backgroundJobQueryOptions)
+	backgroundJobs, err := databaseRepo.ListBackgroundJobs(middleware.AuthenticatedRequestContext(c), backgroundJobQueryOptions)
 
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving resources", err)
@@ -271,7 +272,7 @@ func CreateBackgroundJobError(c *gin.Context) {
 		Data:       errJsonData,
 	}
 
-	err = databaseRepo.CreateBackgroundJob(c, &backgroundJob)
+	err = databaseRepo.CreateBackgroundJob(middleware.AuthenticatedRequestContext(c), &backgroundJob)
 	if err != nil {
 		logger.Errorln("An error occurred while creating background job to store client-side error data", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})

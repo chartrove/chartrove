@@ -10,6 +10,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
@@ -37,7 +38,7 @@ func CreateAccessToken(c *gin.Context) {
 		return
 	}
 
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to get current user"})
 		return
@@ -49,7 +50,7 @@ func CreateAccessToken(c *gin.Context) {
 		return
 	}
 
-	err = databaseRepo.CreateAccessToken(c, tokenModel)
+	err = databaseRepo.CreateAccessToken(middleware.AuthenticatedRequestContext(c), tokenModel)
 	if err != nil {
 		log.Errorf("failed to store access token: %v", err)
 		// Still return the token even if storage fails
@@ -66,7 +67,7 @@ func GetAccessTokens(c *gin.Context) {
 	log := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	tokens, err := databaseRepo.GetUserAccessTokens(c)
+	tokens, err := databaseRepo.GetUserAccessTokens(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		log.Errorf("Failed to get access tokens: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to get access tokens"})
@@ -88,7 +89,7 @@ func DeleteAccessToken(c *gin.Context) {
 		return
 	}
 
-	err := databaseRepo.DeleteAccessToken(c, req.TokenID)
+	err := databaseRepo.DeleteAccessToken(middleware.AuthenticatedRequestContext(c), req.TokenID)
 	if err != nil {
 		log.Errorf("Failed to delete access token: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to delete access token"})

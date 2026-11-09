@@ -112,7 +112,7 @@ func (ae *AppEngine) Setup() (*gin.RouterGroup, *gin.Engine) {
 
 				//get the count of users in the DB
 				databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
-				userCount, err := databaseRepo.GetUserCount(c)
+				userCount, err := databaseRepo.GetUserCount(c.Request.Context())
 				if err != nil {
 					c.JSON(http.StatusInternalServerError, gin.H{"success": false})
 					return

@@ -9,6 +9,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils/ips"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils/ips_pdf"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
@@ -17,7 +18,7 @@ func GetSummary(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	summary, err := databaseRepo.GetSummary(c)
+	summary, err := databaseRepo.GetSummary(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving summary", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
@@ -30,12 +31,12 @@ func GetIPSSummary(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	ipsData, err := databaseRepo.GetInternationalPatientSummaryExport(c)
+	ipsData, err := databaseRepo.GetInternationalPatientSummaryExport(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving IPS summary", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
 		return
-	}	
+	}
 
 	format := c.Query("format")
 	if format == "" {
