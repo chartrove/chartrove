@@ -8,6 +8,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/google/go-github/v93/github"
 	"github.com/sirupsen/logrus"
@@ -33,7 +34,7 @@ func GetDashboard(c *gin.Context) {
 
 	//load settings from dashboard
 	logger.Infof("Loading User Settings..")
-	userSettings, err := databaseRepo.LoadUserSettings(c)
+	userSettings, err := databaseRepo.LoadUserSettings(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
 		return
@@ -41,7 +42,7 @@ func GetDashboard(c *gin.Context) {
 	logger.Debugf("User Settings: %v", userSettings)
 
 	//get current user
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorf("Error getting current user: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
@@ -103,7 +104,7 @@ func AddDashboardLocation(c *gin.Context) {
 
 	//load settings from database
 	logger.Infof("Loading User Settings..")
-	userSettings, err := databaseRepo.LoadUserSettings(c)
+	userSettings, err := databaseRepo.LoadUserSettings(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
 		return
@@ -115,7 +116,7 @@ func AddDashboardLocation(c *gin.Context) {
 	logger.Debugf("User Settings: %v", userSettings)
 
 	//get current user
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorf("Error getting current user: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": err.Error()})
@@ -165,7 +166,7 @@ func AddDashboardLocation(c *gin.Context) {
 		}
 	}
 
-	err = databaseRepo.SaveUserSettings(c, userSettings)
+	err = databaseRepo.SaveUserSettings(middleware.AuthenticatedRequestContext(c), userSettings)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": fmt.Errorf("error saving user settings: %v", err)})
 		return

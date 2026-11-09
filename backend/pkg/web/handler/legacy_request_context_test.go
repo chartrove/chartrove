@@ -25,6 +25,7 @@ import (
 type legacyContextProbe struct {
 	database.DatabaseRepository
 	retained context.Context
+	actor    *models.User
 }
 
 func (p *legacyContextProbe) GetSources(ctx context.Context) ([]models.SourceCredential, error) {
@@ -44,6 +45,39 @@ func (p *legacyContextProbe) RegisterUser(ctx context.Context, _ *models.User, _
 	return errors.New("synthetic registration refusal")
 }
 
+func (p *legacyContextProbe) GetCurrentUser(ctx context.Context) (*models.User, error) {
+	p.retained = ctx
+	return p.actor, nil
+}
+func (p *legacyContextProbe) GetSummary(ctx context.Context) (*models.Summary, error) {
+	p.retained = ctx
+	return &models.Summary{}, nil
+}
+func (p *legacyContextProbe) LoadUserSettings(ctx context.Context) (*models.UserSettings, error) {
+	p.retained = ctx
+	return &models.UserSettings{}, nil
+}
+func (p *legacyContextProbe) GetUserAccessTokens(ctx context.Context) ([]models.AccessToken, error) {
+	p.retained = ctx
+	return nil, nil
+}
+func (p *legacyContextProbe) GetUserFavorites(ctx context.Context, _, _ string) ([]models.Favorite, error) {
+	p.retained = ctx
+	return nil, nil
+}
+func (p *legacyContextProbe) ListBackgroundJobs(ctx context.Context, _ models.BackgroundJobQueryOptions) ([]models.BackgroundJob, error) {
+	p.retained = ctx
+	return nil, nil
+}
+func (p *legacyContextProbe) CreateBackgroundJob(ctx context.Context, _ *models.BackgroundJob) error {
+	p.retained = ctx
+	return nil
+}
+func (p *legacyContextProbe) GetUsers(ctx context.Context) ([]models.User, error) {
+	p.retained = ctx
+	return nil, nil
+}
+
 func TestLegacyHandlersPreserveRepositoryRequestLifetime(t *testing.T) {
 	for _, test := range []struct {
 		name      string
@@ -56,6 +90,13 @@ func TestLegacyHandlersPreserveRepositoryRequestLifetime(t *testing.T) {
 		{"source deletion", DeleteSource, "", false, http.StatusOK},
 		{"composition", CreateResourceComposition, `{"title":"Synthetic","resources":[]}`, false, http.StatusOK},
 		{"registration", AuthSignup, `{"username":"synthetic-new","password":"synthetic-password"}`, true, http.StatusInternalServerError},
+		{"summary", GetSummary, "", false, http.StatusOK},
+		{"dashboard settings", GetDashboard, "", false, http.StatusOK},
+		{"access tokens", GetAccessTokens, "", false, http.StatusOK},
+		{"practitioner favorites", GetUserFavoritePractitioners, "", false, http.StatusOK},
+		{"background job list", ListBackgroundJobs, "", false, http.StatusOK},
+		{"client failure record", CreateBackgroundJobError, `{}`, false, http.StatusOK},
+		{"admin user list", GetUsers, "", false, http.StatusOK},
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			cfg, err := config.Create()
@@ -65,6 +106,7 @@ func TestLegacyHandlersPreserveRepositoryRequestLifetime(t *testing.T) {
 			logger.SetOutput(io.Discard)
 			probe := &legacyContextProbe{}
 			actor := uuid.New()
+			probe.actor = &models.User{ModelBase: models.ModelBase{ID: actor}, Username: "synthetic-original", Role: pkg.UserRoleAdmin}
 			var original *gin.Context
 			router := gin.New()
 			router.Use(func(c *gin.Context) {

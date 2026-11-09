@@ -7,6 +7,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	sourcePkg "github.com/fastenhealth/fasten-sources/pkg"
 	"github.com/gin-gonic/gin"
@@ -32,7 +33,7 @@ func CreatePractitioner(c *gin.Context) {
 		return
 	}
 
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not get current user"})
 		return
@@ -44,7 +45,7 @@ func CreatePractitioner(c *gin.Context) {
 		Patient:      "",
 	}
 
-	err = databaseRepo.CreateSource(c, practitionerSource)
+	err = databaseRepo.CreateSource(middleware.AuthenticatedRequestContext(c), practitionerSource)
 	if err != nil {
 		logger.Errorln("Error creating practitioner source:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "failed to create source"})
@@ -72,7 +73,7 @@ func CreatePractitioner(c *gin.Context) {
 		SortTitle:          &sortTitle,
 	}
 
-	createdResource, createError := databaseRepo.UpsertRawResource(c, practitionerSource, resourceToUpsert)
+	createdResource, createError := databaseRepo.UpsertRawResource(middleware.AuthenticatedRequestContext(c), practitionerSource, resourceToUpsert)
 	if createError != nil {
 		logger.Errorln("Error upserting practitioner:", createError)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "failed to create practitioner"})
@@ -93,7 +94,7 @@ func GetPractitionerEncounterHistory(c *gin.Context) {
 		return
 	}
 
-	relatedResources, err := databaseRepo.FindPractitionerEncounters(c, practitionerId)
+	relatedResources, err := databaseRepo.FindPractitionerEncounters(middleware.AuthenticatedRequestContext(c), practitionerId)
 	if err != nil {
 		logger.Errorln("Error fetching encounters:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "failed to fetch encounters"})
@@ -140,14 +141,14 @@ func UpdatePractitioner(c *gin.Context) {
 		writeOwnedMutationError(c, database.ErrSourceAccessDenied)
 		return
 	}
-	existing, err := mutations.ResolveOwnedResource(c, "Practitioner", practitionerId, source)
+	existing, err := mutations.ResolveOwnedResource(middleware.AuthenticatedRequestContext(c), "Practitioner", practitionerId, source)
 	if err != nil {
 		writeOwnedMutationError(c, err)
 		return
 	}
 	sortTitle := extractPractitionerSortTitle(resource)
 	// Keep exact clinical bytes; decode only the fields needed for presentation.
-	err = mutations.UpdateOwnedResource(c, existing.SourceID, "Practitioner", practitionerId, database.OwnedResourceUpdate{ResourceRaw: request.Resource, SortTitle: &sortTitle})
+	err = mutations.UpdateOwnedResource(middleware.AuthenticatedRequestContext(c), existing.SourceID, "Practitioner", practitionerId, database.OwnedResourceUpdate{ResourceRaw: request.Resource, SortTitle: &sortTitle})
 	if err != nil {
 		writeOwnedMutationError(c, err)
 		return
@@ -216,7 +217,7 @@ func AddPractitionerToFavorites(c *gin.Context) {
 	}
 
 	// Get current user
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorln("Error getting current user:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not get current user"})
@@ -225,7 +226,7 @@ func AddPractitionerToFavorites(c *gin.Context) {
 
 	// Check if already favorited
 	exists, err := databaseRepo.CheckFavoriteExists(
-		c,
+		middleware.AuthenticatedRequestContext(c),
 		currentUser.ID.String(),
 		request.SourceID,
 		request.ResourceType,
@@ -244,7 +245,7 @@ func AddPractitionerToFavorites(c *gin.Context) {
 
 	// Add to favorites
 	err = databaseRepo.AddFavorite(
-		c,
+		middleware.AuthenticatedRequestContext(c),
 		currentUser.ID.String(),
 		request.SourceID,
 		request.ResourceType,
@@ -285,7 +286,7 @@ func RemovePractitionerFromFavorites(c *gin.Context) {
 	}
 
 	// Get current user
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorln("Error getting current user:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not get current user"})
@@ -294,7 +295,7 @@ func RemovePractitionerFromFavorites(c *gin.Context) {
 
 	// Remove from favorites
 	err = databaseRepo.RemoveFavorite(
-		c,
+		middleware.AuthenticatedRequestContext(c),
 		currentUser.ID.String(),
 		request.SourceID,
 		request.ResourceType,
@@ -328,7 +329,7 @@ func GetUserFavoritePractitioners(c *gin.Context) {
 	}
 
 	// Get current user
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorln("Error getting current user:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not get current user"})
@@ -336,7 +337,7 @@ func GetUserFavoritePractitioners(c *gin.Context) {
 	}
 
 	// Get user's favorites
-	favorites, err := databaseRepo.GetUserFavorites(c, currentUser.ID.String(), resourceType)
+	favorites, err := databaseRepo.GetUserFavorites(middleware.AuthenticatedRequestContext(c), currentUser.ID.String(), resourceType)
 	if err != nil {
 		logger.Errorln("Error getting user favorites:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "failed to get favorites"})
