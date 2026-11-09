@@ -81,8 +81,14 @@ and the strengthened directory guard. Extracted strict signature and the actual 
 WAL restore passed again. Its pre-GUI background-without-smoke invocation exited 1 and did not create
 the selected unused data path. A fresh normal-Cua hidden launch again published all ten checks as
 `ok:true` in a mode-0600, 339-byte receipt. The native test page is unchanged from the calibrated
-negative-control checkpoint. The archive remains an exact-68e inspection candidate, not a later
-receipt-only commit, protected-main release or published/deployed artifact.
+negative-control checkpoint. That archive is retained as an exact-68e inspection candidate, not a
+later receipt-only commit, protected-main release or published/deployed artifact. A newer distinct
+b916 candidate and its limits are recorded in the [application token receipt](application-token-boundary.md).
+
+The native slice qualified exact head `2a03fea8a4932f5d57ac42e06a5a8c6246eea732` with seven
+checks (42624220876) and no unresolved threads, then protected matching-head #484 merge
+`0252c677ffd3c56900eacf60d7c214401a7effe3`. Separate exact-main 42627751541 attempt 1
+passed. This is source acceptance, not publication/deployment of a candidate archive.
 
 Actual visual receiving-profile/authority/clinical import/repeat-change/export/profile-switch/logout
 and restart workflows remain unqualified. The earlier exact-a594 clinical inspection app was left

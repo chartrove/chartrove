@@ -191,5 +191,5 @@ matches or a passing suite alone are not a complete caller/security audit.
 
 This fourth repair qualified exact head `ca1672ac68aebb4c1f81748b4db0bffbb1438eab`
 with seven checks (42618587011), no unresolved threads, and protected matching-head #482 merge
-`92c31890c5ef34f462241d2961186d3b09a45730`. Exact-main 42622419523 remains separately
-pending; local/PR success is not substituted for it.
+`92c31890c5ef34f462241d2961186d3b09a45730`. Separate exact-main 42622419523 attempt 1
+completed success; local/PR success was not substituted for it.

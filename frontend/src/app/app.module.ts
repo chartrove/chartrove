@@ -19,7 +19,7 @@ import { IsAuthenticatedAuthGuard } from './auth-guards/is-authenticated-auth-gu
 import {Router} from '@angular/router';
 import { SourceDetailComponent } from './pages/source-detail/source-detail.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import {AuthInterceptorService} from './services/auth-interceptor.service';
+import {APPLICATION_HTTP_LOCATION, AuthInterceptorService} from './services/auth-interceptor.service';
 import { MomentModule } from 'ngx-moment';
 import {AuthService} from './services/auth.service';
 import { PatientProfileComponent } from './pages/patient-profile/patient-profile.component';
@@ -96,7 +96,7 @@ import { GetEncryptionKeyWizardComponent } from './pages/get-encryption-key-wiza
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-      deps: [AuthService, Router]
+      deps: [AuthService, Router, APPLICATION_HTTP_LOCATION]
     },
     IsAuthenticatedAuthGuard,
     {

@@ -70,11 +70,11 @@ remain evidence, not current acceptance or authorization. Only this repository i
   infrastructure failure remains recorded.
 - Diagnostic #482 qualified exact head `ca1672ac68aebb4c1f81748b4db0bffbb1438eab`
   (42618587011), then protected matching-head merged at
-  `92c31890c5ef34f462241d2961186d3b09a45730`; exact-main 42622419523 is pending. The
+  `92c31890c5ef34f462241d2961186d3b09a45730`; exact-main 42622419523 passed. The
   explicitly opt-in, unauthenticated query scope pins the selected owner's UUID without Gin/JWT
   authentication claims. Actual encrypted graph/boundary and complete race controls pass.
   Unsafe mode remains default-off/not production-approved; #474 inventory/review remains open.
-- Current Pi #483 adds a private create-once bounded smoke receipt and separately gated hidden
+- Native #483/#484 adds a private create-once bounded smoke receipt and separately gated hidden
   native test windows, corrects the stale SMART smoke argument/identity false-positive control,
   and refuses nonfresh synthetic directories before storage. Clean exact-68e checkpoint
   `68e3c9732e6438c8dbf8ba4dbeda276c3207144a` includes accepted #482: full packaging,
@@ -82,11 +82,23 @@ remain evidence, not current acceptance or authorization. Only this repository i
   pre-GUI invalid-flag refusal and all ten actual hidden native WebView/service checks pass.
   A separate private invalid-token overlay at the earlier unchanged smoke-page checkpoint correctly
   fails that control instead of counting any exception as success. See the
-  [native runtime receipt](native-smoke-runtime.md); this slice awaits protected publication.
-- The latest ZIP remains an exact-68e inspection candidate, not a later docs commit or a published,
+  [native runtime receipt](native-smoke-runtime.md). Exact head
+  `2a03fea8a4932f5d57ac42e06a5a8c6246eea732` passed seven checks (42624220876), protected
+  matching-head merged at `0252c677ffd3c56900eacf60d7c214401a7effe3`; exact-main
+  42627751541 passed. This is hidden native runtime, not interactive visual acceptance.
+- Current Pi #485 confines automatic application JWT insertion/local auth-error handling to the
+  configured API's scheme/host/path namespace, not external Lighthouse or prefix siblings. Synthetic
+  opaque-native URL and registered-provider controls correct invalid null-origin bases without
+  trusting equal null origins. Genuine five accepted-classifier/four native-base reds and a newly
+  introduced DI-seam wiring omission are separately recorded. All 41 coupled controls, full frontend
+  (772 passes/one skip, Node/production/Storybook), full native race, clean exact-b916 package,
+  strict signature, actual packaged encrypted restore and ten hidden native checks pass. The custom
+  smoke page does not exercise the normal Angular interceptor. See the
+  [application token receipt](application-token-boundary.md); this slice awaits protected publication.
+- The latest ZIP is the exact-b916 inspection candidate, not a later docs commit, published,
   notarized/current-main release, older-macOS or independently operated key-custody qualification.
-  Prior e442/a594/1dcd archives were privately preserved and byte/hash verified, including restoring
-  the positive ZIP after the explicitly negative-only overlay experiment.
+  Prior e442/a594/1dcd/68e archives were privately preserved and byte/hash verified, including
+  restoring the positive ZIP after the explicitly negative-only overlay experiment.
 - Earlier, the normal Cua route launched the exact-a594 clinical inspection app with a fresh synthetic,
   explicitly **unencrypted** SMART-UI-test directory; no record/profile/consent input occurred.
   Exact-window capture instead refuses `direct_capture_consent_required`; TCC booleans do not
