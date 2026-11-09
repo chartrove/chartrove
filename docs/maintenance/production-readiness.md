@@ -143,6 +143,13 @@ The clinical import UI and its explicit receiving-profile confirmation remain a 
   acceptance passed 724 tests with one skip and retained existing test-template console diagnostics.
   Native package vet/build and frontend structural/compiler validation passed; matching packaged GUI
   and clinical import/receiving-profile confirmation are not yet qualified.
+- #473 source review found synchronous refresh delivery could hold the sole import slot indefinitely.
+  A real-bus, unconsumed-client HTTP regression reproduced the committed-response stall. The bus now offers
+  optional nonblocking best-effort publication; the API never falls back to blocking delivery or creates
+  per-import sender goroutines. The unchanged stalled-client test and a second changed import pass with
+  both exact originals retained, while legacy-only notification is skipped with a fixed warning. Fresh
+  focused HTTP race (12.949s), event-bus race (1.195s), full web/handler (62.819s / 52.351s), desktop graph
+  controls (1.386s) and changed-package vet passed. Corrected-head hosted qualification/review is pending.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,

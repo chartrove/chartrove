@@ -91,10 +91,9 @@ func RegisterClinicalSnapshotRoutes(secure gin.IRoutes) {
 			// Persistence already committed. Event failure is not import failure,
 			// and must never cause a duplicate write or expose a clinical payload.
 			if value, exists := c.Get(pkg.ContextKeyTypeEventBusServer); exists {
-				if bus, ok := value.(event_bus.Interface); ok {
-					if err := bus.PublishMessage(models.NewEventSourceComplete(actor.ID.String(), result.SourceID.String())); err != nil {
-						c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry).Warn("clinical snapshot committed; refresh notification unavailable")
-					}
+				bus, supported := value.(event_bus.BestEffortPublisher)
+				if !supported || bus.TryPublishMessage(models.NewEventSourceComplete(actor.ID.String(), result.SourceID.String())) != nil {
+					c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry).Warn("clinical snapshot committed; refresh notification unavailable")
 				}
 			}
 		}
