@@ -104,7 +104,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
   absent-field clients/detached jobs. Its actual native gate exposed raw FormData failure missed by
   Go/browser tests. A shared bounded native-only byte adapter has 788 browser passes/one skip and
   exact-c9 actual twelve-check native success. Later full local native races fail signup fixtures;
-  exact-eed native runtime times out before signup completion, not at multipart. Fixed-label progress
+  exact-eed native attempts time out after three and six checks; the latter substage is unknown. Fixed-label progress
   now preserves partial timeout evidence without extending budgets. A server-guard-bypass negative
   timed out and is not yet calibrated. See the [manual receiver receipt](manual-import-receiver.md).
   This slice is not accepted or overall ready; hosted/current runtime qualification remains.

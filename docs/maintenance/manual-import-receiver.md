@@ -114,8 +114,11 @@ never records/tokens. Strict input bounds, out-of-order concurrency and snapshot
 The unchanged 45-second timeout includes acknowledged progress and remains failure even if all labels
 arrived without final completion. Normal startup has no smoke routes. Its ordinary package reuses
 byte-identical tracked c9 frontend inputs, verifies strict signature and packaged encrypted restore.
-Its actual native run timed out after the first **three** checks, before account creation completed;
-the multipart checks were not reached and no all-12 eed success exists. The latest ZIP is this exact
+Its first actual native run timed out after the first **three** checks, before account creation completed;
+a same-package retry later timed out after **six** checks. The latter receiver lookup/count/preparation/
+submission substage is not established; neither is an all-12 eed success. Subsequent test-only progress
+posts are awaited sequentially with a 500 ms per-post abort bound inside the same 45-second deadline,
+not sent concurrently. This observability change is not a claimed production transport/root-cause fix. The latest ZIP is this exact
 eed inspection candidate, not current-main, published/deployed, notarized or accepted runtime.
 
 Raw logs, profiles, keys, overlay sources, archives, hashes and receipt files remain private. Named

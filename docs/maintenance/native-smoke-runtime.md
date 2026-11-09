@@ -93,7 +93,8 @@ passed. This is source acceptance, not publication/deployment of a candidate arc
 Subsequent pending #487 expands the custom smoke page to twelve checks using real authenticated
 multipart requests and the same bounded encoder as the Angular interceptor. Raw FormData actually
 failed in the native host despite Go/browser green. Exact-c9 subsequently passed all twelve checks;
-later exact-eed timed out after three checks before account creation completed. Bounded fixed-label
+later exact-eed timed out after three checks before account creation completed, then after six
+checks on a same-package retry (the latter substage is unknown). Bounded fixed-label
 progress now makes such timeout stages observable, never success. Its guard-bypass negative is not
 yet calibrated. See the [manual receiver receipt](manual-import-receiver.md) for exact source,
 failed attempts, archive status and outstanding native-race/runtime gates. Historical ten-check

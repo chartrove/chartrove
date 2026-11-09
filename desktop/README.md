@@ -107,8 +107,9 @@ production acceptance; those gates remain separate. Current exact-source positiv
 package evidence is in the [runtime receipt](../docs/maintenance/native-smoke-runtime.md).
 The native file adapter uses the standard multipart encoder with a 32 MiB encoded-envelope/16-part
 limit and 30-second preparation budget; normal HTTP and external multipart remain unchanged.
-The smoke deadline stays 45 seconds. Up to twelve best-effort, fixed-label progress posts allow a
-failed timeout receipt to retain acknowledged stages, not records/tokens or a success claim.
+The smoke deadline stays 45 seconds. Up to twelve sequential best-effort, fixed-label progress posts
+(each abort-bounded to 500 ms within that deadline) allow a failed timeout receipt to retain acknowledged
+stages, not records/tokens or a success claim.
 See the [manual receiver receipt](../docs/maintenance/manual-import-receiver.md) for actual native
 file-path failures, source-bound twelve-check success and outstanding later runtime/race gates.
 

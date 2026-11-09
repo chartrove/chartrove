@@ -41,6 +41,7 @@ func TestNativeProgressKeepsOnlyFixedOrderedLabels(t *testing.T) {
 	encoded, err := json.Marshal(session.TimeoutReport())
 	require.NoError(t, err)
 	require.NotContains(t, string(encoded), "PRIVATE_RECORD_CANARY")
+	require.Equal(t, len(nativeSmokeChecks), strings.Count(page, "await check("), "every native assertion must await bounded progress sequentially")
 	for _, label := range nativeSmokeChecks {
 		require.Contains(t, page, "'"+label+"'", "Go allowlist must match actual page labels")
 	}
