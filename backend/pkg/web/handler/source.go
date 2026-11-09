@@ -18,6 +18,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/fastenhealth/fasten-sources/clients/factory"
 	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	sourceDefinitions "github.com/fastenhealth/fasten-sources/definitions"
@@ -82,7 +83,7 @@ func CreateReconnectSource(c *gin.Context) {
 
 	if sourceCred.ID != uuid.Nil {
 		//reconnect
-		err := databaseRepo.UpdateSource(c, &sourceCred)
+		err := databaseRepo.UpdateSource(middleware.AuthenticatedRequestContext(c), &sourceCred)
 		if err != nil {
 			err = fmt.Errorf("an error occurred while reconnecting source credential: %w", err)
 			logger.Errorln(err)
@@ -91,7 +92,7 @@ func CreateReconnectSource(c *gin.Context) {
 		}
 	} else {
 		//create source for the first time
-		err := databaseRepo.CreateSource(c, &sourceCred)
+		err := databaseRepo.CreateSource(middleware.AuthenticatedRequestContext(c), &sourceCred)
 		if err != nil {
 			err = fmt.Errorf("an error occurred while storing source credential: %w", err)
 			logger.Errorln(err)
@@ -123,7 +124,7 @@ func SourceSync(c *gin.Context) {
 
 	logger.Infof("Get SourceCredential Credentials: %v", c.Param("sourceId"))
 
-	sourceCred, err := databaseRepo.GetSource(c, c.Param("sourceId"))
+	sourceCred, err := databaseRepo.GetSource(middleware.AuthenticatedRequestContext(c), c.Param("sourceId"))
 	if err != nil {
 		err = fmt.Errorf("an error occurred while retrieving source credential: %w", err)
 		logger.Errorln(err)
@@ -132,7 +133,8 @@ func SourceSync(c *gin.Context) {
 	}
 
 	// after creating the source, we should do a bulk import (in the background)
-	summary, err := BackgroundJobSyncResources(GetBackgroundContext(c), logger, databaseRepo, sourceCred)
+	jobContext := GetBackgroundContext(c)
+	summary, err := BackgroundJobSyncResources(jobContext, logger, databaseRepo, sourceCred)
 	if err != nil {
 		err := fmt.Errorf("an error occurred while syncing resources: %w", err)
 		logger.Errorln(err)
@@ -145,7 +147,7 @@ func SourceSync(c *gin.Context) {
 	}
 
 	//publish event
-	currentUser, _ := databaseRepo.GetCurrentUser(c)
+	currentUser, _ := databaseRepo.GetCurrentUser(jobContext)
 	err = eventBus.PublishMessage(
 		models.NewEventSourceComplete(
 			currentUser.ID.String(),
@@ -363,7 +365,7 @@ func GetSource(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	sourceCred, err := databaseRepo.GetSource(c, c.Param("sourceId"))
+	sourceCred, err := databaseRepo.GetSource(middleware.AuthenticatedRequestContext(c), c.Param("sourceId"))
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving source credential", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
@@ -376,7 +378,7 @@ func GetSourceSummary(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	sourceSummary, err := databaseRepo.GetSourceSummary(c, c.Param("sourceId"))
+	sourceSummary, err := databaseRepo.GetSourceSummary(middleware.AuthenticatedRequestContext(c), c.Param("sourceId"))
 	if err != nil {
 		logger.Errorln("An error occurred while retrieving source summary", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
@@ -389,7 +391,7 @@ func ListSource(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	sourceCreds, err := databaseRepo.GetSources(c)
+	sourceCreds, err := databaseRepo.GetSources(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorln("An error occurred while listing source credentials", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
@@ -402,7 +404,7 @@ func DeleteSource(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	rowsEffected, err := databaseRepo.DeleteSource(c, c.Param("sourceId"))
+	rowsEffected, err := databaseRepo.DeleteSource(middleware.AuthenticatedRequestContext(c), c.Param("sourceId"))
 	if err != nil {
 		logger.Errorln("An error occurred while deleting source credential", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false})
