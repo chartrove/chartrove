@@ -165,6 +165,10 @@ func CreateManualSource(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 	eventBus := c.MustGet(pkg.ContextKeyTypeEventBusServer).(event_bus.Interface)
+	// This importer already runs a tracked, detached sync job. Preserve that
+	// lifetime and verified actor without retaining a pooled HTTP context in
+	// the SDK or asynchronous database/sql transaction cleanup.
+	jobContext := GetBackgroundContext(c)
 
 	// store the bundle file locally
 	bundleFile, err := storeFileLocally(c)
@@ -204,7 +208,7 @@ func CreateManualSource(c *gin.Context) {
 		manualSourceCredential.EndpointID = uuid.NewSHA1(uuid.NameSpaceURL, []byte("chartrove-direct-smart:"+origin.FHIRBaseURL))
 		manualSourceCredential.Display = fmt.Sprintf("Direct SMART snapshot: %s (%s)", origin.Display, origin.FHIRBaseURL)
 	}
-	tempSourceClient, err := factory.GetSourceClient("", c, logger, &manualSourceCredential)
+	tempSourceClient, err := factory.GetSourceClient("", jobContext, logger, &manualSourceCredential)
 	if err != nil {
 		err = fmt.Errorf("an error occurred while initializing hub client using manual source without credentials: %w", err)
 		logger.Errorln(err)
@@ -231,7 +235,7 @@ func CreateManualSource(c *gin.Context) {
 	if origin == nil {
 		// A canonical ID must not reuse a legacy key that contains another
 		// Patient (or no proven Patient). Refuse new writes, never relabel data.
-		sources, err := databaseRepo.GetSources(c)
+		sources, err := databaseRepo.GetSources(jobContext)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "unable to check manual import identity"})
 			return
@@ -244,7 +248,7 @@ func CreateManualSource(c *gin.Context) {
 				c.JSON(http.StatusConflict, gin.H{"success": false, "error": "existing source identity requires review before import"})
 				return
 			}
-			patients, err := databaseRepo.ListResources(c, models.ListResourceQueryOptions{SourceID: source.ID.String(), SourceResourceType: "Patient", Limit: 2})
+			patients, err := databaseRepo.ListResources(jobContext, models.ListResourceQueryOptions{SourceID: source.ID.String(), SourceResourceType: "Patient", Limit: 2})
 			if err != nil {
 				c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "unable to check manual import identity"})
 				return
@@ -259,7 +263,7 @@ func CreateManualSource(c *gin.Context) {
 		// The legacy manual importer trims a character cutset from Patient IDs.
 		// Direct snapshots keep the verified FHIR ID so distinct IDs cannot merge.
 		manualSourceCredential.Patient = directPatientID
-		sources, err := databaseRepo.GetSources(c)
+		sources, err := databaseRepo.GetSources(jobContext)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "unable to check previous direct SMART imports"})
 			return
@@ -268,7 +272,7 @@ func CreateManualSource(c *gin.Context) {
 			if source.PlatformType != sourcePkg.PlatformTypeManual || source.EndpointID != manualSourceCredential.EndpointID || source.Patient != directPatientID {
 				continue
 			}
-			completed, err := directSMARTPatientExists(c, databaseRepo, source.ID.String(), directPatientID)
+			completed, err := directSMARTPatientExists(jobContext, databaseRepo, source.ID.String(), directPatientID)
 			if err != nil {
 				c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "unable to check previous direct SMART snapshot"})
 				return
@@ -286,7 +290,7 @@ func CreateManualSource(c *gin.Context) {
 
 	//store the manualSourceCredential
 	if manualSourceCredential.ID == uuid.Nil {
-		err = databaseRepo.CreateSource(c, &manualSourceCredential)
+		err = databaseRepo.CreateSource(jobContext, &manualSourceCredential)
 	}
 	if err != nil {
 		err = fmt.Errorf("an error occurred while creating manual source: %w", err)
@@ -296,7 +300,7 @@ func CreateManualSource(c *gin.Context) {
 	}
 
 	summary, err := BackgroundJobSyncResourcesWrapper(
-		c,
+		jobContext,
 		logger,
 		databaseRepo,
 		&manualSourceCredential,
@@ -340,7 +344,7 @@ func CreateManualSource(c *gin.Context) {
 	}
 
 	//publish event
-	currentUser, _ := databaseRepo.GetCurrentUser(c)
+	currentUser, _ := databaseRepo.GetCurrentUser(jobContext)
 	err = eventBus.PublishMessage(
 		models.NewEventSourceComplete(
 			currentUser.ID.String(),

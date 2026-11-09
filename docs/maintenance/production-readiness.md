@@ -153,7 +153,10 @@ This plan does not authorize real providers, production identities, deployment o
   active-account positive control and complete middleware race suite passed afterward. Full Angular
   acceptance passed 724 tests with one skip and retained existing test-template console diagnostics.
   Native package vet/build and frontend structural/compiler validation passed; matching packaged GUI
-  and clinical import/receiving-profile confirmation are not yet qualified.
+  and clinical import/receiving-profile confirmation are not yet qualified. The bounded bridge merged
+  via #475 after all seven checks qualified `6f6443607002d49ddb83dade6f5beb03c84e34bd` (42575202030),
+  with no unresolved review threads. Protected matching-head merge is `5e44373a8496f475edc364552d2070a840d4a3fe`;
+  exact-main validation 42578148508 passed. This is not independent security or GUI acceptance.
 - #473 source review found synchronous refresh delivery could hold the sole import slot indefinitely.
   A real-bus, unconsumed-client HTTP regression reproduced the committed-response stall. The bus now offers
   optional nonblocking best-effort publication; the API never falls back to blocking delivery or creates
@@ -194,7 +197,15 @@ This plan does not authorize real providers, production identities, deployment o
   desktop Node and full Angular tests passed. Broader race attempts were incomplete and found legacy manual
   import pool races; an exact-main compiler overlay independently reproduces them (56.714s). Pi owns
   [#474](https://github.com/chartrove/chartrove/issues/474) for that next bounded repair; it remains a
-  production-readiness gap rather than being hidden behind green non-race CI.
+  production-readiness gap rather than being hidden behind green non-race CI. Pi owns its local
+  `task/request-context-isolation` branch in the canonical single checkout. The first bounded
+  [correction and evidence](request-context-isolation.md) now gives manual/related imports immutable
+  verified-owner job contexts, preserving the prior detached job lifetime. The unchanged source/graph
+  races pass (57.142s), privacy control passes (27.848s), and the complete web race suite passes (639.873s).
+  Full-suite findings also led to stable source-access/deletion and OIDC SQL boundaries; full handler and
+  middleware race pass after fixing fixtures to supply actual verified UUIDs/requests (550.420s / 1.703s).
+  Native desktop graph race also passes. Other legacy web-to-SQL callers still require assessment; passing
+  these suites is not global context, GUI, operational identity or independent recovery certification.
 - Standalone factory fallbacks still permit unencrypted SQLite and wildcard HTTP listening. Deployment
   configuration and secure-default acceptance require reassessment; the desktop already uses private
   encrypted storage and no application API TCP listener.

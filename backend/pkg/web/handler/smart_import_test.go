@@ -47,19 +47,23 @@ func newSMARTImportHarness(t *testing.T) smartImportHarness {
 	repo, err := database.NewRepository(cfg, entry, bus)
 	require.NoError(t, err)
 	t.Cleanup(func() { require.NoError(t, repo.Close()) })
-	require.NoError(t, repo.CreateUser(context.Background(), &models.User{Username: "synthetic-smart", Password: "synthetic-password"}))
+	user := &models.User{Username: "synthetic-smart", Password: "synthetic-password"}
+	require.NoError(t, repo.CreateUser(context.Background(), user))
 	router := gin.New()
 	router.Use(func(c *gin.Context) {
 		c.Set(pkg.ContextKeyTypeLogger, entry)
 		c.Set(pkg.ContextKeyTypeDatabase, repo)
 		c.Set(pkg.ContextKeyTypeConfig, cfg)
 		c.Set(pkg.ContextKeyTypeEventBusServer, bus)
-		c.Set(pkg.ContextKeyTypeAuthUsername, "synthetic-smart")
+		c.Set(pkg.ContextKeyTypeAuthUsername, user.Username)
+		c.Set(pkg.ContextKeyTypeAuthUserID, user.ID)
 	})
 	router.POST("/api/secure/source/manual", CreateManualSource)
 	uploadDir := t.TempDir()
 	t.Setenv("TMPDIR", uploadDir)
-	return smartImportHarness{router: router, repo: repo, ctx: context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, "synthetic-smart"), uploadDir: uploadDir}
+	ctx := context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, user.Username)
+	ctx = context.WithValue(ctx, pkg.ContextKeyTypeAuthUserID, user.ID)
+	return smartImportHarness{router: router, repo: repo, ctx: ctx, uploadDir: uploadDir}
 }
 
 func (h smartImportHarness) post(t *testing.T, origin *string, bundle string) *httptest.ResponseRecorder {
