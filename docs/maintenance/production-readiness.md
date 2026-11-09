@@ -108,7 +108,17 @@ remain evidence, not current acceptance or authorization. Only this repository i
   reported persistence failure, with fixed handler error/log and issuance no-store. Genuine red,
   focused race, real SQLCipher/JWT stored/absent-row/foreign-denial/revocation controls and complete
   ordinary handler/middleware compatibility pass. It is not an authentication-bypass finding or
-  universal rollback guarantee; protected publication qualification remains pending.
+  universal rollback guarantee. Exact head `8c098702c1d16e09854e831d04c159d871932c29`
+  qualified seven checks42676427229, protected #491 merged
+  `8eebe540e72e846b345f3a3d427139ed2ad7cc99`; separate exact-main42689213196 passed.
+- [Companion credential consumer #492](companion-token-privacy.md) removes whole-response JWT
+  logging and stale QR/modal/profile state. Eight genuine initial reds then twenty actual component/
+  template/registered-HTTP boundary controls pass. Fresh complete source validation on normally
+  integrated `2e414141ffb014f1fb54d868865fe031854696f4` records Node/browser/production/Storybook
+  exit0, 792 browser successes/one skip and normal scratch cleanup. The earlier interrupted parent/
+  naturally completed orphan/uncaptured final exit stays separate. Explicit sharing remains; client
+  cancellation/clearing does not imply server rollback, revocation or undo of copied credentials.
+  Protected publication and normal native/mobile GUI acceptance remain separate/pending.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
