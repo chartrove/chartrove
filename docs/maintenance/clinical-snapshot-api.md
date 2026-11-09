@@ -33,8 +33,12 @@ This is not a full application-wide rate-limit or transport slow-client qualific
 
 Successful responses contain the scoped source/snapshot IDs, original digest, Patient ID and write
 counts. Exact historical acknowledgement is not "already current". No pre-commit success is sent or
-published: notification follows a committed new snapshot. A notification error produces a fixed warning
-while retaining HTTP success; the clinical transaction already succeeded. Replay emits no new-commit event.
+published: notification follows a committed new snapshot. Delivery uses the optional nonblocking
+`BestEffortPublisher` capability: the production bus either admits the event immediately or drops it with
+an unavailable error. A busy dispatcher/stalled SSE client, unsupported legacy publisher or notification
+error produces a fixed warning while retaining HTTP success. There is no synchronous-publication fallback,
+per-import goroutine, waiting timer or accumulated retry queue. Notification is a best-effort refresh hint,
+not a durable delivery receipt; consumers must also load current state. Replay emits no new-commit event.
 
 ## Owner-only original history
 
@@ -67,9 +71,18 @@ Authentik operation are not claimed.
   Content-Length. A blocked importer proves another expensive projection is not started.
 - Encrypted backup of two HTTP-imported versions, boot a separate copy, real-JWT owner download of both
   exact originals, foreign download refusal and an unchanged immutable backup artifact.
+- Review correction: a real production bus with a deliberately unconsumed, still-connected listener
+  reproduced a committed response blocked beyond two seconds. That unchanged HTTP test now passes while
+  the listener remains stalled; a second changed import also succeeds (not 503), with both exact originals
+  readable. The test releases/joins its deliberate stall before failure; it does not leave a blocked slot.
+  One initial fixture compile error (original getter has two return values) was corrected before reproducing
+  the actual failure. A legacy-only publisher control proves the unsafe synchronous fallback is never called.
+  Bus controls cover admitted metadata serialization, full/absent dispatcher refusal and no-op support.
 
-Fresh focused HTTP race tests passed (11.707s). Complete local web and handler suites passed (63.519s /
-51.416s), including existing manual/provider/account/source-access behavior. Fixtures and implementation
-were developed together; these are not represented as pre-existing test-first regressions. Final-head
+Following the review correction, fresh focused HTTP race tests passed (12.949s), complete event-bus race
+passed (1.195s), complete web and handler suites passed (62.819s / 52.351s), and stalled/legacy controls under
+the desktop dependency graph passed (1.386s). Changed-package vet/diff passed. Original API fixtures and
+implementation were developed together; only the stalled-publisher regression is a demonstrated pre-fix
+failure, not the whole feature suite. Final-head
 hosted validation and source review remain required. This is neither independent peer certification nor
 an operator/key-loss, PostgreSQL or cross-platform recovery qualification.

@@ -124,6 +124,13 @@ remain application-wide acceptance items, not claims supplied by the internal st
   ordering, strict/bounded intake and immutable backup-copy restore passed focused race tests (11.707s).
   Complete web/handler suites passed (63.519s / 51.416s). Native local-identity binding and the clinical UI
   are not implemented by this API slice.
+- #473 source review found synchronous refresh delivery could hold the sole import slot indefinitely.
+  A real-bus, unconsumed-client HTTP regression reproduced the committed-response stall. The bus now offers
+  optional nonblocking best-effort publication; the API never falls back to blocking delivery or creates
+  per-import sender goroutines. The unchanged stalled-client test and a second changed import pass with
+  both exact originals retained, while legacy-only notification is skipped with a fixed warning. Fresh
+  focused HTTP race (12.949s), event-bus race (1.195s), full web/handler (62.819s / 52.351s), desktop graph
+  controls (1.386s) and changed-package vet passed. Corrected-head hosted qualification/review is pending.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,
