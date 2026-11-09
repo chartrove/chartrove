@@ -23,8 +23,11 @@
         color: var(--dark-text-color) !important;
     }
 
-    .tx-primary {
-        color: #3d96ff !important;
+    .text-primary,
+    .tx-primary,
+    .tx-indigo,
+    .tx-purple {
+        color: var(--chartrove-accent) !important;
     }
 
     // Text with popover

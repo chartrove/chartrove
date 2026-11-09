@@ -135,7 +135,7 @@
                 color: var(--dark-text-white-color);
                 
                 &:hover {
-                    background-color: hsl(260 80% 55%);
+                    background-color: var(--dark-button-pressed-color);
                 }
             }
             

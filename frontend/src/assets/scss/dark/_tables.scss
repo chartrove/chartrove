@@ -83,7 +83,7 @@
             }
 
             &::-webkit-scrollbar-track {
-                background: #25202a; /* A darker shade of the background */
+                background: var(--card); /* A darker shade of the background */
             }
 
             &::-webkit-scrollbar-thumb {
@@ -196,7 +196,7 @@
         }
 
         .table-row.selected {
-            background-color: #2b1f45 !important;
+            background-color: var(--dark-accent-tint) !important;
         }
 
         .alphabetical-indicator {
@@ -204,7 +204,7 @@
                 color: var(--dark-text-white-color) !important; 
                 background-color: var(--primary) !important;
                 border: 1px solid var(--border) !important;
-                box-shadow: 0 0 10px rgba(155, 135, 245, 0.2);
+                box-shadow: 0 0 10px var(--dark-accent-tint);
             }
         }
     }

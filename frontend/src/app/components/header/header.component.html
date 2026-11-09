@@ -1,12 +1,12 @@
 <div class="az-header">
   <div class="container">
     <div class="az-header-left">
-      <a routerLink="/" class="az-logo"><span></span> Chartrove</a>
+      <a routerLink="/" class="az-logo"><img class="chartrove-logo" src="assets/branding/chartrove-logo.svg" width="156" height="38" alt="Chartrove"></a>
       <a href="#" id="azMenuShow" (click)="toggleHeaderMenu($event)" class="az-header-menu-icon d-lg-none"><span></span></a>
     </div><!-- az-header-left -->
     <div class="az-header-menu">
       <div class="az-header-menu-header">
-        <a routerLink="/" class="az-logo"><span></span> Chartrove</a>
+        <a routerLink="/" class="az-logo"><img class="chartrove-logo" src="assets/branding/chartrove-logo.svg" width="156" height="38" alt="Chartrove"></a>
         <a href="#" (click)="toggleHeaderMenu($event)" class="close">&times;</a>
       </div><!-- az-header-menu-header -->
       <ul class="nav">
@@ -75,14 +75,14 @@
           </a>
         </div>
         <div class="dropdown az-profile-menu" ngbDropdown>
-          <a class="az-img-user" id="profileDropdown" ngbDropdownToggle><span class="chartrove-avatar" aria-label="Chartrove profile">C</span></a>
+          <a class="az-img-user" id="profileDropdown" ngbDropdownToggle><img class="chartrove-avatar" src="assets/branding/chartrove.svg" alt="Chartrove profile"></a>
           <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="profileDropdown">
             <div class="az-dropdown-header d-sm-none">
               <a class="az-header-arrow" (click)="closeMenu($event)"><i class="icon ion-md-arrow-back"></i></a>
             </div>
             <div [routerLink]="'/patient-profile'" class="az-header-profile cursor-pointer">
               <div class="az-img-user">
-                <span class="chartrove-avatar" aria-hidden="true">C</span>
+                <img class="chartrove-avatar" src="assets/branding/chartrove.svg" alt="">
               </div><!-- az-img-user -->
               <h6>{{current_user_claims.full_name || current_user_claims.sub || current_user_claims.email }}</h6>
               @if (isAdmin) {
@@ -91,7 +91,7 @@
             </div><!-- az-header-profile -->
 
             <a (click)="openSupportForm(content)" class="dropdown-item  cursor-pointer"><i style="font-size: medium;" class="fas fa-question-circle"></i> Get Support</a>
-            <a class="dropdown-item" href="https://github.com/karamhouse/chartrove" externalLink><i class="fab fa-github"></i> Chartrove project</a>
+            <a class="dropdown-item" href="https://github.com/chartrove/chartrove" externalLink><i class="fab fa-github"></i> Chartrove project</a>
             <a routerLink="/settings" class="dropdown-item cursor-pointer"><i style="font-size: medium;" class="fas fa-cog"></i> Settings</a>
             <a (click)="signOut($event)" class="dropdown-item  cursor-pointer"><i style="font-size: medium;" class="fas fa-power-off"></i> Sign Out</a>
           </div><!-- dropdown-menu -->
@@ -109,8 +109,8 @@
     <div class="modal-body">
       <p>Report bugs and suggest improvements in the Chartrove issue tracker.</p>
       <p>Issues are public. Remove health information, credentials, and identifying details before posting. This link does not attach records or logs.</p>
-      <p><a class="btn btn-az-primary" href="https://github.com/karamhouse/chartrove/issues/new" externalLink>Open a Chartrove issue</a></p>
-      <p><a href="https://github.com/karamhouse/chartrove#documentation" externalLink>Chartrove documentation</a></p>
+      <p><a class="btn btn-az-primary" href="https://github.com/chartrove/chartrove/issues/new" externalLink>Open a Chartrove issue</a></p>
+      <p><a href="https://github.com/chartrove/chartrove#documentation" externalLink>Chartrove documentation</a></p>
       <hr>
         <p class="text-muted">Chartrove is an independent fork of <a href="https://github.com/fastenhealth/fasten-onprem" externalLink>Fasten Onprem</a>. Fasten Health services and support are separate from this project.</p>
       </div>
