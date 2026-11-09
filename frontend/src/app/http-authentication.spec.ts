@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AppModule} from './app.module';
 import {HTTP_CLIENT_TOKEN} from './dependency-injection';
 import {AuthService} from './services/auth.service';
+import {environment} from '../environments/environment';
 
 describe('Application HTTP authentication providers', () => {
   let http: HttpTestingController;
@@ -52,6 +53,24 @@ describe('Application HTTP authentication providers', () => {
       request.flush({});
       expect(auth.GetAuthToken).not.toHaveBeenCalled();
     });
+
+    for (const status of [401, 403]) {
+      it(`preserves the local session and original external denial through ${name} (${status})`, () => {
+        const url = environment.lighthouse_api_endpoint_base + '/catalog';
+        let failure: HttpErrorResponse | undefined;
+        getClient().get(url).subscribe({
+          next: () => fail('External rejection must not become a successful local response'),
+          error: error => failure = error,
+        });
+        const request = http.expectOne(url);
+        expect(request.request.headers.has('Authorization')).toBeFalse();
+        request.flush({code: 'synthetic-optional-service-denial'}, {status, statusText: 'Denied'});
+        expect(failure?.status).toBe(status);
+        expect(auth.GetAuthToken).not.toHaveBeenCalled();
+        expect(auth.Logout).not.toHaveBeenCalled();
+        expect(router.navigateByUrl).not.toHaveBeenCalled();
+      });
+    }
   }
 
   for (const status of [401, 403]) {
