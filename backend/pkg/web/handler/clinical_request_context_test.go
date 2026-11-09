@@ -25,8 +25,9 @@ type capturedClinicalContext struct {
 	ctx    context.Context
 }
 
-// Fake only the repository boundary; use the actual route/envelope/error logic.
-// Existing encrypted real-JWT HTTP tests remain the storage/authority controls.
+// Use actual route/envelope/error logic with a fake repository and synthetic
+// server-identity middleware. Existing encrypted real-JWT HTTP tests remain the
+// storage/authentication/authority controls.
 type clinicalRequestContextProbe struct {
 	database.DatabaseRepository
 	actor    models.User

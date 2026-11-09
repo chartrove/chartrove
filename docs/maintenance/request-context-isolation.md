@@ -87,3 +87,46 @@ receipt follows it. All seven hosted checks qualified exact follow-up head
 `f094d12f3fbe230f320306191a5131c710682a84` (42592715042), with no unresolved review threads.
 Protected matching-head #478 merged at `dc48128ad8691513ae9c2e8607567482849f6c8f`;
 exact-main validation 42594974931 passed. #474 remains open for the unassessed callers above.
+
+## Clinical routes and other request-bound producers
+
+The next actual-callee review found the clinical API itself still passed Gin to its actor/import
+repository calls and used Gin as the parent of history/original timers. A timer's different dynamic
+type does not make its retained parent safe or connect it to the HTTP deadline/cancellation.
+
+New tests use the actual registered clinical routes, a boundary-only fake repository and synthetic
+server-identity middleware (not JWT verification). All three
+route classes genuinely failed their original-request deadline controls; a blocked import also
+ignored a real HTTP abort (3.111s failing package result). After replacing the Gin object, the tests
+model pool reuse and verify the original immutable UUID/username, earlier HTTP deadline, cancellation
+and absence of local JWT, including timed history/original children. The owned blocked-handler test
+returns the fixed HTTP 408 response on abort and releases its synthetic goroutine on red/green cleanup.
+Existing real-JWT/encrypted clinical HTTP tests remain the storage/authority controls, not replaced by
+these fakes.
+
+Seven additional real-handler boundary controls genuinely failed for summary, dashboard settings,
+access-token listing, practitioner favorites, job listing, synchronous client-failure recording and
+admin user listing (1.037s). The original four controls stayed green. The unchanged expanded boundary
+and clinical-abort tests then passed under race (2.083s).
+
+Reviewed authenticated practitioner creation/update/favorites/history, settings, summary/IPS, token,
+admin-user and SSE actor calls now use the stable authenticated request snapshot. Public health and
+global glossary-cache SQL use the original HTTP context; no owner is inferred for that shared cache.
+The client-error job route synchronously records an already-failed job; it is not an already detached
+worker. Existing detached manual/related/source-sync jobs and their deliberate lifetimes are unchanged.
+Remote glossary/dashboard fetching, filesystem work, error/log policy, provider calls and new atomicity
+or cancellation contracts for those operations are not qualified by these repository-boundary changes.
+
+Ordinary complete handler/middleware compatibility passed (83.302s / 0.516s) without fixture changes.
+Complete pre-parent web race passed (611.537s). After normally integrating accepted PostgreSQL #480 at
+code checkpoint `f5b26a39d5c7268bf99f3f0a72d853faff8beaf0`, fresh complete web/handler/middleware
+race suites passed (623.159s / 545.789s / 1.831s). Serialized complete desktop internal race suites
+passed: host 23.184s, composed encrypted shell flow 26.608s, SMART 6.020s, fixture 1.223s. Existing
+macOS object/link-target warnings remain. Changed-web vet/diff checks passed. No global fallback,
+deadline/hash relaxation, new dependency, real provider, production identity or record was used.
+
+The remaining direct Gin-to-SQL/SDK matches in `unsafe.go` are deliberately **not** relabeled as
+verified authenticated requests: those opt-in diagnostics select a username from their route without
+native authentication. Changing that authority/lifetime requires explicit analysis of the unsafe-mode
+contract, not blindly supplying a nil authenticated UUID or blessing an unverified name. #474 remains
+open for this producer and further evidence; a grep result or passing suite is not a global audit.

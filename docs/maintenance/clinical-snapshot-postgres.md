@@ -7,6 +7,11 @@ single checkout `/Users/osama/Code/chartrove/chartrove`, branch `task/clinical-p
 This is synthetic repository/runtime qualification, not PostgreSQL production deployment, TLS,
 at-rest encryption, independently operated recovery, native GUI or provider acceptance.
 
+All seven checks qualified exact source head `e0c02909e447882f1deea92f200ab3eefbd3ec7b`
+(42601840418), with no unresolved review threads. Protected matching-head #480 merged at
+`3c1acc588600fe4d5ef8b072696cc6302c2a2da3`; exact-main validation 42605419029 passed.
+#479 remains open for the explicitly documented instrumented maximum-load qualification limit.
+
 The existing `postgres_integration` fixture uses PostgreSQL 17.11, the repository-pinned multi-platform
 image `postgres:17-alpine@sha256:266d3c257594e195b309ae9d1805e54c788f1d7b375f56bf6c367aac6c917e7b`.
 Only this exact image was acquired. No dependency/catalog refresh, Docker context change, existing

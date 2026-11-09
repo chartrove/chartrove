@@ -55,11 +55,19 @@ remain evidence, not current acceptance or authorization. Only this repository i
   `f094d12f3fbe230f320306191a5131c710682a84` (42592715042), merged with no unresolved threads
   at `dc48128ad8691513ae9c2e8607567482849f6c8f`; exact-main 42594974931 passed.
   [#474 remains open](request-context-isolation.md) for actual remaining callers, not hidden by CI.
-- Current Pi-owned #479, branch `task/clinical-postgres-acceptance`, uses only the existing pinned
-  disposable local PostgreSQL fixture. A genuine identical-Patient update misclassification is
-  corrected and real runtime/precision/ownership/rollback/reopen controls now exist. See the
-  [PostgreSQL receipt](clinical-snapshot-postgres.md), including its explicitly unresolved
-  race-instrumented maximum-load limit. This slice is not yet protected-main acceptance.
+- PostgreSQL #480 qualified exact head `e0c02909e447882f1deea92f200ab3eefbd3ec7b`
+  (42601840418), merged at `3c1acc588600fe4d5ef8b072696cc6302c2a2da3`; exact-main
+  42605419029 passed. Actual pinned disposable PostgreSQL runtime exposed and corrected an
+  identical-Patient update misclassification. Exact originals, precision/scale, ownership,
+  rollback/reopen and concurrent deletion have real runtime controls. The
+  [PostgreSQL receipt](clinical-snapshot-postgres.md) retains #479's instrumented maximum-load
+  limit; this is not production PostgreSQL security/operations or independent recovery acceptance.
+- Current Pi work resumes #474 on `task/request-context-isolation`: clinical route timers/imports
+  and further request-bound SQL producers now preserve original HTTP lifetime and immutable actor.
+  Genuine deadline/abort and seven additional producer regressions failed before correction;
+  post-parent complete web/handler/middleware and native race suites pass. This third bounded
+  repair awaits protected publication. Opt-in unsafe username-selected diagnostics remain separate
+  and are not silently authenticated or disabled by a blanket context substitution.
 - Actual GUI launch remains refused by the normal installed Cua daemon's `permissions_pending`
   gate; Chartrove was not launched. Do not bypass it or infer permission from helper booleans.
   Safe source/runtime work continues. The e442 inspection ZIP predates final UI review corrections
