@@ -33,13 +33,13 @@ func CreateReconnectSource(c *gin.Context) {
 
 	sourceCred := models.SourceCredential{}
 	if err := c.ShouldBindJSON(&sourceCred); err != nil {
-		err = fmt.Errorf("an error occurred while parsing posted source credential: %s", err)
-		logger.Errorln(err)
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		// Decoder errors can include submitted values (for example, invalid
+		// timestamps). Do not emit them or the credential payload in diagnostics.
+		const message = "unable to parse source credential request"
+		logger.Error(message)
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": message})
 		return
 	}
-
-	logger.Infof("Parsed Create SourceCredential Credentials Payload: %v", sourceCred)
 
 	//get the endpoint definition
 	endpointDefinition, err := sourceDefinitions.GetSourceDefinition(sourceDefinitions.GetSourceConfigOptions{
