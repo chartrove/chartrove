@@ -188,3 +188,8 @@ is not a security endorsement of unauthenticated provider proxying/name sync. Ex
 provider error/body/log policy, credential failure recovery, request-path authority and production
 configuration remain separate. #474 stays open pending final inventory/review; zero direct grep
 matches or a passing suite alone are not a complete caller/security audit.
+
+This fourth repair qualified exact head `ca1672ac68aebb4c1f81748b4db0bffbb1438eab`
+with seven checks (42618587011), no unresolved threads, and protected matching-head #482 merge
+`92c31890c5ef34f462241d2961186d3b09a45730`. Exact-main 42622419523 remains separately
+pending; local/PR success is not substituted for it.

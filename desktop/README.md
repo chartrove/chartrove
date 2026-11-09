@@ -103,7 +103,8 @@ For non-interfering automated runtime qualification, add `--smoke-background` to
 arguments. It is rejected without `--smoke-test` and keeps the main, callback and observer windows
 hidden. It does not grant capture permission, enable providers or use a foreground fallback. A
 hidden native WebView/service test is **not** visual/interactive GUI, encrypted-GUI, key-custody or
-production acceptance; those gates remain separate.
+production acceptance; those gates remain separate. Current exact-source positive/negative native
+package evidence is in the [runtime receipt](../docs/maintenance/native-smoke-runtime.md).
 
 Observed on October 26, 2026: seven embedded-backend integration tests passed, including encrypted create/unlock/reopen, bad-key rejection, concurrent health polling, persistence, and synthetic FHIR import without outbound HTTP or temporary-document residue. The cancellation regression passed with the real event bus. Desktop host tests and four bridge tests passed. The frontend suite reported 286 successes and one skipped test. The packaged executable passed all eight native smoke checks after extraction and passed strict signature verification. Its encryption onboarding UI was also verified visually; a staged build's actual UI signed into the synthetic account after restart and reached the dashboard.
 
