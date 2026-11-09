@@ -143,7 +143,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 			oidcJSON(c, 401, nil)
 			return
 		}
-		user, session, err := repo.CompleteOIDC(c, verified.Issuer, verified.Subject, verified.LinkUser, verified.PasswordHash, verified.AuthorizedAt, verified.Expires)
+		user, session, err := repo.CompleteOIDC(c.Request.Context(), verified.Issuer, verified.Subject, verified.LinkUser, verified.PasswordHash, verified.AuthorizedAt, verified.Expires)
 		if err != nil {
 			status := 500
 			if errors.Is(err, database.ErrOIDCDenied) {
@@ -155,7 +155,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 		cfg := c.MustGet(pkg.ContextKeyTypeConfig).(config.Interface)
 		token, err := auth.JwtGenerateOIDCSession(*user, cfg.GetString("jwt.issuer.key"), session.ExpiresAt, session.ID.String())
 		if err != nil {
-			_ = repo.RevokeOIDCSession(c, user.ID, session.ID)
+			_ = repo.RevokeOIDCSession(c.Request.Context(), user.ID, session.ID)
 			oidcJSON(c, 500, nil)
 			return
 		}
@@ -171,7 +171,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 			oidcJSON(c, 500, nil)
 			return
 		}
-		rows, err := repo.ListOIDCIdentities(c, u.ID)
+		rows, err := repo.ListOIDCIdentities(c.Request.Context(), u.ID)
 		if err != nil {
 			oidcJSON(c, 500, nil)
 			return
@@ -188,7 +188,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 			oidcJSON(c, 500, nil)
 			return
 		}
-		rows, err := repo.ListOIDCAudit(c, u.ID)
+		rows, err := repo.ListOIDCAudit(c.Request.Context(), u.ID)
 		if err != nil {
 			oidcJSON(c, 500, nil)
 			return
@@ -209,7 +209,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 			oidcJSON(c, 400, nil)
 			return
 		}
-		if err = repo.RevokeOIDCIdentity(c, u.ID, id); err != nil {
+		if err = repo.RevokeOIDCIdentity(c.Request.Context(), u.ID, id); err != nil {
 			status := 500
 			if errors.Is(err, database.ErrOIDCDenied) {
 				status = 404
@@ -241,7 +241,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 				oidcJSON(c, 401, nil)
 				return
 			}
-			if err = repo.RevokeOIDCSession(c, u.ID, id); err != nil {
+			if err = repo.RevokeOIDCSession(c.Request.Context(), u.ID, id); err != nil {
 				oidcJSON(c, 500, nil)
 				return
 			}

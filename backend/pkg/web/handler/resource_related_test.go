@@ -40,6 +40,7 @@ type ResourceRelatedHandlerTestSuite struct {
 	AppConfig     *mock_config.MockInterface
 	AppRepository database.DatabaseRepository
 	AppEventBus   event_bus.Interface
+	User          *models.User
 }
 
 // BeforeTest has a function to be executed right before the test starts and receives the suite and test names as input
@@ -68,10 +69,8 @@ func (suite *ResourceRelatedHandlerTestSuite) BeforeTest(suiteName, testName str
 
 	suite.AppEventBus = event_bus.NewNoopEventBusServer()
 
-	appRepo.CreateUser(context.Background(), &models.User{
-		Username: "test_username",
-		Password: "test",
-	})
+	suite.User = &models.User{Username: "test_username", Password: "test"}
+	require.NoError(suite.T(), appRepo.CreateUser(context.Background(), suite.User))
 
 }
 
@@ -99,6 +98,7 @@ func (suite *ResourceRelatedHandlerTestSuite) TestResourceRelatedHandlerTestSuit
 	ctx.Set(pkg.ContextKeyTypeConfig, suite.AppConfig)
 	ctx.Set(pkg.ContextKeyTypeEventBusServer, suite.AppEventBus)
 	ctx.Set(pkg.ContextKeyTypeAuthUsername, "test_username")
+	ctx.Set(pkg.ContextKeyTypeAuthUserID, suite.User.ID)
 
 	//test
 	relatedJsonForm, relatedJsonWriter := createMultipartFormData(suite.T(), "file", "testdata/related.json") // just pass the file name
@@ -288,6 +288,8 @@ func (suite *ResourceRelatedHandlerTestSuite) setupTestContextWithMocks(t *testi
 	ctx.Set(pkg.ContextKeyTypeConfig, suite.AppConfig)
 	ctx.Set(pkg.ContextKeyTypeEventBusServer, suite.AppEventBus)
 	ctx.Set(pkg.ContextKeyTypeAuthUsername, "test_username")
+	ctx.Set(pkg.ContextKeyTypeAuthUserID, suite.User.ID)
+	ctx.Request = httptest.NewRequest(http.MethodDelete, "/synthetic-unlink", nil)
 
 	return ctx, w, mockDB
 }

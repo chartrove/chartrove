@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 	"io"
+	"net/http"
 	"net/http/httptest"
 	"path/filepath"
 	"testing"
@@ -13,6 +14,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/require"
 )
@@ -53,4 +55,30 @@ func TestHTTPDerivedSyncContextCannotSwitchNativeAccounts(t *testing.T) {
 	delete(c.Keys, pkg.ContextKeyTypeAuthUserID)
 	_, err = repo.GetCurrentUser(GetBackgroundContext(c))
 	require.Error(t, err)
+}
+
+func TestHTTPDerivedJobContextSurvivesRequestReuseAndCancellation(t *testing.T) {
+	request, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	c, _ := gin.CreateTestContext(httptest.NewRecorder())
+	c.Request = httptest.NewRequest(http.MethodPost, "/synthetic-manual-job", nil).WithContext(request)
+	owner := uuid.New()
+	c.Set(pkg.ContextKeyTypeAuthUsername, "synthetic-first-owner")
+	c.Set(pkg.ContextKeyTypeAuthUserID, owner)
+	c.Set(pkg.ContextKeyTypeAuthToken, "synthetic-private-local-token")
+	job := CreateBackgroundJobContext(GetBackgroundContext(c), "synthetic-job")
+	cancel()
+	// Model request-pool reuse without a SQL timing assumption. Deferred SQL
+	// cleanup and the tracked job must never inspect this mutable HTTP object.
+	c.Request = httptest.NewRequest(http.MethodGet, "/synthetic-next-user", nil)
+	c.Set(pkg.ContextKeyTypeAuthUsername, "synthetic-second-owner")
+	c.Set(pkg.ContextKeyTypeAuthUserID, uuid.New())
+	require.Equal(t, owner, job.Value(pkg.ContextKeyTypeAuthUserID))
+	require.Equal(t, "synthetic-first-owner", job.Value(pkg.ContextKeyTypeAuthUsername))
+	require.Equal(t, "synthetic-job", job.Value(pkg.ContextKeyTypeBackgroundJobID))
+	require.Nil(t, job.Value(pkg.ContextKeyTypeAuthToken), "detached jobs do not need the local JWT")
+	require.NoError(t, job.Err())
+	require.Nil(t, job.Done(), "retain the legacy tracked-job lifetime, not a new request-cancel contract")
+	_, bounded := job.Deadline()
+	require.False(t, bounded)
 }
