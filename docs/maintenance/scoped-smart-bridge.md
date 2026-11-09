@@ -65,5 +65,34 @@ key rotation, altered OIDC identity linkage or change to stored user records.
   testify v1.12.1 were explicitly declared; no versions/catalog were refreshed. A read-only tidy diff suggested
   unrelated pruning, which was not applied. `-mod=readonly` native race tests then passed.
 
-Final source review, exact-head hosted validation, native GUI clinical import/recovery, PostgreSQL and
-independent operator/key-loss tests remain required before any production-readiness declaration.
+## Final parent integration and request lifetime
+
+The accepted API parent is #473 at `3fa5d8e993d1f4bb0d8d2b212eae4690a78a2e8d`. All seven checks
+qualified corrected API head `14eded02f5ebc5518cccbb0963a6c5a37f9926aa` (run 42568249499); protected
+matching-head merge succeeded only after both reproduced review findings were resolved. Exact-main
+validation 42570752698 also passed. No protection bypass or old-head qualification was used.
+
+The native resolver's request context must actually reach account/authentication SQL. Passing raw
+`*gin.Context` loses request cancellation/deadlines under the default adapter. A synthetic application
+boundary check reproduced the missing deadline. A trial global `ContextWithFallback` switch was rejected:
+the unchanged encrypted native identity race test found SQL's asynchronous Rows cleanup reading a pooled
+Gin Request while the engine replaced it on the next call. The global change was removed, not shipped.
+Authentication lookups now use the stable request context directly. The authenticated account handler
+uses a small adapter which copies only verified UUID/username onto that context, masks inherited values
+when identity is absent, and never retains Gin. A bounded request-lifetime/identity snapshot test passes
+under race (2.062s), including reuse and missing-identity controls.
+
+Final native internal race passed: host 23.309s, shell 1.182s, SMART 6.430s, fixture 1.223s; native vet
+passed. Full non-race web/handler/middleware compatibility passed (68.030s / 81.921s / 0.529s). Desktop
+Node contracts and the full Angular run passed (724 tests, one skip), retaining existing warnings.
+Attempts at broader web race suites exceeded 300/600-second tool budgets and a 120-second diagnostic
+budget; none is counted as a pass. The diagnostic also exposed **legacy** manual-import pooled-context
+races. A compiler overlay of the exact accepted main parent independently reproduces them (56.714s),
+without the native adapter changes. [Issue #474](https://github.com/chartrove/chartrove/issues/474) owns
+that remaining application-wide repair; the scoped account adaptation does not claim to fix it.
+
+These methods authenticate the supplied local JWT through the real backend; they do not introduce
+server-side revocation for ordinary logout or attest which browser cookie is currently selected.
+Renderer stale-profile checks and backend account validity remain distinct defenses. No native GUI,
+whole-household, PostgreSQL or independent operator/key-loss qualification is inferred from these tests.
+Final source review and exact-head hosted validation remain required for this bridge slice.

@@ -47,7 +47,7 @@ func RequireAuth() gin.HandlerFunc {
 			return
 		}
 		databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
-		user, err := databaseRepo.GetUserByUsername(c, claims.Subject)
+		user, err := databaseRepo.GetUserByUsername(c.Request.Context(), claims.Subject)
 		if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Authentication service unavailable"})
 			return
@@ -73,7 +73,7 @@ func RequireAuth() gin.HandlerFunc {
 		}
 
 		if claims.TokenType == "access" {
-			token, err := databaseRepo.GetAccessTokenByTokenIDAndUsername(c, claims.ID, claims.Subject)
+			token, err := databaseRepo.GetAccessTokenByTokenIDAndUsername(c.Request.Context(), claims.ID, claims.Subject)
 			if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 				c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Authentication service unavailable"})
 				return
@@ -91,7 +91,7 @@ func RequireAuth() gin.HandlerFunc {
 				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"success": false, "error": "Invalid OIDC session"})
 				return
 			}
-			err := repo.ValidateOIDCSession(c, id, user.ID, appConfig.GetString("auth.oidc.issuer"))
+			err := repo.ValidateOIDCSession(c.Request.Context(), id, user.ID, appConfig.GetString("auth.oidc.issuer"))
 			if err != nil {
 				status := http.StatusInternalServerError
 				if errors.Is(err, database.ErrOIDCDenied) {
