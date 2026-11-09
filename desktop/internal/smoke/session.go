@@ -4,6 +4,7 @@ package smoke
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 	"sync"
 )
@@ -22,6 +23,22 @@ type Session struct {
 	observerReady bool
 	leaked        bool
 	checked       bool
+	checks        []string
+}
+
+var nativeSmokeChecks = []string{
+	"native binding round trip", "direct SMART disabled without registration", "fresh database API",
+	"local account creation", "local sign in", "direct SMART rejects unconfigured provider",
+	"manual import receiving profile guard", "owner-confirmed native file import", "native URL validation",
+	"API errors stay separate from SPA", "owned popup callback round trip", "callback isolated from unrelated window",
+}
+
+// TimeoutReport preserves acknowledged fixed-label progress without extending the
+// deadline or treating a partial run as success. No records, tokens or inputs belong here.
+func (s *Session) TimeoutReport() Report {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return Report{Checks: append([]string(nil), s.checks...), Error: "native smoke test timed out"}
 }
 
 func (s *Session) Wrap(next http.Handler) http.Handler {
@@ -60,6 +77,27 @@ func (s *Session) Wrap(next http.Handler) http.Handler {
 			defer s.mu.Unlock()
 			json.NewEncoder(w).Encode(map[string]bool{"ready": s.observerReady, "checked": s.checked, "leaked": s.leaked})
 			return
+		case "progress":
+			var progress struct {
+				Checks []string `json:"checks"`
+			}
+			decoder := json.NewDecoder(http.MaxBytesReader(w, r.Body, 2048))
+			decoder.DisallowUnknownFields()
+			if decoder.Decode(&progress) != nil || decoder.Decode(new(any)) != io.EOF || len(progress.Checks) > len(nativeSmokeChecks) {
+				w.WriteHeader(http.StatusBadRequest)
+				return
+			}
+			for index, check := range progress.Checks {
+				if check != nativeSmokeChecks[index] {
+					w.WriteHeader(http.StatusBadRequest)
+					return
+				}
+			}
+			s.mu.Lock()
+			if len(progress.Checks) > len(s.checks) {
+				s.checks = append([]string(nil), progress.Checks...)
+			}
+			s.mu.Unlock()
 		case "result":
 			var report Report
 			if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, 8192)).Decode(&report); err != nil {
@@ -82,7 +120,8 @@ import {prepareNativeMultipart} from '/assets/desktop/multipart.mjs';
 const bridge=createDesktopBridge(runtime), checks=[];
 const role=new URL(location.href).searchParams.get('role');
 const post=(action,data)=>fetch('/__desktop_smoke__/control?action='+action,{method:'POST',body:data&&JSON.stringify(data)});
-const check=(value,name)=>{if(!value)throw new Error(name);checks.push(name);document.querySelector('#status').textContent=checks.join('\n');};
+// At most twelve best-effort fixed-label progress posts; never a record/token payload.
+const check=(value,name)=>{if(!value)throw new Error(name);checks.push(name);document.querySelector('#status').textContent=checks.join('\n');void post('progress',{checks:[...checks]}).catch(()=>{});};
 const wait=async(predicate)=>{for(let i=0;i<100;i++){if(await predicate())return;await new Promise(r=>setTimeout(r,100));}throw new Error('native smoke handshake timed out');};
 const status=()=>post('status').then(r=>r.json());
 if(role==='observer') {
