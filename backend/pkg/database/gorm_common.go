@@ -144,6 +144,21 @@ func (gr *GormRepository) GetCurrentUser(ctx context.Context) (*models.User, err
 
 // SECURITY: this should only be called after the user has confirmed they want to delete their account.
 func (gr *GormRepository) DeleteCurrentUser(ctx context.Context) error {
+	actor, err := gr.GetCurrentUser(ctx)
+	if err != nil {
+		return err
+	}
+	return gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		if err := reserveOwnerWrite(tx, actor); err != nil {
+			return err
+		}
+		r := *gr
+		r.GormClient = tx
+		return r.deleteCurrentUser(ctx)
+	})
+}
+
+func (gr *GormRepository) deleteCurrentUser(ctx context.Context) error {
 	currentUser, err := gr.GetCurrentUser(ctx)
 	if err != nil {
 		return err
@@ -1194,6 +1209,28 @@ func (gr *GormRepository) GetSources(ctx context.Context) ([]models.SourceCreden
 }
 
 func (gr *GormRepository) DeleteSource(ctx context.Context, sourceId string) (int64, error) {
+	actor, err := gr.GetCurrentUser(ctx)
+	if err != nil {
+		return 0, err
+	}
+	var rows int64
+	err = gr.GormClient.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		if err := reserveOwnerWrite(tx, actor); err != nil {
+			return err
+		}
+		r := *gr
+		r.GormClient = tx
+		var err error
+		rows, err = r.deleteSource(ctx, sourceId)
+		return err
+	})
+	if err != nil {
+		return 0, err
+	}
+	return rows, nil
+}
+
+func (gr *GormRepository) deleteSource(ctx context.Context, sourceId string) (int64, error) {
 	currentUser, currentUserErr := gr.GetCurrentUser(ctx)
 	if currentUserErr != nil {
 		return 0, currentUserErr
@@ -1234,6 +1271,12 @@ func (gr *GormRepository) DeleteSource(ctx context.Context, sourceId string) (in
 		Delete(&models.RelatedResource{})
 	if results.Error != nil {
 		return rowsEffected, results.Error
+	}
+
+	// Original clinical collections contain the same private records as their
+	// projections. Source/account deletion must remove both, atomically.
+	if err := gr.GormClient.WithContext(ctx).Where("owner_user_id = ? AND source_id = ?", currentUser.ID, sourceUUID).Delete(&models.ClinicalSnapshotRecord{}).Error; err != nil {
+		return rowsEffected, err
 	}
 
 	//soft delete the source credential

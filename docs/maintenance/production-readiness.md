@@ -65,6 +65,27 @@ remain evidence, not current acceptance or authorization. Only this repository i
   The only checkout is canonical. Rex reports the new path. Pi's captured launch-path limitation is explicitly
   documented there, with a labelled nonrepository anchor rather than a duplicate clone or symlink.
 
+## Next implementation slice: atomic clinical persistence
+
+Exclusive Pi ownership continues in the primary checkout, task branch `task/clinical-snapshot-persistence`,
+initially stacked on the qualified #466 reader and accepted #470 source-log correction. This is synthetic,
+internal-only development; host/API/UI exposure comes after repository acceptance.
+
+1. Revalidate the bounded raw collection at the database boundary, derive source identity from the exact
+   FHIR base and Patient ID, and require the authenticated local owner. Never promote imported records to
+   editable local provenance or infer grants/native authorization from origin metadata.
+2. Commit source creation/reuse, all Patient/Observation upserts, ownership checks, associations, immutable
+   original snapshot and payload-free audit together. Retain raw lexical values and unknown extensions;
+   indexed projections are not a substitute for originals. No pre-commit success events.
+3. Exact historical replay is a no-new-clinical-write acknowledgement, not permission to roll newer records back.
+   Changed snapshots update current records while preserving originals and avoiding deletion of absent
+   Observations (a bounded snapshot is not evidence of provider-side deletion).
+4. Exercise encrypted reopen, distinct owners/endpoints/Patients, raw fidelity, repeated/changed import,
+   injected final-write failure and rollback, concurrent import, cancellation, source/account deletion and
+   backup/restore. Existing Fasten/manual import and grants must remain unchanged.
+5. Require accepted migrations, source review and protected validation before integration. Then add the
+   explicit owner-confirmed native bridge/API/UI action and synthetic end-to-end flow as its own slice.
+
 ## Current execution checkpoint
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
