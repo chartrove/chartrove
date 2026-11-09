@@ -117,7 +117,8 @@ remain application-wide acceptance items, not claims supplied by the internal st
   (25.102s) and maximum collection passed (32.018s). #472's initial seven green checks were insufficient:
   source review reproduced an entry-URL-only stale provenance defect; tests failed before correction,
   then both resource types and the full focused store suite passed under race (15.861s). The review thread
-  was resolved with that evidence; new head `b5a097f37d` still needs fresh qualification/integration.
+  was resolved with that evidence. All seven checks then qualified `b5a097f37d` (run 42560019280);
+  #472 merged at `af644a006a8b5bc1bc857be0b8aad743b30f7b15`. Exact-main run 42561759380 passed.
 - The [explicit owner-confirmed API](clinical-snapshot-api.md) is locally implemented on its own task
   branch. Real JWT middleware, encrypted HTTP originals/history, stale-recipient refusal, rollback/event
   ordering, strict/bounded intake and immutable backup-copy restore passed focused race tests (11.707s).
