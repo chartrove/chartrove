@@ -104,6 +104,18 @@ if(role==='observer') {
   const signin=await send('signin');check(signin.success&&typeof signin.data==='string','local sign in');
   let unavailable='';try{await runtime.Call.ByName(smart+'.Connect','unregistered-smoke-provider',signin.data);}catch(error){unavailable=String(error?.message??error);}
   check(unavailable.includes('direct provider data could not be retrieved'),'direct SMART rejects unconfigured provider');
+  const api=async(path,options={})=>{const response=await fetch(path,{...options,headers:{...options.headers,Authorization:'Bearer '+signin.data}});return {status:response.status,body:await response.json()};};
+  const me=await api('/api/secure/account/me');
+  if(me.status!==200||typeof me.body.data?.id!=='string')throw new Error('local receiving identity unavailable');
+  const count=async(path)=>{const result=await api(path);if(result.status!==200)throw new Error('local import state unavailable');if(result.body.data===null)return 0;if(!Array.isArray(result.body.data))throw new Error('local import state unavailable');return result.body.data.length;};
+  const sourceCount=await count('/api/secure/source'),jobCount=await count('/api/secure/jobs');
+  const patientID='native-smoke-patient';
+  const bundle=JSON.stringify({resourceType:'Bundle',type:'collection',entry:[{resource:{resourceType:'Patient',id:patientID,gender:'unknown',name:[{family:'Synthetic',given:['Smoke']}]}}]});
+  const importFile=owner=>{const body=new FormData();body.append('file',new Blob([bundle],{type:'application/json'}),'synthetic-native-smoke.json');body.append('expected_owner_id',owner);return api('/api/secure/source/manual',{method:'POST',body});};
+  const wrong=await importFile('11111111-1111-4111-8111-111111111111');
+  check(wrong.status===409&&wrong.body.success===false&&(await count('/api/secure/source'))===sourceCount&&(await count('/api/secure/jobs'))===jobCount,'manual import receiving profile guard');
+  const imported=await importFile(me.body.data.id);
+  check(imported.status===200&&imported.body.success===true&&imported.body.source?.user_id===me.body.data.id&&imported.body.source?.patient===patientID&&(await count('/api/secure/source'))===sourceCount+1&&(await count('/api/secure/jobs'))===jobCount+1,'owner-confirmed native file import');
   let rejected=false;try{await bridge.openExternal('file:///etc/passwd','smoke-one');}catch{rejected=true;}
   check(rejected,'native URL validation');
   const missing=await fetch('/api/not-a-route');check(missing.status===404&&missing.headers.get('content-type').includes('json'),'API errors stay separate from SPA');
