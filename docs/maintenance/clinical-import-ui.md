@@ -110,3 +110,14 @@ The unchanged complete native suites passed when serialized without competing fr
 23.613s, shell 28.412s, SMART 6.405s, fixture 1.286s). No product deadline, password cost, identity control
 or test assertion was relaxed. Existing platform/linker and frontend warnings remain visible. This newer
 source does not retroactively requalify either earlier package, nor grant GUI or independent acceptance.
+
+Review #477 found two rejected-read composition gaps: a service post-read identity refusal retained the
+old private preview, and an aborted read's cleanup failure lost its close-application warning. New tests
+compose the real `DirectSmartService` with controlled native promises and the real component: switching
+the owner before a native response forces the actual service rejection, and an aborted read with failed
+native disconnect forces the actual finally-block cleanup error. Both tests failed before correction.
+The catch path now clears private state and preserves cleanup warnings before ordinary cancellation;
+otherwise it rechecks identity and discards/releases stale previews before offering same-profile retry.
+The unchanged focused component suite passes 15/15; complete frontend validation passes (741 browser
+passes, one skip, Node, production build and Storybook). The matched `e4420c03a9` inspection package built
+and passed signature/packaged WAL restore (7.965s / 7.59s) before this correction; it is not its final artifact.

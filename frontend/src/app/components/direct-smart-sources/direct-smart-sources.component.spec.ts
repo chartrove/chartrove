@@ -5,7 +5,7 @@ import {of, Subject, throwError} from 'rxjs';
 import {DirectSmartSourcesComponent} from './direct-smart-sources.component';
 import {DirectSmartService} from '../../services/direct-smart.service';
 import {FastenApiService} from '../../services/fasten-api.service';
-import {SmartSnapshotImportResult} from '../../models/direct-smart';
+import {SmartBridge, SmartSnapshotImportResult} from '../../models/direct-smart';
 
 describe('DirectSmartSourcesComponent', () => {
   let fixture: ComponentFixture<DirectSmartSourcesComponent>;
@@ -140,6 +140,69 @@ describe('DirectSmartSourcesComponent', () => {
     component.confirmed = true;
     await component.importPatient();
     expect(api.importClinicalSnapshot.calls.mostRecent().args[0]).toBe(clinicalJSON);
+  });
+
+  // Exercise the real service rejection/finally paths together with the component,
+  // not just independent spies that can accidentally model different outcomes.
+  function nativeClinicalService(): {smart: jasmine.SpyObj<SmartBridge>, setOwner: (id: string) => void} {
+    let ownerID = owner.id;
+    const smart = jasmine.createSpyObj<SmartBridge>('SmartBridge', ['providers', 'connect', 'cancel', 'disconnect', 'readPatient', 'readClinicalSnapshot']);
+    smart.readClinicalSnapshot.and.resolveTo(clinicalJSON);
+    smart.disconnect.and.resolveTo();
+    const service = new DirectSmartService(async () => ({smart}), () => ({token: 'synthetic-local-token', ownerID}));
+    direct.isCurrentIdentity.and.callFake(value => service.isCurrentIdentity(value));
+    direct.readClinicalSnapshot.and.callFake((value, signal) => service.readClinicalSnapshot(value, signal));
+    direct.disconnect.and.callFake(id => service.disconnect(id));
+    return {smart, setOwner: id => { ownerID = id; }};
+  }
+
+  it('clears the previous private preview when the real service rejects a read after an identity change', async () => {
+    const native = nativeClinicalService();
+    await component.connect(); await component.retrieveClinical();
+    let finish!: (raw: string) => void;
+    let began!: () => void;
+    const started = new Promise<void>(resolve => began = resolve);
+    native.smart.readClinicalSnapshot.and.callFake(() => { began(); return new Promise<string>(resolve => finish = resolve); });
+    const pending = component.retrieveClinical();
+    await started;
+    native.setOwner('00000000-0000-4000-8000-000000000004');
+    finish(clinicalJSON);
+    await pending; fixture.detectChanges();
+    expect(component.patient).toBeUndefined();
+    expect(component.connection).toBeUndefined();
+    expect(component.observationCount).toBeUndefined();
+    expect(component.confirmed).toBeFalse();
+    expect(component.error).toContain('local identity changed');
+    expect(fixture.nativeElement.querySelector('[data-testid="direct-patient-preview"]')).toBeNull();
+    expect(fixture.nativeElement.textContent).not.toContain(patient.name[0].text);
+    expect(native.smart.disconnect).toHaveBeenCalledWith(connection.id);
+    component.confirmed = true;
+    await component.importPatient();
+    expect(api.importClinicalSnapshot).not.toHaveBeenCalled();
+  });
+
+  it('keeps the real service cleanup failure actionable when clinical retrieval is cancelled', async () => {
+    const native = nativeClinicalService();
+    await component.connect();
+    let finish!: (raw: string) => void;
+    let began!: () => void;
+    const started = new Promise<void>(resolve => began = resolve);
+    native.smart.readClinicalSnapshot.and.callFake(() => { began(); return new Promise<string>(resolve => finish = resolve); });
+    native.smart.disconnect.and.rejectWith(new Error('private-provider-cleanup-canary'));
+    const pending = component.retrieveClinical();
+    await started;
+    component.cancel();
+    finish(clinicalJSON);
+    await pending; fixture.detectChanges();
+    expect(component.patient).toBeUndefined();
+    expect(component.connection).toBeUndefined();
+    expect(component.status).toBe('');
+    expect(component.error).toContain('Close Chartrove to clear it');
+    expect(fixture.nativeElement.textContent).not.toContain('private-provider-cleanup-canary');
+    expect(native.smart.disconnect).toHaveBeenCalledWith(connection.id);
+    expect(component.retrieving).toBeFalse();
+    expect(component.controller).toBeUndefined();
+    expect(api.importClinicalSnapshot).not.toHaveBeenCalled();
   });
 
   it('does not import or confirm while clinical retrieval is in flight and discards a cancelled late result', async () => {

@@ -122,12 +122,19 @@ export class DirectSmartSourcesComponent implements OnInit, OnDestroy {
       this.status = `Clinical preview ready: Patient and ${observations} Observations. Review and confirm before importing; retrieval does not save records.`;
     } catch (error: unknown) {
       if (!this.destroyed) {
-        if (controller.signal.aborted) {
+        if (error instanceof DirectSmartCleanupError) {
+          this.clearPreview();
+          this.importedSource = undefined;
+          this.status = '';
+          this.error = error.message;
+        } else if (!this.direct.isCurrentIdentity(connection)) {
+          await this.discardStaleIdentity();
+        } else if (controller.signal.aborted) {
           this.clearPreview();
           this.status = 'Clinical retrieval cancelled; preview discarded.';
         } else {
           this.status = '';
-          this.error = error instanceof DirectSmartCleanupError ? error.message : 'Clinical retrieval did not complete; no new or partial collection was accepted. The previous complete preview remains; review it before importing or reconnect.';
+          this.error = 'Clinical retrieval did not complete; no new or partial collection was accepted. The previous complete preview remains; review it before importing or reconnect.';
         }
       }
     } finally {
