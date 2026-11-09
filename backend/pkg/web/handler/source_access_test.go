@@ -36,14 +36,21 @@ func TestSourceAccessHTTPAuthorization(t *testing.T) {
 		require.NoError(t, db.CreateUser(context.Background(), u))
 	}
 	ownerCtx := context.WithValue(context.Background(), pkg.ContextKeyTypeAuthUsername, owner.Username)
+	ownerCtx = context.WithValue(ownerCtx, pkg.ContextKeyTypeAuthUserID, owner.ID)
 	sources, err := db.GetSources(ownerCtx)
 	require.NoError(t, err)
 	source := sources[0]
 	actor := owner.Username
 	router := gin.New()
 	var secure gin.IRoutes = router.Group("/api/secure", func(c *gin.Context) {
-		// Production obtains this value from its existing authentication middleware.
+		// Production obtains both values from its existing authentication middleware.
 		c.Set(pkg.ContextKeyTypeAuthUsername, actor)
+		for _, user := range []*models.User{owner, delegate, admin} {
+			if user.Username == actor {
+				c.Set(pkg.ContextKeyTypeAuthUserID, user.ID)
+				break
+			}
+		}
 		c.Set(pkg.ContextKeyTypeDatabase, db)
 	})
 	RegisterSourceAccessRoutes(secure)

@@ -11,6 +11,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -36,7 +37,7 @@ func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 				return nil, database.ErrSourceAccessInput
 			}
 		}
-		return metadata.ListSourceMetadata(c, source, c.Param("resourceType"), page)
+		return metadata.ListSourceMetadata(middleware.AuthenticatedRequestContext(c), source, c.Param("resourceType"), page)
 	}))
 	secure.POST(prefix+"/:sourceId/search/:resourceType", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		c.Header("Cache-Control", "no-store")
@@ -63,22 +64,22 @@ func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 		}
 		switch mode {
 		case "literal":
-			return search.SearchSourceResources(c, source, c.Param("resourceType"), body.Text, body.Page)
+			return search.SearchSourceResources(middleware.AuthenticatedRequestContext(c), source, c.Param("resourceType"), body.Text, body.Page)
 		case "exact_id":
 			modes, ok := repo.(database.SourceExactIDSearchRepository)
 			if !ok {
 				return nil, errors.New("source search mode unavailable")
 			}
-			return modes.SearchSourceResourceID(c, source, c.Param("resourceType"), body.Text, body.Page)
+			return modes.SearchSourceResourceID(middleware.AuthenticatedRequestContext(c), source, c.Param("resourceType"), body.Text, body.Page)
 		default:
 			return nil, database.ErrSourceAccessInput
 		}
 	}))
 	secure.GET(prefix+"/shared", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, _ uuid.UUID) (interface{}, error) {
-		return repo.ListSharedSources(c)
+		return repo.ListSharedSources(middleware.AuthenticatedRequestContext(c))
 	}))
 	secure.GET(prefix+"/:sourceId/grants", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
-		return repo.ListSourceGrants(c, source)
+		return repo.ListSourceGrants(middleware.AuthenticatedRequestContext(c), source)
 	}))
 	secure.POST(prefix+"/:sourceId/grants", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		var payload struct {
@@ -89,20 +90,20 @@ func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 		if err := decodeSourceAccessBody(c, &payload); err != nil {
 			return nil, err
 		}
-		return repo.SetSourceGrant(c, source, payload.DelegateUsername, payload.AccessLevel, payload.ExpiresAt)
+		return repo.SetSourceGrant(middleware.AuthenticatedRequestContext(c), source, payload.DelegateUsername, payload.AccessLevel, payload.ExpiresAt)
 	}))
 	secure.DELETE(prefix+"/:sourceId/grants/:grantId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		id, err := uuid.Parse(c.Param("grantId"))
 		if err != nil {
 			return nil, database.ErrSourceAccessInput
 		}
-		return nil, repo.RevokeSourceGrant(c, source, id)
+		return nil, repo.RevokeSourceGrant(middleware.AuthenticatedRequestContext(c), source, id)
 	}))
 	secure.GET(prefix+"/:sourceId/audit", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
-		return repo.ListSourceAccessAudit(c, source)
+		return repo.ListSourceAccessAudit(middleware.AuthenticatedRequestContext(c), source)
 	}))
 	secure.GET(prefix+"/:sourceId/summary", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
-		return repo.GetSharedSourceSummary(c, source)
+		return repo.GetSharedSourceSummary(middleware.AuthenticatedRequestContext(c), source)
 	}))
 	secure.GET(prefix+"/:sourceId/resources/:resourceType", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		page := 0
@@ -113,10 +114,10 @@ func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 				return nil, database.ErrSourceAccessInput
 			}
 		}
-		return repo.ListSharedResources(c, source, c.Param("resourceType"), page)
+		return repo.ListSharedResources(middleware.AuthenticatedRequestContext(c), source, c.Param("resourceType"), page)
 	}))
 	secure.GET(prefix+"/:sourceId/resources/:resourceType/:resourceId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
-		return repo.GetSharedResource(c, source, c.Param("resourceType"), c.Param("resourceId"))
+		return repo.GetSharedResource(middleware.AuthenticatedRequestContext(c), source, c.Param("resourceType"), c.Param("resourceId"))
 	}))
 	secure.POST(prefix+"/:sourceId/resources", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		var payload struct {
@@ -125,7 +126,7 @@ func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 		if err := decodeSourceAccessBody(c, &payload); err != nil {
 			return nil, err
 		}
-		return repo.CreateLocalResource(c, source, payload.ResourceRaw)
+		return repo.CreateLocalResource(middleware.AuthenticatedRequestContext(c), source, payload.ResourceRaw)
 	}))
 	secure.PATCH(prefix+"/:sourceId/resources/:resourceType/:resourceId", sourceAccessEndpoint(func(c *gin.Context, repo database.SourceAccessRepository, source uuid.UUID) (interface{}, error) {
 		var payload struct {
@@ -134,7 +135,7 @@ func RegisterSourceAccessRoutes(secure gin.IRoutes) {
 		if err := decodeSourceAccessBody(c, &payload); err != nil {
 			return nil, err
 		}
-		return nil, repo.UpdateSharedResource(c, source, c.Param("resourceType"), c.Param("resourceId"), payload.ResourceRaw)
+		return nil, repo.UpdateSharedResource(middleware.AuthenticatedRequestContext(c), source, c.Param("resourceType"), c.Param("resourceId"), payload.ResourceRaw)
 	}))
 }
 

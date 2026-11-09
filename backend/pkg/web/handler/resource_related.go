@@ -12,6 +12,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/fastenhealth/fasten-sources/clients/factory"
 	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	sourcePkg "github.com/fastenhealth/fasten-sources/pkg"
@@ -24,6 +25,7 @@ func CreateRelatedResources(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 	eventBus := c.MustGet(pkg.ContextKeyTypeEventBusServer).(event_bus.Interface)
+	jobContext := GetBackgroundContext(c)
 
 	// store the bundle file locally
 	bundleFile, err := storeFileLocally(c)
@@ -37,14 +39,14 @@ func CreateRelatedResources(c *gin.Context) {
 	}()
 
 	//step 2: ensure Fasten source exists for this user
-	fastenSourceCredential, err := ensureFastenSource(c, databaseRepo)
+	fastenSourceCredential, err := ensureFastenSource(jobContext, databaseRepo)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": fmt.Sprintf("could not ensure Fasten source: %v", err)})
 		return
 	}
 
 	summary, err := BackgroundJobSyncResourcesWrapper(
-		c,
+		jobContext,
 		logger,
 		databaseRepo,
 		fastenSourceCredential,
@@ -79,7 +81,7 @@ func CreateRelatedResources(c *gin.Context) {
 	}
 
 	//step 7 notify the event bus of the new resources
-	currentUser, _ := databaseRepo.GetCurrentUser(c)
+	currentUser, _ := databaseRepo.GetCurrentUser(jobContext)
 	err = eventBus.PublishMessage(
 		models.NewEventSourceComplete(
 			currentUser.ID.String(),
@@ -95,13 +97,13 @@ func CreateRelatedResources(c *gin.Context) {
 
 }
 
-func ensureFastenSource(c *gin.Context, databaseRepo database.DatabaseRepository) (*models.SourceCredential, error) {
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+func ensureFastenSource(ctx context.Context, databaseRepo database.DatabaseRepository) (*models.SourceCredential, error) {
+	currentUser, err := databaseRepo.GetCurrentUser(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	sourceCredentials, err := databaseRepo.GetSources(c)
+	sourceCredentials, err := databaseRepo.GetSources(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +120,7 @@ func ensureFastenSource(c *gin.Context, databaseRepo database.DatabaseRepository
 		Patient:      "",
 	}
 
-	err = databaseRepo.CreateSource(c, fastenSource)
+	err = databaseRepo.CreateSource(ctx, fastenSource)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create Fasten source: %w", err)
 	}
@@ -133,7 +135,7 @@ func EncounterUnlinkResource(c *gin.Context) {
 	resourceId := strings.Trim(c.Param("resourceId"), "/")
 	resourceType := strings.Trim(c.Param("resourceType"), "/")
 
-	rowsAffected, err := databaseRepo.UnlinkResourceWithSharedNeighbors(c, "Encounter", encounterId, resourceType, resourceId)
+	rowsAffected, err := databaseRepo.UnlinkResourceWithSharedNeighbors(middleware.AuthenticatedRequestContext(c), "Encounter", encounterId, resourceType, resourceId)
 
 	if err != nil {
 		if errors.Is(err, database.ErrOwnedResourceAmbiguous) {

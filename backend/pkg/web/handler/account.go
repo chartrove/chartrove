@@ -42,7 +42,7 @@ func DeleteAccount(c *gin.Context) {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	err := databaseRepo.DeleteCurrentUser(c)
+	err := databaseRepo.DeleteCurrentUser(middleware.AuthenticatedRequestContext(c))
 
 	if err != nil {
 		logger.Errorln("An error occurred while deleting current user", err)

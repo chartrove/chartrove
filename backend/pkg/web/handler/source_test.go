@@ -39,6 +39,7 @@ type SourceHandlerTestSuite struct {
 	AppConfig     *mock_config.MockInterface
 	AppRepository database.DatabaseRepository
 	AppEventBus   event_bus.Interface
+	User          *models.User
 }
 
 // BeforeTest has a function to be executed right before the test starts and receives the suite and test names as input
@@ -67,10 +68,8 @@ func (suite *SourceHandlerTestSuite) BeforeTest(suiteName, testName string) {
 
 	suite.AppEventBus = event_bus.NewNoopEventBusServer()
 
-	appRepo.CreateUser(context.Background(), &models.User{
-		Username: "test_username",
-		Password: "test",
-	})
+	suite.User = &models.User{Username: "test_username", Password: "test"}
+	require.NoError(suite.T(), appRepo.CreateUser(context.Background(), suite.User))
 
 }
 
@@ -119,6 +118,7 @@ func (suite *SourceHandlerTestSuite) TestCreateManualSourceHandler() {
 	ctx.Set(pkg.ContextKeyTypeConfig, suite.AppConfig)
 	ctx.Set(pkg.ContextKeyTypeEventBusServer, suite.AppEventBus)
 	ctx.Set(pkg.ContextKeyTypeAuthUsername, "test_username")
+	ctx.Set(pkg.ContextKeyTypeAuthUserID, suite.User.ID)
 
 	//test
 	req, err := CreateManualSourceHttpRequestFromFile("testdata/Tania553_Harris789_545c2380-b77f-4919-ab5d-0f615f877250.json")
@@ -165,6 +165,7 @@ func (suite *SourceHandlerTestSuite) TestCreateManualSourceHandler_ShouldExtract
 	ctx.Set(pkg.ContextKeyTypeConfig, suite.AppConfig)
 	ctx.Set(pkg.ContextKeyTypeEventBusServer, suite.AppEventBus)
 	ctx.Set(pkg.ContextKeyTypeAuthUsername, "test_username")
+	ctx.Set(pkg.ContextKeyTypeAuthUserID, suite.User.ID)
 
 	//test
 	req, err := CreateManualSourceHttpRequestFromFile("testdata/ccda_to_fhir_converted_C-CDA_R2-1_CCD.xml.json")
