@@ -10,8 +10,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/lestrrat-go/jwx/v3/jwa"
 	"github.com/lestrrat-go/jwx/v3/jwt"
-	"io"
-	"log"
 	"net/http"
 	"net/url"
 	"time"
@@ -201,10 +199,8 @@ func (s *SourceCredential) RegisterDynamicClient() error {
 	}
 	defer registrationResponse.Body.Close()
 	if registrationResponse.StatusCode >= 300 || registrationResponse.StatusCode < 200 {
-		b, err := io.ReadAll(registrationResponse.Body)
-		if err == nil {
-			log.Printf("Error Response body: %s", string(b))
-		}
+		// Provider error bodies may contain credentials or patient data and are
+		// not bounded. Report only the status; close without reading the body.
 		return fmt.Errorf("this institution may not support dynamic client registration, meaning that we cannot automatically fetch your records. Please contact support@fastenhealth.com and we'll modify this provider to use our Legacy integration: %d", registrationResponse.StatusCode)
 
 	}
@@ -258,12 +254,7 @@ func (s *SourceCredential) RefreshDynamicClientAccessToken() error {
 
 	defer tokenResp.Body.Close()
 	if tokenResp.StatusCode >= 300 || tokenResp.StatusCode < 200 {
-
-		b, err := io.ReadAll(tokenResp.Body)
-		if err == nil {
-			log.Printf("Error Response body: %s", string(b))
-		}
-
+		// As for registration, never read or log an untrusted error payload.
 		return fmt.Errorf("an error occurred while reading dynamic client token response, status code was not 200: %d", tokenResp.StatusCode)
 	}
 
