@@ -130,7 +130,14 @@ remain application-wide acceptance items, not claims supplied by the internal st
   per-import sender goroutines. The unchanged stalled-client test and a second changed import pass with
   both exact originals retained, while legacy-only notification is skipped with a fixed warning. Fresh
   focused HTTP race (12.949s), event-bus race (1.195s), full web/handler (62.819s / 52.351s), desktop graph
-  controls (1.386s) and changed-package vet passed. Corrected-head hosted qualification/review is pending.
+  controls (1.386s) and changed-package vet passed. All seven checks qualified `1b633bd28f` (42565808793),
+  but protected merging was refused by a second unresolved source-review thread, not bypassed.
+- #473's second review found both original-download slots could be retained by connected non-reading TCP
+  clients. A real-socket test with two stalled 8 MiB originals reproduced failure to recover admission
+  within 35 seconds. A separate 30-second response write deadline fixes it without altering global server
+  timeouts; a subsequent caller retrieves exact original bytes while the first clients stay connected.
+  Focused HTTP race passed (47.132s), full web/handler passed (62.264s / 82.430s), and the same real-socket
+  test under the desktop graph passed (32.028s). Corrected-head hosted qualification/review is pending.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,
