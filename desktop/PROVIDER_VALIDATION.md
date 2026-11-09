@@ -21,7 +21,7 @@ service-ownership blockers; sandbox success does not resolve them.
 
 For maintained setup help, use [the desktop guide](README.md),
 [development instructions](../CONTRIBUTING.md), or
-[Chartrove issues](https://github.com/karamhouse/chartrove/issues). Chartrove does
+[Chartrove issues](https://github.com/chartrove/chartrove/issues). Chartrove does
 not maintain upstream's hosted FAQ or Discord invitations. Public reports must
 omit health records, tokens, credentials and identifying details.
 

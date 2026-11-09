@@ -1,6 +1,6 @@
 # Contributing to Chartrove
 
-Chartrove is an independent fork of [Fasten Onprem](https://github.com/fastenhealth/fasten-onprem). Keep upstream authorship and copyright notices intact. New issues and PRs belong in [karamhouse/chartrove](https://github.com/karamhouse/chartrove).
+Chartrove is an independent fork of [Fasten Onprem](https://github.com/fastenhealth/fasten-onprem). Keep upstream authorship and copyright notices intact. New issues and PRs belong in [chartrove/chartrove](https://github.com/chartrove/chartrove).
 
 ## Toolchain
 
@@ -42,6 +42,12 @@ after integration and preservation of any unique history. GitHub issues and the
 work; closed historical proposals do not imply unimplemented features exist.
 
 ## Repository layout
+
+The canonical primary checkout is `/Users/osama/Code/chartrove/chartrove`, with origin
+`https://github.com/chartrove/chartrove.git`. The autonomous repository owner uses this
+primary checkout only; do not create linked worktrees or resume prior stopped agents.
+The [readiness plan](docs/maintenance/production-readiness.md) records active ownership,
+acceptance gates and evidence. Dated historical records retain their original URLs.
 
 | Path | Purpose |
 | --- | --- |

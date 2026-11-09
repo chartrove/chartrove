@@ -47,6 +47,7 @@ Do not edit or regenerate `healthit.yaml` as part of this rebrand.
 
 ## Documentation
 
+- [Production readiness plan and evidence](docs/maintenance/production-readiness.md)
 - [Contributing and development](CONTRIBUTING.md)
 - [Local data and security settings](docs/LOCAL_DATA_SAFETY.md)
 - [Desktop build and testing](desktop/README.md)
@@ -59,7 +60,7 @@ Historical Fasten documentation is available in the [upstream docs repository](h
 
 ## Support and contributions
 
-Use [Chartrove issues](https://github.com/karamhouse/chartrove/issues) and [pull requests](https://github.com/karamhouse/chartrove/pulls). Public reports must omit health information, credentials, and identifying details.
+Use [Chartrove issues](https://github.com/chartrove/chartrove/issues) and [pull requests](https://github.com/chartrove/chartrove/pulls). Public reports must omit health information, credentials, and identifying details.
 
 Chartrove uses the maintained guides above and GitHub support for this fork; upstream hosted FAQs and Discord invitations are managed separately. [Provider validation status](desktop/PROVIDER_VALIDATION.md#current-validation-status) distinguishes local imports, historical sandbox evidence and production blockers; an inherited provider name is not a production connection guarantee.
 

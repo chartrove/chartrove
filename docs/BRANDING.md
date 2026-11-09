@@ -1,6 +1,6 @@
 # Chartrove branding and compatibility
 
-Chartrove is an independent fork of Fasten Onprem. The repository is [karamhouse/chartrove](https://github.com/karamhouse/chartrove). Fasten's original authors, source history, copyright notices, and license remain credited in the README, license file, and application footer.
+Chartrove is an independent fork of Fasten Onprem. The repository is [chartrove/chartrove](https://github.com/chartrove/chartrove). Fasten's original authors, source history, copyright notices, and license remain credited in the README, license file, and application footer.
 
 ## Product identity
 
