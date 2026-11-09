@@ -27,8 +27,8 @@ results, pre/post identity-switch isolation, raw API request contract, retry/his
 cleanup progress/failure. Tests use controlled service/native promises and HTTP testing transport, not real
 provider identities or a running desktop. New tests and implementation were developed together.
 
-The reviewed API notification-backpressure correction is now integrated without bypassing its unresolved
-hosted qualification. The native synthetic fixture now grants/searches Observations and preserves exact
+The API notification-backpressure correction was integrated while its hosted qualification was still
+pending at that earlier checkpoint; API #473 has since merged through protected matching-head checks. The native synthetic fixture now grants/searches Observations and preserves exact
 Patient decimals. For each of its independent origins, the first two clinical reads are byte-identical;
 third onward changes one high-precision decimal, deliberately exercising new/replay/update. This scenario
 is synthetic-only and does not contact real providers or alter normal startup profiles. Its tests validate
@@ -95,3 +95,18 @@ Broad legacy pooled-context failures remain explicitly tracked in #474 and canno
 merely because this local candidate builds or the clinical scope tests succeed. Exact original export and precision-preserving Observation display still
 need user-facing operational verification. No live provider, production identity or deployment is authorized
 by this checkpoint.
+
+After normal integration of accepted #475 and the bounded #474 repair (#476), the local UI source is
+`262e685080b775279f8aff4f7dcc9ec21234ae28`. Complete frontend validation passed there (Node, 739 browser
+passes plus one skip, desktop production compilation and Storybook); evidence is retained in the normal
+ignored validation directory. An earlier combined 300-second attempt was interrupted during Storybook,
+not counted as a complete pass. Its now-exited owner's lock/generated documentation were preserved
+privately before a clean full rerun; no other process or repository was stopped or changed.
+
+One concurrent heavy frontend/native run failed two synthetic signup assertions with HTTP 500 after
+roughly 35 seconds. Registration has a 15-second budget including cost-14 bcrypt; oversubscription is
+consistent with that result, but the masked HTTP response does not itself prove the internal error.
+The unchanged complete native suites passed when serialized without competing frontend builds (host
+23.613s, shell 28.412s, SMART 6.405s, fixture 1.286s). No product deadline, password cost, identity control
+or test assertion was relaxed. Existing platform/linker and frontend warnings remain visible. This newer
+source does not retroactively requalify either earlier package, nor grant GUI or independent acceptance.
