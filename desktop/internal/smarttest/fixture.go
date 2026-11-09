@@ -9,6 +9,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -24,6 +25,7 @@ import (
 )
 
 const PatientID = "erSyntheticPatient"
+const PatientJSON = `{"resourceType":"Patient","id":"erSyntheticPatient","name":[{"text":"Chartrove Synthetic Patient"}],"birthDate":"2000-01-02","gender":"unknown","extension":[{"url":"urn:chartrove:synthetic:exact","valueDecimal":1.234567890123456789}]}`
 
 type grant struct {
 	profile          smart.Profile
@@ -36,24 +38,25 @@ type accessGrant struct {
 }
 
 type Fixture struct {
-	server    *httptest.Server
-	profiles  []smart.Profile
-	client    *http.Client
-	ctx       context.Context
-	cancel    context.CancelFunc
-	mu        sync.Mutex
-	codes     map[string]grant
-	tokens    map[string]accessGrant
-	callbacks map[string]bool
-	closed    bool
-	active    sync.WaitGroup
-	once      sync.Once
+	server        *httptest.Server
+	profiles      []smart.Profile
+	client        *http.Client
+	ctx           context.Context
+	cancel        context.CancelFunc
+	mu            sync.Mutex
+	codes         map[string]grant
+	tokens        map[string]accessGrant
+	callbacks     map[string]bool
+	clinicalReads map[string]int
+	closed        bool
+	active        sync.WaitGroup
+	once          sync.Once
 }
 
 // New starts a private TLS server and chooses three distinct IPv4 callback ports.
 func New() (*Fixture, error) {
 	ctx, cancel := context.WithCancel(context.Background())
-	f := &Fixture{ctx: ctx, cancel: cancel, codes: map[string]grant{}, tokens: map[string]accessGrant{}, callbacks: map[string]bool{}}
+	f := &Fixture{ctx: ctx, cancel: cancel, codes: map[string]grant{}, tokens: map[string]accessGrant{}, callbacks: map[string]bool{}, clinicalReads: map[string]int{}}
 	listeners := []net.Listener{}
 	defer func() {
 		for _, listener := range listeners {
@@ -73,7 +76,7 @@ func New() (*Fixture, error) {
 	f.server.StartTLS()
 	for i, tenant := range []string{"a", "b", "slow"} {
 		base := f.server.URL + "/" + tenant
-		f.profiles = append(f.profiles, smart.Profile{ID: "synthetic-epic-" + tenant, Display: "Synthetic Epic " + strings.ToUpper(tenant) + " (test data)", FHIRBaseURL: base + "/fhir", Issuer: base, AuthorizationEndpoint: base + "/authorize", TokenEndpoint: base + "/token", ClientID: "chartrove-synthetic-public", RedirectURI: "http://" + listeners[i].Addr().String() + "/smart/callback", Scopes: []string{"launch/patient", "patient/Patient.read"}})
+		f.profiles = append(f.profiles, smart.Profile{ID: "synthetic-epic-" + tenant, Display: "Synthetic Epic " + strings.ToUpper(tenant) + " (test data)", FHIRBaseURL: base + "/fhir", Issuer: base, AuthorizationEndpoint: base + "/authorize", TokenEndpoint: base + "/token", ClientID: "chartrove-synthetic-public", RedirectURI: "http://" + listeners[i].Addr().String() + "/smart/callback", Scopes: []string{"launch/patient", "patient/Patient.read", "patient/Observation.read"}})
 	}
 	trusted := f.server.Client()
 	f.client = &http.Client{Transport: boundedTransport{fixture: f, inner: trusted.Transport}, Timeout: 15 * time.Second, CheckRedirect: f.redirect}
@@ -209,7 +212,29 @@ func (f *Fixture) serveHTTP(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			w.Header().Set("Content-Type", "application/fhir+json")
-			json.NewEncoder(w).Encode(map[string]any{"resourceType": "Patient", "id": PatientID, "name": []any{map[string]string{"text": "Chartrove Synthetic Patient"}}, "birthDate": "2000-01-02", "gender": "unknown"})
+			io.WriteString(w, PatientJSON)
+			return
+		case prefix + "/fhir/Observation":
+			f.mu.Lock()
+			access := f.tokens[strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")]
+			valid := r.Method == http.MethodGet && strings.HasPrefix(r.Header.Get("Authorization"), "Bearer ") && access.providerID == p.ID && time.Now().Before(access.expiresAt) && r.URL.Query().Get("patient") == PatientID && r.URL.Query().Get("_count") == "100"
+			if valid {
+				f.clinicalReads[p.ID]++
+			}
+			revision := f.clinicalReads[p.ID]
+			f.mu.Unlock()
+			if !valid {
+				w.WriteHeader(http.StatusUnauthorized)
+				return
+			}
+			// Explicit synthetic scenario: first two complete reads are identical
+			// (new import/replay); third onward changes one exact decimal only.
+			decimal := "3.500000000000000001"
+			if revision >= 3 {
+				decimal = "4.250000000000000003"
+			}
+			w.Header().Set("Content-Type", "application/fhir+json")
+			fmt.Fprintf(w, `{"resourceType":"Bundle","type":"searchset","entry":[{"fullUrl":%q,"resource":{"resourceType":"Observation","id":"synthetic-decimal","status":"final","subject":{"reference":"Patient/erSyntheticPatient"},"code":{"text":"Synthetic precise measurement"},"effectiveDateTime":"2026-11","valueQuantity":{"value":%s,"unit":"mg"},"extension":[{"url":"urn:chartrove:synthetic:unknown","valueString":"retained synthetic provenance"}]}},{"fullUrl":%q,"resource":{"resourceType":"Observation","id":"synthetic-text","status":"final","subject":{"reference":"Patient/erSyntheticPatient"},"code":{"text":"Synthetic qualitative result"},"valueString":"synthetic-only result"}}]}`, p.FHIRBaseURL+"/Observation/synthetic-decimal", decimal, p.FHIRBaseURL+"/Observation/synthetic-text")
 			return
 		}
 	}

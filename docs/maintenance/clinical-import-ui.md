@@ -27,8 +27,21 @@ results, pre/post identity-switch isolation, raw API request contract, retry/his
 cleanup progress/failure. Tests use controlled service/native promises and HTTP testing transport, not real
 provider identities or a running desktop. New tests and implementation were developed together.
 
-Next: reviewed API notification-backpressure correction, full browser/static/native builds, synthetic
-native provider fixture with clinical search, actual repeated/changed clinical UI import and encrypted
+The reviewed API notification-backpressure correction is now integrated without bypassing its unresolved
+hosted qualification. The native synthetic fixture now grants/searches Observations and preserves exact
+Patient decimals. For each of its independent origins, the first two clinical reads are byte-identical;
+third onward changes one high-precision decimal, deliberately exercising new/replay/update. This scenario
+is synthetic-only and does not contact real providers or alter normal startup profiles. Its tests validate
+both origins with the real manager/parser and refuse reads after disconnect.
+
+All native internal race packages passed (host 25.412s, shell 1.217s, SMART 6.904s, fixture 1.324s).
+Frontend structural/compiler validation passed; combining that long validation with the first full-browser
+run exceeded a 180-second tool budget just after Chrome connected, so that invocation is not a passing
+browser suite. An unchanged standalone rerun passed 733 tests with one skip; existing test-template
+`fa-icon` console diagnostics and browser-support/deprecated-builder warnings remain, not suppressed.
+Native macOS object-target linker warnings remain. No older-platform claim is made.
+
+Next: matching packaged GUI, actual repeated/changed clinical UI import and encrypted
 restart/backup-copy recovery. Exact original export and precision-preserving Observation display still
 need user-facing operational verification. No live provider, production identity or deployment is authorized
 by this checkpoint.
