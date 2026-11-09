@@ -82,4 +82,18 @@ aborts. No existing-record disclosure is demonstrated here. Signing-key guards,
 registration/auth/consent, encryption policy and native no-API-TCP behavior are unchanged.
 Loopback does not protect against other local users, forwarding, explicit exposure or
 badly configured proxies, and does not prove at-rest protection, TLS, recovery,
-older-platform, Docker runtime or deployment acceptance. Protected publication is pending.
+older-platform, running-application network or deployment acceptance.
+
+## Protected acceptance and independent main qualification
+
+Exact `2c0ae15ae67c16580119daa3a6c6b44839b917e4` passed all seven42701210530 plus affected
+native-platform image builds42701211447: amd64 9m08s, arm64 6m51s. Fresh matching head,
+CLEAN/no unresolved threads and ready verification preceded protected #495 merge
+`5bf2ca0ff56806f26e28f8429b688bdc18ed12a6` at 2026-11-09T21:35:44Z. Separate exact-main
+42703989021 and both container jobs42703989082 passed. #494 is closed boundedly.
+
+PR image IDs were amd64 `sha256:ddf3502fb71f20b3437f7b5c403288804034c7f4c7776a310c4234da57b116bf`
+and arm64 `sha256:e456a7bcc44248393e02f2b44fa67748982244f1d2e0e05b13b7f0c418e22614`.
+These are actual source-bound built-image identities, not registry/release publication,
+bit-for-bit reproducibility, a running app/network test or deployment evidence. Superseded
+e624 runs were not relabeled as new-head passes after the substantive trigger-filter fix.

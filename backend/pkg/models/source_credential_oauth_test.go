@@ -26,15 +26,18 @@ func (*syntheticOAuthCredential) IsDynamicClient() bool { return false }
 
 func TestProviderOAuthTokenCompatibility(t *testing.T) {
 	for _, tc := range []struct {
-		name            string
-		expired         bool
-		responseRefresh string
-		rejectRefresh   bool
+		name                string
+		expired             bool
+		responseRefresh     string
+		rejectRefresh       bool
+		responseContentType string
 	}{
 		{name: "reuse valid token"},
 		{name: "rotate refresh token", expired: true, responseRefresh: "synthetic-rotated-refresh"},
 		{name: "preserve omitted refresh token", expired: true},
 		{name: "reject invalid grant", expired: true, rejectRefresh: true},
+		{name: "reject form invalid grant", expired: true, rejectRefresh: true, responseContentType: "application/x-www-form-urlencoded"},
+		{name: "reject text invalid grant", expired: true, rejectRefresh: true, responseContentType: "text/plain"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			var tokenRequests, resourceRequests atomic.Int32
@@ -52,7 +55,11 @@ func TestProviderOAuthTokenCompatibility(t *testing.T) {
 			}
 
 			server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				w.Header().Set("Content-Type", "application/json")
+				contentType := tc.responseContentType
+				if contentType == "" {
+					contentType = "application/json"
+				}
+				w.Header().Set("Content-Type", contentType)
 				switch r.URL.Path {
 				case "/token":
 					tokenRequests.Add(1)
@@ -65,7 +72,11 @@ func TestProviderOAuthTokenCompatibility(t *testing.T) {
 					}
 					if tc.rejectRefresh {
 						w.WriteHeader(http.StatusBadRequest)
-						_, _ = io.WriteString(w, `{"error":"invalid_grant"}`)
+						if tc.responseContentType == "" {
+							_, _ = io.WriteString(w, `{"error":"invalid_grant"}`)
+						} else {
+							_, _ = io.WriteString(w, "error=invalid_grant&error_description=synthetic-private-description")
+						}
 						return
 					}
 					response := map[string]interface{}{
@@ -97,7 +108,7 @@ func TestProviderOAuthTokenCompatibility(t *testing.T) {
 				sourcePkg.FastenLighthouseEnvSandbox, ctx, logger, credential,
 				&definitionModels.LighthouseSourceDefinition{PatientAccessEndpoint: &catalog.PatientAccessEndpoint{
 					Url: server.URL + "/fhir", TokenEndpoint: server.URL + "/token",
-				}}, sourceModels.WithHttpClient(server.Client()),
+				}}, sourceModels.WithHttpClient(server.Client()), WithProviderResponsePrivacy(),
 			)
 			if tc.rejectRefresh {
 				require.Error(t, err)

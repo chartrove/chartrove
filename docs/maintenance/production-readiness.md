@@ -119,8 +119,8 @@ remain evidence, not current acceptance or authorization. Only this repository i
   naturally completed orphan/uncaptured final exit stays separate. Explicit sharing remains; client
   cancellation/clearing does not imply server rollback, revocation or undo of copied credentials.
   Exact `5391dca276443d1384278d72c667f7cc83ba4eea` passed seven42693108010; protected
-  #493 merged `921f42adc2cba7d80e016cd0ecb901dd26c0f014`. Separate exact-main42698388769
-  and normal native/mobile GUI acceptance remain separate/pending.
+  #493 merged `921f42adc2cba7d80e016cd0ecb901dd26c0f014`; separate exact-main42698388769
+  passed and #492 closed boundedly. Normal native/mobile GUI acceptance remains pending.
 - [Standalone loopback #494](standalone-loopback.md) aligns factory/sample/default address
   construction and both Compose host-publication defaults without an image ENV overriding
   operator configuration. A guarded producer derives the deliberate container-side wildcard
@@ -129,8 +129,21 @@ remain evidence, not current acceptance or authorization. Only this repository i
   focused races, complete ordinary config/web0.619/329.951s, full config race1.721s, vet,
   six daemon-free Compose parses and original/current synthetic Docker context controls pass.
   Integrated `7a57a5ac0b849fc77a73405c81170f26dddf4c00` preserves all ten source hashes;
-  focused integrated races2.760/3.326s. No actual image build/network/deployment certificate;
-  protected publication remains pending.
+  focused integrated races2.760/3.326s. Exact `2c0ae15ae67c16580119daa3a6c6b44839b917e4`
+  passed seven42701210530 PLUS actual native amd64/arm64 image builds42701211447;
+  protected #495 merged `5bf2ca0ff56806f26e28f8429b688bdc18ed12a6`. Separate exact-main
+  42703989021 and both container42703989082 jobs passed; #494 closed boundedly. No
+  registry/release publication, bitwise reproducibility, app-network or deployment certificate.
+- [Legacy provider rejection bodies #496](legacy-provider-response-privacy.md) is an
+  local checkpoint `65d7b54fa2e60c549d3db9d344c14756faebd684` from accepted5bf2ca0f.
+  Three actual-SDK OAuth description canary reds
+  0.586s precede a last client-option boundary: failed-body own reads bounded4096+1/close,
+  exact safe JSON/form OAuth classifications, canonical status reason, success bytes untouched.
+  Six factory sites adopt it. Full models race79.803s, handler logging race7.480s, compile/vet
+  pass; complete ordinary models/handler/web4.630/226.193/103.613s/captured Go-test0,
+  eight source hashes unchanged. Native cmd/host/shell/SMART/smoke compile explicitly
+  ran no tests. Protected publication is pending; headers/URLs/2xx OAuth errors/SDK
+  request cancellation/global privacy are not certified.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:

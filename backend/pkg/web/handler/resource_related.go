@@ -58,7 +58,7 @@ func CreateRelatedResources(c *gin.Context) {
 		) (sourceModels.SourceClient, sourceModels.UpsertSummary, error) {
 
 			//step 3: create a "fasten" client, which we can use to parse resources to add to the database
-			fastenSourceClient, err := factory.GetSourceClient(sourcePkg.GetFastenLighthouseEnv(), _backgroundJobContext, _logger, _sourceCred)
+			fastenSourceClient, err := factory.GetSourceClient(sourcePkg.GetFastenLighthouseEnv(), _backgroundJobContext, _logger, _sourceCred, models.WithProviderResponsePrivacy())
 			if err != nil {
 				resultErr := fmt.Errorf("could not create Fasten source client")
 				_logger.Errorln(resultErr)
