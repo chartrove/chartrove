@@ -156,7 +156,10 @@ The clinical import UI and its explicit receiving-profile confirmation remain a 
   within 35 seconds. A separate 30-second response write deadline fixes it without altering global server
   timeouts; a subsequent caller retrieves exact original bytes while the first clients stay connected.
   Focused HTTP race passed (47.132s), full web/handler passed (62.264s / 82.430s), and the same real-socket
-  test under the desktop graph passed (32.028s). Corrected-head hosted qualification/review is pending.
+  test under the desktop graph passed (32.028s). All seven corrected-head checks passed on
+  `14eded02f5ebc5518cccbb0963a6c5a37f9926aa` (42568249499), with both review threads resolved.
+  Matching-head protected merge succeeded at `3fa5d8e993d1f4bb0d8d2b212eae4690a78a2e8d`; exact-main
+  validation 42570752698 passed. This qualifies the scoped API slice, not overall production readiness.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,
@@ -172,6 +175,15 @@ The clinical import UI and its explicit receiving-profile confirmation remain a 
   controls; the complete models race suite passed. PR #471 merged at
   `0c175f744099c5b10479f27571eec5c8347ce9bb` after all seven checks qualified its exact head;
   exact-main run 42553276768 also succeeded.
+- Final bridge integration found that raw Gin contexts do not provide request lifetime by default,
+  while globally enabling fallback is unsafe when SQL retains pooled request objects. That global trial
+  was rejected after a native encrypted identity test reported a race. Native authentication/account calls
+  now use stable request contexts and a copied server-authenticated UUID/username, preserving cancellation
+  without pooled Gin lifetime. Native race/vet, snapshot-context tests, full non-race web/handler/middleware,
+  desktop Node and full Angular tests passed. Broader race attempts were incomplete and found legacy manual
+  import pool races; an exact-main compiler overlay independently reproduces them (56.714s). Pi owns
+  [#474](https://github.com/chartrove/chartrove/issues/474) for that next bounded repair; it remains a
+  production-readiness gap rather than being hidden behind green non-race CI.
 - Standalone factory fallbacks still permit unencrypted SQLite and wildcard HTTP listening. Deployment
   configuration and secure-default acceptance require reassessment; the desktop already uses private
   encrypted storage and no application API TCP listener.
