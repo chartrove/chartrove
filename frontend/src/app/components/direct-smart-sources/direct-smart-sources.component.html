@@ -65,7 +65,7 @@
       <button class="btn btn-outline-secondary" type="button" (click)="loadProviders()">Retry loading providers</button>
     }
     @if (importedSource) {
-      <a class="btn btn-link ps-0" [routerLink]="['/explore', importedSource.id]">View local records</a>
+      <a class="btn btn-link ps-0" [routerLink]="['/source-permissions']" [queryParams]="{source: importedSource.id}">View local records</a>
     }
   </div>
 </section>

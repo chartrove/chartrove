@@ -59,6 +59,28 @@ normal standard-mode daemon refused both background app launch and a prompt-free
 bypass, installation/update, foreground input or real-app capture occurred. This blocks that GUI route,
 not safe source/test work; the composed encrypted flow above was pursued independently.
 
-Next: matching packaged GUI, actual repeated/changed clinical UI import and backup-copy recovery. Exact original export and precision-preserving Observation display still
+The extracted inspection package's independent `fasten-backup` executable also passed
+`TestPackagedBackupBinaryRestoresSyntheticWAL` (6.384s package / 5.97s test), under the desktop dependency
+graph with the packaged-binary integration tag. This is an automated separate-process WAL restore control,
+not independent human custody/key-loss operation or a new final-head artifact qualification.
+
+Next: matching packaged GUI, actual repeated/changed clinical UI import and backup-copy recovery.
+The import result now links into the source-specific permission/record viewer, with navigation accepted
+only when the requested source is already present in the authorized source list. Its read-only simple
+Observation preview takes exact numeric lexemes from `resource_raw_text`, not rounded JS numbers. The
+pinned jsonc-parser dependency is reused without installation/version changes. Units, unit codes,
+comparators and partial date/time strings are displayed as recorded, with no normalization, clinical
+interpretation or added precision. Duplicate/ambiguous fields, components, absent-value reasons,
+unsupported choices and bounded-complexity failures leave the current exact-JSON fallback available.
+This does not claim that every legacy dashboard/lab display is precision-preserving, or that indexed
+current-resource JSON is byte-identical to a separately retained whole-snapshot original.
+
+Focused helper/component tests passed 36/36; full browser suite passed 739 with one skip. The source-specific
+DOM test deliberately gives a rounded parsed value while retaining a long exact raw decimal and verifies
+the latter and a partial date are shown; malicious-looking unit text remains escaped. False/zero, trailing
+zeros, exponent spellings, wide quantity numbers, duplicate fields, complex/invalid values, oversized/deep
+inputs, allow-listed navigation and clearing private preview state are covered. Frontend structural/compiler
+validation passed. Existing test-template/form/browserslist warnings remain recorded. These newly developed
+presentation controls are not a pre-existing test-first regression or native GUI qualification. Exact original export and precision-preserving Observation display still
 need user-facing operational verification. No live provider, production identity or deployment is authorized
 by this checkpoint.

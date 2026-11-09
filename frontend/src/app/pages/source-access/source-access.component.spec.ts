@@ -1,5 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {of, Subject, throwError} from 'rxjs';
+import {ActivatedRoute, convertToParamMap, ParamMap} from '@angular/router';
 import {SourceAccessComponent} from './source-access.component';
 import {SharedResource, SourceAccessService} from '../../services/source-access.service';
 
@@ -7,6 +8,7 @@ describe('SourceAccessComponent authorization UI', () => {
   let fixture: ComponentFixture<SourceAccessComponent>;
   let component: SourceAccessComponent;
   let api: jasmine.SpyObj<SourceAccessService>;
+  let route: {snapshot: {queryParamMap: ParamMap}};
   const record: SharedResource = {source_resource_type: 'Observation', source_resource_id: 'synthetic-id',
     resource_raw: {resourceType: 'Observation', id: 'synthetic-id', status: 'final'},
     resource_raw_text: '{"resourceType":"Observation","id":"synthetic-id","status":"final"}', editable: false};
@@ -20,9 +22,38 @@ describe('SourceAccessComponent authorization UI', () => {
     api.list.and.returnValue(of([record])); api.detail.and.returnValue(of(record));
     api.search.and.returnValue(of([{source_resource_type:'Observation',source_resource_id:'synthetic-hit',sort_title:'Synthetic search match'}]));
     api.edit.and.returnValue(of(null));
-    await TestBed.configureTestingModule({imports: [SourceAccessComponent], providers: [{provide: SourceAccessService, useValue: api}]}).compileComponents();
+    route = {snapshot: {queryParamMap: convertToParamMap({})}};
+    await TestBed.configureTestingModule({imports: [SourceAccessComponent], providers: [{provide: SourceAccessService, useValue: api}, {provide: ActivatedRoute, useValue: route}]}).compileComponents();
     fixture = TestBed.createComponent(SourceAccessComponent); component = fixture.componentInstance; fixture.detectChanges();
     component.viewingSource = 'synthetic-shared'; component.viewSource(); component.resourceType = 'Observation';
+  });
+
+  it('opens only a source already present in the authorized source list from navigation', () => {
+    api.summary.calls.reset();
+    route.snapshot.queryParamMap = convertToParamMap({source: 'synthetic-owned'});
+    component.ngOnInit();
+    expect(component.viewingSource).toBe('synthetic-owned');
+    expect(api.summary).toHaveBeenCalledOnceWith('synthetic-owned');
+    api.summary.calls.reset();
+    route.snapshot.queryParamMap = convertToParamMap({source: 'foreign-unlisted-source'});
+    component.ngOnInit();
+    expect(api.summary).not.toHaveBeenCalled();
+  });
+
+  it('presents exact numeric values and partial dates from raw text, not rounded parsed fields', () => {
+    const exact = '{"resourceType":"Observation","id":"synthetic-id","valueQuantity":{"value":1.234567890123456789,"unit":"<img src=x>","code":"mg","comparator":"<"},"effectiveDateTime":"2026-11"}';
+    api.detail.and.returnValue(of({...record, resource_raw: {resourceType: 'Observation', id: 'synthetic-id', valueQuantity: {value: 1.23}}, resource_raw_text: exact}));
+    component.open(record); fixture.detectChanges();
+    const preview = fixture.nativeElement.querySelector('[data-testid="exact-observation"]');
+    expect(preview.textContent).toContain('1.234567890123456789');
+    expect(preview.textContent).toContain('2026-11');
+    expect(preview.textContent).toContain('<img src=x>');
+    expect(preview.querySelector('img')).toBeNull();
+    expect(component.editRaw).toBe(exact);
+    component.viewingSource = '';
+    component.viewSource(); fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('[data-testid="exact-observation"]')).toBeNull();
+    expect(component.observation).toBeNull();
   });
 
   it('applies a source-scoped search and rechecks access when opening metadata hits', () => {
