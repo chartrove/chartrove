@@ -8,7 +8,7 @@ Chartrove is an independent fork of Fasten Onprem. This host foundation adds pub
 - The native host opens the system browser. The temporary callback listens only on `127.0.0.1` at the explicitly registered port and path. It closes after authorization, cancellation, timeout, browser failure, or shutdown.
 - Provider endpoints are pinned in an operator-supplied public profile. Discovery must advertise public standalone authorization, authorization-code grants, and S256 without plain PKCE. Discovery endpoints must match the pins. HTTP redirects are not followed.
 - Only read-only patient scopes are accepted. The token grant must include Patient read permission. OpenID identity scopes, offline access, confidential clients, and client secrets are unsupported in this increment.
-- Credentials stay in Go memory. Connection summaries contain an opaque local ID, provider ID, Patient ID, and expiry; no tokens or verifier. Disconnect forgets credentials and cancels active reads. Expired credentials are rejected and purged when accessed; shutdown clears all connections.
+- Provider credentials stay in Go memory. Connection summaries contain an opaque local ID, provider ID, Patient ID, expiry and backend-verified local owner; no provider tokens or verifier. Disconnect forgets credentials and cancels active reads. Expired credentials are rejected and purged when accessed; shutdown clears all connections.
 - Patient retrieval is bounded to 2 MiB, verifies resource type and authorized Patient ID, and returns JSON without writing it to a database. It does not use the legacy credential API or its logging path.
 
 The desktop Sources screen lists explicitly configured direct providers separately from the legacy Epic sandbox flow. Connect opens the system browser, then shows the authorized Patient's name, ID, birth date, gender, and provider origin. Preview does not save a record. Import Patient explicitly saves a manual snapshot; discard, cancellation, and leaving the screen release the in-memory session. An unsuccessful import can be retried from the preview.
@@ -59,20 +59,23 @@ Wails service identifier: `github.com/karamhouse/fasten-desktop/internal/shell.S
 | Method | Behavior |
 | --- | --- |
 | `Providers()` | Lists configured public provider summaries; empty by default |
-| `Connect(providerID)` | Verifies discovery, opens the system browser, waits up to five minutes, exchanges the code, and returns a credential-free connection summary |
+| `Connect(providerID, localToken)` | Verifies the local application session before/after authorization, then returns a provider-credential-free summary bound to its immutable local owner |
 | `Cancel(providerID)` | Cancels the pending authorization for that provider |
-| `ReadPatient(connectionID)` | Returns the authorized Patient as a JSON string, without importing it |
+| `ReadPatient(connectionID, localToken)` | Rechecks the active owning local identity before/after I/O; returns the authorized Patient JSON without importing it |
+| `ReadClinicalSnapshot(connectionID, localToken)` | Same owning-identity checks around the bounded Patient/Observation reader; returns raw collection text without importing it |
 | `Disconnect(connectionID)` | Cancels active reads and forgets local credentials; does not claim remote token revocation |
 
-All methods require the trusted main application window. Authentication windows and calls without a window context are rejected. Callers cannot supply arbitrary request URLs or tokens. The browser callback accepts only GET, the registered Host/path, one matching unpredictable state, and one unambiguous code or denial; an issuer parameter, if present, must match the profile. Replays are rejected. Callback bodies never echo codes or errors.
+All methods require the trusted main application window. Authentication windows and calls without a window context are rejected. Callers cannot supply arbitrary request URLs or provider tokens. Connection and reads take the existing local application's JWT, which the embedded backend verifies; browser claims alone never authorize data. Cleanup remains available after local logout/expiry. See the [identity-scoped bridge receipt](../docs/maintenance/scoped-smart-bridge.md). The browser callback accepts only GET, the registered Host/path, one matching unpredictable state, and one unambiguous code or denial; an issuer parameter, if present, must match the profile. Replays are rejected. Callback bodies never echo codes or errors.
 
 ## Validation and remaining work
 
 The first clinical qualification target is the packaged native Apple Silicon
 desktop app; container qualification follows separately. The internal
 [bounded Observation reader](../docs/maintenance/direct-smart-observation-reader.md)
-is a source foundation, not an exposed host API or persisted clinical import.
-Owner-authorized clinical persistence and repeat updates remain source work.
+now has an identity-scoped native bridge, while the Sources UI remains Patient-only.
+The [atomic store](../docs/maintenance/clinical-snapshot-persistence.md) and
+[owner-confirmed API](../docs/maintenance/clinical-snapshot-api.md) have separate evidence;
+the clinical receiving-profile confirmation/import UI and whole-flow acceptance remain source work.
 Patient-only preview/import is not clinical acceptance, and Authentik acceptance
 in issue #425 is a separate authentication/recovery exercise. No live provider
 registration, account access, consent, installation or deployment is implied.

@@ -9,12 +9,14 @@ export interface SmartConnection {
   readonly provider_id: string;
   readonly patient_id: string;
   readonly expires_at: number;
+  readonly owner: {readonly id: string; readonly username: string};
 }
 
 export interface SmartBridge {
   providers(): Promise<SmartProvider[]>;
-  connect(providerID: string): Promise<SmartConnection>;
-  readPatient(connectionID: string): Promise<string>;
+  connect(providerID: string, localToken: string): Promise<SmartConnection>;
+  readPatient(connectionID: string, localToken: string): Promise<string>;
+  readClinicalSnapshot(connectionID: string, localToken: string): Promise<string>;
   cancel(providerID: string): Promise<void>;
   disconnect(connectionID: string): Promise<void>;
 }

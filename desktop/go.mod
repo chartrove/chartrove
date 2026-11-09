@@ -4,7 +4,9 @@ go 1.26.1
 
 require (
 	github.com/fastenhealth/fasten-onprem v0.0.0
+	github.com/google/uuid v1.6.0
 	github.com/sirupsen/logrus v1.10.2
+	github.com/stretchr/testify v1.12.1
 	github.com/wailsapp/wails/v3 v3.0.0
 )
 
@@ -58,7 +60,6 @@ require (
 	github.com/google/go-github/v93 v93.0.0 // indirect
 	github.com/google/go-querystring v1.2.0 // indirect
 	github.com/google/pprof v0.0.0-20230207041349-798e818bf904 // indirect
-	github.com/google/uuid v1.6.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/hhrutter/tiff v1.0.7 // indirect

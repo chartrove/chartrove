@@ -52,7 +52,7 @@ func RequireAuth() gin.HandlerFunc {
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Authentication service unavailable"})
 			return
 		}
-		if err != nil || user == nil {
+		if err != nil || user == nil || user.DeletedAt != nil {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"success": false, "error": "Invalid account"})
 			return
 		}

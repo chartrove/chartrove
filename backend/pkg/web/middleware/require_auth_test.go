@@ -19,6 +19,43 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestRequireAuthRequiresActiveImmutableAccount(t *testing.T) {
+	for _, deleted := range []bool{false, true} {
+		name := "active"
+		if deleted {
+			name = "soft-deleted"
+		}
+		t.Run(name, func(t *testing.T) {
+			user := &models.User{ModelBase: models.ModelBase{ID: uuid.New()}, Username: "synthetic-native-owner"}
+			if deleted {
+				now := time.Now().UTC()
+				user.DeletedAt = &now
+			}
+			cfg := mock_config.NewMockInterface(gomock.NewController(t))
+			cfg.EXPECT().GetString("jwt.issuer.key").Return("synthetic-signing-key")
+			repo := mock_database.NewMockDatabaseRepository(gomock.NewController(t))
+			repo.EXPECT().GetUserByUsername(gomock.Any(), user.Username).Return(user, nil)
+			token, err := auth.JwtGenerateFastenTokenFromUser(*user, "synthetic-signing-key")
+			require.NoError(t, err)
+			called := false
+			router := gin.New()
+			router.Use(func(c *gin.Context) { c.Set(pkg.ContextKeyTypeConfig, cfg); c.Set(pkg.ContextKeyTypeDatabase, repo) }, middleware.RequireAuth())
+			router.GET("/protected", func(c *gin.Context) { called = true; c.Status(http.StatusNoContent) })
+			request := httptest.NewRequest(http.MethodGet, "/protected", nil)
+			request.Header.Set("Authorization", "Bearer "+token)
+			response := httptest.NewRecorder()
+			router.ServeHTTP(response, request)
+			if deleted {
+				require.Equal(t, http.StatusUnauthorized, response.Code)
+				require.False(t, called, "immutable identity alone cannot revive a soft-deleted account")
+			} else {
+				require.Equal(t, http.StatusNoContent, response.Code)
+				require.True(t, called)
+			}
+		})
+	}
+}
+
 func TestRequireAuthRejectsInvalidTokenBeforeProtectedHandler(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 	nativeID := uuid.New()

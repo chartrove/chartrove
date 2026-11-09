@@ -13,7 +13,8 @@ describe('DirectSmartSourcesComponent', () => {
   let direct: jasmine.SpyObj<DirectSmartService>;
   let api: jasmine.SpyObj<FastenApiService>;
   const provider = {id: 'epic-one', display: 'Example hospital', fhir_base_url: 'https://example.invalid/fhir'};
-  const connection = {id: 'handle-one', provider_id: 'epic-one', patient_id: 'patient-one', expires_at: 9999999999};
+  const connection = {id: 'handle-one', provider_id: 'epic-one', patient_id: 'patient-one', expires_at: 9999999999,
+    owner: {id: '00000000-0000-4000-8000-000000000001', username: 'synthetic-owner'}};
   const patient = {resourceType: 'Patient' as const, id: 'patient-one', name: [{text: '<img src=x onerror=alert(1)>'}], birthDate: '2000-01-02'};
 
   beforeEach(async () => {

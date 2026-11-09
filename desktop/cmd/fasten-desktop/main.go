@@ -142,7 +142,7 @@ func run() error {
 		},
 	})
 	app.RegisterService(application.NewService(shell.NewDesktopService(app)))
-	app.RegisterService(application.NewService(shell.NewSMARTService(connections)))
+	app.RegisterService(application.NewService(shell.NewSMARTService(connections, host.NewLocalIdentityResolver(backend))))
 	menu := application.NewMenu()
 	menu.AddRole(application.AppMenu)
 	menu.AddRole(application.EditMenu)

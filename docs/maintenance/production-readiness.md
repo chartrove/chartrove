@@ -37,7 +37,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | --- | --- | --- |
 | Repository custody | [Reclamation receipt](repository-reclamation-2026-11-09.md), one checkout, canonical remote | Verified; Pi launch-path anchor pending session restart |
 | Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Internal reader integrated; [atomic store](clinical-snapshot-persistence.md) locally qualified, hosted validation pending; no clinical action yet |
-| Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Not reassessed |
+| Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Native bridge UUID/session binding locally qualified; full household/recovery/Authentik remain |
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API, fresh JWT receiver check and post-commit notifications locally tested; household/provider consent still open |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
@@ -101,6 +101,17 @@ clear stale previews on identity change and never label owner-declared origins a
 Legacy account/import writer coordination, numeric display precision and narrative/network egress also
 remain application-wide acceptance items, not claims supplied by the internal store.
 
+## Next slice: scope the native SMART bridge
+
+Pi owns `task/scoped-smart-bridge`, initially stacked on the locally tested API. Before exposing clinical
+retrieval, bind each new native provider connection to a real authenticated local UUID resolved through
+the embedded backend, not browser-decoded claims or a caller-supplied identity. Recheck active identity
+before and after Patient/clinical reads and connection completion. Keep the existing main-window boundary,
+provider credentials in Go and constant errors; do not add arbitrary URL fetching or an external auth service.
+Cleanup must still release in-memory provider credentials after local logout/expiry. Match native/asset
+signatures and preserve Patient-only operation, with cross-identity/window/session-change negative tests.
+The clinical import UI and its explicit receiving-profile confirmation remain a subsequent slice.
+
 ## Current execution checkpoint
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
@@ -117,12 +128,21 @@ remain application-wide acceptance items, not claims supplied by the internal st
   (25.102s) and maximum collection passed (32.018s). #472's initial seven green checks were insufficient:
   source review reproduced an entry-URL-only stale provenance defect; tests failed before correction,
   then both resource types and the full focused store suite passed under race (15.861s). The review thread
-  was resolved with that evidence; new head `b5a097f37d` still needs fresh qualification/integration.
+  was resolved with that evidence. All seven checks then qualified `b5a097f37d` (run 42560019280);
+  #472 merged at `af644a006a8b5bc1bc857be0b8aad743b30f7b15`. Exact-main run 42561759380 passed.
 - The [explicit owner-confirmed API](clinical-snapshot-api.md) is locally implemented on its own task
   branch. Real JWT middleware, encrypted HTTP originals/history, stale-recipient refusal, rollback/event
   ordering, strict/bounded intake and immutable backup-copy restore passed focused race tests (11.707s).
   Complete web/handler suites passed (63.519s / 51.416s). Native local-identity binding and the clinical UI
   are not implemented by this API slice.
+- The [scoped native bridge](scoped-smart-bridge.md) now resolves local identity via the actual embedded
+  JWT/account stack and guards connection/Patient/clinical reads before and after I/O. Real encrypted
+  signup/delete/username-recreation tests and all native internal race suites passed. A separate
+  soft-deleted-account middleware regression failed before correction (204 vs expected 401); the unchanged
+  active-account positive control and complete middleware race suite passed afterward. Full Angular
+  acceptance passed 724 tests with one skip and retained existing test-template console diagnostics.
+  Native package vet/build and frontend structural/compiler validation passed; matching packaged GUI
+  and clinical import/receiving-profile confirmation are not yet qualified.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,

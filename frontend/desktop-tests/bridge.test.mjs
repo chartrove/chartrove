@@ -30,14 +30,16 @@ test('native open and close use the rebuilt service contract',async()=>{
 test('direct SMART methods call only the Go SMART service',async()=>{
   const f=runtimeFixture();const bridge=createDesktopBridge(f.runtime);
   await bridge.smart.providers();
-  await bridge.smart.connect('epic-one');
-  await bridge.smart.readPatient('connection-one');
+  await bridge.smart.connect('epic-one', 'synthetic-local-token');
+  await bridge.smart.readPatient('connection-one', 'synthetic-local-token');
+  await bridge.smart.readClinicalSnapshot('connection-one', 'synthetic-local-token');
   await bridge.smart.cancel('epic-one');
   await bridge.smart.disconnect('connection-one');
   const service='github.com/karamhouse/fasten-desktop/internal/shell.SMARTService';
   assert.deepEqual(f.calls,[
-    [service+'.Providers'],[service+'.Connect','epic-one'],
-    [service+'.ReadPatient','connection-one'],[service+'.Cancel','epic-one'],
+    [service+'.Providers'],[service+'.Connect','epic-one','synthetic-local-token'],
+    [service+'.ReadPatient','connection-one','synthetic-local-token'],
+    [service+'.ReadClinicalSnapshot','connection-one','synthetic-local-token'],[service+'.Cancel','epic-one'],
     [service+'.Disconnect','connection-one'],
   ]);
 });
