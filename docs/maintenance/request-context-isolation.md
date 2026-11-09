@@ -224,3 +224,8 @@ not claimed from that observation alone. No hash, assertion, registration/native
 priority, OS setting, unrelated process, dependency or provider was changed. Changed-handler vet and
 diff checks pass. Fresh hosted/full-suite acceptance and remaining caller inventory are still open;
 ordinary flow or these focused boundary races do not certify the entire OIDC/native/production scope.
+
+Exact head `0f54002f7408f0d7eac7fd6ebaa33daf6e8cca67` subsequently passed seven hosted checks
+42663352354. After ready-for-review, fresh matching-head/CLEAN/no-unresolved-thread verification
+preceded protected #489 merge `6054e7bb50cf7b972bf21d8440410190378c4bea`.
+Separate exact-main 42668872750 completed success. This does not close #474 or accept native #487.

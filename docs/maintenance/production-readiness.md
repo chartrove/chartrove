@@ -94,11 +94,29 @@ remain evidence, not current acceptance or authorization. Only this repository i
   (772 passes/one skip, Node/production/Storybook), full native race, clean exact-b916 package,
   strict signature, actual packaged encrypted restore and ten hidden native checks pass. The custom
   smoke page does not exercise the normal Angular interceptor. See the
-  [application token receipt](application-token-boundary.md); this slice awaits protected publication.
-- The latest ZIP is the exact-b916 inspection candidate, not a later docs commit, published,
-  notarized/current-main release, older-macOS or independently operated key-custody qualification.
-  Prior e442/a594/1dcd/68e archives were privately preserved and byte/hash verified, including
-  restoring the positive ZIP after the explicitly negative-only overlay experiment.
+  [application token receipt](application-token-boundary.md). Exact head
+  `323aaf278892b740263628735658eaf8c18311eb` passed seven checks42630052659 attempt2
+  after a Desktop runner-acquisition failure before steps; failed-job-only rerun is distinct from
+  rerunning all jobs. Protected #486 merged `1b7a2b243fa78734638cc79d80089255cbb7d9cd`;
+  separate exact-main42638457680 attempt1 passed.
+- OIDC account-actor #489 repairs four remaining aliased Gin lookups across five secure routes.
+  Focused lifetime races and ordinary owned-TLS recovery pass; the bcrypt instrumented timeout
+  remains incomplete. Exact head `0f54002f7408f0d7eac7fd6ebaa33daf6e8cca67` qualified seven
+  checks42663352354, protected merged `6054e7bb50cf7b972bf21d8440410190378c4bea`;
+  separate exact-main42668872750 passed. #474 inventory remains open.
+- [Access-token issuance #490](access-token-persistence.md) now refuses credential delivery after
+  reported persistence failure, with fixed handler error/log and issuance no-store. Genuine red,
+  focused race, real SQLCipher/JWT stored/absent-row/foreign-denial/revocation controls and complete
+  ordinary handler/middleware compatibility pass. It is not an authentication-bypass finding or
+  universal rollback guarantee; protected publication qualification remains pending.
+- The historical exact-b916 package and newer #487 inspection candidates are not a published,
+  notarized/current-main release, older-macOS or independent key-custody qualification.
+  [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
+  exact-c9 hidden twelve-check success is distinct from subsequent eed/7f runtime timeouts and an
+  uncalibrated guard-bypass negative. A private finite activity-hint experiment also failed and was
+  not adopted. The latest retained ZIP is exact-7f, not this source head or accepted runtime.
+  Prior archives remain private and byte/hash verified; overlay packages remain separately labeled,
+  and the exact-source ZIP is restored/compared after overlay packaging.
 - Earlier, the normal Cua route launched the exact-a594 clinical inspection app with a fresh synthetic,
   explicitly **unencrypted** SMART-UI-test directory; no record/profile/consent input occurred.
   Exact-window capture instead refuses `direct_capture_consent_required`; TCC booleans do not
