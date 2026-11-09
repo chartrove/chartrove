@@ -167,7 +167,9 @@ func (gr *GormRepository) ImportClinicalSnapshot(ctx context.Context, fhirBase, 
 					return err
 				}
 				result.Created++
-			} else if bytes.Equal(rows[0].ResourceRaw, model.GetResourceRaw()) {
+			} else if bytes.Equal(rows[0].ResourceRaw, model.GetResourceRaw()) && rows[0].SourceUri != nil && *rows[0].SourceUri == entry.FullURL {
+				// fullUrl is entry provenance, not part of the resource JSON.
+				// Equal clinical bytes alone cannot make this row unchanged.
 				result.Unchanged++
 			} else {
 				// Select all projection fields, including zero values, so removed

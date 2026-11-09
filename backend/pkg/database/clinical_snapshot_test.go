@@ -91,6 +91,49 @@ func clinicalTestCount(t *testing.T, r *GormRepository, table string, want int64
 	require.Equal(t, want, count, table)
 }
 
+func TestClinicalSnapshotEntryProvenance(t *testing.T) {
+	for _, resourceType := range []string{"Patient", "Observation"} {
+		t.Run(resourceType, func(t *testing.T) {
+			r, _, contexts, _, _ := clinicalTestFixture(t)
+			id := "synthetic-patient"
+			if resourceType == "Observation" {
+				id = "synthetic-observation"
+			}
+			canonical := clinicalTestBase + "/" + resourceType + "/" + id
+			raw := clinicalTestPayload(clinicalTestBase, "synthetic-patient", clinicalQuantity)
+			if resourceType == "Observation" {
+				raw = bytes.Replace(raw, []byte(`{"resource":{"resourceType":"Observation"`), []byte(`{"fullUrl":"`+canonical+`","resource":{"resourceType":"Observation"`), 1)
+			}
+			first, err := r.ImportClinicalSnapshot(contexts[0], clinicalTestBase, "Synthetic clinic", raw)
+			require.NoError(t, err)
+			before, err := r.GetSharedResource(contexts[0], first.SourceID, resourceType, id)
+			require.NoError(t, err)
+			require.NotNil(t, before.SourceUri)
+			require.Equal(t, canonical, *before.SourceUri)
+			urn := "urn:uuid:00000000-0000-4000-8000-000000000001"
+			changedRaw := bytes.Replace(raw, []byte(canonical), []byte(urn), 1)
+			changed, err := r.ImportClinicalSnapshot(contexts[0], clinicalTestBase, "Synthetic clinic", changedRaw)
+			require.NoError(t, err)
+			require.Equal(t, 1, changed.Updated, "entry-only provenance changes are not unchanged resources")
+			require.Equal(t, 1, changed.Unchanged)
+			after, err := r.GetSharedResource(contexts[0], first.SourceID, resourceType, id)
+			require.NoError(t, err)
+			require.Equal(t, before.ResourceRaw, after.ResourceRaw, "clinical resource JSON is identical")
+			require.NotNil(t, after.SourceUri)
+			require.Equal(t, urn, *after.SourceUri)
+			original, err := r.GetClinicalSnapshotOriginal(contexts[0], first.SourceID, changed.SnapshotID)
+			require.NoError(t, err)
+			require.Equal(t, changedRaw, original)
+			replayed, err := r.ImportClinicalSnapshot(contexts[0], clinicalTestBase, "Synthetic clinic", raw)
+			require.NoError(t, err)
+			require.True(t, replayed.AlreadyImported)
+			afterReplay, err := r.GetSharedResource(contexts[0], first.SourceID, resourceType, id)
+			require.NoError(t, err)
+			require.Equal(t, urn, *afterReplay.SourceUri, "historical replay cannot roll current provenance back")
+		})
+	}
+}
+
 // Keep the declared maximum reproducible, rather than inferring whole-import
 // feasibility from a parser test or a per-record timing extrapolation.
 func TestClinicalSnapshotMaximumCollection(t *testing.T) {

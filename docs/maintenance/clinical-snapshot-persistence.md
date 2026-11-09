@@ -40,6 +40,19 @@ rights. Partial dates remain in raw FHIR; timeline sorting never invents a missi
 Numeric search projections use the existing FHIRPath engine and are not a precision-preserving analytics
 store. Raw values/originals, not those projections, are the fidelity evidence.
 
+## Provenance-only update regression
+
+PR #472's automated source review identified a real gap despite seven green checks on `0c74d4d305`:
+entry `fullUrl` can change while the nested resource JSON is identical. Comparing only clinical bytes
+incorrectly left current `source_uri` at its old value. The protected unresolved-thread rule blocked the
+merge; no bypass or auto-merge was used.
+
+`TestClinicalSnapshotEntryProvenance` failed before correction for both Patient and Observation
+(canonical URL to valid UUID URN, expected one update but got zero). The unchanged check now includes
+entry provenance. The same tests plus the complete focused persistence suite passed under the race
+detector (15.861s), including unchanged resource bytes, exact changed original and historical replay
+that cannot roll the new URI back. Fresh final-head protected validation is still required.
+
 ## Migration and lifecycle
 
 Additive frozen migration `20261109120000` creates the original-evidence table. It does not rewrite existing
