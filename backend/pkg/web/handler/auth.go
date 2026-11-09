@@ -11,6 +11,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
@@ -25,7 +26,7 @@ func IsAdmin(c *gin.Context) bool {
 	logger := c.MustGet(pkg.ContextKeyTypeLogger).(*logrus.Entry)
 	databaseRepo := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository)
 
-	currentUser, err := databaseRepo.GetCurrentUser(c)
+	currentUser, err := databaseRepo.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil {
 		logger.Errorf("Error getting current user: %v", err)
 		return false
@@ -63,7 +64,7 @@ func AuthSignup(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Invalid registration configuration"})
 		return
 	}
-	err = databaseRepo.RegisterUser(c, userWizard.User, enabled)
+	err = databaseRepo.RegisterUser(c.Request.Context(), userWizard.User, enabled)
 	if errors.Is(err, database.ErrRegistrationClosed) {
 		c.JSON(http.StatusForbidden, gin.H{"success": false, "code": "registration_closed", "error": "Public registration is disabled. Contact your administrator."})
 		return
@@ -98,7 +99,7 @@ func RegistrationStatus(c *gin.Context) {
 		c.JSON(500, gin.H{"success": false, "error": "Registration availability is unavailable"})
 		return
 	}
-	count, err := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository).GetUserCount(c)
+	count, err := c.MustGet(pkg.ContextKeyTypeDatabase).(database.DatabaseRepository).GetUserCount(c.Request.Context())
 	if err != nil {
 		c.JSON(500, gin.H{"success": false, "error": "Registration availability is unavailable"})
 		return
@@ -116,7 +117,7 @@ func AuthSignin(c *gin.Context) {
 		return
 	}
 
-	foundUser, err := databaseRepo.GetUserByUsername(c, user.Username)
+	foundUser, err := databaseRepo.GetUserByUsername(c.Request.Context(), user.Username)
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "could not sign in"})
 		return

@@ -55,3 +55,29 @@ overlay sources and synthetic runtime evidence remain private. The matched clini
 package predates this repair; it is not silently requalified by these source tests. Other raw legacy
 web-to-repository contexts remain to be assessed under #474, and production/native GUI/independent
 operator qualification remains separate.
+
+## Request-bound follow-up
+
+The accepted first repair is #476 (`53578aeb341c01fef92a580d6eab39062cc1043b`, exact-main validation
+42584452848 passed). Pi continues the same issue/branch/checkout with registration/login/status,
+source CRUD/read, generic resource/owned-mutation and reviewed-document boundaries. Anonymous auth
+operations use the original HTTP context; authenticated repository calls use the verified UUID/username
+snapshot. Source-sync completion deliberately retains its existing immutable detached job context rather
+than binding already detached work to request cancellation. No password cost or registration budget changed.
+
+A new four-case real-handler boundary probe deterministically checks source listing, deletion, composition
+and registration. Each originally passed `*gin.Context` to the repository. An initial test-only compile
+mistake (`require.NotIsType` is unavailable) was fixed before all four genuinely failed; it is not counted
+as a behavioral regression. Unchanged controls then pass, including request deadline/cancellation after
+simulated context reuse, immutable actor values and absence of local JWT in the repository context.
+The combined focused race/old job-authority controls passed (23.069s).
+
+Initial ordinary handler compatibility failed only because two old direct-resource tests provided no HTTP
+request; their shared fixture now provides a real synthetic request without changing assertions or the
+production adapter. Complete handler/middleware race passes (576.873s / 1.642s), and complete web race
+passes (652.820s). Other remaining legacy contexts, such as practitioner/settings/token/summary/diagnostic
+callers, are not certified by this bounded follow-up. No global Gin fallback or core-database coupling was
+introduced; exact original/provenance/authorization and detached-job controls remain in the normal suites.
+After normally integrating accepted clinical UI #477, the complete desktop internal race suites also pass
+serialized: host 23.460s, composed encrypted shell flow 27.289s, SMART 5.982s, fixture 1.230s. The ordinary
+macOS linker warnings remain visible; this does not qualify a fresh native GUI/package or older OS.
