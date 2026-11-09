@@ -38,7 +38,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Repository custody | [Reclamation receipt](repository-reclamation-2026-11-09.md), one checkout, canonical remote | Verified; Pi launch-path anchor pending session restart |
 | Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Not reassessed |
 | Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Not reassessed |
-| Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | Legacy source payload leak reproduced; [focused correction](provider-log-privacy.md) in progress |
+| Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request correction](provider-log-privacy.md) integrated; [dynamic response correction](provider-response-privacy.md) in progress |
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Not reassessed |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | Not reassessed |
 | Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Not reassessed |
@@ -98,11 +98,16 @@ internal-only development; host/API/UI exposure comes after repository acceptanc
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,
-  not passing runs or proof of a product deadlock; retain logs and rerun with the suite's appropriate budget.
+  not passing runs or proof of a product deadlock. The full local backend suite subsequently passed on
+  `f329ceba66` with a 15-minute per-package budget; database 258.521s, web 101.154s, handler 65.263s.
+  This completes the incomplete local baseline; it is not a substitute for later-head hosted validation.
 - Source credential payload logging and decoder-input echo were reproduced with synthetic canaries.
-  The [focused regression/fix](provider-log-privacy.md) is being delivered independently of clinical work.
-- Additional confirmed source exposure requiring correction: legacy dynamic registration/token failures
-  print provider response bodies through the standard logger. No real provider or credential probe is needed.
+  The [focused regression/fix](provider-log-privacy.md) merged via #470 at
+  `e4ae20acec3c77be7c09616ce7c7cc05a65dc543`, after all seven checks passed its exact PR head.
+- Legacy dynamic registration/token response-body logging was also reproduced using an intercepting
+  in-memory HTTP transport. The [focused correction](provider-response-privacy.md) closes rejected replies
+  without reading their potentially unbounded bodies. Both real success paths retain positive regression
+  controls; the complete models race suite passed. Hosted validation and integration remain pending.
 - Standalone factory fallbacks still permit unencrypted SQLite and wildcard HTTP listening. Deployment
   configuration and secure-default acceptance require reassessment; the desktop already uses private
   encrypted storage and no application API TCP listener.
