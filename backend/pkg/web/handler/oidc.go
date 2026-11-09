@@ -13,6 +13,7 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/config"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/database"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -69,7 +70,7 @@ func oidcPasswordUser(c *gin.Context, r database.DatabaseRepository) (*models.Us
 	if !oidcBody(c, &body) {
 		return nil, false
 	}
-	u, err := r.GetCurrentUser(c)
+	u, err := r.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 	if err != nil || u == nil || u.DeletedAt != nil || len(body.Password) > 1024 || u.CheckPassword(body.Password) != nil {
 		oidcJSON(c, 401, nil)
 		return nil, false
@@ -166,7 +167,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 		if !ok {
 			return
 		}
-		u, err := r.GetCurrentUser(c)
+		u, err := r.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 		if err != nil {
 			oidcJSON(c, 500, nil)
 			return
@@ -183,7 +184,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 		if !ok {
 			return
 		}
-		u, err := r.GetCurrentUser(c)
+		u, err := r.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 		if err != nil {
 			oidcJSON(c, 500, nil)
 			return
@@ -224,7 +225,7 @@ func RegisterOIDCRoutes(api, secure gin.IRoutes, mgr *auth.OIDCManager) {
 		if !ok {
 			return
 		}
-		u, err := r.GetCurrentUser(c)
+		u, err := r.GetCurrentUser(middleware.AuthenticatedRequestContext(c))
 		if err != nil {
 			oidcJSON(c, 500, nil)
 			return
