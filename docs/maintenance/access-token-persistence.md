@@ -49,4 +49,10 @@ creation. Existing record-level authorization remains required even for correctl
 Raw logs, synthetic JWTs, keys and databases remain private. No real provider, health record,
 production identity, dependency refresh, hash/deadline relaxation, priority or OS setting change
 was involved. Source/hosted/exact-main acceptance and the separate blocked native manual-import
-runtime in #487 must not be conflated. Publication qualification is pending at this checkpoint.
+runtime in #487 must not be conflated.
+
+Exact head `8c098702c1d16e09854e831d04c159d871932c29` qualified all seven checks42676427229.
+After ready-for-review, fresh matching-head/CLEAN/no-unresolved-thread verification preceded
+protected #491 merge `8eebe540e72e846b345f3a3d427139ed2ad7cc99` at 2026-11-09T20:03:10Z.
+Separate exact-main42689213196 completed success; #490 closed only for this bounded contract.
+The consumer privacy/state follow-up [#492](companion-token-privacy.md) remains separately qualified.
