@@ -4,6 +4,9 @@ Pi owns [#494](https://github.com/chartrove/chartrove/issues/494), branch
 `task/standalone-loopback`, in the canonical single checkout. This is a source/default
 change, not deployment, migration, key rotation or a production-readiness certificate.
 Validated product checkpoint: `0da518aea06696cc906171e0ecd8ab4d263f5eab`.
+Normal accepted #493 parent integration: `7a57a5ac0b849fc77a73405c81170f26dddf4c00`;
+all ten configuration/producer/address/test source hashes stayed unchanged. Integrated
+focused config/web races passed 2.760/3.326s.
 
 ## Effective defaults, not one isolated fallback
 

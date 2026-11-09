@@ -118,7 +118,19 @@ remain evidence, not current acceptance or authorization. Only this repository i
   exit0, 792 browser successes/one skip and normal scratch cleanup. The earlier interrupted parent/
   naturally completed orphan/uncaptured final exit stays separate. Explicit sharing remains; client
   cancellation/clearing does not imply server rollback, revocation or undo of copied credentials.
-  Protected publication and normal native/mobile GUI acceptance remain separate/pending.
+  Exact `5391dca276443d1384278d72c667f7cc83ba4eea` passed seven42693108010; protected
+  #493 merged `921f42adc2cba7d80e016cd0ecb901dd26c0f014`. Separate exact-main42698388769
+  and normal native/mobile GUI acceptance remain separate/pending.
+- [Standalone loopback #494](standalone-loopback.md) aligns factory/sample/default address
+  construction and both Compose host-publication defaults without an image ENV overriding
+  operator configuration. A guarded producer derives the deliberate container-side wildcard
+  sample; existing private configs, key/registration/TLS/native no-TCP policies stay unchanged.
+  Two genuine default/sample reds plus five address reds, a Compose source-contract red,
+  focused races, complete ordinary config/web0.619/329.951s, full config race1.721s, vet,
+  six daemon-free Compose parses and original/current synthetic Docker context controls pass.
+  Integrated `7a57a5ac0b849fc77a73405c81170f26dddf4c00` preserves all ten source hashes;
+  focused integrated races2.760/3.326s. No actual image build/network/deployment certificate;
+  protected publication remains pending.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
