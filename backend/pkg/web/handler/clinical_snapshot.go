@@ -147,6 +147,15 @@ func RegisterClinicalSnapshotRoutes(secure gin.IRoutes) {
 			clinicalSnapshotResponse(c, nil, err)
 			return
 		}
+		// A repository context does not bound a blocked socket write. Do not let
+		// connected non-reading clients retain both shared download slots forever.
+		transport := http.NewResponseController(c.Writer)
+		if err := transport.SetWriteDeadline(time.Now().Add(30 * time.Second)); err != nil && !errors.Is(err, http.ErrNotSupported) {
+			c.Status(http.StatusServiceUnavailable)
+			return
+		}
+		defer func() { _ = transport.SetWriteDeadline(time.Time{}) }()
+		// In-process recording writers have no transport deadline to configure.
 		c.Header("X-Content-Type-Options", "nosniff")
 		c.Header("Content-Disposition", `attachment; filename="clinical-snapshot-`+snapshot.String()+`.json"`)
 		c.Data(http.StatusOK, "application/fhir+json", raw)

@@ -47,6 +47,10 @@ not a durable delivery receipt; consumers must also load current state. Replay e
 - `GET /api/secure/source/:sourceId/clinical-snapshots/:snapshotId/original` verifies ownership and original
   digest, then returns exact bytes as `application/fhir+json`, `Content-Disposition: attachment` with a
   UUID-only filename and `X-Content-Type-Options: nosniff`. Two downloads are admitted per registration.
+  After the bounded repository read, a separate 30-second transport write deadline prevents connected
+  non-reading TCP clients from holding both slots forever. The deadline is reset after the response.
+  Deadline configuration errors other than unsupported transport stop the download; in-process recording
+  writers without socket deadlines retain the same direct-handler compatibility.
 
 Both routes are `Cache-Control: no-store`. Administrators, foreign identities and EDIT delegates cannot
 read another owner's history. Current source sharing does not imply raw-history rights. Database and
@@ -79,10 +83,21 @@ Authentik operation are not claimed.
   the actual failure. A legacy-only publisher control proves the unsafe synchronous fallback is never called.
   Bus controls cover admitted metadata serialization, full/absent dispatcher refusal and no-op support.
 
-Following the review correction, fresh focused HTTP race tests passed (12.949s), complete event-bus race
+A second source review found that the repository context did not bound socket response writes. A real
+TCP regression opens two authenticated clients with small receive buffers, receives original-download
+headers, then deliberately stops reading both 8 MiB bodies without disconnecting. A third request proves
+both slots initially busy. Before correction, no slot recovered within 35 seconds (failure at 37.468s).
+With the separate write deadline, the unchanged socket behavior recovers a slot and downloads an exact
+original while the first clients are still connected. No fake writer, shortened deadline, server-wide
+WriteTimeout or context-only surrogate is used. The failure assertion now checks a missing result before
+comparing bytes, avoiding another huge synthetic-padding diff without weakening exact equality on success.
+
+After this correction, focused HTTP race passed (47.132s), complete web/handler passed (62.264s / 82.430s),
+and the real-socket regression under the desktop dependency graph passed (32.028s). Vet/diff passed.
+Before it, the notification correction's focused HTTP race passed (12.949s), complete event-bus race
 passed (1.195s), complete web and handler suites passed (62.819s / 52.351s), and stalled/legacy controls under
 the desktop dependency graph passed (1.386s). Changed-package vet/diff passed. Original API fixtures and
-implementation were developed together; only the stalled-publisher regression is a demonstrated pre-fix
-failure, not the whole feature suite. Final-head
+implementation were developed together; the stalled-publisher and TCP-download regressions are demonstrated
+pre-fix failures, not the whole feature suite. Final-head
 hosted validation and source review remain required. This is neither independent peer certification nor
 an operator/key-loss, PostgreSQL or cross-platform recovery qualification.
