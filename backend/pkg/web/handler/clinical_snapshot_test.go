@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -201,6 +202,53 @@ func TestClinicalSnapshotHTTPFlow(t *testing.T) {
 	for _, query := range []string{"?limit=0", "?limit=201", "?offset=-1", "?limit=invalid", "?offset=1000001"} {
 		require.Equal(t, http.StatusBadRequest, h.request(http.MethodGet, prefix+query, h.tokens[0], nil).Code)
 	}
+}
+
+func TestClinicalSnapshotHTTPRestoredCopy(t *testing.T) {
+	h := newClinicalAPIHarness(t)
+	first := clinicalAPIResult(t, h.request(http.MethodPost, clinicalAPIPost, h.tokens[0], h.body(t, clinicalAPIRaw)))
+	changedRaw := strings.Replace(clinicalAPIRaw, "1.234567890123456789", "2.345678901234567891", 1)
+	changed := clinicalAPIResult(t, h.request(http.MethodPost, clinicalAPIPost, h.tokens[0], h.body(t, changedRaw)))
+	parent := t.TempDir()
+	require.NoError(t, os.Chmod(parent, 0700))
+	bundle := filepath.Join(parent, "synthetic-backup")
+	_, err := database.BackupEncryptedSQLite(h.owner, h.cfg.GetString("database.location"), bundle, h.cfg.GetString("database.encryption.key"))
+	require.NoError(t, err)
+	artifactPath := filepath.Join(bundle, "database.sqlite")
+	artifact, err := os.ReadFile(artifactPath)
+	require.NoError(t, err)
+	require.False(t, bytes.HasPrefix(artifact, []byte("SQLite format 3")))
+	require.NotContains(t, string(artifact), "synthetic-private-clinical-name")
+	copyPath := filepath.Join(t.TempDir(), "restored-copy.db")
+	require.NoError(t, os.WriteFile(copyPath, artifact, 0600))
+	cfg, err := config.Create()
+	require.NoError(t, err)
+	cfg.Set("database.type", "sqlite")
+	cfg.Set("database.location", copyPath)
+	cfg.Set("database.encryption.enabled", true)
+	cfg.Set("database.encryption.key", h.cfg.GetString("database.encryption.key"))
+	cfg.Set("jwt.issuer.key", h.cfg.GetString("jwt.issuer.key"))
+	logger := logrus.New()
+	logger.SetOutput(h.logs)
+	db, err := database.NewRepository(cfg, logger, event_bus.NewNoopEventBusServer())
+	require.NoError(t, err)
+	t.Cleanup(func() { require.NoError(t, db.Close()) })
+	recovered := h
+	recovered.router = clinicalAPIRouter(cfg, db, logger, h.bus)
+	prefix := "/api/secure/source/" + first.SourceID.String() + "/clinical-snapshots/"
+	for _, row := range []struct {
+		id  uuid.UUID
+		raw string
+	}{{first.SnapshotID, clinicalAPIRaw}, {changed.SnapshotID, changedRaw}} {
+		path := prefix + row.id.String() + "/original"
+		response := recovered.request(http.MethodGet, path, h.tokens[0], nil)
+		require.Equal(t, http.StatusOK, response.Code)
+		require.Equal(t, row.raw, response.Body.String(), "restored HTTP originals must retain exact decimal/extension bytes")
+		require.Equal(t, http.StatusForbidden, recovered.request(http.MethodGet, path, h.tokens[1], nil).Code)
+	}
+	unchanged, err := os.ReadFile(artifactPath)
+	require.NoError(t, err)
+	require.Equal(t, artifact, unchanged, "do not boot or modify the immutable backup artifact")
 }
 
 func TestClinicalSnapshotHTTPStrictEnvelope(t *testing.T) {

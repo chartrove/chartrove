@@ -39,8 +39,8 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Internal reader integrated; [atomic store](clinical-snapshot-persistence.md) locally qualified, hosted validation pending; no clinical action yet |
 | Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Not reassessed |
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
-| Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Not reassessed |
-| Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | Not reassessed |
+| Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API, fresh JWT receiver check and post-commit notifications locally tested; household/provider consent still open |
+| Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
 | Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Not reassessed |
 | Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Not reassessed |
 | Operations | Documented deployment, health, monitoring, retention, recovery objectives and rollback rehearsal | Not reassessed |
@@ -86,7 +86,7 @@ internal-only development; host/API/UI exposure comes after repository acceptanc
 5. Require accepted migrations, source review and protected validation before integration. Then add the
    explicit owner-confirmed native bridge/API/UI action and synthetic end-to-end flow as its own slice.
 
-## Next slice: explicit owner-confirmed import API
+## Current slice: explicit owner-confirmed import API
 
 Pi owns `task/clinical-snapshot-api`, stacked on the atomic store in #472. Add only authenticated owner
 routes: explicit confirmation plus the expected receiving UUID, a bounded raw **string** collection that
@@ -114,7 +114,15 @@ remain application-wide acceptance items, not claims supplied by the internal st
   locally qualified and merged with accepted parent/main history without rewriting it. Exact originals,
   5,000-Observation acceptance, distinct scopes, replay/updates, encrypted restore, rollback/cancellation
   and deletion races have concrete synthetic evidence. The final-metadata focused race suite passed
-  (25.102s) and maximum collection passed (32.018s). Hosted qualification and API/native/UI work remain.
+  (25.102s) and maximum collection passed (32.018s). #472's initial seven green checks were insufficient:
+  source review reproduced an entry-URL-only stale provenance defect; tests failed before correction,
+  then both resource types and the full focused store suite passed under race (15.861s). The review thread
+  was resolved with that evidence; new head `b5a097f37d` still needs fresh qualification/integration.
+- The [explicit owner-confirmed API](clinical-snapshot-api.md) is locally implemented on its own task
+  branch. Real JWT middleware, encrypted HTTP originals/history, stale-recipient refusal, rollback/event
+  ordering, strict/bounded intake and immutable backup-copy restore passed focused race tests (11.707s).
+  Complete web/handler suites passed (63.519s / 51.416s). Native local-identity binding and the clinical UI
+  are not implemented by this API slice.
 - Initial whole-backend local execution exceeded a 240-second tool timeout during the database package.
   A diagnostic database run with an overly short 120-second test timeout ended during bcrypt cost-14
   fixture creation. No earlier semantic assertion failure was reported. These are incomplete baselines,
