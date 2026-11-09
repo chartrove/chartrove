@@ -193,3 +193,34 @@ This fourth repair qualified exact head `ca1672ac68aebb4c1f81748b4db0bffbb1438ea
 with seven checks (42618587011), no unresolved threads, and protected matching-head #482 merge
 `92c31890c5ef34f462241d2961186d3b09a45730`. Separate exact-main 42622419523 attempt 1
 completed success; local/PR success was not substituted for it.
+
+## OIDC account-actor follow-up
+
+Pi continues #474 on `task/oidc-password-context` from accepted
+`1b7a2b243fa78734638cc79d80089255cbb7d9cd`. A further actual-callee inventory found four
+aliased `r.GetCurrentUser(c)` calls still passing Gin: password proof shared by secure link/revoke,
+identity listing, audit listing and logout. Earlier changes to explicit-ID OIDC repository methods
+had not removed these actor lookups. This is not an anonymous username-login path.
+
+All four now use the existing authenticated request adapter: original HTTP lifetime, copied verified
+UUID/name, no local JWT, no pooled Gin or timed Gin parent. The downstream explicit user/session
+operations keep their original request context and explicit identifiers. Password, local recovery,
+OIDC issuer/linking/session/role rules and detached jobs are unchanged; no global fallback is enabled.
+
+The existing real-handler boundary table gains a password-helper case that genuinely failed on
+accepted source (3.119s package). Five actual registered secure routes also genuinely fail their
+pooled-Gin boundary controls (2.109s): link, identities, audit, revoke and logout. Synthetic identity
+middleware and a boundary fake stop before password/session/external work; these tests are **not**
+JWT/password/Authentik acceptance. They retain the repository context, then deterministically cancel
+and replace the original request/actor, asserting its original deadline/cancellation, immutable
+UUID/name and absence of JWT. Both unchanged boundary groups pass under race (3.394s).
+
+The existing real SQLite/owned-TLS OIDC HTTP local-recovery/session/authority test passes ordinarily
+(55.920s). An instrumented combined attempt timed out at eight minutes (483.255s package), with the
+preserved stack runnable in cost-14 bcrypt password comparison inside the real link path, not a
+blocked SQL waiter. This is incomplete race evidence, not a pass or proof of database deadlock.
+Substantial unrelated host load had also affected other native signup qualifications; causation is
+not claimed from that observation alone. No hash, assertion, registration/native/clinical budget,
+priority, OS setting, unrelated process, dependency or provider was changed. Changed-handler vet and
+diff checks pass. Fresh hosted/full-suite acceptance and remaining caller inventory are still open;
+ordinary flow or these focused boundary races do not certify the entire OIDC/native/production scope.
