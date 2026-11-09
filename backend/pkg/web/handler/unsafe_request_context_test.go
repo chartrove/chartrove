@@ -39,8 +39,11 @@ func (p *unsafeContextProbe) GetSource(ctx context.Context, _ string) (*models.S
 	p.operation = ctx
 	return nil, errors.New("synthetic stop before provider creation")
 }
-func (p *unsafeContextProbe) GetFlattenedResourceGraph(ctx context.Context, _ pkg.ResourceGraphType, _ models.ResourceGraphOptions) (map[string][]*models.ResourceBase, error) {
+func (p *unsafeContextProbe) GetFlattenedResourceGraph(ctx context.Context, graphType pkg.ResourceGraphType, _ models.ResourceGraphOptions) (map[string][]*models.ResourceBase, error) {
 	p.operation = ctx
+	if graphType != pkg.ResourceGraphTypeMedicalHistory {
+		return nil, database.ErrSourceAccessInput
+	}
 	if ctx.Value(pkg.ContextKeyTypeAuthUserID) != p.actor.ID {
 		return nil, database.ErrSourceAccessDenied
 	}
@@ -84,7 +87,7 @@ func TestUnsafeDiagnosticsPreserveSelectedOwnerRequest(t *testing.T) {
 			parent = context.WithValue(parent, pkg.ContextKeyTypeAuthToken, "synthetic-inherited-local-token")
 			parent = context.WithValue(parent, pkg.ContextKeyTypeAuthUserID, uuid.New())
 			body := `{"resource_ids":[{"source_id":"` + uuid.NewString() + `","source_resource_type":"Patient","source_resource_id":"synthetic-patient"}]}`
-			request := httptest.NewRequest(http.MethodPost, "/synthetic-selected/"+uuid.NewString()+"/all?resourceNames=Patient", strings.NewReader(body)).WithContext(parent)
+			request := httptest.NewRequest(http.MethodPost, "/synthetic-selected/"+uuid.NewString()+"/MedicalHistory?resourceNames=Patient", strings.NewReader(body)).WithContext(parent)
 			request.Header.Set("Content-Type", "application/json")
 			response := httptest.NewRecorder()
 			router.ServeHTTP(response, request)
@@ -165,6 +168,24 @@ func TestUnsafeDiagnosticOwnerRefusesMissingDeletedAndCanceled(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestUnsafeGraphUsesRealEncryptedSelectedOwner(t *testing.T) {
+	h := newClinicalAPIHarness(t)
+	imported := clinicalAPIResult(t, h.request(http.MethodPost, clinicalAPIPost, h.tokens[0], h.body(t, clinicalAPIRaw)))
+	h.cfg.Set("web.allow_unsafe_endpoints", true)
+	h.router.POST("/unsafe/:username/:graphType", UnsafeResourceGraph)
+	body := []byte(`{"resource_ids":[{"source_id":"` + imported.SourceID.String() + `","source_resource_type":"Patient","source_resource_id":"synthetic-patient"}]}`)
+	path := "/unsafe/" + h.users[0].Username + "/MedicalHistory"
+	response := h.request(http.MethodPost, path, "", body)
+	require.Equal(t, http.StatusOK, response.Code, response.Body.String())
+	require.Contains(t, response.Body.String(), "synthetic-private-clinical-name")
+	foreign := h.request(http.MethodPost, "/unsafe/"+h.users[1].Username+"/MedicalHistory", "", body)
+	require.NotContains(t, foreign.Body.String(), "synthetic-private-clinical-name", "selected owner must not read another owner's graph")
+	h.cfg.Set("web.allow_unsafe_endpoints", false)
+	refused := h.request(http.MethodPost, path, "", body)
+	require.Equal(t, http.StatusServiceUnavailable, refused.Code)
+	require.NotContains(t, refused.Body.String(), "synthetic-private-clinical-name")
 }
 
 func TestUnsafeCredentialCleanupPreservesBoundedSelectedOwner(t *testing.T) {
