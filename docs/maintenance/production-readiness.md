@@ -86,6 +86,21 @@ internal-only development; host/API/UI exposure comes after repository acceptanc
 5. Require accepted migrations, source review and protected validation before integration. Then add the
    explicit owner-confirmed native bridge/API/UI action and synthetic end-to-end flow as its own slice.
 
+## Next slice: explicit owner-confirmed import API
+
+Pi owns `task/clinical-snapshot-api`, stacked on the atomic store in #472. Add only authenticated owner
+routes: explicit confirmation plus the expected receiving UUID, a bounded raw **string** collection that
+never round-trips numeric values through JavaScript numbers, payload-free errors, owner-only metadata
+and an attachment-only exact-original download. Publish refresh events only after a successful new commit.
+Exercise real encrypted HTTP persistence/restore boundaries and negative/stale-recipient/parser cases.
+
+Native/UI exposure follows separately. In particular, review the current main-window SMART bridge's
+local-identity binding before adding clinical retrieval; main-window authorization alone is not evidence
+of which local identity owns a provider connection. The UI must confirm the receiving local identity,
+clear stale previews on identity change and never label owner-declared origins as provider attestation.
+Legacy account/import writer coordination, numeric display precision and narrative/network egress also
+remain application-wide acceptance items, not claims supplied by the internal store.
+
 ## Current execution checkpoint
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
