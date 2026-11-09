@@ -36,16 +36,40 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Gate | Evidence required | State |
 | --- | --- | --- |
 | Repository custody | [Reclamation receipt](repository-reclamation-2026-11-09.md), one checkout, canonical remote | Verified; Pi launch-path anchor pending session restart |
-| Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Internal reader integrated; [atomic store](clinical-snapshot-persistence.md) locally qualified, hosted validation pending; no clinical action yet |
-| Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Native bridge UUID/session binding locally qualified; full household/recovery/Authentik remain |
+| Clinical integrity | Lossless import/export, idempotence, updates, attachments and provenance | Reader, [atomic store](clinical-snapshot-persistence.md), owner API and [clinical UI](clinical-import-ui.md) integrated; scoped synthetic fidelity/update/recovery evidence exists; broader ingestion/GUI remain |
+| Identity and access | Native recovery; synthetic Authentik; distinct family identities; negative/revocation tests | Native bridge UUID/session binding integrated; bounded stable-context repairs accepted; remaining #474 callers and full household/recovery/Authentik remain |
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
-| Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API, fresh JWT receiver check and post-commit notifications locally tested; household/provider consent still open |
+| Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API/UI, active JWT receiver checks and bounded post-commit refresh integrated; household/provider consent still open |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
-| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Not reassessed |
-| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Not reassessed |
+| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Corrected UI: 741 browser passes/one skip; composed encrypted native flow passes; actual GUI blocked by normal Cua permission gate |
+| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Ad-hoc packages and packaged restore checks exist; newest package predates final UI/context corrections and is not current |
 | Operations | Documented deployment, health, monitoring, retention, recovery objectives and rollback rehearsal | Not reassessed |
 
-## Initial observations
+## Accepted source and current work
+
+- Clinical UI #477 qualified corrected head `6d161d4c42c5b6aeec8c6d68e33b4f53bbca5f54`
+  (42588079214), then merged at `8629b689e41915b09e95cfba6d9cedc24976bd50`.
+  Exact-main validation 42590642336 passed. The coupled stale-identity/cleanup-error regressions,
+  exact source-specific display and composed encrypted flow are documented in the UI receipt.
+- Stable legacy context repairs #476 and #478 are accepted. The follow-up qualified exact head
+  `f094d12f3fbe230f320306191a5131c710682a84` (42592715042), merged with no unresolved threads
+  at `dc48128ad8691513ae9c2e8607567482849f6c8f`; exact-main 42594974931 passed.
+  [#474 remains open](request-context-isolation.md) for actual remaining callers, not hidden by CI.
+- Current Pi-owned #479, branch `task/clinical-postgres-acceptance`, uses only the existing pinned
+  disposable local PostgreSQL fixture. A genuine identical-Patient update misclassification is
+  corrected and real runtime/precision/ownership/rollback/reopen controls now exist. See the
+  [PostgreSQL receipt](clinical-snapshot-postgres.md), including its explicitly unresolved
+  race-instrumented maximum-load limit. This slice is not yet protected-main acceptance.
+- Actual GUI launch remains refused by the normal installed Cua daemon's `permissions_pending`
+  gate; Chartrove was not launched. Do not bypass it or infer permission from helper booleans.
+  Safe source/runtime work continues. The e442 inspection ZIP predates final UI review corrections
+  and subsequent context changes; no current GUI/release/recovery claim attaches to that artifact.
+
+The following slice plans are historical implementation intent. Current acceptance is above and in
+exact-source receipts, not the earlier future-tense wording.
+
+## Initial observations (historical)
+
 
 - Initial primary `main` was clean at `91509eb7e3a23f5683f562d58b5dad1879cd1dbb`, five commits behind
   `origin/main` (`b3144a99a84e7e876bd4e964fc8201d11d5dfa4d`). No stash was listed.
@@ -65,7 +89,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
   The only checkout is canonical. Rex reports the new path. Pi's captured launch-path limitation is explicitly
   documented there, with a labelled nonrepository anchor rather than a duplicate clone or symlink.
 
-## Next implementation slice: atomic clinical persistence
+## Historical plan: atomic clinical persistence
 
 Exclusive Pi ownership continues in the primary checkout, task branch `task/clinical-snapshot-persistence`,
 initially stacked on the qualified #466 reader and accepted #470 source-log correction. This is synthetic,
@@ -86,7 +110,7 @@ internal-only development; host/API/UI exposure comes after repository acceptanc
 5. Require accepted migrations, source review and protected validation before integration. Then add the
    explicit owner-confirmed native bridge/API/UI action and synthetic end-to-end flow as its own slice.
 
-## Current slice: explicit owner-confirmed import API
+## Historical plan: explicit owner-confirmed import API
 
 Pi owns `task/clinical-snapshot-api`, stacked on the atomic store in #472. Add only authenticated owner
 routes: explicit confirmation plus the expected receiving UUID, a bounded raw **string** collection that
@@ -101,7 +125,7 @@ clear stale previews on identity change and never label owner-declared origins a
 Legacy account/import writer coordination, numeric display precision and narrative/network egress also
 remain application-wide acceptance items, not claims supplied by the internal store.
 
-## Next slice: scope the native SMART bridge
+## Historical plan: scope the native SMART bridge
 
 Pi owns `task/scoped-smart-bridge`, initially stacked on the locally tested API. Before exposing clinical
 retrieval, bind each new native provider connection to a real authenticated local UUID resolved through
@@ -112,7 +136,7 @@ Cleanup must still release in-memory provider credentials after local logout/exp
 signatures and preserve Patient-only operation, with cross-identity/window/session-change negative tests.
 The clinical import UI and its explicit receiving-profile confirmation remain a subsequent slice.
 
-## Next slice: explicit clinical import in the Sources UI
+## Historical plan: explicit clinical import in the Sources UI
 
 Pi owns `task/clinical-import-ui`, stacked on the scoped native bridge. Preserve raw Patient text and
 collection text rather than reserializing parsed numeric FHIR. Keep Patient-only import usable, add an
@@ -123,7 +147,7 @@ deletions or newer data from a previously seen digest. Exercise real handlers in
 browser tests, plus synthetic native end-to-end repeated/changed import and encrypted restart/restore.
 This plan does not authorize real providers, production identities, deployment or external record uploads.
 
-## Current execution checkpoint
+## Implementation receipt chronology
 
 - Reclamation PR [#469](https://github.com/chartrove/chartrove/pull/469) merged at
   `add1a4ad2cc6c95545c2fb7ead4eff50095df7c4`, after all seven required checks succeeded on

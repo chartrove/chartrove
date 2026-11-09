@@ -63,6 +63,12 @@ these tests do not claim authentication or independent consent acceptance.
   the separately measured maximum-load test; it is not a complete maximum-load race pass.**
 - Unchanged encrypted SQLite persistence/provenance race controls passed in 16.040s. Its complete
   5,001-resource maximum test passed ordinarily in 14.216s. Tagged database vet/diff checks passed.
+- After normally integrating accepted #478 at code checkpoint
+  `d9b8cfaa8d0bb8b620467025cc717565b7bf21ed`, the complete ordinary PostgreSQL selection passed
+  again (175.279s), including the final scale/corruption assertions and both bounded retrieval flags.
+  Maximum import/change took 18.452490458s / 20.380358125s, with both originals retained.
+  Serialized complete native internal race suites passed: host 22.636s, composed encrypted shell flow
+  27.864s, SMART 5.896s, fixture 1.241s. Existing macOS 27.2-object/11.0-link warnings remain.
 
 The ordinary PostgreSQL maximum test imports 5,000 Observations plus one Patient, then changes one
 last-place decimal in the complete collection. For 1,204,010 bytes it passed with 5,001 creations,
@@ -85,6 +91,26 @@ preserved privately. No deadline, hash cost or assertion was relaxed, and no tes
 this failure. Consequently `go test -race -tags=postgres_integration ... -run Postgres` is **not**
 reported green for this slice. The bounded race command explicitly selects the other tests; the
 maximum remains a separately reproducible ordinary runtime gate and a documented race-load limit.
+
+## Reproducing the scoped checks
+
+From the canonical checkout, with the exact pinned image already available to the local Docker daemon:
+
+```bash
+set -euo pipefail
+export GOPROXY=off GOSUMDB=off
+CHARTROVE_RETRIEVAL_EVALUATION=1 CHARTROVE_RETRIEVAL_QUALITY=1 \
+  go test -tags=postgres_integration ./backend/pkg/database -run Postgres -count=1 -timeout=15m
+
+# This explicitly excludes the known instrumented maximum, not its ordinary runtime gate.
+names=$(go test -tags=postgres_integration ./backend/pkg/database -list Postgres \
+  | grep '^Test' | grep -v '^TestClinicalSnapshotPostgresMaximumCollection$' | paste -sd '|' -)
+CHARTROVE_RETRIEVAL_EVALUATION=1 CHARTROVE_RETRIEVAL_QUALITY=1 \
+  go test -race -tags=postgres_integration ./backend/pkg/database -run "^($names)$" -count=1 -timeout=15m
+```
+
+These Go module flags prevent dependency downloads, not arbitrary networking; the reviewed fixture
+uses actual loopback PostgreSQL. This is not a sandbox/network-denial certification.
 
 All owned disposable containers were removed after successful and failed runs; unrelated workloads
 were untouched. These receipts do not qualify a fresh packaged binary, GUI, older OS, production
