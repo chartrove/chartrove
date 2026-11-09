@@ -39,9 +39,13 @@ func run() error {
 	unencrypted := flag.Bool("unencrypted", false, "Use an unencrypted database for disposable testing")
 	frontendDir := flag.String("frontend-dir", "", "Override built-in frontend assets for development")
 	smokeTest := flag.Bool("smoke-test", false, "Run local WebView smoke checks with an explicit fresh --data-dir and --unencrypted")
+	smokeBackground := flag.Bool("smoke-background", false, "Keep synthetic smoke windows hidden; requires --smoke-test and is not visual GUI acceptance")
 	smartConfig := flag.String("smart-provider-config", "", "Explicit public SMART provider JSON configuration (disabled when omitted)")
 	smartUITest := flag.Bool("smart-ui-test", false, "Use local synthetic SMART providers; requires a fresh explicit data directory and --unencrypted")
 	flag.Parse()
+	if err := validateSmokeBackground(*smokeTest, *smokeBackground); err != nil {
+		return err
+	}
 	if *smartUITest {
 		if err := validateSMARTUITest(*directory, *unencrypted, *smartConfig, *smokeTest); err != nil {
 			return err
@@ -152,10 +156,10 @@ func run() error {
 	if session != nil {
 		url = "/__desktop_smoke__"
 		session.OpenObserver = func() {
-			app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "auth-observer", Title: "Synthetic callback observer", URL: "/__desktop_smoke__?role=observer", Width: 600, Height: 400})
+			app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "auth-observer", Title: "Synthetic callback observer", URL: "/__desktop_smoke__?role=observer", Width: 600, Height: 400, Hidden: *smokeBackground})
 		}
 		session.OpenCallback = func() {
-			app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "auth-smoke-one", Title: "Synthetic callback", URL: "/__desktop_smoke__?role=callback", Width: 600, Height: 400})
+			app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "auth-smoke-one", Title: "Synthetic callback", URL: "/__desktop_smoke__?role=callback", Width: 600, Height: 400, Hidden: *smokeBackground})
 		}
 		session.CheckObserver = func() {
 			if window, ok := app.Window.GetByName("auth-observer"); ok {
@@ -167,6 +171,11 @@ func run() error {
 			if !completed.CompareAndSwap(false, true) {
 				return
 			}
+			if err := smoke.WriteReport(storage.Directory, report); err != nil {
+				log.Print("native smoke receipt failed: ", err)
+				report.OK = false
+				report.Error = "native smoke receipt unavailable"
+			}
 			smokeOK.Store(report.OK)
 			b, _ := json.Marshal(report)
 			fmt.Println("DESKTOP_SMOKE " + string(b))
@@ -177,9 +186,16 @@ func run() error {
 			session.Complete(smoke.Report{Error: "native smoke test timed out"})
 		}()
 	}
-	app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "main", Title: shell.ApplicationName, Width: 1280, Height: 900, MinWidth: 900, MinHeight: 650, URL: url})
+	app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "main", Title: shell.ApplicationName, Width: 1280, Height: 900, MinWidth: 900, MinHeight: 650, URL: url, Hidden: *smokeBackground})
 	fmt.Printf("%s %s; data directory: %s\n", shell.ApplicationName, shell.Version, storage.Directory)
 	return app.Run()
+}
+
+func validateSmokeBackground(smoke, background bool) error {
+	if background && !smoke {
+		return fmt.Errorf("background smoke requires --smoke-test")
+	}
+	return nil
 }
 
 func validateSMARTUITest(directory string, unencrypted bool, providerConfig string, smoke bool) error {

@@ -92,6 +92,19 @@ go test github.com/fastenhealth/fasten-onprem/backend/pkg/web -run TestEmbedded 
 
 The native executable supports `--smoke-test --unencrypted --data-dir <fresh-private-directory>`. Smoke mode refuses an existing database, an omitted data directory, or configured direct SMART providers. It tests the real WebView/Go binding, disabled direct SMART service, unconfigured-provider rejection, fresh database API, synthetic signup/sign-in, URL rejection, JSON API errors, popup callback delivery, and isolation from an unrelated window. It prints a `DESKTOP_SMOKE` JSON result, quits automatically, and exits nonzero on failure. Its local test routes do not exist in normal mode.
 
+Native completion also publishes `desktop-smoke-report.json` in that selected private directory.
+The bounded (8 KiB), owner-only receipt is published only after its temporary file is written,
+synced and closed. Publication refuses an existing file or report symlink; it never overwrites
+prior evidence. Failed private temporary evidence is retained. A failed receipt write makes the
+smoke run fail; normal startup and `--help` do not write a receipt. The receipt records native test
+completion, not independently verified process exit or a power-loss durability guarantee.
+
+For non-interfering automated runtime qualification, add `--smoke-background` to the existing smoke
+arguments. It is rejected without `--smoke-test` and keeps the main, callback and observer windows
+hidden. It does not grant capture permission, enable providers or use a foreground fallback. A
+hidden native WebView/service test is **not** visual/interactive GUI, encrypted-GUI, key-custody or
+production acceptance; those gates remain separate.
+
 Observed on October 26, 2026: seven embedded-backend integration tests passed, including encrypted create/unlock/reopen, bad-key rejection, concurrent health polling, persistence, and synthetic FHIR import without outbound HTTP or temporary-document residue. The cancellation regression passed with the real event bus. Desktop host tests and four bridge tests passed. The frontend suite reported 286 successes and one skipped test. The packaged executable passed all eight native smoke checks after extraction and passed strict signature verification. Its encryption onboarding UI was also verified visually; a staged build's actual UI signed into the synthetic account after restart and reached the dashboard.
 
 On October 27, the original fixture-import timeouts were reproduced and fixed: generated models now share compiled JavaScript programs, acquire exclusive initialized runtimes, clear their current resource before returning them, and reuse parsed FHIRPath expressions without caching patient results. The generator was updated with its 56 model outputs. The graph suite passed in 16.596 seconds and resource handler suite in 11.887 seconds with the same 120-second limit. Concurrent resource-isolation tests passed under the race detector. The stale generated database mock was also regenerated with the pinned MockGen version after the broader handler suite exposed missing interface methods.
