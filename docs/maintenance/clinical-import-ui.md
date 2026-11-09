@@ -41,7 +41,24 @@ browser suite. An unchanged standalone rerun passed 733 tests with one skip; exi
 `fa-icon` console diagnostics and browser-support/deprecated-builder warnings remain, not suppressed.
 Native macOS object-target linker warnings remain. No older-platform claim is made.
 
-Next: matching packaged GUI, actual repeated/changed clinical UI import and encrypted
-restart/backup-copy recovery. Exact original export and precision-preserving Observation display still
+A composed native-service flow now passes under race (27.173s focused; full internal run host 25.314s,
+shell 29.297s, SMART 7.455s, fixture 1.367s): real encrypted embedded app, real signup/JWT identity resolver,
+synthetic TLS/PKCE manager and two pinned origins, native foreign-owner refusal before provider read,
+HTTP stale-receiver refusal, initial three-resource import, exact unchanged replay, one high-precision
+update, historical acknowledgement, same Patient at distinct origins, disconnect, encrypted close/reopen,
+and exact authorized HTTP original downloads with foreign refusal. Only the trusted-window context is
+synthetic; this is explicitly not a Wails GUI/renderer or independent-operator certificate.
+
+The ad-hoc-signed native package built successfully at source `1958ae0598280a8893273e9b4daa728226270477`;
+the earlier local package was copied and byte/hash-verified privately before replacement. This inspection
+artifact precedes the latest API write-deadline correction and composed test, so it is not their qualified
+final artifact. It was extracted and its signature verified but **not launched**: installed Cua Driver
+0.43.2 reported existing Accessibility/Screen Recording grants through its read-only helper, while its
+normal standard-mode daemon refused both background app launch and a prompt-free check with
+`permissions_pending`. No action started, synthetic data directory was not created, and no permission
+bypass, installation/update, foreground input or real-app capture occurred. This blocks that GUI route,
+not safe source/test work; the composed encrypted flow above was pursued independently.
+
+Next: matching packaged GUI, actual repeated/changed clinical UI import and backup-copy recovery. Exact original export and precision-preserving Observation display still
 need user-facing operational verification. No live provider, production identity or deployment is authorized
 by this checkpoint.
