@@ -84,7 +84,7 @@ choice; do not expose an unprotected HTTP endpoint to an untrusted network.
 This baseline does not install a proxy, configure trust roots, deploy a container,
 or establish production provider registration.
 
-[Imported discussion #193](https://github.com/karamhouse/chartrove/issues/193)
+[Imported discussion #193](https://github.com/chartrove/chartrove/issues/193)
 preserves an attributed community Tailscale/Docktail recipe for an upstream
 Fasten image. It is reference material, not a validated Chartrove deployment or
 a newly implemented integration. The original discussion and its custom-certificate
@@ -103,7 +103,7 @@ The shared-key guard is an existing integrated fix, commit
 Validation uses unsupported synthetic database types for startup-key checks,
 private test directories, local fixtures and blocked outbound HTTP.
 
-Public [Chartrove reports](https://github.com/karamhouse/chartrove/issues) must
+Public [Chartrove reports](https://github.com/chartrove/chartrove/issues) must
 omit health information, identifying details, passwords and keys. Use a synthetic
 reproduction. Fasten attribution, licenses and external service identities remain
 as recorded in [the project](../README.md#fasten-attribution-and-license).
