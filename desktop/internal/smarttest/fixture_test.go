@@ -12,6 +12,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/fastenhealth/fasten-onprem/backend/pkg/utils/clinicalsnapshot"
 	"github.com/karamhouse/fasten-desktop/internal/smart"
 )
 
@@ -58,6 +59,46 @@ func TestSyntheticFixtureConnectsDistinctSourcesWithSamePatient(t *testing.T) {
 		m.Disconnect(c.ID)
 		if _, err := m.ReadPatient(ctx, c.ID); err == nil {
 			t.Fatal("disconnected synthetic source remained readable")
+		}
+	}
+}
+
+func TestSyntheticFixtureClinicalReplayAndChangedDecimal(t *testing.T) {
+	f := newFixture(t)
+	m, err := smart.NewManagerWithHTTPClient(f.Profiles(), f.OpenBrowser, f.Client())
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(m.Close)
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+	for _, provider := range f.Profiles()[:2] {
+		connection, err := m.Connect(ctx, provider.ID)
+		if err != nil {
+			t.Fatal(err)
+		}
+		first, err := m.ReadClinicalSnapshot(ctx, connection.ID)
+		if err != nil {
+			t.Fatal(err)
+		}
+		repeat, err := m.ReadClinicalSnapshot(ctx, connection.ID)
+		if err != nil || repeat != first {
+			t.Fatalf("synthetic repeat was not exact: %v", err)
+		}
+		changed, err := m.ReadClinicalSnapshot(ctx, connection.ID)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !strings.Contains(first, "3.500000000000000001") || !strings.Contains(changed, "4.250000000000000003") || first == changed || !strings.Contains(first, PatientJSON) || !strings.Contains(first, `"effectiveDateTime":"2026-11"`) {
+			t.Fatal("fixture did not preserve exact Patient/Observation/partial-date bytes")
+		}
+		parsed, err := clinicalsnapshot.Parse([]byte(changed), provider.FHIRBaseURL)
+		if err != nil || len(parsed.Entries) != 3 || parsed.PatientID != PatientID {
+			t.Fatalf("fixture clinical scope invalid: %v", err)
+		}
+		m.Disconnect(connection.ID)
+		if _, err := m.ReadClinicalSnapshot(ctx, connection.ID); err == nil {
+			t.Fatal("disconnected synthetic clinical connection remained readable")
 		}
 	}
 }

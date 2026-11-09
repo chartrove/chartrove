@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {exactObservationPreview, ExactObservationPreview} from '../../../lib/utils/observation-preview';
 import {forkJoin, Subject, takeUntil} from 'rxjs';
 import {AccessSource, SharedResource, ResourceListItem, SourceAccessLevel, SourceSearchMode, SourceAccessService, SourceAudit, SourceGrant} from '../../services/source-access.service';
 
@@ -36,6 +38,7 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
   page = 0;
   selected: SharedResource | null = null;
   documentText: DocumentTextPreview | null = null;
+  observation: ExactObservationPreview | null = null;
   editRaw = '';
   busy = false;
   error = '';
@@ -45,10 +48,17 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
   private readonly viewChanged = new Subject<void>();
   private readonly detailChanged = new Subject<void>();
 
-  constructor(private api: SourceAccessService) {}
+  constructor(private api: SourceAccessService, private route: ActivatedRoute) {}
   ngOnInit(): void {
     forkJoin({owned: this.api.owned(), shared: this.api.shared()}).pipe(takeUntil(this.destroy)).subscribe({
-      next: data => { this.owned = data.owned; this.shared = data.shared; },
+      next: data => {
+        this.owned = data.owned; this.shared = data.shared;
+        const requested = this.route.snapshot.queryParamMap.get('source');
+        if (requested && [...this.owned, ...this.shared].some(source => source.id === requested)) {
+          this.viewingSource = requested;
+          this.viewSource();
+        }
+      },
       error: () => this.error = 'Unable to load source permissions.'
     });
   }
@@ -128,6 +138,7 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
           if (typeof data.resource_raw_text !== 'string') { this.clearUnavailable(); return; }
           this.selected = data; this.editRaw = data.resource_raw_text;
           this.documentText = this.previewDocumentText(data);
+          this.observation = data.source_resource_type === 'Observation' ? exactObservationPreview(data.resource_raw_text) : null;
         },
         error: () => this.clearUnavailable()
       });
@@ -192,7 +203,7 @@ export class SourceAccessComponent implements OnInit, OnDestroy {
       return {kind: 'ready', title: typeof title === 'string' && title.length <= 256 ? title : null, text};
     } catch { return {kind: 'unavailable'}; }
   }
-  private clearSelected(): void { this.selected = null; this.editRaw = ''; this.documentText = null; }
+  private clearSelected(): void { this.selected = null; this.editRaw = ''; this.documentText = null; this.observation = null; }
   private clearUnavailable(): void {
     this.searchText = ''; this.appliedSearch = '';
     this.searchMode = 'literal'; this.appliedSearchMode = 'literal';

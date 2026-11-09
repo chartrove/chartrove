@@ -62,7 +62,7 @@ export class DirectSmartService {
     }
   }
 
-  async connect(providerID: string, signal: AbortSignal): Promise<{connection: SmartConnection, patient: Patient}> {
+  async connect(providerID: string, signal: AbortSignal): Promise<{connection: SmartConnection, patient: Patient, patientJSON: string}> {
     const session = this.localSession();
     if (!session) throw new Error('Sign in again before opening a direct provider connection.');
     const smart = await this.native();
@@ -87,13 +87,14 @@ export class DirectSmartService {
         patient_id: received.patient_id, expires_at: received.expires_at,
         owner: {id: received.owner.id, username: received.owner.username}};
       if (!this.isCurrentIdentity(connection)) throw new Error();
-      const parsed: unknown = JSON.parse(await smart.readPatient(connectionID, session.token));
+      const patientJSON = await smart.readPatient(connectionID, session.token);
+      const parsed: unknown = JSON.parse(patientJSON);
       if (signal.aborted || !this.isCurrentIdentity(connection) || !isRecord(parsed) || parsed['resourceType'] !== 'Patient' || parsed['id'] !== connection.patient_id) throw new Error();
       // The Go host verifies the same identity. Only the FHIR Patient crosses
       // this boundary; no provider credentials or arbitrary request URLs do.
       const patient = parsed as unknown as Patient;
       keep = true;
-      return {connection, patient};
+      return {connection, patient, patientJSON};
     } catch {
       throw new Error(signal.aborted ? 'Connection cancelled.' : 'The direct connection failed. Reconnect to try again.');
     } finally {
@@ -103,6 +104,28 @@ export class DirectSmartService {
       if (results.some(group => group.some(result => result.status === 'rejected'))) {
         throw new DirectSmartCleanupError();
       }
+    }
+  }
+
+  async readClinicalSnapshot(connection: SmartConnection, signal: AbortSignal): Promise<string> {
+    const session = this.localSession();
+    if (!session || !this.isCurrentIdentity(connection)) throw new Error('The local identity changed. Reconnect before retrieving records.');
+    const smart = await this.native();
+    const cleanup: Promise<PromiseSettledResult<void>[]>[] = [];
+    const abort = () => { cleanup.push(Promise.allSettled([smart.disconnect(connection.id)])); };
+    signal.addEventListener('abort', abort, {once: true});
+    try {
+      if (signal.aborted) throw new Error();
+      const raw = await smart.readClinicalSnapshot(connection.id, session.token);
+      if (signal.aborted || !this.isCurrentIdentity(connection) || typeof raw !== 'string' ||
+        new TextEncoder().encode(raw).byteLength > 16 * 1024 * 1024) throw new Error();
+      return raw;
+    } catch {
+      throw new Error(signal.aborted ? 'Clinical retrieval cancelled.' : 'Clinical retrieval did not complete. No partial collection is available.');
+    } finally {
+      signal.removeEventListener('abort', abort);
+      const outcomes = await Promise.all(cleanup);
+      if (outcomes.some(group => group.some(outcome => outcome.status === 'rejected'))) throw new DirectSmartCleanupError();
     }
   }
 

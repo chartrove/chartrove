@@ -106,6 +106,18 @@
           <button type="button" class="btn btn-primary" (click)="saveResource()" [disabled]="busy">Save record</button>
         } @else {
           <p>This record is read-only with your current permissions.</p>
+          @if (observation; as value) {
+            <section aria-labelledby="observation-value-title" data-testid="exact-observation" class="mt-3">
+              <h5 id="observation-value-title" class="h6">Observation value as recorded</h5>
+              <dl>
+                <dt>Value</dt><dd class="text-break">{{value.comparator}} {{value.value}}</dd>
+                @if (value.unit !== null) { <dt>Unit label</dt><dd>{{value.unit}}</dd> }
+                @if (value.unitCode !== null) { <dt>Unit code</dt><dd>{{value.unitCode}}</dd> }
+                @if (value.effective !== null) { <dt>Effective date/time as recorded</dt><dd>{{value.effective}}</dd> }
+              </dl>
+              <p class="small">No rounding, unit conversion, added date precision or clinical interpretation is applied. The complete current FHIR record remains available below.</p>
+            </section>
+          }
           @if (documentText; as preview) {
             @if (preview.kind === 'ready') {
               <section id="document-text" aria-labelledby="document-text-title" class="mt-3">
@@ -116,6 +128,8 @@
             } @else {
               <p role="status">Text attachment preview is unavailable. The original FHIR record is available below.</p>
             }
+            <details><summary>FHIR record as JSON</summary><pre class="text-wrap">{{ selected.resource_raw_text }}</pre></details>
+          } @else if (observation) {
             <details><summary>FHIR record as JSON</summary><pre class="text-wrap">{{ selected.resource_raw_text }}</pre></details>
           } @else {
             <pre class="text-wrap">{{ selected.resource_raw_text }}</pre>
