@@ -15,7 +15,7 @@ import {
   LighthouseSourceSearchAggregation,
   LighthouseBrandListDisplayItem
 } from '../../models/lighthouse/lighthouse-source-search';
-import {debounceTime, distinctUntilChanged, pairwise, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, pairwise, startWith, takeUntil} from 'rxjs/operators';
 import {MedicalSourcesFilter, MedicalSourcesFilterService} from '../../services/medical-sources-filter.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import * as _ from 'lodash';
@@ -89,6 +89,7 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
   // CCDA-FHIR modal
   @ViewChild('ccdaWarningModalRef') ccdaWarningModalRef : any;
   private ccdaWarningModal?: NgbModalRef;
+  private readonly uploadDestroyed = new Subject<void>();
 
   constructor(
     private lighthouseApi: LighthouseService,
@@ -156,6 +157,8 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroyed = true;
+    this.uploadDestroyed.next();
+    this.uploadDestroyed.complete();
     this.sandboxController?.abort();
     this.sandboxPatient = undefined;
     this.uploadedFile = [];
@@ -293,7 +296,9 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
       if (!sameReceiver()) return;
       stage = 'uploading';
       importSent = true;
-      await firstValueFrom(this.fastenApi.createManualSource(processingFile, receivingOwnerID));
+      // Unsubscription stops an unsent native encoding from reaching transport.
+      // An already received server request/job is NOT thereby undone or cancelled.
+      await firstValueFrom(this.fastenApi.createManualSource(processingFile, receivingOwnerID).pipe(takeUntil(this.uploadDestroyed)));
       sameReceiver(); // An earlier response must not populate errors/data under a replacement profile.
     } catch (err: unknown) {
       if (sameReceiver()) this.uploadErrorMsg = `Error ${stage} file: ` + (extractErrorFromResponse(err) || 'Unknown Error');

@@ -78,6 +78,7 @@ func (s *Session) Wrap(next http.Handler) http.Handler {
 const page = `<!doctype html><html><body><h1>Chartrove desktop smoke test</h1><pre id="status">Starting…</pre><script type="module">
 import * as runtime from '/wails/runtime.js';
 import {createDesktopBridge} from '/assets/desktop/bridge.mjs';
+import {prepareNativeMultipart} from '/assets/desktop/multipart.mjs';
 const bridge=createDesktopBridge(runtime), checks=[];
 const role=new URL(location.href).searchParams.get('role');
 const post=(action,data)=>fetch('/__desktop_smoke__/control?action='+action,{method:'POST',body:data&&JSON.stringify(data)});
@@ -111,9 +112,10 @@ if(role==='observer') {
   const sourceCount=await count('/api/secure/source'),jobCount=await count('/api/secure/jobs');
   const patientID='native-smoke-patient';
   const bundle=JSON.stringify({resourceType:'Bundle',type:'collection',entry:[{resource:{resourceType:'Patient',id:patientID,gender:'unknown',name:[{family:'Synthetic',given:['Smoke']}]}}]});
-  const importFile=owner=>{const body=new FormData();body.append('file',new Blob([bundle],{type:'application/json'}),'synthetic-native-smoke.json');body.append('expected_owner_id',owner);return api('/api/secure/source/manual',{method:'POST',body});};
+  const importFile=async owner=>{const form=new FormData();form.append('file',new Blob([bundle],{type:'application/json'}),'synthetic-native-smoke.json');form.append('expected_owner_id',owner);const prepared=await prepareNativeMultipart(form);return api('/api/secure/source/manual',{method:'POST',body:prepared.body,headers:{'Content-Type':prepared.contentType}});};
   const wrong=await importFile('11111111-1111-4111-8111-111111111111');
-  check(wrong.status===409&&wrong.body.success===false&&(await count('/api/secure/source'))===sourceCount&&(await count('/api/secure/jobs'))===jobCount,'manual import receiving profile guard');
+  if(wrong.status!==409)throw new Error('native file receiver rejection HTTP '+wrong.status);
+  check(wrong.body.success===false&&(await count('/api/secure/source'))===sourceCount&&(await count('/api/secure/jobs'))===jobCount,'manual import receiving profile guard');
   const imported=await importFile(me.body.data.id);
   check(imported.status===200&&imported.body.success===true&&imported.body.source?.user_id===me.body.data.id&&imported.body.source?.patient===patientID&&(await count('/api/secure/source'))===sourceCount+1&&(await count('/api/secure/jobs'))===jobCount+1,'owner-confirmed native file import');
   let rejected=false;try{await bridge.openExternal('file:///etc/passwd','smoke-one');}catch{rejected=true;}

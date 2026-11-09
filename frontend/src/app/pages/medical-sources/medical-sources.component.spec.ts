@@ -217,6 +217,16 @@ describe('MedicalSourcesComponent', () => {
     expect(component.uploadedFile).toEqual([]);
   });
 
+  it('unsubscribes its pending local request on destruction without claiming that server work was undone', async () => {
+    const pending = component.uploadSourceBundleHandler({addedFiles: [syntheticBundle()]});
+    const request = TestBed.inject(HttpTestingController).expectOne(isManualImport);
+    fixture.destroy();
+    expect(request.cancelled).toBeTrue(); // Client transport only, not evidence of server rollback/job cancellation.
+    await pending;
+    expect(component.uploadErrorMsg).toBe('');
+    expect(component.uploadedFile).toEqual([]);
+  });
+
   it('dismisses only its owned conversion confirmation on destruction', async () => {
     const modal = TestBed.inject(NgbModal);
     const unrelated = modal.open('Synthetic unrelated modal');
