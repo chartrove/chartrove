@@ -1,12 +1,14 @@
 package handler
 
 import (
+	"bufio"
 	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -223,6 +225,68 @@ func TestClinicalSnapshotHTTPStalledRefresh(t *testing.T) {
 		require.NoError(t, err)
 		require.Equal(t, []byte(item.raw), original)
 	}
+}
+
+func TestClinicalSnapshotHTTPStalledOriginalDownloads(t *testing.T) {
+	h := newClinicalAPIHarness(t)
+	// Larger than TCP send/receive buffers, still below the decoded 16 MiB cap.
+	raw := strings.Replace(clinicalAPIRaw, "synthetic-private-extension café", strings.Repeat("x", 8<<20), 1)
+	result := clinicalAPIResult(t, h.request(http.MethodPost, clinicalAPIPost, h.tokens[0], h.body(t, raw)))
+	path := "/api/secure/source/" + result.SourceID.String() + "/clinical-snapshots/" + result.SnapshotID.String() + "/original"
+	server := httptest.NewServer(h.router)
+	t.Cleanup(server.Close)
+	for range 2 {
+		connection, err := net.Dial("tcp4", strings.TrimPrefix(server.URL, "http://"))
+		require.NoError(t, err)
+		t.Cleanup(func() { _ = connection.Close() })
+		if tcp, ok := connection.(*net.TCPConn); ok {
+			require.NoError(t, tcp.SetReadBuffer(4096))
+		}
+		require.NoError(t, connection.SetReadDeadline(time.Now().Add(5*time.Second)))
+		_, err = fmt.Fprintf(connection, "GET %s HTTP/1.1\r\nHost: synthetic\r\nAuthorization: Bearer %s\r\n\r\n", path, h.tokens[0])
+		require.NoError(t, err)
+		response, err := http.ReadResponse(bufio.NewReader(connection), nil)
+		require.NoError(t, err)
+		require.Equal(t, http.StatusOK, response.StatusCode)
+		require.Equal(t, "application/fhir+json", response.Header.Get("Content-Type"))
+		// Deliberately do not consume or close Body: the authenticated clients
+		// remain connected while their shared download slots are held.
+	}
+	probe := func() (*http.Response, error) {
+		request, err := http.NewRequest(http.MethodGet, server.URL+path, nil)
+		if err != nil {
+			return nil, err
+		}
+		request.Header.Set("Authorization", "Bearer "+h.tokens[0])
+		client := &http.Client{Timeout: 5 * time.Second}
+		return client.Do(request)
+	}
+	busy, err := probe()
+	require.NoError(t, err)
+	_, err = io.Copy(io.Discard, busy.Body)
+	require.NoError(t, err)
+	require.NoError(t, busy.Body.Close())
+	require.Equal(t, http.StatusServiceUnavailable, busy.StatusCode, "both deliberate stalled downloads must hold admission initially")
+	// Real TCP writes, default server WriteTimeout==0, no fake writer/deadline
+	// clamp. The clients remain stalled; only handler transport deadlines can
+	// release the slots before this bounded wait expires.
+	var downloaded []byte
+	end := time.Now().Add(35 * time.Second)
+	for time.Now().Before(end) {
+		time.Sleep(100 * time.Millisecond)
+		response, err := probe()
+		require.NoError(t, err)
+		body, readErr := io.ReadAll(response.Body)
+		require.NoError(t, response.Body.Close())
+		require.NoError(t, readErr)
+		if response.StatusCode == http.StatusOK {
+			downloaded = body
+			break
+		}
+		require.Equal(t, http.StatusServiceUnavailable, response.StatusCode)
+	}
+	require.NotNil(t, downloaded, "stalled TCP clients must not disable original downloads indefinitely")
+	require.Equal(t, []byte(raw), downloaded, "a recovered admission slot must still return the exact original")
 }
 
 func TestClinicalSnapshotHTTPFlow(t *testing.T) {
