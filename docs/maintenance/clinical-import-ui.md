@@ -1,7 +1,11 @@
-# Explicit clinical Sources UI: local checkpoint
+# Explicit clinical Sources UI: source acceptance
 
 Pi owns `task/clinical-import-ui`, initially stacked on `task/scoped-smart-bridge` and API #473.
-This is not merged or native clinical acceptance.
+The source merged via #477 at `8629b689e41915b09e95cfba6d9cedc24976bd50`, after all seven
+checks qualified review-corrected head `6d161d4c42c5b6aeec8c6d68e33b4f53bbca5f54`
+(42588079214) and both review threads were resolved. Exact-main validation 42590642336 passed.
+The chronological receipts below remain scoped: this is not actual native GUI or independent clinical
+acceptance, and the e442 inspection package predates those final review corrections.
 
 The Sources card preserves the original native Patient string inside a bounded collection rather than
 serializing a parsed numeric Patient. It offers a separate Patient/Observation retrieval action; the

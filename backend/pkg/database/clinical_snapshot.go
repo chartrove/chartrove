@@ -162,14 +162,21 @@ func (gr *GormRepository) ImportClinicalSnapshot(ctx context.Context, fhirBase, 
 			if err := tx.Where("owner_user_id = ? AND source_id = ? AND resource_type = ? AND resource_id = ?", actor.ID, source.ID, entry.Type, entry.ID).Delete(&models.LocalResource{}).Error; err != nil {
 				return err
 			}
+			unchanged := false
+			if len(rows) == 1 && rows[0].SourceUri != nil && *rows[0].SourceUri == entry.FullURL {
+				unchanged, err = clinicalStoredJSONMatches(tx, rows[0].ResourceRaw, model.GetResourceRaw())
+				if err != nil {
+					return err
+				}
+			}
 			if len(rows) == 0 {
 				if err := tx.Omit(clause.Associations).Create(model).Error; err != nil {
 					return err
 				}
 				result.Created++
-			} else if bytes.Equal(rows[0].ResourceRaw, model.GetResourceRaw()) && rows[0].SourceUri != nil && *rows[0].SourceUri == entry.FullURL {
+			} else if unchanged {
 				// fullUrl is entry provenance, not part of the resource JSON.
-				// Equal clinical bytes alone cannot make this row unchanged.
+				// Matching stored JSON alone cannot make this row unchanged.
 				result.Unchanged++
 			} else {
 				// Select all projection fields, including zero values, so removed
@@ -208,6 +215,46 @@ func (gr *GormRepository) ImportClinicalSnapshot(ctx context.Context, fhirBase, 
 		return nil, clinicalSnapshotError(ctx, err)
 	}
 	return result, nil
+}
+
+// PostgreSQL JSONB normalizes whitespace, object order and numeric notation on
+// storage. Compare against its own precision-preserving text representation, not a Go
+// float/map reserialization or JSONB numeric-value equality. Exact whole-snapshot
+// bytes and SHA remain separately retained; SQLite keeps its byte comparison.
+func clinicalStoredJSONMatches(tx *gorm.DB, stored, incoming []byte) (bool, error) {
+	if bytes.Equal(stored, incoming) {
+		return true, nil
+	}
+	if tx.Dialector.Name() != "postgres" {
+		return false, nil
+	}
+	// GORM Scan's temporary recorder bypasses the private parameter filter;
+	// Rows preserves it and propagates query errors without a nil Row panic.
+	rows, err := tx.Raw("SELECT CAST(? AS jsonb)::text", string(incoming)).Rows()
+	if err != nil {
+		return false, err
+	}
+	if rows == nil {
+		return false, ErrClinicalSnapshotStorage
+	}
+	defer rows.Close()
+	if !rows.Next() {
+		if err := rows.Err(); err != nil {
+			return false, err
+		}
+		return false, ErrClinicalSnapshotStorage
+	}
+	var normalized string
+	if err := rows.Scan(&normalized); err != nil {
+		return false, err
+	}
+	if rows.Next() {
+		return false, ErrClinicalSnapshotStorage
+	}
+	if err := rows.Err(); err != nil {
+		return false, err
+	}
+	return bytes.Equal(stored, []byte(normalized)), nil
 }
 
 // Imports and source/account deletion share this reservation. Otherwise a
