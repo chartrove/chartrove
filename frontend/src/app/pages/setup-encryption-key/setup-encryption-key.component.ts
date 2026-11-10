@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {firstValueFrom, Subject, timer} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 import { FastenApiService } from 'src/app/services/fasten-api.service';
-import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-setup-encryption-key',
@@ -11,15 +12,17 @@ import { Subscription } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class SetupEncryptionKeyComponent implements OnInit {
-  encryptionKeyForm: FormGroup;
+export class SetupEncryptionKeyComponent implements OnInit, OnDestroy {
+  encryptionKeyForm: FormGroup<{encryptionKey: FormControl<string>}>;
   isProcessing = false;
   error = false;
   isValidated = false;
   statusMessage: string = '';
   countdown: number = 5;
-  private countdownInterval: any;
-  private formSubscription: Subscription;
+  private countdownInterval: ReturnType<typeof setInterval> | null = null;
+  private readonly destroyed = new Subject<void>();
+  private active = true;
+  private operationEpoch = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -28,35 +31,49 @@ export class SetupEncryptionKeyComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
   ) {}
 
-  private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  private async sleep(ms: number): Promise<void> {
+    await firstValueFrom(timer(ms).pipe(takeUntil(this.destroyed)));
+  }
+
+  private current(epoch: number): boolean {
+    return this.active && epoch === this.operationEpoch;
   }
 
   ngOnInit() {
-    this.encryptionKeyForm = this.fb.group({
+    this.encryptionKeyForm = this.fb.nonNullable.group({
       encryptionKey: ['', Validators.required],
     });
 
   }
 
-  ngOnDestroy() {
-    if (this.countdownInterval) {
-      clearInterval(this.countdownInterval);
-    }
+  ngOnDestroy(): void {
+    this.active = false;
+    this.operationEpoch++;
+    this.destroyed.next();
+    this.destroyed.complete();
+    if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
+    this.countdownInterval = null;
+    this.encryptionKeyForm?.reset({encryptionKey: ''});
+    this.isProcessing = false;
+    this.isValidated = false;
+    this.error = false;
+    this.statusMessage = '';
   }
 
   onEncryptionKeyChange(): void {
-    if (this.encryptionKeyForm.get('encryptionKey')?.valid) {
+    if (!this.active || this.isProcessing) return;
+    if (this.encryptionKeyForm.controls.encryptionKey.valid) {
       this.error = false;
       this.statusMessage = '';
     }
   }
 
   handleButtonClick(): void {
+    if (!this.active || this.isProcessing) return;
     if (this.isValidated) {
       this.redirectToDashboard();
     } else {
-      this.validateAndSetKey();
+      void this.validateAndSetKey();
     }
   }
 
@@ -70,6 +87,7 @@ export class SetupEncryptionKeyComponent implements OnInit {
   private handleSuccessfulSetup(): void {
     this.isValidated = true;
     this.isProcessing = false;
+    this.encryptionKeyForm.reset({encryptionKey: ''});
     this.statusMessage = 'Done! Redirecting...';
     this.startCountdown();
   }
@@ -78,47 +96,45 @@ export class SetupEncryptionKeyComponent implements OnInit {
     this.isProcessing = false;
     this.error = true;
     this.statusMessage = errorMessage;
-    this.encryptionKeyForm.get('encryptionKey')?.setErrors({ invalid: true });
-    this.encryptionKeyForm.get('encryptionKey')?.enable();
+    this.encryptionKeyForm.controls.encryptionKey.enable();
     this.cdRef.detectChanges();
   }
 
   async validateAndSetKey(): Promise<void> {
-    if (!this.encryptionKeyForm.valid) {
-      return;
-    }
-
+    if (!this.active || this.isProcessing || this.isValidated || !this.encryptionKeyForm.valid) return;
+    const encryptionKey = this.encryptionKeyForm.controls.encryptionKey.value;
+    const epoch = ++this.operationEpoch;
     this.initializeValidationProcess();
-
-    const encryptionKey = this.encryptionKeyForm.value.encryptionKey;
-
+    let validating = true;
     try {
       this.statusMessage = 'Validating key...';
       this.cdRef.detectChanges();
       await this.sleep(500);
-      await this.fastenService.validateEncryptionKey(encryptionKey).toPromise();
-    } catch (err) {
-      this.handleError('Invalid encryption key. Please check and try again.');
-      return;
-    }
-
-    try {
+      if (!this.current(epoch)) return;
+      await firstValueFrom(this.fastenService.validateEncryptionKey(encryptionKey).pipe(takeUntil(this.destroyed)));
+      if (!this.current(epoch)) return;
+      validating = false;
       this.statusMessage = 'Setting up key...';
       this.cdRef.detectChanges();
       await this.sleep(500);
-      await this.fastenService.setupEncryptionKey(encryptionKey).toPromise();
-
-      this.handleSuccessfulSetup();
-    } catch (err) {
-      this.handleError('Failed to set up the encryption key. Please try again.');
+      if (!this.current(epoch)) return;
+      await firstValueFrom(this.fastenService.setupEncryptionKey(encryptionKey).pipe(takeUntil(this.destroyed)));
+      if (!this.current(epoch)) return;
+      this.statusMessage = 'Confirming local database is unlocked...';
+      this.cdRef.detectChanges();
+      await firstValueFrom(this.fastenService.confirmEncryptionReady().pipe(takeUntil(this.destroyed)));
+      if (this.current(epoch)) this.handleSuccessfulSetup();
+    } catch {
+      if (!this.current(epoch)) return;
+      this.handleError(validating ? 'Encryption key validation could not be confirmed. Check the key and server before retrying.' :
+        'Encryption setup was not confirmed. It may already have changed; keep your saved key and check the server before retrying.');
     }
   }
 
   startCountdown(): void {
+    if (!this.active || !this.isValidated) return;
     this.countdown = 5;
-    if (this.countdownInterval) {
-      clearInterval(this.countdownInterval);
-    }
+    if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
     this.countdownInterval = setInterval(() => {
       this.countdown--;
       if (this.countdown <= 0) {
@@ -128,9 +144,11 @@ export class SetupEncryptionKeyComponent implements OnInit {
   }
 
   redirectToDashboard(): void {
-    if (this.countdownInterval) {
-      clearInterval(this.countdownInterval);
-    }
-    this.router.navigate(['/']);
+    if (!this.active || !this.isValidated) return;
+    if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
+    this.countdownInterval = null;
+    void this.router.navigate(['/']).catch(() => {
+      if (this.active) this.statusMessage = 'Navigation could not be completed.';
+    });
   }
 }

@@ -90,7 +90,7 @@ From `desktop/`, run `go test ./...` for host tests. To exercise the embedded ba
 go test github.com/fastenhealth/fasten-onprem/backend/pkg/web -run TestEmbedded -count=1 -timeout=120s
 ```
 
-The native executable supports `--smoke-test --unencrypted --data-dir <fresh-private-directory>`. Smoke mode refuses a nonempty or final-component symlink data directory, an omitted explicit data directory, or configured direct SMART providers. It tests the real WebView/Go binding, disabled direct SMART service, unconfigured-provider rejection, fresh database API, synthetic signup/sign-in, URL rejection, JSON API errors, popup callback delivery, and isolation from an unrelated window. It prints a `DESKTOP_SMOKE` JSON result, quits automatically, and exits nonzero on failure. Its local test routes do not exist in normal mode.
+The native executable supports `--smoke-test --unencrypted --data-dir <fresh-private-directory>`. Smoke mode refuses a nonempty or final-component symlink data directory, an omitted explicit data directory, or configured direct SMART providers. It tests the real WebView/Go binding, disabled direct SMART service, unconfigured-provider rejection, fresh database API, synthetic signup/sign-in, wrong-receiver rejection/no source-job mutation, owner-confirmed native multipart import, URL rejection, JSON API errors, popup callback delivery, and isolation from an unrelated window. It prints a `DESKTOP_SMOKE` JSON result, quits automatically, and exits nonzero on failure. Its local test routes do not exist in normal mode.
 
 Native completion also publishes `desktop-smoke-report.json` in that selected private directory.
 The bounded (8 KiB), owner-only receipt is published only after its temporary file is written,
@@ -105,6 +105,13 @@ hidden. It does not grant capture permission, enable providers or use a foregrou
 hidden native WebView/service test is **not** visual/interactive GUI, encrypted-GUI, key-custody or
 production acceptance; those gates remain separate. Current exact-source positive/negative native
 package evidence is in the [runtime receipt](../docs/maintenance/native-smoke-runtime.md).
+The native file adapter uses the standard multipart encoder with a 32 MiB encoded-envelope/16-part
+limit and 30-second preparation budget; normal HTTP and external multipart remain unchanged.
+The smoke deadline stays 45 seconds. Up to twelve sequential best-effort, fixed-label progress posts
+(each abort-bounded to 500 ms within that deadline) allow a failed timeout receipt to retain acknowledged
+stages, not records/tokens or a success claim.
+See the [manual receiver receipt](../docs/maintenance/manual-import-receiver.md) for actual native
+file-path failures, source-bound twelve-check success and outstanding later runtime/race gates.
 
 Observed on October 26, 2026: seven embedded-backend integration tests passed, including encrypted create/unlock/reopen, bad-key rejection, concurrent health polling, persistence, and synthetic FHIR import without outbound HTTP or temporary-document residue. The cancellation regression passed with the real event bus. Desktop host tests and four bridge tests passed. The frontend suite reported 286 successes and one skipped test. The packaged executable passed all eight native smoke checks after extraction and passed strict signature verification. Its encryption onboarding UI was also verified visually; a staged build's actual UI signed into the synthetic account after restart and reached the dashboard.
 

@@ -1,11 +1,12 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Observable, of, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {from, Observable, of, throwError} from 'rxjs';
+import {catchError, mergeMap} from 'rxjs/operators';
 import {AuthService} from './auth.service';
 import {GetEndpointAbsolutePath} from '../../lib/utils/endpoint_absolute_path';
 import {environment} from '../../environments/environment';
+import {prepareNativeMultipart} from '../../assets/desktop/multipart.mjs';
 
 export interface ApplicationHttpLocation {
   readonly protocol: string;
@@ -60,13 +61,21 @@ export class AuthInterceptorService implements HttpInterceptor {
     }
 
     const authReq = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + this.authService.GetAuthToken())});
-    return next.handle(authReq).pipe(catchError(x => {
+    const send = (request: HttpRequest<unknown>) => next.handle(request).pipe(catchError(x => {
       // A public signup policy denial is not invalidation of an existing
       // native session. All protected-route 401/403 handling remains intact.
       if (reqUrl.pathname === apiPath + '/auth/signup' &&
           x.status === 403 && x.error?.code === 'registration_closed') return throwError(() => x);
       return this.handleAuthError(x);
     }));
+    if (reqUrl.protocol === 'wails:' && req.body instanceof FormData) {
+      // Pin the already selected token before asynchronous encoding. The server
+      // still checks expected_owner_id; do not reselect a replacement actor here.
+      return from(prepareNativeMultipart(req.body)).pipe(mergeMap(prepared => send(authReq.clone({
+        body: prepared.body, setHeaders: {'Content-Type': prepared.contentType},
+      }))));
+    }
+    return send(authReq);
 
   }
 }

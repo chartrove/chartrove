@@ -4,6 +4,29 @@ Chartrove is not yet certified for production use. This is the active implementa
 index for the autonomous Pi ownership assignment of 2026-11-09 (UTC). Historical checkpoint documents
 remain evidence, not current acceptance or authorization. Only this repository is in scope.
 
+## User-directed repository consolidation (2026-11-10)
+
+Feature work is paused at the user's explicit request: publish existing changes, merge the three
+open PRs (#431, #488, #509), and delete branches only after proving their changes are integrated.
+The sole checkout remains in place; ignored artifacts, private evidence and reclamation refs stay intact.
+The existing #509 branch carries the original three PR heads through normal merge ancestry for one
+protected consolidation review/check run. This is integration, not a release or production certificate.
+
+- #431 remains a documentation-only proposal; no MCP service, provider registration, catalog adoption
+  or external disclosure is implemented or authorized by merging it.
+- #488's historical native timeouts, signup failures and uncalibrated rejection control remain
+  unresolved. Its receiving-profile and native multipart changes do not acquire runtime acceptance
+  merely by entering `main`; #487 stays open.
+- The previously storage-blocked exact #509 head `e9eb06d2c8d609def5ecb3f77a574aa29ba55184`
+  now passes canonical Node/browser/production/Storybook validation: 865 browser successes and one
+  skip, all four step exits zero, normal scratch/lock cleanup and unchanged tracked source. The
+  earlier preflight failure is retained. The combined source still needs its own validation and
+  protected matching-head checks; no storage guard was lowered or bypassed.
+- #474, #479/#504, #487, #507, normal native GUI, independent recovery and live operational gates
+  are not closed by consolidation. No stopped clinical/host experiment series is restarted.
+- Five historical `migration/upstream-pr-*` heads contain unmerged changes. Their deletion needs
+  an explicit disposition; do not silently activate old chat/OCR features to make branches disappear.
+
 ## Ownership and execution
 
 - Exclusive writer: the current Pi session; do not restart prior Codex work or create other coding agents.
@@ -41,8 +64,8 @@ remain evidence, not current acceptance or authorization. Only this repository i
 | Confidentiality | Encryption/key handling, secure defaults, bounded logs and network behavior | [Source request](provider-log-privacy.md) and [dynamic response](provider-response-privacy.md) corrections integrated; broader gates remain |
 | Consent and audit | Scoped consent, attribution, transactional audit and live authorization | Owner-confirmed API/UI, active JWT receiver checks and bounded post-commit refresh integrated; household/provider consent still open |
 | Recovery | Independently restored encrypted synthetic data, wrong-key failure, restart and rollback | SQL/HTTP snapshot-copy restore tested; independent operator/key-loss and whole-household gates remain |
-| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Corrected UI: 741 browser passes/one skip; composed encrypted flow and ten hidden native runtime checks pass; visual/interactive GUI still permission-gated |
-| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Ad-hoc packages and packaged restore checks exist; newest package predates final UI/context corrections and is not current |
+| Application acceptance | Browser, embedded backend and native desktop synthetic workflows | Pending #487: 788 browser passes/one skip and exact-c9 twelve-check hidden native success; later native races/signup and exact-eed runtime fail; visual GUI still permission-gated |
+| Supply chain and release | Dependency findings triaged; immutable source-bound artifacts and reproducible build evidence | Source-bound ad-hoc packages/restores retained; latest exact-7f candidate is unaccepted, not current-main/published/notarized |
 | Operations | Documented deployment, health, monitoring, retention, recovery objectives and rollback rehearsal | Not reassessed |
 
 ## Accepted source and current work
@@ -86,7 +109,7 @@ remain evidence, not current acceptance or authorization. Only this repository i
   `2a03fea8a4932f5d57ac42e06a5a8c6246eea732` passed seven checks (42624220876), protected
   matching-head merged at `0252c677ffd3c56900eacf60d7c214401a7effe3`; exact-main
   42627751541 passed. This is hidden native runtime, not interactive visual acceptance.
-- Current Pi #485 confines automatic application JWT insertion/local auth-error handling to the
+- Accepted #485/#486 confines automatic application JWT insertion/local auth-error handling to the
   configured API's scheme/host/path namespace, not external Lighthouse or prefix siblings. Synthetic
   opaque-native URL and registered-provider controls correct invalid null-origin bases without
   trusting equal null origins. Genuine five accepted-classifier/four native-base reds and a newly
@@ -197,9 +220,10 @@ remain evidence, not current acceptance or authorization. Only this repository i
   host/scheduler/priority/capture or budget change adopted. Local trial series stopped;
   #479/#504 remain open, no new production-readiness or recovery certificate. Docs-only
   exactcd9c59ea passed seven42745242928/protected #505 e0e6bbb2/separate main42747314980.
-- [Encryption response cache #506](encryption-response-cache.md), validated local
-  two-file product `6f89d613232cf2121d20930a2a32e1bf42816b31` on accepted e0e, is not hosted
-  acceptance. Actual registered STANDBY GET200/no-storefalse plus
+- [Encryption response cache #506](encryption-response-cache.md), two-file product
+  `6f89d613232cf2121d20930a2a32e1bf42816b31` on accepted e0e: exacthead15de2134 passed
+  seven42756596719; protected #508 merge55e5383d/separate exact-main42758364242 passed
+  and #506 closed boundedly. Actual registered STANDBY GET200/no-storefalse plus
   ten tracked header failures2.184s precede three local response directives. No key body
   printed/exported; isolated actual-route/real SQLCipher no-account lifecycle race54.992s
   passes. Legacy unlock race still fails bootstrap500 with current530.567s AND accepted
@@ -208,8 +232,19 @@ remain evidence, not current acceptance or authorization. Only this repository i
   selected encryption/unlock ordinary pass. Full ordinary handler566.432/web280.445s,
   actual Go-test0/two frozen hashes0/ownedwrapper absent; vet/diff pass. Six native race
   builds are compile-only/no tests, actual cmd2.198/smoke1.313s races pass; not full local
-  nativecore/newpackage-GUI/olderOS or hosted/browsercache/zeroization/key-custody/recovery
-  certificate. #507 consumer false-ACK is a separate future source lead, not repaired here.
+  nativecore/newpackage-GUI/olderOS or browsercache/zeroization/key-custody/recovery
+  certificate. The original legacy race/ordinary failures remain counterevidence.
+- [Encryption consumer #507](encryption-setup-consumer.md), draft product8ec14fd0e2
+  from55e: actual registered HTTP25/20FAIL and actual component/template8/7FAIL precede
+  literal-success/private-error/empty-completion boundaries, bounded unlocked-state
+  observation and owned private lifecycle.400/500 baseline failures were raw-error
+  privacy contracts, not false-ACK behavior; correction retained. Current73 selected
+  browser controls pass; Node27pass/two filesystem skips. Ten frozen hashes match.
+  Complete canonical frontend preflight exited1 before steps:42GiB available versus
+  unchanged50GiB guard; ownedwrapper absent/no lock. Do not bypass storage guard or
+  discard evidence. Full Angular/production/Storybook receipt, protected matching-head
+  and separate exact-main acceptance remain pending; existing hosted Frontend does
+  not run Storybook. No native GUI/crypto/key-custody/recovery/readiness acceptance.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:

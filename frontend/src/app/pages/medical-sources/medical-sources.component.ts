@@ -6,7 +6,7 @@ import {LighthouseService} from '../../services/lighthouse.service';
 import {FastenApiService} from '../../services/fasten-api.service';
 import {LighthouseSourceMetadata} from '../../models/lighthouse/lighthouse-source-metadata';
 import {Source} from '../../models/fasten/source';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, type NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {BehaviorSubject, firstValueFrom, forkJoin, Observable, of, Subject} from 'rxjs';
@@ -15,7 +15,7 @@ import {
   LighthouseSourceSearchAggregation,
   LighthouseBrandListDisplayItem
 } from '../../models/lighthouse/lighthouse-source-search';
-import {debounceTime, distinctUntilChanged, pairwise, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, pairwise, startWith, takeUntil} from 'rxjs/operators';
 import {MedicalSourcesFilter, MedicalSourcesFilterService} from '../../services/medical-sources-filter.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import * as _ from 'lodash';
@@ -23,8 +23,14 @@ import {PatientAccessBrand} from '../../models/patient-access-brands';
 import {PlatformService} from '../../services/platform.service';
 import {FormRequestHealthSystemComponent} from '../../components/form-request-health-system/form-request-health-system.component';
 import {extractErrorFromResponse} from '../../../lib/utils/error_extract';
+import {AuthService} from '../../services/auth.service';
 
 export const sourceConnectWindowTimeout = 24*5000 //wait 2 minutes (5 * 24 = 120)
+
+interface ManualFileSelection {
+  readonly addedFiles?: readonly File[];
+  readonly rejectedFiles?: readonly unknown[];
+}
 
 export class SourceListItem {
   source?: Source
@@ -82,6 +88,8 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
 
   // CCDA-FHIR modal
   @ViewChild('ccdaWarningModalRef') ccdaWarningModalRef : any;
+  private ccdaWarningModal?: NgbModalRef;
+  private readonly uploadDestroyed = new Subject<void>();
 
   constructor(
     private lighthouseApi: LighthouseService,
@@ -91,6 +99,7 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
     private filterService: MedicalSourcesFilterService,
     private modalService: NgbModal,
     private epicSandbox: EpicSandboxService,
+    private auth: AuthService,
 
   ) {
   }
@@ -148,8 +157,14 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroyed = true;
+    this.uploadDestroyed.next();
+    this.uploadDestroyed.complete();
     this.sandboxController?.abort();
     this.sandboxPatient = undefined;
+    this.uploadedFile = [];
+    this.uploadErrorMsg = '';
+    this.ccdaWarningModal?.dismiss('receiving page closed');
+    this.ccdaWarningModal = undefined;
   }
 
 
@@ -231,49 +246,74 @@ export class MedicalSourcesComponent implements OnInit, OnDestroy {
 
 
 
-  /**
-   * this function is used to process manually "uploaded" FHIR bundle files, adding them to the database.
-   * @param event
-   */
-  public async uploadSourceBundleHandler(event) {
-    if (this.uploadingBundle || !event?.addedFiles?.length) return
+  private receivingOwnerID(): string | undefined {
+    try {
+      const id = this.auth.GetCurrentUser()?.native_user_id;
+      if (typeof id === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id) &&
+          id !== '00000000-0000-0000-0000-000000000000') return id.toLowerCase();
+    } catch { /* Missing/malformed browser identity cannot select a receiving profile. */ }
+    return undefined;
+  }
 
-    this.uploadErrorMsg = ""
-    let processingFile = event.addedFiles[0] as File
-    this.uploadedFile = [processingFile]
-    this.uploadingBundle = true
-    let stage = "uploading"
+  /** Preserve the selected immutable receiver across confirmation, conversion and import. */
+  public async uploadSourceBundleHandler(event: ManualFileSelection | null | undefined): Promise<void> {
+    if (this.destroyed || this.uploadingBundle || !event?.addedFiles?.length) return;
+
+    this.uploadErrorMsg = '';
+    const receivingOwnerID = this.receivingOwnerID();
+    if (!receivingOwnerID) {
+      this.uploadErrorMsg = 'Sign in again before choosing a file for import.';
+      this.uploadedFile = [];
+      return;
+    }
+    let processingFile = event.addedFiles[0];
+    this.uploadedFile = [processingFile];
+    this.uploadingBundle = true;
+    let stage = 'uploading';
+    let conversionSent = false;
+    let importSent = false;
+    const sameReceiver = (): boolean => {
+      if (this.destroyed) return false;
+      if (this.receivingOwnerID() === receivingOwnerID) return true;
+      this.uploadedFile = [];
+      this.uploadErrorMsg = importSent
+        ? 'Receiving profile changed. The import may have been accepted for the original profile. Check it before retrying.'
+        : conversionSent
+          ? 'Receiving profile changed. A conversion request may have been sent; no local import was started. Choose the intended profile and select the file again.'
+          : 'Receiving profile changed before submission. Choose the intended profile and select the file again.';
+      return false;
+    };
 
     try {
-      if (processingFile.type == "text/xml") {
-        stage = "converting"
-        const shouldConvert = await this.showCcdaWarningModal()
-        if (!shouldConvert) return
-        processingFile = await firstValueFrom(this.platformApi.convertCcdaToFhir(processingFile))
+      if (processingFile.type === 'text/xml') {
+        stage = 'converting';
+        const shouldConvert = await this.showCcdaWarningModal();
+        if (!shouldConvert || !sameReceiver()) return;
+        conversionSent = true;
+        processingFile = await firstValueFrom(this.platformApi.convertCcdaToFhir(processingFile));
       }
 
-      stage = "uploading"
-      await firstValueFrom(this.fastenApi.createManualSource(processingFile))
-    } catch (err) {
-      this.uploadErrorMsg = `Error ${stage} file: ` + (extractErrorFromResponse(err) || "Unknown Error")
+      if (!sameReceiver()) return;
+      stage = 'uploading';
+      importSent = true;
+      // Unsubscription stops an unsent native encoding from reaching transport.
+      // An already received server request/job is NOT thereby undone or cancelled.
+      await firstValueFrom(this.fastenApi.createManualSource(processingFile, receivingOwnerID).pipe(takeUntil(this.uploadDestroyed)));
+      sameReceiver(); // An earlier response must not populate errors/data under a replacement profile.
+    } catch (err: unknown) {
+      if (sameReceiver()) this.uploadErrorMsg = `Error ${stage} file: ` + (extractErrorFromResponse(err) || 'Unknown Error');
     } finally {
-      this.uploadingBundle = false
-      this.uploadedFile = []
+      this.uploadingBundle = false;
+      this.uploadedFile = [];
     }
   }
 
   showCcdaWarningModal(): Promise<boolean> {
-
-
-    return this.modalService.open(this.ccdaWarningModalRef).result.then<boolean>(
-      (result) => {
-        //convert button clicked, .close()
-        return true //convert from CCDA -> FHIR.
-      }
-    ).catch((reason) => {
-      // x or cancel button clicked, .dismiss()
-      return false
-    })
+    const modal = this.modalService.open(this.ccdaWarningModalRef);
+    this.ccdaWarningModal = modal;
+    return modal.result.then(() => true, () => false).finally(() => {
+      if (this.ccdaWarningModal === modal) this.ccdaWarningModal = undefined;
+    });
   }
 
 }

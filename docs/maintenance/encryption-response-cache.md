@@ -1,12 +1,17 @@
 # Encryption setup response cache boundary
 
-## Ownership and draft scope
+## Ownership and accepted scope
 
 Pi owns #506 in the sole checkout on `task/encryption-response-cache`, from protected
 #505 merge `e0e6bbb289c591efffbfbf91317030f16e98714a`, separately main-qualified by
 Validation42747314980. Validated two-file Go product checkpoint:
-`6f89d613232cf2121d20930a2a32e1bf42816b31`; protected matching-head/exact-main acceptance
-remain pending. #505 accepted a failed-control receipt, not a #479/#504 maximum-race fix.
+`6f89d613232cf2121d20930a2a32e1bf42816b31`. Exact head
+`15de2134a5c3337ceb75cf48aa53e0fd8b312748` passed seven42756596719
+(Backend8m04/Frontend3m49/Desktop10m41/actions53s/Go15m04/JS2m25/aggregate3s).
+Fresh matching/CLEAN/resolved-review protected #508 merged
+`55e5383db038efbf2977db655ece0c9e823282f4`,2026-11-10T04:50:22Z; separate exact-main
+Validation42758364242 passed and #506 closed boundedly. #505 accepted a failed-control
+receipt, not a #479/#504 maximum-race fix.
 
 An actual registered STANDBY `AppEngine.Setup` GET `/api/encryption-key` diagnostic on
 clean cd9c59ea (Go source identical to accepted e0e) returned200 with no response
@@ -59,7 +64,10 @@ through capture; documentation separate. Owned wrapper34083 observed absent. All
 native packages compiled/race-built with **no tests run**; actual cmd2.198/smoke1.313s
 race controls passed. These are bounded compile/smoke scopes, not full local native-core,
 packaged runtime/GUI or older-OS acceptance; macOS27.2-object/11.0-link-target warnings
-retained. Protected matching head/exact-main, live browser/native GUI caching and
-independently operated recovery remain unclaimed. The full legacy race red above stays distinct from focused cache
-controls, ordinary results and hosted checks. No historical cache/log cleanup or
-broader token/credential/privacy certificate follows from this directive.
+retained. Protected matching-head/separate-main acceptance above does not establish
+live browser/native GUI caching or independently operated recovery. The full legacy
+race red stays distinct from focused cache controls, ordinary results and hosted
+checks. No historical cache/log cleanup or broader token/credential/privacy certificate
+follows from this directive. [Consumer #507](encryption-setup-consumer.md) separately
+addresses acknowledgments, unlocked-state observation and private view lifetimes;
+that draft is not accepted by this response-header fix.

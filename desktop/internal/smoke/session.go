@@ -4,6 +4,7 @@ package smoke
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 	"sync"
 )
@@ -22,6 +23,22 @@ type Session struct {
 	observerReady bool
 	leaked        bool
 	checked       bool
+	checks        []string
+}
+
+var nativeSmokeChecks = []string{
+	"native binding round trip", "direct SMART disabled without registration", "fresh database API",
+	"local account creation", "local sign in", "direct SMART rejects unconfigured provider",
+	"manual import receiving profile guard", "owner-confirmed native file import", "native URL validation",
+	"API errors stay separate from SPA", "owned popup callback round trip", "callback isolated from unrelated window",
+}
+
+// TimeoutReport preserves acknowledged fixed-label progress without extending the
+// deadline or treating a partial run as success. No records, tokens or inputs belong here.
+func (s *Session) TimeoutReport() Report {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return Report{Checks: append([]string(nil), s.checks...), Error: "native smoke test timed out"}
 }
 
 func (s *Session) Wrap(next http.Handler) http.Handler {
@@ -60,6 +77,27 @@ func (s *Session) Wrap(next http.Handler) http.Handler {
 			defer s.mu.Unlock()
 			json.NewEncoder(w).Encode(map[string]bool{"ready": s.observerReady, "checked": s.checked, "leaked": s.leaked})
 			return
+		case "progress":
+			var progress struct {
+				Checks []string `json:"checks"`
+			}
+			decoder := json.NewDecoder(http.MaxBytesReader(w, r.Body, 2048))
+			decoder.DisallowUnknownFields()
+			if decoder.Decode(&progress) != nil || decoder.Decode(new(any)) != io.EOF || len(progress.Checks) > len(nativeSmokeChecks) {
+				w.WriteHeader(http.StatusBadRequest)
+				return
+			}
+			for index, check := range progress.Checks {
+				if check != nativeSmokeChecks[index] {
+					w.WriteHeader(http.StatusBadRequest)
+					return
+				}
+			}
+			s.mu.Lock()
+			if len(progress.Checks) > len(s.checks) {
+				s.checks = append([]string(nil), progress.Checks...)
+			}
+			s.mu.Unlock()
 		case "result":
 			var report Report
 			if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, 8192)).Decode(&report); err != nil {
@@ -78,10 +116,14 @@ func (s *Session) Wrap(next http.Handler) http.Handler {
 const page = `<!doctype html><html><body><h1>Chartrove desktop smoke test</h1><pre id="status">Starting…</pre><script type="module">
 import * as runtime from '/wails/runtime.js';
 import {createDesktopBridge} from '/assets/desktop/bridge.mjs';
+import {prepareNativeMultipart} from '/assets/desktop/multipart.mjs';
 const bridge=createDesktopBridge(runtime), checks=[];
 const role=new URL(location.href).searchParams.get('role');
 const post=(action,data)=>fetch('/__desktop_smoke__/control?action='+action,{method:'POST',body:data&&JSON.stringify(data)});
-const check=(value,name)=>{if(!value)throw new Error(name);checks.push(name);document.querySelector('#status').textContent=checks.join('\n');};
+// At most twelve sequential best-effort fixed-label posts; each has its own short
+// observation bound, inside (not extending) the unchanged native smoke deadline.
+const progress=async()=>{const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),500);try{await fetch('/__desktop_smoke__/control?action=progress',{method:'POST',body:JSON.stringify({checks:[...checks]}),signal:controller.signal});}catch{}finally{clearTimeout(timer);}};
+const check=async(value,name)=>{if(!value)throw new Error(name);checks.push(name);document.querySelector('#status').textContent=checks.join('\n');await progress();};
 const wait=async(predicate)=>{for(let i=0;i<100;i++){if(await predicate())return;await new Promise(r=>setTimeout(r,100));}throw new Error('native smoke handshake timed out');};
 const status=()=>post('status').then(r=>r.json());
 if(role==='observer') {
@@ -93,25 +135,38 @@ if(role==='observer') {
  bridge.completeAuth({state:'smoke-one',code:'synthetic-code'}).catch(console.error);
 } else {
  try {
-  const info=await bridge.getInfo();check(info.application==='Chartrove','native binding round trip');
+  const info=await bridge.getInfo();await check(info.application==='Chartrove','native binding round trip');
   const smart='github.com/karamhouse/fasten-desktop/internal/shell.SMARTService';
   const providers=await runtime.Call.ByName(smart+'.Providers');
-  check(Array.isArray(providers)&&providers.length===0,'direct SMART disabled without registration');
-  const health=await fetch('/api/health').then(r=>r.json());check(health.data.first_run_wizard&&!health.data.standby_mode,'fresh database API');
+  await check(Array.isArray(providers)&&providers.length===0,'direct SMART disabled without registration');
+  const health=await fetch('/api/health').then(r=>r.json());await check(health.data.first_run_wizard&&!health.data.standby_mode,'fresh database API');
   const account={username:'desktop-smoke',password:'synthetic-desktop-password',join_mailing_list:false};
   const send=path=>fetch('/api/auth/'+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(account)}).then(r=>r.json());
-  check((await send('signup')).success,'local account creation');
-  const signin=await send('signin');check(signin.success&&typeof signin.data==='string','local sign in');
+  await check((await send('signup')).success,'local account creation');
+  const signin=await send('signin');await check(signin.success&&typeof signin.data==='string','local sign in');
   let unavailable='';try{await runtime.Call.ByName(smart+'.Connect','unregistered-smoke-provider',signin.data);}catch(error){unavailable=String(error?.message??error);}
-  check(unavailable.includes('direct provider data could not be retrieved'),'direct SMART rejects unconfigured provider');
+  await check(unavailable.includes('direct provider data could not be retrieved'),'direct SMART rejects unconfigured provider');
+  const api=async(path,options={})=>{const response=await fetch(path,{...options,headers:{...options.headers,Authorization:'Bearer '+signin.data}});return {status:response.status,body:await response.json()};};
+  const me=await api('/api/secure/account/me');
+  if(me.status!==200||typeof me.body.data?.id!=='string')throw new Error('local receiving identity unavailable');
+  const count=async(path)=>{const result=await api(path);if(result.status!==200)throw new Error('local import state unavailable');if(result.body.data===null)return 0;if(!Array.isArray(result.body.data))throw new Error('local import state unavailable');return result.body.data.length;};
+  const sourceCount=await count('/api/secure/source'),jobCount=await count('/api/secure/jobs');
+  const patientID='native-smoke-patient';
+  const bundle=JSON.stringify({resourceType:'Bundle',type:'collection',entry:[{resource:{resourceType:'Patient',id:patientID,gender:'unknown',name:[{family:'Synthetic',given:['Smoke']}]}}]});
+  const importFile=async owner=>{const form=new FormData();form.append('file',new Blob([bundle],{type:'application/json'}),'synthetic-native-smoke.json');form.append('expected_owner_id',owner);const prepared=await prepareNativeMultipart(form);return api('/api/secure/source/manual',{method:'POST',body:prepared.body,headers:{'Content-Type':prepared.contentType}});};
+  const wrong=await importFile('11111111-1111-4111-8111-111111111111');
+  if(wrong.status!==409)throw new Error('native file receiver rejection HTTP '+wrong.status);
+  await check(wrong.body.success===false&&(await count('/api/secure/source'))===sourceCount&&(await count('/api/secure/jobs'))===jobCount,'manual import receiving profile guard');
+  const imported=await importFile(me.body.data.id);
+  await check(imported.status===200&&imported.body.success===true&&imported.body.source?.user_id===me.body.data.id&&imported.body.source?.patient===patientID&&(await count('/api/secure/source'))===sourceCount+1&&(await count('/api/secure/jobs'))===jobCount+1,'owner-confirmed native file import');
   let rejected=false;try{await bridge.openExternal('file:///etc/passwd','smoke-one');}catch{rejected=true;}
-  check(rejected,'native URL validation');
-  const missing=await fetch('/api/not-a-route');check(missing.status===404&&missing.headers.get('content-type').includes('json'),'API errors stay separate from SPA');
+  await check(rejected,'native URL validation');
+  const missing=await fetch('/api/not-a-route');await check(missing.status===404&&missing.headers.get('content-type').includes('json'),'API errors stay separate from SPA');
   await post('observer');await wait(async()=> (await status()).ready);
   const callback=new Promise((resolve,reject)=>{const stop=bridge.onAuthResponse('smoke-one',resolve);setTimeout(()=>{stop();reject(new Error('native callback timed out'));},10000);});
-  await post('callback');const data=await callback;check(data.code==='synthetic-code','owned popup callback round trip');
+  await post('callback');const data=await callback;await check(data.code==='synthetic-code','owned popup callback round trip');
   await post('check-observer');await wait(async()=> (await status()).checked);
-  check(!(await status()).leaked,'callback isolated from unrelated window');
+  await check(!(await status()).leaked,'callback isolated from unrelated window');
   await post('result',{ok:true,checks});
  }catch(error){document.querySelector('#status').textContent=String(error);await post('result',{ok:false,checks,error:String(error)});}
 }

@@ -17,10 +17,10 @@
         <form [formGroup]="encryptionKeyForm" class="mt-4" (ngSubmit)="validateAndSetKey()">
           <div class="mb-3">
             <label for="encryptionKey">Encryption Key</label>
-            <input type="text" id="encryptionKey" formControlName="encryptionKey" class="form-control"
+            <input type="password" id="encryptionKey" formControlName="encryptionKey" class="form-control" autocomplete="off" spellcheck="false" autocapitalize="none"
               [ngClass]="{ 'is-invalid': error }" placeholder="Paste your encryption key here" required [disabled]="isProcessing" />
             @if (error) {
-              <div class="invalid-feedback">
+              <div class="invalid-feedback" role="alert">
                 {{ statusMessage }}
               </div>
             }
@@ -55,6 +55,11 @@
             </button>
           </div>
         </form>
+        <p class="small text-muted mt-3">
+          Submitting a key may change the server even if this page closes or confirmation fails.
+          Keep your saved key and check the server before retrying. Leaving clears this view,
+          not saved files, clipboard copies or all memory; it does not roll back setup.
+        </p>
       </div>
 
     </div>
