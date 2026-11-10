@@ -37,7 +37,7 @@ func BackgroundJobSyncResources(
 			_sourceCred *models.SourceCredential,
 		) (sourceModels.SourceClient, sourceModels.UpsertSummary, error) {
 			// after creating the client, we should do a bulk import
-			sourceClient, err := factory.GetSourceClient(_sourceCred.LighthouseEnvType, _backgroundJobContext, _logger, _sourceCred, models.WithProviderResponsePrivacy())
+			sourceClient, err := factory.GetSourceClient(_sourceCred.LighthouseEnvType, _backgroundJobContext, _logger, _sourceCred, models.WithProviderResponsePrivacy(), models.WithProviderRequestLifetime())
 			if err != nil {
 				resultErr := fmt.Errorf("an error occurred while initializing hub client using source credential: %w", err)
 				_logger.Errorln(resultErr)

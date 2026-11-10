@@ -55,7 +55,7 @@ func TestLegacyProviderOAuthRejectionBodyPrivacy(t *testing.T) {
 				sourcePkg.FastenLighthouseEnvSandbox, ctx, logger, credential,
 				&definitionModels.LighthouseSourceDefinition{PatientAccessEndpoint: &catalog.PatientAccessEndpoint{
 					Url: "https://synthetic-provider.invalid/fhir", TokenEndpoint: "https://synthetic-provider.invalid/token",
-				}}, sourceModels.WithHttpClient(client), WithProviderResponsePrivacy(),
+				}}, sourceModels.WithHttpClient(client), WithProviderResponsePrivacy(), WithProviderRequestLifetime(),
 			)
 			require.Error(t, err)
 			assert.Contains(t, err.Error(), "invalid_grant", "retain the standard safe failure classification")
@@ -96,7 +96,7 @@ func TestLegacyProviderFHIRRejectionBodyPrivacy(t *testing.T) {
 		sourcePkg.FastenLighthouseEnvSandbox, ctx, logger, credential,
 		&definitionModels.LighthouseSourceDefinition{PatientAccessEndpoint: &catalog.PatientAccessEndpoint{
 			Url: "https://synthetic-provider.invalid/fhir", TokenEndpoint: "https://synthetic-provider.invalid/token",
-		}}, sourceModels.WithHttpClient(client), WithProviderResponsePrivacy(),
+		}}, sourceModels.WithHttpClient(client), WithProviderResponsePrivacy(), WithProviderRequestLifetime(),
 	)
 	require.NoError(t, err)
 	var patient map[string]interface{}

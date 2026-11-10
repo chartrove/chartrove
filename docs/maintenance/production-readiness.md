@@ -150,13 +150,25 @@ remain evidence, not current acceptance or authorization. Only this repository i
   42713900458 passed and #496 closed boundedly. Headers/URLs/2xx OAuth errors/SDK
   request cancellation/global privacy are not certified.
 - [Optional platform startup #498](optional-platform-startup.md) has validated local product
-  `7ebfac7493121cd362f5c53713b3557abf514527`, not hosted acceptance. Actual synthetic
+  `7ebfac7493121cd362f5c53713b3557abf514527`. Actual synthetic
   encrypted engine startup503/panic baseline and real settings nil-error/mixed-pair reds
   precede typed remote-outage-only continuation, bounded registration and atomic ID/secret
   storage. Actual owned non-STANDBY startup, SQLite/PG fault controls, focused races/vet,
   full ordinary database/web161.040/63.327s/captured Go-test0 and full native core races pass.
   Existing automatic healthy registration policy remains, not a telemetry/egress opt-out.
   No live registration, deployment, graceful shutdown or global offline/recovery certificate.
+  Exact `42219322fb5f756eb28dbfae4e528f024e42d923` passed seven42720034229; protected
+  #499 merged `390005131e536a32d07d15453a6e7317b43cdb5f`; separate exact-main42722429637
+  passed and #498 closed boundedly.
+- [SDK request lifetime #500](provider-request-lifetime.md), validated local product
+  `add8c7bb92821b54b514519d1f94e42189188942` on accepted39000513, is not hosted acceptance. Actual SDK pre-cancel/deadline/body-cancel
+  reds1.346s precede a copied-client constructor/request lifetime link through EOF/Close.
+  Six current factory sites adopt it; deliberate detached jobs remain detached, no new
+  default budget/Gin/JWT copy. Models race24.856s, handler context/log regression8.843s,
+  paired actual SDK privacy/OAuth compatibility and lifecycle/vet controls pass. Complete
+  ordinary models/handler/web2.099/87.027/64.876s/captured Go-test0/nine source hashes and
+  full native core races pass. No full handler/web race, new native package/runtime/GUI,
+  global SDK/privacy/lifetime or provider/recovery certificate. #474 remains open.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
