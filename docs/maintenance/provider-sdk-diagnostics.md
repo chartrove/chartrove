@@ -1,13 +1,16 @@
 # Legacy SDK instance diagnostics and operation errors
 
-## Draft ownership and limits
+## Ownership, acceptance and limits
 
-Pi owns #502 in the sole checkout on `task/provider-sdk-diagnostics`, from protected
-#501 merge/main-qualified `a7432c368d9e3dd55488c9d43f86bd3b4f007f7c`. Validated local
-eight-file product checkpoint: `4cbb7af0a513c2580b46ebd939898e06803581a8`.
-Protected publication/exact-main acceptance remain pending. This is a
-separate surface from accepted #496 rejection-body privacy and #500 request lifetime,
-not evidence those bounded receipts promised global SDK privacy.
+Pi owned #502 in the sole checkout on `task/provider-sdk-diagnostics`, from protected
+#501 merge/main-qualified `a7432c368d9e3dd55488c9d43f86bd3b4f007f7c`. Eight-file product:
+`4cbb7af0a513c2580b46ebd939898e06803581a8`; exact docs/head988487fce113a54ffe78be8b1d4f0475a60c218f
+passed seven42733463248 (Backend9m38/Frontend3m58/Desktop11m03/actions57s/Go15m28/
+JS2m41/aggregate3s). Fresh matching/CLEAN/no unresolved threads preceded protected #503
+merge `b33a994571f45897867d7c920029d1f50503b265`,2026-11-10T01:25:44Z. Separate exact-main
+Validation42735717066 passed; #502 closed boundedly. This is a separate surface from
+accepted #496 rejection-body privacy and #500 request lifetime, not evidence those
+receipts promised global SDK privacy or that hosted Desktop erased the local failure.
 
 The boundary is the supplied SDK-instance logger and outward SourceClient method/
 construction errors at current application callers. It is **not** an interceptor for
@@ -97,7 +100,6 @@ budgets/assertions remain; no scheduler/host/foreground/priority/capture experim
 blind repeat. Known macOS27.2-object/11.0-link-target warnings retained, not older-OS
 acceptance.
 
-Full handler/web race, new native package/runtime/GUI, protected publication/exact-main,
-live provider/consent, independently operated recovery and production readiness remain
-unclaimed. #474 global inventory, #479 maximum race and blocked #487 runtime/negative
+Full handler/web race, new native package/runtime/GUI, live provider/consent,
+independently operated recovery and production readiness remain unclaimed. #474 global inventory, #479 maximum race and blocked #487 runtime/negative
 gates remain; no historical log cleanup or revocation.
