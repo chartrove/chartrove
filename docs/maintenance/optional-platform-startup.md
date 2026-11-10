@@ -1,10 +1,11 @@
 # Optional installation registration and local standalone startup
 
-## Draft ownership and boundary
+## Ownership and boundary
 
 Pi owns #498 in the sole checkout, branch `task/optional-platform-startup`, from
 accepted `5128397733d2a693f916e6ae59b1678ffa3a4a28`. Validated local product checkpoint:
-`7ebfac7493121cd362f5c53713b3557abf514527`. Protected publication is pending.
+`7ebfac7493121cd362f5c53713b3557abf514527`. Protected acceptance and separate exact-main
+qualification are recorded below.
 No existing configuration, profile, registration consent/opt-in policy, installed key,
 health record, provider account or deployment was changed.
 
@@ -77,8 +78,19 @@ telemetry opt-out policy or proof of a network-silent application.
 - Full serialized native core races passed cmd1.592/host22.915/shell30.746/SMART6.917/
   fixture1.256/smoke1.184s, with source hashes unchanged. Existing macOS27.2-object /
   11.0-link-target warnings remain, not an older-OS certificate. No complete database/
-  web race, new native package/GUI/runtime, actual platform registration or hosted
-  acceptance is claimed.
+  web race, new native package/GUI/runtime or actual platform registration is claimed
+  by these local checks; hosted qualification below is separate.
+
+## Protected acceptance and independent main qualification
+
+Exact `42219322fb5f756eb28dbfae4e528f024e42d923` passed all seven42720034229:
+Backend6m19s, Frontend4m04s, Desktop12m05s, actions50s, Go15m19s, JS2m14s and
+aggregate3s. Actual Go tracing, not a retry/infrastructure relabel. Fresh matching
+head/CLEAN/no unresolved threads/ready verification preceded protected #499 merge
+`390005131e536a32d07d15453a6e7317b43cdb5f` at 2026-11-09T23:40:59Z. Separate
+exact-main42722429637 passed; #498 is closed boundedly. Healthy automatic registration
+and the optional-secret contract remain, not a new telemetry policy or global offline
+certificate. The #500 SDK request-lifetime follow-up is independent.
 
 Normal encrypted-record/provider behavior, TLS/egress, graceful standalone shutdown,
 GUI/capture consent, independently operated recovery, #474 global lifetime/privacy,
