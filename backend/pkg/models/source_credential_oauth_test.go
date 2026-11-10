@@ -108,7 +108,7 @@ func TestProviderOAuthTokenCompatibility(t *testing.T) {
 				sourcePkg.FastenLighthouseEnvSandbox, ctx, logger, credential,
 				&definitionModels.LighthouseSourceDefinition{PatientAccessEndpoint: &catalog.PatientAccessEndpoint{
 					Url: server.URL + "/fhir", TokenEndpoint: server.URL + "/token",
-				}}, sourceModels.WithHttpClient(server.Client()), WithProviderResponsePrivacy(),
+				}}, sourceModels.WithHttpClient(server.Client()), WithProviderResponsePrivacy(), WithProviderRequestLifetime(),
 			)
 			if tc.rejectRefresh {
 				require.Error(t, err)

@@ -210,7 +210,7 @@ func CreateManualSource(c *gin.Context) {
 		manualSourceCredential.EndpointID = uuid.NewSHA1(uuid.NameSpaceURL, []byte("chartrove-direct-smart:"+origin.FHIRBaseURL))
 		manualSourceCredential.Display = fmt.Sprintf("Direct SMART snapshot: %s (%s)", origin.Display, origin.FHIRBaseURL)
 	}
-	tempSourceClient, err := factory.GetSourceClient("", jobContext, logger, &manualSourceCredential, models.WithProviderResponsePrivacy())
+	tempSourceClient, err := factory.GetSourceClient("", jobContext, logger, &manualSourceCredential, models.WithProviderResponsePrivacy(), models.WithProviderRequestLifetime())
 	if err != nil {
 		err = fmt.Errorf("an error occurred while initializing hub client using manual source without credentials: %w", err)
 		logger.Errorln(err)
@@ -312,7 +312,7 @@ func CreateManualSource(c *gin.Context) {
 			_databaseRepo database.DatabaseRepository,
 			_sourceCred *models.SourceCredential,
 		) (sourceModels.SourceClient, sourceModels.UpsertSummary, error) {
-			manualSourceClient, err := factory.GetSourceClient("", _backgroundJobContext, _logger, _sourceCred, models.WithProviderResponsePrivacy())
+			manualSourceClient, err := factory.GetSourceClient("", _backgroundJobContext, _logger, _sourceCred, models.WithProviderResponsePrivacy(), models.WithProviderRequestLifetime())
 			if err != nil {
 				resultErr := fmt.Errorf("an error occurred while initializing hub client using manual source with credential: %w", err)
 				logger.Errorln(resultErr)
