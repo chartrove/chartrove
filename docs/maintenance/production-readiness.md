@@ -197,9 +197,10 @@ remain evidence, not current acceptance or authorization. Only this repository i
   host/scheduler/priority/capture or budget change adopted. Local trial series stopped;
   #479/#504 remain open, no new production-readiness or recovery certificate. Docs-only
   exactcd9c59ea passed seven42745242928/protected #505 e0e6bbb2/separate main42747314980.
-- [Encryption response cache #506](encryption-response-cache.md), validated local
-  two-file product `6f89d613232cf2121d20930a2a32e1bf42816b31` on accepted e0e, is not hosted
-  acceptance. Actual registered STANDBY GET200/no-storefalse plus
+- [Encryption response cache #506](encryption-response-cache.md), two-file product
+  `6f89d613232cf2121d20930a2a32e1bf42816b31` on accepted e0e: exacthead15de2134 passed
+  seven42756596719; protected #508 merge55e5383d/separate exact-main42758364242 passed
+  and #506 closed boundedly. Actual registered STANDBY GET200/no-storefalse plus
   ten tracked header failures2.184s precede three local response directives. No key body
   printed/exported; isolated actual-route/real SQLCipher no-account lifecycle race54.992s
   passes. Legacy unlock race still fails bootstrap500 with current530.567s AND accepted
@@ -208,8 +209,19 @@ remain evidence, not current acceptance or authorization. Only this repository i
   selected encryption/unlock ordinary pass. Full ordinary handler566.432/web280.445s,
   actual Go-test0/two frozen hashes0/ownedwrapper absent; vet/diff pass. Six native race
   builds are compile-only/no tests, actual cmd2.198/smoke1.313s races pass; not full local
-  nativecore/newpackage-GUI/olderOS or hosted/browsercache/zeroization/key-custody/recovery
-  certificate. #507 consumer false-ACK is a separate future source lead, not repaired here.
+  nativecore/newpackage-GUI/olderOS or browsercache/zeroization/key-custody/recovery
+  certificate. The original legacy race/ordinary failures remain counterevidence.
+- [Encryption consumer #507](encryption-setup-consumer.md), draft product8ec14fd0e2
+  from55e: actual registered HTTP25/20FAIL and actual component/template8/7FAIL precede
+  literal-success/private-error/empty-completion boundaries, bounded unlocked-state
+  observation and owned private lifecycle.400/500 baseline failures were raw-error
+  privacy contracts, not false-ACK behavior; correction retained. Current73 selected
+  browser controls pass; Node27pass/two filesystem skips. Ten frozen hashes match.
+  Complete canonical frontend preflight exited1 before steps:42GiB available versus
+  unchanged50GiB guard; ownedwrapper absent/no lock. Do not bypass storage guard or
+  discard evidence. Full Angular/production/Storybook receipt, protected matching-head
+  and separate exact-main acceptance remain pending; existing hosted Frontend does
+  not run Storybook. No native GUI/crypto/key-custody/recovery/readiness acceptance.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
