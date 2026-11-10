@@ -161,14 +161,28 @@ remain evidence, not current acceptance or authorization. Only this repository i
   #499 merged `390005131e536a32d07d15453a6e7317b43cdb5f`; separate exact-main42722429637
   passed and #498 closed boundedly.
 - [SDK request lifetime #500](provider-request-lifetime.md), validated local product
-  `add8c7bb92821b54b514519d1f94e42189188942` on accepted39000513, is not hosted acceptance. Actual SDK pre-cancel/deadline/body-cancel
+  `add8c7bb92821b54b514519d1f94e42189188942` on accepted39000513, is accepted boundedly. Actual SDK pre-cancel/deadline/body-cancel
   reds1.346s precede a copied-client constructor/request lifetime link through EOF/Close.
   Six current factory sites adopt it; deliberate detached jobs remain detached, no new
   default budget/Gin/JWT copy. Models race24.856s, handler context/log regression8.843s,
   paired actual SDK privacy/OAuth compatibility and lifecycle/vet controls pass. Complete
   ordinary models/handler/web2.099/87.027/64.876s/captured Go-test0/nine source hashes and
   full native core races pass. No full handler/web race, new native package/runtime/GUI,
-  global SDK/privacy/lifetime or provider/recovery certificate. #474 remains open.
+  global SDK/privacy/lifetime or provider/recovery certificate. Exact1ebbf0b4 passed
+  seven42725999870; protected #501 merged a7432c368d9e3dd55488c9d43f86bd3b4f007f7c;
+  separate exact-main42728469591 passed and #500 closed. #474 remains open.
+- [SDK diagnostics #502](provider-sdk-diagnostics.md), validated local product
+  `4cbb7af0a513c2580b46ebd939898e06803581a8` on accepted a7432c36, is not hosted acceptance. Actual SDK error/debug request-location reds0.594s and a separate
+  draft unexported panic-field gap0.335s preceded isolated instance logging/typed error
+  forwarding. Six callers use an owned factory, original successful/partial data and
+  typed cancellation/OAuth inspection retained; no global stdout/stderr/parent-field
+  privacy claim. Complete models race23.512s, handler regression8.995s, actual warning/
+  Binary/manual-factory/all-severity/owned Fatal-Panic/forwarding/vet pass. Full ordinary
+  models/handler/web2.652/97.691/66.268s/captured0/eight hashes pass. Native invocation
+  retained host signup500/expected200 at18.20s; other components pass. Accepted-source
+  host control25.501s then one unchanged candidate host23.504s pass separately, no
+  established cause/budget relaxation/host experiments or erased failure. No new native
+  package/runtime/GUI, hosted/global SDK/recovery certificate.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
