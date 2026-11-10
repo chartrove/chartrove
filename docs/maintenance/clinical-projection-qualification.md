@@ -5,8 +5,12 @@
 Pi owns #504 under #479, in the sole checkout on
 `task/clinical-projection-concurrency`. Parent/source baseline:
 `b33a994571f45897867d7c920029d1f50503b265`, protected #503 plus separate exact-main
-Validation42735717066 success. No clinical optimization was accepted, committed or
-published. This receipt preserves failed controls, not a maximum-race fix.
+Validation42735717066 success. This docs-only receipt's exactcd9c59ea7d816691b8c03eaa7bcafb354dc45195
+passed seven42745242928 (Backend6m41/Frontend3m40/Desktop10m43/actions44s/Go16m27/
+JS2m31/aggregate3s); protected #505 merged e0e6bbb289c591efffbfbf91317030f16e98714a,
+2026-11-10T03:07:07Z. Separate exact-main42747314980 passed. No clinical optimization
+was accepted, committed or published; #479/#504 remain open. This receipt preserves
+failed controls, not a maximum-race fix.
 
 The three-file Go trial was preserved byte-for-byte in private task evidence, with
 `cmp`, SHA256, tracked patch and status verified before restoring only this task's

@@ -195,7 +195,21 @@ remain evidence, not current acceptance or authorization. Only this repository i
   All three Go trial files/patch/hashes were privately preserved then only task changes
   restored; JS prototypes never entered source. No optimization, catalog/pool/dependency,
   host/scheduler/priority/capture or budget change adopted. Local trial series stopped;
-  #479/#504 remain open, no new production-readiness or recovery certificate.
+  #479/#504 remain open, no new production-readiness or recovery certificate. Docs-only
+  exactcd9c59ea passed seven42745242928/protected #505 e0e6bbb2/separate main42747314980.
+- [Encryption response cache #506](encryption-response-cache.md), validated local
+  two-file product `6f89d613232cf2121d20930a2a32e1bf42816b31` on accepted e0e, is not hosted
+  acceptance. Actual registered STANDBY GET200/no-storefalse plus
+  ten tracked header failures2.184s precede three local response directives. No key body
+  printed/exported; isolated actual-route/real SQLCipher no-account lifecycle race54.992s
+  passes. Legacy unlock race still fails bootstrap500 with current530.567s AND accepted
+  pre-header overlay600.215s; no header/host cause or fulllegacyrace acceptance. Initial
+  ordinary60.859s failure retained; accepted35.393s then one unchanged current27.360s
+  selected encryption/unlock ordinary pass. Full ordinary handler566.432/web280.445s,
+  actual Go-test0/two frozen hashes0/ownedwrapper absent; vet/diff pass. Six native race
+  builds are compile-only/no tests, actual cmd2.198/smoke1.313s races pass; not full local
+  nativecore/newpackage-GUI/olderOS or hosted/browsercache/zeroization/key-custody/recovery
+  certificate. #507 consumer false-ACK is a separate future source lead, not repaired here.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
