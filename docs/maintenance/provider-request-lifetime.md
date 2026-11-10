@@ -1,11 +1,12 @@
 # Legacy SDK request lifetime
 
-## Draft ownership and scope
+## Ownership and scope
 
 Pi owns #500, a bounded follow-up to #474, in the sole checkout on
 `task/provider-request-lifetime`, from accepted/main-qualified
 `390005131e536a32d07d15453a6e7317b43cdb5f`. Validated local product checkpoint:
-`add8c7bb92821b54b514519d1f94e42189188942`. Protected publication remains pending. No provider/account/consent,
+`add8c7bb92821b54b514519d1f94e42189188942`. Protected acceptance and independent
+main qualification are recorded below. No provider/account/consent,
 credential policy, dependency, global HTTP/logger or SDK/module-cache source changed.
 
 This repairs the configured transport boundary for SDK-manufactured requests, not all
@@ -79,6 +80,18 @@ match through actual exit capture; documentation edits were separate. Owned wrap
 was subsequently observed absent. Full serialized native core races passed
 cmd1.596/host22.903/shell27.464/SMART6.036/fixture1.237/smoke1.200s with unchanged
 source; known macOS27.2-object/11.0-link-target warnings remain, not older-OS acceptance.
-No complete handler/web race, new native package/GUI/runtime, hosted publication, actual
-provider, independently operated recovery or production-readiness claim is made.
-#474 global inventory, #479 maximum race and blocked #487 runtime/negative gates remain.
+No complete handler/web race, new native package/GUI/runtime, actual provider,
+independently operated recovery or production-readiness claim is made by these local
+checks. #474 global inventory, #479 maximum race and blocked #487 runtime/negative
+gates remain.
+
+## Protected acceptance and independent main
+
+Exact `1ebbf0b430453479f058eb33a6f6c32a82afb7b4` passed all seven42725999870:
+Backend7m55s, Frontend3m40s, Desktop11m00s, actions48s, Go16m46s, JS2m43s,
+aggregate5s. Actual trace/analyze completed without failure/rerun relabel. Fresh
+matching head/CLEAN/no unresolved threads/ready verification preceded protected #501
+merge `a7432c368d9e3dd55488c9d43f86bd3b4f007f7c` at 2026-11-10T00:27:39Z.
+Separate exact-main42728469591 passed; #500 closed boundedly. The independently
+reproduced SDK request-location error/debug surface is #502, not erased by this
+caller-lifetime boundary or a reason to claim whole SDK privacy.

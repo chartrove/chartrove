@@ -19,7 +19,6 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
-	"github.com/fastenhealth/fasten-sources/clients/factory"
 	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	sourceDefinitions "github.com/fastenhealth/fasten-sources/definitions"
 	sourcePkg "github.com/fastenhealth/fasten-sources/pkg"
@@ -210,7 +209,7 @@ func CreateManualSource(c *gin.Context) {
 		manualSourceCredential.EndpointID = uuid.NewSHA1(uuid.NameSpaceURL, []byte("chartrove-direct-smart:"+origin.FHIRBaseURL))
 		manualSourceCredential.Display = fmt.Sprintf("Direct SMART snapshot: %s (%s)", origin.Display, origin.FHIRBaseURL)
 	}
-	tempSourceClient, err := factory.GetSourceClient("", jobContext, logger, &manualSourceCredential, models.WithProviderResponsePrivacy(), models.WithProviderRequestLifetime())
+	tempSourceClient, err := models.NewProviderSourceClient("", jobContext, logger, &manualSourceCredential)
 	if err != nil {
 		err = fmt.Errorf("an error occurred while initializing hub client using manual source without credentials: %w", err)
 		logger.Errorln(err)
@@ -312,7 +311,7 @@ func CreateManualSource(c *gin.Context) {
 			_databaseRepo database.DatabaseRepository,
 			_sourceCred *models.SourceCredential,
 		) (sourceModels.SourceClient, sourceModels.UpsertSummary, error) {
-			manualSourceClient, err := factory.GetSourceClient("", _backgroundJobContext, _logger, _sourceCred, models.WithProviderResponsePrivacy(), models.WithProviderRequestLifetime())
+			manualSourceClient, err := models.NewProviderSourceClient("", _backgroundJobContext, _logger, _sourceCred)
 			if err != nil {
 				resultErr := fmt.Errorf("an error occurred while initializing hub client using manual source with credential: %w", err)
 				logger.Errorln(resultErr)

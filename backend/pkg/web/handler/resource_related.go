@@ -13,7 +13,6 @@ import (
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/event_bus"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/models"
 	"github.com/fastenhealth/fasten-onprem/backend/pkg/web/middleware"
-	"github.com/fastenhealth/fasten-sources/clients/factory"
 	sourceModels "github.com/fastenhealth/fasten-sources/clients/models"
 	sourcePkg "github.com/fastenhealth/fasten-sources/pkg"
 	"github.com/gin-gonic/gin"
@@ -58,7 +57,7 @@ func CreateRelatedResources(c *gin.Context) {
 		) (sourceModels.SourceClient, sourceModels.UpsertSummary, error) {
 
 			//step 3: create a "fasten" client, which we can use to parse resources to add to the database
-			fastenSourceClient, err := factory.GetSourceClient(sourcePkg.GetFastenLighthouseEnv(), _backgroundJobContext, _logger, _sourceCred, models.WithProviderResponsePrivacy(), models.WithProviderRequestLifetime())
+			fastenSourceClient, err := models.NewProviderSourceClient(sourcePkg.GetFastenLighthouseEnv(), _backgroundJobContext, _logger, _sourceCred)
 			if err != nil {
 				resultErr := fmt.Errorf("could not create Fasten source client")
 				_logger.Errorln(resultErr)
