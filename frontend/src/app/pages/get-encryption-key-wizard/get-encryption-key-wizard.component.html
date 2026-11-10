@@ -4,7 +4,7 @@
       <div class="col-1 nopadding">
         <div class="d-flex h-100">
           <div class="mx-auto my-auto">
-            <img src="assets/sources/{{img}}" class="rounded img-fluid" style="opacity: 0.2;">
+            <img src="assets/sources/{{img}}" class="rounded img-fluid" style="opacity: 0.2;" alt="">
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
         <h4>Welcome to Chartrove</h4>
 
         @if (error) {
-          <div class="alert alert-danger">{{ error }}</div>
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
         }
 
         @if (loading) {
@@ -30,8 +30,9 @@
         @if (encryptionKey && !loading) {
           <div>
             <p class="text-muted">
-              This encryption key has been generated for you automatically and will only be shown once.
-              Please save it securely by downloading it before continuing.
+              This encryption key has been generated for you automatically. Save it securely and verify
+              your saved file before continuing. Leaving this page clears this view, not saved files,
+              clipboard copies or all memory.
             </p>
             <label for="encryptionKey" class="form-label font-weight-bold">Your Encryption Key</label>
             <div class="d-flex align-items-center mb-3">
@@ -45,30 +46,36 @@
               <input type="checkbox" class="form-check-input" id="acknowledge" [(ngModel)]="acknowledged"
                 name="acknowledge" />
               <label class="form-check-label" for="acknowledge">
-                I understand that I will no longer have access to this encryption key once I leave this page.
+                I have verified my saved file contains this key and stored it securely. I understand
+                this page will no longer show the key after I leave.
               </label>
             </div>
             <div class="mt-3 d-flex">
-              <button class="btn btn-outline-secondary me-2" (click)="copyToClipboard()">
+              <button type="button" class="btn btn-outline-secondary me-2" (click)="copyToClipboard()">
                 <fa-icon [icon]="['fas', 'copy']"></fa-icon> Copy
               </button>
-              <button class="btn btn-outline-success" (click)="downloadEncryptionKey()" [disabled]="encryptionKeyDownloaded">
+              <button type="button" class="btn btn-outline-success" (click)="downloadEncryptionKey()" [disabled]="encryptionKeyDownloaded">
                 <fa-icon [icon]="['fas', 'download']"></fa-icon> Download as .txt
               </button>
             </div>
             <div class="alert alert-warning mt-3">
-              <strong>Important:</strong> You must download this encryption key before continuing. It will not be shown again.
+              <strong>Important:</strong> A download request does not prove the file was saved. Verify it yourself.
+              Submitting may change the server even if this page closes or confirmation fails; keep the saved key
+              and check the server before retrying. Closing this page does not roll back setup.
             </div>
             <div class="mt-4 text-end">
-              <button class="btn btn-primary" [disabled]="!acknowledged || !encryptionKeyDownloaded || settingUpKey" (click)="proceedToSignup()">
+              <button type="button" class="btn btn-primary" [disabled]="settingUpKey || (!encryptionReady && (!acknowledged || !encryptionKeyDownloaded))" (click)="encryptionReady ? redirectToSignup() : proceedToSignup()">
                 @if (settingUpKey) {
                   <span class="spinner-border spinner-border-sm me-2"></span>
                 }
-                @if (!settingUpKey) {
+                @if (!settingUpKey && !encryptionReady) {
                   Continue to Sign Up →
                 }
                 @if (settingUpKey) {
-                  Setting up key... ({{ countdown }}s)
+                  Setting up and confirming key...
+                }
+                @if (encryptionReady) {
+                  Continue to Sign Up → ({{ countdown }}s)
                 }
               </button>
             </div>

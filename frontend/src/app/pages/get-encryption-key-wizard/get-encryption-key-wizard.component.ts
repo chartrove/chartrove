@@ -1,5 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import {firstValueFrom, Subject, Subscription} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 import { ToastNotification, ToastType } from 'src/app/models/fasten/toast';
 import { FastenApiService } from 'src/app/services/fasten-api.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -11,7 +13,7 @@ import { ToastService } from 'src/app/services/toast.service';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class GetEncryptionKeyWizardComponent implements OnInit {
+export class GetEncryptionKeyWizardComponent implements OnInit, OnDestroy {
   gridImages: string[] = [
     "f8f9ce28-d79b-4b54-9f7d-3f0aaba88c2c.png",
     "89bb6993-b806-49a2-84e2-6e70705c504a.png",
@@ -106,7 +108,13 @@ export class GetEncryptionKeyWizardComponent implements OnInit {
   showEncryptionKey = false;
   settingUpKey = false;
   countdown: number = 5;
-  private countdownInterval: any;
+  private countdownInterval: ReturnType<typeof setInterval> | null = null;
+  private keySubscription: Subscription | null = null;
+  private readonly destroyed = new Subject<void>();
+  private active = true;
+  private keyEpoch = 0;
+  private operationEpoch = 0;
+  private setupConfirmed = false;
 
   constructor(
     private fastenApiService: FastenApiService,
@@ -118,24 +126,45 @@ export class GetEncryptionKeyWizardComponent implements OnInit {
     this.fetchEncryptionKey();
   }
 
-  ngOnDestroy() {
-    if (this.countdownInterval) {
-      clearInterval(this.countdownInterval);
-    }
+  ngOnDestroy(): void {
+    this.active = false;
+    this.keyEpoch++;
+    this.operationEpoch++;
+    this.destroyed.next();
+    this.destroyed.complete();
+    this.keySubscription?.unsubscribe();
+    this.keySubscription = null;
+    if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
+    this.countdownInterval = null;
+    this.encryptionKey = null;
+    this.encryptionKeyDownloaded = false;
+    this.acknowledged = false;
+    this.showEncryptionKey = false;
+    this.loading = false;
+    this.settingUpKey = false;
+    this.setupConfirmed = false;
+    this.error = null;
   }
 
   fetchEncryptionKey(): void {
+    if (!this.active || this.settingUpKey || this.setupConfirmed) return;
+    this.keySubscription?.unsubscribe();
+    const epoch = ++this.keyEpoch;
+    this.encryptionKey = null;
+    this.encryptionKeyDownloaded = false;
+    this.acknowledged = false;
+    this.showEncryptionKey = false;
     this.loading = true;
     this.error = null;
-
-    this.fastenApiService.getEncryptionKey().subscribe({
-      next: (response) => {
+    this.keySubscription = this.fastenApiService.getEncryptionKey().subscribe({
+      next: response => {
+        if (!this.active || epoch !== this.keyEpoch) return;
         this.encryptionKey = response;
         this.loading = false;
       },
-      error: (err) => {
-        this.error = 'Failed to fetch encryption key.';
-        console.error(err);
+      error: () => {
+        if (!this.active || epoch !== this.keyEpoch) return;
+        this.error = 'Encryption key could not be retrieved.';
         this.loading = false;
       },
     });
@@ -145,11 +174,14 @@ export class GetEncryptionKeyWizardComponent implements OnInit {
     this.showEncryptionKey = !this.showEncryptionKey;
   }
 
+  get encryptionReady(): boolean {
+    return this.setupConfirmed;
+  }
+
   startCountdown(): void {
+    if (!this.active || !this.setupConfirmed) return;
     this.countdown = 5;
-    if (this.countdownInterval) {
-      clearInterval(this.countdownInterval);
-    }
+    if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
     this.countdownInterval = setInterval(() => {
       this.countdown--;
       if (this.countdown <= 0) {
@@ -159,60 +191,79 @@ export class GetEncryptionKeyWizardComponent implements OnInit {
   }
 
   private showToast(type: ToastType, message: string): void {
+    if (!this.active) return;
     const toastNotification = new ToastNotification();
     toastNotification.type = type;
     toastNotification.message = message;
     this.toastService.show(toastNotification);
   }
 
-  copyToClipboard(): void {
-    if (this.encryptionKey) {
-      navigator.clipboard.writeText(this.encryptionKey).then(() => {
-        this.showToast(ToastType.Success, `Successfully copied encryption key to clipboard!`);
-      });
+  async copyToClipboard(): Promise<void> {
+    const key = this.encryptionKey;
+    const epoch = this.keyEpoch;
+    if (!this.active || !key) return;
+    try {
+      await navigator.clipboard.writeText(key);
+      if (this.active && epoch === this.keyEpoch && this.encryptionKey === key) {
+        this.showToast(ToastType.Success, 'Encryption key copied. Protect it and clear the clipboard when finished.');
+      }
+    } catch {
+      if (this.active && epoch === this.keyEpoch) this.showToast(ToastType.Error, 'Encryption key could not be copied. A prior clipboard copy may still exist.');
     }
   }
 
   downloadEncryptionKey(): void {
-    if (this.encryptionKey) {
-      const blob = new Blob([this.encryptionKey], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'encryption_key.txt';
-      a.click();
-      URL.revokeObjectURL(url);
-
+    if (!this.active || !this.encryptionKey) return;
+    let url: string | null = null;
+    try {
+      const blob = new Blob([this.encryptionKey], {type: 'text/plain'});
+      url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = 'encryption_key.txt';
+      anchor.click();
       this.encryptionKeyDownloaded = true;
-      this.showToast(ToastType.Success, `Successfully downloaded encryption key!`);
+      this.showToast(ToastType.Success, 'Download requested. Verify and protect the saved key file.');
+    } catch {
+      this.showToast(ToastType.Error, 'Encryption key download could not be requested. Check any previously saved files.');
+    } finally {
+      if (url !== null) URL.revokeObjectURL(url);
     }
   }
 
   async proceedToSignup(): Promise<void> {
-    if (!this.encryptionKey) {
+    if (!this.active || this.settingUpKey || this.setupConfirmed) return;
+    const key = this.encryptionKey;
+    if (!key) {
       this.showToast(ToastType.Error, 'Encryption key is not available.');
       return;
     }
-
+    const epoch = ++this.operationEpoch;
     this.settingUpKey = true;
     this.error = null;
-
     try {
-      await this.fastenApiService.setupEncryptionKey(this.encryptionKey).toPromise();
-      this.showToast(ToastType.Success, 'Encryption key set up successfully! Redirecting...');
+      await firstValueFrom(this.fastenApiService.setupEncryptionKey(key).pipe(takeUntil(this.destroyed)));
+      if (!this.active || epoch !== this.operationEpoch) return;
+      await firstValueFrom(this.fastenApiService.confirmEncryptionReady().pipe(takeUntil(this.destroyed)));
+      if (!this.active || epoch !== this.operationEpoch) return;
+      this.setupConfirmed = true;
+      this.settingUpKey = false;
+      this.showToast(ToastType.Success, 'Server reports the database unlocked. Keep your saved key. Redirecting...');
       this.startCountdown();
-    } catch (err) {
-      this.error = 'Failed to set up encryption key. Please try again.';
+    } catch {
+      if (!this.active || epoch !== this.operationEpoch) return;
+      this.error = 'Encryption setup was not confirmed. It may already have changed; keep your saved key and check the server before retrying.';
       this.showToast(ToastType.Error, this.error);
-      console.error(err);
-      this.settingUpKey = false; // Ensure settingUpKey is reset on error
+      this.settingUpKey = false;
     }
   }
 
   redirectToSignup(): void {
-    if (this.countdownInterval) {
-      clearInterval(this.countdownInterval);
-    }
-    this.router.navigate(['/auth/signup/wizard']);
+    if (!this.active || !this.setupConfirmed) return;
+    if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
+    this.countdownInterval = null;
+    void this.router.navigate(['/auth/signup/wizard']).catch(() => {
+      if (this.active) this.error = 'Navigation could not be completed.';
+    });
   }
 }

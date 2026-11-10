@@ -21,7 +21,7 @@ describe('GetEncryptionKeyWizardComponent', () => {
   };
 
   const mockFastenApiService = {
-    getEncryptionKey: jasmine.createSpy('getEncryptionKey').and.returnValue(of({ data: 'mockKey' }))
+    getEncryptionKey: jasmine.createSpy('getEncryptionKey').and.returnValue(of('mockKey'))
   };
 
   beforeEach(async () => {

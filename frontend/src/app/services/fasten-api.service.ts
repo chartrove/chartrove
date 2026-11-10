@@ -1,9 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
 import { Practitioner } from 'src/app/models/fasten/practitioner';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable, of, throwError} from 'rxjs';
+import {defer, Observable, of, throwError, timer} from 'rxjs';
 import { Router } from '@angular/router';
-import {concatMap, map} from 'rxjs/operators';
+import {catchError, concatMap, exhaustMap, filter, map, take, throwIfEmpty, timeout} from 'rxjs/operators';
 import {ResponseWrapper} from '../models/response-wrapper';
 import {Source} from '../models/fasten/source';
 import {User} from '../models/fasten/user';
@@ -33,6 +33,21 @@ import {FormRequestHealthSystem} from '../models/fasten/form-request-health-syst
 import { UpdateResourcePayload } from '../models/fasten/resource_update';
 import { Favorite } from '../pages/practitioner-list/practitioner-list.component';
 import {SmartImportOrigin, SmartSnapshotImportResult, isSmartSnapshotImportResult} from '../models/direct-smart';
+
+function encryptionSuccess(response: unknown): response is {readonly success: true; readonly data?: unknown} {
+  return response !== null && typeof response === 'object' && !Array.isArray(response) &&
+    'success' in response && response.success === true;
+}
+
+function encryptionUnlocked(response: unknown): boolean {
+  if (!encryptionSuccess(response)) return false;
+  const data = response.data;
+  return data !== null && typeof data === 'object' && !Array.isArray(data) &&
+    'standby_mode' in data && data.standby_mode === false &&
+    'first_run_wizard' in data && typeof data.first_run_wizard === 'boolean';
+}
+
+const encryptionSetupUncertain = 'Encryption setup was not confirmed. It may already have changed; keep your saved key and check the server before retrying.';
 
 @Injectable({
   providedIn: 'root'
@@ -72,29 +87,63 @@ export class FastenApiService {
   }
 
   getEncryptionKey(): Observable<string> {
-    return this._httpClient.get<{ data: string }>(
+    return this._httpClient.get<unknown>(
       `${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/encryption-key`
     ).pipe(
-      map(response => response?.data)
+      timeout({first: 30000}),
+      map(response => {
+        if (!encryptionSuccess(response) || typeof response.data !== 'string' || response.data.length === 0) {
+          throw new Error('Encryption key could not be retrieved.');
+        }
+        return response.data;
+      }),
+      throwIfEmpty(() => new Error('Encryption key could not be retrieved.')),
+      catchError(() => throwError(() => new Error('Encryption key could not be retrieved.')))
     );
   }
 
-  setupEncryptionKey(encryptionKey: string): Observable<any> {
-    return this._httpClient.post<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/encryption-key`, { encryption_key: encryptionKey })
-      .pipe(
-        map((response: ResponseWrapper) => {
-          return response.data
-        })
-      );
+  setupEncryptionKey(encryptionKey: string): Observable<void> {
+    return this._httpClient.post<unknown>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/encryption-key`, {encryption_key: encryptionKey}).pipe(
+      timeout({first: 30000}),
+      map(response => {
+        if (!encryptionSuccess(response)) throw new Error(encryptionSetupUncertain);
+        return undefined;
+      }),
+      throwIfEmpty(() => new Error(encryptionSetupUncertain)),
+      catchError(() => throwError(() => new Error(encryptionSetupUncertain)))
+    );
   }
 
-  validateEncryptionKey(encryptionKey: string): Observable<any> {
-    return this._httpClient.post<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/encryption-key/validate`, { encryption_key: encryptionKey })
-      .pipe(
-        map((response: ResponseWrapper) => {
-          return response.data
-        })
+  validateEncryptionKey(encryptionKey: string): Observable<void> {
+    return this._httpClient.post<unknown>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/encryption-key/validate`, {encryption_key: encryptionKey}).pipe(
+      timeout({first: 30000}),
+      map(response => {
+        if (!encryptionSuccess(response)) throw new Error('Encryption key validation could not be confirmed.');
+        return undefined;
+      }),
+      throwIfEmpty(() => new Error('Encryption key validation could not be confirmed.')),
+      catchError(() => throwError(() => new Error('Encryption key validation could not be confirmed.')))
+    );
+  }
+
+  /** Fresh bounded health observation, not attestation of key ownership or persistence. */
+  confirmEncryptionReady(): Observable<void> {
+    const endpoint = `${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/health`;
+    return defer(() => {
+      // Non-secret cache-busting scope, not key/identity authority. A unique URL per
+      // request avoids an extra non-safelisted CORS header on configured remote APIs.
+      const observation = uuidV4();
+      return timer(0, 500).pipe(
+        exhaustMap(index => this._httpClient.get<unknown>(endpoint, {params: {_encryption_confirmation: `${observation}-${index}`}}).pipe(
+          timeout({first: 5000}),
+          catchError(() => of(null))
+        )),
+        filter(encryptionUnlocked),
+        take(1),
+        map(() => undefined),
+        timeout({first: 30000})
       );
+    }).pipe(catchError(() => throwError(() => new Error(encryptionSetupUncertain))));
   }
 
   /*
