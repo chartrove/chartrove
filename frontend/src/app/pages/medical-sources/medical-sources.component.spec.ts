@@ -16,10 +16,15 @@ import {of, throwError} from 'rxjs';
 import {Source} from '../../models/fasten/source';
 import {DirectSmartSourcesComponent} from '../../components/direct-smart-sources/direct-smart-sources.component';
 import {DirectSmartService} from '../../services/direct-smart.service';
+import {AuthService} from '../../services/auth.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 describe('MedicalSourcesComponent', () => {
   let component: MedicalSourcesComponent;
   let fixture: ComponentFixture<MedicalSourcesComponent>;
+  const firstReceiver = '11111111-1111-4111-8111-111111111111';
+  const replacementReceiver = '22222222-2222-4222-8222-222222222222';
+  let receiver: string | undefined;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,6 +42,11 @@ describe('MedicalSourcesComponent', () => {
 })
     .compileComponents();
 
+    receiver = firstReceiver;
+    spyOn(TestBed.inject(AuthService), 'GetCurrentUser').and.callFake(() => ({
+      native_user_id: receiver, sub: 'same-synthetic-name', iss: 'synthetic-local', exp: 2000000000,
+      full_name: 'Synthetic Receiver', picture: '', email: '', role: 'user',
+    }));
     fixture = TestBed.createComponent(MedicalSourcesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -117,6 +127,7 @@ describe('MedicalSourcesComponent', () => {
     expect(fixture.nativeElement.querySelector('ngx-dropzone input[type="file"]').disabled).toBeTrue();
     const request = TestBed.inject(HttpTestingController).expectOne(isManualImport);
     expect(request.request.body.get('file')).toBe(file);
+    expect(request.request.body.get('expected_owner_id')).toBe(firstReceiver);
     request.flush({ success: true, data: { id: 'synthetic-source' } });
     await pending;
     fixture.detectChanges();
@@ -124,6 +135,119 @@ describe('MedicalSourcesComponent', () => {
     expect(component.uploadedFile).toEqual([]);
     expect(component.uploadErrorMsg).toBe('');
     expect(fixture.nativeElement.querySelector('ngx-dropzone input[type="file"]').disabled).toBeFalse();
+  });
+
+  async function completeUnexpectedRequests(): Promise<void> {
+    const http = TestBed.inject(HttpTestingController);
+    const conversions = http.match(isConversion);
+    expect(conversions.length).toBe(0, 'stale confirmation must not authorize an external upload');
+    for (const request of conversions) request.flush({resourceType: 'Bundle', type: 'collection', entry: []});
+    await Promise.resolve();
+    const imports = http.match(isManualImport);
+    expect(imports.length).toBe(0, 'stale/destroyed context must not authorize a local import');
+    for (const request of imports) request.flush({success: true, data: {id: 'synthetic-unexpected-import'}});
+  }
+
+  it('pins immutable receiver across external confirmation even when the display name is reused', async () => {
+    let decide: (value: boolean) => void;
+    spyOn(component, 'showCcdaWarningModal').and.returnValue(new Promise(resolve => decide = resolve));
+    const pending = component.uploadSourceBundleHandler({addedFiles: [new File(['<synthetic/>'], 'synthetic.xml', {type: 'text/xml'})]});
+    receiver = replacementReceiver;
+    decide(true);
+    await Promise.resolve();
+    await completeUnexpectedRequests();
+    await pending;
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('receiving profile');
+    expect(component.uploadedFile).toEqual([]);
+    expect(component.uploadingBundle).toBeFalse();
+  });
+
+  it('does not start conversion/import after page destruction while confirmation is pending', async () => {
+    let decide: (value: boolean) => void;
+    spyOn(component, 'showCcdaWarningModal').and.returnValue(new Promise(resolve => decide = resolve));
+    const pending = component.uploadSourceBundleHandler({addedFiles: [new File(['<synthetic/>'], 'synthetic.xml', {type: 'text/xml'})]});
+    fixture.destroy();
+    decide(true);
+    await Promise.resolve();
+    await completeUnexpectedRequests();
+    await pending;
+    expect(component.uploadedFile).toEqual([]);
+  });
+
+  it('does not send converted data into a replacement receiving profile', async () => {
+    spyOn(component, 'showCcdaWarningModal').and.returnValue(Promise.resolve(true));
+    const pending = component.uploadSourceBundleHandler({addedFiles: [new File(['<synthetic/>'], 'synthetic.xml', {type: 'text/xml'})]});
+    await Promise.resolve();
+    const http = TestBed.inject(HttpTestingController);
+    const conversion = http.expectOne(isConversion);
+    receiver = replacementReceiver;
+    conversion.flush({resourceType: 'Bundle', type: 'collection', entry: []});
+    await Promise.resolve();
+    await completeUnexpectedRequests();
+    await pending;
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('receiving profile');
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('conversion');
+    expect(component.uploadedFile).toEqual([]);
+  });
+
+  it('does not expose an earlier profile error or claim rollback after an already submitted import', async () => {
+    const pending = component.uploadSourceBundleHandler({addedFiles: [syntheticBundle()]});
+    const request = TestBed.inject(HttpTestingController).expectOne(isManualImport);
+    receiver = replacementReceiver;
+    request.flush({error: 'PRIVATE_OLD_PROFILE_CANARY'}, {status: 500, statusText: 'Synthetic failure'});
+    await pending;
+    expect(component.uploadErrorMsg).not.toContain('PRIVATE_OLD_PROFILE_CANARY');
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('receiving profile');
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('may have');
+    expect(component.uploadedFile).toEqual([]);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).not.toContain('PRIVATE_OLD_PROFILE_CANARY');
+    expect(fixture.nativeElement.textContent).toContain('Receiving profile changed');
+  });
+
+  it('keeps successful-but-stale import completion uncertain instead of reporting a replacement profile success', async () => {
+    const pending = component.uploadSourceBundleHandler({addedFiles: [syntheticBundle()]});
+    const request = TestBed.inject(HttpTestingController).expectOne(isManualImport);
+    receiver = replacementReceiver;
+    request.flush({success: true, data: {id: 'PRIVATE_OLD_SOURCE_CANARY'}});
+    await pending;
+    expect(component.uploadErrorMsg).not.toContain('PRIVATE_OLD_SOURCE_CANARY');
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('receiving profile');
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('may have been accepted');
+    expect(component.uploadedFile).toEqual([]);
+  });
+
+  it('unsubscribes its pending local request on destruction without claiming that server work was undone', async () => {
+    const pending = component.uploadSourceBundleHandler({addedFiles: [syntheticBundle()]});
+    const request = TestBed.inject(HttpTestingController).expectOne(isManualImport);
+    fixture.destroy();
+    expect(request.cancelled).toBeTrue(); // Client transport only, not evidence of server rollback/job cancellation.
+    await pending;
+    expect(component.uploadErrorMsg).toBe('');
+    expect(component.uploadedFile).toEqual([]);
+  });
+
+  it('dismisses only its owned conversion confirmation on destruction', async () => {
+    const modal = TestBed.inject(NgbModal);
+    const unrelated = modal.open('Synthetic unrelated modal');
+    void unrelated.result.catch(() => undefined);
+    try {
+      const confirmation = component.showCcdaWarningModal();
+      fixture.destroy();
+      expect(await confirmation).toBeFalse();
+      expect(modal.hasOpenModals()).toBeTrue();
+    } finally {
+      unrelated.close('synthetic cleanup');
+    }
+  });
+
+  it('refuses a file import without an immutable receiving identity', async () => {
+    receiver = undefined;
+    const pending = component.uploadSourceBundleHandler({addedFiles: [syntheticBundle()]});
+    await completeUnexpectedRequests();
+    await pending;
+    expect(component.uploadErrorMsg.toLowerCase()).toContain('sign in');
+    expect(component.uploadedFile).toEqual([]);
   });
 
   it('clears failed-upload progress and allows a retry', async () => {

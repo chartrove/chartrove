@@ -1,14 +1,23 @@
 # Fail-closed encryption setup consumers
 
-## Ownership and draft checkpoint
+## Ownership and original draft checkpoint
 
 Pi owns #507 in the sole checkout, branch `task/encryption-setup-consumer`, from
 protected #508 merge `55e5383db038efbf2977db655ece0c9e823282f4`. That parent passed
 separate exact-main Validation42758364242; #506 is closed only for its response-cache
 boundary. This ten-file frontend product checkpoint is
 `8ec14fd0e265976fc9d9095009c52ce16d97dd81`. It is **not accepted or production-qualified**:
-complete local frontend validation is storage-blocked, and matching-head/protected
-merge/separate exact-main qualification remain pending.
+the original checkpoint was storage-blocked, with matching-head/protected
+merge/separate exact-main qualification pending.
+
+On 2026-11-10, sufficient storage became available. The unchanged exact draft head
+`e9eb06d2c8d609def5ecb3f77a574aa29ba55184` passed canonical Node/browser/production/
+Storybook validation, all four step exits zero, 865 browser successes/one skip and
+normal cleanup. The original preflight failure remains separate evidence. At the
+user's explicit request, #509 is now the protected consolidation vehicle for the
+original #431/#488/#509 heads. Combined-source checks remain distinct; repository
+integration does not certify native GUI, key custody, independent recovery or overall
+production readiness. See the [current consolidation scope](production-readiness.md).
 
 ## Two distinct boundaries
 

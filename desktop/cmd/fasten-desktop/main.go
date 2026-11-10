@@ -183,7 +183,7 @@ func run() error {
 		}
 		go func() {
 			time.Sleep(45 * time.Second)
-			session.Complete(smoke.Report{Error: "native smoke test timed out"})
+			session.Complete(session.TimeoutReport())
 		}()
 	}
 	app.Window.NewWithOptions(application.WebviewWindowOptions{Name: "main", Title: shell.ApplicationName, Width: 1280, Height: 900, MinWidth: 900, MinHeight: 650, URL: url, Hidden: *smokeBackground})

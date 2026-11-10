@@ -194,10 +194,11 @@ export class FastenApiService {
       );
   }
 
-  createManualSource(file: File): Observable<Source> {
+  createManualSource(file: File, expectedOwnerID?: string): Observable<Source> {
 
     const formData = new FormData();
     formData.append('file', file);
+    if (expectedOwnerID !== undefined) formData.append('expected_owner_id', expectedOwnerID);
 
     return this._httpClient.post<any>(`${GetEndpointAbsolutePath(globalThis.location, environment.fasten_api_endpoint_base)}/secure/source/manual`, formData)
       .pipe(

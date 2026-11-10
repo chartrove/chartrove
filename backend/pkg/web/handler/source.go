@@ -181,6 +181,11 @@ func CreateManualSource(c *gin.Context) {
 		bundleFile.Close()
 		os.Remove(bundleFile.Name())
 	}()
+	actor, _ := jobContext.Value(pkg.ContextKeyTypeAuthUserID).(uuid.UUID)
+	if status, message := manualImportReceiver(c, actor); status != 0 {
+		c.JSON(status, gin.H{"success": false, "error": message})
+		return
+	}
 	origin, err := directSMARTOriginFromForm(c)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})

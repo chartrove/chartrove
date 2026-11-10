@@ -76,8 +76,20 @@ directory. Independent readback found all ten native checks true in a 339-byte m
 the named driver lifecycle ended. This custom smoke page does **not** exercise the changed normal
 Angular interceptor; its evidence stays separate from the coupled synthetic-URI Angular tests.
 
-The current ZIP is an exact-b916 inspection candidate, not a later receipt-only source commit,
+That ZIP was the exact-b916 inspection candidate, not a later receipt-only source commit,
 protected-main/current release, notarized build, older-OS or independently operated recovery result.
+It is now privately retained; newer candidate status and native file-path limits are recorded in the
+[manual receiver receipt](manual-import-receiver.md).
 Private logs, test data, keys, archives, source/hash receipts and the earlier negative-only native
 calibration remain private. Native completion does not independently attest process exit. Actual
 visual/interactive receiving-profile/clinical workflows still require legitimate capture consent.
+
+## Protected source acceptance
+
+Exact #486 head `323aaf278892b740263628735658eaf8c18311eb` qualified seven checks at
+42630052659 attempt 2 with no unresolved threads. Initial Desktop job acquisition failed before
+steps (runner ID 0, hosted macOS arm64 capacity annotations); this is retained, not counted as a
+product pass. Only the failed job was requested for rerun, not all earlier application jobs.
+Fresh matching-head/CLEAN verification preceded protected merge
+`1b7a2b243fa78734638cc79d80089255cbb7d9cd`. Separate exact-main 42638457680 attempt 1
+passed. #485 is closed for this bounded source correction, not global security/GUI/readiness.

@@ -44,6 +44,16 @@ describe('Application HTTP authentication providers', () => {
       request.flush({success: true});
     });
 
+    it(`preserves ordinary web multipart streaming through ${name}`, () => {
+      const form = new FormData();
+      form.append('file', new Blob(['synthetic-web-file']), 'synthetic.json');
+      getClient().post('/api/secure/source/manual', form).subscribe();
+      const request = http.expectOne('/api/secure/source/manual');
+      expect(request.request.body).toBe(form);
+      expect(request.request.headers.has('Content-Type')).toBeFalse();
+      request.flush({success: true});
+    });
+
     it(`keeps the session token off unrelated origins through ${name}`, () => {
       const client = getClient();
       const url = 'https://synthetic.example.invalid/api/secure/source/manual';
