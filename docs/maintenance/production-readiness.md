@@ -171,8 +171,11 @@ remain evidence, not current acceptance or authorization. Only this repository i
   global SDK/privacy/lifetime or provider/recovery certificate. Exact1ebbf0b4 passed
   seven42725999870; protected #501 merged a7432c368d9e3dd55488c9d43f86bd3b4f007f7c;
   separate exact-main42728469591 passed and #500 closed. #474 remains open.
-- [SDK diagnostics #502](provider-sdk-diagnostics.md), validated local product
-  `4cbb7af0a513c2580b46ebd939898e06803581a8` on accepted a7432c36, is not hosted acceptance. Actual SDK error/debug request-location reds0.594s and a separate
+- [SDK diagnostics #502](provider-sdk-diagnostics.md), product
+  `4cbb7af0a513c2580b46ebd939898e06803581a8` on accepted a7432c36: exact988487fc passed
+  seven42733463248; protected #503 merged b33a994571f45897867d7c920029d1f50503b265;
+  separate exact-main42735717066 passed/#502 closed. Actual SDK error/debug
+  request-location reds0.594s and a separate
   draft unexported panic-field gap0.335s preceded isolated instance logging/typed error
   forwarding. Six callers use an owned factory, original successful/partial data and
   typed cancellation/OAuth inspection retained; no global stdout/stderr/parent-field
@@ -182,7 +185,17 @@ remain evidence, not current acceptance or authorization. Only this repository i
   retained host signup500/expected200 at18.20s; other components pass. Accepted-source
   host control25.501s then one unchanged candidate host23.504s pass separately, no
   established cause/budget relaxation/host experiments or erased failure. No new native
-  package/runtime/GUI, hosted/global SDK/recovery certificate.
+  package/runtime/GUI, global SDK/recovery certificate; hosted success does not erase
+  that local invocation or classify its cause.
+- [Clinical projection #504](clinical-projection-qualification.md) did not repair
+  #479's maximum race. Accepted-b33 baseline176.171s, finite two-worker trial135.921s
+  and private absence-overlay308.562s all failed `context deadline exceeded` before
+  writer reservation (0), unchanged2m/5001resources/1204010bytes/16MiB/15m package.
+  Bounded unit/semantic/microprofile controls are not actual maximum acceptance.
+  All three Go trial files/patch/hashes were privately preserved then only task changes
+  restored; JS prototypes never entered source. No optimization, catalog/pool/dependency,
+  host/scheduler/priority/capture or budget change adopted. Local trial series stopped;
+  #479/#504 remain open, no new production-readiness or recovery certificate.
 - The historical exact-b916 package and newer #487 inspection candidates are not a published,
   notarized/current-main release, older-macOS or independent key-custody qualification.
   [#487](https://github.com/chartrove/chartrove/issues/487) remains draft despite source checks:
