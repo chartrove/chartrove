@@ -39,6 +39,7 @@ func NewEncryptionKeyHandler(appConfig config.Interface, logger *logrus.Entry, a
 
 // GetEncryptionKey handles the GET /api/encryption-key endpoint
 func (h *EncryptionKeyHandler) GetEncryptionKey(c *gin.Context) {
+	c.Header("Cache-Control", "no-store")
 	encryptionKey, err := utils.GenerateRandomKey(32)
 	if err != nil {
 		h.Logger.Errorf("failed to generate random key: %v", err)
@@ -51,6 +52,7 @@ func (h *EncryptionKeyHandler) GetEncryptionKey(c *gin.Context) {
 
 // SetupEncryptionKey handles the POST /api/encryption-key endpoint
 func (h *EncryptionKeyHandler) SetEncryptionKey(c *gin.Context) {
+	c.Header("Cache-Control", "no-store")
 	var payload EncryptionKeyPayload
 	if err := c.ShouldBindJSON(&payload); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
@@ -85,6 +87,7 @@ func (h *EncryptionKeyHandler) SetEncryptionKey(c *gin.Context) {
 
 // ValidateEncryptionKey handles the POST /api/encryption-key/validate endpoint
 func (h *EncryptionKeyHandler) ValidateEncryptionKey(c *gin.Context) {
+	c.Header("Cache-Control", "no-store")
 	var payload EncryptionKeyPayload
 	if err := c.ShouldBindJSON(&payload); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
